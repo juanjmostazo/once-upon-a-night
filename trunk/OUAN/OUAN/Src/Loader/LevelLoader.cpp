@@ -5645,7 +5645,7 @@ EnemyType LevelLoader::processEnemyType(TiXmlElement *XMLNode)
 
 	try
 	{
-		type = EnemyType(getPropertyInt(XMLNode, "EnemyType::type"));
+		type = static_cast<EnemyType>(getPropertyInt(XMLNode, "EnemyType::type"));
 	}
 	catch(std::string error)
 	{

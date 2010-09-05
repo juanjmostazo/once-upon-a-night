@@ -113,7 +113,20 @@ void LogicSubsystem::registerModules()
 			.def("getMaxHP",&LogicComponentEnemy::getInitialHealthPoints)
 			.def("getEnemyType",&LogicComponentEnemy::getEnemyTypeLUA)
 			.def("hasBeenHit",&LogicComponentEnemy::hasBeenHit)
-			.def("hasDied",&LogicComponentEnemy::hasDied),
+			.def("hasDied",&LogicComponentEnemy::hasDied)
+			.def("getNeighboursInRange",&LogicComponentEnemy::getNeighboursInRange)
+			.def("callWasHeard",&LogicComponentEnemy::callWasHeard)
+			.def("hasHeardCall",&LogicComponentEnemy::hasHeardCall)			
+			.def("getPreviousState",&LogicComponentEnemy::getPreviousState)
+			.def("isAlertFinished",&LogicComponentEnemy::isAlertFinished)
+			.def("isSurpriseFinished",&LogicComponentEnemy::isSurpriseFinished)
+			.def("isFalseAlarmFinished",&LogicComponentEnemy::isFalseAlarmFinished)
+			.def("isCallToArmsFinished",&LogicComponentEnemy::isCallToArmsFinished)
+			.def("isIdle1Finished",&LogicComponentEnemy::isIdle1Finished)
+			.def("isAttackFinished",&LogicComponentEnemy::isAttackFinished)
+			.def("getMeleeRange",&LogicComponentEnemy::getMeleeRange)
+			.def("isTiredFinished",&LogicComponentEnemy::isTiredFinished)
+			.def("isStatueEnabled",&LogicComponentEnemy::isStatueEnabled),
 		class_<LogicComponentOny, LogicComponent > ("LogicComponentOny")
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentOny::getNumLives)
@@ -293,6 +306,10 @@ void LogicSubsystem::invokeActionFunction(const std::string& functionName, Logic
 int LogicSubsystem::getGlobalInt (const std::string& globalName)
 {
 	return luabind::object_cast<int>(luabind::globals(mLuaEngine)[globalName]);
+}
+double LogicSubsystem::getGlobalReal(const std::string& globalName)
+{
+	return luabind::object_cast<double>(luabind::globals(mLuaEngine)[globalName]);
 }
 
 void LogicSubsystem::invokeCutsceneFunction(const std::string& functionName)

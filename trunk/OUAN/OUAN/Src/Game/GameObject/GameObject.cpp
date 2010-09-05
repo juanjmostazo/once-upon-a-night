@@ -160,7 +160,7 @@ void GameObject::update(double elapsedSeconds)
 	}
 }
 
-const std::string& GameObject::getName()
+const std::string& GameObject::getName() const
 {
 	return mName;
 }
@@ -557,6 +557,7 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 
 bool GameObject::isWorthUpdatingLogicComponents()
 {
+	if (!mEnabled) return false;
 	// Initial conditions
 	if (mMaxUpdateRadium < 0 || !getPositionalComponent())
 	{
@@ -679,6 +680,22 @@ void GameObject::getLogicScriptFile(std::string& scriptFile) const
 void GameObject::startCollisionParticles()
 {
 
+}
+double GameObject::getMeleeRange() const
+{
+	return 0.0;
+}
+int GameObject::countNeighboursInRange(double range, bool call) const
+{
+	return 0;	
+}
+int GameObject::getNeighboursInRange(double range) const
+{
+	return countNeighboursInRange(range,false);
+}
+bool GameObject::callNeighboursInRange(double range) const
+{
+	return countNeighboursInRange(range,true)>0;	
 }
 //-------------------------------------------------------
 

@@ -40,6 +40,10 @@ void Trajectory::init(std::string name,Ogre::SceneManager * pSceneManager,Ogre::
 	mCurrentNode=0;
 	mDefaultSpeed=defaultSpeed;
 	mMinNextNodeDistance=minNextNodeDistance;
+
+	mFleeTarget=NULL;
+	mFleeDistance=0;
+	mFleeNode="";
 }
 
 void Trajectory::updateDebugNodes()
@@ -145,6 +149,39 @@ void Trajectory::updateChase()
 
 	pTrajectoryNode = new TrajectoryNode();
 	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mPathfindingTarget));
+	pTrajectoryNode->setSpeed(mDefaultSpeed);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	reset();
+}
+void Trajectory::cleanFlee()
+{
+	if (mState!= FLEE)
+	{
+		if (mFleeTarget)
+		{
+			mSceneManager->destroySceneNode(mFleeTarget);
+			mFleeTarget=NULL;
+			mFleeDistance=0;
+			mFleeNode="";
+		}
+	}
+}
+
+void Trajectory::updateFlee()
+{
+	TrajectoryNode * pTrajectoryNode;
+	clear();
+	
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mSceneManager->getSceneNode(mParent));
+	pTrajectoryNode->setSpeed(mDefaultSpeed);
+
+	pushBackNode(pTrajectoryNode,"red");
+
+	pTrajectoryNode = new TrajectoryNode();
+	pTrajectoryNode->setSceneNode(mFleeTarget);
 	pTrajectoryNode->setSpeed(mDefaultSpeed);
 
 	pushBackNode(pTrajectoryNode,"red");
@@ -277,6 +314,8 @@ void Trajectory::advanceToLastNode(double elapsedTime)
 		break;
 	case CHASE:
 		break;
+	case FLEE:
+		break;
 	case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
 		activatePredefinedTrajectory(mPredefinedTrajectory,mUseDefaultSpeed);
 		break;
@@ -355,6 +394,9 @@ void Trajectory::updateTrajectoryNodes(double elapsedTime)
 		case CHASE:
 			updateChase();
 			break;
+		case FLEE:
+			updateFlee();
+			break;
 		case PATH_FINDING_TO_PREDEFINED_TRAJECTORY:
 			break;
 		case PATH_FINDING_TO_IDLE:
@@ -410,6 +452,8 @@ void Trajectory::clear()
 
 	mDebugObjects->detachAllObjects();
 	mDebugObjects->removeAndDestroyAllChildren();
+
+	cleanFlee();
 
 	reset();
 }
@@ -557,29 +601,58 @@ int Trajectory::getNumberOfNodes() const
 
 void Trajectory::activateIdle(std::string gameObject,std::string node,std::string walkabilityMap)
 {
+	cleanFlee();
 	mState=PATH_FINDING_TO_IDLE;
 	doPathfinding(gameObject,node,walkabilityMap);
 }
 
 void Trajectory::activatePathfinding(std::string source,std::string target,std::string walkabilityMap)
 {
+	cleanFlee();
 	mState=PATH_FINDING;
 	doPathfinding(source,target,walkabilityMap);
 }
 
-void Trajectory::activateChase(std::string source,std::string target)
+void Trajectory::activateChase(const std::string& source,const std::string& target)
 {
 	//TrajectoryNode * pTrajectoryNode;
-
+	cleanFlee();
 	mState=CHASE;
 	mPathfindingTarget=target;
 	updateChase();
 }
 
+void Trajectory::activateFlee(const std::string& source,const std::string& target)
+{
+	//TrajectoryNode * pTrajectoryNode;
+	cleanFlee();
+	mState=FLEE;
+	mPathfindingTarget=target;
+	mFleeNode = mPathfindingTarget;
+	mFleeNode.append("_FLEE");
+	if (!mSceneManager->hasSceneNode(mFleeNode))
+	{
+		mFleeTarget = mSceneManager->createSceneNode(mFleeNode);
+	}
+	Ogre::SceneNode* tgtPosition = mSceneManager->getSceneNode(mPathfindingTarget);
+	Ogre::SceneNode* currentPosition = mSceneManager->getSceneNode(mParent);
+
+	Ogre::Vector3 pos = currentPosition->getPosition()-tgtPosition->getPosition();
+	mFleeTarget->setPosition(currentPosition->getPosition()+pos);
+
+	//Vector3 src = mFleeTarget->getOrientation() * Vector3::UNIT_X;     
+	//Real mDistance = pos.normalise();
+	//Quaternion quat = src.getRotationTo(pos);
+	//mFleeTarget->rotate(quat);
+
+	updateFlee();
+}
+
 void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap,bool useDefaultSpeed)
 {
 	std::string target;
-
+	
+	cleanFlee();
 	//find nearest node
 	target=mTrajectoryManager->getNearestNodeToTrajectory(trajectory,
 		mSceneManager->getSceneNode(gameObject)->getPosition());
@@ -603,7 +676,7 @@ void Trajectory::activatePathfindingToPredefinedTrajectory(std::string trajector
 void Trajectory::activatePredefinedTrajectory(std::string trajectory,bool useDefaultSpeed)
 {
 	mState=PREDEFINED_TRAJECTORY;
-
+	cleanFlee();
 	//mLoopTrajectory=true;
 	mPredefinedTrajectory=trajectory;
 	if(useDefaultSpeed)

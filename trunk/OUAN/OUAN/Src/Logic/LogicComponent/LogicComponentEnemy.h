@@ -48,6 +48,36 @@ namespace OUAN
 		bool hasDied() const;
 		void setHasDied(bool hasDied);
 
+		bool isAlertFinished() const;
+		void setAlertFinished(bool alert);
+		bool isSurpriseFinished() const;
+		void setSurpriseFinished(bool surprise);
+		bool isFalseAlarmFinished() const;
+		void setFalseAlarmFinished(bool falseAlarm);
+		bool isCallToArmsFinished() const;
+		void setCallToArmsFinished(bool callToArms);
+		bool isTiredFinished() const;
+		void setTiredFinished(bool tired);
+		bool isIdle1Finished() const;
+		void setIdle1Finished(bool idle1);
+		bool isAttackFinished() const;
+		void setAttackFinished(bool attackFinished);
+
+		int getPreviousState() const;
+		double getMeleeRange() const;
+
+		int getNeighboursInRange(double range) const;
+		bool callWasHeard() const;
+		void setCallWasHeard(bool callWasHeard);
+		
+		bool hasHeardCall() const;
+		void setHasHeardCall(bool hasHeardCall);
+
+		bool isStatueEnabled() const;
+		void setStatueEnabled(bool statueEnabled);
+
+		void setState(int state);
+
 	private:
 
 		/// Health points of the component
@@ -77,6 +107,17 @@ namespace OUAN
 
 		bool mHasBeenHit;
 		bool mHasDied;
+
+		bool mAlertFinished;
+		bool mSurpriseFinished;
+		bool mFalseAlarmFinished;
+		bool mCallToArmsFinished;
+		bool mTiredFinished;
+		bool mIdle1Finished;
+		bool mAttackFinished;
+		bool mCallWasHeard;
+		bool mHasHeardCall;
+		bool mStatueEnabled;
 
 		EnemyType mEnemyType;
 

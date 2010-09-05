@@ -18,7 +18,7 @@ namespace OUAN
 		void setExistsInNightmares(bool existsInNightmares);
 
 		int getState() const;
-		void setState(int state);
+		virtual void setState(int state);
 
 		int getOldState(int index=0) const;
 
@@ -52,6 +52,12 @@ namespace OUAN
 	protected:
 		int mState;
 		int mLastFrameState;
+
+
+		/// Size of the number of states
+		int stateHistory[GAMESTATE_HISTORY_SIZE];
+
+		bool mStateChanged;
 	
 	private:
 		/// Filename of the script that'll be executed by the logic subsystem
@@ -61,10 +67,6 @@ namespace OUAN
 		/// Name of the script function that'll handle the state update
 		std::string mScriptFunction;
 
-		/// Size of the number of states
-		int stateHistory[GAMESTATE_HISTORY_SIZE];
-
-		bool mStateChanged;
 
 		bool mExistsInDreams;
 		bool mExistsInNightmares;

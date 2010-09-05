@@ -80,6 +80,7 @@ namespace OUAN
 
 		/// Retrieve the value of a global variable in LUA
 		int getGlobalInt (const std::string& globalName);
+		double getGlobalReal (const std::string& globalName);
 	};
 }
 #endif

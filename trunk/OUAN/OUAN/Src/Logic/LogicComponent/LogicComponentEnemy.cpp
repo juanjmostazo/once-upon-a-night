@@ -16,6 +16,16 @@ LogicComponentEnemy::LogicComponentEnemy(const std::string& type)
 	mHitRecoveryTime=-1;
 	mHasDied=false;
 	mHasBeenHit=false;
+	mHasHeardCall=false;
+	mCallWasHeard=false;
+	mAlertFinished=true;
+	mCallToArmsFinished=true;
+	mFalseAlarmFinished=true;
+	mSurpriseFinished=true;
+	mAttackFinished=true;
+	mTiredFinished=true;	
+	mIdle1Finished=true;
+	mStatueEnabled=false;
 }
 
 LogicComponentEnemy::~LogicComponentEnemy()
@@ -206,6 +216,125 @@ bool LogicComponentEnemy::hasDied() const
 void LogicComponentEnemy::setHasDied(bool hasDied)
 {
 	mHasDied=hasDied;
+}
+
+bool LogicComponentEnemy::isAlertFinished() const
+{
+	return mAlertFinished;
+}
+void LogicComponentEnemy::setAlertFinished(bool alert)
+{
+	mAlertFinished=alert;
+}
+bool LogicComponentEnemy::isSurpriseFinished() const
+{
+	return mSurpriseFinished;
+}
+void LogicComponentEnemy::setSurpriseFinished(bool surprise)
+{
+	mSurpriseFinished=surprise;
+}
+bool LogicComponentEnemy::isFalseAlarmFinished() const
+{
+	return mFalseAlarmFinished;
+}
+void LogicComponentEnemy::setFalseAlarmFinished(bool falseAlarm)
+{
+	mFalseAlarmFinished=falseAlarm;
+}
+bool LogicComponentEnemy::isCallToArmsFinished() const
+{
+	return mCallToArmsFinished;
+}
+void LogicComponentEnemy::setCallToArmsFinished(bool callToArms)
+{
+	mCallToArmsFinished=callToArms;
+}
+bool LogicComponentEnemy::isTiredFinished() const
+{
+	return mTiredFinished;
+}
+void LogicComponentEnemy::setTiredFinished(bool tired)
+{
+	mTiredFinished=tired;
+}
+bool LogicComponentEnemy::isIdle1Finished() const
+{
+	return mIdle1Finished;
+}
+void LogicComponentEnemy::setIdle1Finished(bool idle1)
+{
+	mIdle1Finished=idle1;
+}
+
+int LogicComponentEnemy::getPreviousState() const
+{
+	return getOldState();
+}
+
+double LogicComponentEnemy::getMeleeRange() const
+{
+	return mParent->getMeleeRange();
+}
+
+bool LogicComponentEnemy::isAttackFinished() const
+{
+	return mAttackFinished;
+}
+void LogicComponentEnemy::setAttackFinished(bool attackFinished)
+{
+	mAttackFinished=attackFinished;
+}
+
+int LogicComponentEnemy::getNeighboursInRange(double range) const
+{
+	return mParent->getNeighboursInRange(range);
+}
+
+bool LogicComponentEnemy::callWasHeard() const
+{
+	return mCallWasHeard;
+}
+void LogicComponentEnemy::setCallWasHeard(bool callWasHeard)
+{
+	mCallWasHeard=callWasHeard;
+}
+
+bool LogicComponentEnemy::hasHeardCall() const
+{
+	return mHasHeardCall;
+}
+
+void LogicComponentEnemy::setHasHeardCall(bool hasHeardCall)
+{
+	mHasHeardCall=hasHeardCall;
+}
+
+bool LogicComponentEnemy::isStatueEnabled() const
+{
+	return mStatueEnabled;
+}
+
+void LogicComponentEnemy::setStatueEnabled(bool statueEnabled)
+{
+	mStatueEnabled=statueEnabled;
+}
+
+void LogicComponentEnemy::setState(int state)
+{
+	int oldState=mState;
+	mState=state;
+	if (oldState!=mState)
+	{
+		for (int i=GAMESTATE_HISTORY_SIZE-1;i>0;--i)
+		{
+			stateHistory[i]=stateHistory[i-1];
+		}
+
+		stateHistory[0]=oldState;
+	}
+
+	setStateChanged(oldState!=mState);
 }
 
 TLogicComponentEnemyParameters::TLogicComponentEnemyParameters() : TLogicComponentParameters()

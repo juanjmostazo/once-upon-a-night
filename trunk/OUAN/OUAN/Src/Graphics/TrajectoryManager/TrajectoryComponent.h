@@ -35,7 +35,9 @@ namespace OUAN
 		bool hasEnded() const;
 	
 		//Activates chase state, which recalculates a direct vector to the target
-		void activateChase(std::string target);
+		void activateChase(const std::string& target);
+
+		void activateFlee(const std::string& target);
 
 		//sets speed for non-predefined trajectories
 		void setDefaultSpeed(double defaultSpeed);

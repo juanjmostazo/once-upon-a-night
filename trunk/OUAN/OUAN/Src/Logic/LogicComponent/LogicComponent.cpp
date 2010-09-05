@@ -101,13 +101,11 @@ void LogicComponent::setState(int state)
 {
 	int oldState=mState;
 	mState=state;
-
 	for (int i=GAMESTATE_HISTORY_SIZE-1;i>0;--i)
 	{
 		stateHistory[i]=stateHistory[i-1];
 	}
-
-	stateHistory[0]=oldState;
+		stateHistory[0]=oldState;
 	setStateChanged(oldState!=mState);
 }
 

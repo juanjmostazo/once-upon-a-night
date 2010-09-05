@@ -30,7 +30,7 @@ LogicComponentProp::~LogicComponentProp()
 void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 
-	Logger::getInstance()->log(" LogicComponentProp::processCollision "+getParent()->getName()+" "+pGameObject->getName());
+	//Logger::getInstance()->log(" LogicComponentProp::processCollision "+getParent()->getName()+" "+pGameObject->getName());
 
 	GameWorldManagerPtr worldMgr = mParent->getGameWorldManager();
 	ApplicationPtr app = worldMgr->getParent();

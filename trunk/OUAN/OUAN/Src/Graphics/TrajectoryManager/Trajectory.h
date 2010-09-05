@@ -31,6 +31,7 @@ namespace OUAN
 			PATH_FINDING,
 			IDLE,
 			CHASE,
+			FLEE,
 			PATH_FINDING_TO_PREDEFINED_TRAJECTORY,
 			PATH_FINDING_TO_IDLE,
 			PREDEFINED_TRAJECTORY
@@ -83,6 +84,9 @@ namespace OUAN
 
 		//Chase functions
 		void updateChase();
+		
+		void updateFlee();
+		void cleanFlee();
 
 		//Debug functions
 		void removeNodeDebugInfo(int node);
@@ -97,6 +101,10 @@ namespace OUAN
 		std::map<std::string,Line3D *> myLines;
 		std::map<std::string,Ogre::Entity *> myNodes;
 		std::vector<ObjectTextDisplay*> mDisplays;
+
+		Ogre::SceneNode* mFleeTarget;
+		double mFleeDistance;
+		std::string mFleeNode;
 
 	public:
 
@@ -134,7 +142,10 @@ namespace OUAN
 		void activateIdle(std::string gameObject,std::string node,std::string walkabilityMap);
 		void activatePredefinedTrajectory(std::string trajectory,bool useDefaultSpeed);
 		void activatePathfindingToPredefinedTrajectory(std::string trajectory,std::string gameObject,std::string walkabilityMap,bool useDefaultSpeed);
-		void activateChase(std::string source,std::string target);
+		void activateChase(const std::string& source, 
+			const std::string& target);
+		void activateFlee(const std::string& source, 
+			const std::string& target);
 
 		std::string getNearestNode(Ogre::Vector3 position);
 

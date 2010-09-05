@@ -39,9 +39,13 @@ bool TrajectoryComponent::hasEnded() const
 	}
 	return true;
 }
-void TrajectoryComponent::activateChase(std::string target)
+void TrajectoryComponent::activateChase(const std::string& target)
 {
 	mTrajectory->activateChase(getParent()->getName(),target);
+}
+void TrajectoryComponent::activateFlee(const std::string& target)
+{
+	mTrajectory->activateFlee(getParent()->getName(),target);
 }
 
 void TrajectoryComponent::activateIdle(std::string idleNode,int currentWorld)
