@@ -66,6 +66,8 @@ namespace OUAN
 	const std::string TRIPOLLO_SOUND_SURPRISE="tripollo_surprise";
 	const std::string TRIPOLLO_SOUND_CALL_TO_ARMS="tripollo_call_to_arms";
 
+	const double CALL_TO_ARMS_SOUND_DISTANCE=500;
+
 	/// Class modelling a particular enemy type
 	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{

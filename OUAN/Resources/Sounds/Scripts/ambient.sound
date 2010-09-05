@@ -38,11 +38,11 @@ sound ambient_birds
 {
 	sound_file Ambient/Ambiente_pajaritos.mp3
 	sound_type	sfx
-	3D		false
+	3D		true
 	hardware	true
 	stream		false
 	loop		true
-	min_max_distance 50 100000
+	min_max_distance 400 100000
 	volume 0.5
 }
 
