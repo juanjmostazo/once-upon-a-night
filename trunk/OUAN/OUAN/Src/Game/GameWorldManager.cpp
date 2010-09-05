@@ -1746,10 +1746,14 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 {
 	mExecutedLevelEvents.insert(cutscene);
 
-	//LevelEventPtr evt = LevelEventPtr(new LevelEvent());
-	//evt->level_event_name=cutscene;
+	if(cutscene.compare(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK)==0)
+	{
+		GameObjectPtr obj = getObject("invisible-wall#BOMBS_PUZZLE");
 
-	//addEvent(evt);
+		GameObjectInvisibleWallPtr wall= 
+				BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
+		wall->desactivateWall();
+	}
 }
 
 bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
@@ -1773,6 +1777,19 @@ void GameWorldManager::restartBombPosition()
 		BOOST_PTR_CAST(GameObjectBomb,getObject("bomb#0"));
 	bomb->restartToInitialPoint();
 }
+
+void GameWorldManager::initBombPuzzleLUA()
+{
+	mInst->initBombPuzzle();
+}
+
+void GameWorldManager::initBombPuzzle()
+{
+	GameObjectBombPtr bomb= 
+		BOOST_PTR_CAST(GameObjectBomb,getObject("bomb#0"));
+	bomb->initBombPuzzle();
+}
+
 
 void GameWorldManager::checkpointLevelEvents()
 {

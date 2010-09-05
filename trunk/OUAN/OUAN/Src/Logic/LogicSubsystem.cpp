@@ -88,6 +88,7 @@ void LogicSubsystem::registerModules()
 		def("addExecutedLevelEvent",&GameWorldManager::addExecutedLevelEventLUA),
 		def("hasExecutedLevelEvent",&GameWorldManager::hasExecutedLevelEventLUA),
 		def("restartBombPosition",&GameWorldManager::restartBombPositionLUA),
+		def("initBombPuzzle",&GameWorldManager::initBombPuzzleLUA),
 		class_<GameObject>("GameObject")
 			.def("setCurrentWorldVisible", &GameObject::setCurrentWorldVisibility)
 			.def("enabled",&GameObject::isEnabled),

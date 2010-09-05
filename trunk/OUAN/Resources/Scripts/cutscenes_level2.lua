@@ -95,6 +95,7 @@ function cutScene3(timer)
 	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	local any=getAny()	
 	
+	initBombPuzzle();
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
 	trajectoryCamWait()
 	busyWait(timer,5);
