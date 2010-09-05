@@ -373,7 +373,7 @@ bool AudioSubsystem::playSound(const std::string& id,int& channelIndex)
 {
 	bool rc = false;
 	ChannelGroupPtr outChannel = ChannelGroupPtr();
-	int cIndex;
+	int cIndex=channelIndex;
 	if(_playSound(id,outChannel,cIndex))
 	{
 		SoundPtr soundPtr = getByName(id);

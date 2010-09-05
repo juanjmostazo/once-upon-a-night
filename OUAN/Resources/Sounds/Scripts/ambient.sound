@@ -38,7 +38,7 @@ sound ambient_birds
 {
 	sound_file Ambient/Ambiente_pajaritos.mp3
 	sound_type	sfx
-	3D		true
+	3D		false
 	hardware	true
 	stream		false
 	loop		true

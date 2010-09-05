@@ -144,6 +144,8 @@ void GameRunningState::cleanUp()
 	{
 		mApp->getAudioSubsystem()->stopMusic(mMusicChannels[NIGHTMARES].channelId);
 	}
+
+	mApp->getAudioSubsystem()->stopAllSounds();
 	//Unload all sounds: the ones in-game and the interface ones, as well as the music
 	//mApp->getAudioSubsystem()->unloadAll();
 }
