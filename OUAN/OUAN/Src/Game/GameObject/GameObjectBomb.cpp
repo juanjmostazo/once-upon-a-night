@@ -324,45 +324,21 @@ void GameObjectBomb::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 	{
-		mPhysicsComponentSimpleBox->create();
+		mPhysicsComponentSimpleBox->destroy();
 	}
-
-	if (mPhysicsComponentSimpleBox.get())
-	{
-		if(mPhysicsComponentSimpleBox->isInUse())
-		{
-			mPhysicsComponentSimpleBox->destroy();
-		}
-
-		mPhysicsComponentSimpleBox->create();
-		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
-		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
-		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
-	}
-
-	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
-	{
-		mPhysicsComponentWeapon->endAttack();
-	}
-
 
 	switch(mWorld)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			setDreamsRender();
+			mRenderComponentEntityDreams->setVisible(false);
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityNightmares->setVisible(true);
-			setNightmaresRender();
+			mRenderComponentEntityNightmares->setVisible(false);
 			break;
 		default:break;
 	}
-
-	mLogicComponentProp->setDelay(100);
 }
 
 bool GameObjectBomb::hasPositionalComponent() const
@@ -433,11 +409,15 @@ void GameObjectBomb::update(double elapsedSeconds)
 
 	if (mLogicComponentProp->isStateChanged())
 	{
-		if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
+		if(currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 		{
 			reset();
 		}
-		if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
+		{
+			initBombPuzzle();
+		}
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
 		{
 			mLogicComponentProp->setTimeSpent(0);
 
@@ -449,7 +429,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 			}
 			mPhysicsComponentWeapon->startAttack();
 		}
-		if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
 		{
 			mLogicComponentProp->setTimeSpent(0);
 		}
@@ -472,6 +452,55 @@ void GameObjectBomb::updateLogic(double elapsedSeconds)
 
 	GameObject::updateLogic(elapsedSeconds);
 }
+
+void GameObjectBomb::initBombPuzzle()
+{
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_IDLE));
+
+	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->create();
+	}
+
+	if (mPhysicsComponentSimpleBox.get())
+	{
+		if(mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->destroy();
+		}
+
+		mPhysicsComponentSimpleBox->create();
+		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
+		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
+		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
+		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
+	}
+
+	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
+	{
+		mPhysicsComponentWeapon->endAttack();
+	}
+
+
+	switch(mWorld)
+	{
+		case DREAMS:
+			mRenderComponentEntityDreams->setVisible(true);
+			setDreamsRender();
+			break;
+		case NIGHTMARES:
+			mRenderComponentEntityNightmares->setVisible(true);
+			setNightmaresRender();
+			break;
+		default:break;
+	}
+
+	mLogicComponentProp->setDelay(100);
+
+}
+
 
 void GameObjectBomb::restartToInitialPoint()
 {
@@ -514,7 +543,7 @@ void GameObjectBomb::setVisible(bool visible)
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 	int currentState=mLogicComponentProp->getState();
 
-	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
+	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) && !currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 	{
 		switch(mWorld)
 		{

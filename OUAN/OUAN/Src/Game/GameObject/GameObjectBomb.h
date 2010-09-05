@@ -10,6 +10,7 @@
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
 	//State names
+	const std::string BOMB_STATE_OFF="BOMB_STATE_OFF";
 	const std::string BOMB_STATE_IDLE="BOMB_STATE_IDLE";
 	const std::string BOMB_STATE_ACTIVATE="BOMB_STATE_ACTIVATE";
 	const std::string BOMB_STATE_EXPLOSION="BOMB_STATE_EXPLOSION";
@@ -142,6 +143,7 @@ namespace OUAN
 
 		void restartToInitialPoint();
 		void activateExplosion();
+		void initBombPuzzle();
 
 
 		// update 

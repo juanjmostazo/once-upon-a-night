@@ -1090,7 +1090,7 @@ void LevelLoader::processGameObjectInvisibleWall(XMLGameObject* gameObject)
 	try
 	{
 		//Check parsing errors
-		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
 		tGameObjectInvisibleWallParameters.dreamsName = gameObject->dreamsName;

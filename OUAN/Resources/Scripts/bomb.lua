@@ -1,8 +1,10 @@
-BOMB_STATE_IDLE=0
-BOMB_STATE_ACTIVATE=1
-BOMB_STATE_EXPLOSION=2
+BOMB_STATE_OFF=0
+BOMB_STATE_IDLE=1
+BOMB_STATE_ACTIVATE=2
+BOMB_STATE_EXPLOSION=3
 
 BOMB_STATE_NAMES= {}
+BOMB_STATE_NAMES[BOMB_STATE_OFF]="OFF"
 BOMB_STATE_NAMES[BOMB_STATE_IDLE]="IDLE"
 BOMB_STATE_NAMES[BOMB_STATE_ACTIVATE]="ACTIVATE"
 BOMB_STATE_NAMES[BOMB_STATE_EXPLOSION]="EXPLOSION"
@@ -17,7 +19,8 @@ function bombLogic(pBomb,state)
 	local time=pBomb:getTimeSpent()	
 	local newState=state
 	
-	if state==BOMB_STATE_IDLE and activated then
+	if state==BOMB_STATE_OFF then
+	elseif state==BOMB_STATE_IDLE and activated then
 		log("BOMB transitioning to activate")
 		newState=BOMB_STATE_ACTIVATE
 	elseif state==BOMB_STATE_ACTIVATE and time > BOMB_ACTIVATION_TIME then
