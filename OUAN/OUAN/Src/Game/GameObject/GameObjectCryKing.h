@@ -26,6 +26,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponent;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -43,6 +45,12 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
+
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 
 
 		/// Set render component
@@ -133,6 +141,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentPropParameters;

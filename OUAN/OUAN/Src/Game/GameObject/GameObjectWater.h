@@ -26,6 +26,8 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectWater(const std::string& name);
@@ -45,6 +47,12 @@ namespace OUAN
 		/// @param pRenderComponentWater
 		void setRenderComponentWaterDreams(RenderComponentWaterPtr pRenderComponentWaterDreams);
 		void setRenderComponentWaterNightmares(RenderComponentWaterPtr pRenderComponentWaterNightmares);
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -129,6 +137,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeConvexParameters tPhysicsComponentVolumeConvexParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

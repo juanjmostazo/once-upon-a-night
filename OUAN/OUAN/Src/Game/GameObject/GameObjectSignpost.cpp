@@ -3,6 +3,7 @@
 #include "GameObjectSignpost.h"
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -31,6 +32,17 @@ void GameObjectSignpost::setRenderComponentPositional(RenderComponentPositionalP
 {
 	mRenderComponentPositional=pRenderComponentPositional;
 }
+
+AudioComponentPtr GameObjectSignpost::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectSignpost::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectSignpost::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
 {
@@ -263,6 +275,7 @@ void GameObjectSignpost::update(double elapsedSeconds)
 			//displayText(getTranslation(getSignpostMessage()));
 			mMessageBox->setMessageBoxText();
 			mMessageBox->show();
+			mAudioComponent->playSound("signpost");
 		}
 		if (mRenderComponentEntity.get())
 		{

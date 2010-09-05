@@ -4,6 +4,7 @@
 #include "GameObjectDiamondTree.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -27,6 +28,17 @@ void GameObjectDiamond::setLogicComponentItem(LogicComponentItemPtr logicCompone
 {
 	mLogicComponentItem=logicComponentItem;
 }
+
+AudioComponentPtr GameObjectDiamond::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectDiamond::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 /// return logic component
 LogicComponentItemPtr GameObjectDiamond::getLogicComponentItem()
@@ -461,11 +473,13 @@ bool GameObjectDiamond::hasLogicComponent() const
 	return true;
 }
 
-void GameObjectDiamond::startCollisionParticles()
+void GameObjectDiamond::startCollisionEffects()
 {
 	mRenderComponentParticleSystemBrightness->stop();
 
 	mRenderComponentParticleSystemStarsCloud->start();
+
+	mAudioComponent->playSound("diamond");
 }
 
 LogicComponentPtr GameObjectDiamond::getLogicComponentInstance() const

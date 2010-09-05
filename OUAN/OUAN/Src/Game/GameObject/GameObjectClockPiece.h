@@ -34,11 +34,18 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentItemPtr mLogicComponentItem;
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectClockPiece(const std::string& name);
 		//Destructor
 		~GameObjectClockPiece();
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 
 		/// Set logic component
 		void setLogicComponentItem(LogicComponentItemPtr logicComponentItem);
@@ -133,7 +140,7 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
-		void startCollisionParticles();
+		void startCollisionEffects();
 	};
 
 	class TGameObjectClockPieceParameters: public TGameObjectParameters
@@ -153,6 +160,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;

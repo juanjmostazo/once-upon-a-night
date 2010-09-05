@@ -3,6 +3,7 @@
 #include "GameObjectStoryBook.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -28,7 +29,15 @@ LogicComponentItemPtr GameObjectStoryBook::getLogicComponentItem()
 {
 	return mLogicComponentItem;
 }
+AudioComponentPtr GameObjectStoryBook::getAudioComponent() const
+{
+	return mAudioComponent;
+}
 
+void GameObjectStoryBook::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
 RenderComponentEntityPtr GameObjectStoryBook::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -367,9 +376,10 @@ LogicComponentPtr GameObjectStoryBook::getLogicComponentInstance() const
 	return mLogicComponentItem;
 }
 
-void GameObjectStoryBook::startCollisionParticles()
+void GameObjectStoryBook::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
+	mAudioComponent->playSound("storybook");
 }
 
 TGameObjectStoryBookParameters::TGameObjectStoryBookParameters() : TGameObjectParameters()

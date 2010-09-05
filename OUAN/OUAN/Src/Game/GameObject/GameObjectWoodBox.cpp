@@ -5,6 +5,7 @@
 
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -42,6 +43,16 @@ void GameObjectWoodBox::setRenderComponentEntityNightmares(RenderComponentEntity
 void GameObjectWoodBox::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
+}
+
+AudioComponentPtr GameObjectWoodBox::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectWoodBox::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
 }
 
 void GameObjectWoodBox::setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial)
@@ -423,6 +434,7 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
 			{
 				mRenderComponentEntityAdditional->setVisible(true);
+				mAudioComponent->playSound("box_break");
 				if (!mRenderComponentEntityAdditional->hasAnimationBlender())
 				{
 					mRenderComponentEntityAdditional->initAnimationBlender("broken");

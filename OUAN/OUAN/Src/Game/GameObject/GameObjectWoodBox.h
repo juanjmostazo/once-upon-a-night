@@ -37,7 +37,8 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentBreakablePtr mLogicComponentBreakable;
-
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectWoodBox(const std::string& name);
@@ -57,6 +58,11 @@ namespace OUAN
 		
 		/// Set logic component
 		void setLogicComponentBreakable(LogicComponentBreakablePtr logicComponentBreakable);
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
 
 		/// return logic component
 		LogicComponentBreakablePtr getLogicComponentBreakable();
@@ -158,6 +164,10 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentBreakableParameters tLogicComponentBreakableParameters;

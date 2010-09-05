@@ -2,4 +2,7 @@
 <CUSTOMPROPERTIES>
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="20 20 80" fields="X;Y;Z;W"></PROPERTY>
+
+  <!-- Sounds -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="explosion"></PROPERTY>
 </CUSTOMPROPERTIES>

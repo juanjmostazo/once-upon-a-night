@@ -47,7 +47,8 @@ namespace OUAN
 		/// Empty if the diamond isn't part of a diamond tree's set
 		std::string mParentDiamondTreeName;
 		GameObjectDiamondTreePtr mParentDiamondTree;
-
+		/// Audio component
+		AudioComponentPtr mAudioComponent;
 	public:
 		//Constructor
 		GameObjectDiamond(const std::string& name);
@@ -63,6 +64,12 @@ namespace OUAN
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
+
+		/// Set audio component
+		/// @param pRenderComponentEntity
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -163,7 +170,7 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
-		void startCollisionParticles();
+		void startCollisionEffects();
 	};
 
 	class TGameObjectDiamondParameters: public TGameObjectParameters
@@ -182,6 +189,10 @@ namespace OUAN
 		TPhysicsComponentVolumeBoxParameters tPhysicsComponentVolumeBoxParameters;
 
 		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
+
 
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;

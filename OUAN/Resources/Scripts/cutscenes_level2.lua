@@ -46,12 +46,12 @@ SENTENCE2_TIME = 3
 function cutScene1(timer)
 	log ("CUTSCENE 1: ");
 	log (CUTSCENE_1_LEVEL_START);
-	local any=getAny()	
+	local any=getAny()
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
+
 	trajectoryCamWait()
-	
-	timedMessage(any,"CUTSCENE_HELLOWORLD_INTRO",1,timer,SENTENCE1_TIME);
+	timedMessage(any,"LEVEL_START#0",5,timer,SENTENCE1_TIME);
 	
 	setMyReturningToGameTransition(false);
 	return COROUTINE_FINISHED

@@ -2,6 +2,7 @@
 
 #include "GameObjectDoor.h"
 #include "../GameWorldManager.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -15,6 +16,17 @@ GameObjectDoor::~GameObjectDoor()
 {
 
 }
+
+AudioComponentPtr GameObjectDoor::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectDoor::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 void GameObjectDoor::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
 {

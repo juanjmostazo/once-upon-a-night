@@ -3,6 +3,7 @@
 #include "GameObjectCryKing.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -26,6 +27,17 @@ void GameObjectCryKing::setRenderComponentInitial(RenderComponentInitialPtr pRen
 {
 	mRenderComponentInitial=pRenderComponentInitial;
 }
+
+AudioComponentPtr GameObjectCryKing::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectCryKing::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 RenderComponentPositionalPtr GameObjectCryKing::getRenderComponentPositional() const
 {

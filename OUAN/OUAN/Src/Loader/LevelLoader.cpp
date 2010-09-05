@@ -850,6 +850,9 @@ void LevelLoader::processGameObjectClockPiece(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectClockPieceParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+		//Get AudioComponent
+		tGameObjectClockPieceParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get PhysicsComponentVolumeBox
 		tGameObjectClockPieceParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
@@ -893,6 +896,10 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+		//Get AudioComponent
+		tGameObjectCryKingParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get PhysicsComponentCharacter
 		tGameObjectCryKingParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
@@ -937,6 +944,10 @@ void LevelLoader::processGameObjectDiamond(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		tGameObjectDiamondParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+		//Get AudioComponent
+		tGameObjectDiamondParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get PhysicsComponentVolumeBox
 		tGameObjectDiamondParameters.tPhysicsComponentVolumeBoxParameters=processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
@@ -1013,6 +1024,10 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 			tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
+		
+		//Get AudioComponent
+		tGameObjectDiamondTreeParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectDiamondTreeParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1063,6 +1078,10 @@ void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 		//Get RenderComponentEntityNightmares
 		tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
 			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectDoorParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectDoorParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1146,6 +1165,10 @@ void LevelLoader::processGameObjectBreakableRock(XMLGameObject* gameObject)
 		//Get RenderComponentEntityNightmares
 		tGameObjectBreakableRockParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
 			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectBreakableRockParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectBreakableRockParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1192,6 +1215,10 @@ void LevelLoader::processGameObjectBoss(XMLGameObject* gameObject)
 		//Get RenderComponentEntityNightmares
 		tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
 			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectBossParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectBossParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1391,6 +1418,10 @@ void LevelLoader::processGameObjectHeart(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectHeartParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectHeartParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectHeartParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1435,6 +1466,10 @@ void LevelLoader::processGameObjectItem1UP(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectItem1UPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectItem1UPParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectItem1UPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1479,6 +1514,10 @@ void LevelLoader::processGameObjectItemMaxHP(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectItemMaxHPParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectItemMaxHPParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectItemMaxHPParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -1589,6 +1628,9 @@ void LevelLoader::processGameObjectNest(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		params.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		params.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2140,6 +2182,10 @@ void LevelLoader::processGameObjectSignPost(XMLGameObject* gameObject)
 
 		//Get RenderComponentPositional
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->XMLNodeDreams);
+		
+		//Get AudioComponent
+		params.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get PhysicsComponentSimpleBox
 		params.tPhysicsComponentSimpleBoxParameters= processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
@@ -2322,6 +2368,10 @@ void LevelLoader::processGameObjectStoryBook(XMLGameObject* gameObject)
 		//Get RenderComponentEntity
 		tGameObjectStoryBookParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
 			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+		
+		//Get AudioComponent
+		tGameObjectStoryBookParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		//Get RenderComponentPositional
 		tGameObjectStoryBookParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -2907,6 +2957,10 @@ void LevelLoader::processGameObjectWoodBox(XMLGameObject* gameObject)
 			tGameObjectWoodBoxParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		}
+		
+		//Get AudioComponent
+		tGameObjectWoodBoxParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 		tGameObjectWoodBoxParameters.tRenderComponentAdditionalParameters=processRenderComponentEntity(
 			gameObject->XMLNodeCustomProperties,
@@ -3036,6 +3090,10 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 				tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
 			}
+		
+			//Get AudioComponent
+			tGameObjectWaterParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 
 			//Create GameObject
 			//mGameWorldManager->createGameObjectTerrainConvex(tGameObjectWaterParameters);
@@ -3131,6 +3189,10 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 		//Get RenderComponentEntityNightmares
 		tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 			DREAMS, gameObject->XMLNodeCustomProperties);
+
+		
+		//Get AudioComponent
+		tGameObjectBombParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
 
 		//Get RenderComponentPositional

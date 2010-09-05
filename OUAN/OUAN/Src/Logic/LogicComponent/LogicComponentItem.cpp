@@ -4,6 +4,8 @@
 #include "../LogicSubsystem.h"
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
+#include "../../Game/GameObject/GameObjectDiamond.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -23,7 +25,7 @@ void LogicComponentItem::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0 && !mIsTaken)
 	{
 		setIsTaken(true);
-		getParent()->startCollisionParticles();
+		getParent()->startCollisionEffects();
 		getParent()->disable();
 	}
 }

@@ -677,7 +677,7 @@ void GameObject::getLogicScriptFile(std::string& scriptFile) const
 	}
 }
 
-void GameObject::startCollisionParticles()
+void GameObject::startCollisionEffects()
 {
 
 }

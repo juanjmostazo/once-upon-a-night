@@ -10,6 +10,7 @@
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectBomb.h"
 #include "../../Game/GameObject/GameObjectBreakableRock.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 

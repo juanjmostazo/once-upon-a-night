@@ -3,6 +3,7 @@
 #include "GameObjectWater.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -31,6 +32,17 @@ void GameObjectWater::setRenderComponentWaterNightmares(RenderComponentWaterPtr 
 {
 	mRenderComponentWaterNightmares=pRenderComponentWaterNightmares;
 }
+
+AudioComponentPtr GameObjectWater::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectWater::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
+}
+
 
 RenderComponentWaterPtr GameObjectWater::getRenderComponentWaterNightmares() const
 {

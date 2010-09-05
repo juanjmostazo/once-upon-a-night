@@ -70,6 +70,18 @@ sound explosion
 	volume 1
 }
 
+sound signpost
+{
+	sound_file 	Objects/Golpe_3.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
 sound hit00
 {
 	sound_file 	Objects/Golpe_1.mp3
@@ -154,7 +166,7 @@ sound hit06
 	volume 1
 }
 
-sound items00
+sound heart
 {
 	sound_file 	Objects/Items_1.mp3
 	sound_type 	sfx
@@ -166,7 +178,7 @@ sound items00
 	volume 1
 }
 
-sound items01
+sound maxHP
 {
 	sound_file 	Objects/Items_2.mp3
 	sound_type 	sfx
@@ -178,7 +190,7 @@ sound items01
 	volume 1
 }
 
-sound items02
+sound items03
 {
 	sound_file 	Objects/Items_3.mp3
 	sound_type 	sfx
@@ -190,7 +202,19 @@ sound items02
 	volume 1
 }
 
-sound items03
+sound 1up
+{
+	sound_file 	Objects/Items_4.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound storybook
 {
 	sound_file 	Objects/Items_4.mp3
 	sound_type 	sfx

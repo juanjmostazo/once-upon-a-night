@@ -246,7 +246,7 @@ namespace OUAN
 		// with the logic components
 		void getLogicScriptFile(std::string& scriptFile) const;
 
-		virtual void startCollisionParticles();
+		virtual void startCollisionEffects();
 
 		virtual double getMeleeRange() const;
 		virtual int getNeighboursInRange(double range) const;

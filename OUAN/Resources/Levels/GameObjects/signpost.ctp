@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
 
 
@@ -28,5 +28,8 @@
 	
 	<PROPERTY id="RenderComponentMessageBox::basePanelName" type="7" value="OUAN/SignpostMessage"></PROPERTY>
 	<PROPERTY id="RenderComponentMessageBox::charPanelName" type="7" value="" ></PROPERTY>  
+
+  <!-- Sounds -->
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="signpost"></PROPERTY>
 
 </CUSTOMPROPERTIES>
