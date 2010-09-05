@@ -60,7 +60,7 @@ sound tripollo_attack
 
 sound tripollo_hit
 {
-	sound_file 	Tripollo/Tripollo_2_agudo.mp3
+	sound_file 	Tripollo/Graznido.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true

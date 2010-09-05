@@ -316,7 +316,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					//Logger::getInstance()->log("CHASE");
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						mAudioComponent->playSound(TRIPOLLO_SOUND_CALL_TO_ARMS);
+						if(mGameWorldManager->getPlayerDistance(getName())<CALL_TO_ARMS_SOUND_DISTANCE)
+						{
+							mAudioComponent->playSound(TRIPOLLO_SOUND_CALL_TO_ARMS);
+						}
 						entity->changeAnimation(TRIPOLLO_ANIM_CALL_TO_ARMS);
 						double range = logicSS->getGlobalReal("MELEE_RANGE");
 						bool callHeard = callNeighboursInRange(range);
