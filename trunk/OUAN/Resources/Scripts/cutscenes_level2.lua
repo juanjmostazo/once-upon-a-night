@@ -12,7 +12,7 @@ CUTSCENE_6_NIGHT_GOBLIN_APPEARS="NIGHT_GOBLIN_APPEARS";
 CUTSCENE_7_1_TRIPOLLOS_PLATFORM="1_TRIPOLLOS_PLATFORM";
 CUTSCENE_7_2_TRIPOLLOS_PLATFORM="2_TRIPOLLOS_PLATFORM";
 CUTSCENE_7_3_TRIPOLLOS_PLATFORM="3_TRIPOLLOS_PLATFORM";
-CUTSCENE_8_TENTETIESOS="TENTETIESOS";
+CUTSCENE_8_TRIPOLLO_STATUES="TRIPOLLO_STATUES";
 CUTSCENE_9_FINAL_BOSS_START="FINAL_BOSS_START";
 CUTSCENE_10_FINAL_BOSS_END="FINAL_BOSS_END";
 
@@ -186,17 +186,29 @@ function conditionCutScene7(pOny)
 	return true;
 end
 
--- CUTSCENE 8: TENTETIESOS
+-- CUTSCENE 8: TRIPOLLO_STATUES
 function startCutScene8(pOny)
-	log ("CUTSCENE 8: ");
-	log (CUTSCENE_8_TENTETIESOS);
-	addExecutedLevelEvent(CUTSCENE_8_TENTETIESOS);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
+
+	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
+	launchCutScene("cutscenes_level2.lua","cutScene8");
 	return
 end
 
 function conditionCutScene8(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_8_TENTETIESOS) and getCheckPointNumber()>=70;
+	return not hasExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES) and getCheckPointNumber()>=70;
+end
+
+function cutScene4(timer)
+	log ("CUTSCENE 8: ");
+	log (CUTSCENE_8_TRIPOLLO_STATUES);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_8_TRIPOLLO_STATUES,false,true);
+	trajectoryCamWait();
+	busyWait(timer,3);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
 end
 
 -- CUTSCENE 9: FINAL BOSS START
