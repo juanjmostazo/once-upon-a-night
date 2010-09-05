@@ -458,12 +458,16 @@ void GameObjectBomb::update(double elapsedSeconds)
 		{
 			mLogicComponentProp->setTimeSpent(0);
 
+			mRenderComponentParticleSystemExplosion->start();
+
 			mRenderComponentEntityDreams->setVisible(false);
 			mRenderComponentEntityNightmares->setVisible(false);
+
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
 			}
+
 			mPhysicsComponentWeapon->startAttack();
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))

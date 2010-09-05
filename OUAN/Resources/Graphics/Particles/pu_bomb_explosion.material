@@ -1,0 +1,54 @@
+material PU/bomb_explosion_1
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_bomb_explosion_1.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/bomb_explosion_2
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_bomb_explosion_2.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/bomb_explosion_3
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+
+            texture_unit
+            {
+                texture pump_atlas_smoke.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
