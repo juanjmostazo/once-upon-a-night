@@ -696,6 +696,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		std::string msg="Enemy ";
 		msg.append(getName()).append(" died");
 		Logger::getInstance()->log(msg);
+		mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 		disable();		
 	}
 	if (animationName.compare(TRIPOLLO_ANIM_ALERT)==0)
@@ -784,7 +785,10 @@ bool GameObjectTripollo::hasLogicComponent() const
 }
 LogicComponentPtr GameObjectTripollo::getLogicComponentInstance() const
 {
-	return mLogicComponentEnemy;
+	if (mGameWorldManager->getWorld()==DREAMS && mLogicComponentEnemy->existsInDreams()
+		|| mGameWorldManager->getWorld()==NIGHTMARES && mLogicComponentEnemy->existsInNightmares())
+		return mLogicComponentEnemy;
+	return LogicComponentPtr();
 }
 
 double GameObjectTripollo::getMeleeRange() const

@@ -75,7 +75,7 @@ void GameObjectSound::changeWorldFinished(int newWorld)
 		}
 		if (mAudioComponentNightmares.get())
 		{
-			mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID);
+			mAudioComponentNightmares->stopSound(mCurrentNightmaresSoundID);
 		}
 		break;
 	case NIGHTMARES:
@@ -85,8 +85,8 @@ void GameObjectSound::changeWorldFinished(int newWorld)
 		}
 		if (mAudioComponentNightmares.get())
 		{
-			mAudioComponentNightmares->playSound(mCurrentDreamsSoundID);
-		}
+			mAudioComponentNightmares->playSound(mCurrentNightmaresSoundID);
+		}	
 		break;
 	default:
 		break;
@@ -140,7 +140,7 @@ void GameObjectSound::reset()
 		mAudioComponentNightmares->stopSound(mCurrentDreamsSoundID);
 	}
 
-	play(mGameWorldManager->getWorld()==DREAMS?mCurrentDreamsSoundID:mCurrentNightmaresSoundID);
+	//play(mGameWorldManager->getWorld()==DREAMS?mCurrentDreamsSoundID:mCurrentNightmaresSoundID);
 }
 
 bool GameObjectSound::hasPositionalComponent() const

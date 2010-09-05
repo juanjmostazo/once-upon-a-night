@@ -56,6 +56,7 @@ void MainMenuState::init(ApplicationPtr app)
 		mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
+	mApp->getAudioSubsystem()->pauseChannelGroup(SM_CHANNEL_MUSIC_GROUP,false);
 	if (!mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannel))
 		mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
 }
@@ -100,6 +101,7 @@ void MainMenuState::resume()
 	mGUI->initGUI(shared_from_this());
 	if (!mApp->getAudioSubsystem()->isLoaded("MUSIC"))
 		mApp->getAudioSubsystem()->load("MUSIC",AUDIO_RESOURCES_GROUP_NAME);
+
 	if (!mApp->getAudioSubsystem()->isLoaded("CLICK"))
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
 	if (!mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannel))
@@ -125,7 +127,6 @@ void MainMenuState::handleEvents()
 void MainMenuState::update(long elapsedTime)
 {
 	GameState::update(elapsedTime);
-
 	mApp->getAudioSubsystem()->update(elapsedTime*0.000001);
 }
 

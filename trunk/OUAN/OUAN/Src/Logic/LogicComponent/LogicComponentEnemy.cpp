@@ -41,7 +41,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 		if ( mHitRecoveryTime<0 && !mHasBeenHit && !mHasDied)
 		{
 			std::stringstream msg;
-			if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
+					if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
 			{
 				getParent()->displayText("FWOOOOSHH!!!!");			
 				mHasBeenHit=true;
