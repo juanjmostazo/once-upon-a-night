@@ -1,21 +1,100 @@
-sound tripollo_dies
+sound tripollo_wings
 {
-	sound_file 	Tripollo/Tripollo_3.mp3
-	sound_type	sfx
+	sound_file 	Tripollo/Aleteo.mp3
+	sound_type 	sfx
 	3D		true
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 200 5000
+	min_max_distance 100 5000
+	volume 1
 }
 
-sound tripollo_is_hit
+sound tripollo_scratch
 {
-	sound_file 	Tripollo/Tripollo_2.mp3
+	sound_file 	Tripollo/Arañazo.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
 	stream		false
 	loop		false
 	min_max_distance 200 5000
+	volume 1
 }
+
+sound tripollo_explosion
+{
+	sound_file 	Objects/Anothers/Explosion_1.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 100 5000
+	volume 1
+}
+
+sound tripollo_graznido
+{
+	sound_file 	Tripollo/Graznido.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+sound tripollo_attack
+{
+	sound_file 	Tripollo/Graznido_ataque.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 100 5000
+	volume 0.3
+}
+
+sound tripollo_hit
+{
+	sound_file 	Tripollo/Tripollo_2_agudo.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 400 5000
+	volume 1
+}
+
+
+sound tripollo_surprise
+{
+	sound_file 	Tripollo/Tripollo_dolor_grave.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+
+sound tripollo_call_to_arms
+{
+	sound_file 	Tripollo/Tripollo_dolor.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 200 5000
+	volume 1
+}
+
+
+
