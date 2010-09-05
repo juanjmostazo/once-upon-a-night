@@ -85,6 +85,7 @@
   <PROPERTY id="animation18d::name" type="7" value="idle_00"></PROPERTY>
   <PROPERTY id="animation18d::loop" type="12" value="true"></PROPERTY>
   
+  <!-- Animations for the nightmare entity -->
   <PROPERTY id="animation0n::name" type="7" value="die" ></PROPERTY>  
   <PROPERTY id="animation0n::loop" type="12" value="false"></PROPERTY>
   <PROPERTY id="animation1n::name" type="7" value="hit01" ></PROPERTY>
@@ -124,7 +125,7 @@
   <PROPERTY id="animation18n::name" type="7" value="idle_00"></PROPERTY>
   <PROPERTY id="animation18n::loop" type="12" value="true"></PROPERTY>
   
-  <!-- Animations for the nightmare entity -->
+  
   <!-- TRANSITION VARS 
   <PROPERTY id="animation0n::name" type="7" value="die" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="animation0n::loop" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>

@@ -176,7 +176,7 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 				//mInvulnerabilityCounter=POST_HIT_INVULNERABILITY;
 			//}
 		}
-		else if (animationName.compare(ONY_ANIM_DIE01)==0)
+		else if (animationName.compare(ONY_ANIM_DIE)==0)
 		{
 			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
 			mParent->getGameWorldManager()->onyDied();

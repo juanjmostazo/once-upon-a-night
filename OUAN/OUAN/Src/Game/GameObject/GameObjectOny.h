@@ -60,46 +60,79 @@ namespace OUAN
 	#define RESET_BIT_FIELD(var) var=0;
 
 	//Animation names
+/*
+
+<PROPERTY id="animation9::name" type="7" value="face_afraid"></PROPERTY>
+<PROPERTY id="animation9::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation10::name" type="7" value="face_close"></PROPERTY>
+<PROPERTY id="animation10::loop" type="12" value="false"></PROPERTY>    
+<PROPERTY id="animation11::name" type="7" value="face_happy01"></PROPERTY>
+<PROPERTY id="animation11::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation12::name" type="7" value="face_happy02"></PROPERTY>
+<PROPERTY id="animation12::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation13::name" type="7" value="face_neutral"></PROPERTY>
+<PROPERTY id="animation13::loop" type="12" value="false"></PROPERTY>
+<PROPERTY id="animation14::name" type="7" value="face_panic"></PROPERTY>
+<PROPERTY id="animation14::loop" type="12" value="false"></PROPERTY>    
+<PROPERTY id="animation15::name" type="7" value="face_sad"></PROPERTY>
+<PROPERTY id="animation15::loop" type="12" value="false"></PROPERTY>    
+<PROPERTY id="animation16::name" type="7" value="face_scream"></PROPERTY>
+<PROPERTY id="animation16::loop" type="12" value="false"></PROPERTY>    
+<PROPERTY id="animation17::name" type="7" value="face_speak01"></PROPERTY>
+<PROPERTY id="animation17::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation18::name" type="7" value="face_speak02"></PROPERTY>
+<PROPERTY id="animation18::loop" type="12" value="false"></PROPERTY>  
+
+<PROPERTY id="animation34::name" type="7" value="look_back"></PROPERTY>
+<PROPERTY id="animation34::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation35::name" type="7" value="look_down"></PROPERTY>
+<PROPERTY id="animation35::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation36::name" type="7" value="look_left"></PROPERTY>
+<PROPERTY id="animation36::loop" type="12" value="false"></PROPERTY>  
+<PROPERTY id="animation37::name" type="7" value="look_right"></PROPERTY>
+<PROPERTY id="animation37::loop" type="12" value="false"></PROPERTY>   
+<PROPERTY id="animation38::name" type="7" value="look_up"></PROPERTY>
+<PROPERTY id="animation38::loop" type="12" value="false"></PROPERTY>   
+
+*/
+
 	const std::string ONY_ANIM_IDLE01="idle01";
 	const std::string ONY_ANIM_IDLE02="idle02";
 	const std::string ONY_ANIM_WALK="walk";
 	const std::string ONY_ANIM_RUN="run";
-	const std::string ONY_ANIM_JUMP="jump_init";
-	const std::string ONY_ANIM_JUMP_START="jump_init1";
-	const std::string ONY_ANIM_JUMP_KEEP="jump_up";
-	const std::string ONY_ANIM_JUMP_END="jump_end";
-	const std::string ONY_ANIM_GET_PILLOW="get_pillow";
-	const std::string ONY_ANIM_STAB_RIGHT_PILLOW="stab_right_pillow";
-	const std::string ONY_ANIM_STAB_LEFT_PILLOW="stab_left_pillow";
-	const std::string ONY_ANIM_STAB_PILLOW="stab_pillow";
-	const std::string ONY_ANIM_LEAVE_PILLOW="leave_pillow";
-	const std::string ONY_ANIM_SPECIAL_PILLOW_ATTACK="special_pillow_attack";
-	const std::string ONY_ANIM_GET_FLASH="get_flash";
-	const std::string ONY_ANIM_SHOOT_SPECIAL="shoot_special";
-	const std::string ONY_ANIM_ALERT="alert";
-	const std::string ONY_ANIM_HIT01="hit1";
-	const std::string ONY_ANIM_HIT02="hit2";
-	const std::string ONY_ANIM_DIE01="die02";
-	const std::string ONY_ANIM_DIE02="die01";
-	const std::string ONY_ANIM_TIRED="tired";
-	const std::string ONY_ANIM_HANDLE="handle";
-	const std::string ONY_ANIM_OPEN_DOOR="open_door";
-	const std::string ONY_ANIM_GET_PIECE="get_piece";
-	const std::string ONY_ANIM_GET_ITEM="get_item";
-	const std::string ONY_ANIM_AFRAID="afraid";
-	const std::string ONY_ANIM_CHANGE_WORLD="change_world";
-	const std::string ONY_ANIM_TICKLING="tickling";
-	const std::string ONY_ANIM_SPEAK="speak";
-	const std::string ONY_ANIM_FALLING="falling";
-	const std::string ONY_ANIM_SHOOT_UP="shoot_up";
-	const std::string ONY_ANIM_SHOOT_UP_LEFT="shoot_up_left";
-	const std::string ONY_ANIM_SHOOT_UP_RIGHT="shoot_up_right";
+	const std::string ONY_ANIM_JUMP="jump02_pre";
+	const std::string ONY_ANIM_JUMP02_START="jump02_pre";
+	const std::string ONY_ANIM_JUMP02_KEEP="jump02_loop";
+	const std::string ONY_ANIM_JUMP02_END="jump02_post";
+	const std::string ONY_ANIM_JUMP01_START="jump01_pre";
+	const std::string ONY_ANIM_JUMP01_KEEP="jump01_loop";
+	const std::string ONY_ANIM_JUMP01_END="jump01_post";
+	const std::string ONY_ANIM_ATTACK01="attack01";
+	const std::string ONY_ANIM_ATTACK02="attack02";
+	const std::string ONY_ANIM_ATTACK03="attack03";
+	const std::string ONY_ANIM_CROUCH_START="crouch_pre";
+	const std::string ONY_ANIM_CROUCH_KEEP="crouch_loop";
+	const std::string ONY_ANIM_CROUCH_END="crouch_post";
+	const std::string ONY_ANIM_DIE="die";
+	const std::string ONY_ANIM_DRAW_PILLOW="draw_pillow";
+	const std::string ONY_ANIM_HIDE_PILLOW01="hide_pillow01";
+	const std::string ONY_ANIM_HIDE_PILLOW02="hide_pillow02";
+	const std::string ONY_ANIM_HIDE_PILLOW03="hide_pillow03";
+	const std::string ONY_ANIM_FRIGHT="fright";
+	const std::string ONY_ANIM_FALL_START="fall_pre";
+	const std::string ONY_ANIM_FALL_KEEP="fall_loop";
+	const std::string ONY_ANIM_FALL_END="fall_post";
+	const std::string ONY_ANIM_HIT01="hit01";
+	const std::string ONY_ANIM_NAP_START="nap_pre";
+	const std::string ONY_ANIM_NAP_KEEP="nap_loop";
+	const std::string ONY_ANIM_NAP_END="nap_post";
 	const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
-	const std::string ONY_ANIM_SHOOT_CENTER_LEFT="shoot_center_left";
-	const std::string ONY_ANIM_SHOOT_CENTER_RIGHT="shoot_center_right";
-	const std::string ONY_ANIM_SHOOT_DOWN="shoot_down";
-	const std::string ONY_ANIM_SHOOT_DOWN_LEFT="shoot_down_left";
-	const std::string ONY_ANIM_SHOOT_DOWN_RIGHT="shoot_down_right";
+	const std::string ONY_ANIM_VICTORY="victory";
+	const std::string ONY_ANIM_VICTORY_START="victory_pre";
+	const std::string ONY_ANIM_VICTORY_LOOP="victory_loop";
+	const std::string ONY_ANIM_TICKLING_START="tickling_pre";
+	const std::string ONY_ANIM_TICKLING_LOOP="tickling_loop";
+	const std::string ONY_ANIM_MANUAL="manual";
 
 	//SOUND DEFINITIONS
 	const std::string ONY_SOUND_DIE="any_dies";
