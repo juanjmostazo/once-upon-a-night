@@ -1,6 +1,7 @@
 sound nest_nothing
 {
 	sound_file 	Nest/Cuando_no_sale_nada.mp3
+
 	sound_type 	sfx
 	3D		true
 	hardware	true
