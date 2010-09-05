@@ -334,7 +334,7 @@ void Trajectory::update(double elapsedTime)
 	double currentSpeed;
 	double distanceToTarget;
 
-	if(isEmpty()) return;
+	if(isEmpty() || trajectoryEnded()) return;
 
 	lastNode=mTrajectoryNodes[mCurrentNode]->getSceneNode()->getName();
 	target=mTrajectoryNodes[getNextNode()]->getSceneNode()->getName();

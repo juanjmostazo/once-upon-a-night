@@ -1,6 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
   <PROPERTY id="PhysicsComponentComplex::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+
+    <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="10000" fields="X;Y;Z;W"></PROPERTY>
+
+    <PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="10000" fields="X;Y;Z;W"></PROPERTY>
 
     <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="false" fields="X;Y;Z;W"></PROPERTY>

@@ -2,7 +2,7 @@
 <CUSTOMPROPERTIES>
    <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="3000" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="15 90 15" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="11 90 11" fields="X;Y;Z;W"></PROPERTY>
   <!-- Animations -->
     <PROPERTY id="initialAnimation" type="7" value="idle01"></PROPERTY>
     <PROPERTY id="animation0::name" type="7" value="down" fields="X;Y;Z;W"></PROPERTY>
