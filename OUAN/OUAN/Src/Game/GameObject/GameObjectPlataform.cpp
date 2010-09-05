@@ -285,15 +285,17 @@ void GameObjectPlataform::resetLastPositionDifference()
 void GameObjectPlataform::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+}
 
-
+void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
+{
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
-		Vector3 position=mTrajectoryComponent->getCurrentPosition();
+		Vector3 position=mTrajectoryComponent->getNextMovement()+mRenderComponentPositional->getPosition();
 		//Logger::getInstance()->log(Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)));
 		//Logger::getInstance()->log("GameObjectPlataform::update " + getName() +" "+Ogre::StringConverter::toString(position));
-		mRenderComponentPositional->setPosition(position);
+
 		if(mElapsedTimeSinceLastCollision<PLATAFORM_COLLISION_TIME_MARGIN)
 		{
 			mElapsedTimeSinceLastCollision+=elapsedSeconds;
@@ -304,11 +306,15 @@ void GameObjectPlataform::update(double elapsedSeconds)
 			mLastPositionDifference=position-mLastPosition;
 		}
 		mLastPosition=position;
+
+		mRenderComponentPositional->setPosition(position);
+
 		if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
 		{
 			mPhysicsComponentComplexConvex->setPosition(position);
 		}
 	}
+	GameObject::updatePhysicsComponents(elapsedSeconds);
 }
 
 bool GameObjectPlataform::hasLogicComponent() const

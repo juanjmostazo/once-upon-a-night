@@ -102,6 +102,8 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void updatePhysicsComponents(double elapsedSeconds);
+
 		/// Reset object
 		virtual void reset();
 

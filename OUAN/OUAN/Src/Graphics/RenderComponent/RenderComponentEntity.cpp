@@ -85,6 +85,11 @@ void RenderComponentEntity::setVisible(bool visible)
 	}
 }
 
+double RenderComponentEntity::getMaxBoundingBoxY()
+{
+	return mEntity->getBoundingBox().getMaximum().y;
+}
+
 bool RenderComponentEntity::isVisible()
 {
 	return mEntity->isAttached();

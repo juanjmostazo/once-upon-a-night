@@ -483,22 +483,25 @@ void GameObjectWoodBox::setRenderComponentEntityAdditional(RenderComponentEntity
 
 void GameObjectWoodBox::setVisible(bool visible)
 {
-	switch(mWorld)
+	if(!mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
 	{
-	case DREAMS:
-		if(mLogicComponentBreakable->existsInDreams())
+		switch(mWorld)
 		{
-			mRenderComponentEntityDreams->setVisible(visible);
+		case DREAMS:
+			if(mLogicComponentBreakable->existsInDreams())
+			{
+				mRenderComponentEntityDreams->setVisible(visible);
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentBreakable->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(visible);
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentBreakable->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setVisible(visible);
-		}
-		break;
-	default:
-		break;
 	}
 }
 

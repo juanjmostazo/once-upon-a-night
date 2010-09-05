@@ -72,7 +72,7 @@ void LogicComponentBreakable::update(double elapsedTime)
 	{
 		if (mElapsedTimeSinceBreakup>mDisableTime)
 		{
-			getParent()->disable();
+			//getParent()->disable();
 		}
 
 		else

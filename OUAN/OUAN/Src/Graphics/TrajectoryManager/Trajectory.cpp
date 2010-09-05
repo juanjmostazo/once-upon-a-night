@@ -213,12 +213,8 @@ Ogre::Vector3 Trajectory::calculateNextMovementAbsolute(std::string source,std::
 
 Ogre::Vector3 Trajectory::calculateNextPosition(std::string source,std::string target,bool Trajectory2d,double speed,double elapsedTime)
 {
-	//Calculate next position
-	Ogre::Vector3 nextPosition;
-	Ogre::Vector3 direction;
-	direction=mSceneManager->getSceneNode(target)->getPosition()-mSceneManager->getSceneNode(source)->getPosition();
-	direction.normalise();
-	nextPosition=mSceneManager->getSceneNode(source)->getPosition()+direction*speed*elapsedTime;
+
+	Ogre::Vector3 nextPosition=mSceneManager->getSceneNode(source)->getPosition()+calculateNextMovement(source, target, Trajectory2d, speed, elapsedTime);
 
 	if(Trajectory2d)
 	{

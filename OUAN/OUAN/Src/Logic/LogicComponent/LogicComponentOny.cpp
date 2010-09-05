@@ -127,6 +127,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			posOny.z += plataform->getLastPositionDifference().z;
 		}
 
+
+
 		physicsOny->setPosition(posOny);
 
 		plataform->resetLastPositionDifference();

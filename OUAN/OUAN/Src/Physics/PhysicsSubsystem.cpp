@@ -143,11 +143,6 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 	*/
 	//Logger::getInstance()->log("[PHYSICS UPDATE]");
 
-	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
-	{
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
-	}
-
 	if (mApp)
 	{
 		mApp->getGameWorldManager()->getEventProcessor()->startNewFrame();
@@ -167,6 +162,11 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 				}
 			}
 		}
+	}
+
+	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
+	{
+		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
 	}
 
 	//update pillow
@@ -449,7 +449,10 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onShape(const NxOgre::Controll
 	
 	//Logger::getInstance()->log("## Collision between " + pGameObjectController->getName() + " and " + pGameObjectShape->getName());
 
-	sendCollision(pGameObjectController,pGameObjectShape,hit.mWorldNormal.as<Ogre::Vector3>());
+	if(!(pGameObjectShape->getName().compare(pGameObjectController->getName())==0))
+	{
+		sendCollision(pGameObjectController,pGameObjectShape,hit.mWorldNormal.as<Ogre::Vector3>());
+	}
 	
 	return NxOgre::Enums::ControllerAction_None;
 }
@@ -461,7 +464,10 @@ NxOgre::Enums::ControllerAction PhysicsSubsystem::onController(const NxOgre::Con
 
 	//Logger::getInstance()->log("ON CONTROLLER");
 
-	sendCollision(pGameObjectController,pGameObjectOtherController);
+	if(!(pGameObjectController->getName().compare(pGameObjectOtherController->getName())==0))
+	{
+		sendCollision(pGameObjectController,pGameObjectOtherController);
+	}
 	
 	return NxOgre::Enums::ControllerAction_None;
 }
@@ -481,21 +487,24 @@ void PhysicsSubsystem::onVolumeEvent(NxOgre::Shape * volume,  NxOgre::String col
 	//	Logger::getInstance()->log("WEAPON-TO-DIAMONDTREE COLLISION");
 	//}
 
-	switch (collisionEventType)
+	if(!(pGameObjectVolume->getName().compare(pGameObjectShape->getName())==0))
 	{
-		case NxOgre::Enums::VolumeCollisionType_OnEnter: 
-			sendCollision(pGameObjectShape,pGameObjectVolume);
-			sendEnterTrigger(pGameObjectShape,pGameObjectVolume);
-			break;
-		case NxOgre::Enums::VolumeCollisionType_OnExit: 
-			sendExitTrigger(pGameObjectShape,pGameObjectVolume);
-			break;
-		case NxOgre::Enums::VolumeCollisionType_OnPresence: 
-			sendCollision(pGameObjectShape,pGameObjectVolume);													
-			break;
-		default: 
-			break;
-	}	 
+		switch (collisionEventType)
+		{
+			case NxOgre::Enums::VolumeCollisionType_OnEnter: 
+				sendCollision(pGameObjectShape,pGameObjectVolume);
+				sendEnterTrigger(pGameObjectShape,pGameObjectVolume);
+				break;
+			case NxOgre::Enums::VolumeCollisionType_OnExit: 
+				sendExitTrigger(pGameObjectShape,pGameObjectVolume);
+				break;
+			case NxOgre::Enums::VolumeCollisionType_OnPresence: 
+				sendCollision(pGameObjectShape,pGameObjectVolume);													
+				break;
+			default: 
+				break;
+		}	 
+	}
 }
 
 bool PhysicsSubsystem::isOnyCloseFromPosition(NxOgre::Vec3 position, double radius)
