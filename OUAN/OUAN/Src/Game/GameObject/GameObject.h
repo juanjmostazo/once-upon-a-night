@@ -78,7 +78,7 @@ namespace OUAN
 
 		/// Return Game Object name (i.e, its identifier)
 		/// @return name of the Game Object
-		const std::string& getName();
+		const std::string& getName() const;
 
 		/// Return Game Object type
 		/// @return type of the Game Object
@@ -247,6 +247,11 @@ namespace OUAN
 		void getLogicScriptFile(std::string& scriptFile) const;
 
 		virtual void startCollisionParticles();
+
+		virtual double getMeleeRange() const;
+		virtual int getNeighboursInRange(double range) const;
+		virtual int countNeighboursInRange(double range, bool call) const;
+		virtual bool callNeighboursInRange(double range) const;
 	};
 
 	class TGameObjectParameters

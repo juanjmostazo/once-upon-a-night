@@ -64,9 +64,9 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		GameObjectTripolloPtr tripollo= 
 			BOOST_PTR_CAST(GameObjectTripollo,pGameObject);
-
-		if(tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() 
-			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
+		bool mayHitTripollo=tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && 
+			!tripollo->isStatueEnabled();
+		if( mayHitTripollo && mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();

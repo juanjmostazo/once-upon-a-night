@@ -164,14 +164,21 @@ void RenderComponentViewport::disableAllCompositors()
 
 void RenderComponentViewport::clearViewport(unsigned int buffers, const ColourValue &colour, Real depth, unsigned short stencil)
 {
-	Ogre::RenderSystem* rs = Ogre::Root::getSingleton().getRenderSystem();
-	if (rs)
+	try
 	{
-		Ogre::Viewport* currentvp = rs->_getViewport();
-		rs->_setViewport(getViewport());
-		rs->clearFrameBuffer(buffers, colour, depth, stencil);
-		if (currentvp && currentvp != getViewport())
-			rs->_setViewport(currentvp);
+		Ogre::RenderSystem* rs = Ogre::Root::getSingleton().getRenderSystem();
+		if (rs)
+		{
+			Ogre::Viewport* currentvp = rs->_getViewport();
+			rs->_setViewport(mViewport);
+			rs->clearFrameBuffer(buffers, colour, depth, stencil);
+			if (currentvp && currentvp != mViewport)
+				rs->_setViewport(currentvp);
+		}
+	}
+	catch(...)
+	{
+		Logger::getInstance()->log("EXCEPTION RESCALING VIEWPORT!");
 	}
 }
 void RenderComponentViewport::rescaleViewport(double left, double top, double width, double height)
