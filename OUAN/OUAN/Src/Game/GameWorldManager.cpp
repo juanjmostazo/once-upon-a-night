@@ -405,6 +405,7 @@ void GameWorldManager::clearContainers()
 }
 void GameWorldManager::initGame()
 {
+	mWorld=DREAMS;
 	GameWorldManager::setCheckPointLUA(LEVEL_START_CHECKPOINT,0);
 	mExecutedLevelEventsPermanent.clear();
 	resetAll();
