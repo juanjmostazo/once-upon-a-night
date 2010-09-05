@@ -205,6 +205,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					if (mLogicComponentEnemy->isStateChanged())
 					{
 						entity->changeAnimation(TRIPOLLO_ANIM_IDLE1);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
 						//Idle 1 can only come from idle, so there is no trajectory change
 					}
 				}
@@ -215,6 +216,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						entity->changeAnimation(TRIPOLLO_ANIM_SURPRISE);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
@@ -284,6 +286,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							:TRIPOLLO_ANIM_ATTACK_01);
 						mTrajectoryComponent->activateChase(onyName);
 						mLogicComponentEnemy->setAttackFinished(false);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_ATTACK);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FLEE))
@@ -313,6 +316,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					//Logger::getInstance()->log("CHASE");
 					if (mLogicComponentEnemy->isStateChanged())
 					{
+						mAudioComponent->playSound(TRIPOLLO_SOUND_CALL_TO_ARMS);
 						entity->changeAnimation(TRIPOLLO_ANIM_CALL_TO_ARMS);
 						double range = logicSS->getGlobalReal("MELEE_RANGE");
 						bool callHeard = callNeighboursInRange(range);
@@ -343,9 +347,8 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
-						mRenderComponentParticleSystemDie->start();
 
+						mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
 						entity->changeAnimation(TRIPOLLO_ANIM_DIE);
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
@@ -697,6 +700,8 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		msg.append(getName()).append(" died");
 		Logger::getInstance()->log(msg);
 		mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
+		mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
+		mRenderComponentParticleSystemDie->start();
 		disable();		
 	}
 	if (animationName.compare(TRIPOLLO_ANIM_ALERT)==0)

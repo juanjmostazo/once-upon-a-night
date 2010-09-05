@@ -57,9 +57,14 @@ namespace OUAN
 	//Should poses were used
 	const std::string TRIPOLLO_ANIM_MANUAL="manual";
 
-	const std::string TRIPOLLO_SOUND_HIT="tripollo_is_hit";
-	const std::string TRIPOLLO_SOUND_DIE="tripollo_dies";
-
+	const std::string TRIPOLLO_SOUND_HIT="tripollo_hit";
+	const std::string TRIPOLLO_SOUND_DIE="tripollo_explosion";
+	const std::string TRIPOLLO_SOUND_SCRATCH="tripollo_scratch";
+	const std::string TRIPOLLO_SOUND_WINGS="tripollo_wings";
+	const std::string TRIPOLLO_SOUND_GRAZNIDO="tripollo_graznido";
+	const std::string TRIPOLLO_SOUND_ATTACK="tripollo_attack";
+	const std::string TRIPOLLO_SOUND_SURPRISE="tripollo_surprise";
+	const std::string TRIPOLLO_SOUND_CALL_TO_ARMS="tripollo_call_to_arms";
 
 	/// Class modelling a particular enemy type
 	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>

@@ -9,7 +9,7 @@ sound DREAMS00
 	stream		true
 // This will probably be changed to false if at some time we implement a track list	
 	loop		true
-	volume 0.7
+	volume 1
 }
 sound NIGHTMARES00
 {
@@ -20,7 +20,7 @@ sound NIGHTMARES00
 	stream		true
 // This will probably be changed to false if at some time we implement a track list	
 	loop		true
-	volume 0.7
+	volume 1
 }
 
 sound SUCCESS
