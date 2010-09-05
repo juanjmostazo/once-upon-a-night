@@ -1,0 +1,36 @@
+system PU/box_dust
+{
+    scale 0.1 0.1 0.1
+    scale_velocity 0.1
+    technique Technique3
+    {
+        visual_particle_quota                   50
+        material                                PU/box_dust
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle Emitter4
+        {
+            emission_rate                       14
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             150
+                max                             250
+            }
+            duration                            0.8
+            circle_em_radius                    50
+        }
+        affector                                Colour Affector8
+        {
+            colour_aff_time_colour              0    0.6 0.2 0.4 1
+        }
+    }
+}

@@ -34,13 +34,13 @@
 	<Option key="BAG_STARS_CLOUD">PU/bag_stars_cloud</Option>
 	
 	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option><!--TODO-->
-	<Option key="STORY_BOOK_STARS_CLOUD">PU/diamond_stars_cloud</Option><!--TODO-->
+	<Option key="STORY_BOOK_STARS_CLOUD">PU/story_book_stars_cloud</Option><!--TODO-->
 	
 	<Option key="TOY_STARS_CLOUD">PU/toy_stars_cloud</Option>
 	
-	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/diamond_stars_cloud</Option><!--TODO-->
+	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/clock_piece_stars_cloud</Option><!--TODO-->
 	
-	<Option key="BOX_DUST">PU/diamond_stars_cloud</Option><!--TODO-->
+	<Option key="BOX_DUST">PU/box_dust</Option><!--TODO-->
 	
 	<Option key="TRIPOLLO_DIE">PU/tripollo_die</Option>
 	<Option key="TRIPOLLO_SHOCK">PU/tripollo_shock</Option>

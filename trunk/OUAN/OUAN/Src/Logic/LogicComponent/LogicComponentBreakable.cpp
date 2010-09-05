@@ -5,6 +5,7 @@
 #include "../../Game/GameWorldManager.h"
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectOny.h"
+#include "../../Game/GameObject/GameObjectWoodBox.h"
 
 using namespace OUAN;
 
@@ -23,12 +24,21 @@ LogicComponentBreakable::~LogicComponentBreakable()
 
 void LogicComponentBreakable::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	if( pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && !mIsBroken)
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW) == 0 && !mIsBroken)
 	{	
 		setIsBroken(true);
 		if (mDisableTime>=0.0)
+		{
 			mElapsedTimeSinceBreakup=0;
+		}
+
 		Logger::getInstance()->log("BREAK");
+
+		if (getParent()->getType().compare(GAME_OBJECT_TYPE_WOODBOX))
+		{
+			GameObjectWoodBoxPtr box = BOOST_PTR_CAST(GameObjectWoodBox, getParent());
+			box->getRenderComponentParticleSystemDust()->start();
+		}
 	}
 }
 
@@ -57,11 +67,18 @@ void LogicComponentBreakable::update(double elapsedTime)
 	{
 		setStateChanged(false);
 	}
+
 	if (mDisableTime>=0.0)
 	{
 		if (mElapsedTimeSinceBreakup>mDisableTime)
+		{
 			getParent()->disable();
-		else mElapsedTimeSinceBreakup+=elapsedTime;
+		}
+
+		else
+		{
+			mElapsedTimeSinceBreakup+=elapsedTime;
+		}
 	}
 }
 

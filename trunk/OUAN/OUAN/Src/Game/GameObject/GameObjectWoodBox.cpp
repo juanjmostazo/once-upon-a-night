@@ -318,7 +318,10 @@ void GameObjectWoodBox::reset()
 	if (mPhysicsComponentSimpleBox.get())
 	{
 		if(!mPhysicsComponentSimpleBox->isInUse())
+		{
 			mPhysicsComponentSimpleBox->create();
+		}
+
 		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
 		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
@@ -326,7 +329,9 @@ void GameObjectWoodBox::reset()
 	}
 
 	if (mRenderComponentEntityAdditional.get())
+	{
 		mRenderComponentEntityAdditional->setVisible(false);
+	}
 }
 
 bool GameObjectWoodBox::hasPositionalComponent() const
@@ -390,8 +395,9 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 
 	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
-		?mRenderComponentEntityDreams
-		:mRenderComponentEntityNightmares;
+		? mRenderComponentEntityDreams
+		: mRenderComponentEntityNightmares;
+
 	if (mRenderComponentEntityAdditional->isVisible())
 	{
 		entityToUpdate=mRenderComponentEntityAdditional;
@@ -406,7 +412,6 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
-
 	if (mLogicComponentBreakable->isStateChanged())
 	{
 		if (mLogicComponentBreakable->getState()==STATE_BREAKABLE_BROKEN)
@@ -419,23 +424,32 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			{
 				mRenderComponentEntityAdditional->setVisible(true);
 				if (!mRenderComponentEntityAdditional->hasAnimationBlender())
+				{
 					mRenderComponentEntityAdditional->initAnimationBlender("broken");
+				}
 				else
+				{
 					mRenderComponentEntityAdditional->changeAnimation("broken");
+				}
 			}
-
 
 			if (mLogicComponentBreakable->existsInDreams())
 			{
-				mRenderComponentEntityDreams->setVisible(false);						if (mRenderComponentEntityNightmares.get())
+				mRenderComponentEntityDreams->setVisible(false);		
+
+				if (mRenderComponentEntityNightmares.get())
+				{
 					mRenderComponentEntityNightmares->setVisible(false);
+				}
 			}
 			
 			if (mLogicComponentBreakable->existsInNightmares())
 			{
 				mRenderComponentEntityNightmares->setVisible(false);
 				if (mRenderComponentEntityDreams.get())
+				{
 					mRenderComponentEntityDreams->setVisible(false);
+				}
 			}		
 		}
 	}	
