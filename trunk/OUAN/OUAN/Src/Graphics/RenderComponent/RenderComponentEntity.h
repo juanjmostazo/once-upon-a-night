@@ -67,6 +67,8 @@ namespace OUAN
 			float duration, bool l=true, float timeScale=1.0);
 		void setAnimationBlenderVertexKeyMap(const TKeyFrameMap& keyFrameMap);
 
+		double getMaxBoundingBoxY();
+
 		Ogre::Entity * getEntity() const;
 		void setEntity(Ogre::Entity *,bool existInDreams,bool existInNightmares);
 

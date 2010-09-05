@@ -32,8 +32,6 @@ void PhysicsComponentComplexConvex::create()
 
 	//mBalanceAccumulatedTime = 0;
 
-
-
 	pConvex->setName(name);
 
 	if (getMass() > 0)
