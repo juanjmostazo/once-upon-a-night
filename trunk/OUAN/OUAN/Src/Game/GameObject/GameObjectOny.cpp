@@ -22,6 +22,7 @@ GameObjectOny::GameObjectOny(const std::string& name)
 	mNightmaresWeapon="flashlight#1";
 	mCurrentWeaponMode=WEAPON_MODE_0;
 	mOnWater=false;
+	mAttackAnimationName = ONY_ANIM_ATTACK03;
 }
 
 GameObjectOny::~GameObjectOny()
@@ -542,7 +543,7 @@ void GameObjectOny::postUpdate()
 		{
 			if (mWorld == DREAMS)
 			{
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_ATTACK03);
+				mRenderComponentEntity->changeAnimation(mAttackAnimationName);
 
 				GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
 					mWeaponComponent->getActiveWeapon());
@@ -825,6 +826,10 @@ bool GameObjectOny::isMessageVisible() const
 	}
 
 	return false;
+}
+void GameObjectOny::setCurrentAttackAnimation(const std::string& animationName)
+{
+	mAttackAnimationName=animationName;
 }
 //-------
 
