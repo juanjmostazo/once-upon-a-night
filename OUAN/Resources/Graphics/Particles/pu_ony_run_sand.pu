@@ -1,19 +1,20 @@
 system PU/ony_run_sand
 {
-    scale_velocity                              0.09
-    scale                                       0.09 0.09 0.09
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
     technique Technique3
     {
-        visual_particle_quota                   10
+        visual_particle_quota                   50
         material                                PU/ony_run_sand
-        default_particle_width                  36
-        default_particle_height                 36
-        default_particle_depth                  36
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
         renderer                                Billboard
         {
         }
         emitter                                 Circle Emitter4
         {
+            emission_rate                       12
             time_to_live                        dyn_random
             {
                 min                             0.8
@@ -21,8 +22,8 @@ system PU/ony_run_sand
             }
             velocity                            dyn_random
             {
-                min                             200
-                max                             300
+                min                             150
+                max                             250
             }
             duration                            0.8
             circle_em_radius                    50
@@ -35,9 +36,9 @@ system PU/ony_run_sand
     technique 
     {
         material                                PU/ony_run_sand_2
-        default_particle_width                  70
-        default_particle_height                 70
-        default_particle_depth                  70
+        default_particle_width                  64
+        default_particle_height                 64
+        default_particle_depth                  64
         renderer                                Billboard
         {
         }
