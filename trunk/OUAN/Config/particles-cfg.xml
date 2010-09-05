@@ -40,7 +40,8 @@
 	
 	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/clock_piece_stars_cloud</Option><!--TODO-->
 	
-	<Option key="BOX_DUST">PU/box_dust</Option><!--TODO-->
+	<Option key="BOX_DUST">PU/box_dust</Option>
+	<Option key="BOMB_EXPLOSION">PU/bomb_explosion</Option>
 	
 	<Option key="TRIPOLLO_DIE">PU/tripollo_die</Option>
 	<Option key="TRIPOLLO_SHOCK">PU/tripollo_shock</Option>

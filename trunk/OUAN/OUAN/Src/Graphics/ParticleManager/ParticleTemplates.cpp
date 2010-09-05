@@ -73,6 +73,7 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("CLOCK_PIECE_STARS_CLOUD", CLOCK_PIECE_STARS_CLOUD); 
 
 		config.getOption("BOX_DUST", BOX_DUST); 
+		config.getOption("BOMB_EXPLOSION", BOMB_EXPLOSION); 
 
 		config.getOption("TRIPOLLO_DIE", TRIPOLLO_DIE); 
 		config.getOption("TRIPOLLO_SHOCK", TRIPOLLO_SHOCK); 

@@ -4036,6 +4036,18 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOMB_EXPLOSION;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectBomb->setRenderComponentParticleSystemExplosion(
+		mComponentFactory->createRenderComponentParticleSystem(
+			pGameObjectBomb,
+			tRenderComponentParticleSystemParameters,
+			pGameObjectBomb->getRenderComponentPositional()));
+
 	//Create PhysicsComponentSimpleBox
 	pGameObjectBomb->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(

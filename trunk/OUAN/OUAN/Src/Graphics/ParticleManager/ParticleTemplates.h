@@ -59,6 +59,7 @@ namespace OUAN
 		std::string CLOCK_PIECE_STARS_CLOUD;
 
 		std::string BOX_DUST;
+		std::string BOMB_EXPLOSION;
 
 		std::string TRIPOLLO_DIE;
 		std::string TRIPOLLO_SHOCK;
