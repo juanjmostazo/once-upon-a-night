@@ -262,22 +262,25 @@ void CameraControllerThirdPerson::updateCameraTrajectory(double elapsedTime,Ogre
 {
 	Vector3 targetPosition;
 	//update Trajectory
-	mTrajectory->update(elapsedTime);
-
-	//Set camera position
-	mDummyNode->setPosition(mTrajectory->getCurrentPosition());
-	pCamera->setPosition(mDummyNode->getPosition());
-
-	//Set camera orientation
-	if(!mTrajectoryLookAtTarget)
+	if(!mTrajectory->trajectoryEnded())
 	{
-		mDummyNode->setOrientation(mTrajectory->getCurrentOrientation());
-		pCamera->setOrientation(mDummyNode->getOrientation());
-	}
-	else
-	{
-		targetPosition=calculateTargetPosition(pCameraInput);
-		pCamera->lookAt(targetPosition);
+		mTrajectory->update(elapsedTime);
+
+		//Set camera position
+		mDummyNode->setPosition(mTrajectory->getCurrentPosition());
+		pCamera->setPosition(mDummyNode->getPosition());
+
+		//Set camera orientation
+		if(!mTrajectoryLookAtTarget)
+		{
+			mDummyNode->setOrientation(mTrajectory->getCurrentOrientation());
+			pCamera->setOrientation(mDummyNode->getOrientation());
+		}
+		else
+		{
+			targetPosition=calculateTargetPosition(pCameraInput);
+			pCamera->lookAt(targetPosition);
+		}
 	}
 }
 bool CameraControllerThirdPerson::isTrajectoryFinished(const std::string& trajectoryName)
