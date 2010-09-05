@@ -525,10 +525,10 @@ void GameObjectOny::postUpdate()
 			}
 		}		
 		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_DIE) && !CHECK_BIT(lastState,ONY_STATE_BIT_FIELD_DIE) && 
-			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE01)!=0)
+			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE)!=0)
 		{
 			mAudioComponent->playSound(ONY_SOUND_DIE);
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE01);
+			mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE);
 		}
 
 		else if (CHECK_BIT(currentState,ONY_STATE_BIT_FIELD_HIT) && 
@@ -542,7 +542,7 @@ void GameObjectOny::postUpdate()
 		{
 			if (mWorld == DREAMS)
 			{
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_STAB_PILLOW);
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_ATTACK03);
 
 				GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
 					mWeaponComponent->getActiveWeapon());
