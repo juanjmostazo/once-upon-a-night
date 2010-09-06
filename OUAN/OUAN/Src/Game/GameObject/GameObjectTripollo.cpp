@@ -216,7 +216,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						entity->changeAnimation(TRIPOLLO_ANIM_SURPRISE);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
-						mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
+						//mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
@@ -318,7 +318,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					{
 						if(mGameWorldManager->getPlayerDistance(getName())<CALL_TO_ARMS_SOUND_DISTANCE)
 						{
-							//mAudioComponent->playSound(TRIPOLLO_SOUND_CALL_TO_ARMS);
+							mAudioComponent->playSound(TRIPOLLO_SOUND_CALL_TO_ARMS);
 						}
 						entity->changeAnimation(TRIPOLLO_ANIM_CALL_TO_ARMS);
 						double range = logicSS->getGlobalReal("MELEE_RANGE");
