@@ -93,7 +93,8 @@ end
 
 function conditionCheckPoint6(pOny)
     local checkpointNumber=getCheckPointNumber();
-	return checkpointNumber<60 and hasExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+    return checkpointNumber<60;
+	-- return checkpointNumber<60 and hasExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 end
 
 -- CHECKPOINT 7: TRIPOLLO_STATUES
