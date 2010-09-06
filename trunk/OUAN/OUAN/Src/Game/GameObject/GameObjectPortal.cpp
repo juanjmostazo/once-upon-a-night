@@ -192,10 +192,14 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 		case DREAMS:
 			setDreamsRender();
 			mRenderComponentEntityDreams->changeAnimation(PORTAL_ANIMATION_IDLE);
+			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntityNightmares->setVisible(false);
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
 			mRenderComponentEntityNightmares->changeAnimation(PORTAL_ANIMATION_IDLE);
+			mRenderComponentEntityDreams->setVisible(false);
+			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:
 			break;
