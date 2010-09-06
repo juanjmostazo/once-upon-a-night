@@ -18,8 +18,27 @@
 		
 		<Option key="CUTSCENE_HELLOWORLD_DYING">..or I'll die!!</Option>
 
-		<Option key="LEVEL_START#0">Find the Clock Piece!</Option>
-	
+		<Option key="LEVEL_START#0">Hello, world!</Option>
+		<Option key="LEVEL_START#1">I am Any,</Option>
+		<Option key="LEVEL_START#2">and I need to escape from this crazy world</Option>
+		<Option key="LEVEL_START#3">..or I'll die!!</Option>
+
+		<Option key="FIRST_CHANGE_WORLD#0">You just hit a change world portal</Option>
+		<Option key="FIRST_CHANGE_WORLD#1">The world is going to change</Option>
+		<Option key="FIRST_CHANGE_WORLD#2">Don't be afraid!</Option>
+		<Option key="FIRST_CHANGE_WORLD#3">Now you might be able to go</Option>
+		<Option key="FIRST_CHANGE_WORLD#4">To places you couldn't before</Option>
+		<Option key="FIRST_CHANGE_WORLD#5">Also, your weapon is now different too!</Option>
+
+		<Option key="BOMBS_PUZZLE_START#0">...snif, Hi, I am the king of this region, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#1">...snif, You have to find the clock piece, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#2">...snif, to escape from this world, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#3">...snif, i will help you, with this ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#4">...snif, BOMB! ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#4">...snif, let me show you ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#5">...snif, Using this bomb you can break the rocks, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#6">...snif, But remember! to make it explode, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#7">...snif, you need an intense red light ...snif</Option>
 
 	</Options>
 </Configuration>
