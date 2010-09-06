@@ -638,7 +638,7 @@ void GameObjectOny::postUpdate()
 			if (isOnWater())
 			{
 				//Logger::getInstance()->log("Launching ONY_PS_RUN_WATER");
-				startParticleSystem(ONY_PS_RUN_WATER);
+				//startParticleSystem(ONY_PS_RUN_WATER);
 			}
 			else
 			{
