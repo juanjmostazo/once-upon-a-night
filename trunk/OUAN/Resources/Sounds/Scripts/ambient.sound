@@ -90,7 +90,7 @@ sound ambient_scary_d
 	hardware	true
 	stream		false
 	loop		true
-	min_max_distance 500 100000
+	min_max_distance 200 100000
 	volume 1
 }
 
