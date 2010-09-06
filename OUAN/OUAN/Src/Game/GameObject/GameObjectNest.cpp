@@ -274,7 +274,7 @@ void GameObjectNest::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	if (isEnabled())
+	if (isEnabled() && mWorld==DREAMS)
 	{	
 		if (isFirstUpdate())
 		{
