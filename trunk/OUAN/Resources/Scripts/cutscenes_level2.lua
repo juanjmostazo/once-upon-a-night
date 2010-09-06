@@ -2,6 +2,8 @@
 
 CUTSCENE_1_LEVEL_START="LEVEL_START";
 CUTSCENE_2_FIRST_CHANGE_WORLD="FIRST_CHANGE_WORLD";
+CUTSCENE_2_FIRST_CHANGE_WORLD_1="FIRST_CHANGE_WORLD#1";
+CUTSCENE_2_FIRST_CHANGE_WORLD_2="FIRST_CHANGE_WORLD#2";
 CUTSCENE_3_BOMBS_PUZZLE_START="BOMBS_PUZZLE_START";
 CUTSCENE_3_BOMBS_PUZZLE_START_1="BOMBS_PUZZLE_START#1";
 CUTSCENE_3_BOMBS_PUZZLE_START_2="BOMBS_PUZZLE_START#2";
@@ -38,20 +40,17 @@ function conditionCutScene1(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 end
 
-TRACK_TIME=2
-
-SENTENCE1_TIME = 3
-SENTENCE2_TIME = 3
-
 function cutScene1(timer)
 	log ("CUTSCENE 1: ");
 	log (CUTSCENE_1_LEVEL_START);
 	local any=getAny()
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
-
 	trajectoryCamWait()
-	timedMessage(any,"LEVEL_START#0",5,timer,SENTENCE1_TIME);
+	timedMessage(any,"LEVEL_START#0",5,timer,3);
+	timedMessage(any,"LEVEL_START#1",5,timer,3);
+	timedMessage(any,"LEVEL_START#2",5,timer,3);
+	timedMessage(any,"LEVEL_START#3",5,timer,3);
 	
 	setMyReturningToGameTransition(false);
 	return COROUTINE_FINISHED
@@ -71,10 +70,20 @@ end
 function cutScene2(timer)
 	log ("CUTSCENE 2: ");
 	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
-	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD,false,true);
-	changeWorld(OUAN_WORLD_NIGHTMARES);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,true);
 	trajectoryCamWait();
-	busyWait(timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#0",5,timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#1",5,timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#2",5,timer,5);
+
+	changeWorld(OUAN_WORLD_NIGHTMARES);
+	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_2,false,true);
+	trajectoryCamWait();
+	timedMessage(any,"FIRST_CHANGE_WORLD#3",5,timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#4",5,timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#5",5,timer,5);
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end
@@ -94,16 +103,24 @@ function cutScene3(timer)
 	log ("CUTSCENE 3: ");
 	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	local any=getAny()	
-	
-	initBombPuzzle();
+
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
-	trajectoryCamWait()
+	trajectoryCamWait();
+	timedMessage(any,"BOMBS_PUZZLE_START#0",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#1",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#2",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#3",5,timer,5);
+	initBombPuzzle();
+	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
 	busyWait(timer,5);
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)	
-	trajectoryCamWait()
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
+	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
+	trajectoryCamWait();
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false)	
-	trajectoryCamWait()
-	busyWait(timer,5);
+	trajectoryCamWait();
+	timedMessage(any,"BOMBS_PUZZLE_START#5",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#6",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED

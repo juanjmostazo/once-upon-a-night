@@ -366,10 +366,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 			{
 				if (mLogicComponent->isStateChanged())
 				{
-					if(getName().compare(FIRST_CHANGE_WORLD_GAME_OBJECT)==0)
-					{
-						getGameWorldManager()->addExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
-					}
 					mAudioComponent->playSound(PORTAL_SOUND_CHANGEWORLD);
 				}
 			}

@@ -69,10 +69,17 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	bool isParentPortal = mParent->getType().compare(GAME_OBJECT_TYPE_PORTAL)==0;
 	if (isParentPortal && isWeaponCollision)
 	{
-		if(mHitRecoveryTime<0)
+		if(mParent->getName().compare(FIRST_CHANGE_WORLD_GAME_OBJECT)==0)
 		{
-			mHasTakenHit=true;
-			mHitRecoveryTime=0;
+			mParent->getGameWorldManager()->addExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
+		}
+		else
+		{
+			if(mHitRecoveryTime<0)
+			{
+				mHasTakenHit=true;
+				mHitRecoveryTime=0;
+			}
 		}
 	}
 	bool isParentBomb = mParent->getType().compare(GAME_OBJECT_TYPE_BOMB)==0;
