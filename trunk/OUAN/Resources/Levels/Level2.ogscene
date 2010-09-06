@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="589.516 445.034 100.605" orientation="-0.738374 0.247767 0.594287 0.200593"></OPTION>
+    <OPTION id="2" position="561.538 462.601 110.303" orientation="-0.78553 0.214958 0.559429 0.154191"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.738461 0.247796 0.594357 0.200617"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.78553 0.214958 0.559429 0.154191"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="589.516 445.034 100.605"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="561.538 462.601 110.303"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -17989,7 +17989,7 @@
     <PROPERTY id="orientation" type="13" value="0.989651 0 0.143493 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="758.244 234.318 12.3843"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="63.7922 83.0287 66.2635"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="126.912 105.54 153.224"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -23769,7 +23769,7 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.410121 -0.180518 -0.891566 0.0657592"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.372975 -0.433299 -0.79983 0.182794"></PROPERTY>
     <PROPERTY id="position" type="9" value="724.121 334.602 92.3361"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
