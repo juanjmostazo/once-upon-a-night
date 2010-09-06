@@ -141,13 +141,13 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//Logger::getInstance()->log("ONY IS ON WATER");
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+		//TODO FIX THIS!!!
+		//if(!ony->isOnWater())
+		//{
+		//	ony->getAudioComponent()->playSound(ONY_SOUND_SPLASH_00);
+		//}
 
-		if(!ony->isOnWater())
-		{
-			ony->getAudioComponent()->playSound(ONY_SOUND_SPLASH_00);
-		}
-
-		ony->setOnWater(true);
+		//ony->setOnWater(true);
 
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WOODBOX)==0)
