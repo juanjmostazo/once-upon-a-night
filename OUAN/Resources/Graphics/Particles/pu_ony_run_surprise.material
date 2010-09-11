@@ -15,7 +15,7 @@ material PU/ony_run_surprise
         pass
         {
             lighting off
-            scene_blend add
+            scene_blend alpha_blend
             depth_write off
 
             texture_unit

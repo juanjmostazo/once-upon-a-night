@@ -35,44 +35,6 @@ system PU/ony_run_sand
     }
     technique 
     {
-        material                                PU/ony_run_sand_2
-        default_particle_width                  64
-        default_particle_height                 64
-        default_particle_depth                  64
-        renderer                                Billboard
-        {
-        }
-        emitter                                 Point 
-        {
-            emission_rate                       dyn_random
-            {
-                min                             2
-                max                             4
-            }
-            time_to_live                        dyn_random
-            {
-                min                             0.6
-                max                             0.8
-            }
-            velocity                            dyn_random
-            {
-                min                             400
-                max                             500
-            }
-            duration                            1
-        }
-        affector                                LinearForce 
-        {
-            force_aff_vector                    0 -800 0
-        }
-        affector                                Colour Affector9
-        {
-            colour_aff_time_colour              0    0.1 0.5 0.1 1
-            colour_aff_time_colour              3    0.2 0.6 0.2 1
-        }
-    }
-    technique 
-    {
         material                                PU/ony_run_sand_3
         default_particle_width                  70
         default_particle_height                 70

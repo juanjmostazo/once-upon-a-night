@@ -20246,7 +20246,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="146763520" name="particle_n#torch_5" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="146763520" name="Particle_n#torch_5" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20260,7 +20260,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="325510400" name="particle_n#torch_4" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="325510400" name="Particle_n#torch_4" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20274,7 +20274,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="339335296" name="particle_n#torch_7" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="339335296" name="Particle_n#torch_7" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20288,7 +20288,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="98361160" name="particle_n#torch_6" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="98361160" name="Particle_n#torch_6" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20302,7 +20302,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="151554912" name="particle_n#torch_1" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="151554912" name="Particle_n#torch_1" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20316,7 +20316,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="313516640" name="particle_n#torch_3" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="313516640" name="Particle_n#torch_3" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20330,7 +20330,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="334513408" name="particle_n#torch_2" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="334513408" name="Particle_n#torch_2" typename="Particle Object" parentnode="Particles">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
