@@ -28,8 +28,8 @@ void PhysicsComponentVolumeConvex::create()
 		Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene()->createVolume(
 			pConvex,
 			NxOgre::Matrix44(	
-			NxOgre::Vec3(Vector3::ZERO), 
-			NxOgre::Quat(Quaternion::IDENTITY)),
+			NxOgre::Vec3(getSceneNode()->getPosition()), 
+			NxOgre::Quat(getSceneNode()->getOrientation())),
 			Application::getInstance()->getPhysicsSubsystem().get(), 
 			NxOgre::Enums::VolumeCollisionType_All));	
 }

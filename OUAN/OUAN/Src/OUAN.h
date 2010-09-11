@@ -150,6 +150,7 @@ namespace OUAN
 		CLASS_DECLARATIONS(PhysicsComponentVolumeCapsule);
 		CLASS_DECLARATIONS(PhysicsComponentVolumeBox);
 		CLASS_DECLARATIONS(PhysicsComponentVolumeConvex);
+		CLASS_DECLARATIONS(PhysicsComponentVolumeTriangle);
 		CLASS_DECLARATIONS(PhysicsComponentWeapon);
 		
 		const std::string COMPONENT_TYPE_PHYSICS="PhysicsComponent";
@@ -165,6 +166,7 @@ namespace OUAN
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_BOX="PhysicsComponentVolumeBox";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CAPSULE="PhysicsComponentVolumeCapsule";
 		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_CONVEX="PhysicsComponentVolumeConvex";
+		const std::string COMPONENT_TYPE_PHYSICS_VOLUME_TRIANGLE="PhysicsComponentVolumeTriangle";
 		const std::string COMPONENT_TYPE_PHYSICS_PILLOW="PhysicsComponentWeapon";
 
 		//Logic Components

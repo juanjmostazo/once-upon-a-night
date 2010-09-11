@@ -99,6 +99,9 @@ namespace OUAN
 		PhysicsComponentWeaponPtr createPhysicsComponentWeapon(GameObjectPtr gameObject,
 			TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters,
 			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
+		PhysicsComponentVolumeTrianglePtr ComponentFactory::createPhysicsComponentVolumeTriangle(
+			GameObjectPtr gameObject,TPhysicsComponentVolumeTriangleParameters tPhysicsComponentVolumeTriangleParameters,
+			RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags=QUERYFLAGS_NONE);
 
 		//Logic components
 		LogicComponentPtr createLogicComponent(GameObjectPtr gameObject, TLogicComponentParameters tLogicComponentParameters);

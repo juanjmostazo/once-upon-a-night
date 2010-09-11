@@ -34,6 +34,7 @@
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeCapsule.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeBox.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeTriangle.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
@@ -530,6 +531,29 @@ PhysicsComponentComplexTrianglePtr ComponentFactory::createPhysicsComponentCompl
 	pPhysicsComponentComplexTriangle->create();
 
 	return pPhysicsComponentComplexTriangle;
+}
+
+PhysicsComponentVolumeTrianglePtr ComponentFactory::createPhysicsComponentVolumeTriangle(GameObjectPtr gameObject,TPhysicsComponentVolumeTriangleParameters tPhysicsComponentVolumeTriangleParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
+{	
+	PhysicsComponentVolumeTrianglePtr pPhysicsComponentVolumeTriangle = 
+		PhysicsComponentVolumeTrianglePtr(new PhysicsComponentVolumeTriangle(COMPONENT_TYPE_PHYSICS_VOLUME_TRIANGLE)); 
+
+	pPhysicsComponentVolumeTriangle->setParent(gameObject);	
+	pPhysicsComponentVolumeTriangle->setSceneNode(tRenderComponentPositional->getSceneNode());	
+	pPhysicsComponentVolumeTriangle->setMass(tPhysicsComponentVolumeTriangleParameters.mass);
+	//pPhysicsComponentVolumeTriangle->setQueryFlags(flags);
+
+	NxOgre::Mesh* triangleMesh = NxOgre::MeshManager::getSingleton()->load(
+		tPhysicsComponentVolumeTriangleParameters.nxsFile.c_str());
+
+	NxOgre::TriangleGeometry* triangleGeometry = new NxOgre::TriangleGeometry(triangleMesh);
+	triangleGeometry->setGroup(GROUP_COLLIDABLE_NON_PUSHABLE);
+
+	pPhysicsComponentVolumeTriangle->setNxOgreTriangleGeometry(triangleGeometry);
+
+	pPhysicsComponentVolumeTriangle->create();
+
+	return pPhysicsComponentVolumeTriangle;
 }
 
 PhysicsComponentSimpleCapsulePtr ComponentFactory::createPhysicsComponentSimpleCapsule(GameObjectPtr gameObject,TPhysicsComponentSimpleCapsuleParameters tPhysicsComponentSimpleCapsuleParameters,RenderComponentPositionalPtr tRenderComponentPositional,QueryFlags flags)
