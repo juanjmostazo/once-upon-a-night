@@ -18,7 +18,7 @@ material PU/tripollo_die_1
     }
 }
 
-material PU/pu_tripollo_die_2
+material PU/tripollo_die_2
 {
     technique
     {
@@ -37,7 +37,7 @@ material PU/pu_tripollo_die_2
     }
 }
 
-material PU/pu_tripollo_die_3
+material PU/tripollo_die_3
 {
     technique
     {

@@ -1995,8 +1995,7 @@ GameObjectParticleSystemPtr GameObjectFactory::createGameObjectParticleSystem(TG
 	// Add a reference to this
 	pGameObjectParticleSystem->setGameWorldManager(gameWorldMgr);
 
-	//Add Object to GameWorldManager
-	//addGameObjectParticleSystem(pGameObjectParticleSystem);
+	Logger::getInstance()->log("Creating PSGO: " + pGameObjectParticleSystem->getName() + ", " + Ogre::StringConverter::toString(pGameObjectParticleSystem->getRenderComponentPositional()->getPosition()));
 	return pGameObjectParticleSystem;
 }
 

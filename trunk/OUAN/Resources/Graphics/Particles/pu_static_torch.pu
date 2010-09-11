@@ -1,10 +1,10 @@
 system PU/static_torch
 {
-    scale_velocity                              0.075
-    scale                                       0.075 0.075 0.075
+    scale_velocity                              0.07
+    scale                                       0.07 0.07 0.07
     technique 
     {
-        position                                0 -15 0
+        position                                0 10 0
         visual_particle_quota                   450
         material                                PU/static_torch
         renderer                                Billboard
@@ -60,7 +60,7 @@ system PU/static_torch
     }
     technique 
     {
-        position                                0 -15 0
+        position                                0 10 0
         visual_particle_quota                   450
         material                                PU/static_torch_2
         renderer                                Billboard
