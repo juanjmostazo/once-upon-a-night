@@ -4,8 +4,9 @@ system PU/changeworld_sky
     {
         visual_particle_quota                   10000
         material                                PU/changeworld_sky
-        default_particle_width                  10
-        default_particle_height                 10
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
         renderer                                Billboard
         {
         }
@@ -35,8 +36,9 @@ system PU/changeworld_sky
     {
         visual_particle_quota                   10000
         material                                PU/changeworld_sky
-        default_particle_width                  10
-        default_particle_height                 10
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
         renderer                                Billboard
         {
         }
@@ -66,8 +68,9 @@ system PU/changeworld_sky
     {
         visual_particle_quota                   10000
         material                                PU/changeworld_sky
-        default_particle_width                  10
-        default_particle_height                 10
+        default_particle_width                  20
+        default_particle_height                 20
+        default_particle_depth                  20
         renderer                                Billboard
         {
         }

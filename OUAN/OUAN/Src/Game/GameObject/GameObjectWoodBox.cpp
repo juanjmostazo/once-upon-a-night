@@ -434,7 +434,9 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
 			{
 				mRenderComponentEntityAdditional->setVisible(true);
+				mRenderComponentParticleSystemDust->start();
 				mAudioComponent->playSound("box_break");
+
 				if (!mRenderComponentEntityAdditional->hasAnimationBlender())
 				{
 					mRenderComponentEntityAdditional->initAnimationBlender("broken");
@@ -465,6 +467,7 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			}		
 		}
 	}	
+
 	GameObject::updateLogic(elapsedSeconds);
 }
 
