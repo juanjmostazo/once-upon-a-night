@@ -2,35 +2,48 @@ system PU/box_dust
 {
     scale 0.1 0.1 0.1
     scale_velocity 0.1
-    technique Technique3
+    keep_local                                  true
+    technique Technique4
     {
-        visual_particle_quota                   50
         material                                PU/box_dust
-        default_particle_width                  20
-        default_particle_height                 20
-        default_particle_depth                  20
+        default_particle_width                  42
+        default_particle_height                 42
+        default_particle_depth                  42
         renderer                                Billboard
         {
         }
-        emitter                                 Circle Emitter4
+        emitter                                 Point Emitter5
         {
-            emission_rate                       14
+            emission_rate                       dyn_random
+            {
+                min                             12
+                max                             15
+            }
+            angle                               45
             time_to_live                        dyn_random
             {
-                min                             0.8
-                max                             1
+                min                             1
+                max                             1.5
             }
             velocity                            dyn_random
             {
-                min                             150
-                max                             250
+                min                             250
+                max                             350
             }
-            duration                            0.8
-            circle_em_radius                    50
+            duration                            dyn_random
+            {
+                min                             0.6
+                max                             0.8
+            }
+            keep_local                          true
+        }
+        affector                                LinearForce Affector39
+        {
+            force_aff_vector                    0 -400 0
         }
         affector                                Colour Affector8
         {
-            colour_aff_time_colour              0    0.6 0.2 0.4 1
+            colour_aff_time_colour              0    0.20 0.12 0.05 0.75
         }
     }
 }

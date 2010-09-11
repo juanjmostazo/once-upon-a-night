@@ -1,4 +1,4 @@
-material PU/ExplosionFire
+material PU/tripollo_die_1
 {
     technique
     {
@@ -11,14 +11,14 @@ material PU/ExplosionFire
 
             texture_unit
             {
-                texture pu_smoke_02_128x128.png
+                texture pu_tripollo_die_1.png
                 tex_address_mode clamp
             }
         }
     }
 }
 
-material PU/Debris
+material PU/pu_tripollo_die_2
 {
     technique
     {
@@ -30,14 +30,14 @@ material PU/Debris
 
             texture_unit
             {
-                texture pu_fire_01_64x64.png
+                texture pu_tripollo_die_2.png
                 tex_address_mode clamp
             }
         }
     }
 }
 
-material PU/Nucleus
+material PU/pu_tripollo_die_3
 {
     technique
     {
@@ -49,7 +49,7 @@ material PU/Nucleus
 
             texture_unit
             {
-                texture pu_nucleus.png
+                texture pu_tripollo_die_3.png
                 tex_address_mode clamp
             }
         }
