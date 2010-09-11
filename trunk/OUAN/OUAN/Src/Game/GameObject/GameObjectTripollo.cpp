@@ -114,33 +114,27 @@ PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter() 
 
 bool GameObjectTripollo::activateTrajectory(int newWorld)
 {
-	if(newWorld==DREAMS)
+	std::string trajectoryName=getName();
+	trajectoryName.append(newWorld==DREAMS?SUFFIX_DREAMS:SUFFIX_NIGHTMARES);
+	if(mTrajectoryComponent->predefinedTrajectoryExists(trajectoryName))
 	{
-		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_DREAMS))
+		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
+			newWorld,true);
+		if (!getName().compare("tripollo#19"))
 		{
-			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_DREAMS,newWorld,true);
-			return true;
+			Logger::getInstance()->log("TRAJECTORY FOUND");
 		}
-		else
-		{
-			mTrajectoryComponent->activateIdle(getName(),newWorld);
-			return false;
-		}
+		return true;
 	}
-	else if(newWorld==NIGHTMARES)
+	else
 	{
-		if(mTrajectoryComponent->predefinedTrajectoryExists(getName()+SUFFIX_NIGHTMARES))
+		mTrajectoryComponent->activateIdle(getName(),newWorld);
+		if (!getName().compare("tripollo#19"))
 		{
-			mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(getName()+SUFFIX_NIGHTMARES,newWorld,true);
-			return true;
+			Logger::getInstance()->log("TRAJECTORY NOT FOUND");
 		}
-		else
-		{
-			mTrajectoryComponent->activateIdle(getName(),newWorld);
-			return false;
-		}
+		return false;
 	}
-	return false;
 }
 
 void GameObjectTripollo::activateFlying(bool flying)
@@ -168,6 +162,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 
 		int currentState=mLogicComponentEnemy->getState();
+		bool debugTripollos = getName().compare("tripollo#19")==0;
 
 
 		if (mPhysicsComponentCharacter.get())
@@ -197,6 +192,11 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					if (mLogicComponentEnemy->isStateChanged())
 					{
 						entity->changeAnimation(TRIPOLLO_ANIM_IDLE);
+						if (debugTripollos)
+						{
+							Logger::getInstance()->log("tripollo has changed to idle");
+							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
+						}
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
 				}
@@ -205,6 +205,11 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					if (mLogicComponentEnemy->isStateChanged())
 					{
 						entity->changeAnimation(TRIPOLLO_ANIM_IDLE1);
+						if (debugTripollos)
+						{
+							Logger::getInstance()->log("tripollo has changed to idle1");
+							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
+						}
 						mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
 						//Idle 1 can only come from idle, so there is no trajectory change
 					}
@@ -223,13 +228,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{				
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						if(activateTrajectory(mGameWorldManager->getWorld()))
+						activateTrajectory(mGameWorldManager->getWorld());			
+						entity->changeAnimation(TRIPOLLO_ANIM_WALK);
+						if (debugTripollos)
 						{
-							entity->changeAnimation(TRIPOLLO_ANIM_WALK);
-						}
-						else
-						{
-							entity->changeAnimation(TRIPOLLO_ANIM_IDLE);
+							Logger::getInstance()->log("tripollo has changed to patrol");
+							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
 						}
 					}
 				}
@@ -838,6 +842,16 @@ bool GameObjectTripollo::isStatueEnabled() const
 	return mLogicComponentEnemy->isStatueEnabled();
 }
 
+void GameObjectTripollo::enable()
+{
+	GameObject::enable();
+	LogicSubsystemPtr logicSS = Application::getInstance()->getLogicSubsystem();
+	mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
+	{
+		mPhysicsComponentCharacter->create();
+	}
+}
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()
 {

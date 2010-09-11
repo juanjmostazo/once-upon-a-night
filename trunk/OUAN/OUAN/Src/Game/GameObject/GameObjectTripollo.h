@@ -232,6 +232,8 @@ namespace OUAN
 
 		bool isStatueEnabled() const;
 
+		void enable();
+
 	};
 	
 	/// Information data structure to carry around data between the
