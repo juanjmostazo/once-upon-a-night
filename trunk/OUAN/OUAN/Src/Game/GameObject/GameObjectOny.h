@@ -259,6 +259,7 @@ namespace OUAN
 
 		void resetStepSounds();
 		void playStepSounds();
+		void startRunParticleSystem();
 
 		std::string mAttackAnimationName;
 

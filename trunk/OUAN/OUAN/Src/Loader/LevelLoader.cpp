@@ -97,6 +97,7 @@
 #include "../RayCasting/RayCasting.h"
 #include "../Utils/Utils.h"
 #include "../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
+#include "../Physics/PhysicsComponent/PhysicsComponentVolumeTriangle.h"
 #include "../Logic/LogicComponent/LogicComponent.h"
 #include "../Logic/LogicComponent/LogicComponentOny.h"
 #include "../Logic/LogicComponent/LogicComponentItem.h"
@@ -3058,8 +3059,8 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			meshfile = getPropertyString(gameObject->XMLNodeNightmares, "meshfile");
 		}
 
-		std::string volumeConvex="CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
-		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,volumeConvex))
+		std::string volumeTriangle="CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
+		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,volumeTriangle))
 		{
 			OUAN::TGameObjectWaterParameters  tGameObjectWaterParameters;
 			tGameObjectWaterParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
@@ -3072,7 +3073,7 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 
 			//Get PhysicsComponentComplexConvex
 			tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties,
-				volumeConvex);
+				volumeTriangle);
 
 			tGameObjectWaterParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 				gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
@@ -3100,7 +3101,7 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			mGameWorldManager->addGameObjectWater(mGameObjectFactory->createGameObjectWater(tGameObjectWaterParameters,
 				mGameWorldManager));
 
-			Logger::getInstance()->log("[LevelLoader] "+gameObject->name+" uses .nxs convex physics file "+volumeConvex);
+			Logger::getInstance()->log("[LevelLoader] "+gameObject->name+" uses .nxs convex physics file "+volumeTriangle);
 		}
 		else
 		{
@@ -4277,6 +4278,17 @@ TPhysicsComponentVolumeConvexParameters LevelLoader::processPhysicsComponentVolu
 	tPhysicsComponentVolumeConvexParameters.nxsFile="nxs:"+getPropertyString(XMLCustomPropertiesNode, "PhysicsComponentVolumeConvex::nxsFile");
 
 	return tPhysicsComponentVolumeConvexParameters;
+}
+
+TPhysicsComponentVolumeTriangleParameters LevelLoader::processPhysicsComponentVolumeTriangle(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile)
+{
+	TPhysicsComponentVolumeTriangleParameters tPhysicsComponentVolumeTriangleParameters;
+
+	//Get Component properties
+	tPhysicsComponentVolumeTriangleParameters.mass= getPropertyReal(XMLCustomPropertiesNode, "PhysicsComponentVolumeTriangle::mass");
+	tPhysicsComponentVolumeTriangleParameters.nxsFile="nxs:"+nxsFile;
+
+	return tPhysicsComponentVolumeTriangleParameters;
 }
 
 TPhysicsComponentVolumeConvexParameters LevelLoader::processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile)

@@ -28,11 +28,13 @@ LogicComponentOny::~LogicComponentOny()
 
 void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
+	bool collisionWithWater=false;
+
 	if (!pGameObject->isEnabled() || !getParent()->isEnabled()) 
 	{
 		return;
 	}
-	//Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
+	Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
 
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 	{
@@ -139,15 +141,15 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)==0)
 	{
-		//Logger::getInstance()->log("ONY IS ON WATER");
+		Logger::getInstance()->log("ONY IS ON WATER");
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
-		//TODO FIX THIS!!!
-		//if(!ony->isOnWater())
-		//{
-		//	ony->getAudioComponent()->playSound(ONY_SOUND_SPLASH_00);
-		//}
 
-		//ony->setOnWater(true);
+		if(!ony->isOnWater() && !ony->getAudioComponent()->isPlaying(ONY_SOUND_SPLASH_00))
+		{
+			ony->getAudioComponent()->playSound(ONY_SOUND_SPLASH_00);
+		}
+
+		collisionWithWater=true;
 
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WOODBOX)==0)
@@ -166,6 +168,9 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			ony->getAudioComponent()->playSound(ONY_SOUND_PUSH);
 		}
 	}
+
+	GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
+	ony->setOnWater(collisionWithWater);
 }
 
 void LogicComponentOny::processAnimationEnded(const std::string& animationName)

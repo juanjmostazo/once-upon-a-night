@@ -204,12 +204,12 @@ void GameObjectOny::update(double elapsedSeconds)
 		mRenderComponentQuadHalo->update(elapsedSeconds);
 	}
 
-	if (mRunParticlesElapsed>=0.0)
+	if (mRunParticlesElapsed<mRunParticlesNextInterval)
 	{
 		mRunParticlesElapsed+=elapsedSeconds;
 		if (mRunParticlesElapsed>mRunParticlesNextInterval)
 		{
-			startParticleSystem(ONY_PS_RUN_WATER);
+			startRunParticleSystem();
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval=Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
 		}
@@ -476,6 +476,23 @@ void GameObjectOny::playStepSounds()
 	}
 }
 
+void GameObjectOny::startRunParticleSystem()
+{
+	if (mPhysicsComponentCharacterOny->isOnSurface())
+	{
+		if (isOnWater())
+		{
+			Logger::getInstance()->log("Launching ONY_PS_RUN_WATER");
+			startParticleSystem(ONY_PS_RUN_WATER);
+		}
+		else
+		{
+			//Logger::getInstance()->log("Launching ONY_PS_RUN_SAND");
+			startParticleSystem(ONY_PS_RUN_SAND);
+		}
+	}
+}
+
 void GameObjectOny::postUpdate()
 {
 	if (!Application::getInstance()->isPlayingCutscene())
@@ -635,16 +652,7 @@ void GameObjectOny::postUpdate()
 			mRunParticlesElapsed=0.0;
 			mRunParticlesNextInterval = Utils::Random::getInstance()->getRandomDouble(mRunParticlesMin,mRunParticlesMax);
 
-			if (isOnWater())
-			{
-				//Logger::getInstance()->log("Launching ONY_PS_RUN_WATER");
-				//startParticleSystem(ONY_PS_RUN_WATER);
-			}
-			else
-			{
-				//Logger::getInstance()->log("Launching ONY_PS_RUN_SAND");
-				startParticleSystem(ONY_PS_RUN_SAND);
-			}
+			startRunParticleSystem();
 		}
 
 		//Apply radial blur effect when reached fall speed limit
@@ -663,8 +671,6 @@ void GameObjectOny::postUpdate()
 		}
 	}
 
-	// An event will set this value at the beginning of the tick if ony is on water
-	setOnWater(false);
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const

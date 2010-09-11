@@ -157,6 +157,8 @@ namespace OUAN
 		TPhysicsComponentVolumeCapsuleParameters processPhysicsComponentVolumeCapsuleUsingScale(TiXmlElement *XMLCustomPropertiesNode,TiXmlElement *XMLRenderInfoNode,std::string suffix="");
 		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode);
 		TPhysicsComponentVolumeConvexParameters processPhysicsComponentVolumeConvex(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile);
+		TPhysicsComponentVolumeTriangleParameters processPhysicsComponentVolumeTriangle(TiXmlElement *XMLCustomPropertiesNode,std::string nxsFile);
+
 		TPhysicsComponentWeaponParameters processPhysicsComponentWeapon(TiXmlElement *XMLNode,std::string suffix="");
 
 		//LogicComponent Processors		
