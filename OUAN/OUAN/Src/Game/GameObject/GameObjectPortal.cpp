@@ -423,9 +423,11 @@ void GameObjectPortal::setVisible(bool visible)
 		mRenderComponentEntityNightmares->setVisible(visible);
 	}
 
-	mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
-	mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
-	mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
+	//Commented this lines because some they give null pointers
+	//
+	//mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
+	//mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
+	//mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
 }
 void GameObjectPortal::setCurrentWorldVisibility(bool visibility)
 {	

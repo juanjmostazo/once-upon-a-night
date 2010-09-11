@@ -1,7 +1,7 @@
 system PU/bomb_explosion
 {
-    scale_velocity                              0.05
-    scale                                       0.05 0.05 0.05
+    scale_velocity                              0.04
+    scale                                       0.04 0.04 0.04
     technique Fire
     {
         visual_particle_quota                   300
@@ -116,7 +116,7 @@ system PU/bomb_explosion
     technique 
     {
         visual_particle_quota                   300
-        material                                PUMediaPack/AtlasSmoke
+        material                                PU/bomb_explosion_3
         renderer                                Billboard
         {
             render_queue_group                  51

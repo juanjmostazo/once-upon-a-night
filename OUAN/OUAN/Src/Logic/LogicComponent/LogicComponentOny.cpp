@@ -121,19 +121,11 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 
 		posOny += plataform->getLastPositionDifference();
 
-		/*
+		// Fixes platforms bug
 		if(plataform->getLastPositionDifference().y>0)
 		{
-			posOny += plataform->getLastPositionDifference();	
+			posOny.y += 0.1;
 		}
-		else
-		{
-			posOny.x += plataform->getLastPositionDifference().x;
-			posOny.z += plataform->getLastPositionDifference().z;
-		}
-		*/
-
-		//physicsOny->disactivateGravityNextFrame();
 
 		physicsOny->setPosition(posOny);
 

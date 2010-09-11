@@ -46,7 +46,7 @@ material PU/bomb_explosion_3
 
             texture_unit
             {
-                texture pump_atlas_smoke.png
+                texture pu_bomb_explosion_3.png
                 tex_address_mode clamp
             }
         }
