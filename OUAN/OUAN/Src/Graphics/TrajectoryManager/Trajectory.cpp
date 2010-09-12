@@ -606,6 +606,7 @@ void Trajectory::activateIdle(std::string gameObject,std::string node,std::strin
 {
 	cleanFlee();
 	mState=PATH_FINDING_TO_IDLE;
+	mNextMovement=mNextMovementAbsolute=Ogre::Vector3::ZERO;
 	doPathfinding(gameObject,node,walkabilityMap);
 }
 

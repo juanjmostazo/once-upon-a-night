@@ -24,7 +24,7 @@ sound tripollo_scratch
 
 sound tripollo_explosion
 {
-	sound_file 	Objects/Anothers/Explosion_1.mp3
+	sound_file 	Tripollo/Explosion_amortiguada_grave.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -61,6 +61,18 @@ sound tripollo_attack
 sound tripollo_hit
 {
 	sound_file 	Tripollo/Graznido.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 90 5000
+	volume 1
+}
+
+sound tripollo_die
+{
+	sound_file Tripollo/Tripollo_3.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true

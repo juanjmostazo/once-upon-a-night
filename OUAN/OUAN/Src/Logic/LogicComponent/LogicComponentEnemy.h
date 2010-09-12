@@ -63,6 +63,8 @@ namespace OUAN
 		bool isAttackFinished() const;
 		void setAttackFinished(bool attackFinished);
 
+		bool hasPatrolTrajectory() const;
+
 		int getPreviousState() const;
 		double getMeleeRange() const;
 

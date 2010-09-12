@@ -39,15 +39,15 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_CALL_TO_CHASE]="CALL_TO_CHASE"
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
 PATROL_TO_IDLE_CHANCE = 0.15
 IDLE_TO_PATROL_CHANCE = 0.25
-IDLE_TO_IDLE1_CHANCE = 0.15
+IDLE_TO_IDLE1_CHANCE = 0.4
 TREMBLING_TO_CALL_CHANCE = 0.05
 BACK_FROM_CALL_TO_CHASE_CHANCE = 0.1
 
--- Unused for the moment: Modify the value for the field on tripollo.ctp
+-- Unused for the moment: Modify the value for the field on tripollo.ctp instead
 -- key: (AttackComponent::attack0#attackRange)
 MELEE_RANGE = 40
 
-NEIGHBOURS_RANGE = 220
+NEIGHBOURS_RANGE = 180
 
 
 function tripolloLogic(pTripollo,state)
@@ -58,26 +58,21 @@ function tripolloLogic(pTripollo,state)
 	local any = getAny()
 	
 	--local newState=state
-	log ("Computing FSM for "..myName)
 	
 	-- DEATH CHECK
 	if pTripollo:hasDied() then
-		log (myName.." says: I'm dead!")
 		return TRIPOLLO_STATE_DEAD
 	end
 	
 	-- STATUE CHECK
 	if pTripollo:isStatueEnabled() then
-		log (myName.." says: Statue!")
 		return TRIPOLLO_STATE_STATUE
 	elseif state == TRIPOLLO_STATE_STATUE then
-		log (myName.." Disabled Statue")
 		return TRIPOLLO_STATE_IDLE
 	end
 	
 	-- HIT CHECK
 	if pTripollo:hasBeenHit() then
-		log (myName.." says: I've been hit!")
 		return TRIPOLLO_STATE_HIT
 	end	
 	
@@ -91,19 +86,22 @@ function tripolloLogic(pTripollo,state)
 	
 	-- SURPRISE CHECK
 	if pTripollo:isSurpriseFinished() and state == TRIPOLLO_STATE_SURPRISE then
-		log (myName.." : CHANGED STATE TO FIND")
 		return TRIPOLLO_STATE_FIND
 	end
 		
 	-- FALSE ALARM CHECK
 	if pTripollo:isFalseAlarmFinished() and state == TRIPOLLO_STATE_FALSE_ALARM then
-		log(myName.." : CHANGED STATE TO PATROL")
-		return TRIPOLLO_STATE_PATROL
+		if pTripollo:hasPatrolTrajectory() then
+			log(myName.." : CHANGED STATE TO PATROL")
+			return TRIPOLLO_STATE_PATROL
+		else
+			log(myName.." doesn't have a patrol trajectory set: CHANGED STATE TO IDLE")
+			return TRIPOLLO_STATE_IDLE
+		end
 	end
 		
 	-- ALERT CHECK
 	if pTripollo:isAlertFinished() and state == TRIPOLLO_STATE_ALERT then
-		log(myName.." : CHANGED STATE TO ALERT")
 		return TRIPOLLO_STATE_CHASE
 	end
 	
@@ -150,11 +148,12 @@ function tripolloLogic(pTripollo,state)
 			
 	-- IDLE TRANSITIONS:		
 	if state==TRIPOLLO_STATE_IDLE then
-		if math.random()<=IDLE_TO_PATROL_CHANCE then
-			log (myName.." CHANGED STATE TO PATROL")
+		if playerDistance<=myLOS then
+			log (myName.." CHANGED STATE TO SURPRISE")
+			return TRIPOLLO_STATE_SURPRISE
+		elseif math.random()<=IDLE_TO_PATROL_CHANCE and pTripollo:hasPatrolTrajectory() then
 			return TRIPOLLO_STATE_PATROL
 		elseif math.random() <= IDLE_TO_IDLE1_CHANCE then
-			log (myName.." CHANGED STATE TO IDLE 1")
 			return TRIPOLLO_STATE_IDLE1
 		end
 		return state
@@ -166,7 +165,7 @@ function tripolloLogic(pTripollo,state)
 			log (myName.." CHANGED STATE TO IDLE")
 			return TRIPOLLO_STATE_IDLE
 		end
-		if playerDistance<=myLOS*10 then
+		if playerDistance<=myLOS then
 			log (myName.." CHANGED STATE TO SURPRISE")
 			return TRIPOLLO_STATE_SURPRISE
 		end
@@ -175,7 +174,7 @@ function tripolloLogic(pTripollo,state)
 	
 	-- FIND TRANSITIONS:
 	if state==TRIPOLLO_STATE_FIND then
-		if playerDistance>=(myLOS) then
+		if playerDistance>(myLOS) then
 			log (myName.." CHANGED STATE TO FALSE ALARM")
 			return TRIPOLLO_STATE_FALSE_ALARM
 		elseif playerDistance<(myLOS/3) then
@@ -246,7 +245,7 @@ function tripolloLogic(pTripollo,state)
 	local newState = -1
 	if world == OUAN_WORLD_DREAMS then
 		log("Exec. tripollo dreams logic")
-		newState = tripolloDreamsLogic(pTripollo,state)
+		newState = tripolloDreamsLogic(	pTripollo,state)
 	else
 		log("Exec. tripollo nightmares logic")
 		newState = tripolloNightmaresLogic(pTripollo,state)

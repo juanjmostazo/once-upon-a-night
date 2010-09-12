@@ -337,6 +337,11 @@ void LogicComponentEnemy::setState(int state)
 	setStateChanged(oldState!=mState);
 }
 
+bool LogicComponentEnemy::hasPatrolTrajectory() const
+{
+	return mParent->hasPatrolTrajectory();
+}
+
 TLogicComponentEnemyParameters::TLogicComponentEnemyParameters() : TLogicComponentParameters()
 {
 }

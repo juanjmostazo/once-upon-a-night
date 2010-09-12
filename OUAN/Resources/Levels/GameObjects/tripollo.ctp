@@ -58,6 +58,12 @@
   <PROPERTY id="animation4d::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation5d::name" type="7" value="run"></PROPERTY>
   <PROPERTY id="animation5d::loop" type="7" value="true"></PROPERTY>
+  <PROPERTY id="animation5d::transition0::target" type="7" value="attack00"></PROPERTY>
+  <PROPERTY id="animation5d::transition0::duration" type="6" value="0.5"></PROPERTY>
+  <PROPERTY id="animation5d::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation5d::transition1::target" type="7" value="attack_01"></PROPERTY>
+  <PROPERTY id="animation5d::transition1::duration" type="6" value="0.5"></PROPERTY>
+  <PROPERTY id="animation5d::transition1::blend_type" type="2" value="1"></PROPERTY>
   <PROPERTY id="animation6d::name" type="7" value="alert"></PROPERTY>
   <PROPERTY id="animation6d::loop" type="12" value="false"></PROPERTY>
   <PROPERTY id="animation7d::name" type="7" value="attack00"></PROPERTY>
@@ -98,6 +104,12 @@
   <PROPERTY id="animation4n::loop" type="12" value="true"></PROPERTY>
   <PROPERTY id="animation5n::name" type="7" value="run"></PROPERTY>
   <PROPERTY id="animation5n::loop" type="7" value="true"></PROPERTY>
+  <PROPERTY id="animation5n::transition0::target" type="7" value="attack00"></PROPERTY>
+  <PROPERTY id="animation5n::transition0::duration" type="6" value="0.5"></PROPERTY>
+  <PROPERTY id="animation5n::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation5n::transition1::target" type="7" value="attack_01"></PROPERTY>
+  <PROPERTY id="animation5n::transition1::duration" type="6" value="0.5"></PROPERTY>
+  <PROPERTY id="animation5n::transition1::blend_type" type="2" value="1"></PROPERTY>  
   <PROPERTY id="animation6n::name" type="7" value="alert"></PROPERTY>
   <PROPERTY id="animation6n::loop" type="12" value="false"></PROPERTY>
   <PROPERTY id="animation7n::name" type="7" value="attack00"></PROPERTY>
@@ -144,5 +156,6 @@
   <PROPERTY id="AudioComponent::soundID#4" type="7" value="tripollo_attack"></PROPERTY>
   <PROPERTY id="AudioComponent::soundID#5" type="7" value="tripollo_hit"></PROPERTY>
   <PROPERTY id="AudioComponent::soundID#6" type="7" value="tripollo_surprise"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#6" type="7" value="tripollo_die"></PROPERTY>
 
 </CUSTOMPROPERTIES>
