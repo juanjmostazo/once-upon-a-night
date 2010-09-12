@@ -79,6 +79,9 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("TRIPOLLO_SHOCK", TRIPOLLO_SHOCK); 
 		config.getOption("TRIPOLLO_SURPRISE", TRIPOLLO_SURPRISE); 
 
+		config.getOption("NEST_BREAK", NEST_BREAK); 
+		config.getOption("NEST_JUMP", NEST_JUMP); 
+
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
 

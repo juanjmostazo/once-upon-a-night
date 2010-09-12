@@ -1,14 +1,14 @@
-system PU/box_dust
+system PU/nest_break
 {
     keep_local                                  true
     scale_velocity                              0.1
     scale                                       0.1 0.1 0.1
     technique Technique4
     {
-        material                                PU/box_dust
-        default_particle_width                  42
-        default_particle_height                 42
-        default_particle_depth                  42
+        material                                PU/nest_break
+        default_particle_width                  24
+        default_particle_height                 24
+        default_particle_depth                  24
         renderer                                Billboard
         {
         }
@@ -22,28 +22,28 @@ system PU/box_dust
             angle                               45
             time_to_live                        dyn_random
             {
-                min                             1
+                min                             1.2
                 max                             1.5
             }
             velocity                            dyn_random
             {
-                min                             250
-                max                             350
+                min                             120
+                max                             180
             }
             duration                            dyn_random
             {
-                min                             0.6
-                max                             0.8
+                min                             0.8
+                max                             1
             }
             keep_local                          true
         }
         affector                                LinearForce Affector39
         {
-            force_aff_vector                    0 -400 0
+            force_aff_vector                    0 -200 0
         }
         affector                                Colour Affector8
         {
-            colour_aff_time_colour              0    0.6 0.4 0.4 1
+            colour_aff_time_colour              0    0.9 0.8 0.9 1
         }
     }
 }

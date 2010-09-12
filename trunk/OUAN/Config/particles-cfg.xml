@@ -46,5 +46,8 @@
 	<Option key="TRIPOLLO_DIE">PU/tripollo_die</Option>
 	<Option key="TRIPOLLO_SHOCK">PU/tripollo_shock</Option>
 	<Option key="TRIPOLLO_SURPRISE">PU/tripollo_surprise</Option>
+	
+	<Option key="NEST_BREAK">PU/nest_break</Option>
+	<Option key="NEST_JUMP">PU/nest_jump</Option>
   </Options>
 </Configuration>
