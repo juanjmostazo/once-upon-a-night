@@ -12,9 +12,8 @@
 
 namespace OUAN
 {
-	const std::string PORTAL_ANIMATION_IDLE="idle01";
 	const std::string PORTAL_ANIMATION_ONY_APPROACHING="";
-	const std::string PORTAL_ANIMATION_CHANGING_WORLD="";
+	const std::string PORTAL_ANIMATION_CHANGING_WORLD="broken";
 
 	const std::string PORTAL_STATE_IDLE="PORTAL_STATE_IDLE";
 	const std::string PORTAL_STATE_ONY_APPROACHING="PORTAL_STATE_ONY_APPROACHING";
@@ -23,6 +22,10 @@ namespace OUAN
 
 	const std::string PORTAL_SOUND_CHANGEWORLD="portal_changeworld";
 	const std::string PORTAL_SOUND_CLOSE="portal_close";
+
+	const std::string BROKEN_PORTAL_MESH="portal02.mesh";
+
+	const double PORTAL_ROTATION_SPEED = 10000;
 
 	class AudioComponent;
 	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
@@ -33,10 +36,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual information
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
-		RenderComponentGlowPtr mRenderComponentGlowDreams;
-		RenderComponentGlowPtr mRenderComponentGlowNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentEntityPtr mRenderComponentEntityBroken;
 
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
@@ -61,8 +62,8 @@ namespace OUAN
 		~GameObjectPortal();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
+		RenderComponentEntityPtr getRenderComponentEntityBroken() const;
 		/// Set logic component
 		void setLogicComponentProp(LogicComponentPropPtr logicComponentProp);
 
@@ -73,18 +74,8 @@ namespace OUAN
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
-
-		/// Set render component
-		/// @param pRenderComponentEntity
-		void setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlowDreams);
-		void setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlowNightmares);
-
-		/// Return render component entity 
-		/// @return render component entity
-		RenderComponentGlowPtr getRenderComponentGlowDreams() const;
-		RenderComponentGlowPtr getRenderComponentGlowNightmares() const;
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityBroken(RenderComponentEntityPtr pRenderComponentEntityBroken);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -159,7 +150,9 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 		void update(double elapsedSeconds);
-		void setCurrentWorldVisibility(bool visibility);
+
+		void updatePhysicsComponents(double elapsedSeconds);
+
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
@@ -172,12 +165,7 @@ namespace OUAN
 		~TGameObjectPortalParameters();
 		
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
-
-		///RenderComponentGlow parameters
-		TRenderComponentGlowParameters tRenderComponentGlowDreamsParameters;
-		TRenderComponentGlowParameters tRenderComponentGlowNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

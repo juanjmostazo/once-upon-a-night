@@ -317,6 +317,12 @@ void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
 	GameObject::updatePhysicsComponents(elapsedSeconds);
 }
 
+
+bool GameObjectPlataform::isWorthUpdatingPhysicsComponents()
+{
+	return true;
+}
+
 bool GameObjectPlataform::hasLogicComponent() const
 {
 	return true;

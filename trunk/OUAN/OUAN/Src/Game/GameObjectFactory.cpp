@@ -2254,36 +2254,41 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 		tRenderComponentParticleSystemParameters,
 		pGameObjectPortal->getRenderComponentPositional()));
 
-	//Create RenderComponentEntityDreams
-	pGameObjectPortal->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.dreamsName,
-		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityDreamsParameters,
+	//Create RenderComponentEntity
+	pGameObjectPortal->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.name,
+		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters,
 		pGameObjectPortal->getLogicComponentProp()->existsInDreams(),
 		pGameObjectPortal->getLogicComponentProp()->existsInNightmares()));
 
-	//Create RenderComponentEntityNightmares
-	pGameObjectPortal->setRenderComponentEntityNightmares(
+	tGameObjectPortalParameters.tRenderComponentEntityParameters.meshfile=BROKEN_PORTAL_MESH;
+	//animation parameters
+	tGameObjectPortalParameters.tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.clear();
+	TRenderComponentEntityAnimParams brokenAnimationParams;
+	brokenAnimationParams.loop=false;
+	brokenAnimationParams.name=PORTAL_ANIMATION_CHANGING_WORLD;
+	brokenAnimationParams.timescale=1.0f;
+	tGameObjectPortalParameters.tRenderComponentEntityParameters.tRenderComponentEntityAnimParams.push_back(brokenAnimationParams);
+	tGameObjectPortalParameters.tRenderComponentEntityParameters.initialAnimation=PORTAL_ANIMATION_CHANGING_WORLD;
+
+	//subentity parameters
+	//tGameObjectPortalParameters.tRenderComponentEntityParameters.tRenderComponentSubEntityParameters.clear();
+	//TRenderComponentSubEntityParameters brokenPortalSubentity0;
+	//TRenderComponentSubEntityParameters brokenPortalSubentity1;
+	//brokenPortalSubentity0.material="portal_d";
+	//brokenPortalSubentity0.visible=true;
+	//brokenPortalSubentity1.material="portal_d";
+	//brokenPortalSubentity1.visible=true;
+	//tGameObjectPortalParameters.tRenderComponentEntityParameters.tRenderComponentSubEntityParameters.push_back(brokenPortalSubentity0);
+	//tGameObjectPortalParameters.tRenderComponentEntityParameters.tRenderComponentSubEntityParameters.push_back(brokenPortalSubentity1);
+
+	//Create RenderComponentEntityBroken
+	pGameObjectPortal->setRenderComponentEntityBroken(
 		mComponentFactory->createRenderComponentEntity(tGameObjectPortalParameters.nightmaresName,
-		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectPortal,tGameObjectPortalParameters.tRenderComponentEntityParameters,
 		pGameObjectPortal->getLogicComponentProp()->existsInDreams(),
 		pGameObjectPortal->getLogicComponentProp()->existsInNightmares()));
 
-	//Create RenderComponentGlowDreams
-	pGameObjectPortal->setRenderComponentGlowDreams(
-		mComponentFactory->createRenderComponentGlow(
-			pGameObjectPortal,
-			tGameObjectPortalParameters.tRenderComponentGlowDreamsParameters,
-			pGameObjectPortal->getRenderComponentPositional(),
-			pGameObjectPortal->getRenderComponentEntityDreams()));
-
-	//Create RenderComponentGlowNightmares
-	pGameObjectPortal->setRenderComponentGlowNightmares(
-		mComponentFactory->createRenderComponentGlow(
-			pGameObjectPortal,
-			tGameObjectPortalParameters.tRenderComponentGlowNightmaresParameters,
-			pGameObjectPortal->getRenderComponentPositional(),
-			pGameObjectPortal->getRenderComponentEntityNightmares()));
-	
 	//Create PhysicsComponent
 	pGameObjectPortal->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(

@@ -3,21 +3,58 @@ import alpha_test_texture from BasicTexture.material
 import alpha_blending_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import default_changeworld_alpha_blending from ChangeWorld.material
+import default_changeworld_alpha_test from ChangeWorld.material
 
 material portal_d : alpha_test_texture
 {
-	set_texture_alias diffuse_texture portal_d.dds
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture portal_d.dds
+			}
+		}
+	}
 }
 
 material portal_n : alpha_test_texture
 {
-	set_texture_alias diffuse_texture portal_n.dds
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture portal_n.dds
+			}
+		}
+	}
 }
 
-material portal_cw : default_changeworld
+material portal_cw : default_changeworld_alpha_test
 {
-	set_texture_alias dreams portal_d.dds
-	set_texture_alias nightmares portal_n.dds
+	technique
+	{
+	        pass
+	        {
+			cull_hardware none 
+			cull_software none 
+		      texture_unit dreams
+		      {
+				texture portal_d.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture portal_n.dds
+	          }
+		  }
+      }
 }
 
 material portal_floor_d : alpha_blending_texture

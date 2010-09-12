@@ -19,44 +19,24 @@ GameObjectPortal::~GameObjectPortal()
 
 }
 
-RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntity() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentEntity;
 }
 
-void GameObjectPortal::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
+void GameObjectPortal::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntityDreams;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectPortal::getRenderComponentEntityBroken() const
 {
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntityBroken;
 }
 
-void GameObjectPortal::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
+void GameObjectPortal::setRenderComponentEntityBroken(RenderComponentEntityPtr pRenderComponentEntityBroken)
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
-}
-
-void GameObjectPortal::setRenderComponentGlowDreams(RenderComponentGlowPtr pRenderComponentGlow)
-{
-	mRenderComponentGlowDreams=pRenderComponentGlow;
-}
-
-void GameObjectPortal::setRenderComponentGlowNightmares(RenderComponentGlowPtr pRenderComponentGlow)
-{
-	mRenderComponentGlowNightmares=pRenderComponentGlow;
-}
-
-RenderComponentGlowPtr GameObjectPortal::getRenderComponentGlowDreams() const
-{
-	return mRenderComponentGlowDreams;
-}
-
-RenderComponentGlowPtr GameObjectPortal::getRenderComponentGlowNightmares() const
-{
-	return mRenderComponentGlowNightmares;
+	mRenderComponentEntityBroken=pRenderComponentEntityBroken;
 }
 
 void GameObjectPortal::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -126,13 +106,8 @@ void GameObjectPortal::setDreamsRender()
 		return;
 	}
 
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityDreams->setDreamsMaterials();
-	mRenderComponentEntityNightmares->setVisible(false);
-	
-	//mRenderComponentGlowDreams->setVisible(mRenderComponentGlowNightmares->isVisible());
-	mRenderComponentGlowDreams->setVisible(false);
-	mRenderComponentGlowNightmares->setVisible(false);
+	mRenderComponentEntity->setDreamsMaterials();
+	mRenderComponentEntityBroken->setDreamsMaterials();
 }
 
 void GameObjectPortal::setNightmaresRender()
@@ -142,27 +117,15 @@ void GameObjectPortal::setNightmaresRender()
 		return;
 	}
 
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
-	mRenderComponentEntityNightmares->setNightmaresMaterials();
-
-	//mRenderComponentGlowNightmares->setVisible(mRenderComponentGlowDreams->isVisible());
-	mRenderComponentGlowNightmares->setVisible(false);
-	mRenderComponentGlowDreams->setVisible(false);
+	mRenderComponentEntity->setNightmaresMaterials();
+	mRenderComponentEntityBroken->setNightmaresMaterials();
 }
 
 void GameObjectPortal::setChangeWorldFactor(double factor)
 {
 	if (!isEnabled()) return;
-	if(mLogicComponent->existsInDreams())
-	{
-		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
-	}
 
-	if(mLogicComponent->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
-	}
+	mRenderComponentEntity->setChangeWorldFactor(factor);
 }
 
 void GameObjectPortal::setChangeWorldRender()
@@ -172,8 +135,8 @@ void GameObjectPortal::setChangeWorldRender()
 		return;
 	}
 
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	mRenderComponentEntity->setChangeWorldMaterials();
+	mRenderComponentEntityBroken->setChangeWorldMaterials();
 }
 
 void GameObjectPortal::changeWorldFinished(int newWorld)
@@ -183,23 +146,20 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 		return;
 	}
 
-	mRenderComponentParticleSystemChangeWorldIdle->start();
-	mRenderComponentParticleSystemChangeWorldChanging->stop();
+	//mRenderComponentParticleSystemChangeWorldIdle->start();
+	//mRenderComponentParticleSystemChangeWorldChanging->stop();
 	//mRenderComponentParticleSystemChangeWorldSky->stop();
+
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentEntityBroken->setVisible(false);
 
 	switch(newWorld)
 	{
 		case DREAMS:
 			setDreamsRender();
-			mRenderComponentEntityDreams->changeAnimation(PORTAL_ANIMATION_IDLE);
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
 			break;
 		case NIGHTMARES:
 			setNightmaresRender();
-			mRenderComponentEntityNightmares->changeAnimation(PORTAL_ANIMATION_IDLE);
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:
 			break;
@@ -213,9 +173,13 @@ void GameObjectPortal::changeWorldStarted(int newWorld)
 		return;
 	}
 
-	mRenderComponentParticleSystemChangeWorldIdle->stop();
-	mRenderComponentParticleSystemChangeWorldChanging->start();
-	mRenderComponentParticleSystemChangeWorldSky->start();
+	//mRenderComponentParticleSystemChangeWorldIdle->stop();
+	//mRenderComponentParticleSystemChangeWorldChanging->start();
+	//mRenderComponentParticleSystemChangeWorldSky->start();
+
+	mRenderComponentEntity->setVisible(false);
+	mRenderComponentEntityBroken->changeAnimation(PORTAL_ANIMATION_CHANGING_WORLD);
+	mRenderComponentEntityBroken->setVisible(true);
 
 	switch(newWorld)
 	{
@@ -235,16 +199,36 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 		return;
 	}
 
+	std::string currentAnimName=mRenderComponentEntityBroken->getCurrentAnimationName();
+	float currentAnimLen=mRenderComponentEntityBroken->getCurrentAnimationLength();
+	if(!mRenderComponentEntityBroken->getCurrentAnimation()) return;
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(mWorld==DREAMS)
+		{
+			mRenderComponentEntityBroken->setAnimationPosition(currentAnimLen*(1-perc));
+		}
+		else if(mWorld==NIGHTMARES)
+		{
+			mRenderComponentEntityBroken->setAnimationPosition(currentAnimLen*(perc));
+		}
 		break;
 	case NIGHTMARES:
+		if(mWorld==DREAMS)
+		{
+			mRenderComponentEntityBroken->setAnimationPosition(currentAnimLen*(perc));
+		}
+		else if(mWorld==NIGHTMARES)
+		{
+			mRenderComponentEntityBroken->setAnimationPosition(currentAnimLen*(1-perc));
+		}
 		break;
 	default:
 		break;
 	}
-
+	
 	//displayText("CHANGING WORLD "+Ogre::StringConverter::toString(Ogre::Real(perc))+" delay:"+Ogre::StringConverter::toString(Ogre::Real(mChangeWorldDelay)));
 }
 
@@ -261,6 +245,11 @@ void GameObjectPortal::reset()
 bool GameObjectPortal::hasPositionalComponent() const
 {
 	return true;
+}
+
+void GameObjectPortal::updatePhysicsComponents(double elapsedSeconds)
+{
+
 }
 
 RenderComponentPositionalPtr GameObjectPortal::getPositionalComponent() const
@@ -320,65 +309,59 @@ void GameObjectPortal::update(double elapsedSeconds)
 
 	if (isEnabled())
 	{
-		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
-			?mRenderComponentEntityDreams
-			:mRenderComponentEntityNightmares;
-
-		//RenderComponentGlowPtr glowToUpdate = (mWorld==DREAMS)
-		//	?mRenderComponentGlowDreams
-		//	:mRenderComponentGlowNightmares;
-
 		if (isFirstUpdate())
 		{
+			mRenderComponentEntityBroken->setVisible(false);
 			mRenderComponentParticleSystemChangeWorldIdle->start();
-			entityToUpdate->changeAnimation(PORTAL_ANIMATION_IDLE);
 		}
+
+		mPhysicsComponentSimpleBox->getSceneNode()->yaw(Ogre::Degree(PORTAL_ROTATION_SPEED*elapsedSeconds));
+		mRenderComponentPositional->getSceneNode()->yaw(Ogre::Degree(PORTAL_ROTATION_SPEED*elapsedSeconds));
+
+		Logger::getInstance()->log("PORTAL YAW "+Ogre::StringConverter::toString(Ogre::Real(mPhysicsComponentSimpleBox->getSceneNode()->getOrientation().getYaw().valueDegrees())));
 
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	
 
 		int currentState=mLogicComponent->getState();
-		if (mPhysicsComponentSimpleBox.get() && entityToUpdate.get())
+
+		if (currentState==logicSS->getGlobalInt(PORTAL_STATE_IDLE))
 		{
-			if (currentState==logicSS->getGlobalInt(PORTAL_STATE_IDLE))
+			if (mLogicComponent->isStateChanged())
 			{
-				if (mLogicComponent->isStateChanged())
+				if (mAudioComponent->isPlaying(PORTAL_SOUND_CLOSE))
 				{
-					if (mAudioComponent->isPlaying(PORTAL_SOUND_CLOSE))
-					{
-						mAudioComponent->stopSound(PORTAL_SOUND_CLOSE);
-					}
-					//glowToUpdate->setVisible(false);
+					mAudioComponent->stopSound(PORTAL_SOUND_CLOSE);
 				}
-			}
-			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
-			{				
-				if (mLogicComponent->isStateChanged())
-				{
-					//mAudioComponent->playSound(PORTAL_SOUND_CLOSE);
-					displayText("ONY IS CLOSE");
-					//glowToUpdate->setVisible(true);
-				}
-			}
-			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_HIT))
-			{				
-				if (mLogicComponent->isStateChanged())
-				{
-					getGameWorldManager()->changeWorld();
-				}
-			}
-			else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
-			{
-				if (mLogicComponent->isStateChanged())
-				{
-					mAudioComponent->playSound(PORTAL_SOUND_CHANGEWORLD);
-				}
-			}
-			entityToUpdate->update(elapsedSeconds);
-			if (mPhysicsComponentSimpleBox->isInUse())
-			{
-				mPhysicsComponentSimpleBox->update(elapsedSeconds);
+				//glowToUpdate->setVisible(false);
 			}
 		}
+		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_ONY_APPROACHING))
+		{				
+			if (mLogicComponent->isStateChanged())
+			{
+				//mAudioComponent->playSound(PORTAL_SOUND_CLOSE);
+				//displayText("ONY IS CLOSE");
+				//glowToUpdate->setVisible(true);
+			}
+		}
+		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_HIT))
+		{				
+			if (mLogicComponent->isStateChanged())
+			{
+				getGameWorldManager()->changeWorld();
+			}
+		}
+		else if (currentState==logicSS->getGlobalInt(PORTAL_STATE_CHANGING_WORLD))
+		{
+			if (mLogicComponent->isStateChanged())
+			{
+				mAudioComponent->playSound(PORTAL_SOUND_CHANGEWORLD);
+			}
+		}
+		
+		mRenderComponentEntity->update(elapsedSeconds);
+		mRenderComponentEntityBroken->update(elapsedSeconds);
+		
 	}			
 }
 
@@ -389,7 +372,7 @@ bool GameObjectPortal::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectPortal::getEntityComponent() const
 {
-	return (mWorld==DREAMS) ? mRenderComponentEntityDreams : mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 bool GameObjectPortal::hasAudioComponent() const
@@ -413,14 +396,29 @@ void GameObjectPortal::setAudioComponent(AudioComponentPtr audioComponent)
 void GameObjectPortal::setVisible(bool visible)
 {
 
-	if(mLogicComponent->existsInDreams())
+	if(mIsChangingWorld)
 	{
-		mRenderComponentEntityDreams->setVisible(visible);
-	}
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityBroken->setVisible(visible);
+		}
 
-	if(mLogicComponent->existsInNightmares())
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityBroken->setVisible(visible);
+		}
+	}
+	else
 	{
-		mRenderComponentEntityNightmares->setVisible(visible);
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
+
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntity->setVisible(visible);
+		}
 	}
 
 	//Commented this lines because some they give null pointers
@@ -429,14 +427,7 @@ void GameObjectPortal::setVisible(bool visible)
 	//mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
 	//mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
 }
-void GameObjectPortal::setCurrentWorldVisibility(bool visibility)
-{	
-	RenderComponentEntityPtr currentWorldEntity = (mGameWorldManager->getWorld()==DREAMS)
-		? mRenderComponentEntityDreams
-		: mRenderComponentEntityNightmares;
 
-	currentWorldEntity->setVisible(visibility);
-}
 bool GameObjectPortal::hasLogicComponent() const
 {
 	return true;

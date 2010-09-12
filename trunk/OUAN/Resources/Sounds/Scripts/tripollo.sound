@@ -6,7 +6,7 @@ sound tripollo_wings
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 150 5000
+	min_max_distance 80 5000
 	volume 1
 }
 
