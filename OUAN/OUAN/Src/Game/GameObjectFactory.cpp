@@ -1726,6 +1726,23 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 		pGameObjectNest,params.tRenderComponentEntityParameters,
 		pGameObjectNest->getLogicComponent()->existsInDreams(),
 		pGameObjectNest->getLogicComponent()->existsInNightmares()));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->NEST_BREAK;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectNest->setRenderComponentParticleSystemBreak(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectNest,tRenderComponentParticleSystemParameters,pGameObjectNest->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->NEST_JUMP;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectNest->setRenderComponentParticleSystemJump(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectNest,tRenderComponentParticleSystemParameters,pGameObjectNest->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectNest->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectNest,

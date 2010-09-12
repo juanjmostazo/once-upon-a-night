@@ -65,6 +65,9 @@ namespace OUAN
 		std::string TRIPOLLO_SHOCK;
 		std::string TRIPOLLO_SURPRISE;
 
+		std::string NEST_BREAK;
+		std::string NEST_JUMP;
+
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 

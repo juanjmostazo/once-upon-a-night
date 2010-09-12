@@ -33,6 +33,9 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemBreak;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemJump;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -91,6 +94,14 @@ namespace OUAN
 		/// Return initial component 
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
+
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemBreak(RenderComponentParticleSystemPtr mRenderComponentParticleSystemBreak);
+		void setRenderComponentParticleSystemJump(RenderComponentParticleSystemPtr mRenderComponentParticleSystemJump);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemBreak() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemJump() const;
 
 		/// Set physics component
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);

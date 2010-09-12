@@ -6,6 +6,7 @@
 #include "../../Utils/Utils.h"
 #include <numeric>
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -55,6 +56,26 @@ RenderComponentPositionalPtr GameObjectNest::getRenderComponentPositional() cons
 RenderComponentInitialPtr GameObjectNest::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectNest::setRenderComponentParticleSystemBreak(RenderComponentParticleSystemPtr pRenderComponentParticleSystemBreak)
+{
+	mRenderComponentParticleSystemBreak = pRenderComponentParticleSystemBreak;
+}
+
+RenderComponentParticleSystemPtr GameObjectNest::getRenderComponentParticleSystemBreak() const
+{
+	return mRenderComponentParticleSystemBreak;
+}
+
+void GameObjectNest::setRenderComponentParticleSystemJump(RenderComponentParticleSystemPtr pRenderComponentParticleSystemJump)
+{
+	mRenderComponentParticleSystemJump = pRenderComponentParticleSystemJump;
+}
+
+RenderComponentParticleSystemPtr GameObjectNest::getRenderComponentParticleSystemJump() const
+{
+	return mRenderComponentParticleSystemJump;
 }
 
 void GameObjectNest::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
@@ -266,8 +287,11 @@ void GameObjectNest::disable()
 {
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
+
 	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	{
 		mPhysicsComponentCharacter->destroy();
+	}
 
 }
 void GameObjectNest::update(double elapsedSeconds)
@@ -304,24 +328,24 @@ void GameObjectNest::update(double elapsedSeconds)
 							obj->disable();
 						}
 					}
-
 				}
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_SHAKING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE);	
 				mAudioComponent->playSound(NEST_SOUND_TOC_TOC);
+				mRenderComponentParticleSystemJump->start();
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_HATCHING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
 				mAudioComponent->playSound(NEST_SOUND_BREAK);
+				mRenderComponentParticleSystemBreak->start();
 			}
 			if (mRenderComponentEntity.get() && !mEggHatched)
 			{
 				mRenderComponentEntity->update(elapsedSeconds);
 			}
-
 		}
 	}
 }
