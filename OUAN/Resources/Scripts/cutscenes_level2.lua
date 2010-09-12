@@ -59,8 +59,9 @@ end
 -- CUTSCENE 2: FIRST CHANGE WORLD
 function startCutScene2(pOny)
 	log ("CUTSCENE 2 START");
-	launchCutScene("cutscenes_level2.lua","cutScene2");
 	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
+	launchCutScene("cutscenes_level2.lua","cutScene2");
+
 	return
 end
 
