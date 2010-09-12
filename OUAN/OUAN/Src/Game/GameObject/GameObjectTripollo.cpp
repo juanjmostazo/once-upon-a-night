@@ -221,6 +221,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						entity->changeAnimation(TRIPOLLO_ANIM_SURPRISE);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
+						mRenderComponentParticleSystemSurprise->start();
 						//mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
 					}
 				}
@@ -376,7 +377,18 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 			if (mPhysicsComponentCharacter->isInUse())
 			{
-				mPhysicsComponentCharacter->setOuternMovement(mTrajectoryComponent->getNextMovementAbsolute());
+				Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();
+				if (debugTripollos)
+				{
+					std::stringstream logMsg;
+					logMsg<<"Outern movement :"<<movement.x<<" , "<<movement.y<<" , "<<movement.z;
+					Logger::getInstance()->log(logMsg.str());
+					logMsg.clear();
+					logMsg.str("");
+					logMsg<<"Current state :"<<mLogicComponentEnemy->getState();
+					Logger::getInstance()->log(logMsg.str());
+				}
+				mPhysicsComponentCharacter->setOuternMovement(movement);
 			}
 		}
 	}
