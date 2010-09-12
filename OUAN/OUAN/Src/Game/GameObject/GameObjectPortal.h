@@ -25,7 +25,7 @@ namespace OUAN
 
 	const std::string BROKEN_PORTAL_MESH="portal02.mesh";
 
-	const double PORTAL_ROTATION_SPEED = 10000;
+	const double PORTAL_ROTATION_SPEED = 50;
 
 	class AudioComponent;
 	typedef boost::shared_ptr<AudioComponent> AudioComponentPtr;
@@ -54,6 +54,8 @@ namespace OUAN
 		LogicComponentPropPtr mLogicComponent;		
 
 		AudioComponentPtr mAudioComponent;
+
+		double mRotY;
 
 	public:
 		//Constructor

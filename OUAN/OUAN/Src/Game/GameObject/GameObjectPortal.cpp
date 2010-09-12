@@ -240,6 +240,8 @@ void GameObjectPortal::reset()
 	{
 		mAudioComponent->stopSound("portal_close");
 	}
+
+	mRotY=0;
 }
 
 bool GameObjectPortal::hasPositionalComponent() const
@@ -313,12 +315,18 @@ void GameObjectPortal::update(double elapsedSeconds)
 		{
 			mRenderComponentEntityBroken->setVisible(false);
 			mRenderComponentParticleSystemChangeWorldIdle->start();
+			mRotY=0;
 		}
 
-		mPhysicsComponentSimpleBox->getSceneNode()->yaw(Ogre::Degree(PORTAL_ROTATION_SPEED*elapsedSeconds));
-		mRenderComponentPositional->getSceneNode()->yaw(Ogre::Degree(PORTAL_ROTATION_SPEED*elapsedSeconds));
+		mRotY+=PORTAL_ROTATION_SPEED*elapsedSeconds;
+		if(mRotY>=360)
+		{
+			mRotY-=360;
+		}
+		Quaternion yaw(Ogre::Degree(mRotY),Vector3::UNIT_Y);
 
-		Logger::getInstance()->log("PORTAL YAW "+Ogre::StringConverter::toString(Ogre::Real(mPhysicsComponentSimpleBox->getSceneNode()->getOrientation().getYaw().valueDegrees())));
+		mPhysicsComponentSimpleBox->setOrientation(yaw);
+		//mRenderComponentPositional->getSceneNode()->yaw(Ogre::Degree(PORTAL_ROTATION_SPEED*elapsedSeconds));
 
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();	
 
