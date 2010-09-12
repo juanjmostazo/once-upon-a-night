@@ -5,6 +5,7 @@
 #include "../Application.h"
 #include "../Audio/AudioSubsystem.h"
 #include "../Game/GameWorldManager.h"
+#include "../Game/GameObject/GameObjectOny.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/TrajectoryManager/TrajectoryManager.h"
@@ -154,6 +155,11 @@ void CutsceneState::update(long elapsedTime)
 		
 		if (logicSS->isCutsceneFinished(mCutsceneFunction))
 		{
+			GameObjectOnyPtr ony = mApp->getGameWorldManager()->getGameObjectOny();
+			if (ony.get())
+			{
+				ony->hideMessage();
+			}
 			mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
 			mApp->getGameStateManager()->popState();
 			logicSS->terminateCutsceneFunction(mCutsceneFunction);

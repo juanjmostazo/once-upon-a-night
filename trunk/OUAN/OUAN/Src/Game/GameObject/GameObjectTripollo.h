@@ -58,7 +58,8 @@ namespace OUAN
 	const std::string TRIPOLLO_ANIM_MANUAL="manual";
 
 	const std::string TRIPOLLO_SOUND_HIT="tripollo_hit";
-	const std::string TRIPOLLO_SOUND_DIE="tripollo_explosion";
+	const std::string TRIPOLLO_SOUND_DIE="tripollo_die";
+	const std::string TRIPOLLO_SOUND_EXPLODE="tripollo_explosion";
 	const std::string TRIPOLLO_SOUND_SCRATCH="tripollo_scratch";
 	const std::string TRIPOLLO_SOUND_WINGS="tripollo_wings";
 	const std::string TRIPOLLO_SOUND_GRAZNIDO="tripollo_graznido";
@@ -233,6 +234,9 @@ namespace OUAN
 		bool isStatueEnabled() const;
 
 		void enable();
+
+		bool hasPatrolTrajectory();
+		std::string getPatrolTrajectoryName(int world);
 
 	};
 	

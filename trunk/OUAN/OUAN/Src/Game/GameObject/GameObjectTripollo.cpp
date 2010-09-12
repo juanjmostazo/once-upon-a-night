@@ -114,8 +114,7 @@ PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter() 
 
 bool GameObjectTripollo::activateTrajectory(int newWorld)
 {
-	std::string trajectoryName=getName();
-	trajectoryName.append(newWorld==DREAMS?SUFFIX_DREAMS:SUFFIX_NIGHTMARES);
+	std::string trajectoryName = getPatrolTrajectoryName(newWorld);
 	if(mTrajectoryComponent->predefinedTrajectoryExists(trajectoryName))
 	{
 		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
@@ -229,13 +228,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{				
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						activateTrajectory(mGameWorldManager->getWorld());			
-						entity->changeAnimation(TRIPOLLO_ANIM_WALK);
-						if (debugTripollos)
-						{
-							Logger::getInstance()->log("tripollo has changed to patrol");
-							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
-						}
+						
+						entity->changeAnimation(activateTrajectory(mGameWorldManager->getWorld())
+							?TRIPOLLO_ANIM_WALK
+							:TRIPOLLO_ANIM_IDLE);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))
@@ -356,7 +352,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					if (mLogicComponentEnemy->isStateChanged())
 					{
 
-						mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
 						entity->changeAnimation(TRIPOLLO_ANIM_DIE);
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
@@ -719,7 +715,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		msg.append(getName()).append(" died");
 		Logger::getInstance()->log(msg);
 		mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
-		mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
+		mAudioComponent->playSound(TRIPOLLO_SOUND_EXPLODE);
 		mRenderComponentParticleSystemDie->start();
 		disable();		
 	}
@@ -863,6 +859,18 @@ void GameObjectTripollo::enable()
 	{
 		mPhysicsComponentCharacter->create();
 	}
+}
+bool GameObjectTripollo::hasPatrolTrajectory()
+{
+	return mTrajectoryComponent->predefinedTrajectoryExists(getPatrolTrajectoryName(
+		mGameWorldManager->getWorld()));
+}
+
+std::string GameObjectTripollo::getPatrolTrajectoryName(int world)
+{
+	std::string trajectoryName = getName();
+	trajectoryName.append(world==DREAMS?SUFFIX_DREAMS:SUFFIX_NIGHTMARES);
+	return trajectoryName;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()

@@ -252,6 +252,8 @@ namespace OUAN
 		virtual int getNeighboursInRange(double range) const;
 		virtual int countNeighboursInRange(double range, bool call) const;
 		virtual bool callNeighboursInRange(double range) const;
+
+		virtual bool hasPatrolTrajectory() const;
 	};
 
 	class TGameObjectParameters

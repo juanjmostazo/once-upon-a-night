@@ -697,6 +697,10 @@ bool GameObject::callNeighboursInRange(double range) const
 {
 	return countNeighboursInRange(range,true)>0;	
 }
+bool GameObject::hasPatrolTrajectory() const
+{
+	return false;
+}
 //-------------------------------------------------------
 
 TGameObjectParameters::TGameObjectParameters()

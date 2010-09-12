@@ -127,7 +127,8 @@ void LogicSubsystem::registerModules()
 			.def("isAttackFinished",&LogicComponentEnemy::isAttackFinished)
 			.def("getMeleeRange",&LogicComponentEnemy::getMeleeRange)
 			.def("isTiredFinished",&LogicComponentEnemy::isTiredFinished)
-			.def("isStatueEnabled",&LogicComponentEnemy::isStatueEnabled),
+			.def("isStatueEnabled",&LogicComponentEnemy::isStatueEnabled)
+			.def("hasPatrolTrajectory",&LogicComponentEnemy::hasPatrolTrajectory),
 		class_<LogicComponentOny, LogicComponent > ("LogicComponentOny")
 			.def(constructor<const std::string&>())
 			.def("getNumLives",&LogicComponentOny::getNumLives)
