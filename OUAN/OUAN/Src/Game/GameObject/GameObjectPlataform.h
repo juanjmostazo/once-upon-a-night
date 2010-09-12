@@ -58,6 +58,10 @@ namespace OUAN
 		/// return logic component
 		LogicComponentPtr getLogicComponent();
 
+		
+		bool isWorthUpdatingPhysicsComponents();
+
+
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
