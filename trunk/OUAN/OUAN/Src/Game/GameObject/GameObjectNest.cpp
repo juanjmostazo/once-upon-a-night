@@ -280,6 +280,8 @@ void GameObjectNest::processAnimationEnded(const std::string& animationName)
 	{
 		spawnChild();
 		mEggHatched=true;
+		mAudioComponent->playSound(NEST_SOUND_BREAK);
+		mRenderComponentParticleSystemBreak->start();
 		//disable();
 	}
 }
@@ -339,8 +341,7 @@ void GameObjectNest::update(double elapsedSeconds)
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_HATCHING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
-				mAudioComponent->playSound(NEST_SOUND_BREAK);
-				mRenderComponentParticleSystemBreak->start();
+				//mRenderComponentParticleSystemBreak->start();
 			}
 			if (mRenderComponentEntity.get() && !mEggHatched)
 			{
