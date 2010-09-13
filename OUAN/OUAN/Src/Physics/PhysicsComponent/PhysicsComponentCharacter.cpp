@@ -794,6 +794,12 @@ void PhysicsComponentCharacter::setDisplayYaw(double displayYaw)
 	updateSceneNode();
 }
 
+double PhysicsComponentCharacter::getDisplayYaw()
+{	
+	return getNxOgreController()->getDisplayYaw();
+}
+
+
 void PhysicsComponentCharacter::logStatus(Ogre::String label, double elapsedSeconds)
 {
 	//TODO REMOVE THIS LINE WHEN THIS LOG IS REQUIRED

@@ -4,7 +4,7 @@
   
     <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="18" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="55" fields="X;Y;Z;W"></PROPERTY>
 
