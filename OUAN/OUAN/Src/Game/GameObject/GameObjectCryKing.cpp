@@ -73,11 +73,6 @@ void GameObjectCryKing::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	if (mRenderComponentEntity->getCurrentAnimationName().compare(CRYKING_ANIMATION_IDLE_2)!=0)
-	{
-		mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_IDLE_2);
-	}
-
 	mRenderComponentEntity->update(elapsedSeconds);
 }
 
@@ -87,6 +82,8 @@ void GameObjectCryKing::reset()
 
 	mPhysicsComponentSimpleBox->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
 	mPhysicsComponentSimpleBox->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
+
+	mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_IDLE_2);
 }
 
 void GameObjectCryKing::changeWorldFinished(int newWorld)

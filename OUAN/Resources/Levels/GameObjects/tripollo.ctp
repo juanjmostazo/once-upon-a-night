@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
     <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="900" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="500" fields="X;Y;Z;W"></PROPERTY>
@@ -15,7 +15,7 @@
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="200" fields="X;Y;Z;W"></PROPERTY> ¡
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="200" fields="X;Y;Z;W"></PROPERTY> �
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
@@ -28,7 +28,7 @@
   <PROPERTY id="AttackComponent::attack0#animationName" type="7" value="attack01" fields="X;Y;Z;W">
   </PROPERTY>  
   <PROPERTY id="AttackComponent::attack0#damage" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="AttackComponent::attack0#attackRange" type="2" value="40" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack0#attackRange" type="2" value="17" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack0#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
@@ -37,7 +37,7 @@
   <PROPERTY id="AttackComponent::attack1#animationName" type="7" value="attack02" fields="X;Y;Z;W">
   </PROPERTY>  
   <PROPERTY id="AttackComponent::attack1#damage" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="AttackComponent::attack1#attackRange" type="2" value="10" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="AttackComponent::attack1#attackRange" type="2" value="17" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack1#cooldownDelay" type="6" value="1.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack1#area" type="6" value="0.0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="AttackComponent::attack1#powerCost" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>

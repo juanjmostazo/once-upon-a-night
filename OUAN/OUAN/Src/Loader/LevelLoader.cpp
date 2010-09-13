@@ -1913,18 +1913,18 @@ void LevelLoader::processGameObjectPlataform(XMLGameObject* gameObject)
 			gameObject->XMLNodeCustomProperties,
 			complexConvex);
 
-		tGameObjectPlataformParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectPlataformParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		tGameObjectPlataformParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
 		
-		if(tGameObjectPlataformParameters.tLogicComponentParameters.existsInDreams)
+		if(tGameObjectPlataformParameters.tLogicComponentPropParameters.existsInDreams)
 		{
 			tGameObjectPlataformParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
 				DREAMS,gameObject->XMLNodeCustomProperties);
 		}
 		
-		if(tGameObjectPlataformParameters.tLogicComponentParameters.existsInNightmares)
+		if(tGameObjectPlataformParameters.tLogicComponentPropParameters.existsInNightmares)
 		{
 			tGameObjectPlataformParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
 				NIGHTMARES,gameObject->XMLNodeCustomProperties);
@@ -3189,10 +3189,13 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 		tGameObjectBombParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentSimpleBox
-		tGameObjectBombParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
+		tGameObjectBombParameters.tPhysicsComponentCharacterParameters=processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 		
 		////Get PhysicsComponentWeapon
 		tGameObjectBombParameters.tPhysicsComponentWeaponParameters=processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
+		
+		////Get TrajectoryComponent
+		tGameObjectBombParameters.tTrajectoryComponentParamters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )

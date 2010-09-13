@@ -10,6 +10,7 @@
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectBomb.h"
 #include "../../Game/GameObject/GameObjectBreakableRock.h"
+#include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
@@ -108,6 +109,14 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		GameObjectBreakableRockPtr rock= 
 			BOOST_PTR_CAST(GameObjectBreakableRock,getParent());
 		rock->breakRock();
+	}
+
+	bool isParentPlataform = mParent->getType().compare(GAME_OBJECT_TYPE_PLATAFORM)==0;
+	if (isParentPlataform)
+	{
+		GameObjectPlataformPtr plataform= 
+			BOOST_PTR_CAST(GameObjectPlataform,getParent());
+		plataform->activateHit();
 	}
 }
 //void processActivate(ActivateEventPtr evt);
