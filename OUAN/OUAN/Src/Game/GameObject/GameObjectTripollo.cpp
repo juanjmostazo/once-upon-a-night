@@ -72,14 +72,24 @@ RenderComponentEntityPtr GameObjectTripollo::getRenderComponentEntityNightmares(
 	return mRenderComponentEntityNightmares;
 }
 
-void GameObjectTripollo::setRenderComponentParticleSystemDie(RenderComponentParticleSystemPtr pRenderComponentParticleSystemDie)
+void GameObjectTripollo::setRenderComponentParticleSystemDieDreams(RenderComponentParticleSystemPtr pRenderComponentParticleSystemDieDreams)
 {
-	mRenderComponentParticleSystemDie = pRenderComponentParticleSystemDie;
+	mRenderComponentParticleSystemDieDreams = pRenderComponentParticleSystemDieDreams;
 }
 
-RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleSystemDie() const
+void GameObjectTripollo::setRenderComponentParticleSystemDieNightmares(RenderComponentParticleSystemPtr pRenderComponentParticleSystemDieNightmares)
 {
-	return mRenderComponentParticleSystemDie;
+	mRenderComponentParticleSystemDieNightmares = pRenderComponentParticleSystemDieNightmares;
+}
+
+RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleSystemDieDreams() const
+{
+	return mRenderComponentParticleSystemDieDreams;
+}
+
+RenderComponentParticleSystemPtr GameObjectTripollo::getRenderComponentParticleSystemDieNightmares() const
+{
+	return mRenderComponentParticleSystemDieNightmares;
 }
 
 void GameObjectTripollo::setRenderComponentParticleSystemShock(RenderComponentParticleSystemPtr pRenderComponentParticleSystemShock)
@@ -716,7 +726,13 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		Logger::getInstance()->log(msg);
 		mTrajectoryComponent->activateIdle(getName(),mGameWorldManager->getWorld());
 		mAudioComponent->playSound(TRIPOLLO_SOUND_EXPLODE);
-		mRenderComponentParticleSystemDie->start();
+
+		switch(mWorld)
+		{
+			case DREAMS: mRenderComponentParticleSystemDieDreams->start(); break;
+			case NIGHTMARES: mRenderComponentParticleSystemDieNightmares->start(); break;
+		}
+
 		disable();		
 	}
 	if (animationName.compare(TRIPOLLO_ANIM_ALERT)==0)

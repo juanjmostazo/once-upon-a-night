@@ -61,7 +61,8 @@ namespace OUAN
 		std::string BOX_DUST;
 		std::string BOMB_EXPLOSION;
 
-		std::string TRIPOLLO_DIE;
+		std::string TRIPOLLO_DIE_DREAMS;
+		std::string TRIPOLLO_DIE_NIGHTMARES;
 		std::string TRIPOLLO_SHOCK;
 		std::string TRIPOLLO_SURPRISE;
 
