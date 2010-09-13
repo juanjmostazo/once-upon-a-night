@@ -100,7 +100,10 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	bool isParentCryKing = mParent->getType().compare(GAME_OBJECT_TYPE_CRYKING)==0;
 	if (isParentCryKing && pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0)
 	{
-		getParent()->getGameWorldManager()->restartBombPosition();
+		if(mParent->getGameWorldManager()->getWorld()==DREAMS)
+		{
+			getParent()->getGameWorldManager()->restartBombPosition();
+		}
 	}
 
 	bool isParentBreakableRock = mParent->getType().compare(GAME_OBJECT_TYPE_BREAKABLE_ROCK)==0;

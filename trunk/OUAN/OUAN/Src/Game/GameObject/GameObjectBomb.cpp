@@ -426,8 +426,6 @@ void GameObjectBomb::update(double elapsedSeconds)
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mLogicComponentProp->setTimeSpent(0);
 
-			mRenderComponentParticleSystemExplosion->start();
-
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_EXPLODE);
 
 			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
@@ -437,8 +435,9 @@ void GameObjectBomb::update(double elapsedSeconds)
 
 			mPhysicsComponentWeapon->startAttack();
 		}
-		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) || currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START))
 		{
+			mRenderComponentParticleSystemExplosion->start();
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mRenderComponentEntity->setVisible(false);
 			mLogicComponentProp->setTimeSpent(0);
@@ -453,9 +452,14 @@ void GameObjectBomb::update(double elapsedSeconds)
 		Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();
 
 		mPhysicsComponentCharacter->setOuternMovement(movement);
+		//DIRECTION FIX
+		mPhysicsComponentCharacter->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw()+90);
 	}
 
 	mRenderComponentEntity->update(elapsedSeconds);
+
+
+
 }
 
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
@@ -521,8 +525,17 @@ void GameObjectBomb::restartToInitialPoint()
 {
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-	mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION));
-	mLogicComponentProp->setTimeSpent(0);
+	int currentState=mLogicComponentProp->getState();
+	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
+	{
+		mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START));
+		mLogicComponentProp->setTimeSpent(0);
+	}
+	else
+	{
+		mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_PUZZLE_START));
+	}
+
 }
 
 void GameObjectBomb::activateExplosion()

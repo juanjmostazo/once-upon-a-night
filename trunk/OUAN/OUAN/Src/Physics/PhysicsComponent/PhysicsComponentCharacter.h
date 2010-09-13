@@ -61,6 +61,7 @@ namespace OUAN
 		virtual double getYaw();
 
 		virtual void setDisplayYaw(double displayYaw);
+		virtual double getDisplayYaw();
 
 		virtual void stabilize(double elapsedSeconds);
 
