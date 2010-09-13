@@ -209,7 +209,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							Logger::getInstance()->log("tripollo has changed to idle1");
 							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
 						}
-						mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
+						//mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
 						//Idle 1 can only come from idle, so there is no trajectory change
 					}
 				}
