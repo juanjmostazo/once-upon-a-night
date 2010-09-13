@@ -10,7 +10,7 @@ system PU/attack_light_green
         }
         emitter                                 Point Emitter4
         {
-            angle                               30
+            angle                               5
             time_to_live                        dyn_random
             {
                 min                             0.8
@@ -18,8 +18,8 @@ system PU/attack_light_green
             }
             velocity                            dyn_random
             {
-                min                             15
-                max                             20
+                min                             5
+                max                             10
             }
         }
         affector                                Colour Affector8

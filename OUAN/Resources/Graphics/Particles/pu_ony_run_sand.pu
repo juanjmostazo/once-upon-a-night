@@ -22,8 +22,8 @@ system PU/ony_run_sand
             }
             velocity                            dyn_random
             {
-                min                             150
-                max                             250
+                min                             100
+                max                             150
             }
             duration                            0.8
             circle_em_radius                    50

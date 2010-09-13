@@ -13,13 +13,13 @@ system PU/ony_run_surprise
         }
         emitter                                 Point Emitter4
         {
-            time_to_live                        1.2
+            time_to_live                        1.5
             velocity                            dyn_random
             {
                 min                             15
                 max                             25
             }
-            duration                            1.2
+            duration                            1.5
         }
         affector                                Scale Affector10
         {
