@@ -80,7 +80,8 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDie;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDieDreams;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemDieNightmares;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemShock;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemSurprise;
 		/// Physics information
@@ -137,10 +138,12 @@ namespace OUAN
 		void setRenderComponentInitial(RenderComponentInitialPtr pRenderComponentInitial);
 
 		/// Set Particle Systems
-		void setRenderComponentParticleSystemDie(RenderComponentParticleSystemPtr mRenderComponentParticleSystemDie);
+		void setRenderComponentParticleSystemDieDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemDieDreams);
+		void setRenderComponentParticleSystemDieNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemDieNightmares);
 
 		/// Get Particle Systems
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemDie() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemDieDreams() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemDieNightmares() const;
 
 		/// Set Particle Systems
 		void setRenderComponentParticleSystemShock(RenderComponentParticleSystemPtr mRenderComponentParticleSystemShock);

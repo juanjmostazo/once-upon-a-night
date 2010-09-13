@@ -3465,12 +3465,20 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_DREAMS;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectTripollo->setRenderComponentParticleSystemDie(mComponentFactory->createRenderComponentParticleSystem(
+	pGameObjectTripollo->setRenderComponentParticleSystemDieDreams(mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_NIGHTMARES;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTripollo->setRenderComponentParticleSystemDieNightmares(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
+
 
 	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SHOCK;
 	tRenderComponentParticleSystemParameters.attached = true;
