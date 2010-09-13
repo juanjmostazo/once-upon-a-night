@@ -8,18 +8,17 @@
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
 
-
-const std::string CRYKING_ANIMATION_CRY_END="cry_end1_Clip";
-const std::string CRYKING_ANIMATION_CRY="cry_loop1_Clip";
-const std::string CRYKING_ANIMATION_IDLE_2="idle02_Clip";
-const std::string CRYKING_ANIMATION_IDLE_3="idle03_Clip";
-const std::string CRYKING_ANIMATION_IDLE_3_1="idle03_Clip1";
-const std::string CRYKING_ANIMATION_IDLE_4="idle4_Clip";
-const std::string CRYKING_ANIMATION_SPEAK="speak_loop1_Clip";
-const std::string CRYKING_ANIMATION_WALK="walk_Clip";
-
 namespace OUAN
 {
+	const std::string CRYKING_ANIMATION_CRY_END="cry_end1_Clip";
+	const std::string CRYKING_ANIMATION_CRY="cry_loop1_Clip";
+	const std::string CRYKING_ANIMATION_IDLE_2="idle02_Clip";
+	const std::string CRYKING_ANIMATION_IDLE_3="idle03_Clip";
+	const std::string CRYKING_ANIMATION_IDLE_3_1="idle03_Clip1";
+	const std::string CRYKING_ANIMATION_IDLE_4="idle4_Clip";
+	const std::string CRYKING_ANIMATION_SPEAK="speak_loop1_Clip";
+	const std::string CRYKING_ANIMATION_WALK="walk_Clip";
+
 	/// Class modelling a particular enemy type
 	class GameObjectCryKing : public GameObject, public boost::enable_shared_from_this<GameObjectCryKing>
 	{

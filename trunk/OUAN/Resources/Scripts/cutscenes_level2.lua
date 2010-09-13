@@ -106,9 +106,9 @@ function cutScene3(timer)
 	log ("CUTSCENE 3: ");
 	log (CUTSCENE_3_BOMBS_PUZZLE_START);
 	local any=getAny()	
-	-- local cryking=getCryKing()
+	local cryking=getCryKing()
 	
-	-- cryking:changeAnimation("speak_loop1_Clip")
+	cryking:changeAnimation("speak_loop1_Clip")
 	
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
 	trajectoryCamWait();

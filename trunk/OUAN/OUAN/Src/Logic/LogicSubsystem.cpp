@@ -84,6 +84,8 @@ void LogicSubsystem::registerModules()
 		def("isCameraTrajectoryFinished",&CameraManager::isCameraTrajectoryEnded),
 		def("setAnyTrackingCamera",&CameraManager::setAnyTrackingCamera),
 		def("getAny",&GameWorldManager::getOny),
+		def("getCryKing",&GameWorldManager::getCryKing),
+		def("getBomb",&GameWorldManager::getBomb),
 		def("getObject",&GameWorldManager::getGameObject),
 		def("addExecutedLevelEvent",&GameWorldManager::addExecutedLevelEventLUA),
 		def("hasExecutedLevelEvent",&GameWorldManager::hasExecutedLevelEventLUA),

@@ -6,6 +6,7 @@
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "GameObjectOny.h"
 
 using namespace OUAN;
 
@@ -65,14 +66,14 @@ RenderComponentParticleSystemPtr GameObjectBomb::getRenderComponentParticleSyste
 	return mRenderComponentParticleSystemExplosion;
 }
 
-void GameObjectBomb::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
+void GameObjectBomb::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
-	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
+	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
 }
 
-PhysicsComponentSimpleBoxPtr GameObjectBomb::getPhysicsComponentSimpleBox() const
+PhysicsComponentCharacterPtr GameObjectBomb::getPhysicsComponentCharacter() const
 {
-	return mPhysicsComponentSimpleBox;
+	return mPhysicsComponentCharacter;
 }
 
 void GameObjectBomb::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
@@ -176,51 +177,58 @@ void GameObjectBomb::changeWorldFinished(int newWorld)
 			case DREAMS:
 				if(mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->create();
+						mPhysicsComponentCharacter->create();
 					}
 				}
 				else if(mLogicComponentProp->existsInDreams()&& !mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->create();
+						mPhysicsComponentCharacter->create();
 					}
 				}
 				else if(!mLogicComponentProp->existsInDreams()&& mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->destroy();
+						mPhysicsComponentCharacter->destroy();
 					}
 				}		
 				break;
 			case NIGHTMARES:
 				if(mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->create();
+						mPhysicsComponentCharacter->create();
 					}
 				}
 				else if(mLogicComponentProp->existsInDreams()&& !mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->destroy();
+						mPhysicsComponentCharacter->destroy();
 					}
 				}
 				else if(!mLogicComponentProp->existsInDreams()&& mLogicComponentProp->existsInNightmares())
 				{
-					if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+					if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 					{
-						mPhysicsComponentSimpleBox->create();
+						mPhysicsComponentCharacter->create();
 					}
 				}	
 				break;
 			default:break;
 		}
+	}
+
+
+	if(currentState==logicSS->getGlobalInt(BOMB_STATE_FOLLOW))
+	{
+		std::string onyName = getGameWorldManager()->getGameObjectOny()->getName();
+		mTrajectoryComponent->activatePathFinding(onyName,newWorld);
 	}
 }
 
@@ -303,9 +311,9 @@ void GameObjectBomb::reset()
 {
 	GameObject::reset();
 
-	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 	{
-		mPhysicsComponentSimpleBox->destroy();
+		mPhysicsComponentCharacter->destroy();
 	}
 
 	mRenderComponentEntity->setVisible(false);
@@ -330,7 +338,7 @@ bool GameObjectBomb::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectBomb::getPhysicsComponent() const
 {
-	return mPhysicsComponentSimpleBox;
+	return mPhysicsComponentCharacter;
 }
 
 /// Set logic component
@@ -343,6 +351,16 @@ void GameObjectBomb::setLogicComponentProp(LogicComponentPropPtr logicComponentP
 LogicComponentPropPtr GameObjectBomb::getLogicComponentProp()
 {
 	return mLogicComponentProp;
+}
+
+TrajectoryComponentPtr GameObjectBomb::getTrajectoryComponent() const
+{
+	return mTrajectoryComponent;
+}
+
+void GameObjectBomb::setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent)
+{
+	mTrajectoryComponent=pTrajectoryComponent;
 }
 
 void GameObjectBomb::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
@@ -376,6 +394,8 @@ void GameObjectBomb::update(double elapsedSeconds)
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
 	int currentState=mLogicComponentProp->getState();
+	int world = getGameWorldManager()->getWorld();
+	std::string onyName = getGameWorldManager()->getGameObjectOny()->getName();
 
 	//Logger::getInstance()->log("BOMB STATE "+Ogre::StringConverter::toString(currentState));
 
@@ -385,32 +405,54 @@ void GameObjectBomb::update(double elapsedSeconds)
 		{
 			disable();
 		}
-		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_PUZZLE_START))
 		{
 			initBombPuzzle();
+			mTrajectoryComponent->activateIdle(getName(),world);
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_IDLE);
+		}
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
+		{
+			mTrajectoryComponent->activateIdle(getName(),world);
+			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_IDLE);
+		}
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_FOLLOW))
+		{
+			mTrajectoryComponent->activatePathFinding(onyName,world);
+			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_WALK);
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
 		{
+			mTrajectoryComponent->activateIdle(getName(),world);
 			mLogicComponentProp->setTimeSpent(0);
 
 			mRenderComponentParticleSystemExplosion->start();
 
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_EXPLODE);
 
-			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 			{
-				mPhysicsComponentSimpleBox->destroy();
+				mPhysicsComponentCharacter->destroy();
 			}
 
 			mPhysicsComponentWeapon->startAttack();
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
 		{
+			mTrajectoryComponent->activateIdle(getName(),world);
 			mRenderComponentEntity->setVisible(false);
 			mLogicComponentProp->setTimeSpent(0);
 			mAudioComponent->playSound("fart");
 		}
+	}
+
+	mTrajectoryComponent->update(elapsedSeconds);
+
+	if (mPhysicsComponentCharacter->isInUse())
+	{
+		Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();
+
+		mPhysicsComponentCharacter->setOuternMovement(movement);
 	}
 
 	mRenderComponentEntity->update(elapsedSeconds);
@@ -430,23 +472,23 @@ void GameObjectBomb::initBombPuzzle()
 
 	mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_IDLE));
 
-	if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
-		mPhysicsComponentSimpleBox->create();
+		mPhysicsComponentCharacter->create();
 	}
 
-	if (mPhysicsComponentSimpleBox.get())
+	if (mPhysicsComponentCharacter.get())
 	{
-		if(mPhysicsComponentSimpleBox->isInUse())
+		if(mPhysicsComponentCharacter->isInUse())
 		{
-			mPhysicsComponentSimpleBox->destroy();
+			mPhysicsComponentCharacter->destroy();
 		}
 
-		mPhysicsComponentSimpleBox->create();
-		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
-		mPhysicsComponentSimpleBox->setOrientation(mRenderComponentInitial->getOrientation());	
+		mPhysicsComponentCharacter->create();
+		mPhysicsComponentCharacter->setPosition(mRenderComponentInitial->getPosition());
+		//mPhysicsComponentCharacter->setOrientation(mRenderComponentInitial->getOrientation());	
 		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
-		mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
+		//mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
 	}
 
 	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())

@@ -285,7 +285,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						entity->changeAnimation(Utils::Random::getInstance()->getRandomDouble()>0.5
 							?TRIPOLLO_ANIM_ATTACK_00
 							:TRIPOLLO_ANIM_ATTACK_01);
-						mTrajectoryComponent->activateChase(onyName);
+						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setAttackFinished(false);
 						mAudioComponent->playSound(TRIPOLLO_SOUND_ATTACK);
 					}

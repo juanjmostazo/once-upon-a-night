@@ -180,6 +180,8 @@ void GameObjectPlataform::reset()
 	mLastPosition=getRenderComponentPositional()->getPosition();
 	mLastPositionDifference=Vector3::ZERO;
 	mElapsedTimeSinceLastCollision=0;
+	mHit=false;
+	mLastFrameHit=false;
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
@@ -202,13 +204,13 @@ PhysicsComponentPtr GameObjectPlataform::getPhysicsComponent() const
 }
 
 /// Set logic component
-void GameObjectPlataform::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectPlataform::setLogicComponentProp(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectPlataform::getLogicComponent()
+LogicComponentPropPtr GameObjectPlataform::getLogicComponentProp()
 {
 	return mLogicComponent;
 }
@@ -267,6 +269,18 @@ void GameObjectPlataform::setVisible(bool visible)
 	}
 }
 
+void GameObjectPlataform::activateHit()
+{
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+	}
+}
+
 Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()
 {
 	return mLastPositionDifference;
@@ -289,6 +303,29 @@ void GameObjectPlataform::update(double elapsedSeconds)
 
 void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
 {
+	if(mHit && !mLastFrameHit)
+	{
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+		}
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+		}
+	}
+	else
+	{
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_IDLE);
+		}
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_IDLE);
+		}
+	}
+
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
@@ -315,6 +352,18 @@ void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
 		}
 	}
 	GameObject::updatePhysicsComponents(elapsedSeconds);
+
+
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->update(elapsedSeconds);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->update(elapsedSeconds);
+	}
+	mLastFrameHit=mHit;
+	mHit=false;
 }
 
 

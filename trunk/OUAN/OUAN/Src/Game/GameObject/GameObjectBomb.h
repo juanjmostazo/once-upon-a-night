@@ -5,26 +5,25 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
+
+namespace OUAN
+{
 
 	//State names
 	const std::string BOMB_STATE_OFF="BOMB_STATE_OFF";
 	const std::string BOMB_STATE_IDLE="BOMB_STATE_IDLE";
+	const std::string BOMB_STATE_FOLLOW="BOMB_STATE_FOLLOW";
 	const std::string BOMB_STATE_ACTIVATE="BOMB_STATE_ACTIVATE";
 	const std::string BOMB_STATE_EXPLOSION="BOMB_STATE_EXPLOSION";
+	const std::string BOMB_STATE_PUZZLE_START="BOMB_STATE_PUZZLE_START";
 
 	const std::string BOMB_ANIMATION_IDLE="bite_idle1_eani_Clip";
-	const std::string BOMB_ANIMATION_EXPLODE="explode_eani_Clip";
+	const std::string BOMB_ANIMATION_EXPLODE="explote_eani_Clip";
 	const std::string BOMB_ANIMATION_WALK="walk1_Clip";
-
-namespace OUAN
-{
-	//Animation states
-	//const std::string Bomb_ANIM_IDLE01="idle";
-	//const std::string Bomb_ANIM_BREAK01="break_01";
-	const std::string Bomb_ANIM_BROKEN="broken";
 
 	/// Class to hold Bomb information
 	class GameObjectBomb : public GameObject, public boost::enable_shared_from_this<GameObjectBomb>
@@ -39,7 +38,8 @@ namespace OUAN
 		/// Particle Systems
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemExplosion;
 		/// Physics information
-		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
+		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		TrajectoryComponentPtr mTrajectoryComponent;
 
 		/// Physics information
 		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
@@ -64,9 +64,14 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 
 		/// Set audio component
-		/// @param pRenderComponentEntity
+		/// @param pAudioComponent
 		AudioComponentPtr getAudioComponent() const;
 		void setAudioComponent(AudioComponentPtr audioComponent);
+
+		/// Set trajectory component
+		/// @param pTrajectoryComponent
+		TrajectoryComponentPtr getTrajectoryComponent() const;
+		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
 
 		/// Set render component
 		/// @param pRenderComponentEntity
@@ -102,10 +107,10 @@ namespace OUAN
 		void setVisible(bool visible);
 
 		/// Set physics component
-		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
+		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
 
 		/// Get physics component
-		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
+		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
 
 		void updatePhysicsComponents(double elapsedSeconds);
 		bool hasPhysicsComponent() const;
@@ -179,7 +184,7 @@ namespace OUAN
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
+		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
 
 		///Physics parameters
 		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
@@ -190,6 +195,8 @@ namespace OUAN
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
 
+		/// Trajectory component params
+		TTrajectoryComponentParameters tTrajectoryComponentParamters;
 	};
 }
 #endif

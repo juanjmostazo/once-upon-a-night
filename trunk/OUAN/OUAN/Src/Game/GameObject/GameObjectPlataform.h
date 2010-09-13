@@ -6,17 +6,13 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentComplexConvex.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 #include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 namespace OUAN
 {
-	const std::string PLATFORM1_ANIM_FRONT="front_Clip";
-	const std::string PLATFORM1_ANIM_BACK="back_Clip";
-	const std::string PLATFORM2_ANIM_FRONT="front";
-	const std::string PLATFORM2_ANIM_BACK="back";
-	const std::string PLATFORM3_ANIM_FRONT="front";
-	const std::string PLATFORM3_ANIM_BACK="back";
+	const std::string PLATFORM_ANIM_IDLE="idle01";
+	const std::string PLATFORM_ANIM_JUMP="jump1";
 
 	const double PLATAFORM_COLLISION_TIME_MARGIN = 1;
 
@@ -35,7 +31,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 
 		TrajectoryComponentPtr mTrajectoryComponent;
@@ -43,6 +39,8 @@ namespace OUAN
 		Ogre::Vector3 mLastPosition;
 		Ogre::Vector3 mLastPositionDifference;
 		double mElapsedTimeSinceLastCollision;
+		bool mHit;
+		bool mLastFrameHit;
 	public:
 		//Constructor
 		GameObjectPlataform(const std::string& name);
@@ -53,10 +51,10 @@ namespace OUAN
 		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
 		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentProp(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponentProp();
 
 		
 		bool isWorthUpdatingPhysicsComponents();
@@ -108,6 +106,8 @@ namespace OUAN
 
 		void updatePhysicsComponents(double elapsedSeconds);
 
+		void activateHit();
+
 		/// Reset object
 		virtual void reset();
 
@@ -158,7 +158,7 @@ namespace OUAN
 		TPhysicsComponentComplexConvexParameters tPhysicsComponentComplexConvexParameters;
 
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentPropParameters;
 
 		///Trajectory parameters
 		TTrajectoryComponentParameters tTrajectoryComponentParameters;
