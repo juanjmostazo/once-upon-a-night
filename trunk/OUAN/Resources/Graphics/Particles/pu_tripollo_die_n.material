@@ -1,4 +1,4 @@
-material PU/tripollo_die_1
+material PU/tripollo_die_1_n
 {
     technique
     {
@@ -11,13 +11,13 @@ material PU/tripollo_die_1
 
             texture_unit
             {
-                texture pu_tripollo_die_1.png
+                texture pu_tripollo_die_1_n.png
                 tex_address_mode clamp
             }
         }
     }
 }
-material PU/tripollo_die_2
+material PU/tripollo_die_2_n
 {
     technique
     {
@@ -29,13 +29,13 @@ material PU/tripollo_die_2
 
             texture_unit
             {
-                texture pu_tripollo_die_2.png
+                texture pu_tripollo_die_2_n.png
                 tex_address_mode clamp
             }
         }
     }
 }
-material PU/tripollo_die_3
+material PU/tripollo_die_3_n
 {
     technique
     {
@@ -47,13 +47,13 @@ material PU/tripollo_die_3
 
             texture_unit
             {
-                texture pu_tripollo_die_3.png
+                texture pu_tripollo_die_3_n.png
                 tex_address_mode clamp
             }
         }
     }
 }
-material PU/tripollo_die_4
+material PU/tripollo_die_4_n
 {
     technique
     {
@@ -65,7 +65,7 @@ material PU/tripollo_die_4
 
             texture_unit
             {
-                texture pu_tripollo_die_4.png
+                texture pu_tripollo_die_4_n.png
                 tex_address_mode clamp
             }
         }

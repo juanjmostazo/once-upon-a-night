@@ -5,6 +5,7 @@ system PU/nest_jump
     scale                                       0.1 0.1 0.1
     technique Technique4
     {
+        keep_local                              true
         material                                PU/nest_jump
         default_particle_width                  24
         default_particle_height                 24

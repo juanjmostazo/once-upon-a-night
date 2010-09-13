@@ -5,6 +5,8 @@ system PU/nest_break
     scale                                       0.1 0.1 0.1
     technique Technique4
     {
+        position                                0 175 0
+        keep_local                              true
         material                                PU/nest_break
         default_particle_width                  24
         default_particle_height                 24
@@ -12,14 +14,14 @@ system PU/nest_break
         renderer                                Billboard
         {
         }
-        emitter                                 Point Emitter5
+        emitter                                 Box
         {
             emission_rate                       dyn_random
             {
                 min                             12
                 max                             15
             }
-            angle                               45
+            angle                               30
             time_to_live                        dyn_random
             {
                 min                             1.2
@@ -36,6 +38,9 @@ system PU/nest_break
                 max                             1
             }
             keep_local                          true
+            box_em_width                        80
+            box_em_height                       10
+            box_em_depth                        80
         }
         affector                                LinearForce Affector39
         {

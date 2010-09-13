@@ -12,16 +12,16 @@ system PU/changeworld_sky
         }
         emitter                                 Box 
         {
-            emission_rate                       750
+            emission_rate                       1000
             angle                               50
             time_to_live                        20
-            velocity                            200
+            velocity                            500
             duration                            5
             position                            0 1000 0
             direction                           0 -1 0
-            box_em_width                        3000
+            box_em_width                        5000
             box_em_height                       10
-            box_em_depth                        3000
+            box_em_depth                        5000
         }
         affector                                LinearForce 
         {
@@ -44,16 +44,16 @@ system PU/changeworld_sky
         }
         emitter                                 Box 
         {
-            emission_rate                       750
+            emission_rate                       1000
             angle                               50
             time_to_live                        20
-            velocity                            200
+            velocity                            500
             duration                            5
             position                            0 1000 0
             direction                           0 -1 0
-            box_em_width                        3000
+            box_em_width                        5000
             box_em_height                       10
-            box_em_depth                        3000
+            box_em_depth                        5000
         }
         affector                                LinearForce 
         {
@@ -76,16 +76,16 @@ system PU/changeworld_sky
         }
         emitter                                 Box 
         {
-            emission_rate                       750
+            emission_rate                       1000
             angle                               50
             time_to_live                        20
-            velocity                            200
+            velocity                            500
             duration                            5
             position                            0 1000 0
             direction                           0 -1 0
-            box_em_width                        3000
+            box_em_width                        5000
             box_em_height                       10
-            box_em_depth                        3000
+            box_em_depth                        5000
         }
         affector                                LinearForce 
         {

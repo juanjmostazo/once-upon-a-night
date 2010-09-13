@@ -1,4 +1,4 @@
-system PU/tripollo_die
+system PU/tripollo_die_n
 {
     scale_velocity                              0.1
     scale                                       0.1 0.1 0.1
@@ -6,7 +6,7 @@ system PU/tripollo_die
     {
         position                                0 100 0
         visual_particle_quota                   16
-        material                                PU/tripollo_die_4
+        material                                PU/tripollo_die_4_n
         default_particle_width                  20
         default_particle_height                 20
         default_particle_depth                  20
@@ -35,7 +35,7 @@ system PU/tripollo_die
     }
     technique 
     {
-        material                                PU/tripollo_die_1
+        material                                PU/tripollo_die_1_n
         default_particle_width                  10
         default_particle_height                 10
         renderer                                Billboard
@@ -70,7 +70,7 @@ system PU/tripollo_die
     }
     technique 
     {
-        material                                PU/tripollo_die_2
+        material                                PU/tripollo_die_2_n
         renderer                                Billboard
         {
             billboard_type                      oriented_self
@@ -116,7 +116,7 @@ system PU/tripollo_die
     }
     technique NucleusTechnique
     {
-        material                                PU/tripollo_die_3
+        material                                PU/tripollo_die_3_n
         default_particle_width                  15
         default_particle_height                 15
         renderer                                Billboard

@@ -28,10 +28,10 @@ system PU/attack_light
             }
             all_particle_dimensions             dyn_random
             {
-                min                             256
-                max                             512
+                min                             128
+                max                             256
             }
-            colour                              1 0.5 0 1
+            colour                              0.8 0.8 0.8 1
         }
         affector                                Colour 
         {
@@ -68,10 +68,10 @@ system PU/attack_light
             }
             all_particle_dimensions             dyn_random
             {
-                min                             256
-                max                             512
+                min                             128
+                max                             256
             }
-            colour                              1 0.5 0 1
+            colour                              0.8 0.8 0.8 1
         }
         affector                                Colour 
         {
@@ -108,10 +108,10 @@ system PU/attack_light
             }
             all_particle_dimensions             dyn_random
             {
-                min                             256
-                max                             512
+                min                             128
+                max                             256
             }
-            colour                              1 0.5 0 1
+            colour                              0.8 0.8 0.8 1
         }
         affector                                Colour 
         {
@@ -148,10 +148,10 @@ system PU/attack_light
             }
             all_particle_dimensions             dyn_random
             {
-                min                             256
-                max                             512
+                min                             128
+                max                             256
             }
-            colour                              1 0.5 0 1
+            colour                              0.8 0.8 0.8 1
         }
         affector                                Colour 
         {
