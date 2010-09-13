@@ -880,6 +880,7 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 	{
 		//Check parsing errors
 		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
@@ -891,9 +892,9 @@ void LevelLoader::processGameObjectCryKing(XMLGameObject* gameObject)
 		tGameObjectCryKingParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
+		//Get RenderComponentEntity
+		tGameObjectCryKingParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectCryKingParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
@@ -3175,13 +3176,9 @@ void LevelLoader::processGameObjectBomb(XMLGameObject* gameObject)
 		tGameObjectBombParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectBombParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntityNightmares
-		tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			DREAMS, gameObject->XMLNodeCustomProperties);
+		//Get RenderComponentEntity
+		tGameObjectBombParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		
 		//Get AudioComponent

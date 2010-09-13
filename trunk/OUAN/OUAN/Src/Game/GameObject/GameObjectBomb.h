@@ -15,6 +15,10 @@
 	const std::string BOMB_STATE_ACTIVATE="BOMB_STATE_ACTIVATE";
 	const std::string BOMB_STATE_EXPLOSION="BOMB_STATE_EXPLOSION";
 
+	const std::string BOMB_ANIMATION_IDLE="bite_idle1_eani_Clip";
+	const std::string BOMB_ANIMATION_EXPLODE="explode_eani_Clip";
+	const std::string BOMB_ANIMATION_WALK="walk1_Clip";
+
 namespace OUAN
 {
 	//Animation states
@@ -27,8 +31,7 @@ namespace OUAN
 	{
 	private:
 		/// Visual information
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
 		
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
@@ -58,8 +61,7 @@ namespace OUAN
 		~GameObjectBomb();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
 
 		/// Set audio component
 		/// @param pRenderComponentEntity
@@ -68,8 +70,7 @@ namespace OUAN
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntityDreams);
 
 		/// Set logic component
 		void setLogicComponentProp(LogicComponentPropPtr logicComponentProp);
@@ -171,8 +172,7 @@ namespace OUAN
 		~TGameObjectBombParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 		TRenderComponentEntityParameters tRenderComponentAdditionalParameters;
 
 		///Positional parameters

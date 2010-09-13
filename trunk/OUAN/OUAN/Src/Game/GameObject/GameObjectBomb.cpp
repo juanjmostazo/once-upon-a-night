@@ -30,24 +30,9 @@ void GameObjectBomb::setAudioComponent(AudioComponentPtr audioComponent)
 	mAudioComponent=audioComponent;
 }
 
-RenderComponentEntityPtr GameObjectBomb::getRenderComponentEntityDreams() const
+void GameObjectBomb::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	return mRenderComponentEntityDreams;
-}
-
-void GameObjectBomb::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams)
-{
-	mRenderComponentEntityDreams=pRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectBomb::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
-}
-
-void GameObjectBomb::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares)
-{
-	mRenderComponentEntityNightmares=pRenderComponentEntityNightmares;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 void GameObjectBomb::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -110,13 +95,12 @@ void GameObjectBomb::setDreamsRender()
 	{
 		if(mLogicComponentProp->existsInDreams())
 		{
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityDreams->setDreamsMaterials();
+			mRenderComponentEntity->setVisible(true);
+			mRenderComponentEntity->setDreamsMaterials();
 		}
-
-		if(mLogicComponentProp->existsInNightmares())
+		else
 		{
-			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntity->setVisible(false);
 		}
 	}
 }
@@ -129,16 +113,14 @@ void GameObjectBomb::setNightmaresRender()
 
 	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) && !currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 	{
-		if(mLogicComponentProp->existsInDreams())
-		{
-			mRenderComponentEntityDreams->setVisible(false);
-		}
-
 		if(mLogicComponentProp->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setVisible(true);
-			mRenderComponentEntityNightmares->setNightmaresMaterials();
+			mRenderComponentEntity->setVisible(true);
 		}	
+		else
+		{
+			mRenderComponentEntity->setVisible(false);
+		}
 	}
 }
 
@@ -151,15 +133,7 @@ void GameObjectBomb::setChangeWorldFactor(double factor)
 
 	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) && !currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 	{
-		if(mLogicComponentProp->existsInDreams())
-		{
-			mRenderComponentEntityDreams->setChangeWorldFactor(factor);
-		}
-
-		if(mLogicComponentProp->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
-		}
+		mRenderComponentEntity->setChangeWorldFactor(factor);
 	}
 }
 
@@ -172,46 +146,8 @@ void GameObjectBomb::setChangeWorldRender()
 
 	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) && !currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 	{
-		switch(mWorld)
-		{
-			case DREAMS:
-				if(mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityDreams->setVisible(true);
-					mRenderComponentEntityDreams->setChangeWorldMaterials();
-					mRenderComponentEntityNightmares->setVisible(false);
-				}
-				else if(!mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityNightmares->setVisible(true);
-					mRenderComponentEntityNightmares->setChangeWorldMaterials();
-				}
-				else if(mLogicComponentProp->existsInDreams() && !mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityDreams->setVisible(true);
-					mRenderComponentEntityDreams->setChangeWorldMaterials();
-				}
-				break;
-			case NIGHTMARES:
-				if(mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityNightmares->setVisible(true);
-					mRenderComponentEntityNightmares->setChangeWorldMaterials();
-					mRenderComponentEntityDreams->setVisible(false);
-				}
-				else if(!mLogicComponentProp->existsInDreams() && mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityNightmares->setVisible(true);
-					mRenderComponentEntityNightmares->setChangeWorldMaterials();
-				}
-				else if(mLogicComponentProp->existsInDreams() && !mLogicComponentProp->existsInNightmares())
-				{
-					mRenderComponentEntityDreams->setVisible(true);
-					mRenderComponentEntityDreams->setChangeWorldMaterials();
-				}
-				break;
-			default:break;
-		}
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntity->setChangeWorldMaterials();
 	}
 }
 
@@ -372,8 +308,7 @@ void GameObjectBomb::reset()
 		mPhysicsComponentSimpleBox->destroy();
 	}
 
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(false);
+	mRenderComponentEntity->setVisible(false);
 
 	disable();
 }
@@ -453,6 +388,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_IDLE))
 		{
 			initBombPuzzle();
+			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_IDLE);
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
 		{
@@ -460,8 +396,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 
 			mRenderComponentParticleSystemExplosion->start();
 
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(false);
+			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_EXPLODE);
 
 			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
@@ -472,19 +407,13 @@ void GameObjectBomb::update(double elapsedSeconds)
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
 		{
+			mRenderComponentEntity->setVisible(false);
 			mLogicComponentProp->setTimeSpent(0);
 			mAudioComponent->playSound("fart");
 		}
 	}
 
-	RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
-		?mRenderComponentEntityDreams
-		:mRenderComponentEntityNightmares;
-	
-	if (entityToUpdate.get())
-	{
-		entityToUpdate->update(elapsedSeconds);
-	}
+	mRenderComponentEntity->update(elapsedSeconds);
 }
 
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
@@ -529,11 +458,11 @@ void GameObjectBomb::initBombPuzzle()
 	switch(mWorld)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
+			mRenderComponentEntity->setVisible(true);
 			setDreamsRender();
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityNightmares->setVisible(true);
+			mRenderComponentEntity->setVisible(true);
 			setNightmaresRender();
 			break;
 		default:break;
@@ -569,7 +498,7 @@ bool GameObjectBomb::hasRenderComponentEntity() const
 
 RenderComponentEntityPtr GameObjectBomb::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectBomb::updatePhysicsComponents(double elapsedSeconds)
@@ -594,13 +523,13 @@ void GameObjectBomb::setVisible(bool visible)
 		case DREAMS:
 			if(mLogicComponentProp->existsInDreams())
 			{
-				mRenderComponentEntityDreams->setVisible(visible);
+				mRenderComponentEntity->setVisible(visible);
 			}
 			break;
 		case NIGHTMARES:
 			if(mLogicComponentProp->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(visible);
+				mRenderComponentEntity->setVisible(visible);
 			}
 			break;
 		default:

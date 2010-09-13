@@ -206,6 +206,8 @@ namespace OUAN
 		double getClosestChangeWorldDistance(Vector3 objectPosition);
 
 		static LogicComponentOny* getOny();
+		static LogicComponent* getCryKing();
+		static LogicComponent* getBomb();
 
 		static void victory();
 

@@ -49,14 +49,14 @@ RenderComponentInitialPtr GameObjectCryKing::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectCryKing::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectCryKing::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectCryKing::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectCryKing::getRenderComponentEntity() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentEntity;
 }
 
 void GameObjectCryKing::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
@@ -72,6 +72,13 @@ PhysicsComponentSimpleBoxPtr GameObjectCryKing::getPhysicsComponentSimpleBox() c
 void GameObjectCryKing::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
+	if (mRenderComponentEntity->getCurrentAnimationName().compare(CRYKING_ANIMATION_IDLE_2)!=0)
+	{
+		mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_IDLE_2);
+	}
+
+	mRenderComponentEntity->update(elapsedSeconds);
 }
 
 void GameObjectCryKing::reset()
@@ -89,14 +96,14 @@ void GameObjectCryKing::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntity->setVisible(true);
 		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->create();
 		}
 		break;
 	case NIGHTMARES:
-		mRenderComponentEntityDreams->setVisible(false);
+		mRenderComponentEntity->setVisible(false);
 		if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->destroy();
@@ -200,7 +207,7 @@ bool GameObjectCryKing::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectCryKing::getEntityComponent() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentEntity;
 }
 bool GameObjectCryKing::hasLogicComponent() const
 {
