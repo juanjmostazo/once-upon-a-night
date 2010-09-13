@@ -604,9 +604,9 @@ GameObjectCryKingPtr GameObjectFactory::createGameObjectCryKing(TGameObjectCryKi
 	if(pGameObjectCryKing->getLogicComponentProp()->existsInDreams())
 	{
 		//Create RenderComponentEntity Dreams
-		pGameObjectCryKing->setRenderComponentEntityDreams(
+		pGameObjectCryKing->setRenderComponentEntity(
 			mComponentFactory->createRenderComponentEntity(tGameObjectCryKingParameters.dreamsName,
-			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityDreamsParameters,
+			pGameObjectCryKing,tGameObjectCryKingParameters.tRenderComponentEntityParameters,
 		pGameObjectCryKing->getLogicComponentProp()->existsInDreams(),
 		pGameObjectCryKing->getLogicComponentProp()->existsInNightmares()));
 	}
@@ -4036,16 +4036,9 @@ GameObjectBombPtr GameObjectFactory::createGameObjectBomb(TGameObjectBombParamet
 		pGameObjectBomb->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
-	pGameObjectBomb->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.dreamsName,
-		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectBomb->getLogicComponentProp()->existsInDreams(),
-		pGameObjectBomb->getLogicComponentProp()->existsInNightmares()));
-
-	//Create RenderComponentEntityNightmares
-	pGameObjectBomb->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.nightmaresName,
-		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityNightmaresParameters,
+	pGameObjectBomb->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBombParameters.name,
+		pGameObjectBomb,tGameObjectBombParameters.tRenderComponentEntityParameters,
 		pGameObjectBomb->getLogicComponentProp()->existsInDreams(),
 		pGameObjectBomb->getLogicComponentProp()->existsInNightmares()));
 

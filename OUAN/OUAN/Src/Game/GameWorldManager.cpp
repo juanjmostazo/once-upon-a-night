@@ -1706,6 +1706,17 @@ LogicComponentOny* GameWorldManager::getOny()
 	return mInst->getGameObjectOny()->getLogicComponentOny().get();
 }
 
+LogicComponent* GameWorldManager::getCryKing()
+{
+	return mInst->getGameObject("cryking#0")->getLogicComponentInstance().get();
+}
+
+LogicComponent* GameWorldManager::getBomb()
+{
+	return mInst->getGameObject("bomb#0")->getLogicComponentInstance().get();
+}
+
+
 void GameWorldManager::loadFlashlightDecalMaterials()
 {
 	if (getGameObjectFlashLight().get())
