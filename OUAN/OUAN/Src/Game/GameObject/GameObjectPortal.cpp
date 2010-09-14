@@ -431,9 +431,9 @@ void GameObjectPortal::setVisible(bool visible)
 
 	//Commented this lines because some they give null pointers
 	//
-	//mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
-	//mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
-	//mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
 }
 
 bool GameObjectPortal::hasLogicComponent() const

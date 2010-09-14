@@ -36,16 +36,12 @@ void RenderComponentParticleSystem::setParticleSystems(std::vector<ParticleUnive
 
 void RenderComponentParticleSystem::setVisible(bool visible)
 {
-	if (mParticleSystems.size() > 0)
+	for (unsigned int i=0; i<mParticleSystems.size(); i++)
 	{
-		for (int i=0; i<mPoolSize; i++)
+		if(mParticleSystems[i])
 		{
 			mParticleSystems[i]->setVisible(visible);
 		}
-	}
-	else
-	{
-		Logger::getInstance()->log("RCParticleSystem - setVisible(): mParticleSystems is NULL from " + getParentName());
 	}
 }
 
