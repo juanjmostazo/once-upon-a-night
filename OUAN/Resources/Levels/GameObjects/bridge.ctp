@@ -14,7 +14,8 @@
   <PROPERTY id="animation1::loop" type="12" value="false" ></PROPERTY>
   <PROPERTY id="animation2::name" type="7" value="roll_idle"></PROPERTY>
   <PROPERTY id="animation2::loop" type="12" value="false"></PROPERTY>
-
+  <PROPERTY id="animation3::name" type="7" value="unroll"></PROPERTY>
+  <PROPERTY id="animation3::loop" type="12" value="false"></PROPERTY>
 
 </CUSTOMPROPERTIES>
 

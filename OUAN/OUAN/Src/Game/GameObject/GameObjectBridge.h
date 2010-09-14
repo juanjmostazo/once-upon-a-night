@@ -13,6 +13,7 @@ namespace OUAN
 	const std::string BRIDGE_ANIM_IDLE="idle";
 	const std::string BRIDGE_ANIM_ROLL="roll";
 	const std::string BRIDGE_ANIM_ROLL_IDLE="roll_idle";
+	const std::string BRIDGE_ANIM_UNROLL="unroll";
 
 	/// Class to hold terrain information
 	class GameObjectBridge : public GameObject, public boost::enable_shared_from_this<GameObjectBridge>

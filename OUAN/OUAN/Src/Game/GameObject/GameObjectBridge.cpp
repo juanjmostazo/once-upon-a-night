@@ -78,12 +78,14 @@ void GameObjectBridge::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
-	mRenderComponentEntity->changeAnimation(BRIDGE_ANIM_ROLL);
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntity->changeAnimation(BRIDGE_ANIM_ROLL);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntity->changeAnimation(BRIDGE_ANIM_UNROLL);
 		break;
 	default:
 		break;
@@ -106,21 +108,21 @@ void GameObjectBridge::changeToWorld(int newWorld, double perc)
 	case DREAMS:
 		if(mWorld==DREAMS)
 		{
-			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
 		}
 		else if(mWorld==NIGHTMARES)
 		{
-			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
 		}
 		break;
 	case NIGHTMARES:
 		if(mWorld==DREAMS)
 		{
-			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
+			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
 		}
 		else if(mWorld==NIGHTMARES)
 		{
-			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(perc));
+			mRenderComponentEntity->setAnimationPosition(currentAnimLen*(1-perc));
 		}
 		break;
 	default:
