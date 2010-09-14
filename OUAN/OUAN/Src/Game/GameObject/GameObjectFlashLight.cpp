@@ -393,6 +393,7 @@ void GameObjectFlashLight::stopAttackParticles()
 	{
 		mRenderComponentParticleSystemAttack->stop();
 	}
+	/*
 	if(mRenderComponentParticleSystemAttackRed.get())
 	{
 		mRenderComponentParticleSystemAttackRed->stop();
@@ -405,6 +406,7 @@ void GameObjectFlashLight::stopAttackParticles()
 	{
 		mRenderComponentParticleSystemAttackBlue->stop();
 	}
+	*/
 }
 
 void GameObjectFlashLight::switchOn()
