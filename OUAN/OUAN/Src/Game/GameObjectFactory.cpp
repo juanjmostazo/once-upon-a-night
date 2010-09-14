@@ -770,14 +770,12 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	pGameObjectDiamondTree->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectDiamondTree->getRenderComponentPositional()));
 
-
 	//Create RenderComponentEntity
 	pGameObjectDiamondTree->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.dreamsName,
 		pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityParameters,
 	pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
 	pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
-
 
 	//Create audio component
 	pGameObjectDiamondTree->setAudioComponent(
@@ -786,14 +784,12 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 			tGameObjectDiamondTreeParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
-		
 	//Create PhysicsComponent
 	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectDiamondTree, 
 		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectDiamondTree->getRenderComponentPositional()));
-
 
 	//Add reference to this
 	pGameObjectDiamondTree->setGameWorldManager(gameWorldMgr);
@@ -3163,6 +3159,18 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 		pGameObjectTree,tGameObjectTreeParameters.tRenderComponentEntityParameters,
 		pGameObjectTree->getLogicComponent()->existsInDreams(),
 		pGameObjectTree->getLogicComponent()->existsInNightmares()));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TREE_STARS;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTree->setRenderComponentParticleSystemStars(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTree,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectTree->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectTree->setPhysicsComponentSimpleBox(

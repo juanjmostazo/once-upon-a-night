@@ -84,6 +84,8 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("NEST_BREAK", NEST_BREAK); 
 		config.getOption("NEST_JUMP", NEST_JUMP); 
 
+		config.getOption("TREE_STARS", TREE_STARS); 
+
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
 
