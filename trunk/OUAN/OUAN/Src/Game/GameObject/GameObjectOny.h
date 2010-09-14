@@ -263,6 +263,11 @@ namespace OUAN
 
 		std::string mAttackAnimationName;
 
+		//plataform related vars and function
+		bool mIsOnPlataform;
+		GameObjectPlataformPtr mPlataform;
+		void applyPlataformEffect();
+
 	public:
 		//Constructor
 		/// @param name	name of the object, specific to the class
@@ -438,6 +443,9 @@ namespace OUAN
 		
 		bool isOnWater() const;
 		void setOnWater(bool onWater);
+
+		bool isOnPlataform() const;
+		void setOnPlataform(bool onPlataform,GameObjectPlataformPtr plataform);
 
 		void setCurrentAttackAnimation(const std::string& animationName);
 	};

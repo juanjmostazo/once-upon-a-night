@@ -271,14 +271,14 @@ void GameObjectPlataform::setVisible(bool visible)
 
 void GameObjectPlataform::activateHit()
 {
-	if(mLogicComponent->existsInDreams())
-	{
-		mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
-	}
-	if(mLogicComponent->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
-	}
+	//if(mLogicComponent->existsInDreams())
+	//{
+	//	mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+	//}
+	//if(mLogicComponent->existsInNightmares())
+	//{
+	//	mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+	//}
 }
 
 Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()
@@ -303,28 +303,28 @@ void GameObjectPlataform::update(double elapsedSeconds)
 
 void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
 {
-	if(mHit && !mLastFrameHit)
-	{
-		if(mLogicComponent->existsInDreams())
-		{
-			mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
-		}
-		if(mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
-		}
-	}
-	else
-	{
-		if(mLogicComponent->existsInDreams())
-		{
-			mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_IDLE);
-		}
-		if(mLogicComponent->existsInNightmares())
-		{
-			mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_IDLE);
-		}
-	}
+	//if(mHit && !mLastFrameHit)
+	//{
+	//	if(mLogicComponent->existsInDreams())
+	//	{
+	//		mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+	//	}
+	//	if(mLogicComponent->existsInNightmares())
+	//	{
+	//		mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+	//	}
+	//}
+	//else
+	//{
+	//	if(mLogicComponent->existsInDreams())
+	//	{
+	//		mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_IDLE);
+	//	}
+	//	if(mLogicComponent->existsInNightmares())
+	//	{
+	//		mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_IDLE);
+	//	}
+	//}
 
 	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{

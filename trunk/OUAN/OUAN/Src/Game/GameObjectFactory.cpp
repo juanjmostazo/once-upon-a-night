@@ -1899,10 +1899,6 @@ GameObjectOnyPtr GameObjectFactory::createGameObjectOny(TGameObjectOnyParameters
 			tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters,
 			pGameObjectOny->getRenderComponentPositional()));
 
-	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectOny->getPhysicsComponentCharacterOny()->setOffsetRenderPosition(
-		tGameObjectOnyParameters.tPhysicsComponentCharacterOnyParameters.position_correction);
-
 	//Create audio component
 	pGameObjectOny->setAudioComponent(
 		mComponentFactory->createAudioComponent(
@@ -3499,10 +3495,6 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 		pGameObjectTripollo,
 		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectTripollo->getRenderComponentPositional()));
-
-	//TODO ERASE THIS WHEN PROPERLY DONE IN XSI
-	pGameObjectTripollo->getPhysicsComponentCharacter()->setOffsetRenderPosition(
-		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters.position_correction);
 
 	//Create TrajectoryComponent
 	pGameObjectTripollo->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(

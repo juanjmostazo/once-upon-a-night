@@ -4028,7 +4028,14 @@ TPhysicsComponentCharacterParameters LevelLoader::processPhysicsComponentCharact
 	{
 		tPhysicsComponentCharacterParameters.scale_correction=Vector3(1,1,1);
 	}
-
+	try
+	{
+		tPhysicsComponentCharacterParameters.yaw_correction=getPropertyReal(XMLNode,"PhysicsComponentCharacter"+suffix+"::yaw_correction");
+	}
+	catch(std::string error)
+	{
+		tPhysicsComponentCharacterParameters.yaw_correction=0;
+	}
 	return tPhysicsComponentCharacterParameters;
 }
 

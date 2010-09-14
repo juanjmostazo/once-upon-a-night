@@ -11,6 +11,8 @@ PhysicsComponentCharacter::PhysicsComponentCharacter(const std::string& type)
 {
 	reset();
 	mFlyingCharacter=false;
+	mOffsetDisplayYaw=0;
+	mOffsetRenderPosition=Vector3::ZERO;
 }
 
 PhysicsComponentCharacter::~PhysicsComponentCharacter()
@@ -529,7 +531,7 @@ void PhysicsComponentCharacter::setWalking(bool pWalking)
 
 double PhysicsComponentCharacter::calculateMovementDisplayYaw()
 {
-	double characterYaw = getNxOgreController()->getDisplayYaw();
+	double characterYaw = getDisplayYaw();
 
 	if(getNextMovement().z<0 && getNextMovement().x<0)
 	{
@@ -594,16 +596,16 @@ void PhysicsComponentCharacter::setNewYaw(double elapsedSeconds)
 
 	double turnUnitsSecond=Application::getInstance()->getPhysicsSubsystem()->mTurnUnitsPerSecond;
 
-	double angleDifference=calculateAngleDifference(getNxOgreController()->getDisplayYaw(),characterYaw);
+	double angleDifference=calculateAngleDifference(getDisplayYaw(),characterYaw);
 	if(Ogre::Math::Abs(angleDifference)>turnUnitsSecond*elapsedSeconds)
 	{
 		if(angleDifference<0)
 		{
-			setDisplayYaw(getNxOgreController()->getDisplayYaw()-turnUnitsSecond*elapsedSeconds);
+			setDisplayYaw(getDisplayYaw()-turnUnitsSecond*elapsedSeconds);
 		}
 		else if(angleDifference>0)
 		{
-			setDisplayYaw(getNxOgreController()->getDisplayYaw()+turnUnitsSecond*elapsedSeconds);
+			setDisplayYaw(getDisplayYaw()+turnUnitsSecond*elapsedSeconds);
 		}
 	}
 	else
@@ -720,6 +722,16 @@ void PhysicsComponentCharacter::setOffsetRenderPosition(Vector3 offsetRenderPosi
 Vector3 PhysicsComponentCharacter::getOffsetRenderPosition() const
 {
 	return mOffsetRenderPosition;
+}
+
+void PhysicsComponentCharacter::setOffsetDisplayYaw(double offsetDisplayYaw)
+{
+	mOffsetDisplayYaw = offsetDisplayYaw;
+}
+
+double PhysicsComponentCharacter::getOffsetDisplayYaw() const
+{
+	return mOffsetDisplayYaw;
 }
 
 void PhysicsComponentCharacter::setFlyingCharacter(bool pFlyingCharacter)

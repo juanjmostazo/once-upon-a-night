@@ -20,11 +20,15 @@ namespace OUAN
 		virtual void setOffsetRenderPosition(Vector3 offsetRenderPosition);
 		virtual Vector3 getOffsetRenderPosition() const;
 
+		virtual void setOffsetDisplayYaw(double offsetDisplayYaw);
+		virtual double getOffsetDisplayYaw() const;
+
 		virtual void setCyclicCharacter(bool pCyclicCharacter);
 		virtual bool isCyclicCharacter();
 
 		virtual void setFlyingCharacter(bool pFlyingCharacter);
 		virtual bool isFlyingCharacter();
+
 
 		virtual void calculateSliding(Ogre::Vector3 normal);
 
@@ -65,6 +69,8 @@ namespace OUAN
 
 		virtual void stabilize(double elapsedSeconds);
 
+		virtual void updateSceneNode();
+
 	protected:
 		virtual void resetJumpingVars();
 		virtual void resetFallingVars();
@@ -87,8 +93,6 @@ namespace OUAN
 		virtual Ogre::Vector3 getNextMovement();
 
 		virtual void setLastMovement(Ogre::Vector3 lastMovement);
-
-		virtual void updateSceneNode();
 
 		virtual void performCyclicMovement(double elapsedSeconds);
 		virtual void performClassicMovement(double elapsedSeconds);
@@ -134,6 +138,7 @@ namespace OUAN
 		Ogre::Vector3 mSlidingDirection;
 
 		Vector3 mOffsetRenderPosition;
+		double mOffsetDisplayYaw;
 
 		bool mCyclicCharacter;
 		double mCyclicDirection;
@@ -154,6 +159,7 @@ namespace OUAN
 		double height;
 		Vector3 scale_correction;
 		Vector3 position_correction;
+		double yaw_correction;
 	};
 }
 
