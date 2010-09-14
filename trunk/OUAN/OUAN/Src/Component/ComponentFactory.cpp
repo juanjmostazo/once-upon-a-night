@@ -456,9 +456,9 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 
 	pPhysicsComponentCharacter->setOffsetRenderPosition(tPhysicsComponentCharacterParameters.position_correction);
 	pPhysicsComponentCharacter->setOffsetDisplayYaw(tPhysicsComponentCharacterParameters.yaw_correction);
-	//pPhysicsComponentCharacter->setScaleCorrection(tPhysicsComponentCharacterParameters.scale_correction);
 
 	pPhysicsComponentCharacter->create();
+	pPhysicsComponentCharacter->setDisplayYaw(tPhysicsComponentCharacterParameters.yaw_correction);
 
 	return pPhysicsComponentCharacter;
 }
@@ -484,9 +484,9 @@ PhysicsComponentCharacterOnyPtr ComponentFactory::createPhysicsComponentCharacte
 
 	pPhysicsComponentCharacterOny->setOffsetRenderPosition(tPhysicsComponentCharacterOnyParameters.position_correction);
 	pPhysicsComponentCharacterOny->setOffsetDisplayYaw(tPhysicsComponentCharacterOnyParameters.yaw_correction);
-	//pPhysicsComponentCharacterOny->setScaleCorrection(tPhysicsComponentCharacterParameters.scale_correction);
 
 	pPhysicsComponentCharacterOny->create();
+	pPhysicsComponentCharacterOny->setDisplayYaw(tPhysicsComponentCharacterOnyParameters.yaw_correction);
 
 	return pPhysicsComponentCharacterOny;
 }

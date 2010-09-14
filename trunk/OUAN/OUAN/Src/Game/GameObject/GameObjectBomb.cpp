@@ -422,7 +422,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 			mTrajectoryComponent->activatePathFinding(onyName,world);
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_WALK);
 		}
-		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
+		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE) || currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START))
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mLogicComponentProp->setTimeSpent(0);
@@ -436,14 +436,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 
 			mPhysicsComponentWeapon->startAttack();
 		}
-		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION) || currentState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START))
-		{
-			mRenderComponentParticleSystemExplosion->start();
-			mTrajectoryComponent->activateIdle(getName(),world);
-			mRenderComponentEntity->setVisible(false);
-			mLogicComponentProp->setTimeSpent(0);
-			mAudioComponent->playSound("fart");
-		}
+
 	}
 
 	mTrajectoryComponent->update(elapsedSeconds);
@@ -489,9 +482,7 @@ void GameObjectBomb::initBombPuzzle()
 
 		mPhysicsComponentCharacter->create();
 		mPhysicsComponentCharacter->setPosition(mRenderComponentInitial->getPosition());
-		//mPhysicsComponentCharacter->setOrientation(mRenderComponentInitial->getOrientation());	
 		mRenderComponentPositional->setPosition(mRenderComponentInitial->getPosition());
-		//mRenderComponentPositional->setOrientation(mRenderComponentInitial->getOrientation());
 	}
 
 	if(mPhysicsComponentWeapon.get() && mPhysicsComponentWeapon->isInUse())
@@ -527,12 +518,12 @@ void GameObjectBomb::restartToInitialPoint()
 	int currentState=mLogicComponentProp->getState();
 	if(!currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 	{
-		mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START));
+		mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START));
 		mLogicComponentProp->setTimeSpent(0);
 	}
 	else
 	{
-		mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_PUZZLE_START));
+		initBombPuzzle();
 	}
 
 }
@@ -603,7 +594,23 @@ LogicComponentPtr GameObjectBomb::getLogicComponentInstance() const
 }
 void GameObjectBomb::processAnimationEnded(const std::string& animationName)
 {
-
+	if (animationName.compare(BOMB_ANIMATION_EXPLODE)==0)
+	{
+		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+		if(mLogicComponentProp->getState()==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
+		{
+			mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION));
+		}
+		else if(mLogicComponentProp->getState()==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START))
+		{
+			mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START));
+		}
+		mRenderComponentParticleSystemExplosion->start();
+		mTrajectoryComponent->activateIdle(getName(),getGameWorldManager()->getWorld());
+		mRenderComponentEntity->setVisible(false);
+		mLogicComponentProp->setTimeSpent(0);
+		mAudioComponent->playSound("fart");
+	}
 }
 //-------------------------------------------------------------------------------------------
 
