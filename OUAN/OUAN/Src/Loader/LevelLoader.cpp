@@ -69,6 +69,7 @@
 #include "../Game/GameObject/GameObjectLevelEntrance.h"
 #include "../Game/GameObject/GameObjectInvisibleWall.h"
 #include "../Game/GameObject/GameObjectBreakableRock.h"
+#include "../Game/GameObject/GameObjectBridge.h"
 
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
@@ -469,6 +470,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectBreakableRock(gameObject);
 		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BRIDGE)==0)
+		{
+			processGameObjectBridge(gameObject);
+		}
 		else
 		{
 			//processGameObjectProvisionalEntity(gameObject);
@@ -721,6 +726,56 @@ void LevelLoader::processGameObjectBillboardSet(XMLGameObject* gameObject)
 	//Create GameObject
 	mGameWorldManager->addGameObjectBillboardSet
 		(mGameObjectFactory->createGameObjectBillboardSet(tGameObjectBillboardSetParameters,mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectBridge(XMLGameObject* gameObject)
+{
+	std::string meshfile;
+
+	OUAN::TGameObjectBridgeParameters tGameObjectBridgeParameters;
+	tGameObjectBridgeParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
+	tGameObjectBridgeParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
+		if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
+
+		meshfile = getPropertyString(gameObject->getMainXMLNode(), "meshfile");
+
+		std::string complexConvex="CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
+
+		//Get names
+		tGameObjectBridgeParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectBridgeParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectBridgeParameters.name = gameObject->name;
+
+		//Get PhysicsComponentComplexConvex
+		tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+			gameObject->XMLNodeCustomProperties,
+			complexConvex);
+
+		tGameObjectBridgeParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		tGameObjectBridgeParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+		
+
+		tGameObjectBridgeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+		
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	//Create GameObject
+	//mGameWorldManager->createGameObjectBridge(tGameObjectBridgeParameters);
+	mGameWorldManager->addGameObjectBridge(mGameObjectFactory->createGameObjectBridge(tGameObjectBridgeParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectTraspasable(XMLGameObject* gameObject)

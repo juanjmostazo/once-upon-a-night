@@ -59,6 +59,7 @@
 #include "GameObject/GameObjectBomb.h"
 #include "GameObject/GameObjectTotem.h"
 #include "GameObject/GameObjectLevelEntrance.h"
+#include "GameObject/GameObjectBridge.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/CameraManager/CameraManager.h"
@@ -613,6 +614,12 @@ void GameWorldManager::addGameObjectBillboardSet(GameObjectBillboardSetPtr pGame
 	mGameObjectNonMovableContainer.push_back(pGameObjectBillboardSet);
 	mGameObjectBillboardSetContainer.push_back(pGameObjectBillboardSet);
 }
+
+void GameWorldManager::addGameObjectBridge(GameObjectBridgePtr gameObjectBridge)
+{
+	mGameObjects[gameObjectBridge->getName()]=gameObjectBridge;
+}
+
 
 void GameWorldManager::addGameObjectTraspasable(GameObjectTraspasablePtr gameObjectTraspasable)
 {

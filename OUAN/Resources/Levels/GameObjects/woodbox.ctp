@@ -2,7 +2,7 @@
 <CUSTOMPROPERTIES>
    <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="500" fields="X;Y;Z;W"></PROPERTY>
 
-    <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="200000" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="8 8 8" fields="X;Y;Z;W"></PROPERTY>
 
 	<PROPERTY id="meshfile" type="7" value="woodbox_broken.mesh"></PROPERTY>

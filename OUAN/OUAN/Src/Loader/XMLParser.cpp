@@ -110,6 +110,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TOTEM);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_INVISIBLE_WALL);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BREAKABLE_ROCK);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BRIDGE);
 
 	for(i=0;i<gameObjectTypes.size();i++)
 	{

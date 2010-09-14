@@ -490,6 +490,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBridge.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectCarnivorousPlant.cpp"
 						>
 					</File>
@@ -1580,6 +1584,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectBreakableRock.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectBridge.h"
 						>
 					</File>
 					<File
