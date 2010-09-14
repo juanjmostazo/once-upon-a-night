@@ -10,6 +10,7 @@
 #include "../../Game/GameObject/GameObjectFlashLight.h"
 #include "../../Game/GameObject/GameObjectBomb.h"
 #include "../../Game/GameObject/GameObjectBreakableRock.h"
+#include "../../Game/GameObject/GameObjectCryKing.h"
 #include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 
@@ -98,6 +99,9 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		if(mParent->getGameWorldManager()->getWorld()==DREAMS)
 		{
 			getParent()->getGameWorldManager()->restartBombPosition();
+			GameObjectCryKingPtr cryking= 
+				BOOST_PTR_CAST(GameObjectCryKing,getParent());
+			cryking->getRenderComponentEntity()->changeAnimation(CRYKING_ANIMATION_IDLE_2);
 		}
 	}
 

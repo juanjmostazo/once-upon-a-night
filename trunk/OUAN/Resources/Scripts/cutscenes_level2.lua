@@ -128,6 +128,8 @@ function cutScene3(timer)
 	timedMessage(any,"BOMBS_PUZZLE_START#6",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
 	
+	cryking:changeAnimation("idle03_Clip");
+	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end

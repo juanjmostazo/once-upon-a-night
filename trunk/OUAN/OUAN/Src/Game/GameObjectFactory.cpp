@@ -4042,24 +4042,17 @@ GameObjectTotemPtr GameObjectFactory::createGameObjectTotem(TGameObjectTotemPara
 		pGameObjectTotem->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
-	pGameObjectTotem->setRenderComponentEntityDreams(
+	pGameObjectTotem->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.dreamsName,
-		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectTotem->getLogicComponent()->existsInDreams(),
-		pGameObjectTotem->getLogicComponent()->existsInNightmares()));
-
-	//Create RenderComponentEntityNightmares
-	pGameObjectTotem->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTotemParameters.nightmaresName,
-		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTotem,tGameObjectTotemParameters.tRenderComponentEntityParameters,
 		pGameObjectTotem->getLogicComponent()->existsInDreams(),
 		pGameObjectTotem->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
-	pGameObjectTotem->setPhysicsComponentComplexTriangle(
-		mComponentFactory->createPhysicsComponentComplexTriangle(
+	pGameObjectTotem->setPhysicsComponentSimpleBox(
+		mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectTotem, 
-		tGameObjectTotemParameters.tPhysicsComponentComplexTriangleParameters, 
+		tGameObjectTotemParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectTotem->getRenderComponentPositional()));
 
 	//Add reference to this

@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-312.045 414.158 337.684" orientation="-0.708507 0.514969 -0.390207 -0.283835"></OPTION>
+    <OPTION id="2" position="-318.96 415.045 -1164.94" orientation="-0.924253 0.164165 -0.339287 -0.0607492"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.708533 0.514988 -0.390222 -0.283846"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.924411 0.164193 -0.339345 -0.0607596"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-312.045 414.158 337.684"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-318.96 415.045 -1164.94"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2706,7 +2706,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99922 -0.00435995 -0.000171303 -0.0392595"></PROPERTY>
-    <PROPERTY id="position" type="9" value="36.2823 71.0293 -464.482"></PROPERTY>
+    <PROPERTY id="position" type="9" value="35.839 65.3967 -464.433"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -6012,7 +6012,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.998307 -0.0565804 0.00336587 -0.0130865"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-41.0242 61.8099 -531.284"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-41.3508 49.2113 -529.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -9359,7 +9359,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999219 -0.00435995 0.000171303 0.0392594"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-73.4561 63.3445 -464.415"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-72.3235 48.9537 -464.289"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -12892,8 +12892,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999219 -0.00435995 0.000171303 0.0392594"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-133.741 57.5243 -450.209"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.991996 -0.12369 0.0250861 0.00383603"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-136.119 45.262 -446.1"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -16391,8 +16391,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999219 -0.00435995 0.000171303 0.0392594"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-214.887 40.7006 -501.601"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.998459 -0.0392296 -0.00119894 0.0392415"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-214.171 31.6006 -501.586"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -17902,7 +17902,7 @@
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-690.868 341.036 -1599.51"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="3 3 3"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
@@ -18145,7 +18145,7 @@
     <PROPERTY id="orientation" type="13" value="0.989651 0 0.143493 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="758.244 242.667 12.3843"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="37.2991 82.2344 46.3485"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="103.631 127.154 114.824"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -18882,8 +18882,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.990762 -0.069314 -0.0975403 -0.0638121"></PROPERTY>
-    <PROPERTY id="position" type="9" value="53.9113 57.6027 -543.487"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.973437 -0.110299 -0.0642833 -0.190061"></PROPERTY>
+    <PROPERTY id="position" type="9" value="52.9858 50.6821 -542.81"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -19532,8 +19532,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="nest.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999219 -0.00435995 0.000171303 0.0392594"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-165.628 43.2907 -593.505"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.998078 -0.0479412 -0.00154133 0.0392295"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-164.739 31.989 -593.406"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 2 4"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="egg1_d"></PROPERTY>
@@ -21806,7 +21806,7 @@
     <PROPERTY id="position" type="9" value="-649.084 368.44 -1900"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -25911,7 +25911,7 @@
     <PROPERTY id="position" type="9" value="-404.316 368.44 -1900"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -27181,7 +27181,7 @@
     <PROPERTY id="position" type="9" value="-479.73 368.44 -1900"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -27436,7 +27436,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-318.528 322.43 372.19"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-708.991 322.43 -1667.11"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
@@ -28689,7 +28689,7 @@
     <PROPERTY id="position" type="9" value="-536.816 368.44 -1900"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>

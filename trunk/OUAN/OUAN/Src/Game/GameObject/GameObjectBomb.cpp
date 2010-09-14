@@ -434,7 +434,6 @@ void GameObjectBomb::update(double elapsedSeconds)
 				mPhysicsComponentCharacter->destroy();
 			}
 
-			mPhysicsComponentWeapon->startAttack();
 		}
 
 	}
@@ -600,6 +599,7 @@ void GameObjectBomb::processAnimationEnded(const std::string& animationName)
 		if(mLogicComponentProp->getState()==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE))
 		{
 			mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION));
+			mPhysicsComponentWeapon->startAttack();
 		}
 		else if(mLogicComponentProp->getState()==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START))
 		{
