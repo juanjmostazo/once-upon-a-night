@@ -21,7 +21,8 @@ namespace OUAN
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
 	{
 	private:
-		
+		int mType;
+
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
@@ -115,13 +116,13 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
-
 		void update(double elapsedSeconds);
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		void setType(int pType);
+		int getType() const;
 	};
 
 	class TGameObjectTreeParameters: public TGameObjectParameters
@@ -142,6 +143,8 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
 
+		//Tree type [0, 12]
+		int type;
 	};
 }
 #endif

@@ -3139,6 +3139,9 @@ GameObjectTreePtr GameObjectFactory::createGameObjectTree(TGameObjectTreeParamet
 	pGameObjectTree->setSpawnProbability(tGameObjectTreeParameters.spawnProbability);
 	pGameObjectTree->setMaxRenderRadium(tGameObjectTreeParameters.mMaxRenderRadium);
 
+	//Set tree type
+	pGameObjectTree->setType(tGameObjectTreeParameters.type);
+
 	//Create LogicComponent
 	pGameObjectTree->setLogicComponent(
 		mComponentFactory->createLogicComponent(

@@ -17,6 +17,16 @@ GameObjectTree::~GameObjectTree()
 
 }
 
+void GameObjectTree::setType(int pType)
+{
+	mType = pType;
+}
+
+int GameObjectTree::getType() const
+{
+	return mType;
+}
+
 RenderComponentEntityPtr GameObjectTree::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -82,7 +92,11 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 					mPhysicsComponentSimpleBox->create();
 				}
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
-				mRenderComponentParticleSystemStars->stop();
+				
+				if (mType == 9)
+				{
+					mRenderComponentParticleSystemStars->stop();
+				}
 			}
 			else
 			{
@@ -94,7 +108,11 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
-				mRenderComponentParticleSystemStars->stop();
+				
+				if (mType == 9)
+				{
+					mRenderComponentParticleSystemStars->stop();
+				}
 			}		
 			break;
 		case NIGHTMARES:
@@ -109,7 +127,11 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);	
-				mRenderComponentParticleSystemStars->start();
+
+				if (mType == 9)
+				{
+					mRenderComponentParticleSystemStars->start();
+				}
 			}
 			else
 			{
@@ -121,7 +143,11 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
-				mRenderComponentParticleSystemStars->stop();
+
+				if (mType == 9)
+				{
+					mRenderComponentParticleSystemStars->stop();
+				}
 			}
 			break;
 		default:
