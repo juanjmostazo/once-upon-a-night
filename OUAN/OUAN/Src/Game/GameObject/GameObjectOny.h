@@ -265,6 +265,7 @@ namespace OUAN
 
 		//plataform related vars and function
 		bool mIsOnPlataform;
+		bool mLastFrameIsOnPlataform;
 		GameObjectPlataformPtr mPlataform;
 		void applyPlataformEffect();
 

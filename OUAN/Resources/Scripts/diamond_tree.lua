@@ -17,12 +17,13 @@ function diamondTreeLogic(pDiamondTree,state)
 	local myName=pDiamondTree:getName()
 	local delay=pDiamondTree:getDelay()	
 	local timeSpent=pDiamondTree:getTimeSpent()
-	local hit=pDiamondTree:hasTakenHit()		
+	local hit=pDiamondTree:hasTakenHit()	
+	local recovered=pDiamondTree:isRecovered()	
 	local newState=state
 	
 	if state==DT_STATE_IDLE and hit then
 		newState=DT_STATE_HIT
-	elseif state==DT_STATE_HIT and not hit then
+	elseif state==DT_STATE_HIT and recovered then
 		if timeSpent<delay then
 			log("READY TO HIT!")
 			newState=DT_STATE_MAY_HIT

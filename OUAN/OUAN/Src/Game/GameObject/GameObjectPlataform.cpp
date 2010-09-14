@@ -271,14 +271,15 @@ void GameObjectPlataform::setVisible(bool visible)
 
 void GameObjectPlataform::activateHit()
 {
-	//if(mLogicComponent->existsInDreams())
-	//{
-	//	mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
-	//}
-	//if(mLogicComponent->existsInNightmares())
-	//{
-	//	mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
-	//}
+	//TODO UNCOMMENT WHEN RIGHT ANIMATION NAMES
+	if(mLogicComponent->existsInDreams())
+	{
+		//mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		//mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+	}
 }
 
 Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()
@@ -376,6 +377,23 @@ bool GameObjectPlataform::hasLogicComponent() const
 {
 	return true;
 }
+
+void GameObjectPlataform::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(PLATFORM_ANIM_JUMP)==0)
+	{
+		if(mLogicComponent->existsInDreams())
+		{
+			mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_IDLE);
+		}
+		if(mLogicComponent->existsInNightmares())
+		{
+			mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_IDLE);
+		}
+	}
+
+}
+
 LogicComponentPtr GameObjectPlataform::getLogicComponentInstance() const
 {
 	return mLogicComponent;

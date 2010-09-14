@@ -176,6 +176,8 @@ void GameObjectSignpost::reset()
 	mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);
 	mRenderComponentEntity->setVisible((mWorld==DREAMS && mLogicComponent->existsInDreams()) ||
 		(mWorld==NIGHTMARES && mLogicComponent->existsInNightmares()));
+
+	mLogicComponent->setRecovered(true);
 }
 
 bool GameObjectSignpost::hasPositionalComponent() const
@@ -247,8 +249,9 @@ void GameObjectSignpost::processAnimationEnded(const std::string& animationName)
 {
 	if (animationName.compare(SIGN_ANIM_HIT)==0)
 	{
-		mLogicComponent->setHasTakenHit(false);
+		mLogicComponent->setRecovered(true);
 	}
+
 }
 void GameObjectSignpost::update(double elapsedSeconds)
 {
@@ -262,12 +265,7 @@ void GameObjectSignpost::update(double elapsedSeconds)
 
 		if (currentState==logicSS->getGlobalInt(SIGN_STATE_IDLE))
 		{
-			if (mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
-			{
-				mLogicComponent->setStateChanged(false);
-				mLogicComponent->setHasTakenHit(false);
-				mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);					
-			}
+			mRenderComponentEntity->changeAnimation(SIGN_ANIM_IDLE);
 		}
 		else if (currentState==logicSS->getGlobalInt(SIGN_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{	
@@ -276,6 +274,8 @@ void GameObjectSignpost::update(double elapsedSeconds)
 			mMessageBox->setMessageBoxText();
 			mMessageBox->show();
 			mAudioComponent->playSound("signpost");
+
+			mLogicComponent->setRecovered(false);
 		}
 		if (mRenderComponentEntity.get())
 		{
@@ -361,6 +361,7 @@ void GameObjectSignpost::setRenderComponentMessageBox(RenderComponentMessageBoxP
 {
 	mMessageBox=messageBox;
 }
+
 bool GameObjectSignpost::hasLogicComponent() const
 {
 	return true;

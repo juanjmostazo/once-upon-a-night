@@ -136,6 +136,7 @@ namespace OUAN
 
 		void update(double elapsedSeconds);
 		
+		void processAnimationEnded(const std::string& animationName);
 		
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
