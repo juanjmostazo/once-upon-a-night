@@ -151,7 +151,7 @@ function cutScene4(timer)
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false);
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true);
 	trajectoryCamWait();
 	busyWait(timer,5);
 	
@@ -191,17 +191,17 @@ function startCutScene7(pOny)
 		log ("CUTSCENE 7 (1): ");
 		log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_2_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (2): ");
 		log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_3_PLATFORM_DEFEATED) and not hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (3): ");
 		log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
-		-- launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene2");
 	end
 	return
 end
@@ -209,6 +209,46 @@ end
 function conditionCutScene7(pOny)
 	return true;
 end
+
+function cutScene7_1(timer)
+	log ("CUTSCENE 7_1: ");
+	log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_7_1_TRIPOLLOS_PLATFORM,false,true);
+	trajectoryCamWait();
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+function cutScene7_2(timer)
+	log ("CUTSCENE 7_2: ");
+	log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_7_2_TRIPOLLOS_PLATFORM,false,true);
+	trajectoryCamWait();
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+function cutScene7_3(timer)
+	log ("CUTSCENE 7_3: ");
+	log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_7_3_TRIPOLLOS_PLATFORM,false,true);
+	trajectoryCamWait();
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
 
 -- CUTSCENE 8: TRIPOLLO_STATUES
 function startCutScene8(pOny)

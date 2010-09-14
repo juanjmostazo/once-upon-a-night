@@ -3969,10 +3969,10 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 	pGameObjectSwitch->setMaxRenderRadium(tGameObjectSwitchParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectSwitch->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+	pGameObjectSwitch->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectSwitch,
-		tGameObjectSwitchParameters.tLogicComponentParameters));
+		tGameObjectSwitchParameters.tLogicComponentPropParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectSwitch->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
@@ -3983,18 +3983,11 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 		pGameObjectSwitch->getRenderComponentPositional()));
 
 	//Create RenderComponentEntityDreams
-	pGameObjectSwitch->setRenderComponentEntityDreams(
+	pGameObjectSwitch->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.dreamsName,
-		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectSwitch->getLogicComponent()->existsInDreams(),
-		pGameObjectSwitch->getLogicComponent()->existsInNightmares()));
-
-	//Create RenderComponentEntityNightmares
-	pGameObjectSwitch->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.nightmaresName,
-		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectSwitch->getLogicComponent()->existsInDreams(),
-		pGameObjectSwitch->getLogicComponent()->existsInNightmares()));
+		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityParameters,
+		pGameObjectSwitch->getLogicComponentProp()->existsInDreams(),
+		pGameObjectSwitch->getLogicComponentProp()->existsInNightmares()));
 
 	//Create PhysicsComponentSimpleBox
 	pGameObjectSwitch->setPhysicsComponentSimpleBox(

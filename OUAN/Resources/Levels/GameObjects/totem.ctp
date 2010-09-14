@@ -4,7 +4,7 @@
 
 
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="90 285 90" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="45 142 45" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- Logic component properties  -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="nest.lua"></PROPERTY>

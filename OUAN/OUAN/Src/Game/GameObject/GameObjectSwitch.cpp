@@ -16,24 +16,14 @@ GameObjectSwitch::~GameObjectSwitch()
 
 }
 
-void GameObjectSwitch::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectSwitch::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectSwitch::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+RenderComponentEntityPtr GameObjectSwitch::getRenderComponentEntity() const
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
-RenderComponentEntityPtr GameObjectSwitch::getRenderComponentEntityDreams() const
-{
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectSwitch::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectSwitch::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -112,11 +102,6 @@ void GameObjectSwitch::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectSwitch::reset()
-{
-	GameObject::reset();
-}
-
 bool GameObjectSwitch::hasPositionalComponent() const
 {
 	return true;
@@ -127,52 +112,58 @@ RenderComponentPositionalPtr GameObjectSwitch::getPositionalComponent() const
 }
 
 /// Set logic component
-void GameObjectSwitch::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectSwitch::setLogicComponentProp(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectSwitch::getLogicComponent()
+LogicComponentPropPtr GameObjectSwitch::getLogicComponentProp()
 {
 	return mLogicComponent;
 }
 
-void GameObjectSwitch::setDreamsRender()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityDreams->setDreamsMaterials();
-	mRenderComponentEntityNightmares->setVisible(false);
-}
-
-void GameObjectSwitch::setNightmaresRender()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
-	mRenderComponentEntityNightmares->setNightmaresMaterials();
-}
 
 void GameObjectSwitch::setChangeWorldFactor(double factor)
 {
 	if (!isEnabled()) return;
-	if(mLogicComponent->existsInDreams())
-	{
-		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
-	}
 
-	if(mLogicComponent->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
-	}
+	mRenderComponentEntity->setChangeWorldFactor(factor);
 }
 
-void GameObjectSwitch::setChangeWorldRender()
+void GameObjectSwitch::reset()
 {
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	GameObject::reset();
+
+	disable();
+	setVisible(false);
+	if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->destroy();
+	}
+	mPushable=false;
+}
+
+void GameObjectSwitch::makePushable()
+{
+	enable();
+	setVisible(true);
+	if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	{
+		mPhysicsComponentSimpleBox->create();
+	}
+	mPushable=true;
+}
+
+void GameObjectSwitch::setVisible(bool visible)
+{
+	if (!isEnabled() || !mPushable) return;
+	mRenderComponentEntity->setVisible(visible);
+}
+
+void GameObjectSwitch::push()
+{
+
 }
 
 bool GameObjectSwitch::hasRenderComponentEntity() const
@@ -181,7 +172,7 @@ bool GameObjectSwitch::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectSwitch::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 bool GameObjectSwitch::hasLogicComponent() const
 {

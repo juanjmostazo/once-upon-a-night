@@ -2,6 +2,7 @@
 
 #include "GameObjectTripollo.h"
 #include "GameObjectOny.h"
+#include "GameObjectSwitch.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 #include "../../Utils/Utils.h"
@@ -366,6 +367,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
 						entity->changeAnimation(TRIPOLLO_ANIM_DIE);
 						mTrajectoryComponent->activateIdle(getName(),world);
+						checkTripolloPlataformPuzzleActivations();
 					}
 				}
 				else
@@ -409,6 +411,30 @@ void GameObjectTripollo::update(double elapsedSeconds)
 		{
 			mPhysicsComponentCharacter->destroy();
 		}
+	}
+}
+
+void GameObjectTripollo::checkTripolloPlataformPuzzleActivations()
+{
+	GameObjectPtr obj;
+	if(getName().compare("tripollo#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM))
+	{
+		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
+	}
+	else if(getName().compare("tripollo#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM))
+	{
+		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
+	}
+	else if(getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM))
+	{
+		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+	}
+
+	if(obj.get())
+	{
+		GameObjectSwitchPtr obj_switch= 
+			BOOST_PTR_CAST(GameObjectSwitch,obj);
+		obj_switch->makePushable();
 	}
 }
 

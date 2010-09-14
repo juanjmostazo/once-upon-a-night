@@ -84,7 +84,7 @@ function conditionCheckPoint5(pOny)
 	return checkpointNumber<50;
 end
 
--- CHECKPOINT 6: TRIPOLLO'S PLATFORM COMPLETED
+-- CHECKPOINT 6: TRIPOLLO'S PLATFORM START
 function enterCheckPoint6(pOny)
 	log ("enterCheckPoint6");
 	setCheckPoint("CheckPoint6",60);
@@ -94,7 +94,18 @@ end
 function conditionCheckPoint6(pOny)
     local checkpointNumber=getCheckPointNumber();
     return checkpointNumber<60;
-	-- return checkpointNumber<60 and hasExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) and hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+end
+
+-- CHECKPOINT 65: TRIPOLLO'S PLATFORM END
+function enterCheckPoint65(pOny)
+	log ("enterCheckPoint65");
+	setCheckPoint("CheckPoint65",65);
+return
+end
+
+function conditionCheckPoint65(pOny)
+    local checkpointNumber=getCheckPointNumber();
+    return checkpointNumber<65;
 end
 
 -- CHECKPOINT 7: TRIPOLLO_STATUES
