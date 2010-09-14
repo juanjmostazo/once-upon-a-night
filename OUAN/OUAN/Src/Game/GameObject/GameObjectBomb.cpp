@@ -452,8 +452,6 @@ void GameObjectBomb::update(double elapsedSeconds)
 		Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();
 
 		mPhysicsComponentCharacter->setOuternMovement(movement);
-		//DIRECTION FIX
-		mPhysicsComponentCharacter->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw()+90);
 	}
 
 	mRenderComponentEntity->update(elapsedSeconds);

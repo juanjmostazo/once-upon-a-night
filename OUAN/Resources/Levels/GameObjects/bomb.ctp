@@ -13,6 +13,7 @@
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 -3 0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1 1 1" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::yaw_correction" type="6" value="90" ></PROPERTY>
 
 	<!-- Logic component attributes -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="bomb.lua"></PROPERTY>

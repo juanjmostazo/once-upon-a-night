@@ -454,6 +454,10 @@ PhysicsComponentCharacterPtr ComponentFactory::createPhysicsComponentCharacter(G
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacter->setNxOgreControllerDescription(mNxOgreControllerDescription);
 
+	pPhysicsComponentCharacter->setOffsetRenderPosition(tPhysicsComponentCharacterParameters.position_correction);
+	pPhysicsComponentCharacter->setOffsetDisplayYaw(tPhysicsComponentCharacterParameters.yaw_correction);
+	//pPhysicsComponentCharacter->setScaleCorrection(tPhysicsComponentCharacterParameters.scale_correction);
+
 	pPhysicsComponentCharacter->create();
 
 	return pPhysicsComponentCharacter;
@@ -477,6 +481,10 @@ PhysicsComponentCharacterOnyPtr ComponentFactory::createPhysicsComponentCharacte
 	mNxOgreControllerDescription.mCallback=mApp->getPhysicsSubsystem().get();
 	mNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(tRenderComponentPositional->getSceneNode()->getPosition()));
 	pPhysicsComponentCharacterOny->setNxOgreControllerDescription(mNxOgreControllerDescription);
+
+	pPhysicsComponentCharacterOny->setOffsetRenderPosition(tPhysicsComponentCharacterOnyParameters.position_correction);
+	pPhysicsComponentCharacterOny->setOffsetDisplayYaw(tPhysicsComponentCharacterOnyParameters.yaw_correction);
+	//pPhysicsComponentCharacterOny->setScaleCorrection(tPhysicsComponentCharacterParameters.scale_correction);
 
 	pPhysicsComponentCharacterOny->create();
 

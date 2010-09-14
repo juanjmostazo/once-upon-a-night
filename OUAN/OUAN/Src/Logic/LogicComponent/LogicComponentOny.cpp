@@ -108,28 +108,11 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			BOOST_PTR_CAST(GameObjectPlataform,pGameObject);
 
 		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,getParent());
-		PhysicsComponentCharacterOnyPtr physicsOny = ony->getPhysicsComponentCharacterOny();
 
-		plataform->resetElapsedTimeSinceLastCollision();
-		
-		//Logger::getInstance()->log("///////////////////////");
-		//Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
-		//Logger::getInstance()->log("PLATFORM: " + Ogre::StringConverter::toString(physicsPlataform->getPosition()));
-		//Logger::getInstance()->log("LAST_POS_DIFF: " + Ogre::StringConverter::toString(physicsPlataform->getLastPositionDifference()));
-
-		Ogre::Vector3 posOny = physicsOny->getPosition();
-
-		posOny += plataform->getLastPositionDifference();
-
-		// Fixes platforms bug
-		if(plataform->getLastPositionDifference().y>0)
-		{
-			posOny.y += 0.1;
-		}
-
-		physicsOny->setPosition(posOny);
-
-		plataform->resetLastPositionDifference();
+		//if(Ogre::Math::Abs(Application::getInstance()->getPhysicsSubsystem()->angleFromNormal(pNormal))<50)
+		//{
+			ony->setOnPlataform(true,plataform);
+		//}
 	}
 	else if (pGameObject->getType().compare(GAME_OBJECT_TYPE_WATER)==0)
 	{

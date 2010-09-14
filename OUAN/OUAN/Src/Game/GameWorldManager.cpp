@@ -1533,6 +1533,8 @@ void GameWorldManager::postUpdate()
 		//Logger::getInstance()->log("Updating game object " + it->second->getName());
 		it->second->postUpdate();
 	}
+
+	dispatchEvents();
 }
 void GameWorldManager::toggleTreeVisibility()
 {

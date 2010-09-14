@@ -9,6 +9,7 @@
 #include "GameObjectViewport.h"
 #include "GameObjectPillow.h"
 #include "GameObjectFlashLight.h"
+#include "GameObjectPlataform.h"
 #include "../../Utils/Utils.h"
 
 using namespace OUAN;
@@ -228,6 +229,17 @@ void GameObjectOny::update(double elapsedSeconds)
 	}
 }
 
+bool GameObjectOny::isOnPlataform() const
+{
+	return mIsOnPlataform;
+}
+
+void GameObjectOny::setOnPlataform(bool onPlataform,GameObjectPlataformPtr plataform)
+{
+	mIsOnPlataform=onPlataform;
+	mPlataform=plataform;
+}
+
 void GameObjectOny::reset()
 {
 	GameObject::reset();
@@ -249,6 +261,8 @@ void GameObjectOny::reset()
 	mLogicComponentOny->setHealthPoints(mLogicComponentOny->getInitialHealthPoints());
 	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 	mRenderComponentQuadHalo->setVisible(false);
+
+	mIsOnPlataform=false;
 }
 
 void GameObjectOny::changeWorldFinished(int newWorld)
@@ -671,6 +685,48 @@ void GameObjectOny::postUpdate()
 		}
 	}
 
+	applyPlataformEffect();
+
+}
+
+void GameObjectOny::applyPlataformEffect()
+{
+	if(isOnPlataform())
+	{
+		mPlataform->resetElapsedTimeSinceLastCollision();
+		
+		//Logger::getInstance()->log("///////////////////////");
+		//Logger::getInstance()->log("ONY: " + Ogre::StringConverter::toString(physicsOny->getPosition()));
+		//Logger::getInstance()->log("PLATFORM: " + Ogre::StringConverter::toString(physicsPlataform->getPosition()));
+		//Logger::getInstance()->log("LAST_POS_DIFF: " + Ogre::StringConverter::toString(physicsPlataform->getLastPositionDifference()));
+
+		//IT IS A MESS BUT IT FINALLY WORKS! LETS HOPE THAT 10 and THAT 100 doesnt affect anything important...
+
+		Ogre::Vector3 posOny = mPhysicsComponentCharacterOny->getPosition();
+		Ogre::Vector3 oldPosition = posOny;
+
+		if(!mPhysicsComponentCharacterOny->isJumping())
+		{
+			posOny.z += mPlataform->getLastPositionDifference().z;
+			posOny.x += mPlataform->getLastPositionDifference().x;
+			posOny.y += 100;
+
+			mPhysicsComponentCharacterOny->setPosition(posOny);
+			mPhysicsComponentCharacterOny->stabilize(Application::getInstance()->getPhysicsSubsystem()->mStabilizeSeconds);
+			mPhysicsComponentCharacterOny->updateSceneNode();
+
+			if(Ogre::Math::Abs(mPhysicsComponentCharacterOny->getPosition().y-oldPosition.y)>10)
+			{
+				mPhysicsComponentCharacterOny->setPosition(oldPosition);
+				mPhysicsComponentCharacterOny->updateSceneNode();
+			}
+		}
+
+		mPlataform->resetLastPositionDifference();
+
+	}
+
+	mIsOnPlataform=false;
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const

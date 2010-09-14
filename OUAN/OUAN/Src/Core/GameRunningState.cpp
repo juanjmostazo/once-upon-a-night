@@ -487,13 +487,13 @@ void GameRunningState::update(long elapsedTime)
 
 			mApp->getPhysicsSubsystem()->update(elapsedSeconds);
 
-			mApp->getCameraManager()->update(elapsedSeconds);
-
 			mApp->getLogicSubsystem()->update(elapsedSeconds);
 
 			mApp->getTrajectoryManager()->updateDebugNodes();
 
 			mApp->getGameWorldManager()->postUpdate();
+
+			mApp->getCameraManager()->update(elapsedSeconds);
 
 			if (mApp.get() && mApp->getGameWorldManager().get() && mApp->getGameWorldManager()->getGameObjectOny().get())
 			{
