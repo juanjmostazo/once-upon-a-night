@@ -60,6 +60,7 @@
 #include "GameObject/GameObjectBomb.h"
 #include "GameObject/GameObjectTotem.h"
 #include "GameObject/GameObjectLevelEntrance.h"
+#include "GameObject/GameObjectBridge.h"
 
 #include "../Graphics/RenderSubsystem.h"
 #include "../Graphics/ParticleManager/ParticleTemplates.h"
@@ -2189,6 +2190,59 @@ GameObjectPlataformPtr GameObjectFactory::createGameObjectPlataform(TGameObjectP
 		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
 	}
 	return pGameObjectPlataform;
+}
+
+
+GameObjectBridgePtr GameObjectFactory::createGameObjectBridge(TGameObjectBridgeParameters tGameObjectBridgeParameters, 
+	GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectBridgePtr pGameObjectBridge;
+
+	//Create GameObject
+	pGameObjectBridge = GameObjectBridgePtr(new GameObjectBridge(tGameObjectBridgeParameters.name));
+	pGameObjectBridge->setMaxUpdateRadium(tGameObjectBridgeParameters.mMaxUpdateRadium);
+	pGameObjectBridge->setParentNest(tGameObjectBridgeParameters.parentNest);
+	pGameObjectBridge->setSpawnProbability(tGameObjectBridgeParameters.spawnProbability);
+	pGameObjectBridge->setMaxRenderRadium(tGameObjectBridgeParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectBridge->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectBridge,
+		tGameObjectBridgeParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectBridge->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectBridge,tGameObjectBridgeParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectBridge->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectBridge->getRenderComponentPositional()));
+
+	//Create RenderComponentEntityDreams
+	pGameObjectBridge->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBridgeParameters.name,
+		pGameObjectBridge,tGameObjectBridgeParameters.tRenderComponentEntityParameters,
+	pGameObjectBridge->getLogicComponent()->existsInDreams(),
+	pGameObjectBridge->getLogicComponent()->existsInNightmares()));
+
+	//Create PhysicsComponent
+	pGameObjectBridge->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
+		pGameObjectBridge,
+		tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters,
+		pGameObjectBridge->getRenderComponentPositional()));
+
+
+	//Add reference to this
+	pGameObjectBridge->setGameWorldManager(gameWorldMgr);
+
+	std::string scriptFile="";
+	pGameObjectBridge->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+	return pGameObjectBridge;
 }
 
 GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalParameters tGameObjectPortalParameters, 

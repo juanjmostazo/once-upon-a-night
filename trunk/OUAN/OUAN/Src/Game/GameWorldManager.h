@@ -310,6 +310,8 @@ namespace OUAN
 		void addGameObjectInvisibleWall(GameObjectInvisibleWallPtr pGameObjectInvisibleWall);
 		void addGameObjectBreakableRock(GameObjectBreakableRockPtr pGameObjectBreakableRock);
 
+		void addGameObjectBridge(GameObjectBridgePtr pGameObjectBridge);
+
 		void activateChangeWorld();
 		void activateChangeWorldFast();
 

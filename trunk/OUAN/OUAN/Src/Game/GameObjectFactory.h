@@ -139,6 +139,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectBreakableRockPtr createGameObjectBreakableRock(TGameObjectBreakableRockParameters tGameObjectBreakableRockParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectBridgePtr createGameObjectBridge(TGameObjectBridgeParameters tGameObjectBridgeParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 	};
 }
 #endif

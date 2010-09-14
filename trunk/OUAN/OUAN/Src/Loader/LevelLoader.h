@@ -111,6 +111,7 @@ namespace OUAN
 		void processGameObjectLevelEntrance(XMLGameObject* gameObject);
 		void processGameObjectInvisibleWall(XMLGameObject* gameObject);
 		void processGameObjectBreakableRock(XMLGameObject* gameObject);
+		void processGameObjectBridge(XMLGameObject* gameObject);
 
 		//RenderComponent Processors
 		TRenderComponentSceneParameters processRenderComponentScene(TiXmlElement *XMLOgitorNode,TiXmlElement *XMLCustomPropertiesNode);
