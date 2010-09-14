@@ -3170,17 +3170,12 @@ void LevelLoader::processGameObjectSwitch(XMLGameObject* gameObject)
 		tGameObjectSwitchParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectSwitchParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+		tGameObjectSwitchParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectSwitchParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntityNightmares
-		tGameObjectSwitchParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-
+		//Get RenderComponentEntity
+		tGameObjectSwitchParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectSwitchParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());

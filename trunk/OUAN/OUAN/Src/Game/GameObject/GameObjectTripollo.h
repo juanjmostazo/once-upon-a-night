@@ -100,6 +100,8 @@ namespace OUAN
 
 		bool activateTrajectory(int newWorld);
 
+		void checkTripolloPlataformPuzzleActivations();
+
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
