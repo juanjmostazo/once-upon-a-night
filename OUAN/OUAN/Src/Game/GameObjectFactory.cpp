@@ -770,24 +770,14 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 	pGameObjectDiamondTree->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectDiamondTree->getRenderComponentPositional()));
 
-	if(pGameObjectDiamondTree->getLogicComponent()->existsInDreams())
-	{
-		//Create RenderComponentEntity Dreams
-		pGameObjectDiamondTree->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.dreamsName,
-			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
-		pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
-	}
-	if(pGameObjectDiamondTree->getLogicComponent()->existsInNightmares())
-	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectDiamondTree->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.nightmaresName,
-			pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
-		pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
-	}
+
+	//Create RenderComponentEntity
+	pGameObjectDiamondTree->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectDiamondTreeParameters.dreamsName,
+		pGameObjectDiamondTree,tGameObjectDiamondTreeParameters.tRenderComponentEntityParameters,
+	pGameObjectDiamondTree->getLogicComponent()->existsInDreams(),
+	pGameObjectDiamondTree->getLogicComponent()->existsInNightmares()));
+
 
 	//Create audio component
 	pGameObjectDiamondTree->setAudioComponent(
@@ -1745,9 +1735,9 @@ GameObjectNestPtr GameObjectFactory::createGameObjectNest(TGameObjectNestParamet
 		pGameObjectNest,tRenderComponentParticleSystemParameters,pGameObjectNest->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
-	pGameObjectNest->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+	pGameObjectNest->setPhysicsComponentSimpleBox(mComponentFactory->createPhysicsComponentSimpleBox(
 		pGameObjectNest,
-		params.tPhysicsComponentCharacterParameters,
+		params.tPhysicsComponentSimpleBoxParameters,
 		pGameObjectNest->getRenderComponentPositional()));
 
 	//Create audio component

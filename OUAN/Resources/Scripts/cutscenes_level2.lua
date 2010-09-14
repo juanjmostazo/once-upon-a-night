@@ -141,7 +141,6 @@ function startCutScene4(pOny)
 end
 
 function conditionCutScene4(pOny)
-	--when bombs are implemented shold check if a bomb has exploded the rock
 	return not hasExecutedLevelEvent(CUTSCENE_4_BOMBS_PUZZLE_END) and hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
 end
 

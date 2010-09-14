@@ -106,7 +106,16 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	{
 		GameObjectBreakableRockPtr rock= 
 			BOOST_PTR_CAST(GameObjectBreakableRock,getParent());
-		rock->breakRock();
+		GameObjectBombPtr bomb= 
+			BOOST_PTR_CAST(GameObjectBomb,pGameObject);
+
+		LogicSubsystemPtr logicSS = mParent->getGameWorldManager()->getParent()->getLogicSubsystem();
+		int bombState=bomb->getLogicComponentProp()->getState();
+
+		if(bombState==logicSS->getGlobalInt(BOMB_STATE_EXPLOSION))
+		{
+			rock->breakRock();
+		}
 	}
 }
 //void processActivate(ActivateEventPtr evt);

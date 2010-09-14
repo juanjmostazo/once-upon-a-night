@@ -452,7 +452,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TOTEM)==0)
 		{
-			processGameObjectTotem(gameObject);
+			//processGameObjectTotem(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BOMB)==0)
 		{
@@ -1069,19 +1069,10 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 		tGameObjectDiamondTreeParameters.tLogicComponentParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		if(tGameObjectDiamondTreeParameters.tLogicComponentParameters.existsInDreams)
-		{
-			//Get RenderComponentEntityDreams
-			tGameObjectDiamondTreeParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-				DREAMS,gameObject->XMLNodeCustomProperties);
-		}
-		if(tGameObjectDiamondTreeParameters.tLogicComponentParameters.existsInNightmares)
-		{
-			//Get RenderComponentEntityNightmares
-			tGameObjectDiamondTreeParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-				NIGHTMARES,gameObject->XMLNodeCustomProperties);
-		}
-		
+		//Get RenderComponentEntity
+		tGameObjectDiamondTreeParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+		BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
 		//Get AudioComponent
 		tGameObjectDiamondTreeParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
@@ -1091,10 +1082,7 @@ void LevelLoader::processGameObjectDiamondTree(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentSimpleBox
 		tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);		
-		//tGameObjectDiamondTreeParameters.tPhysicsComponentSimpleBoxParameters = processPhysicsComponentSimpleBox(
-		//	gameObject->XMLNodeCustomProperties);
-		//tGameObjectDiamondTreeParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBox(
-		//	gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{
@@ -1693,7 +1681,7 @@ void LevelLoader::processGameObjectNest(XMLGameObject* gameObject)
 		params.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
-		params.tPhysicsComponentCharacterParameters= processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		params.tPhysicsComponentSimpleBoxParameters= processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )

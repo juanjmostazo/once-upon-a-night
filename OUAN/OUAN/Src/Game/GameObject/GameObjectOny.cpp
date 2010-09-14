@@ -738,10 +738,8 @@ void GameObjectOny::applyPlataformEffect()
 		}
 	}
 
-
 	mLastFrameIsOnPlataform=mIsOnPlataform;
 	mIsOnPlataform=false;
-
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const

@@ -28,8 +28,8 @@ namespace OUAN
 	private:
 		
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
+
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -69,13 +69,11 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -153,8 +151,7 @@ namespace OUAN
 		~TGameObjectDiamondTreeParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

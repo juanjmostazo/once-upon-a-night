@@ -19,14 +19,9 @@ GameObjectDiamondTree::~GameObjectDiamondTree()
 
 }
 
-void GameObjectDiamondTree::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectDiamondTree::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
-}
-
-void GameObjectDiamondTree::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
-{
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 AudioComponentPtr GameObjectDiamondTree::getAudioComponent() const
@@ -40,14 +35,9 @@ void GameObjectDiamondTree::setAudioComponent(AudioComponentPtr audioComponent)
 }
 
 
-RenderComponentEntityPtr GameObjectDiamondTree::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectDiamondTree::getRenderComponentEntity() const
 {
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectDiamondTree::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectDiamondTree::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -87,9 +77,10 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
+			setDreamsRender();
 			if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -101,7 +92,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
+				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -112,9 +103,10 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			}		
 			break;
 		case NIGHTMARES:
+			setNightmaresRender();
 			if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntity->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -126,7 +118,7 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
+				mRenderComponentEntity->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -147,15 +139,8 @@ void GameObjectDiamondTree::changeWorldStarted(int newWorld)
 
 	Logger::getInstance()->log("[changeWorldStarted] CHANGING "+getName());
 
-
-	if(mLogicComponent->existsInDreams())
-	{
-		mRenderComponentEntityDreams->setVisible(true);
-	}
-	if(mLogicComponent->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->setVisible(true);
-	}
+	mRenderComponentEntity->setVisible(true);
+	setChangeWorldRender();
 
 	switch(newWorld)
 	{
@@ -300,13 +285,13 @@ void GameObjectDiamondTree::reset()
 
 	if (mLogicComponent->existsInNightmares())
 	{
-		mRenderComponentEntityNightmares->changeAnimation(DT_ANIM_IDLE);		
-		mRenderComponentEntityNightmares->setVisible(mWorld==NIGHTMARES);
+		mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);		
+		mRenderComponentEntity->setVisible(mWorld==NIGHTMARES);
 	}
 	else if (mLogicComponent->existsInDreams())
 	{
-		mRenderComponentEntityDreams->changeAnimation(DT_ANIM_IDLE);
-		mRenderComponentEntityDreams->setVisible(mWorld==DREAMS);
+		mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
+		mRenderComponentEntity->setVisible(mWorld==DREAMS);
 	}
 }
 
@@ -372,7 +357,7 @@ bool GameObjectDiamondTree::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDiamondTree::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 void GameObjectDiamondTree::processAnimationEnded(const std::string& animationName)
 {
@@ -390,26 +375,22 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 	{	
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
-		RenderComponentEntityPtr entityToUpdate = (mWorld==DREAMS)
-			?mRenderComponentEntityDreams
-			:mRenderComponentEntityNightmares;
-
 		int currentState=mLogicComponent->getState();
 		
 		if (currentState==logicSS->getGlobalInt(DT_STATE_IDLE))
 		{
-			if (entityToUpdate.get() && mLogicComponent->isStateChanged())
+			if (mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{
 				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
 				mLogicComponent->setReload(false);
-				entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+				mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
 				mLogicComponent->setTimeSpent(-1.0);
 			}
 		}
-		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{	
-			entityToUpdate->changeAnimation(DT_ANIM_HIT);			
+			mRenderComponentEntity->changeAnimation(DT_ANIM_HIT);			
 			if (mLogicComponent->getTimeSpent()<0)
 			{
 				mLogicComponent->setTimeSpent(0.0);
@@ -420,21 +401,21 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			mLogicComponent->setRecovered(false);
 			//play sound and particles
 		}
-		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{					
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
-			entityToUpdate.get() && mLogicComponent->isStateChanged())
+			mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{
 			//TODO: Replace with depletion animation when it is done
 			//TODO: Add particles
-			entityToUpdate->changeAnimation(DT_ANIM_IDLE);
+			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
 		}
 		//Last, update the entity
-		if (entityToUpdate.get())
+		if (mRenderComponentEntity.get())
 		{
-			entityToUpdate->update(elapsedSeconds*0.1);
+			mRenderComponentEntity->update(elapsedSeconds*0.1);
 		}
 	}
 }
@@ -451,13 +432,13 @@ void GameObjectDiamondTree::setVisible(bool visible)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
-			mRenderComponentEntityDreams->setVisible(visible);
+			mRenderComponentEntity->setVisible(visible);
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponent->existsInNightmares())
 		{
-			mRenderComponentEntityNightmares->setVisible(visible);
+			mRenderComponentEntity->setVisible(visible);
 		}
 		break;
 	default:

@@ -137,29 +137,49 @@ void RenderComponentEntity::initAnimations(std::vector<TRenderComponentEntityAni
 	}
 	else mIsAnimated=false;
 }
+
+bool RenderComponentEntity::hasAnimation(const std::string& anim)
+{
+	if( mEntity->getAllAnimationStates())
+	{
+		return mEntity->getAllAnimationStates()->hasAnimationState(anim);
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void RenderComponentEntity::changeAnimation(const std::string& anim)
 {
 	TAnimationData oldAnimData= mAnimations[getCurrentAnimationName()];
 	TAnimationData newAnimData= mAnimations[anim];
 
-	if (!oldAnimData.transitions.empty() && 
-		oldAnimData.transitions.find(anim)!=oldAnimData.transitions.end())
+	if(hasAnimation(anim))
 	{
-		TTransitionData tranData = oldAnimData.transitions[anim];
-		//Check if there's a source blend mask.
-		if (!tranData.sourceBlendMask.empty())
+		if (!oldAnimData.transitions.empty() && 
+			oldAnimData.transitions.find(anim)!=oldAnimData.transitions.end())
 		{
-			mAnimationBlender->setBoneMask(tranData.sourceBlendMask);		
+			TTransitionData tranData = oldAnimData.transitions[anim];
+			//Check if there's a source blend mask.
+			if (!tranData.sourceBlendMask.empty())
+			{
+				mAnimationBlender->setBoneMask(tranData.sourceBlendMask);		
+			}
+			else mAnimationBlender->resetBoneMask();
+			//Check for a target blend mask
+			if (!tranData.targetBlendMask.empty())
+			{
+				mAnimationBlender->blend(anim,tranData.blendType,tranData.duration,tranData.targetBlendMask,newAnimData.loop,newAnimData.timescale);
+			}
+			else changeAnimation(anim,tranData.blendType,tranData.duration,newAnimData.loop,newAnimData.timescale);
 		}
-		else mAnimationBlender->resetBoneMask();
-		//Check for a target blend mask
-		if (!tranData.targetBlendMask.empty())
-		{
-			mAnimationBlender->blend(anim,tranData.blendType,tranData.duration,tranData.targetBlendMask,newAnimData.loop,newAnimData.timescale);
-		}
-		else changeAnimation(anim,tranData.blendType,tranData.duration,newAnimData.loop,newAnimData.timescale);
+		else changeAnimation(anim,AnimationBlender::BT_SWITCH,0,newAnimData.loop,newAnimData.timescale);
 	}
-	else changeAnimation(anim,AnimationBlender::BT_SWITCH,0,newAnimData.loop,newAnimData.timescale);
+	else
+	{
+		Logger::getInstance()->log("ERROR: " + getParent()->getName() + " wit mesh "+mEntity->getMesh()->getName()+ " does not have animation "+anim);
+	}
 
 }
 void RenderComponentEntity::changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, float duration, bool l/* =true */, float timeScale/* =1.0 */)

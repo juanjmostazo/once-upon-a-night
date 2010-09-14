@@ -62,6 +62,7 @@ namespace OUAN
 		bool hasAnimationBlender() const;
 
 		void changeAnimation(const std::string& anim);
+		bool hasAnimation(const std::string& anim);
 
 		void changeAnimation(const std::string& animation,AnimationBlender::TBlendingTransition transition, 
 			float duration, bool l=true, float timeScale=1.0);

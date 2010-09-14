@@ -415,6 +415,7 @@ void GameObjectBomb::update(double elapsedSeconds)
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_IDLE);
+			mPhysicsComponentWeapon->endAttack();
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_FOLLOW))
 		{
