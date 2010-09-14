@@ -18,19 +18,12 @@
 	
 	<!-- TODO: Animations! -->
 	<PROPERTY id="initialAnimation" type="7" value="static_pose"></PROPERTY>
-	<PROPERTY id="animation0d::name" type="7" value="static_pose"></PROPERTY>
-	<PROPERTY id="animation0d::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+	<PROPERTY id="animation0::name" type="7" value="static_pose"></PROPERTY>
+	<PROPERTY id="animation0::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
   
-	<PROPERTY id="animation1d::name" type="7" value="hit"></PROPERTY>
-	<PROPERTY id="animation1d::loop" type="12" value="false"></PROPERTY>
+	<PROPERTY id="animation1::name" type="7" value="hit"></PROPERTY>
+	<PROPERTY id="animation1::loop" type="12" value="false"></PROPERTY>
 	
-	
-	<PROPERTY id="animation0n::name" type="7" value="static_pose"></PROPERTY>
-	<PROPERTY id="animation0n::loop" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-	
-	<PROPERTY id="animation1n::name" type="7" value="hit"></PROPERTY>
-	<PROPERTY id="animation1n::loop" type="12" value="false"></PROPERTY>	
-
   <!-- Sounds -->
   <PROPERTY id="AudioComponent::soundID#0" type="7" value="tree"></PROPERTY>
 

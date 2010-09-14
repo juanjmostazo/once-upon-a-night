@@ -620,15 +620,19 @@ void PhysicsComponentCharacter::setNewYaw(double elapsedSeconds)
 void PhysicsComponentCharacter::setRotationMovementFactor(double angleDifference)
 {
 	angleDifference=Ogre::Math::Abs(angleDifference);
-	if(angleDifference>90)
+
+	if(!isJumping())
 	{
-		setNextMovement(Vector3(0,getNextMovement().y,0));
-	}
-	else
-	{
-		double factor;
-		factor=(1-(angleDifference/90)*(angleDifference/90));
-		setNextMovement(Vector3(getNextMovement().x*factor,getNextMovement().y,getNextMovement().z*factor));
+		if(angleDifference>90)
+		{
+			setNextMovement(Vector3(0,getNextMovement().y,0));
+		}
+		else
+		{
+			double factor;
+			factor=(1-(angleDifference/90)*(angleDifference/90));
+			setNextMovement(Vector3(getNextMovement().x*factor,getNextMovement().y,getNextMovement().z*factor));
+		}
 	}
 }
 

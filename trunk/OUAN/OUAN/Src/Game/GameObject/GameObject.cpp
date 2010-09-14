@@ -58,6 +58,11 @@ bool GameObject::isFirstUpdate()
 	return mNumUpdates <= 1;
 }
 
+int GameObject::getNumUpdates()
+{
+	return mNumUpdates;
+}
+
 void GameObject::activateChangeWorldFast()
 {
 	changeWorldFinished(mGameWorldManager->getWorld());

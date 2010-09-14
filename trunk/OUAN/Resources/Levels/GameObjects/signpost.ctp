@@ -30,6 +30,6 @@
 	<PROPERTY id="RenderComponentMessageBox::charPanelName" type="7" value="" ></PROPERTY>  
 
   <!-- Sounds -->
-  <PROPERTY id="AudioComponent::soundID#0" type="7" value="signpost"></PROPERTY>
-
+  <PROPERTY id="AudioComponent::soundID#0" type="7" value="signpost_d"></PROPERTY>
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="signpost_n"></PROPERTY>
 </CUSTOMPROPERTIES>

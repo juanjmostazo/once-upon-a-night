@@ -75,6 +75,7 @@ namespace OUAN
 
 		//// Returns if it's first update
 		bool isFirstUpdate();
+		int getNumUpdates();
 
 		/// Return Game Object name (i.e, its identifier)
 		/// @return name of the Game Object

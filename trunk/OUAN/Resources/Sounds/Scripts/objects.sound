@@ -70,9 +70,21 @@ sound explosion
 	volume 1
 }
 
-sound signpost
+sound signpost_d
 {
 	sound_file 	Objects/Golpe_3.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 150 5000
+	volume 1
+}
+
+sound signpost_n
+{
+	sound_file 	Weapons\flashlight\Guardar.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true

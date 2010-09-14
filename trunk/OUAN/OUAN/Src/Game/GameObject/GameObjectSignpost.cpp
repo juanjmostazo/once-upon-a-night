@@ -273,7 +273,14 @@ void GameObjectSignpost::update(double elapsedSeconds)
 			//displayText(getTranslation(getSignpostMessage()));
 			mMessageBox->setMessageBoxText();
 			mMessageBox->show();
-			mAudioComponent->playSound("signpost");
+			if(mWorld==DREAMS)
+			{
+				mAudioComponent->playSound("signpost_d");
+			}
+			else if(mWorld==NIGHTMARES)
+			{
+				mAudioComponent->playSound("signpost_n");
+			}
 
 			mLogicComponent->setRecovered(false);
 		}

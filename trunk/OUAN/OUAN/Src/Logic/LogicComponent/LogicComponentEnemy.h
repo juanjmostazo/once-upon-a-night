@@ -78,6 +78,9 @@ namespace OUAN
 		bool isStatueEnabled() const;
 		void setStatueEnabled(bool statueEnabled);
 
+		bool isFlyingEnabled() const;
+		void setFlyingEnabled(bool flyingEnabled);
+
 		void setState(int state);
 
 	private:
@@ -120,6 +123,7 @@ namespace OUAN
 		bool mCallWasHeard;
 		bool mHasHeardCall;
 		bool mStatueEnabled;
+		bool mFlyingEnabled;
 
 		EnemyType mEnemyType;
 

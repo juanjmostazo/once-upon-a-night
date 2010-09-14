@@ -149,6 +149,7 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 void GameObjectTripollo::activateFlying(bool flying)
 {
 	mPhysicsComponentCharacter->setFlyingCharacter(flying);
+	mLogicComponentEnemy->setFlyingEnabled(flying);
 	if(flying)
 	{
 		mTrajectoryComponent->setAs3DTrajectory();
@@ -444,6 +445,8 @@ void GameObjectTripollo::reset()
 		mPhysicsComponentCharacter->getNxOgreController()->setDisplayYaw(mRenderComponentInitial->getOrientation().getYaw().valueDegrees());
 		mLogicComponentEnemy->setHasDied(false);
 		mLogicComponentEnemy->setHasBeenHit(false);
+		//TODO DO THAT PROPERLY
+		mLogicComponentEnemy->setInitialHealthPoints(3);
 
 	}		
 	else
@@ -452,18 +455,8 @@ void GameObjectTripollo::reset()
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 		mLogicComponentEnemy->setHasDied(false);
 		mLogicComponentEnemy->setHasBeenHit(false);
-
-	}
-
-	switch(mWorld)
-	{
-		case DREAMS:
-			//activateStatue(mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_STATUE);
-			break;
-		case NIGHTMARES:
-			//activateStatue(false);
-			break;
-		default:break;
+		//TODO DO THAT PROPERLY
+		mLogicComponentEnemy->setInitialHealthPoints(3);
 	}
 
 }

@@ -130,6 +130,7 @@ void LogicSubsystem::registerModules()
 			.def("getMeleeRange",&LogicComponentEnemy::getMeleeRange)
 			.def("isTiredFinished",&LogicComponentEnemy::isTiredFinished)
 			.def("isStatueEnabled",&LogicComponentEnemy::isStatueEnabled)
+			.def("isFlyingEnabled",&LogicComponentEnemy::isFlyingEnabled)
 			.def("hasPatrolTrajectory",&LogicComponentEnemy::hasPatrolTrajectory),
 		class_<LogicComponentOny, LogicComponent > ("LogicComponentOny")
 			.def(constructor<const std::string&>())

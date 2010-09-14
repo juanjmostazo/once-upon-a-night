@@ -21,37 +21,43 @@ LogicComponentTrigger::~LogicComponentTrigger()
 
 void LogicComponentTrigger::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
-	int world=getParent()->getWorld();
-	bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
-	if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	if(getParent()->getNumUpdates()%5==0)
 	{
-		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);	
-		LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
-		if (!mLoadedScript)
+		bool hasEnterActionDefined = !mTriggerScript.empty() && (!mDreamsEnterActionFunction.empty() || !mNightmaresEnterActionFunction.empty());
+		if (hasEnterActionDefined && pGameObject.get() && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
-			mLoadedScript=true;
-		}
-		if (world == DREAMS && mDreamsExecuteEachFrame)
-		{
-			bool conditionFulfilled = mDreamsEnterConditionFunction.empty() || logicSS->invokeConditionFunction(mDreamsEnterConditionFunction,ony->getLogicComponentOny().get());
-			if (!mDreamsEnterActionFunction.empty() && conditionFulfilled)	
+			LogicSubsystemPtr logicSS= Application::getInstance()->getLogicSubsystem();
+			if (!mLoadedScript)
 			{
-				logicSS->invokeActionFunction(mDreamsEnterActionFunction,ony->getLogicComponentOny().get());
+				logicSS->loadScript(SCRIPTS_PATH+"/"+mTriggerScript);		
+				mLoadedScript=true;
+			}
+			int world=getParent()->getWorld();
+			GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);	
+			
+			if (world==DREAMS)
+			{			
+				bool conditionFulfilled = mDreamsEnterConditionFunction.empty() || 
+					logicSS->invokeConditionFunction(mDreamsEnterConditionFunction,ony->getLogicComponentOny().get());
+				if (!mDreamsEnterActionFunction.empty() && conditionFulfilled)	
+				{
+						logicSS->invokeActionFunction(mDreamsEnterActionFunction,ony->getLogicComponentOny().get());
+				}
+			}
+			else //NIGHTMARES
+			{
+				bool conditionFulfilled = mNightmaresEnterConditionFunction.empty() || 
+					logicSS->invokeConditionFunction(mNightmaresEnterConditionFunction,ony->getLogicComponentOny().get());
+				if (!mNightmaresEnterActionFunction.empty() && conditionFulfilled)	
+				{
+						logicSS->invokeActionFunction(mNightmaresEnterActionFunction,ony->getLogicComponentOny().get());
+				}		
 			}
 		}
-		else if (world==NIGHTMARES && mNightmaresExecuteEachFrame)
+		else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
-			bool conditionFulfilled = mNightmaresEnterConditionFunction.empty() || logicSS->invokeConditionFunction(mNightmaresEnterConditionFunction,ony->getLogicComponentOny().get());
-			if (!mNightmaresEnterActionFunction.empty() && conditionFulfilled)	
-			{
-				logicSS->invokeActionFunction(mNightmaresEnterActionFunction,ony->getLogicComponentOny().get());
-			}
+			//Logger::getInstance()->log(getParent()->getName() +": HAS NO ENTER SCRIPT");
 		}
-	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
-	{
-		//Logger::getInstance()->log(getParent()->getName() +": HAS NO COLLISION SCRIPT");
 	}
 }
 void LogicComponentTrigger::processEnterTrigger(GameObjectPtr pGameObject)

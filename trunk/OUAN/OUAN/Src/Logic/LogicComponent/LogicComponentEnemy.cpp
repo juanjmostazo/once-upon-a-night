@@ -320,6 +320,16 @@ void LogicComponentEnemy::setStatueEnabled(bool statueEnabled)
 	mStatueEnabled=statueEnabled;
 }
 
+bool LogicComponentEnemy::isFlyingEnabled() const
+{
+	return mFlyingEnabled;
+}
+
+void LogicComponentEnemy::setFlyingEnabled(bool flyingEnabled)
+{
+	mFlyingEnabled=flyingEnabled;
+}
+
 void LogicComponentEnemy::setState(int state)
 {
 	int oldState=mState;

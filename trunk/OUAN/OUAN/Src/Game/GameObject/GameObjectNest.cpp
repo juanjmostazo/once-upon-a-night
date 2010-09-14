@@ -78,14 +78,14 @@ RenderComponentParticleSystemPtr GameObjectNest::getRenderComponentParticleSyste
 	return mRenderComponentParticleSystemJump;
 }
 
-void GameObjectNest::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr physicsComponentCharacter)
+void GameObjectNest::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox)
 {
-	mPhysicsComponentCharacter=physicsComponentCharacter;
+	mPhysicsComponentSimpleBox=physicsComponentSimpleBox;
 }
 
-PhysicsComponentCharacterPtr GameObjectNest::getPhysicsComponentCharacter() const
+PhysicsComponentSimpleBoxPtr GameObjectNest::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 AudioComponentPtr GameObjectNest::getAudioComponent() const
@@ -107,22 +107,18 @@ void GameObjectNest::changeWorldFinished(int newWorld)
 	{
 	case DREAMS:
 		setDreamsRender();
-		if (mLogicComponent->existsInDreams())
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-			{
-				mPhysicsComponentCharacter->create();
-			}
-
-			break;
+		if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->create();
+		}
+		break;
 	case NIGHTMARES:		
 		setNightmaresRender();
-		if (mLogicComponent->existsInNightmares())
-			if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
-			{
-				mPhysicsComponentCharacter->destroy();
-			}
-
-			break;
+		if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->destroy();
+		}
+		break;
 	default:
 		break;
 	}
@@ -226,7 +222,7 @@ bool GameObjectNest::hasPhysicsComponent() const
 
 PhysicsComponentPtr GameObjectNest::getPhysicsComponent() const
 {
-	return mPhysicsComponentCharacter;
+	return mPhysicsComponentSimpleBox;
 }
 
 /// Set logic component
@@ -290,9 +286,9 @@ void GameObjectNest::disable()
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
 
-	if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+	if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 	{
-		mPhysicsComponentCharacter->destroy();
+		mPhysicsComponentSimpleBox->destroy();
 	}
 
 }
