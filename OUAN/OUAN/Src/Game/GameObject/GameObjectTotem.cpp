@@ -16,24 +16,14 @@ GameObjectTotem::~GameObjectTotem()
 
 }
 
-void GameObjectTotem::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectTotem::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectTotem::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+RenderComponentEntityPtr GameObjectTotem::getRenderComponentEntity() const
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
-RenderComponentEntityPtr GameObjectTotem::getRenderComponentEntityDreams() const
-{
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectTotem::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectTotem::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -56,14 +46,14 @@ RenderComponentInitialPtr GameObjectTotem::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectTotem::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
+void GameObjectTotem::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
-	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
 }
 
-PhysicsComponentComplexTrianglePtr GameObjectTotem::getPhysicsComponentComplexTriangle() const
+PhysicsComponentSimpleBoxPtr GameObjectTotem::getPhysicsComponentSimpleBox() const
 {
-	return mPhysicsComponentComplexTriangle;
+	return mPhysicsComponentSimpleBox;
 }
 
 void GameObjectTotem::changeWorldFinished(int newWorld)
@@ -138,41 +128,13 @@ LogicComponentPtr GameObjectTotem::getLogicComponent()
 	return mLogicComponent;
 }
 
-void GameObjectTotem::setDreamsRender()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityDreams->setDreamsMaterials();
-	mRenderComponentEntityNightmares->setVisible(false);
-}
-
-void GameObjectTotem::setNightmaresRender()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
-	mRenderComponentEntityNightmares->setNightmaresMaterials();
-}
 
 void GameObjectTotem::setChangeWorldFactor(double factor)
 {
 	if (!isEnabled()) return;
-	if(mLogicComponent->existsInDreams())
-	{
-		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
-	}
 
-	if(mLogicComponent->existsInNightmares())
-	{
-		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
-	}
-}
+	mRenderComponentEntity->setChangeWorldFactor(factor);
 
-void GameObjectTotem::setChangeWorldRender()
-{
-	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
 }
 
 bool GameObjectTotem::hasRenderComponentEntity() const
@@ -181,7 +143,7 @@ bool GameObjectTotem::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectTotem::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 bool GameObjectTotem::hasLogicComponent() const
 {

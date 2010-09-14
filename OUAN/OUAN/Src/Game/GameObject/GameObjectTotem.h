@@ -5,7 +5,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Physics/PhysicsComponent/PhysicsComponentComplexTriangle.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponent.h"
 
 namespace OUAN
@@ -16,13 +16,13 @@ namespace OUAN
 	private:
 		
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
+
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexTrianglePtr mPhysicsComponentComplexTriangle;
+		PhysicsComponentSimpleBoxPtr mPhysicsComponentSimpleBox;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -41,13 +41,11 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
-
+		RenderComponentEntityPtr getRenderComponentEntity() const;
+	
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -65,10 +63,10 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle);
+		void setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox);
 
 		/// Get physics component
-		PhysicsComponentComplexTrianglePtr getPhysicsComponentComplexTriangle() const;
+		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -84,10 +82,6 @@ namespace OUAN
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
-
-		void setDreamsRender();
-		void setNightmaresRender();
-		void setChangeWorldRender();
 		void setChangeWorldFactor(double factor);
 		
 		bool hasLogicComponent() const;
@@ -101,14 +95,13 @@ namespace OUAN
 		~TGameObjectTotemParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 
 		///Physics parameters
-		TPhysicsComponentComplexTriangleParameters tPhysicsComponentComplexTriangleParameters;
+		TPhysicsComponentSimpleBoxParameters tPhysicsComponentSimpleBoxParameters;
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;

@@ -93,18 +93,20 @@ void GameObjectCryKing::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
-		mRenderComponentEntity->setVisible(true);
+		setDreamsRender();
 		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->create();
 		}
+		mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_IDLE_3);
 		break;
 	case NIGHTMARES:
-		mRenderComponentEntity->setVisible(false);
+		setNightmaresRender();
 		if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->destroy();
 		}
+		mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_CRY);
 		break;
 	default:
 		break;
@@ -114,7 +116,7 @@ void GameObjectCryKing::changeWorldFinished(int newWorld)
 void GameObjectCryKing::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
-
+	setChangeWorldRender();
 	switch(newWorld)
 	{
 	case DREAMS:
@@ -155,11 +157,11 @@ bool GameObjectCryKing::hasPhysicsComponent() const
 {
 	return true;
 }
+
 PhysicsComponentPtr GameObjectCryKing::getPhysicsComponent() const
 {
 	return getPhysicsComponentSimpleBox();
 }
-
 
 /// Set logic component
 void GameObjectCryKing::setLogicComponentProp(LogicComponentPropPtr logicComponent)
@@ -195,6 +197,14 @@ void GameObjectCryKing::processExitTrigger(GameObjectPtr pGameObject)
 	if (mLogicComponent.get())
 	{
 		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
+void GameObjectCryKing::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(CRYKING_ANIMATION_IDLE_2)==0)
+	{
+		mRenderComponentEntity->changeAnimation(CRYKING_ANIMATION_IDLE_3);
 	}
 }
 

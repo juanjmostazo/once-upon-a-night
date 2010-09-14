@@ -452,7 +452,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TOTEM)==0)
 		{
-			//processGameObjectTotem(gameObject);
+			processGameObjectTotem(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BOMB)==0)
 		{
@@ -3273,22 +3273,15 @@ void LevelLoader::processGameObjectTotem(XMLGameObject* gameObject)
 		tGameObjectTotemParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-
-		//Get RenderComponentEntityNightmares
-		tGameObjectTotemParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-
+		//Get RenderComponentEntity
+		tGameObjectTotemParameters.tRenderComponentEntityParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectTotemParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
-		//Get PhysicsComponentComplexTriangle
-		std::string nxsfile = "TRIANGLE_"+tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters.meshfile.substr(0,
-			tGameObjectTotemParameters.tRenderComponentEntityDreamsParameters.meshfile.size()-5)+".nxs";
-		tGameObjectTotemParameters.tPhysicsComponentComplexTriangleParameters=processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,nxsfile);
+		//Get PhysicsComponentSimpleBox
+		tGameObjectTotemParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
