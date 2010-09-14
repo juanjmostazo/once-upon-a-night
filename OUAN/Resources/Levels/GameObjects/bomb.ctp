@@ -11,9 +11,9 @@
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="10000" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="5" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="4" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 -3 0" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 -7.5 0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1 1 1" ></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::yaw_correction" type="6" value="90" ></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::yaw_correction" type="6" value="270" ></PROPERTY>
 
 	<!-- Logic component attributes -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="bomb.lua"></PROPERTY>
@@ -24,7 +24,7 @@
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.5" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.25" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->

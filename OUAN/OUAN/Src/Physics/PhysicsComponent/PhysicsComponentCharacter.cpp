@@ -579,6 +579,8 @@ double PhysicsComponentCharacter::calculateMovementDisplayYaw()
 		characterYaw+=180;
 	}
 
+	characterYaw+=mOffsetDisplayYaw;
+
 	if(characterYaw>=360)
 	{
 		characterYaw-=360;

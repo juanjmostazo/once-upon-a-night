@@ -251,7 +251,6 @@ void GameObjectSignpost::processAnimationEnded(const std::string& animationName)
 	{
 		mLogicComponent->setRecovered(true);
 	}
-
 }
 void GameObjectSignpost::update(double elapsedSeconds)
 {
