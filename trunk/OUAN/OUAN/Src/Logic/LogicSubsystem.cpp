@@ -158,6 +158,7 @@ void LogicSubsystem::registerModules()
 			.def("getDelay",&LogicComponentProp::getDelay)
 			.def("getTimeSpent",&LogicComponentProp::getTimeSpent)
 			.def("hasTakenHit", &LogicComponentProp::hasTakenHit)
+			.def("isRecovered", &LogicComponentProp::isRecovered)
 			.def("isReloadSet", &LogicComponentProp::isReload)
 	];
 }

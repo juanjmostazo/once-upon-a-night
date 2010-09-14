@@ -31,14 +31,16 @@ namespace OUAN
 		bool isReload() const;
 		void setReload(bool reload);
 
+		bool isRecovered() const;
+		void setRecovered(bool recovered);
 
 	private:
 		double mApproachDistance;
 		double mDelay;
 		double mTimeSpent;
 		bool mHasTakenHit;
-		double mHitRecoveryTime;
 		bool mReload;
+		bool mRecovered;
 	};
 
 	class TLogicComponentPropParameters: public TLogicComponentParameters

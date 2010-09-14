@@ -263,6 +263,7 @@ void GameObjectOny::reset()
 	mRenderComponentQuadHalo->setVisible(false);
 
 	mIsOnPlataform=false;
+	mLastFrameIsOnPlataform=false;
 }
 
 void GameObjectOny::changeWorldFinished(int newWorld)
@@ -717,16 +718,30 @@ void GameObjectOny::applyPlataformEffect()
 
 			if(Ogre::Math::Abs(mPhysicsComponentCharacterOny->getPosition().y-oldPosition.y)>10)
 			{
-				mPhysicsComponentCharacterOny->setPosition(oldPosition);
+				mPhysicsComponentCharacterOny->setPosition(Vector3(posOny.x,oldPosition.y,posOny.z));
 				mPhysicsComponentCharacterOny->updateSceneNode();
 			}
 		}
 
 		mPlataform->resetLastPositionDifference();
 
+		if(!mLastFrameIsOnPlataform)
+		{
+			mPlataform->activateHit();
+		}
+	}
+	else
+	{
+		if(mLastFrameIsOnPlataform)
+		{
+			mPlataform->activateHit();
+		}
 	}
 
+
+	mLastFrameIsOnPlataform=mIsOnPlataform;
 	mIsOnPlataform=false;
+
 }
 
 AudioComponentPtr GameObjectOny::getAudioComponentInstance() const

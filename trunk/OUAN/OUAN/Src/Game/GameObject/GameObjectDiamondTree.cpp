@@ -378,7 +378,7 @@ void GameObjectDiamondTree::processAnimationEnded(const std::string& animationNa
 {
 	if (animationName.compare(DT_ANIM_HIT)==0)
 	{
-		mLogicComponent->setHasTakenHit(false);
+		mLogicComponent->setRecovered(true);
 		mLogicComponent->setReload(true);
 	}
 }
@@ -417,6 +417,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			mGameWorldManager->increaseOnyDiamonds(1);
 
 			mAudioComponent->playSound("tree");
+			mLogicComponent->setRecovered(false);
 			//play sound and particles
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && entityToUpdate.get() && mLogicComponent->isStateChanged())

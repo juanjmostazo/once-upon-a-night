@@ -19,7 +19,7 @@ LogicComponentProp::LogicComponentProp(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_PROP)
 ,mTimeSpent(0)
 ,mHasTakenHit(false)
-,mHitRecoveryTime(-1)
+,mRecovered(true)
 {
 
 }
@@ -44,21 +44,20 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 
 	if(isParentDiamondTree && isWeaponCollision && (getState()==logicSS->getGlobalInt(DT_STATE_IDLE) || getState()==logicSS->getGlobalInt(DT_STATE_MAY_HIT)))
 	{		
-		if (mHitRecoveryTime<0)
+		if (isRecovered())
 		{
-			getParent()->displayText("THUD!");
+			//getParent()->displayText("THUD!");
 			//TODO: LAUNCH PARTICLES!!
 			mHasTakenHit=true;			
-			mHitRecoveryTime=1;
+
 		}		
 	}
 	bool isParentSignpost = mParent->getType().compare(GAME_OBJECT_TYPE_SIGNPOST)==0;
 	if (isParentSignpost && isWeaponCollision)
 	{
-		if(mHitRecoveryTime<0)
+		if(isRecovered())
 		{
 			mHasTakenHit=true;
-			mHitRecoveryTime=1;
 
 			if (worldMgr->isFirstSignpostHit())
 			{
@@ -70,17 +69,13 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 	bool isParentPortal = mParent->getType().compare(GAME_OBJECT_TYPE_PORTAL)==0;
 	if (isParentPortal && isWeaponCollision)
 	{
-		if(mParent->getName().compare(FIRST_CHANGE_WORLD_GAME_OBJECT)==0)
+		if(mParent->getName().compare(FIRST_CHANGE_WORLD_GAME_OBJECT)==0 && !mParent->getGameWorldManager()->hasExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED))
 		{
 			mParent->getGameWorldManager()->addExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
 		}
 		else
 		{
-			if(mHitRecoveryTime<0)
-			{
-				mHasTakenHit=true;
-				mHitRecoveryTime=0;
-			}
+			mHasTakenHit=true;
 		}
 	}
 	bool isParentBomb = mParent->getType().compare(GAME_OBJECT_TYPE_BOMB)==0;
@@ -113,14 +108,6 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 			BOOST_PTR_CAST(GameObjectBreakableRock,getParent());
 		rock->breakRock();
 	}
-
-	bool isParentPlataform = mParent->getType().compare(GAME_OBJECT_TYPE_PLATAFORM)==0;
-	if (isParentPlataform)
-	{
-		GameObjectPlataformPtr plataform= 
-			BOOST_PTR_CAST(GameObjectPlataform,getParent());
-		plataform->activateHit();
-	}
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);
@@ -131,8 +118,6 @@ void LogicComponentProp::update(double elapsedTime)
 	LogicComponent::update(elapsedTime);
 	if (mTimeSpent>=0.0 && mTimeSpent<mDelay)
 		mTimeSpent+=elapsedTime;
-	if(mHitRecoveryTime>=0)
-		mHitRecoveryTime-=elapsedTime;
 	
 	mHasTakenHit=false;
 }
@@ -145,6 +130,16 @@ void LogicComponentProp::setApproachDistance(double approachDistance)
 {
 	mApproachDistance=approachDistance;
 }
+
+bool LogicComponentProp::isRecovered() const
+{
+	return mRecovered;
+}
+void LogicComponentProp::setRecovered(bool recovered)
+{
+	mRecovered=recovered;
+}
+
 double LogicComponentProp::getTimeSpent() const
 {
 	return mTimeSpent;
