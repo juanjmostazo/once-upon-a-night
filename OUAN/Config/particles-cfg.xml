@@ -3,7 +3,8 @@
   <Options>
     <Option key="DEFAULT_PARTICLE_SYSTEM_POOL_SIZE">1</Option>
   
-	<Option key="PORTAL_CHANGE_WORLD_IDLE">PU/changeworld_idle</Option>
+	<Option key="PORTAL_CHANGE_WORLD_IDLE_DREAMS">PU/changeworld_idle</Option>
+	<Option key="PORTAL_CHANGE_WORLD_IDLE_NIGHTMARES">PU/changeworld_idle_n</Option>
 	<Option key="PORTAL_CHANGE_WORLD_CHANGING">PU/changeworld_changing</Option>
 	<Option key="PORTAL_CHANGE_WORLD_SKY">PU/changeworld_sky</Option>
 	

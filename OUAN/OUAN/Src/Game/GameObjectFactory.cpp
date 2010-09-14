@@ -2264,11 +2264,21 @@ GameObjectPortalPtr GameObjectFactory::createGameObjectPortal(TGameObjectPortalP
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
 
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_IDLE;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_IDLE_DREAMS;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldIdle(
+	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldIdleDreams(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectPortal,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectPortal->getRenderComponentPositional()));
+
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->PORTAL_CHANGE_WORLD_IDLE_NIGHTMARES;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectPortal->setRenderComponentParticleSystemChangeWorldIdleNightmares(
 		mComponentFactory->createRenderComponentParticleSystem(
 		pGameObjectPortal,
 		tRenderComponentParticleSystemParameters,

@@ -1,0 +1,43 @@
+system PU/changeworld_idle_n
+{
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    technique 
+    {
+        visual_particle_quota                   250
+        material                                PU/changeworld_idle_n
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       200
+            angle                               360
+            time_to_live                        1
+            velocity                            dyn_random
+            {
+                min                             200
+                max                             500
+            }
+            particle_width                      dyn_random
+            {
+                min                             20
+                max                             90
+            }
+            particle_height                     dyn_random
+            {
+                min                             400
+                max                             800
+            }
+            colour                              1 0.84 0.45 1
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+}
