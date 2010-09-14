@@ -446,7 +446,8 @@ void GameObjectPortal::setVisible(bool visible)
 
 	//Commented this lines because some they give null pointers
 	//
-	mRenderComponentParticleSystemChangeWorldIdle->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldIdleDreams->setVisible(visible);
+	mRenderComponentParticleSystemChangeWorldIdleNightmares->setVisible(visible);
 	mRenderComponentParticleSystemChangeWorldChanging->setVisible(visible);
 	mRenderComponentParticleSystemChangeWorldSky->setVisible(visible);
 }
