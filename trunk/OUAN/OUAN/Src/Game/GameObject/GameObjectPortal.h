@@ -43,7 +43,8 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdleDreams;
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdleNightmares;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging;
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldSky;
 		/// Physics information
@@ -95,12 +96,14 @@ namespace OUAN
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
 		/// Set Particle Systems
-		void setRenderComponentParticleSystemChangeWorldIdle(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdle);
+		void setRenderComponentParticleSystemChangeWorldIdleDreams(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdleDreams);
+		void setRenderComponentParticleSystemChangeWorldIdleNightmares(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldIdleNightmares);
 		void setRenderComponentParticleSystemChangeWorldChanging(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldChanging);
 		void setRenderComponentParticleSystemChangeWorldSky(RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorldSky);
 
 		/// Get Particle Systems
-		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldIdle() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldIdleDreams() const;
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldIdleNightmares() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldChanging() const;
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorldSky() const;
 

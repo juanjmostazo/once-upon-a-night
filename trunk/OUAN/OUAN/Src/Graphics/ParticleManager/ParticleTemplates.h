@@ -21,7 +21,8 @@ namespace OUAN
 		virtual bool loadConfig();
 
 		/// Particle name values
-		std::string PORTAL_CHANGE_WORLD_IDLE;
+		std::string PORTAL_CHANGE_WORLD_IDLE_DREAMS;
+		std::string PORTAL_CHANGE_WORLD_IDLE_NIGHTMARES;
 		std::string PORTAL_CHANGE_WORLD_CHANGING;
 		std::string PORTAL_CHANGE_WORLD_SKY;
 

@@ -59,9 +59,14 @@ RenderComponentInitialPtr GameObjectPortal::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectPortal::setRenderComponentParticleSystemChangeWorldIdle(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldIdle)
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorldIdleDreams(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldIdleDreams)
 {
-	mRenderComponentParticleSystemChangeWorldIdle = pRenderComponentParticleSystemChangeWorldIdle;
+	mRenderComponentParticleSystemChangeWorldIdleDreams = pRenderComponentParticleSystemChangeWorldIdleDreams;
+}
+
+void GameObjectPortal::setRenderComponentParticleSystemChangeWorldIdleNightmares(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldIdleNightmares)
+{
+	mRenderComponentParticleSystemChangeWorldIdleNightmares = pRenderComponentParticleSystemChangeWorldIdleNightmares;
 }
 
 void GameObjectPortal::setRenderComponentParticleSystemChangeWorldChanging(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorldChanging)
@@ -74,9 +79,14 @@ void GameObjectPortal::setRenderComponentParticleSystemChangeWorldSky(RenderComp
 	mRenderComponentParticleSystemChangeWorldSky = pRenderComponentParticleSystemChangeWorldSky;
 }
 
-RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldIdle() const
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldIdleDreams() const
 {
-	return mRenderComponentParticleSystemChangeWorldIdle;
+	return mRenderComponentParticleSystemChangeWorldIdleDreams;
+}
+
+RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldIdleNightmares() const
+{
+	return mRenderComponentParticleSystemChangeWorldIdleNightmares;
 }
 
 RenderComponentParticleSystemPtr GameObjectPortal::getRenderComponentParticleSystemChangeWorldChanging() const
@@ -108,6 +118,9 @@ void GameObjectPortal::setDreamsRender()
 
 	mRenderComponentEntity->setDreamsMaterials();
 	mRenderComponentEntityBroken->setDreamsMaterials();
+
+	mRenderComponentParticleSystemChangeWorldIdleNightmares->stop();
+	mRenderComponentParticleSystemChangeWorldIdleDreams->start();
 }
 
 void GameObjectPortal::setNightmaresRender()
@@ -119,6 +132,9 @@ void GameObjectPortal::setNightmaresRender()
 
 	mRenderComponentEntity->setNightmaresMaterials();
 	mRenderComponentEntityBroken->setNightmaresMaterials();
+
+	mRenderComponentParticleSystemChangeWorldIdleDreams->stop();
+	mRenderComponentParticleSystemChangeWorldIdleNightmares->start();
 }
 
 void GameObjectPortal::setChangeWorldFactor(double factor)
@@ -314,7 +330,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 		if (isFirstUpdate())
 		{
 			mRenderComponentEntityBroken->setVisible(false);
-			mRenderComponentParticleSystemChangeWorldIdle->start();
 			mRotY=0;
 		}
 

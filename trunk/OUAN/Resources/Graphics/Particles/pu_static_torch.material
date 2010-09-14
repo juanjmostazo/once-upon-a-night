@@ -16,8 +16,6 @@ material PU/static_torch
         }
     }
 }
-
-//---------------------------------------------------------------------
 material PU/static_torch_2
 {
     technique
@@ -31,6 +29,24 @@ material PU/static_torch_2
             texture_unit
             {
                 texture pu_static_torch_2.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/static_torch_3
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_static_torch_3.png
                 tex_address_mode clamp
             }
         }

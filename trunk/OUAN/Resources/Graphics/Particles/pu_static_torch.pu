@@ -2,6 +2,51 @@ system PU/static_torch
 {
     scale_velocity                              0.07
     scale                                       0.07 0.07 0.07
+    technique Technique3
+    {
+        visual_particle_quota                   100
+        material                                PU/static_torch_3
+        default_particle_width                  12
+        default_particle_height                 12
+        default_particle_depth                  12
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box Emitter4
+        {
+            emission_rate                       dyn_random
+            {
+                min                             3
+                max                             6
+            }
+            angle                               15
+            time_to_live                        dyn_random
+            {
+                min                             1
+                max                             2
+            }
+            velocity                            dyn_random
+            {
+                min                             150
+                max                             250
+            }
+            position                            0 150 0
+            box_em_width                        50
+            box_em_height                       10
+            box_em_depth                        50
+        }
+        affector                                Scale 
+        {
+            x_scale                             15
+            y_scale                             15
+        }
+        affector                                Colour Affector61
+        {
+            colour_aff_time_colour              0    1 1 0 1
+            colour_aff_time_colour              3    1 1 1 1
+            colour_operation                    multiply
+        }
+    }
     technique 
     {
         position                                0 10 0
