@@ -30,15 +30,15 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="22.5"></CAMERASPEED>
+  <CAMERASPEED value="22"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="46.134 413.179 -929.408" orientation="-0.506687 0.263813 -0.727902 -0.379249"></OPTION>
+    <OPTION id="2" position="-312.045 414.158 337.684" orientation="-0.708507 0.514969 -0.390207 -0.283835"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="false"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.506864 0.263905 -0.728156 -0.379381"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.708533 0.514988 -0.390222 -0.283846"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="46.134 413.179 -929.408"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-312.045 414.158 337.684"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2465,8 +2465,8 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bomb2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.763233 0 0.646124 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-361.01 272.69 348.812"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.165048 0 -0.986286 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-354.775 272.69 353.884"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bomb"></PROPERTY>
@@ -19873,8 +19873,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bomb2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.763233 0 0.646124 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-629.061 294.248 -45.0676"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.169349 0 0.985556 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-357.103 294.248 359.969"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bomb"></PROPERTY>
@@ -21219,8 +21219,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.994917 0.00643657 0.100154 -0.00830559"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-249.424 256.458 395.52"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.990743 -0.00363005 0.100295 0.091415"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-284.527 231.931 388.656"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
@@ -26669,8 +26669,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.992011 -0.0212654 0.113548 0.0506796"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-252.568 256.401 394.881"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.993236 -0.0167911 0.114295 0.0116944"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-281.515 236.236 387.481"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
@@ -27436,7 +27436,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="671.235 178.028 398.147"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-318.528 322.43 372.19"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
