@@ -336,51 +336,51 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE1)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 1);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE2)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 2);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 3);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 4);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE5)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 5);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE6)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 6);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE7)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 7);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 8);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE9)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 9);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE10)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 10);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE11)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 11);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE12)==0)
 		{
-			processGameObjectTree(gameObject);
+			processGameObjectTree(gameObject, 12);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_DOOR)==0)
 		{
@@ -2606,7 +2606,7 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 	}
 }
 
-void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTree(XMLGameObject* gameObject, int type)
 {
 	OUAN::TGameObjectTreeParameters tGameObjectTreeParameters;
 	tGameObjectTreeParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
@@ -2621,6 +2621,7 @@ void LevelLoader::processGameObjectTree(XMLGameObject* gameObject)
 		tGameObjectTreeParameters.dreamsName = gameObject->dreamsName;
 		tGameObjectTreeParameters.nightmaresName = gameObject->nightmaresName;
 		tGameObjectTreeParameters.name = gameObject->name;
+		tGameObjectTreeParameters.type = type;
 
 		//Get Logic component
 		tGameObjectTreeParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
