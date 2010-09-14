@@ -2,6 +2,7 @@
 
 #include "GameObjectTree.h"
 #include "../GameWorldManager.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -46,6 +47,16 @@ RenderComponentInitialPtr GameObjectTree::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectTree::setRenderComponentParticleSystemStars(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStars)
+{
+	mRenderComponentParticleSystemStars = pRenderComponentParticleSystemStars;
+}
+
+RenderComponentParticleSystemPtr GameObjectTree::getRenderComponentParticleSystemStars() const
+{
+	return mRenderComponentParticleSystemStars;
+}
+
 void GameObjectTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
 {
 	mPhysicsComponentSimpleBox=pPhysicsComponentSimpleBox;
@@ -70,9 +81,8 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				{
 					mPhysicsComponentSimpleBox->create();
 				}
-
-				
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
+				mRenderComponentParticleSystemStars->stop();
 			}
 			else
 			{
@@ -84,6 +94,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentParticleSystemStars->stop();
 			}		
 			break;
 		case NIGHTMARES:
@@ -98,6 +109,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
 				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);	
+				mRenderComponentParticleSystemStars->start();
 			}
 			else
 			{
@@ -108,7 +120,8 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 				}
 				std::string nodeName=getRenderComponentPositional()->getSceneNode()->getName();
 
-				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);	
+				mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_DOWN);
+				mRenderComponentParticleSystemStars->stop();
 			}
 			break;
 		default:

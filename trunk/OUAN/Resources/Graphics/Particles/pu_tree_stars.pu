@@ -1,0 +1,35 @@
+system PU/tree_stars
+{
+    scale_velocity                              0.2
+    scale                                       0.2 0.2 0.2
+    technique 
+    {
+        visual_particle_quota                   50
+        material                                PU/tree_stars
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       dyn_oscillate
+            {
+                oscillate_frequency             0.1
+                oscillate_phase                 180
+                oscillate_base                  500
+                oscillate_amplitude             500
+                oscillate_type                  sine
+            }
+            time_to_live                        0.15
+            all_particle_dimensions             dyn_random
+            {
+                min                             12
+                max                             72
+            }
+            direction                           0 0 0
+            colour                              0.85 0.85 0.15 1
+            box_em_width                        140
+            box_em_height                       400
+            box_em_depth                        140
+        }
+    }
+}

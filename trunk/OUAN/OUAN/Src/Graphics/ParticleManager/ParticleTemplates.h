@@ -70,6 +70,8 @@ namespace OUAN
 		std::string NEST_BREAK;
 		std::string NEST_JUMP;
 
+		std::string TREE_STARS;
+
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 

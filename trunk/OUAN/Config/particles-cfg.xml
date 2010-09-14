@@ -51,5 +51,7 @@
 	
 	<Option key="NEST_BREAK">PU/nest_break</Option>
 	<Option key="NEST_JUMP">PU/nest_jump</Option>
+	
+	<Option key="TREE_STARS">PU/tree_stars</Option>
   </Options>
 </Configuration>

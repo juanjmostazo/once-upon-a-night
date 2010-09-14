@@ -27,8 +27,12 @@ void GameObjectHeart::disable()
 {
 	GameObject::disable();
 	mRenderComponentEntity->setVisible(false);
+
 	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+	{
 		mPhysicsComponentVolumeBox->destroy();	
+	}
+
 	mLogicComponentItem->setIsTaken(false);
 }
 
