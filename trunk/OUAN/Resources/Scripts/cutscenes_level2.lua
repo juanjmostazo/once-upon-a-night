@@ -191,17 +191,17 @@ function startCutScene7(pOny)
 		log ("CUTSCENE 7 (1): ");
 		log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
-		launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene7_1");
 	elseif hasExecutedLevelEvent(TRIPOLLO_2_SWITCH_ACTIVATED) and not hasExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (2): ");
 		log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
-		launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene7_2");
 	elseif hasExecutedLevelEvent(TRIPOLLO_3_SWITCH_ACTIVATED) and not hasExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM) then
 		log ("CUTSCENE 7 (3): ");
 		log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 		addExecutedLevelEvent(CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
-		launchCutScene("cutscenes_level2.lua","cutScene2");
+		launchCutScene("cutscenes_level2.lua","cutScene7_3");
 	end
 	return
 end
