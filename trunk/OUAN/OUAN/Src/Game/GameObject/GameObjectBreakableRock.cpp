@@ -106,6 +106,7 @@ void GameObjectBreakableRock::breakRock()
 			mPhysicsComponentSimpleBox->destroy();
 		}
 		mAudioComponent->playSound("explosion");
+		getRenderComponentParticleSystemBreak()->start(); 
 	}
 }
 

@@ -3281,6 +3281,9 @@ void LevelLoader::processGameObjectTotem(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectTotemParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
+		//Get AudioComponent
+		tGameObjectTotemParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{

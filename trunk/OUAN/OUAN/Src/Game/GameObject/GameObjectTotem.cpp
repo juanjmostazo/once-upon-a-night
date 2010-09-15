@@ -1,7 +1,9 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameObjectTotem.h"
+#include "GameObjectPortal.h"
 #include "../GameWorldManager.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
 
@@ -72,6 +74,63 @@ void GameObjectTotem::changeWorldFinished(int newWorld)
 	}
 }
 
+void GameObjectTotem::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+
+	if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+	{
+		if(mLevelTarget<mPhysicsComponentSimpleBox->getSceneNode()->getPosition().y)
+		{
+			Ogre::Vector3 newPosition=mPhysicsComponentSimpleBox->getSceneNode()->getPosition();
+			newPosition.y=newPosition.y-elapsedSeconds*LEVEL_MOVEMENT_SPEED;
+			if(newPosition.y<mLevelTarget)
+			{
+				newPosition.y=mLevelTarget;
+				mLevel--;
+				mAudioComponent->stopSound(TOTEM_SOUND_LEVEL_DOWN);
+			}
+
+			Ogre::Vector3 positionDifference=newPosition-mPhysicsComponentSimpleBox->getSceneNode()->getPosition();
+			mPhysicsComponentSimpleBox->setPosition(newPosition);
+
+			GameObjectPtr obj = getGameWorldManager()->getObject(CHANGE_WORLD_ATTACHED);
+
+			GameObjectPortalPtr portal= 
+					BOOST_PTR_CAST(GameObjectPortal,obj);
+
+			if(portal->getPhysicsComponentSimpleBox().get() && portal->getPhysicsComponentSimpleBox()->isInUse())
+			{
+				portal->getPhysicsComponentSimpleBox()->setPosition(
+					portal->getPhysicsComponentSimpleBox()->getSceneNode()->getPosition()+positionDifference
+					);
+			}
+
+			if(mLevel==0)
+			{
+				if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+				{
+					mPhysicsComponentSimpleBox->destroy();
+				}
+				mRenderComponentEntity->setVisible(false);
+				disable();
+				if(getName().compare("totem#0")==0)
+				{
+					getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END);
+				}
+			}
+		}
+	}
+
+}
+
+void GameObjectTotem::levelDown()
+{
+	mLevelTarget=mPhysicsComponentSimpleBox->getSceneNode()->getPosition().y-LEVEL_DISTANCE;
+	mAudioComponent->playSound(TOTEM_SOUND_LEVEL_DOWN);
+}
+
 void GameObjectTotem::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -105,6 +164,31 @@ void GameObjectTotem::changeToWorld(int newWorld, double perc)
 void GameObjectTotem::reset()
 {
 	GameObject::reset();
+
+	if(getName().compare("totem#0")!=0 || 
+		!(getGameWorldManager()->hasExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END)))
+	{
+		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->create();
+		}
+		mRenderComponentEntity->setVisible(true);
+
+		mLevel=NUM_LEVELS;
+		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
+		mLevelTarget=mPhysicsComponentSimpleBox->getSceneNode()->getPosition().y;
+
+	}
+}
+
+AudioComponentPtr GameObjectTotem::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectTotem::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
 }
 
 bool GameObjectTotem::hasPositionalComponent() const

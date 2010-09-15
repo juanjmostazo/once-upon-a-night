@@ -4090,6 +4090,14 @@ GameObjectTotemPtr GameObjectFactory::createGameObjectTotem(TGameObjectTotemPara
 		tGameObjectTotemParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectTotem->getRenderComponentPositional()));
 
+
+	//Create audio component
+	pGameObjectTotem->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectTotem,
+			tGameObjectTotemParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 	//Add reference to this
 	pGameObjectTotem->setGameWorldManager(gameWorldMgr);
 

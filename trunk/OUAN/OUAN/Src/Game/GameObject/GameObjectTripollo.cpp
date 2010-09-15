@@ -367,7 +367,6 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
 						entity->changeAnimation(TRIPOLLO_ANIM_DIE);
 						mTrajectoryComponent->activateIdle(getName(),world);
-						checkTripolloPlataformPuzzleActivations();
 					}
 				}
 				else
@@ -460,6 +459,14 @@ std::string GameObjectTripollo::getDefaultAttack()
 
 void GameObjectTripollo::reset()
 {
+	if((getName().compare("tripollo#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0 ||
+		getName().compare("tripollo#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0 || 
+		getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0) &&
+		getGameWorldManager()->hasExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END))
+	{
+		return;
+	}
+
 	GameObject::reset();
 
 	LogicSubsystemPtr logicSS = getGameWorldManager()->getParent()->getLogicSubsystem();
@@ -751,6 +758,8 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 			case DREAMS: mRenderComponentParticleSystemDieDreams->start(); break;
 			case NIGHTMARES: mRenderComponentParticleSystemDieNightmares->start(); break;
 		}
+
+		checkTripolloPlataformPuzzleActivations();
 
 		disable();		
 	}

@@ -1785,6 +1785,18 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 				BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
 		wall->desactivateWall();
 	}
+	else if(cutscene.compare(CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0 ||
+		cutscene.compare(CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0 ||
+		cutscene.compare(CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0
+		)
+	{
+		GameObjectPtr obj = getObject("totem#0");
+
+		GameObjectTotemPtr totem= 
+				BOOST_PTR_CAST(GameObjectTotem,obj);
+		totem->levelDown();
+	}
+
 }
 
 bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
