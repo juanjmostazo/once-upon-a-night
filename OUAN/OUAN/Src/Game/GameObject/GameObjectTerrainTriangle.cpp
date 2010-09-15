@@ -4,6 +4,7 @@
 #include "../GameWorldManager.h"
 #include "GameObjectOny.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -59,6 +60,16 @@ RenderComponentInitialPtr GameObjectTerrainTriangle::getRenderComponentInitial()
 	return mRenderComponentInitial;
 }
 
+void GameObjectTerrainTriangle::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
+{
+	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
+}
+
+RenderComponentParticleSystemPtr GameObjectTerrainTriangle::getRenderComponentParticleSystemChangeWorld() const
+{
+	return mRenderComponentParticleSystemChangeWorld;
+}
+
 void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
 {
 	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
@@ -73,6 +84,8 @@ PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponen
 void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentParticleSystemChangeWorld->stop();
 
 	switch(newWorld)
 	{
@@ -91,6 +104,8 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentParticleSystemChangeWorld->start();
 
 	switch(newWorld)
 	{

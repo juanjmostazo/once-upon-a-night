@@ -35,11 +35,11 @@
 	<Option key="BAG_STARS_CLOUD">PU/bag_stars_cloud</Option>
 	
 	<Option key="STORY_BOOK_HALO">PU/diamond_stars_cloud</Option><!--TODO-->
-	<Option key="STORY_BOOK_STARS_CLOUD">PU/story_book_stars_cloud</Option><!--TODO-->
+	<Option key="STORY_BOOK_STARS_CLOUD">PU/story_book_stars_cloud</Option>
 	
 	<Option key="TOY_STARS_CLOUD">PU/toy_stars_cloud</Option>
 	
-	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/clock_piece_stars_cloud</Option><!--TODO-->
+	<Option key="CLOCK_PIECE_STARS_CLOUD">PU/clock_piece_stars_cloud</Option>
 	
 	<Option key="BOX_DUST">PU/box_dust</Option>
 	<Option key="BOMB_EXPLOSION">PU/bomb_explosion</Option>
@@ -53,5 +53,9 @@
 	<Option key="NEST_JUMP">PU/nest_jump</Option>
 	
 	<Option key="TREE_STARS">PU/tree_stars</Option>
+	
+	<Option key="ROCK_BREAK">PU/rock_break</Option><!--TODO-->
+	<Option key="TERRAIN_TRIANGLE_CHANGEWORLD">PU/terrain_triangle_changeworld</Option><!--TODO-->
+	<Option key="BRIDGE_CHANGEWORLD">PU/bridge_changeworld</Option><!--TODO-->
   </Options>
 </Configuration>

@@ -1,0 +1,35 @@
+system PU/bridge_changeworld
+{
+    scale_velocity                              0.5
+    scale                                       0.5 0.5 0.5
+    technique 
+    {
+        visual_particle_quota                   50
+        material                                PU/bridge_changeworld
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       dyn_oscillate
+            {
+                oscillate_frequency             0.1
+                oscillate_phase                 180
+                oscillate_base                  500
+                oscillate_amplitude             500
+                oscillate_type                  sine
+            }
+            time_to_live                        0.15
+            all_particle_dimensions             dyn_random
+            {
+                min                             12
+                max                             72
+            }
+            direction                           0 0 0
+            colour                              0.15 0.15 0.85 1
+            box_em_width                        400
+            box_em_height                       140
+            box_em_depth                        140
+        }
+    }
+}

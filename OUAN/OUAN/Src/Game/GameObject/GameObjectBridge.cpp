@@ -3,6 +3,7 @@
 #include "GameObjectBridge.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -48,6 +49,16 @@ RenderComponentInitialPtr GameObjectBridge::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
+void GameObjectBridge::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
+{
+	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
+}
+
+RenderComponentParticleSystemPtr GameObjectBridge::getRenderComponentParticleSystemChangeWorld() const
+{
+	return mRenderComponentParticleSystemChangeWorld;
+}
+
 void GameObjectBridge::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
 {
 	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
@@ -61,6 +72,8 @@ PhysicsComponentComplexConvexPtr GameObjectBridge::getPhysicsComponentComplexCon
 void GameObjectBridge::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
+	
+	mRenderComponentParticleSystemChangeWorld->stop();
 
 	switch(newWorld)
 	{
@@ -78,6 +91,7 @@ void GameObjectBridge::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentParticleSystemChangeWorld->start();
 
 	switch(newWorld)
 	{
