@@ -143,7 +143,6 @@ void GameObjectSwitch::reset()
 	}
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 	mLogicComponent->setState(logicSS->getGlobalInt(SWITCH_STATE_OFF));
-
 }
 
 void GameObjectSwitch::update(double elapsedSeconds)
@@ -168,8 +167,27 @@ void GameObjectSwitch::update(double elapsedSeconds)
 		{
 			mPhysicsComponentSimpleBox->setPosition(mPhysicsComponentSimpleBox->getSceneNode()->getPosition()-SWITCH_PUSH_DISTANCE);
 			mAudioComponent->playSound(SWITCH_SOUND_PUSHED);
+			applySwitchEffect();
 		}
 	}
+}
+
+void GameObjectSwitch::applySwitchEffect()
+{
+	GameObjectPtr obj;
+	if(getName().compare("switch#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_1_SWITCH_ACTIVATED);
+	}
+	else if(getName().compare("switch#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_2_SWITCH_ACTIVATED);
+	}
+	else if(getName().compare("switch#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_3_SWITCH_ACTIVATED);
+	}
+
 }
 
 AudioComponentPtr GameObjectSwitch::getAudioComponent() const
