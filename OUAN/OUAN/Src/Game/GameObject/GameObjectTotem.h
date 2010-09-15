@@ -10,6 +10,13 @@
 
 namespace OUAN
 {
+	const double LEVEL_DISTANCE=87;
+	const double LEVEL_MOVEMENT_SPEED=5;
+	const int NUM_LEVELS=3;
+	const std::string CHANGE_WORLD_ATTACHED="changeworld#platform_big";
+
+	const std::string TOTEM_SOUND_LEVEL_DOWN="totem_level_down";
+
 	/// Class to hold Tower information
 	class GameObjectTotem : public GameObject, public boost::enable_shared_from_this<GameObjectTotem>
 	{
@@ -28,6 +35,12 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
+		AudioComponentPtr mAudioComponent;
+
+		double mLevelTarget;
+		int mLevel;
+
 	public:
 		//Constructor
 		GameObjectTotem(const std::string& name);
@@ -46,6 +59,12 @@ namespace OUAN
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+
+		/// Set audio component
+		/// @param pAudioComponent
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -86,6 +105,11 @@ namespace OUAN
 		
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		/// Update object
+		virtual void update(double elapsedSeconds);
+
+		void levelDown();
 	};
 
 	class TGameObjectTotemParameters: public TGameObjectParameters
@@ -105,6 +129,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
+
+		/// Audio component params
+		TAudioComponentMap tAudioComponentParameters;
 	};
 }
 #endif

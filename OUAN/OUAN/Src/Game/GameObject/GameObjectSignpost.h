@@ -58,7 +58,7 @@ namespace OUAN
 		LogicComponentPropPtr getLogicComponent();
 
 		/// Set audio component
-		/// @param pRenderComponentEntity
+		/// @param pAudioComponent
 		AudioComponentPtr getAudioComponent() const;
 		void setAudioComponent(AudioComponentPtr audioComponent);
 

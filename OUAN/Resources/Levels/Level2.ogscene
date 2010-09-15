@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="4"></CAMERASPEED>
+  <CAMERASPEED value="20.25"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="772.897 1433.47 -3080.08" orientation="0.238796 -0.0614143 0.938292 0.242514"></OPTION>
+    <OPTION id="2" position="-686.445 1067.52 -1629.01" orientation="0.742544 -0.669552 0.0131418 0.0124634"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.238833 -0.0614239 0.93844 0.242552"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.742685 -0.669679 0.0131443 0.0124657"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="772.897 1433.47 -3080.08"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-686.445 1067.52 -1629.01"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1607,7 +1607,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-692.751 486.441 -1595.73"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-692.751 486.441 -1597.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -6885,7 +6885,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-692.751 350.906 -1598.71"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-692.751 486.441 -1597.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -7046,7 +7046,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99881 0.00871648 -0.000418683 0.0479763"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-786.125 215.813 -1488.89"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-694.426 224.852 -1500.79"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -12754,7 +12754,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999962 0 0 -0.00872654"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-561.655 216.711 -1596.86"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-586.626 217.147 -1682.49"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -17906,9 +17906,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="column_big.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-690.868 278.89 -1599.51"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.868 341.036 -1599.51"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1.5 1.5 1.5"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="3 3 3"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="column_d"></PROPERTY>
@@ -22345,8 +22345,8 @@
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.108184 0.700294 0.696495 0.113046"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-650.594 397.289 -1524.67"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.244094 0.0553383 0.967919 -0.0221177"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-926.358 506.955 -1804.72"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="2_TRIPOLLOS_PLATFORM" fields="X;Y;Z;W"></PROPERTY>
@@ -23064,8 +23064,8 @@
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.108184 0.700294 0.696495 0.113046"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-650.594 397.289 -1524.67"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.458047 0.159243 0.870965 -0.0790902"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-867.16 418.777 -1379.1"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="1_TRIPOLLOS_PLATFORM" fields="X;Y;Z;W"></PROPERTY>
@@ -25287,8 +25287,8 @@
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.108184 0.700294 0.696495 0.113046"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-760.737 398.028 -1560.45"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.966755 -0.0091138 -0.219166 0.131405"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-371.908 537.907 -1433.23"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="3_TRIPOLLOS_PLATFORM" fields="X;Y;Z;W"></PROPERTY>

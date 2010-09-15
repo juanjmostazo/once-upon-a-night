@@ -34,6 +34,19 @@ sound box_break
 	volume 1
 }
 
+
+sound totem_level_down
+{
+	sound_file 	Objects/Loop_peana_rozamiento.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		true
+	min_max_distance 400 5000
+	volume 1
+}
+
 sound switch
 {
 	sound_file 	Objects/Click_interruptor.mp3
