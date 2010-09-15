@@ -1,6 +1,6 @@
 system PU/attack_light_green
 {
-	scale 										0.06 0.06 0.06
+    scale                                       0.05 0.05 0.05
     technique Technique3
     {
         visual_particle_quota                   6
