@@ -232,7 +232,7 @@ void GameObjectBreakableRock::changeToWorld(int newWorld, double perc)
 void GameObjectBreakableRock::reset()
 {
 	GameObject::reset();
-	if(getName().compare("breakable-rock#rock_big")==0 && !getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
+	if(getName().compare("breakable-rock#rock_big")!=0 || !getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
 	{
 		mBroken=false;
 	}
