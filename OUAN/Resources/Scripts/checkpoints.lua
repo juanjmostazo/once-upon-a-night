@@ -84,6 +84,19 @@ function conditionCheckPoint5(pOny)
 	return checkpointNumber<50;
 end
 
+-- CHECKPOINT 55: BOOK
+function enterCheckPoint55(pOny)
+	log ("enterCheckPoint55");
+	setCheckPoint("CheckPoint55",55);
+return
+end
+
+function conditionCheckPoint55(pOny)
+    local checkpointNumber=getCheckPointNumber();
+	return checkpointNumber<55;
+end
+
+
 -- CHECKPOINT 6: TRIPOLLO'S PLATFORM START
 function enterCheckPoint6(pOny)
 	log ("enterCheckPoint6");
