@@ -1,9 +1,10 @@
 system PU/bomb_explosion
 {
-    scale_velocity                              0.04
-    scale                                       0.04 0.04 0.04
+    scale_velocity                              0.06
+    scale                                       0.06 0.06 0.06
     technique Fire
     {
+        position                                0 80 0
         visual_particle_quota                   300
         material                                PU/bomb_explosion_1
         renderer                                Billboard
@@ -52,6 +53,7 @@ system PU/bomb_explosion
     }
     technique 
     {
+        position                                0 80 0
         visual_particle_quota                   100
         material                                PU/bomb_explosion_2
         renderer                                Billboard
@@ -115,6 +117,7 @@ system PU/bomb_explosion
     }
     technique 
     {
+        position                                0 80 0
         visual_particle_quota                   300
         material                                PU/bomb_explosion_3
         renderer                                Billboard
