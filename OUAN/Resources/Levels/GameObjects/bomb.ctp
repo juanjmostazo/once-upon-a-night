@@ -3,8 +3,8 @@
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   
     <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="40" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="60" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="80" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
     <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="55" fields="X;Y;Z;W"></PROPERTY>
 
