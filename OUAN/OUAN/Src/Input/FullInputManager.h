@@ -117,7 +117,7 @@ namespace OUAN
 	{
 		int keyMenu,keyPause;
 		int keyForward,keyBackwards,keyLeft,keyRight;
-		int keyJump,keyAction,keyAutoTarget,keyUseWeapon;
+		int keyJump,keyCenterCamera,keyAutoTarget,keyUseWeapon;
 		int keyWalk,keyRotateLeft,keyRotateRight;
 		int keyQuickExit, keyDebugPerformance, keyDebugPhysics, keyDebugTrajectory;
 		int keyChangeCamera, keyChangeCameraController;

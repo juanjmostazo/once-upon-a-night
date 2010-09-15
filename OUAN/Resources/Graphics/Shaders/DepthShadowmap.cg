@@ -221,7 +221,7 @@ void OUANreceiverFP(
  
     // shadowUV.z contains lightspace position of current object
 
-    result = (finalCenterDepth > shadowUV.z) ? float4(1,1,1,1) : float4(shadowFactor,shadowFactor,shadowFactor,1);
+    result = (finalCenterDepth > shadowUV.z || shadowUV.z>1) ? float4(1,1,1,1) : float4(shadowFactor,shadowFactor,shadowFactor,1);
 
 }
  

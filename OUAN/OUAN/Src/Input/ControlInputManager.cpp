@@ -27,7 +27,7 @@ void ControlInputManager::init(Ogre::RenderWindow* window, const std::string& la
 	mLastFrameDown[mDefaultInputData.keyLeft]=false;
 	mLastFrameDown[mDefaultInputData.keyRight]=false;
 	mLastFrameDown[mDefaultInputData.keyJump]=false;
-	mLastFrameDown[mDefaultInputData.keyAction]=false;
+	mLastFrameDown[mDefaultInputData.keyCenterCamera]=false;
 	mLastFrameDown[mDefaultInputData.keyAutoTarget]=false;
 	mLastFrameDown[mDefaultInputData.keyUseWeapon]=false;
 	mLastFrameDown[mDefaultInputData.keyRotateLeft]=false;
@@ -72,6 +72,7 @@ void ControlInputManager::updateDownKeys()
 	mLastFrameDown[mDefaultInputData.keyLeft]=isDownGoLeft(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyRight]=isDownGoRight(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyJump]=isDownJump(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyCenterCamera]=isDownCenterCamera(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyAutoTarget]=isDownAutoTarget(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyUseWeapon]=isDownUseWeapon(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyRotateLeft]=isDownRotateLeft(&pad,&key);
@@ -196,8 +197,8 @@ bool ControlInputManager::isPressedJump(int *pad, int* key)
 bool ControlInputManager::isPressedCenterCamera(int *pad, int* key)
 {
 	*pad = padCircle;
-	*key = mDefaultInputData.keyAction;
-	return isPressed(padCircle,mDefaultInputData.keyAction);
+	*key = mDefaultInputData.keyCenterCamera;
+	return isPressed(padCircle,mDefaultInputData.keyCenterCamera);
 }
 
 bool ControlInputManager::isPressedUseWeapon(int *pad, int* key)
@@ -389,8 +390,8 @@ bool ControlInputManager::isDownJump(int *pad, int* key)
 bool ControlInputManager::isDownCenterCamera(int *pad, int* key)
 {
 	*pad = padCircle;
-	*key = mDefaultInputData.keyAction;
-	return isDown(padCircle,mDefaultInputData.keyAction);
+	*key = mDefaultInputData.keyCenterCamera;
+	return isDown(padCircle,mDefaultInputData.keyCenterCamera);
 }
 
 bool ControlInputManager::isDownUseWeapon(int *pad, int* key)
@@ -694,7 +695,7 @@ void ControlInputManager::getInputMappings (TControlInputMapping& mappings)
 	addPair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,STRINGKEY_RIGHT,mappings);
 
 	addPair(KEY_JUMP,mDefaultInputData.keyJump,padX,STRINGKEY_JUMP,mappings);
-	addPair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,STRINGKEY_CENTER_CAMERA,mappings);
+	addPair(KEY_CENTER_CAMERA,mDefaultInputData.keyCenterCamera,padCircle,STRINGKEY_CENTER_CAMERA,mappings);
 	addPair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,STRINGKEY_USEWEAPON,mappings);
 	addPair(KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget,padTriangle,STRINGKEY_RELOAD,mappings);
 
@@ -767,7 +768,7 @@ void ControlInputManager::replaceConfig(TControlInputMapping& newMapping, bool s
 		replacePair(KEY_RIGHT,mDefaultInputData.keyRight,padRight,newMapping);
 
 		replacePair(KEY_JUMP,mDefaultInputData.keyJump,padX,newMapping);
-		replacePair(KEY_CENTER_CAMERA,mDefaultInputData.keyAction,padCircle,newMapping);
+		replacePair(KEY_CENTER_CAMERA,mDefaultInputData.keyCenterCamera,padCircle,newMapping);
 		replacePair(KEY_USEWEAPON,mDefaultInputData.keyUseWeapon,padSquare,newMapping);
 		replacePair(KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget,padTriangle,newMapping);
 
@@ -808,7 +809,7 @@ void ControlInputManager::saveDefaultInput()
 {
 	Configuration c;
 	std::stringstream convertString;
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyAction,KEY_CENTER_CAMERA,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyCenterCamera,KEY_CENTER_CAMERA,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyAutoTarget,KEY_FIRST_PERSON_CAMERA,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyBackwards,KEY_BACKWARDS,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyForward,KEY_FORWARD,false);

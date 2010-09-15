@@ -181,7 +181,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 
 		readOption(config,KEY_USEWEAPON,mDefaultInputData.keyUseWeapon);
 		readOption(config,KEY_RELOADWEAPON,mDefaultInputData.keyAutoTarget);
-		readOption(config,KEY_CENTER_CAMERA,mDefaultInputData.keyAction);
+		readOption(config,KEY_CENTER_CAMERA,mDefaultInputData.keyCenterCamera);
 		readOption(config,KEY_JUMP,mDefaultInputData.keyJump);
 		readOption(config,KEY_WALK,mDefaultInputData.keyWalk);
 
@@ -214,7 +214,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 	{
 		//Logger::getInstance()->log(configFilePath + " COULD NOT BE LOADED!");
 
-		mDefaultInputData.keyAction=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyCenterCamera=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyBackwards=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyAutoTarget=OIS::KC_UNASSIGNED;
