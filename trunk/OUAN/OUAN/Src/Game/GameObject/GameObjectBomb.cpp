@@ -318,6 +318,8 @@ void GameObjectBomb::reset()
 
 	mRenderComponentEntity->setVisible(false);
 
+	mPlayedFart=false;
+
 	disable();
 }
 
@@ -397,8 +399,6 @@ void GameObjectBomb::update(double elapsedSeconds)
 	int world = getGameWorldManager()->getWorld();
 	std::string onyName = getGameWorldManager()->getGameObjectOny()->getName();
 
-	Logger::getInstance()->log("BOMB STATE "+Ogre::StringConverter::toString(currentState));
-
 	if (mLogicComponentProp->isStateChanged())
 	{
 		if(currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
@@ -427,11 +427,17 @@ void GameObjectBomb::update(double elapsedSeconds)
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mLogicComponentProp->setTimeSpent(0);
-			Logger::getInstance()->log("BOMB TIME SPENT SET TO 0 "+Ogre::StringConverter::toString(Ogre::Real(mLogicComponentProp->getTimeSpent())));
-
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_EXPLODE);
+			mPlayedFart=false;
 		}
 
+	}
+	else
+	{
+		if(currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE) || currentState==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START))
+		{
+			checkPlayFartSound();
+		}
 	}
 
 	mTrajectoryComponent->update(elapsedSeconds);
@@ -572,6 +578,24 @@ bool GameObjectBomb::hasLogicComponent() const
 	return true;
 }
 
+void GameObjectBomb::checkPlayFartSound()
+{
+	if(!mRenderComponentEntity->getCurrentAnimation()) return;
+
+	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+	float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	float currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
+
+	float animPerc=currentAnimPosition/currentAnimLen;
+
+	//STEP SOUNDS
+	if(animPerc>=BOMB_ANIMATION_EXPLODE_FART_MOMENT && !mPlayedFart)
+	{
+		mAudioComponent->playSound(BOMB_SOUND_FART);
+		mPlayedFart=true;
+	}
+}
+
 LogicComponentPtr GameObjectBomb::getLogicComponentInstance() const
 {
 	return mLogicComponentProp;
@@ -598,7 +622,7 @@ void GameObjectBomb::processAnimationEnded(const std::string& animationName)
 		mTrajectoryComponent->activateIdle(getName(),getGameWorldManager()->getWorld());
 		mRenderComponentEntity->setVisible(false);
 		mLogicComponentProp->setTimeSpent(0);
-		mAudioComponent->playSound("fart");
+		mAudioComponent->playSound(BOMB_SOUND_EXPLOSION);
 	}
 }
 //-------------------------------------------------------------------------------------------

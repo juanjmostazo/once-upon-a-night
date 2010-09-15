@@ -639,7 +639,7 @@ void GameObject::setVisible(bool visible)
 
 void GameObject::setElapsedTimeSinceLastPhysicsUpdate(double elapsedTime)
 {
-	mElapsedTimeSinceLastPhysicsUpdate+=elapsedTime;
+	mElapsedTimeSinceLastPhysicsUpdate=elapsedTime;
 }
 
 double GameObject::getElapsedTimeSinceLastPhysicsUpdate() const
@@ -649,7 +649,7 @@ double GameObject::getElapsedTimeSinceLastPhysicsUpdate() const
 
 void GameObject::setElapsedTimeSinceLastLogicUpdate(double elapsedTime)
 {
-	mElapsedTimeSinceLastLogicUpdate+=elapsedTime;
+	mElapsedTimeSinceLastLogicUpdate=elapsedTime;
 }
 
 double GameObject::getElapsedTimeSinceLastLogicUpdate() const

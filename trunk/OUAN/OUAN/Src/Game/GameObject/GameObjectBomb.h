@@ -26,6 +26,11 @@ namespace OUAN
 	const std::string BOMB_ANIMATION_IDLE="bite_idle1_eani_Clip";
 	const std::string BOMB_ANIMATION_EXPLODE="explote_eani_Clip";
 	const std::string BOMB_ANIMATION_WALK="walk1_Clip";
+	const double BOMB_ANIMATION_EXPLODE_FART_MOMENT=0.85;
+
+	const std::string BOMB_SOUND_FART="fart";
+	const std::string BOMB_SOUND_EXPLOSION="explosion";
+
 
 	/// Class to hold Bomb information
 	class GameObjectBomb : public GameObject, public boost::enable_shared_from_this<GameObjectBomb>
@@ -53,6 +58,9 @@ namespace OUAN
 
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
+
+		void checkPlayFartSound();
+		bool mPlayedFart;
 	public:
 		//Constructor
 		GameObjectBomb(const std::string& name);

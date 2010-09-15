@@ -152,7 +152,7 @@ function cutScene4(timer)
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true);
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false);
 	trajectoryCamWait();
 	busyWait(timer,5);
 	

@@ -9,13 +9,19 @@
   <PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 -3 0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1 1 1" ></PROPERTY>
 
+    <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="tripollo.lua" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::scriptFunction" type="7" value="tripolloLogic" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::patrolTrajectory" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="200" fields="X;Y;Z;W"></PROPERTY> ¡
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="200" fields="X;Y;Z;W"></PROPERTY> 
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
