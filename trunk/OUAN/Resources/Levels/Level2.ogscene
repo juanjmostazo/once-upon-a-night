@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-555.908 244.393 -1531.68" orientation="-0.989435 0.119303 -0.0817366 -0.0101953"></OPTION>
+    <OPTION id="2" position="-721.977 218.69 -1779.52" orientation="-0.440689 -0.0530643 0.889617 -0.107513"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.989788 0.119346 -0.0817657 -0.0101989"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.440871 -0.0530862 0.889984 -0.107557"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-555.908 244.393 -1531.68"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-721.977 218.69 -1779.52"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -5058,7 +5058,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tripollo_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.656059 0 0.75471 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-843.749 222.421 -1700.37"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-843.749 237.342 -1700.37"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
@@ -7045,8 +7045,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.997564 0.0697565 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-786.166 216.235 -1488.88"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.99881 0.00871648 -0.000418683 0.0479763"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-786.125 215.813 -1488.89"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>

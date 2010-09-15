@@ -417,15 +417,15 @@ void GameObjectTripollo::update(double elapsedSeconds)
 void GameObjectTripollo::checkTripolloPlataformPuzzleActivations()
 {
 	GameObjectPtr obj;
-	if(getName().compare("tripollo#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM))
+	if(getName().compare("tripollo#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0)
 	{
 		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 	}
-	else if(getName().compare("tripollo#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM))
+	else if(getName().compare("tripollo#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0)
 	{
 		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 	}
-	else if(getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM))
+	else if(getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
 	{
 		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 	}
