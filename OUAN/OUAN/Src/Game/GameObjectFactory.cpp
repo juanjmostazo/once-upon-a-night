@@ -3595,6 +3595,11 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectTripollo->getRenderComponentPositional()));
 
+	pGameObjectTripollo->setPhysicsComponentWeapon(mComponentFactory->createPhysicsComponentWeapon(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tPhysicsComponentWeaponParameters,
+		pGameObjectTripollo->getRenderComponentPositional()));
+
 	//Create TrajectoryComponent
 	pGameObjectTripollo->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
 		pGameObjectTripollo,

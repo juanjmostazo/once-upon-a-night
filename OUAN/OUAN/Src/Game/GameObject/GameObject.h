@@ -28,8 +28,6 @@ namespace OUAN
 		GameObjectNestPtr mParentNestInstance;
 		double mSpawnProbability;
 
-
-
 	protected:
 		double mDisplayLifetime;
 		ObjectTextDisplay* mDisplayMsg;

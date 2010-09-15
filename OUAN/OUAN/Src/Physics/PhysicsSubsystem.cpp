@@ -152,13 +152,17 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 		{
 			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
 			{
-				//Logger::getInstance()->log("UPDATE PHYSICS "+it->second->getName());
-				if (it->second->hasPhysicsComponent() && it->second->isWorthUpdatingPhysicsComponents())
+				if (it->second->isWorthUpdatingPhysicsComponents())
 				{
 					if(it->second->getType().compare(GAME_OBJECT_TYPE_ONY)!=0)
 					{
-						it->second->updatePhysicsComponents(elapsedSeconds);
+						it->second->updatePhysicsComponents(it->second->getElapsedTimeSinceLastPhysicsUpdate()+elapsedSeconds);
+						it->second->setElapsedTimeSinceLastPhysicsUpdate(0);
 					}
+				}
+				else
+				{
+					it->second->setElapsedTimeSinceLastPhysicsUpdate(it->second->getElapsedTimeSinceLastPhysicsUpdate()+elapsedSeconds);
 				}
 			}
 		}

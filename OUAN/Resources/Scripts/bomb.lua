@@ -34,13 +34,13 @@ function bombLogic(pBomb,state)
 	elseif state==BOMB_STATE_PUZZLE_START and activated then
 		log("BOMB transitioning to idle")
 		newState=BOMB_STATE_IDLE
-	elseif state==BOMB_STATE_IDLE and playerDistance > 40 then
+	elseif state==BOMB_STATE_IDLE and playerDistance > 25 then
 		log("BOMB transitioning to follow")
 		newState=BOMB_STATE_FOLLOW
 	elseif state==BOMB_STATE_FOLLOW and activated then
 		log("BOMB transitioning to activate")
 		newState=BOMB_STATE_ACTIVATE
-	elseif state==BOMB_STATE_FOLLOW and playerDistance <= 40 then
+	elseif state==BOMB_STATE_FOLLOW and playerDistance <= 25 then
 		log("BOMB transitioning to idle")
 		newState=BOMB_STATE_IDLE
 	elseif state==BOMB_STATE_EXPLOSION and time > BOMB_EXPLOSION_TIME then

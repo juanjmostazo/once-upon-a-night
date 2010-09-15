@@ -24,7 +24,7 @@
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.25" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.4" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->
@@ -42,6 +42,6 @@
 
   <!-- Sounds -->
   <PROPERTY id="AudioComponent::soundID#0" type="7" value="fart"></PROPERTY>
-
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="explosion"></PROPERTY>
    
 </CUSTOMPROPERTIES>

@@ -2902,6 +2902,7 @@ void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 
 		//Get PhysicsComponentCharacter
 		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tPhysicsComponentWeaponParameters =  processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
 		tGameObjectTripolloParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
 

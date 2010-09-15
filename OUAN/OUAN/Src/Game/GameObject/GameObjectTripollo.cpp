@@ -123,6 +123,17 @@ PhysicsComponentCharacterPtr GameObjectTripollo::getPhysicsComponentCharacter() 
 	return mPhysicsComponentCharacter;
 }
 
+void GameObjectTripollo::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
+{
+	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
+}
+
+PhysicsComponentWeaponPtr GameObjectTripollo::getPhysicsComponentWeapon() const
+{
+	return mPhysicsComponentWeapon;
+}
+
+
 bool GameObjectTripollo::activateTrajectory(int newWorld)
 {
 	std::string trajectoryName = getPatrolTrajectoryName(newWorld);
@@ -298,6 +309,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							?TRIPOLLO_ANIM_ATTACK_00
 							:TRIPOLLO_ANIM_ATTACK_01);
 						mTrajectoryComponent->activateIdle(getName(),world);
+						mPhysicsComponentWeapon->startAttack();
 						mLogicComponentEnemy->setAttackFinished(false);
 						mAudioComponent->playSound(TRIPOLLO_SOUND_ATTACK);
 					}
@@ -397,6 +409,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					Logger::getInstance()->log(logMsg.str());
 				}
 				mPhysicsComponentCharacter->setOuternMovement(movement);
+			}
+			if (mPhysicsComponentWeapon->isInUse())
+			{
+				mPhysicsComponentWeapon->update(elapsedSeconds);
 			}
 		}
 	}
@@ -771,6 +787,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		animationName.compare(TRIPOLLO_ANIM_ATTACK_01)==0)
 	{
 		mLogicComponentEnemy->setAttackFinished(true);
+		mPhysicsComponentWeapon->endAttack();
 	}
 	if (animationName.compare(TRIPOLLO_ANIM_CALL_TO_ARMS)==0)
 	{

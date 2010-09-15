@@ -6,6 +6,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/AttackComponent.h"
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
@@ -86,6 +87,8 @@ namespace OUAN
 		RenderComponentParticleSystemPtr mRenderComponentParticleSystemSurprise;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
+
 		/// Trajectory information
 		TrajectoryComponentPtr mTrajectoryComponent;
 
@@ -172,6 +175,12 @@ namespace OUAN
 
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+
+		/// Set physics component
+		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
+
+		/// Get physics component
+		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
 
 		AttackComponentPtr getAttackComponent() const;
 		void setAttackComponent(AttackComponentPtr attackComponent);
@@ -264,6 +273,7 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 		// Attacks parameters
 		TAttackComponentParameters tAttackComponentParameters;
