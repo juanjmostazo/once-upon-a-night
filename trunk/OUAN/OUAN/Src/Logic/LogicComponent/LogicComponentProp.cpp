@@ -135,10 +135,24 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 
 void LogicComponentProp::update(double elapsedTime)
 {
+	Logger::getInstance()->log(getParent()->getName()+" elapsedTime"+Ogre::StringConverter::toString(Ogre::Real(elapsedTime)));
+	if(mParent->getType().compare(GAME_OBJECT_TYPE_BOMB)==0)
+	{
+		Logger::getInstance()->log("BOMB TIME SPENT BEFORE "+Ogre::StringConverter::toString(Ogre::Real(mTimeSpent)));
+	}
+
+
 	LogicComponent::update(elapsedTime);
-	if (mTimeSpent>=0.0 && mTimeSpent<mDelay)
+	if (mTimeSpent>=0 && mTimeSpent<MAX_TIME_SPENT)
+	{
 		mTimeSpent+=elapsedTime;
-	
+	}
+
+	if(mParent->getType().compare(GAME_OBJECT_TYPE_BOMB)==0)
+	{
+		Logger::getInstance()->log("BOMB TIME SPENT AFTER "+Ogre::StringConverter::toString(Ogre::Real(mTimeSpent)));
+	}
+
 	mHasTakenHit=false;
 }
 
