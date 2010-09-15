@@ -3982,7 +3982,7 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 	pGameObjectSwitch->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectSwitch->getRenderComponentPositional()));
 
-	//Create RenderComponentEntityDreams
+	//Create RenderComponentEntity
 	pGameObjectSwitch->setRenderComponentEntity(
 		mComponentFactory->createRenderComponentEntity(tGameObjectSwitchParameters.dreamsName,
 		pGameObjectSwitch,tGameObjectSwitchParameters.tRenderComponentEntityParameters,
@@ -3995,6 +3995,14 @@ GameObjectSwitchPtr GameObjectFactory::createGameObjectSwitch(TGameObjectSwitchP
 		pGameObjectSwitch, 
 		tGameObjectSwitchParameters.tPhysicsComponentSimpleBoxParameters, 
 		pGameObjectSwitch->getRenderComponentPositional()));
+
+	//Create audio component
+	pGameObjectSwitch->setAudioComponent(
+		mComponentFactory->createAudioComponent(
+			pGameObjectSwitch,
+			tGameObjectSwitchParameters.tAudioComponentParameters,
+			gameWorldMgr->getParent()->getAudioSubsystem()));
+
 
 	//Add reference to this
 	pGameObjectSwitch->setGameWorldManager(gameWorldMgr);

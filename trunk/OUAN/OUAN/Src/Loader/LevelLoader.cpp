@@ -3183,6 +3183,9 @@ void LevelLoader::processGameObjectSwitch(XMLGameObject* gameObject)
 		//Get PhysicsComponentSimpleBox
 		tGameObjectSwitchParameters.tPhysicsComponentSimpleBoxParameters=processPhysicsComponentSimpleBox(gameObject->XMLNodeCustomProperties);
 
+		//Get AudioComponent
+		tGameObjectSwitchParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{

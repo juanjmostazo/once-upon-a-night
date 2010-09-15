@@ -34,7 +34,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		return;
 	}
-	Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
+	//Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
 
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 	{

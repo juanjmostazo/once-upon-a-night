@@ -2,6 +2,7 @@
 
 #include "GameObjectSwitch.h"
 #include "../GameWorldManager.h"
+#include "../../Logic/LogicSubsystem.h"
 
 using namespace OUAN;
 
@@ -135,35 +136,72 @@ void GameObjectSwitch::reset()
 {
 	GameObject::reset();
 
-	disable();
-	setVisible(false);
+	mRenderComponentEntity->setVisible(false);
 	if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 	{
 		mPhysicsComponentSimpleBox->destroy();
 	}
-	mPushable=false;
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	mLogicComponent->setState(logicSS->getGlobalInt(SWITCH_STATE_OFF));
+
+}
+
+void GameObjectSwitch::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	int currentState=mLogicComponent->getState();
+	int world = getGameWorldManager()->getWorld();
+
+	if (mLogicComponent->isStateChanged())
+	{
+		if(currentState==logicSS->getGlobalInt(SWITCH_STATE_OFF))
+		{
+			reset();
+		}
+		else if(currentState==logicSS->getGlobalInt(SWITCH_STATE_PUSHABLE))
+		{
+		}
+		else if(currentState==logicSS->getGlobalInt(SWITCH_STATE_PUSHED))
+		{
+			mPhysicsComponentSimpleBox->setPosition(mPhysicsComponentSimpleBox->getSceneNode()->getPosition()-SWITCH_PUSH_DISTANCE);
+			mAudioComponent->playSound(SWITCH_SOUND_PUSHED);
+		}
+	}
+}
+
+AudioComponentPtr GameObjectSwitch::getAudioComponent() const
+{
+	return mAudioComponent;
+}
+
+void GameObjectSwitch::setAudioComponent(AudioComponentPtr audioComponent)
+{
+	mAudioComponent=audioComponent;
 }
 
 void GameObjectSwitch::makePushable()
 {
-	enable();
-	setVisible(true);
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	mLogicComponent->setState(logicSS->getGlobalInt(SWITCH_STATE_PUSHABLE));
+	mLogicComponent->setStateChanged(true);
 	if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 	{
 		mPhysicsComponentSimpleBox->create();
 	}
-	mPushable=true;
+	mRenderComponentEntity->setVisible(true);
 }
 
 void GameObjectSwitch::setVisible(bool visible)
 {
-	if (!isEnabled() || !mPushable) return;
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	int currentState=mLogicComponent->getState();
+
+	if (!isEnabled() || currentState==logicSS->getGlobalInt(SWITCH_STATE_OFF)) return;
 	mRenderComponentEntity->setVisible(visible);
-}
-
-void GameObjectSwitch::push()
-{
-
 }
 
 bool GameObjectSwitch::hasRenderComponentEntity() const
@@ -182,6 +220,31 @@ LogicComponentPtr GameObjectSwitch::getLogicComponentInstance() const
 {
 	return mLogicComponent;
 }
+
+void GameObjectSwitch::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processCollision(pGameObject, pNormal);
+	}
+}
+
+void GameObjectSwitch::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processEnterTrigger(pGameObject);
+	}
+}
+
+void GameObjectSwitch::processExitTrigger(GameObjectPtr pGameObject)
+{
+	if (mLogicComponent.get())
+	{
+		mLogicComponent->processExitTrigger(pGameObject);
+	}
+}
+
 //-------------------------------------------------------------------------------------------
 
 TGameObjectSwitchParameters::TGameObjectSwitchParameters() : TGameObjectParameters()

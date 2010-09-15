@@ -150,7 +150,6 @@ namespace OUAN
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
 
-
 		///Logic parameters
 		TLogicComponentItemParameters tLogicComponentItemParameters;
 	};
