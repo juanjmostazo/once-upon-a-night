@@ -1,0 +1,102 @@
+system PU/rock_break
+{
+    scale_velocity                              0.2
+    scale                                       0.2 0.2 0.2
+    technique 
+    {
+        visual_particle_quota                   100
+        material                                PU/rock_break_2
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       100
+            angle                               90
+            time_to_live                        dyn_random
+            {
+                min                             4
+                max                             6
+            }
+            velocity                            dyn_random
+            {
+                min                             200
+                max                             400
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             100
+                max                             400
+            }
+            colour                              0.32 0.3 0.2 1
+            force_emission                      true
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -100 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.2  1 1 1 1
+            colour_aff_time_colour              0.4  1 1 1 1
+            colour_aff_time_colour              1    1 1 1 0
+            colour_operation                    multiply
+        }
+    }
+    technique 
+    {
+        visual_particle_quota                   150
+        material                                PU/rock_break
+        renderer                                Entity
+        {
+            entity_renderer_mesh_name           pu_rock_break.mesh
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       dyn_random
+            {
+                min                             20
+                max                             30
+            }
+            angle                               60
+            time_to_live                        100
+            velocity                            dyn_random
+            {
+                min                             800
+                max                             1200
+            }
+            duration                            dyn_random
+            {
+                min                             0.5
+                max                             1.5
+            }
+            all_particle_dimensions             dyn_random
+            {
+                min                             20
+                max                             80
+            }
+        }
+        affector                                PlaneCollider 
+        {
+            position                            0 -10 0
+            collision_friction                  0.5
+            collision_bouncyness                0.4
+            plane_collider_normal               0 1 0
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -1200 0
+        }
+        affector                                GeometryRotator 
+        {
+            geom_rot_use_own_rotation           true
+            geom_rot_rotation_speed             dyn_random
+            {
+                min                             1
+                max                             30
+            }
+        }
+    }
+}

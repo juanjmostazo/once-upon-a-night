@@ -929,6 +929,17 @@ GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGam
 			tGameObjectBreakableRockParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->ROCK_BREAK;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectBreakableRock->setRenderComponentParticleSystemBreak(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectBreakableRock,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectBreakableRock->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectBreakableRock->setPhysicsComponentSimpleBox(
@@ -2212,12 +2223,23 @@ GameObjectBridgePtr GameObjectFactory::createGameObjectBridge(TGameObjectBridgeP
 	pGameObjectBridge->getLogicComponent()->existsInDreams(),
 	pGameObjectBridge->getLogicComponent()->existsInNightmares()));
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BRIDGE_CHANGEWORLD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectBridge->setRenderComponentParticleSystemChangeWorld(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectBridge,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectBridge->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectBridge->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
 		pGameObjectBridge,
 		tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters,
 		pGameObjectBridge->getRenderComponentPositional()));
-
 
 	//Add reference to this
 	pGameObjectBridge->setGameWorldManager(gameWorldMgr);
@@ -3109,6 +3131,18 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TERRAIN_TRIANGLE_CHANGEWORLD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTerrainTriangle->setRenderComponentParticleSystemChangeWorld(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTerrainTriangle,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectTerrainTriangle->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectTerrainTriangle->setPhysicsComponentComplexTriangle(mComponentFactory->createPhysicsComponentComplexTriangle(

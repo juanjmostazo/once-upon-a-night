@@ -4,6 +4,7 @@
 #include "GameObjectInvisibleWall.h"
 #include "../GameWorldManager.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -67,6 +68,16 @@ RenderComponentPositionalPtr GameObjectBreakableRock::getRenderComponentPosition
 RenderComponentInitialPtr GameObjectBreakableRock::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectBreakableRock::setRenderComponentParticleSystemBreak(RenderComponentParticleSystemPtr pRenderComponentParticleSystemBreak)
+{
+	mRenderComponentParticleSystemBreak = pRenderComponentParticleSystemBreak;
+}
+
+RenderComponentParticleSystemPtr GameObjectBreakableRock::getRenderComponentParticleSystemBreak() const
+{
+	return mRenderComponentParticleSystemBreak;
 }
 
 void GameObjectBreakableRock::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr pPhysicsComponentSimpleBox)
