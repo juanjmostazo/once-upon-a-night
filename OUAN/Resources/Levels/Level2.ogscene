@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="22"></CAMERASPEED>
+  <CAMERASPEED value="4.34568"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-638.876 721.339 -1425.94" orientation="-0.81076 0.504339 -0.252065 -0.157397"></OPTION>
+    <OPTION id="2" position="-555.908 244.393 -1531.68" orientation="-0.989435 0.119303 -0.0817366 -0.0101953"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.811017 0.504499 -0.252146 -0.157447"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.989788 0.119346 -0.0817657 -0.0101989"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-638.876 721.339 -1425.94"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-555.908 244.393 -1531.68"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -5065,7 +5065,7 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -7045,7 +7045,7 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.997564 0.0697565 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-786.166 216.235 -1488.88"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -8443,7 +8443,7 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -12753,8 +12753,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-561.653 216.235 -1596.86"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999962 0 0 -0.00872654"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-561.655 216.711 -1596.86"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -12833,7 +12833,7 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -19019,8 +19019,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-792.258 220.138 -1687.41"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999239 -0.0174358 -0.000761263 0.0348942"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-792.882 216.839 -1687.38"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>

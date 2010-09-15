@@ -12,6 +12,7 @@
 #include "../../Game/GameObject/GameObjectBreakableRock.h"
 #include "../../Game/GameObject/GameObjectCryKing.h"
 #include "../../Game/GameObject/GameObjectPlataform.h"
+#include "../../Game/GameObject/GameObjectSwitch.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
@@ -121,6 +122,12 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 			rock->breakRock();
 		}
 	}
+	bool isParentSwitch = mParent->getType().compare(GAME_OBJECT_TYPE_SWITCH)==0;
+	if (isParentSwitch && pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		mHasTakenHit=true;
+	}
+
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);

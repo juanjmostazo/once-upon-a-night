@@ -7,9 +7,18 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentSimpleBox.h"
 #include "../../Logic/LogicComponent/LogicComponentProp.h"
+#include "../../Audio/AudioComponent/AudioComponent.h"
 
 namespace OUAN
 {
+	const std::string SWITCH_STATE_OFF="SWITCH_STATE_OFF";
+	const std::string SWITCH_STATE_PUSHABLE="SWITCH_STATE_PUSHABLE";
+	const std::string SWITCH_STATE_PUSHED="SWITCH_STATE_PUSHED";
+
+	const std::string SWITCH_SOUND_PUSHED="switch";
+
+	const double SWITCH_PUSH_DISTANCE=5;
+
 	/// Class to hold Tower information
 	class GameObjectSwitch : public GameObject, public boost::enable_shared_from_this<GameObjectSwitch>
 	{
@@ -28,8 +37,8 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+		AudioComponentPtr mAudioComponent;
 
-		bool mPushable;
 	public:
 		//Constructor
 		GameObjectSwitch(const std::string& name);
@@ -70,6 +79,11 @@ namespace OUAN
 		/// Get physics component
 		PhysicsComponentSimpleBoxPtr getPhysicsComponentSimpleBox() const;
 
+		/// Set audio component
+		/// @param pAudioComponent
+		AudioComponentPtr getAudioComponent() const;
+		void setAudioComponent(AudioComponentPtr audioComponent);
+
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
 		void changeToWorld(int newWorld, double perc);
@@ -92,8 +106,21 @@ namespace OUAN
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
 
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processEnterTrigger(GameObjectPtr pGameObject);
+
+		/// Process collision event
+		/// @param gameObject which has collision with
+		void processExitTrigger(GameObjectPtr pGameObject);
+
 		void makePushable();
-		void push();
+
+		void update(double elapsedSeconds);
 	};
 
 	class TGameObjectSwitchParameters: public TGameObjectParameters
@@ -113,6 +140,9 @@ namespace OUAN
 
 		///Logic parameters
 		TLogicComponentPropParameters tLogicComponentPropParameters;
+
+		///Audio parameters
+		TAudioComponentMap tAudioComponentParameters;
 	};
 }
 #endif

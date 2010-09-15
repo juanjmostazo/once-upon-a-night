@@ -2159,6 +2159,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Resources\Scripts\switch.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\tentetieso.lua"
 				>
 			</File>
