@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="34.1719"></CAMERASPEED>
+  <CAMERASPEED value="15.1875"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-480.355 299.678 -1180.33" orientation="0.172634 -0.0295114 0.970497 0.165719"></OPTION>
+    <OPTION id="2" position="-529.818 322.609 -1785.53" orientation="-0.91688 -0.0032207 0.399146 -0.00195679"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.172691 -0.0295211 0.970815 0.165773"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.917281 -0.00322211 0.399321 -0.00195765"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-480.355 299.678 -1180.33"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-529.818 322.609 -1785.53"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -7115,8 +7115,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.99881 0.00871648 -0.000418683 0.0479763"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-694.426 224.852 -1500.79"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999924 0.0087262 7.6152e-005 -0.00872619"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-693.672 217.77 -1500.91"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -9383,7 +9383,7 @@
     <PROPERTY id="position" type="9" value="-667.865 77.9395 -980"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="Leaves"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12874,8 +12874,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0 -0.00872654"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-586.626 217.147 -1682.49"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.999391 0 0 -0.0348995"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-586.665 216.891 -1682.49"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -13455,23 +13455,6 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamond_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="156071664" name="plataform_n#return_1" typename="Entity Object" parentnode="Plataforms">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="flower2.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-604.767 187.11 -859.632"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -14927,7 +14910,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="flower2.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-760.149 140 -1268.57"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-760.149 126.847 -1268.57"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -17856,6 +17839,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="156071664" name="plataform_n#return1" typename="Entity Object" parentnode="Plataforms">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="flower2.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-604.767 187.11 -859.632"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="426801344" name="diamond_d#d10Copy#0" typename="Entity Object" parentnode="Diamonds_Zone1_d">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -18777,7 +18777,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform7.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-351.411 372.044 -1976.66"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-358.877 372.044 -1976.66"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="any_hair_tint"></PROPERTY>
@@ -18921,7 +18921,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="platform7.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-667.363 71.5808 -925"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-667.363 71.5808 -909.086"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -19140,8 +19140,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="switch.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999239 -0.0174358 -0.000761263 0.0348942"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-792.882 216.839 -1687.38"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.998021 -0.0521587 -0.00410526 0.0348836"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-792.831 216.448 -1687.39"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
@@ -23042,10 +23042,10 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-760 140 -1269.38"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-760 128.627 -1306.26"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -23107,61 +23107,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="334940640" name="Trajectory#plataform_d#return1" typename="Marker Object" parentnode="return1">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="652.337 255.626 177.453"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="plataform#return1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="TrajectoryNode#plataform_n#return1#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="TrajectoryNode#plataform_n#return1#1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="TrajectoryNode#plataform_n#return1#2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="TrajectoryNode#plataform_n#return1#1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="TrajectoryNode#plataform_n#return1#0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -23764,7 +23709,7 @@
     <PROPERTY id="position" type="9" value="-297.599 15 -1000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -24777,10 +24722,10 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-760 331.281 -1269.38"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-760 207.082 -1306.26"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -24902,20 +24847,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="497329632" name="TrajectoryNode#plataform_n#return1#2" typename="Marker Object" parentnode="return1">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-189.072 10.6028 -834.733"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -25204,7 +25135,7 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-670.788 80.8712 -980"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-670.788 80.8712 -966.866"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
@@ -27697,10 +27628,10 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-605.682 187.189 -860.303"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-567.2 56.688 -864.918"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -27898,7 +27829,7 @@
     <PROPERTY id="position" type="9" value="-415.123 15 -940.88"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -28686,6 +28617,61 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="334940640" name="Trajectory#plataform_n#return1" typename="Marker Object" parentnode="return1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="652.337 255.626 177.453"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectory::name" type="7" value="plataform#return1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#0" type="7" value="TrajectoryNode#plataform_n#return1#0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#1" type="7" value="TrajectoryNode#plataform_n#return1#1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#2" type="7" value="TrajectoryNode#plataform_n#return1#0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="668385856" name="TrajectoryNode#plataform_n#tower2_1#2" typename="Marker Object" parentnode="tower2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
@@ -29342,10 +29328,10 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-310.843 187.189 -838.441"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-567.2 -41.7114 -864.918"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -29439,7 +29425,7 @@
     <PROPERTY id="position" type="9" value="-501.877 -38.5232 -914.954"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="25" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>

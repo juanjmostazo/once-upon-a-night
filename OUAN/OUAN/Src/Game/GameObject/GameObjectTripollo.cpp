@@ -309,7 +309,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							?TRIPOLLO_ANIM_ATTACK_00
 							:TRIPOLLO_ANIM_ATTACK_01);
 						mTrajectoryComponent->activateIdle(getName(),world);
-						mPhysicsComponentWeapon->startAttack();
+						//mPhysicsComponentWeapon->startAttack();
 						mLogicComponentEnemy->setAttackFinished(false);
 						mAudioComponent->playSound(TRIPOLLO_SOUND_ATTACK);
 					}

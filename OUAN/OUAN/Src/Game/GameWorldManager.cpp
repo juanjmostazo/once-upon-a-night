@@ -571,6 +571,9 @@ void GameWorldManager::resetAll()
 	//Set world and stabilize both worlds
 	setChangeWorldTimes();
 	setWorld(mCheckPointWorld);
+	dispatchEvents();
+	mApp->getPhysicsSubsystem()->stabilize();
+	dispatchEvents();
 
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 
@@ -1243,9 +1246,6 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 	}
 	if (sound.get())
 		sound.reset();
-
-	mApp->getPhysicsSubsystem()->stabilize();
-	dispatchEvents();
 }
 
 void GameWorldManager::changeWorldStarted(int newWorld)

@@ -78,7 +78,8 @@ void GameObjectTotem::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-
+	bool reachedLevel;
+	reachedLevel=false;
 	if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 	{
 		if(mLevelTarget<mPhysicsComponentSimpleBox->getSceneNode()->getPosition().y)
@@ -88,8 +89,8 @@ void GameObjectTotem::update(double elapsedSeconds)
 			if(newPosition.y<mLevelTarget)
 			{
 				newPosition.y=mLevelTarget;
-				mLevel--;
 				mAudioComponent->stopSound(TOTEM_SOUND_LEVEL_DOWN);
+				reachedLevel=true;
 			}
 
 			Ogre::Vector3 positionDifference=newPosition-mPhysicsComponentSimpleBox->getSceneNode()->getPosition();
@@ -107,7 +108,7 @@ void GameObjectTotem::update(double elapsedSeconds)
 					);
 			}
 
-			if(mLevel==0)
+			if(reachedLevel && mLevel==0)
 			{
 				if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
@@ -127,8 +128,9 @@ void GameObjectTotem::update(double elapsedSeconds)
 
 void GameObjectTotem::levelDown()
 {
-	mLevelTarget=mPhysicsComponentSimpleBox->getSceneNode()->getPosition().y-LEVEL_DISTANCE;
+	mLevelTarget=mLevelTarget-LEVEL_DISTANCE;
 	mAudioComponent->playSound(TOTEM_SOUND_LEVEL_DOWN);
+	mLevel--;
 }
 
 void GameObjectTotem::changeWorldStarted(int newWorld)
