@@ -33,10 +33,10 @@ fragment_program alpha_splat_rim_erosion_fp_cg cg
 
 	  param_named_auto lightDiffuse_base light_diffuse_colour 0
 	  param_named ambient_base float4 0.8 0.8 0.8 1
-	  param_named rimStrength_base float4 1 1 1 1
+	  param_named rimStrength_base float4 0.2 0.2 0.2 0.2
 	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
 	  param_named ambient_blended float4 0.8 0.8 0.8 1
-	  param_named rimStrength_blended float4 1 1 1 1
+	  param_named rimStrength_blended float4 0.2 0.2 0.2 0.2
 	  
       param_named base_scale float2 10 10
       param_named base_alphaMask float4 1 1 1 1
@@ -79,10 +79,10 @@ fragment_program alpha_splat_rim_erosion_fp_hlsl hlsl
 
 	  param_named_auto lightDiffuse_base light_diffuse_colour 0
 	  param_named ambient_base float4 0.8 0.8 0.8 1
-	  param_named rimStrength_base float4 1 1 1 1
+	  param_named rimStrength_base float4 0.2 0.2 0.2 0.2
 	  param_named_auto lightDiffuse_blended light_diffuse_colour 0
 	  param_named ambient_blended float4 0.8 0.8 0.8 1
-	  param_named rimStrength_blended float4 1 1 1 1
+	  param_named rimStrength_blended float4 0.2 0.2 0.2 0.2
 	  
       param_named base_scale float2 10 10
       param_named base_alphaMask float4 1 1 1 1

@@ -53,9 +53,6 @@ namespace OUAN
 
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
-
-		double mElapsedTime;
-
 	public:
 		//Constructor
 		GameObjectBomb(const std::string& name);
@@ -164,9 +161,6 @@ namespace OUAN
 
 		// update 
 		void update(double elapsedSeconds);
-
-		void updateLogic(double elapsedSeconds);
-		
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;

@@ -397,13 +397,14 @@ void GameObjectBomb::update(double elapsedSeconds)
 	int world = getGameWorldManager()->getWorld();
 	std::string onyName = getGameWorldManager()->getGameObjectOny()->getName();
 
-	//Logger::getInstance()->log("BOMB STATE "+Ogre::StringConverter::toString(currentState));
+	Logger::getInstance()->log("BOMB STATE "+Ogre::StringConverter::toString(currentState));
 
 	if (mLogicComponentProp->isStateChanged())
 	{
 		if(currentState==logicSS->getGlobalInt(BOMB_STATE_OFF))
 		{
 			disable();
+			mPhysicsComponentWeapon->endAttack();
 		}
 		else if(currentState==logicSS->getGlobalInt(BOMB_STATE_PUZZLE_START))
 		{
@@ -426,14 +427,9 @@ void GameObjectBomb::update(double elapsedSeconds)
 		{
 			mTrajectoryComponent->activateIdle(getName(),world);
 			mLogicComponentProp->setTimeSpent(0);
+			Logger::getInstance()->log("BOMB TIME SPENT SET TO 0 "+Ogre::StringConverter::toString(Ogre::Real(mLogicComponentProp->getTimeSpent())));
 
 			mRenderComponentEntity->changeAnimation(BOMB_ANIMATION_EXPLODE);
-
-			if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
-			{
-				mPhysicsComponentCharacter->destroy();
-			}
-
 		}
 
 	}
@@ -448,17 +444,6 @@ void GameObjectBomb::update(double elapsedSeconds)
 	}
 
 	mRenderComponentEntity->update(elapsedSeconds);
-
-
-
-}
-
-//TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
-void GameObjectBomb::updateLogic(double elapsedSeconds)
-{
-	mElapsedTime+=elapsedSeconds;
-
-	GameObject::updateLogic(elapsedSeconds);
 }
 
 void GameObjectBomb::initBombPuzzle()
@@ -604,6 +589,10 @@ void GameObjectBomb::processAnimationEnded(const std::string& animationName)
 		else if(mLogicComponentProp->getState()==logicSS->getGlobalInt(BOMB_STATE_ACTIVATE_TO_PUZZLE_START))
 		{
 			mLogicComponentProp->setState(logicSS->getGlobalInt(BOMB_STATE_EXPLOSION_TO_PUZZLE_START));
+		}
+		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->destroy();
 		}
 		mRenderComponentParticleSystemExplosion->start();
 		mTrajectoryComponent->activateIdle(getName(),getGameWorldManager()->getWorld());

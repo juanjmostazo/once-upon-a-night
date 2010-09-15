@@ -17,9 +17,7 @@ BOMB_STATE_NAMES[BOMB_STATE_EXPLOSION_TO_PUZZLE_START]="EXPLOSION_TO_PUZZLE_STAR
 BOMB_STATE_NAMES[BOMB_STATE_FOLLOW]="FOLLOW"
 BOMB_STATE_NAMES[BOMB_STATE_PUZZLE_START]="PUZZLE_START"
 
-
-BOMB_EXPLOSION_TIME=3;
-BOMB_ACTIVATION_TIME=1;
+BOMB_EXPLOSION_TIME=2;
 
 function bombLogic(pBomb,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
@@ -36,13 +34,13 @@ function bombLogic(pBomb,state)
 	elseif state==BOMB_STATE_PUZZLE_START and activated then
 		log("BOMB transitioning to idle")
 		newState=BOMB_STATE_IDLE
-	elseif state==BOMB_STATE_IDLE and playerDistance > 20 then
+	elseif state==BOMB_STATE_IDLE and playerDistance > 40 then
 		log("BOMB transitioning to follow")
 		newState=BOMB_STATE_FOLLOW
 	elseif state==BOMB_STATE_FOLLOW and activated then
 		log("BOMB transitioning to activate")
 		newState=BOMB_STATE_ACTIVATE
-	elseif state==BOMB_STATE_FOLLOW and playerDistance <= 20 then
+	elseif state==BOMB_STATE_FOLLOW and playerDistance <= 40 then
 		log("BOMB transitioning to idle")
 		newState=BOMB_STATE_IDLE
 	elseif state==BOMB_STATE_EXPLOSION and time > BOMB_EXPLOSION_TIME then

@@ -25,6 +25,8 @@ GameObject::GameObject(const std::string& name,const std::string& type)
 	reset();
 	mDisplayMsg=NULL;
 	mDisplayLifetime=0;
+	mElapsedTimeSinceLastPhysicsUpdate=0;
+	mElapsedTimeSinceLastLogicUpdate=0;
 }
 
 GameObject::~GameObject()
@@ -640,7 +642,7 @@ void GameObject::setElapsedTimeSinceLastPhysicsUpdate(double elapsedTime)
 	mElapsedTimeSinceLastPhysicsUpdate+=elapsedTime;
 }
 
-double GameObject::getElapsedTimeSinceLastPhysicsUpdate()
+double GameObject::getElapsedTimeSinceLastPhysicsUpdate() const
 {
 	return mElapsedTimeSinceLastPhysicsUpdate;
 }
@@ -650,7 +652,7 @@ void GameObject::setElapsedTimeSinceLastLogicUpdate(double elapsedTime)
 	mElapsedTimeSinceLastLogicUpdate+=elapsedTime;
 }
 
-double GameObject::getElapsedTimeSinceLastLogicUpdate()
+double GameObject::getElapsedTimeSinceLastLogicUpdate() const
 {
 	return mElapsedTimeSinceLastLogicUpdate;
 }

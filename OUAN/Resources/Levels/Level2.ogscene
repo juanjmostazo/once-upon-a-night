@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="20.25"></CAMERASPEED>
+  <CAMERASPEED value="20"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-686.445 1067.52 -1629.01" orientation="0.742544 -0.669552 0.0131418 0.0124634"></OPTION>
+    <OPTION id="2" position="686.7 1071.61 529.367" orientation="-0.876934 0.462051 -0.116658 -0.0623395"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.742685 -0.669679 0.0131443 0.0124657"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.876976 0.462072 -0.116664 -0.0623424"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-686.445 1067.52 -1629.01"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="686.7 1071.61 529.367"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2447,7 +2447,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="bomb2.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.165048 0 -0.986286 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-354.775 272.69 353.884"></PROPERTY>
+    <PROPERTY id="position" type="9" value="407.829 152.27 -328.551"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="bomb"></PROPERTY>
@@ -3353,11 +3353,11 @@
     <PROPERTY id="position" type="9" value="351.757 136.666 -209.293"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="4" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -4161,7 +4161,7 @@
     <PROPERTY id="position" type="9" value="585.641 83.3752 -0.429001"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso_green_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9211,7 +9211,7 @@
   <OBJECT object_id="548783808" name="volume-box_n#checkpoint3" typename="Entity Object" parentnode="CheckPoints">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
@@ -12639,7 +12639,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="rey_test.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.728371 0 0.685183 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-368.195 224.233 379.588"></PROPERTY>
+    <PROPERTY id="position" type="9" value="404.156 128.511 -243.83"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="2 2 2"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="caparey"></PROPERTY>
@@ -13544,7 +13544,7 @@
     <PROPERTY id="position" type="9" value="-303.446 119.869 -96.6149"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tentetieso_green_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_02_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13616,11 +13616,11 @@
     <PROPERTY id="position" type="9" value="428.212 95.7911 -288.404"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_green_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -19232,7 +19232,7 @@
   <OBJECT object_id="515549184" name="volume-box_n#cutscene4" typename="Entity Object" parentnode="CutScenes">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
@@ -27551,7 +27551,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-708.991 322.43 -1667.11"></PROPERTY>
+    <PROPERTY id="position" type="9" value="436.014 253.325 -217.316"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>

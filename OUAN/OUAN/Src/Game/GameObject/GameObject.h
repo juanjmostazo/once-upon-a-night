@@ -224,9 +224,9 @@ namespace OUAN
 		virtual bool isWorthRendering();
 
 		virtual void setElapsedTimeSinceLastPhysicsUpdate(double elapsedTime);
-		virtual double getElapsedTimeSinceLastPhysicsUpdate();
+		virtual double getElapsedTimeSinceLastPhysicsUpdate() const;
 		virtual void setElapsedTimeSinceLastLogicUpdate(double elapsedTime);
-		virtual double getElapsedTimeSinceLastLogicUpdate();
+		virtual double getElapsedTimeSinceLastLogicUpdate() const;
 
 		virtual std::string getTranslation(const std::string& str);
 

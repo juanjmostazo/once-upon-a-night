@@ -3,6 +3,8 @@
 #include "LogicComponent.h"
 namespace OUAN
 {
+	const double MAX_TIME_SPENT=100;
+
 	class LogicComponentProp: public LogicComponent
 	{
 	public:
