@@ -265,8 +265,7 @@ void GameObjectStoryBook::calculateChangeWorldDelay(double totalElapsedTime,doub
 
 void GameObjectStoryBook::reset()
 {
-	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+
 }
 
 bool GameObjectStoryBook::hasPositionalComponent() const
