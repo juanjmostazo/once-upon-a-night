@@ -148,6 +148,7 @@ void GameObjectFlashLight::changeWorldFinished(int newWorld)
 		//{
 		//	mFlashlightDecalComponent->destroyProjector();
 		//}
+		stopAttackParticles();
 		mFlashlightDecalComponent->hide();
 		break;
 	case NIGHTMARES:
@@ -192,12 +193,14 @@ void GameObjectFlashLight::reset()
 	mTargetColour=RED;
 	stopAttackParticles();
 }
+
 void GameObjectFlashLight::enable()
 {
 	GameObject::enable();
 	//show();
 	mRenderComponentLight->getLight()->setVisible(false);
 }
+
 void GameObjectFlashLight::disable()
 {
 	GameObject::disable();
@@ -392,7 +395,7 @@ void GameObjectFlashLight::stopAttackParticles()
 	{
 		mRenderComponentParticleSystemAttack->stop();
 	}
-	/*
+	
 	if(mRenderComponentParticleSystemAttackRed.get())
 	{
 		mRenderComponentParticleSystemAttackRed->stop();
@@ -405,7 +408,6 @@ void GameObjectFlashLight::stopAttackParticles()
 	{
 		mRenderComponentParticleSystemAttackBlue->stop();
 	}
-	*/
 }
 
 void GameObjectFlashLight::switchOn()
@@ -472,7 +474,7 @@ void GameObjectFlashLight::switchOff()
 		mGameWorldManager->addEvent(evt);
 	}
 
-	stopAttackParticles();
+	mRenderComponentParticleSystemAttack->stop();
 
 	mCurrentColour=mTargetColour;
 }
@@ -488,7 +490,7 @@ void GameObjectFlashLight::hide()
 {
 	//mRenderComponentEntity->getEntity()->setVisible(false);
 	mConeEntity->setVisible(false);
-	stopAttackParticles();
+	mRenderComponentParticleSystemAttack->stop();
 }
 
 AttackComponentPtr GameObjectFlashLight::getAttackComponent() const

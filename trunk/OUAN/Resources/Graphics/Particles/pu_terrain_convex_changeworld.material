@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
-material PU/bridge_changeworld
+material PU/terrain_convex_changeworld
 {
     technique
     {
@@ -20,7 +20,7 @@ material PU/bridge_changeworld
 
             texture_unit
             {
-                texture pu_bridge_changeworld.png
+                texture pu_terrain_convex_changeworld.png
             }
         }
     }
