@@ -11,8 +11,8 @@
 
 namespace OUAN
 {
-	const std::string PLATFORM_ANIM_IDLE="idle01";
-	const std::string PLATFORM_ANIM_JUMP="jump1";
+	const std::string PLATFORM_ANIM_IDLE="idle";
+	const std::string PLATFORM_ANIM_JUMP="jump";
 
 	const double PLATAFORM_COLLISION_TIME_MARGIN = 1;
 
