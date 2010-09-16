@@ -11,14 +11,14 @@
   <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="500" fields="X;Y;Z;W"></PROPERTY>
 
 	  <!-- Animations -->
-  <PROPERTY id="initialAnimation" type="7" value="idle01"></PROPERTY>
-  <PROPERTY id="animation0d::name" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="initialAnimation" type="7" value="idle"></PROPERTY>
+  <PROPERTY id="animation0d::name" type="7" value="idle"></PROPERTY>
   <PROPERTY id="animation0d::loop" type="12" value="false"></PROPERTY>
-  <PROPERTY id="animation1d::name" type="7" value="jump1" ></PROPERTY>
+  <PROPERTY id="animation1d::name" type="7" value="jump" ></PROPERTY>
   <PROPERTY id="animation1d::loop" type="12" value="false" ></PROPERTY>
-  <PROPERTY id="animation0n::name" type="7" value="idle01"></PROPERTY>
+  <PROPERTY id="animation0n::name" type="7" value="idle"></PROPERTY>
   <PROPERTY id="animation0n::loop" type="12" value="false"></PROPERTY>
-  <PROPERTY id="animation1n::name" type="7" value="jump1" ></PROPERTY>
+  <PROPERTY id="animation1n::name" type="7" value="jump" ></PROPERTY>
   <PROPERTY id="animation1n::loop" type="12" value="false" ></PROPERTY>
 
 </CUSTOMPROPERTIES>
