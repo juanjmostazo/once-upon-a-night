@@ -42,9 +42,12 @@ system PU/nest_jump
         {
             force_aff_vector                    0 -200 0
         }
-        affector                                Colour Affector8
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.7 0.7 0.9 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

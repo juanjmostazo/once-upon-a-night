@@ -23,5 +23,12 @@ system PU/bag_hearts_fountain_double
         {
             force_aff_vector                    0 -300 0
         }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
     }
 }

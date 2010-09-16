@@ -3,6 +3,7 @@
 #include "GameObjectTerrainTriangle.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -170,6 +171,8 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentParticleSystemChangeWorld->stop();
+
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -185,6 +188,8 @@ void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
 void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentParticleSystemChangeWorld->start();
 
 	switch(newWorld)
 	{

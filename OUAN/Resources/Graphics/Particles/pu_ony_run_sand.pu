@@ -28,9 +28,12 @@ system PU/ony_run_sand
             duration                            0.8
             circle_em_radius                    50
         }
-        affector                                Colour Affector8
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.3 0.05 0.15 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
     technique 
@@ -65,10 +68,12 @@ system PU/ony_run_sand
         {
             force_aff_vector                    0 -800 0
         }
-        affector                                Colour Affector9
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.1 0.5 0.1 1
-            colour_aff_time_colour              3    0.2 0.6 0.2 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
     technique 
@@ -103,10 +108,12 @@ system PU/ony_run_sand
         {
             force_aff_vector                    0 -800 0
         }
-        affector                                Colour Affector9
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.1 0.5 0.1 1
-            colour_aff_time_colour              3    0.2 0.6 0.2 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

@@ -28,14 +28,21 @@ system PU/attack_pillow
             }
             duration                            dyn_random
             {
-                min                             0.6
-                max                             0.8
+                min                             0.8
+                max                             0.1
             }
             keep_local                          true
         }
         affector                                LinearForce Affector39
         {
             force_aff_vector                    0 -40 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

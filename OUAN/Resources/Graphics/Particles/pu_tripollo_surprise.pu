@@ -25,5 +25,12 @@ system PU/tripollo_surprise
         {
             xyz_scale                           80
         }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
     }
 }

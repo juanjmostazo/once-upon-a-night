@@ -4,6 +4,45 @@ system PU/changeworld_idle
     scale                                       0.1 0.1 0.1
     technique 
     {
+        position                                0 300 0
+        visual_particle_quota                   200
+        emitted_emitter_quota                   10
+        material                                PU/changeworld_idle_2
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Circle CircleEmitter
+        {
+            emission_rate                       20
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1.2
+            }
+            velocity                            10
+            particle_width                      36
+            particle_height                     36
+            particle_depth                      36
+            keep_local                          true
+            direction                           0 0 0
+            circle_em_radius                    300
+        }
+        affector                                Vortex 
+        {
+            vortex_aff_vector                   0 1 0
+            vortex_aff_speed                    0.8
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
+    }
+    technique 
+    {
         visual_particle_quota                   250
         material                                PU/changeworld_idle
         renderer                                Billboard
@@ -30,7 +69,7 @@ system PU/changeworld_idle
                 min                             400
                 max                             800
             }
-            colour                              1 0.84 0.45 1
+            colour                              0.15 0.85 0.15 1
         }
         affector                                Colour 
         {
