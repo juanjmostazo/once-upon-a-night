@@ -45,7 +45,7 @@ namespace OUAN
 	protected:
 		Ogre::Vector3 calculateCameraPosition(Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
 		Ogre::Vector3 calculateTargetPosition(CameraInputPtr pCameraInput);
-		Ogre::Vector3 calculateCameraPositionAtDistance(double distance,CameraInputPtr pCameraInput);
+		Ogre::Vector3 calculateCameraPositionAtDistance(double distance,CameraInputPtr pCameraInput,bool activateMaxCameraDisplacement=false);
 
 		void processCameraRotation(CameraInputPtr pCameraInput);
 		Ogre::Vector3 resolveCollisions(Ogre::Vector3 cameraPosition,Ogre::Camera * pCamera,CameraInputPtr pCameraInput);
@@ -126,6 +126,8 @@ namespace OUAN
 		double mTransitionDampenPow;
 		double mTransitionMinumumSpeedFactor;
 		CameraState mTargetState;
+
+		Ogre::Vector3 mCameraPositionBeforeJumping;
 
 		//move to target
 		CameraInputPtr mTransitionTargetInput;

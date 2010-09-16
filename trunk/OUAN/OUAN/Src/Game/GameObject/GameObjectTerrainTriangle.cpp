@@ -2,9 +2,6 @@
 
 #include "GameObjectTerrainTriangle.h"
 #include "../GameWorldManager.h"
-#include "GameObjectOny.h"
-#include "../../Graphics/RenderComponent/RenderComponentPositional.h"
-#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Event/Event.h"
 
 using namespace OUAN;
@@ -60,6 +57,16 @@ RenderComponentInitialPtr GameObjectTerrainTriangle::getRenderComponentInitial()
 	return mRenderComponentInitial;
 }
 
+void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
+{
+	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
+}
+
+PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponentComplexTriangle() const
+{
+	return mPhysicsComponentComplexTriangle;
+}
+
 void GameObjectTerrainTriangle::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
 {
 	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
@@ -70,85 +77,34 @@ RenderComponentParticleSystemPtr GameObjectTerrainTriangle::getRenderComponentPa
 	return mRenderComponentParticleSystemChangeWorld;
 }
 
-void GameObjectTerrainTriangle::setPhysicsComponentComplexTriangle(PhysicsComponentComplexTrianglePtr pPhysicsComponentComplexTriangle)
-{
-	mPhysicsComponentComplexTriangle=pPhysicsComponentComplexTriangle;
-	mPhysicsComponentComplexTriangle->create();
-}
-
-PhysicsComponentComplexTrianglePtr GameObjectTerrainTriangle::getPhysicsComponentComplexTriangle() const
-{
-	return mPhysicsComponentComplexTriangle;
-}
-
-void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
-{
-	if (!isEnabled()) return;
-
-	mRenderComponentParticleSystemChangeWorld->stop();
-
-	switch(newWorld)
-	{
-		case DREAMS:
-			setDreamsRender();
-			break;
-		case NIGHTMARES:
-			setNightmaresRender();
-			break;
-		default:break;
-	}
-
-	//Logger::getInstance()->log("changeWorldFinished"+getName()+" ");
-}
-
-void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
-{
-	if (!isEnabled()) return;
-
-	mRenderComponentParticleSystemChangeWorld->start();
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
-
-	//Logger::getInstance()->log("changeWorldStarted"+getName()+" ");
-}
-
-void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)
-{
-	if (!isEnabled()) return;
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		break;
-	case NIGHTMARES:
-		break;
-	default:
-		break;
-	}
-}
-
 void GameObjectTerrainTriangle::setDreamsRender()
 {
 	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(true);
-	mRenderComponentEntityDreams->setDreamsMaterials();
-	mRenderComponentEntityNightmares->setVisible(false);
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityDreams->setDreamsMaterials();
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(false);
+	}	
 }
 
 void GameObjectTerrainTriangle::setNightmaresRender()
 {
 	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setVisible(false);
-	mRenderComponentEntityNightmares->setVisible(true);
-	mRenderComponentEntityNightmares->setNightmaresMaterials();
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(false);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(true);
+		mRenderComponentEntityNightmares->setNightmaresMaterials();
+	}	
 }
 
 void GameObjectTerrainTriangle::setChangeWorldFactor(double factor)
@@ -168,8 +124,110 @@ void GameObjectTerrainTriangle::setChangeWorldFactor(double factor)
 void GameObjectTerrainTriangle::setChangeWorldRender()
 {
 	if (!isEnabled()) return;
-	mRenderComponentEntityDreams->setChangeWorldMaterials();
-	mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	switch(mWorld)
+	{
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
+			break;
+		default:break;
+	}
+}
+
+void GameObjectTerrainTriangle::changeWorldFinished(int newWorld)
+{
+	if (!isEnabled()) return;
+
+	switch(newWorld)
+	{
+		case DREAMS:
+			setDreamsRender();
+			break;
+		case NIGHTMARES:
+			setNightmaresRender();
+			break;
+		default:break;
+	}
+}
+
+void GameObjectTerrainTriangle::changeWorldStarted(int newWorld)
+{
+	if (!isEnabled()) return;
+
+	switch(newWorld)
+	{
+	case DREAMS:
+		break;
+	case NIGHTMARES:
+		break;
+	default:
+		break;
+	}
+}
+
+void GameObjectTerrainTriangle::changeToWorld(int newWorld, double perc)
+{
+	if (!isEnabled()) return;
+
+	switch(newWorld)
+	{
+		case DREAMS:	
+			break;
+		case NIGHTMARES:	
+			break;
+		default:
+			break;
+	}
+}
+
+
+
+void GameObjectTerrainTriangle::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->update(elapsedSeconds);
+	}
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->update(elapsedSeconds);
+	}
+
+	//mRenderComponentEntityDreams->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
+	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
 
 void GameObjectTerrainTriangle::reset()
@@ -181,7 +239,6 @@ bool GameObjectTerrainTriangle::hasPositionalComponent() const
 {
 	return true;
 }
-
 RenderComponentPositionalPtr GameObjectTerrainTriangle::getPositionalComponent() const
 {
 	return getRenderComponentPositional();
@@ -209,7 +266,6 @@ LogicComponentPtr GameObjectTerrainTriangle::getLogicComponent()
 	return mLogicComponent;
 }
 
-
 void GameObjectTerrainTriangle::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
 {
 	if (mLogicComponent.get())
@@ -233,7 +289,6 @@ void GameObjectTerrainTriangle::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponent->processExitTrigger(pGameObject);
 	}
 }
-
 bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
 {
 	return true;
@@ -241,16 +296,6 @@ bool GameObjectTerrainTriangle::hasRenderComponentEntity() const
 RenderComponentEntityPtr GameObjectTerrainTriangle::getEntityComponent() const
 {
 	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
-}
-
-void GameObjectTerrainTriangle::update(double elapsedSeconds)
-{
-	GameObject::update(elapsedSeconds);
-	mRenderComponentEntityDreams->update(elapsedSeconds);
-	mRenderComponentEntityNightmares->update(elapsedSeconds);
-
-	//mRenderComponentEntityDreams->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
-	//mRenderComponentEntityNightmares->setChangeWorldMaterialsPointOfInterest(mGameWorldManager->getGameObjectOny()->getPositionalComponent()->getPosition());
 }
 void GameObjectTerrainTriangle::setVisible(bool visible)
 {
@@ -280,8 +325,10 @@ LogicComponentPtr GameObjectTerrainTriangle::getLogicComponentInstance() const
 {
 	return mLogicComponent;
 }
+//-------------------------------------------------------------------------------------------
 TGameObjectTerrainTriangleParameters::TGameObjectTerrainTriangleParameters() : TGameObjectParameters()
 {
+
 }
 
 TGameObjectTerrainTriangleParameters::~TGameObjectTerrainTriangleParameters()

@@ -41,6 +41,7 @@ namespace OUAN
 		double mElapsedTimeSinceLastCollision;
 		bool mHit;
 		bool mLastFrameHit;
+		bool mActivated;
 	public:
 		//Constructor
 		GameObjectPlataform(const std::string& name);
@@ -59,6 +60,8 @@ namespace OUAN
 		
 		bool isWorthUpdatingPhysicsComponents();
 
+		void setActivated(bool activated);
+		bool getActivated();
 
 		/// Set render component
 		/// @param pRenderComponentEntity

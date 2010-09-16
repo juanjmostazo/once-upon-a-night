@@ -317,8 +317,6 @@ int GameObjectFlashLight::calculateCurrentColour(double elapsedSeconds)
 {
 	int nextColour;
 
-
-
 	ColourValue ogreTargetColour;
 	ColourValue ogreCurrentColour;
 	ColourValue ogreNextColour;
@@ -357,6 +355,7 @@ void GameObjectFlashLight::setAttack(const std::string& newAttack)
 	{
 		mTargetColour=attackData->rgb;
 	}
+
 	getRenderComponentParticleSystemAttackRed()->stop();
 	getRenderComponentParticleSystemAttackGreen()->stop();
 	getRenderComponentParticleSystemAttackBlue()->stop();

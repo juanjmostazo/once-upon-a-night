@@ -1051,7 +1051,6 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 			tGameObjectBossParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
-
 	//Create PhysicsComponent
 	pGameObjectBoss->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
 		pGameObjectBoss,
@@ -3090,8 +3089,8 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 	return pGameObjectTerrainConvex;
 }
 
-GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
-	TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters, GameWorldManagerPtr gameWorldMgr)
+GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(TGameObjectTerrainTriangleParameters tGameObjectTerrainTriangleParameters, 
+	GameWorldManagerPtr gameWorldMgr)
 {
 	GameObjectTerrainTrianglePtr pGameObjectTerrainTriangle;
 
@@ -3116,19 +3115,39 @@ GameObjectTerrainTrianglePtr GameObjectFactory::createGameObjectTerrainTriangle(
 	pGameObjectTerrainTriangle->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectTerrainTriangle->getRenderComponentPositional()));
 
-	//Create RenderComponentEntityDreams
-	pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,
+	if(pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams() && pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
-	
-	//Create RenderComponentEntityNightmares
-	pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
-		pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,
+		//Create RenderComponentEntityNightmares
+		pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
 		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
+	}
+	else if(pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams())
+	{
+		//Create RenderComponentEntityDreams
+		pGameObjectTerrainTriangle->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.dreamsName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
+	}
+	else if(pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares())
+	{
+		//Create RenderComponentEntityNightmares
+		pGameObjectTerrainTriangle->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTerrainTriangleParameters.nightmaresName,
+			pGameObjectTerrainTriangle,tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInDreams(),
+		pGameObjectTerrainTriangle->getLogicComponent()->existsInNightmares()));
+	}
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;

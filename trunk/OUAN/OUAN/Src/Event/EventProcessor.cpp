@@ -316,19 +316,19 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 					evt->getGameObject2());
 					sendCollision=filterWeaponAttack(pillow->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
 			}
-			else if(evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
-			{
-					GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
-					evt->getGameObject1());
-					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
-			}
+			//else if(evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+			//{
+			//		GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
+			//		evt->getGameObject1());
+			//		sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
+			//}
 
-			else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
-			{
-					GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
-					evt->getGameObject2());
-					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
-			}
+			//else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
+			//{
+			//		GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,
+			//		evt->getGameObject2());
+			//		sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
+			//}
 			else
 			{	
 				sendCollision=true;

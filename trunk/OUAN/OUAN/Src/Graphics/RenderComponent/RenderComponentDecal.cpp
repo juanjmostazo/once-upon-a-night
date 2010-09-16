@@ -271,10 +271,16 @@ void RenderComponentDecal::loadGOTerrainTriangleMaterials(GameObjectPtr obj)
 		BOOST_PTR_CAST(GameObjectTerrainTriangle,obj);
 	if (triangle.get())
 	{
-		loadSubEnts(triangle->getRenderComponentEntityDreams()
+		if(triangle->getLogicComponent()->existsInDreams())
+		{
+			loadSubEnts(triangle->getRenderComponentEntityDreams()
 			->getEntity());
-		loadSubEnts(triangle->getRenderComponentEntityNightmares()
+		}
+		if(triangle->getLogicComponent()->existsInNightmares())
+		{
+			loadSubEnts(triangle->getRenderComponentEntityNightmares()
 			->getEntity());
+		}
 	}
 }
 void RenderComponentDecal::loadGOFog(GameObjectPtr obj)

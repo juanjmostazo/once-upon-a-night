@@ -20,6 +20,7 @@ namespace OUAN
 	const std::string DT_ANIM_IDLE="static_pose";
 	const std::string DT_ANIM_HIT="hit";
 
+	const double DT_ANIMATION_TIME=1;
 	//Sounds
 
 	/// Class to hold DiamondTree information
@@ -41,13 +42,9 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPropPtr mLogicComponent;		
 
-		/// Length of the time period since Any hits the tree for the
-		/// first time that she'll be able to hit again and get some more
-		/// diamonds
+		/// Length of the time period since Any hits the tree
 		double mTotalHitTime;
-		/// Timer to control the amount of total elapsed seconds since
-		/// the first hit
-		double mElapsedTotalHitTime;
+
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
 	public:

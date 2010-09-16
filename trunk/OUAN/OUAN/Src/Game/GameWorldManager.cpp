@@ -568,11 +568,13 @@ void GameWorldManager::resetAll()
 		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
 		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 	}
-	//Set world and stabilize both worlds
+	//stabilize both worlds
+	mApp->getPhysicsSubsystem()->stabilize();
+	dispatchEvents();
+
+	//set world
 	setChangeWorldTimes();
 	setWorld(mCheckPointWorld);
-	dispatchEvents();
-	mApp->getPhysicsSubsystem()->stabilize();
 	dispatchEvents();
 
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);

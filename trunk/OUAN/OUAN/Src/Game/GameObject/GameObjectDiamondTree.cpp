@@ -281,7 +281,8 @@ void GameObjectDiamondTree::reset()
 	GameObject::reset();
 
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(DT_STATE_IDLE));
-	mLogicComponent->setTimeSpent(-1.0);
+
+	mLogicComponent->setReload(true);
 
 	if (mLogicComponent->existsInNightmares())
 	{
@@ -361,11 +362,7 @@ RenderComponentEntityPtr GameObjectDiamondTree::getEntityComponent() const
 }
 void GameObjectDiamondTree::processAnimationEnded(const std::string& animationName)
 {
-	if (animationName.compare(DT_ANIM_HIT)==0)
-	{
-		mLogicComponent->setRecovered(true);
-		mLogicComponent->setReload(true);
-	}
+
 }
 void GameObjectDiamondTree::update(double elapsedSeconds)
 {
@@ -381,29 +378,54 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		{
 			if (mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{
-				mLogicComponent->setStateChanged(false);
 				mLogicComponent->setHasTakenHit(false);
-				mLogicComponent->setReload(false);
+				mLogicComponent->setReload(true);
 				mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
-				mLogicComponent->setTimeSpent(-1.0);
 			}
 		}
-		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
-		{	
-			mRenderComponentEntity->changeAnimation(DT_ANIM_HIT);			
-			if (mLogicComponent->getTimeSpent()<0)
+		else if (currentState==logicSS->getGlobalInt(DT_STATE_HIT) && mRenderComponentEntity.get())
+		{		
+			if(mLogicComponent->isStateChanged())
 			{
-				mLogicComponent->setTimeSpent(0.0);
-			}
-			mGameWorldManager->increaseOnyDiamonds(1);
+				mRenderComponentEntity->changeAnimation(DT_ANIM_HIT);			
 
-			mAudioComponent->playSound("tree");
-			mLogicComponent->setRecovered(false);
-			//play sound and particles
+				if(mLogicComponent->isReload())
+				{
+					mLogicComponent->setTimeSpent(0);
+					mLogicComponent->setReload(false);
+				}
+
+				mTotalHitTime=0;
+
+				mGameWorldManager->increaseOnyDiamonds(1);
+
+				mAudioComponent->playSound("tree");
+				mLogicComponent->setRecovered(false);
+				//play sound and particles
+
+				mRenderComponentEntity->setAnimationPosition(0);
+			}
+			else
+			{
+				mTotalHitTime+=elapsedSeconds;
+				std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+				float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+
+				if(mTotalHitTime>DT_ANIMATION_TIME)
+				{
+					mRenderComponentEntity->setAnimationPosition(1);
+					mLogicComponent->setRecovered(true);
+				}
+				else
+				{
+					mRenderComponentEntity->setAnimationPosition(mTotalHitTime/DT_ANIMATION_TIME);
+				}
+			}
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_MAY_HIT) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{					
 			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
+			mLogicComponent->setHasTakenHit(false);
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
 			mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
@@ -411,6 +433,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			//TODO: Replace with depletion animation when it is done
 			//TODO: Add particles
 			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
+			mLogicComponent->setHasTakenHit(false);
 		}
 		//Last, update the entity
 		if (mRenderComponentEntity.get())

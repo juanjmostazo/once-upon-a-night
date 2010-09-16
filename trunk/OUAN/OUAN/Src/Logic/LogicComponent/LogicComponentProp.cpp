@@ -44,7 +44,7 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		|| pGameObject->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0;
 	LogicSubsystemPtr logicSS = app->getLogicSubsystem();
 
-	if(isParentDiamondTree && isWeaponCollision && (getState()==logicSS->getGlobalInt(DT_STATE_IDLE) || getState()==logicSS->getGlobalInt(DT_STATE_MAY_HIT)))
+	if(isParentDiamondTree && pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && (getState()==logicSS->getGlobalInt(DT_STATE_IDLE) || getState()==logicSS->getGlobalInt(DT_STATE_MAY_HIT)))
 	{		
 		if (isRecovered())
 		{
