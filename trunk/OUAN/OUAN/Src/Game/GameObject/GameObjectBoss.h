@@ -7,6 +7,7 @@
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
+#include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 namespace OUAN
 {
@@ -15,8 +16,8 @@ namespace OUAN
 	{
 	private:
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
+
 		/// Positional component
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -26,6 +27,9 @@ namespace OUAN
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
 		LogicComponentEnemyPtr mLogicComponentEnemy;
+
+		/// TrajectoryComponent
+		TrajectoryComponentPtr mTrajectoryComponent;
 
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
@@ -47,13 +51,16 @@ namespace OUAN
 		LogicComponentEnemyPtr getLogicComponentEnemy();
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+
+		/// Set trajectory component
+		/// @param pTrajectoryComponent
+		void setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent);
+		TrajectoryComponentPtr getTrajectoryComponent();
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -130,8 +137,7 @@ namespace OUAN
 		~TGameObjectBossParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
@@ -142,6 +148,8 @@ namespace OUAN
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
 
+		///Logic parameters
+		TTrajectoryComponentParameters tTrajectoryComponentParameters;
 
 		///Logic parameters
 		TLogicComponentEnemyParameters tLogicComponentEnemyParameters;
