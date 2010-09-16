@@ -652,7 +652,7 @@ void PhysicsComponentCharacter::create()
 
 	NxOgre::ControllerDescription pNxOgreControllerDescription;
 	pNxOgreControllerDescription.mCallback=Application::getInstance()->getPhysicsSubsystem().get();
-	pNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(getSceneNode()->getPosition()));
+	pNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(getSceneNode()->getPosition()-mOffsetRenderPosition+SAFE_SURFACE_DISTANCE));
 	setNxOgreControllerDescription(pNxOgreControllerDescription);
 
 	setNxOgreController(
@@ -666,6 +666,11 @@ void PhysicsComponentCharacter::create()
 			Ogre::Math::Cos(Application::getInstance()->getPhysicsSubsystem()->mSlopeLimit * TO_RADIANS),   
 			Application::getInstance()->getPhysicsSubsystem()->mStepOffset,
 			Application::getInstance()->getPhysicsSubsystem()->mSkinWidth));
+
+	if(Application::getInstance()->getGameWorldManager()->isInitialized())
+	{
+		stabilize(Application::getInstance()->getPhysicsSubsystem()->mStabilizeSeconds);
+	}
 }
 
 void PhysicsComponentCharacter::destroy()
