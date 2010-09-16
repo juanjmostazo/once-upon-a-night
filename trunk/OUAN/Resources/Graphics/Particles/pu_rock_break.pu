@@ -61,7 +61,11 @@ system PU/rock_break
                 max                             30
             }
             angle                               60
-            time_to_live                        100
+            time_to_live                        dyn_random
+            {
+                min                             4
+                max                             6
+            }
             velocity                            dyn_random
             {
                 min                             800
