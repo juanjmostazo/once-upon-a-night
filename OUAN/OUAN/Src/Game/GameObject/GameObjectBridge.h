@@ -24,8 +24,6 @@ namespace OUAN
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
-		/// Particle Systems
-		RenderComponentParticleSystemPtr mRenderComponentParticleSystemChangeWorld;
 		/// Physics information
 		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -55,11 +53,9 @@ namespace OUAN
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
-
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
 		void setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional);
-
 
 		void setVisible(bool visible);
 

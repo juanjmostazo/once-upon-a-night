@@ -3,6 +3,7 @@
 #include "GameObjectTerrainConvex.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -55,6 +56,16 @@ RenderComponentPositionalPtr GameObjectTerrainConvex::getRenderComponentPosition
 RenderComponentInitialPtr GameObjectTerrainConvex::getRenderComponentInitial() const
 {
 	return mRenderComponentInitial;
+}
+
+void GameObjectTerrainConvex::setRenderComponentParticleSystemChangeWorld(RenderComponentParticleSystemPtr pRenderComponentParticleSystemChangeWorld)
+{
+	mRenderComponentParticleSystemChangeWorld = pRenderComponentParticleSystemChangeWorld;
+}
+
+RenderComponentParticleSystemPtr GameObjectTerrainConvex::getRenderComponentParticleSystemChangeWorld() const
+{
+	return mRenderComponentParticleSystemChangeWorld;
 }
 
 void GameObjectTerrainConvex::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
@@ -160,6 +171,8 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
+	mRenderComponentParticleSystemChangeWorld->stop();
+
 	switch(newWorld)
 	{
 		case DREAMS:
@@ -226,6 +239,8 @@ void GameObjectTerrainConvex::changeWorldFinished(int newWorld)
 void GameObjectTerrainConvex::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	mRenderComponentParticleSystemChangeWorld->start();
 
 	switch(newWorld)
 	{

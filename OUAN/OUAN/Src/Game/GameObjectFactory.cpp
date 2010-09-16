@@ -2220,18 +2220,6 @@ GameObjectBridgePtr GameObjectFactory::createGameObjectBridge(TGameObjectBridgeP
 	pGameObjectBridge->getLogicComponent()->existsInDreams(),
 	pGameObjectBridge->getLogicComponent()->existsInNightmares()));
 
-	//Create RenderComponenetParticleSystem
-	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BRIDGE_CHANGEWORLD;
-	tRenderComponentParticleSystemParameters.attached = true;
-	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
-	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectBridge->setRenderComponentParticleSystemChangeWorld(
-		mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectBridge,
-		tRenderComponentParticleSystemParameters,
-		pGameObjectBridge->getRenderComponentPositional()));
-
 	//Create PhysicsComponent
 	pGameObjectBridge->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
 		pGameObjectBridge,
@@ -3071,6 +3059,18 @@ GameObjectTerrainConvexPtr GameObjectFactory::createGameObjectTerrainConvex(TGam
 		pGameObjectTerrainConvex->getLogicComponent()->existsInDreams(),
 		pGameObjectTerrainConvex->getLogicComponent()->existsInNightmares()));
 	}
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TERRAIN_CONVEX_CHANGEWORLD;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectTerrainConvex->setRenderComponentParticleSystemChangeWorld(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTerrainConvex,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectTerrainConvex->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectTerrainConvex->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(

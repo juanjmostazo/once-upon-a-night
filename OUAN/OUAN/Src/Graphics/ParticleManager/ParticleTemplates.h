@@ -74,7 +74,7 @@ namespace OUAN
 
 		std::string ROCK_BREAK;
 		std::string TERRAIN_TRIANGLE_CHANGEWORLD;
-		std::string BRIDGE_CHANGEWORLD;
+		std::string TERRAIN_CONVEX_CHANGEWORLD;
 
 		/// General particle system params
 		int DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;

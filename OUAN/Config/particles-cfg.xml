@@ -54,8 +54,10 @@
 	
 	<Option key="TREE_STARS">PU/tree_stars</Option>
 	
-	<Option key="ROCK_BREAK">PU/rock_break</Option><!--TODO-->
-	<Option key="TERRAIN_TRIANGLE_CHANGEWORLD">PU/terrain_triangle_changeworld</Option><!--TODO-->
-	<Option key="BRIDGE_CHANGEWORLD">PU/bridge_changeworld</Option><!--TODO-->
+	<Option key="ROCK_BREAK">PU/rock_break</Option>
+	
+	<Option key="TERRAIN_TRIANGLE_CHANGEWORLD">PU/terrain_triangle_changeworld</Option>
+	<Option key="TERRAIN_CONVEX_CHANGEWORLD">PU/terrain_convex_changeworld</Option>
+	
   </Options>
 </Configuration>

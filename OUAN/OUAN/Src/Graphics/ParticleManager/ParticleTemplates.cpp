@@ -87,8 +87,8 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("TREE_STARS", TREE_STARS); 
 
 		config.getOption("ROCK_BREAK", ROCK_BREAK); 
-		config.getOption("TERRAIN_TRIANGLE", TERRAIN_TRIANGLE_CHANGEWORLD); 
-		config.getOption("BRIDGE_CHANGEWORLD", BRIDGE_CHANGEWORLD); 
+		config.getOption("TERRAIN_TRIANGLE_CHANGEWORLD", TERRAIN_TRIANGLE_CHANGEWORLD); 
+		config.getOption("TERRAIN_CONVEX_CHANGEWORLD", TERRAIN_CONVEX_CHANGEWORLD); 
 
 		config.getOption("DEFAULT_PARTICLE_SYSTEM_POOL_SIZE", value); 
 		DEFAULT_PARTICLE_SYSTEM_POOL_SIZE = atoi(value.c_str());
