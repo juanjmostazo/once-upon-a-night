@@ -96,6 +96,8 @@ GameWorldManager::GameWorldManager()
 	mDefaultAmbientSound="sound#1";
 	mDefaultAmbientSoundIDDreams="birds_chirp";
 	mDefaultAmbientSoundIDNightmares="scary";
+
+	mInitialized=false;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -536,6 +538,8 @@ void GameWorldManager::cleanUp()
 
 void GameWorldManager::resetAll()
 {
+	mInitialized=false;
+
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL STARTED]");
 
 	mEventManager->clearEvents();
@@ -568,7 +572,7 @@ void GameWorldManager::resetAll()
 		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
 		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 	}
-	//stabilize both worlds
+	//stabilize world
 	mApp->getPhysicsSubsystem()->stabilize();
 	dispatchEvents();
 
@@ -584,7 +588,14 @@ void GameWorldManager::resetAll()
 
 	mExecutedLevelEvents.clear();
 
+	mInitialized=true;
+
 	Logger::getInstance()->log("[GAME WORLD MANAGER RESET ALL FINISHED]");
+}
+
+bool GameWorldManager::isInitialized()
+{
+	return mInitialized;
 }
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)

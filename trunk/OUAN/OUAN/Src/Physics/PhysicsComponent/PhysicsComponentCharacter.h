@@ -5,6 +5,8 @@
 
 namespace OUAN
 {
+	const double SAFE_SURFACE_DISTANCE=0.1;
+
 	class PhysicsComponentCharacter: public PhysicsComponent
 	{
 	public:

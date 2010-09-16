@@ -248,6 +248,8 @@ namespace OUAN
 		static void initBombPuzzleLUA();
 		void initBombPuzzle();
 
+		bool isInitialized();
+
 
 		/// Add the game object pointer to the objects List
 		/// @param gameObject pointer to the object to add to the main list
@@ -423,6 +425,8 @@ namespace OUAN
 		std::string mDefaultAmbientSoundIDNightmares;
 
 		void clearContainers();
+
+		bool mInitialized;
 
 		bool mGameOver;
 
