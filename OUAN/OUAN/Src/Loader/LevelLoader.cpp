@@ -1255,15 +1255,15 @@ void LevelLoader::processGameObjectBoss(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectBossParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS,gameObject->XMLNodeCustomProperties);
-		//Get RenderComponentEntityNightmares
-		tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		tGameObjectBossParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
+			BOTH_WORLDS,gameObject->XMLNodeCustomProperties);
+
 		
 		//Get AudioComponent
 		tGameObjectBossParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
+		//Get Trajectory Component
+		tGameObjectBossParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentPositional
 		tGameObjectBossParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());

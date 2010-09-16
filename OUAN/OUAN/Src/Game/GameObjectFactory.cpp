@@ -1032,19 +1032,17 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 	pGameObjectBoss->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectBoss->getRenderComponentPositional()));
 
-	//Create RenderComponentEntityDreams
-	pGameObjectBoss->setRenderComponentEntityDreams(
-		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.dreamsName,
-		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityDreamsParameters,
+	//Create RenderComponentEntity
+	pGameObjectBoss->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.name,
+		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityParameters,
 		pGameObjectBoss->getLogicComponentEnemy()->existsInDreams(),
 		pGameObjectBoss->getLogicComponentEnemy()->existsInNightmares()));
 
-	//Create RenderComponentEntityNightmares
-	pGameObjectBoss->setRenderComponentEntityNightmares(
-		mComponentFactory->createRenderComponentEntity(tGameObjectBossParameters.nightmaresName,
-		pGameObjectBoss,tGameObjectBossParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectBoss->getLogicComponentEnemy()->existsInDreams(),
-		pGameObjectBoss->getLogicComponentEnemy()->existsInNightmares()));
+	//Create trajectory component
+	pGameObjectBoss->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
+		pGameObjectBoss,
+		tGameObjectBossParameters.tTrajectoryComponentParameters));
 
 	//Create audio component
 	pGameObjectBoss->setAudioComponent(

@@ -28,6 +28,16 @@ AudioComponentPtr GameObjectBoss::getAudioComponent() const
 	return mAudioComponent;
 }
 
+void GameObjectBoss::setTrajectoryComponent(TrajectoryComponentPtr pTrajectoryComponent)
+{
+	mTrajectoryComponent=pTrajectoryComponent;
+}
+
+TrajectoryComponentPtr GameObjectBoss::getTrajectoryComponent()
+{	
+	return mTrajectoryComponent;
+}
+
 void GameObjectBoss::setAudioComponent(AudioComponentPtr audioComponent)
 {
 	mAudioComponent=audioComponent;
@@ -60,24 +70,14 @@ RenderComponentInitialPtr GameObjectBoss::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectBoss::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectBoss::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectBoss::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntity() const
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
-RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntityDreams() const
-{
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectBoss::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
@@ -121,12 +121,8 @@ void GameObjectBoss::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			mRenderComponentEntityDreams->setVisible(true);
-			mRenderComponentEntityNightmares->setVisible(false);
 			break;
 		case NIGHTMARES:
-			mRenderComponentEntityDreams->setVisible(false);
-			mRenderComponentEntityNightmares->setVisible(true);
 			break;
 		default:break;
 	}
@@ -218,7 +214,7 @@ bool GameObjectBoss::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectBoss::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 bool GameObjectBoss::hasLogicComponent() const
 {
