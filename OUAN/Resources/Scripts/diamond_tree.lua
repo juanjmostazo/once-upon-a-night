@@ -15,7 +15,6 @@ nHits = {}
 function diamondTreeLogic(pDiamondTree,state)
 	-- local vars defined for legibility and to invoke as few c++ calls as possible
 	local myName=pDiamondTree:getName()
-	local delay=pDiamondTree:getDelay()	
 	local timeSpent=pDiamondTree:getTimeSpent()
 	local hit=pDiamondTree:hasTakenHit()	
 	local recovered=pDiamondTree:isRecovered()	
@@ -24,7 +23,7 @@ function diamondTreeLogic(pDiamondTree,state)
 	if state==DT_STATE_IDLE and hit then
 		newState=DT_STATE_HIT
 	elseif state==DT_STATE_HIT and recovered then
-		if timeSpent<delay then
+		if timeSpent<10 then
 			log("READY TO HIT!")
 			newState=DT_STATE_MAY_HIT
 		else

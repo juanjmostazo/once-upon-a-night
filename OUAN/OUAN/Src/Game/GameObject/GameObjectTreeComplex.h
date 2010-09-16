@@ -2,7 +2,6 @@
 #define GameObjectTreeComplexH_H
 
 #include "GameObject.h"
-#include "GameObjectTree.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
@@ -11,16 +10,26 @@
 
 namespace OUAN
 {
+	//Animation names
+	const std::string TreeComplex_ANIM_UP="up";
+	const std::string TreeComplex_ANIM_DOWN="down";
+	const std::string TreeComplex_ANIM_IDLE_UP="idle01";
+	const std::string TreeComplex_ANIM_IDLE_UP2="idle02";
+	const std::string TreeComplex_ANIM_IDLE_DOWN="idle03";
+
 	/// Class to hold GameObjectTreeComplex information
 	class GameObjectTreeComplex : public GameObject, public boost::enable_shared_from_this<GameObjectTreeComplex>
 	{
 	private:
-		
+		int mType;
+
 		/// Visual information
 		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
+		/// Particle Systems
+		RenderComponentParticleSystemPtr mRenderComponentParticleSystemStars;
 		/// Physics information
 		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
 		/// Logic component: it'll represent the 'brains' of the game object
@@ -63,6 +72,12 @@ namespace OUAN
 		/// @return initial component
 		RenderComponentInitialPtr getRenderComponentInitial() const;
 
+		/// Set Particle Systems
+		void setRenderComponentParticleSystemStars(RenderComponentParticleSystemPtr mRenderComponentParticleSystemStars);
+
+		/// Get Particle Systems
+		RenderComponentParticleSystemPtr getRenderComponentParticleSystemStars() const;
+
 		/// Set physics component
 		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 
@@ -101,13 +116,13 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
-		
-
 		void update(double elapsedSeconds);
 
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;
+
+		void setType(int pType);
+		int getType() const;
 	};
 
 	class TGameObjectTreeComplexParameters: public TGameObjectParameters
@@ -128,6 +143,8 @@ namespace OUAN
 		///Logic parameters
 		TLogicComponentParameters tLogicComponentParameters;
 
+		//TreeComplex type [0, 12]
+		int type;
 	};
 }
 #endif

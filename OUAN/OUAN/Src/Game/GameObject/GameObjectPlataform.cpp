@@ -87,6 +87,15 @@ void GameObjectPlataform::activateTrajectory()
 	}
 }
 
+void GameObjectPlataform::setActivated(bool activated)
+{
+	mActivated=activated;
+}
+bool GameObjectPlataform::getActivated()
+{
+	return mActivated;
+}
+
 void GameObjectPlataform::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -182,6 +191,7 @@ void GameObjectPlataform::reset()
 	mElapsedTimeSinceLastCollision=0;
 	mHit=false;
 	mLastFrameHit=false;
+	mActivated=true;
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
@@ -326,7 +336,7 @@ void GameObjectPlataform::updatePhysicsComponents(double elapsedSeconds)
 	//	}
 	//}
 
-	if(mTrajectoryComponent->predefinedTrajectoryExists(getName()))
+	if(mActivated && mTrajectoryComponent->predefinedTrajectoryExists(getName()))
 	{
 		mTrajectoryComponent->update(elapsedSeconds);
 		Vector3 position=mTrajectoryComponent->getNextMovement()+mRenderComponentPositional->getPosition();

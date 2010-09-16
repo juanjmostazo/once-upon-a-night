@@ -40,6 +40,8 @@ void CameraControllerThirdPerson::init(CameraInputPtr pCameraInput,Ogre::SceneMa
 
 	mSceneManager=pSceneManager;
 
+	mCameraPositionBeforeJumping=Vector3::ZERO;
+
 	mTransparentEntityManager.reset(new TransparentEntityManager());
 	mTransparentEntityManager->init();
 
@@ -652,37 +654,14 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateTargetPosition(CameraInputPt
 
 	targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
 
-
-	//if (targetGameObject->getType()==GAME_OBJECT_TYPE_ONY)
-	//{
-	//	//In case target is Ony we will not move the camera while jumping
-	//	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(targetGameObject);
-
-	//	if(!ony->getPhysicsComponentCharacterOny()->isOnSurface() &&
-	//		ony->getPositionalComponent()->getPosition().y>ony->getPhysicsComponentCharacterOny()->getLastSurfacePosition().y
-	//		)
-	//	{
-	//		targetPosition=ony->getPositionalComponent()->getPosition();
-	//		targetPosition.y=ony->getPhysicsComponentCharacterOny()->getLastSurfacePosition().y;
-	//	}
-	//	else
-	//	{
-	//		targetPosition=ony->getPositionalComponent()->getPosition();
-	//	}
-	//	targetPosition=targetPosition+pCameraInput->mCameraParameters->getTargetOffset();
-
-	//}
-	//else
-	//{
-		if(targetGameObject.get() && targetGameObject->hasPositionalComponent())
-		{
-			targetPosition=targetGameObject->getPositionalComponent()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
-		}
-		else
-		{
-			targetPosition= Vector3::ZERO;
-		}
-	//}
+	if(targetGameObject.get() && targetGameObject->hasPositionalComponent())
+	{
+		targetPosition=targetGameObject->getPositionalComponent()->getPosition()+pCameraInput->mCameraParameters->getTargetOffset();
+	}
+	else
+	{
+		targetPosition= Vector3::ZERO;
+	}
 
 	return targetPosition;
 }
@@ -723,7 +702,7 @@ Ogre::Vector3 CameraControllerThirdPerson::rotateMovementVector(Ogre::Vector3 mo
 	return movement;
 }
 
-Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(double distance,CameraInputPtr pCameraInput)
+Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(double distance,CameraInputPtr pCameraInput,bool activateMaxCameraDisplacement)
 {
 	Ogre::Vector3 targetPosition;
 	Ogre::Vector3 newCameraPosition;
@@ -735,6 +714,8 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(dou
 
 	targetPosition=calculateTargetPosition(pCameraInput);
 
+	GameObjectPtr targetGameObject=mGameWorldManager->getObject(pCameraInput->mCameraParameters->getTarget());
+
 	newCameraPosition = distance*pCameraInput->mCameraParameters->getDirection();
 
 	newCameraPosition = Quaternion(Ogre::Degree(mRotX), Vector3::UNIT_X) * newCameraPosition;
@@ -742,6 +723,21 @@ Ogre::Vector3 CameraControllerThirdPerson::calculateCameraPositionAtDistance(dou
 
 	//Calculate Camera position in the world
 	newCameraPosition = targetPosition+newCameraPosition;
+
+	//if (targetGameObject.get() && targetGameObject->getType()==GAME_OBJECT_TYPE_ONY)
+	//{
+	//	//In case target is Ony we will not move Y the camera while jumping
+	//	GameObjectOnyPtr ony = boost::dynamic_pointer_cast<GameObjectOny>(targetGameObject);
+
+	//	if(!ony->getPhysicsComponentCharacterOny()->isOnSurface())
+	//	{
+	//		newCameraPosition.y=mCameraPositionBeforeJumping.y;
+	//	}
+	//	else
+	//	{
+	//		mCameraPositionBeforeJumping=newCameraPosition;
+	//	}
+	//}
 
 	return newCameraPosition;
 }

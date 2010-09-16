@@ -230,13 +230,11 @@ void GameRunningState::handleEvents()
 		GameStatePtr nextState(new InGameMenuState());
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 	}
-	int world=mApp->getGameWorldManager()->getWorld();
-	bool flashlightAttack = world==NIGHTMARES && mApp->isDownUseWeapon(&pad,&key);
-	bool pillowAttack = world==DREAMS && mApp->isPressedUseWeapon(&pad,&key);
+
 	bool onyCanAttack=!mApp->getGameWorldManager()->isOnyDying() && 
 		!mApp->getGameWorldManager()->isOnyHit();
 
-	if ( onyCanAttack && (flashlightAttack || pillowAttack))
+	if ( onyCanAttack && mApp->isDownUseWeapon(&pad,&key))
 	{
 		if(mApp->getCameraManager()->targetMovementAllowed())
 		{

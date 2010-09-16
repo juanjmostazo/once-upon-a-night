@@ -344,7 +344,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE3)==0)
 		{
-			processGameObjectTree(gameObject, 3);
+			processGameObjectTreeComplex(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE4)==0)
 		{
@@ -364,7 +364,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE8)==0)
 		{
-			processGameObjectTree(gameObject, 8);
+			processGameObjectTreeComplex(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TREE9)==0)
 		{
@@ -2556,28 +2556,34 @@ void LevelLoader::processGameObjectTerrain(XMLGameObject* gameObject)
 
 			try
 			{
-				//Check parsing errors
-				if(!gameObject->XMLNodeDreams) throw DREAMS_NODE_NOT_FOUND;
-				if(!gameObject->XMLNodeNightmares) throw NIGHTMARES_NODE_NOT_FOUND;
-
 				//Get names
 				tGameObjectTerrainTriangleParameters.dreamsName = gameObject->dreamsName;
 				tGameObjectTerrainTriangleParameters.nightmaresName = gameObject->nightmaresName;
 				tGameObjectTerrainTriangleParameters.name = gameObject->name;
 
-				//Get PhysicsComponentComplexTriangle
-				tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(gameObject->XMLNodeCustomProperties,
-					complexTriangle);
-
 				tGameObjectTerrainTriangleParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 					gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-				tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters= processRenderComponentPositional(gameObject->getMainXMLNode());
+				tGameObjectTerrainTriangleParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 				
-				tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,
-					DREAMS, gameObject->XMLNodeCustomProperties);
+				if(tGameObjectTerrainTriangleParameters.tLogicComponentParameters.existsInDreams)
+				{
+					tGameObjectTerrainTriangleParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(
+						gameObject->XMLNodeDreams, DREAMS, gameObject->XMLNodeCustomProperties);
+				}
+				
+				if(tGameObjectTerrainTriangleParameters.tLogicComponentParameters.existsInNightmares)
+				{
+					tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(
+						gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);
+				}
 
-				tGameObjectTerrainTriangleParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
+				//Get PhysicsComponentComplexTriangle
+				tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters = processPhysicsComponentComplexTriangle(
+					gameObject->XMLNodeCustomProperties,
+					complexTriangle, "Triangle");
+
+				//Logger::getInstance()->log("@@@ "  + gameObject->name + " ### " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters.balanceRadiumX)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters.balanceRadiumY)) + " " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters.balanceRadiumZ)) + " -> " + Ogre::StringConverter::toString(Ogre::Real(tGameObjectTerrainTriangleParameters.tPhysicsComponentComplexTriangleParameters.balanceRadiumTime)));	
 
 			}
 			catch( std::string error )
@@ -2677,10 +2683,17 @@ void LevelLoader::processGameObjectTreeComplex(XMLGameObject* gameObject)
 		tGameObjectTreeComplexParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentComplexConvex
-		std::string nxsfile = "CONVEX_"+tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.substr(0,
-			tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile.size()-5)+".nxs";
-		tGameObjectTreeComplexParameters.tPhysicsComponentComplexConvexParameters=processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+		std::string meshfile = tGameObjectTreeComplexParameters.tRenderComponentEntityParameters.meshfile;
+		std::string nxsfile = "CONVEX_"+meshfile.substr(0,meshfile.size()-5)+".nxs";
+		if(Ogre::ResourceGroupManager::getSingleton().resourceExists(DEFAULT_OGRE_RESOURCE_MANAGER_GROUP,nxsfile))
+		{
+			tGameObjectTreeComplexParameters.tPhysicsComponentComplexConvexParameters=processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
 			gameObject->XMLNodeCustomProperties,nxsfile);
+		}
+		else
+		{
+			throw "Error reading .nxs complex physics file for mesh "+meshfile;
+		}
 
 	}
 	catch( std::string error )
@@ -4152,7 +4165,7 @@ TPhysicsComponentComplexConvexParameters LevelLoader::processPhysicsComponentCom
 	//Get Component properties
 	try 
 	{
-		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(CTPNode, "PhysicsComponentComplex"+suffix+"::mass");
+		tPhysicsComponentComplexConvexParameters.mass = getPropertyReal(CTPNode, "PhysicsComponentComplex::mass");
 	}
 	catch( std::string error )
 	{
@@ -4208,7 +4221,7 @@ TPhysicsComponentComplexTriangleParameters LevelLoader::processPhysicsComponentC
 	//Get Component properties
 	try 
 	{
-		tPhysicsComponentComplexTriangleParameters.mass = getPropertyReal(XMLNode, "PhysicsComponentComplex"+suffix+"::mass");	
+		tPhysicsComponentComplexTriangleParameters.mass = getPropertyReal(XMLNode, "PhysicsComponentComplex::mass");	
 	}
 	catch( std::string error )
 	{
