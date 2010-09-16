@@ -17,9 +17,9 @@ system PU/tripollo_die
         {
             emission_rate                       16
             angle                               45
+            time_to_live                        4.5
             velocity                            150
             duration                            4
-	    time_to_live                        4.5
             orientation                         0 0.33 0.33 0.33
             box_em_width                        40
             box_em_height                       40
@@ -29,8 +29,12 @@ system PU/tripollo_die
         {
             force_aff_vector                    0 -100 0
         }
-        affector                                Align 
+        affector                                Colour 
         {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
     technique 

@@ -33,8 +33,12 @@ system PU/any_jump_d
             }
             circle_em_radius                    150
         }
-        affector                                Randomiser Affector119
+        affector                                Colour 
         {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

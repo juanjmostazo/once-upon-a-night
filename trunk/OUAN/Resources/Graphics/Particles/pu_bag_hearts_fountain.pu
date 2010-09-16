@@ -19,12 +19,12 @@ system PU/bag_hearts_fountain
         {
             force_aff_vector                    0 -10 0
         }
-        observer                                OnQuota 
+        affector                                Colour 
         {
-            handler                             DoEnableComponent 
-            {
-                enable_component                emitter_component myPointEmitter false
-            }
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

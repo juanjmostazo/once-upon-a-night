@@ -118,9 +118,6 @@ void GameObjectPortal::setDreamsRender()
 
 	mRenderComponentEntity->setDreamsMaterials();
 	mRenderComponentEntityBroken->setDreamsMaterials();
-
-	mRenderComponentParticleSystemChangeWorldIdleNightmares->stop();
-	mRenderComponentParticleSystemChangeWorldIdleDreams->start();
 }
 
 void GameObjectPortal::setNightmaresRender()
@@ -132,9 +129,6 @@ void GameObjectPortal::setNightmaresRender()
 
 	mRenderComponentEntity->setNightmaresMaterials();
 	mRenderComponentEntityBroken->setNightmaresMaterials();
-
-	mRenderComponentParticleSystemChangeWorldIdleDreams->stop();
-	mRenderComponentParticleSystemChangeWorldIdleNightmares->start();
 }
 
 void GameObjectPortal::setChangeWorldFactor(double factor)
@@ -162,9 +156,14 @@ void GameObjectPortal::changeWorldFinished(int newWorld)
 		return;
 	}
 
-	//mRenderComponentParticleSystemChangeWorldIdle->start();
-	//mRenderComponentParticleSystemChangeWorldChanging->stop();
-	//mRenderComponentParticleSystemChangeWorldSky->stop();
+	switch(newWorld)
+	{
+		case DREAMS: mRenderComponentParticleSystemChangeWorldIdleDreams->start(); break;
+		case NIGHTMARES: mRenderComponentParticleSystemChangeWorldIdleNightmares->start(); break;
+	}
+	
+	mRenderComponentParticleSystemChangeWorldChanging->stop();
+	mRenderComponentParticleSystemChangeWorldSky->stop();
 
 	mRenderComponentEntity->setVisible(true);
 	mRenderComponentEntityBroken->setVisible(false);
@@ -189,13 +188,14 @@ void GameObjectPortal::changeWorldStarted(int newWorld)
 		return;
 	}
 
-	//mRenderComponentParticleSystemChangeWorldIdle->stop();
-	//mRenderComponentParticleSystemChangeWorldChanging->start();
-	//mRenderComponentParticleSystemChangeWorldSky->start();
+	mRenderComponentParticleSystemChangeWorldIdleDreams->stop();
+	mRenderComponentParticleSystemChangeWorldIdleNightmares->stop();
+	mRenderComponentParticleSystemChangeWorldChanging->start();
+	mRenderComponentParticleSystemChangeWorldSky->start();
 
 	mRenderComponentEntity->setVisible(false);
-	mRenderComponentEntityBroken->changeAnimation(PORTAL_ANIMATION_CHANGING_WORLD);
 	mRenderComponentEntityBroken->setVisible(true);
+	mRenderComponentEntityBroken->changeAnimation(PORTAL_ANIMATION_CHANGING_WORLD);
 
 	switch(newWorld)
 	{
@@ -390,7 +390,6 @@ void GameObjectPortal::update(double elapsedSeconds)
 		
 		mRenderComponentEntity->update(elapsedSeconds);
 		mRenderComponentEntityBroken->update(elapsedSeconds);
-		
 	}			
 }
 
@@ -418,10 +417,12 @@ AudioComponentPtr GameObjectPortal::getAudioComponent() const
 {
 	return mAudioComponent;
 }
+
 void GameObjectPortal::setAudioComponent(AudioComponentPtr audioComponent)
 {
 	mAudioComponent=audioComponent;
 }
+
 void GameObjectPortal::setVisible(bool visible)
 {
 
@@ -462,6 +463,7 @@ bool GameObjectPortal::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectPortal::getLogicComponentInstance() const
 {
 	return mLogicComponent;

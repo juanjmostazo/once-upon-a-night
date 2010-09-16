@@ -27,9 +27,9 @@ system PU/bridge_changeworld
             }
             direction                           0 0 0
             colour                              0.15 0.15 0.85 1
-            box_em_width                        400
-            box_em_height                       140
-            box_em_depth                        140
+            box_em_width                        600
+            box_em_height                       260
+            box_em_depth                        260
         }
     }
 }

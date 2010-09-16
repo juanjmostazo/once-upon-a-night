@@ -14,7 +14,7 @@ system PU/nest_break
         renderer                                Billboard
         {
         }
-        emitter                                 Box
+        emitter                                 Box 
         {
             emission_rate                       dyn_random
             {
@@ -46,9 +46,12 @@ system PU/nest_break
         {
             force_aff_vector                    0 -200 0
         }
-        affector                                Colour Affector8
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.9 0.8 0.9 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

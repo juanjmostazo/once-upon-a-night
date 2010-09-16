@@ -1,40 +1,48 @@
-system PU/any_jump_n
+system PU/attack_pillow
 {
-    scale                                       0.08 0.08 0.08
-    technique Technique43
+    keep_local                                  true
+    scale                                       0.05 0.05 0.05
+    technique Technique4
     {
-        visual_particle_quota                   10
-        emitted_emitter_quota                   10
-        material                                PU/any_jump_n
-        spatial_hashtable_size                  2
+        material                                PU/attack_pillow
         renderer                                Billboard
         {
-            render_queue_group                  100
-            common_direction                    1 1 1
         }
-        emitter                                 Circle Emitter3
+        emitter                                 Point Emitter5
         {
             emission_rate                       dyn_random
             {
-                min                             10
-                max                             15
+                min                             5
+                max                             10
             }
+            angle                               45
             time_to_live                        dyn_random
             {
-                min                             0.4
-                max                             0.6
+                min                             1
+                max                             1.5
             }
-            mass                                2
-            velocity                            20
+            velocity                            dyn_random
+            {
+                min                             10
+                max                             30
+            }
             duration                            dyn_random
             {
-                min                             0.4
-                max                             0.6
+                min                             0.6
+                max                             0.8
             }
-            circle_em_radius                    150
+            keep_local                          true
         }
-        affector                                Randomiser Affector119
+        affector                                LinearForce Affector39
         {
+            force_aff_vector                    0 -40 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
     }
 }

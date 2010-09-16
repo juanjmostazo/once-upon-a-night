@@ -1,7 +1,5 @@
 system PU/terrain_triangle_changeworld
 {
-    scale_velocity                              0.5
-    scale                                       0.5 0.5 0.5
     technique 
     {
         visual_particle_quota                   50
@@ -27,9 +25,9 @@ system PU/terrain_triangle_changeworld
             }
             direction                           0 0 0
             colour                              0.15 0.15 0.85 1
-            box_em_width                        140
-            box_em_height                       400
-            box_em_depth                        140
+            box_em_width                        260
+            box_em_height                       600
+            box_em_depth                        260
         }
     }
 }

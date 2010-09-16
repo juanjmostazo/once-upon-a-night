@@ -28,10 +28,12 @@ system PU/ony_run_water
             position                            0 100 0
             circle_em_radius                    40
         }
-        affector                                Colour Affector8
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.1 0.1 0.9 1
-            colour_aff_time_colour              3    0.2 0.2 1 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
         affector                                LinearForce Affector10
         {

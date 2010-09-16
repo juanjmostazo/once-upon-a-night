@@ -17,5 +17,12 @@ system PU/tripollo_shock
             circle_em_radius                    150
             circle_em_step                      10
         }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
+        }
     }
 }
