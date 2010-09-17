@@ -14,7 +14,9 @@ namespace OUAN
 	const std::string PLATFORM_ANIM_IDLE="idle";
 	const std::string PLATFORM_ANIM_JUMP="jump";
 
-	const double PLATAFORM_COLLISION_TIME_MARGIN = 1;
+	const double PLATAFORM_COLLISION_TIME_MARGIN = 0.3;
+	const double PLATAFORM_COLLISION_HEIGHT_CORRECTION = 40;
+	const double PLATAFORM_MAX_DIFFERENCE_FALL = 10;
 
 	/// Class to hold terrain information
 	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>

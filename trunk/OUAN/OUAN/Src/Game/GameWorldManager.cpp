@@ -486,6 +486,9 @@ bool GameWorldManager::loadConfig()
 
 		config.getOption("CHANGE_FLASHLIGHT_COLOUR_SPEED", value); 
 		CHANGE_FLASHLIGHT_COLOUR_SPEED= atof(value.c_str());
+
+		config.getOption("CHANGEWORLD_CAMERA_DISTANCE", value); 
+		CHANGEWORLD_CAMERA_DISTANCE= atof(value.c_str());
 	} 
 	else 
 	{
@@ -1230,6 +1233,12 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 {
 	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
 	GameObjectSoundPtr sound;
+
+	CameraParametersPtr pCameraParameters;
+	pCameraParameters.reset(new CameraParameters());
+	Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
+	pCameraParameters->setTarget(getGameObjectOny()->getName());
+	Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
 
 	switch(newWorld)
 	{

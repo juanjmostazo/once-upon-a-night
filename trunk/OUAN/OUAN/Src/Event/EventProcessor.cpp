@@ -216,6 +216,14 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			double current_distance;
 			std::vector<double> distances;
 			mWorldManager->activateChangeWorld();
+
+			CameraParametersPtr pCameraParameters;
+			pCameraParameters.reset(new CameraParameters());
+			Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
+			pCameraParameters->setTarget(mWorldManager->getGameObjectOny()->getName());
+			pCameraParameters->setDistance(mWorldManager->CHANGEWORLD_CAMERA_DISTANCE);
+			Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
+
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{
 				if(it->second->isChangingWorld())
@@ -322,7 +330,6 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 					evt->getGameObject1());
 					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
 			}
-
 			else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0)
 			{
 					GameObjectFlashLightPtr flashlight=BOOST_PTR_CAST(GameObjectFlashLight,

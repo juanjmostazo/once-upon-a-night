@@ -710,13 +710,13 @@ void GameObjectOny::applyPlataformEffect()
 		{
 			posOny.z += mPlataform->getLastPositionDifference().z;
 			posOny.x += mPlataform->getLastPositionDifference().x;
-			posOny.y += 100;
+			posOny.y += PLATAFORM_COLLISION_HEIGHT_CORRECTION;
 
 			mPhysicsComponentCharacterOny->setPosition(posOny);
 			mPhysicsComponentCharacterOny->stabilize(Application::getInstance()->getPhysicsSubsystem()->mStabilizeSeconds);
 			mPhysicsComponentCharacterOny->updateSceneNode();
 
-			if(Ogre::Math::Abs(mPhysicsComponentCharacterOny->getPosition().y-oldPosition.y)>10)
+			if(Ogre::Math::Abs(mPhysicsComponentCharacterOny->getPosition().y-oldPosition.y)>PLATAFORM_MAX_DIFFERENCE_FALL)
 			{
 				mPhysicsComponentCharacterOny->setPosition(Vector3(posOny.x,oldPosition.y,posOny.z));
 				mPhysicsComponentCharacterOny->updateSceneNode();
