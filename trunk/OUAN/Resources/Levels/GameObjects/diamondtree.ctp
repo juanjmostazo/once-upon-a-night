@@ -26,5 +26,5 @@
 	
   <!-- Sounds -->
   <PROPERTY id="AudioComponent::soundID#0" type="7" value="tree"></PROPERTY>
-
+  <PROPERTY id="AudioComponent::soundID#1" type="7" value="diamond"></PROPERTY>
 	</CUSTOMPROPERTIES>

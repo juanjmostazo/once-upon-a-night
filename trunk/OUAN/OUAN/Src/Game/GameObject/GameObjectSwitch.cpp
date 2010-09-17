@@ -57,19 +57,91 @@ PhysicsComponentSimpleBoxPtr GameObjectSwitch::getPhysicsComponentSimpleBox() co
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectSwitch::setDreamsRender()
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntity->setDreamsMaterials();
+	}
+	else if(mLogicComponent->existsInNightmares() && !mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntity->setVisible(false);
+	}
+}
+
+void GameObjectSwitch::setNightmaresRender()
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInNightmares() && !mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntity->setVisible(false);
+	}
+	else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntity->setNightmaresMaterials();
+	}
+}
+
+void GameObjectSwitch::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
+void GameObjectSwitch::setChangeWorldRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentEntity->setChangeWorldMaterials();
+}
+
 void GameObjectSwitch::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
 
 	switch(newWorld)
 	{
-		case DREAMS:
-			setDreamsRender();
-			break;
-		case NIGHTMARES:
-			setNightmaresRender();
-			break;
-		default:break;
+	case DREAMS:
+		setDreamsRender();
+		if (mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+		{
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
+		}
+		else if (mLogicComponent->existsInNightmares() && !mLogicComponent->existsInDreams())
+		{
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
+		}
+
+		break;
+	case NIGHTMARES:		
+		setNightmaresRender();
+		if (mLogicComponent->existsInNightmares() && !mLogicComponent->existsInDreams())
+		{
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
+		}
+		else if (mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+		{
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
+		}
+
+		break;
+	default:
+		break;
 	}
 }
 
@@ -80,8 +152,12 @@ void GameObjectSwitch::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		if (mLogicComponent->existsInDreams())
+			mRenderComponentEntity->setVisible(true);
 		break;
 	case NIGHTMARES:
+		if (mLogicComponent->existsInNightmares())
+			mRenderComponentEntity->setVisible(true);
 		break;
 	default:
 		break;
@@ -124,18 +200,11 @@ LogicComponentPropPtr GameObjectSwitch::getLogicComponentProp()
 	return mLogicComponent;
 }
 
-
-void GameObjectSwitch::setChangeWorldFactor(double factor)
-{
-	if (!isEnabled()) return;
-
-	mRenderComponentEntity->setChangeWorldFactor(factor);
-}
-
 void GameObjectSwitch::reset()
 {
 	GameObject::reset();
 
+	disable();
 	mRenderComponentEntity->setVisible(false);
 	if(mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 	{
@@ -143,6 +212,11 @@ void GameObjectSwitch::reset()
 	}
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 	mLogicComponent->setState(logicSS->getGlobalInt(SWITCH_STATE_OFF));
+
+	if(getName().compare("switch#"+CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS)==0)
+	{
+		makePushable();
+	}
 }
 
 void GameObjectSwitch::update(double elapsedSeconds)
@@ -187,6 +261,10 @@ void GameObjectSwitch::applySwitchEffect()
 	{
 		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_3_SWITCH_ACTIVATED);
 	}
+	else if(getName().compare("switch#"+CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS)==0)
+	{
+		getGameWorldManager()->launchCutScene("cutscenes_level2.lua","cutScene8_1");
+	}
 
 }
 
@@ -202,14 +280,19 @@ void GameObjectSwitch::setAudioComponent(AudioComponentPtr audioComponent)
 
 void GameObjectSwitch::makePushable()
 {
+	enable();
 	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 	mLogicComponent->setState(logicSS->getGlobalInt(SWITCH_STATE_PUSHABLE));
 	mLogicComponent->setStateChanged(true);
-	if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+	if(mWorld==DREAMS && mLogicComponent->existsInDreams() || 
+	   mWorld==NIGHTMARES && mLogicComponent->existsInNightmares())
 	{
-		mPhysicsComponentSimpleBox->create();
+		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+		{
+			mPhysicsComponentSimpleBox->create();
+		}
+		mRenderComponentEntity->setVisible(true);
 	}
-	mRenderComponentEntity->setVisible(true);
 }
 
 void GameObjectSwitch::setVisible(bool visible)

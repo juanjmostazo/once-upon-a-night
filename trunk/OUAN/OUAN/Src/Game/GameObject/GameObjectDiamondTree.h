@@ -21,7 +21,10 @@ namespace OUAN
 	const std::string DT_ANIM_HIT="hit";
 
 	const double DT_ANIMATION_TIME=1;
+
 	//Sounds
+	const std::string DT_SOUND_TREE="tree";
+	const std::string DT_SOUND_DIAMOND="diamond";
 
 	/// Class to hold DiamondTree information
 	class GameObjectDiamondTree : public GameObject, public boost::enable_shared_from_this<GameObjectDiamondTree>

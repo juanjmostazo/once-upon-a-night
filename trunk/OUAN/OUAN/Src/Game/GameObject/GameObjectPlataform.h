@@ -62,8 +62,8 @@ namespace OUAN
 		
 		bool isWorthUpdatingPhysicsComponents();
 
-		void setActivated(bool activated);
-		bool getActivated();
+		void activate();
+		bool isActivated();
 
 		/// Set render component
 		/// @param pRenderComponentEntity

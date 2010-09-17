@@ -91,6 +91,11 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
+
 		/// Reset object
 		virtual void reset();
 
@@ -101,8 +106,6 @@ namespace OUAN
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
-
-		void setChangeWorldFactor(double factor);
 		
 		bool hasLogicComponent() const;
 		LogicComponentPtr getLogicComponentInstance() const;

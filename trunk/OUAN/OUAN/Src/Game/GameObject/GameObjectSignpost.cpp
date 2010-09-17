@@ -78,19 +78,37 @@ void GameObjectSignpost::changeWorldFinished(int newWorld)
 	case DREAMS:
 		setDreamsRender();
 		if (mLogicComponent->existsInDreams())
+		{
 			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->create();
 			}
+		}
+		else
+		{
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->destroy();
+			}
+		}
 
 		break;
 	case NIGHTMARES:		
 		setNightmaresRender();
 		if (mLogicComponent->existsInNightmares())
+		{
 			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
+			{
+				mPhysicsComponentSimpleBox->create();
+			}
+		}
+		else
+		{
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
 			}
+		}
 
 		break;
 	default:
