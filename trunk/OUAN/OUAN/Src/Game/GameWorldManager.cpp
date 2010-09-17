@@ -1806,6 +1806,15 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 				BOOST_PTR_CAST(GameObjectTotem,obj);
 		totem->levelDown();
 	}
+	else if(cutscene.compare(TRIPOLLO_PLATFORM_PUZZLE_END)==0)
+	{
+		GameObjectPtr obj = getObject("changeworld#platform_big");
+
+		GameObjectPortalPtr portal= 
+				BOOST_PTR_CAST(GameObjectPortal,obj);
+		portal->getPhysicsComponentSimpleBox()->destroy();
+		portal->getPhysicsComponentSimpleBox()->create();
+	}
 
 }
 

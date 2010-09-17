@@ -3,7 +3,7 @@
 	<PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   
     <PROPERTY id="PhysicsComponentSimpleBox::mass" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="16 4 16" fields="X;Y;Z;W"></PROPERTY>
+    <PROPERTY id="PhysicsComponentSimpleBox::length" type="9" value="32 8 32" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- Logic component properties  -->
 	<PROPERTY id="LogicComponent::scriptFilename" type="7" value="switch.lua"></PROPERTY>
