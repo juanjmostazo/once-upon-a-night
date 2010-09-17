@@ -87,11 +87,11 @@ void GameObjectPlataform::activateTrajectory()
 	}
 }
 
-void GameObjectPlataform::setActivated(bool activated)
+void GameObjectPlataform::activate()
 {
-	mActivated=activated;
+	mActivated=true;
 }
-bool GameObjectPlataform::getActivated()
+bool GameObjectPlataform::isActivated()
 {
 	return mActivated;
 }
@@ -191,7 +191,22 @@ void GameObjectPlataform::reset()
 	mElapsedTimeSinceLastCollision=0;
 	mHit=false;
 	mLastFrameHit=false;
-	mActivated=true;
+
+
+	if((getName().compare("plataform#tower3_1")==0 ||
+		getName().compare("plataform#tower3_2")==0 ||
+		getName().compare("plataform#tower3_3")==0 ||
+		getName().compare("plataform#tower3_4")==0 ||
+		getName().compare("plataform#tower3_5")==0 ||
+		getName().compare("plataform#tower3_6")==0) &&
+		!getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS))
+	{
+		mActivated=false;
+	}
+	else
+	{
+		mActivated=true;
+	}
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const

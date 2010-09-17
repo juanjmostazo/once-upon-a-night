@@ -304,22 +304,14 @@ function cutScene8(timer)
 end
 
 -- CUTSCENE 8_1: PLATFORMS_TO_FINAL_BOSS
-function startCutScene8_1(pOny)
-	addExecutedLevelEvent(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS);
-	launchCutScene("cutscenes_level2.lua","cutScene8_1");
-	return
-end
-
-function conditionCutScene8_1(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS) and getCheckPointNumber()>=80;
-end
-
 function cutScene8_1(timer)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS);
 	local any=getAny()	
 	
 	setCameraTrajectory(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS,false,true);
+	busyWait(timer,2);
+	addExecutedLevelEvent(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS);
 	trajectoryCamWait();
 	busyWait(timer,3);
 	

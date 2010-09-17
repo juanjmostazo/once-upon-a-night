@@ -164,6 +164,8 @@ namespace OUAN
 		/// gets current Loaded Level
 		std::string getCurrentLevel() const;
 
+		void launchCutScene(const std::string& scriptFile,const std::string& scriptFunction);
+
 		/// Adds event to the event manager's queue
 		void addEvent(EventPtr event);
 		/// Dispatch all events in the manager's queue

@@ -49,6 +49,7 @@ namespace OUAN
 		//forward declarations
 		CLASS_DECLARATIONS_NO_PARAMS(GameStateManager);
 		CLASS_DECLARATIONS_NO_PARAMS(GameState);
+		CLASS_DECLARATIONS_NO_PARAMS(GameRunningState);
 		CLASS_DECLARATIONS_NO_PARAMS(Application);
 
 	//---------------

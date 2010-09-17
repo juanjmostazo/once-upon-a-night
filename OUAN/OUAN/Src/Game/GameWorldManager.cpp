@@ -73,6 +73,9 @@
 
 #include "../Audio/AudioComponent/AudioComponent.h"
 
+#include "../Core/GameStateManager.h"
+#include "../Core/GameRunningState.h"
+
 using namespace OUAN;
 
 bool nestChildrenSortPredicate(GameObjectPtr obj1, GameObjectPtr obj2)
@@ -1815,7 +1818,27 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		portal->getPhysicsComponentSimpleBox()->destroy();
 		portal->getPhysicsComponentSimpleBox()->create();
 	}
+	else if(cutscene.compare(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS)==0)
+	{
+		GameObjectPlataformPtr plataform;
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_1"));
+		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_2"));
+		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_3"));
+		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_4"));
+		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_6"));
+		plataform->activate();
+	}
 
+}
+
+void GameWorldManager::launchCutScene(const std::string& scriptFile,const std::string& scriptFunction)
+{
+		GameRunningStatePtr state=BOOST_PTR_CAST(GameRunningState,Application::getInstance()->getGameStateManager()->getCurrentState());
+		state->launchCutScene(scriptFile,scriptFunction);
 }
 
 bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
