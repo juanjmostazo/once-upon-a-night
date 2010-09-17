@@ -1,6 +1,7 @@
 -- LEVEL 2 CUTSCENES
 
 CUTSCENE_1_LEVEL_START="LEVEL_START";
+CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1="PLATFORM_TO_MOUNTAIN_1";
 CUTSCENE_2_FIRST_CHANGE_WORLD="FIRST_CHANGE_WORLD";
 CUTSCENE_2_FIRST_CHANGE_WORLD_1="FIRST_CHANGE_WORLD#1";
 CUTSCENE_2_FIRST_CHANGE_WORLD_2="FIRST_CHANGE_WORLD#2";
@@ -54,6 +55,32 @@ function cutScene1(timer)
 	timedMessage(any,"LEVEL_START#3",5,timer,3);
 	
 	setMyReturningToGameTransition(false);
+	return COROUTINE_FINISHED
+end
+
+-- CUTSCENE 1_1: PLATFORM_TO_MOUNTAIN_1
+function startCutScene1_1(pOny)
+	addExecutedLevelEvent(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1);
+	log ("CUTSCENE 1_1: ");
+	log (CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1);
+	launchCutScene("cutscenes_level2.lua","cutScene1_1");
+	return
+end
+
+function conditionCutScene1_1(pOny)
+	return not hasExecutedLevelEvent(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1);
+end
+
+function cutScene1_1(timer)
+	log ("CUTSCENE 1: ");
+	log (CUTSCENE_1_LEVEL_START);
+	local any=getAny()
+	
+	setCameraTrajectory(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1,false,true)	
+	trajectoryCamWait()
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end
 
