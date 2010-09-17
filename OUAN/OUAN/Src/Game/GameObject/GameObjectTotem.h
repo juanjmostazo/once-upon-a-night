@@ -11,7 +11,7 @@
 namespace OUAN
 {
 	const double LEVEL_DISTANCE=87;
-	const double LEVEL_MOVEMENT_SPEED=5;
+	const double LEVEL_MOVEMENT_SPEED=8;
 	const int NUM_LEVELS=3;
 	const std::string CHANGE_WORLD_ATTACHED="changeworld#platform_big";
 

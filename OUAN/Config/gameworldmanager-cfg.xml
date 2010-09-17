@@ -12,5 +12,7 @@
 	<Option key="CHANGE_WORLD_TREES_RANDOM">false</Option>
 	<Option key="CHANGE_WORLD_RADIUM">800</Option>
 	<Option key="CHANGE_FLASHLIGHT_COLOUR_SPEED">5</Option>
+
+	<Option key="CHANGEWORLD_CAMERA_DISTANCE">140</Option>
   </Options>
 </Configuration>
