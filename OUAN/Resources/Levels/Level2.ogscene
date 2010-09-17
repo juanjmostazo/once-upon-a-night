@@ -12684,7 +12684,7 @@
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="flower2.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="platform_stairs.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="-390 475 -2760"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
