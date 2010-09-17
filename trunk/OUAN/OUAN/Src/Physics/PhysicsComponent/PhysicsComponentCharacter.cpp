@@ -415,6 +415,8 @@ void PhysicsComponentCharacter::stabilize(double elapsedSeconds)
 			collisionFlags,
 			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
 			collisionFlags);
+
+		setOnSurface(true);
 	}
 }
 
