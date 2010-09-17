@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="6.12346"></CAMERASPEED>
+  <CAMERASPEED value="20.25"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="964.413 1651.46 -2844.5" orientation="-0.725864 0.309012 -0.5651 -0.241444"></OPTION>
+    <OPTION id="2" position="633.778 242.672 93.0929" orientation="0.83359 0.164159 -0.517281 0.102957"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.726075 0.309102 -0.565265 -0.241514"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.833716 0.164183 -0.517359 0.102972"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="964.413 1651.46 -2844.5"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="633.778 242.672 93.0929"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -478,17 +478,6 @@
   </OBJECT>
 
   <OBJECT object_id="680623744" name="fog" typename="Node Object" parentnode="Mountains">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="241126752" name="flowers" typename="Node Object" parentnode="Isla1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -14518,6 +14507,31 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="376506880" name="volume-box_d#cutscene1_1" typename="Entity Object" parentnode="CutScenes">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.989651 0 0.143493 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="464.471 132.049 80.4463"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="109.101 143.148 143.849"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene1_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene1_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="810541120" name="bush_d#2" typename="Entity Object" parentnode="Bush">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -18727,6 +18741,29 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="896694848" name="signpost_d#1_1" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.918791 0 0.394744 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="497.086 126.42 87.9142"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="42054504" name="tree10_n#26" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -20837,450 +20874,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="614947968" name="BillboardSet_d#grass06" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="429.903 114.663 -86.1208"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="140263072" name="BillboardSet_d#grass05" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="414.487 113.139 -100.552"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="33661916" name="BillboardSet_d#rush04" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.678794 -0.734315 0.00296181 -0.00320391"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-454.219 210.048 306.922"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="5 5 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="257881408" name="BillboardSet_d#grass04" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="430.922 115.176 -105.686"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="827906112" name="BillboardSet_d#rush03" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-452.198 209.339 314.916"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="5 5 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="490249344" name="BillboardSet_d#shrub01" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_shrub1_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.506424 -0.475509 -0.493338 -0.523491"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="356.087 107.813 -119.803"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 5 5"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="776543488" name="BillboardSet_d#grass03" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="431.97 114.939 -96.6347"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="912961216" name="BillboardSet_d#rush02" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-447.672 209.674 319.18"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="5 5 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="843165376" name="BillboardSet_d#flowers01" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 0 0"></PROPERTY>
-    <PROPERTY id="billboard1::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard1::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard1::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard1::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard1::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard1::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="2"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_flower2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.719004 -0.694334 -0.0219676 0.0212138"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="428.797 118.87 -97.7307"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="214972384" name="BillboardSet_d#grass02" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="428.116 115.758 -101.019"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="559038016" name="BillboardSet_d#rush01" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_rush_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.678801 -0.734323 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-439.711 208.718 307.027"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="5 5 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="862056320" name="BillboardSet_d#flower01" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_flower1_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.691513 -0.722364 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="410.882 115.094 -101.607"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="3 6 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="260536528" name="BillboardSet_d#grass01" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_grass1_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.200442 0.124167 0.687686 0.686654"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="594.897 135.424 -26.7383"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="20 20 20"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="346018848" name="BillboardSet_d#shrub02" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_shrub2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.716302 -0.697791 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="369.725 109.954 -126.3"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="5 7 4"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="110721160" name="BillboardSet_d#flower02" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="1"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_flower1_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.691513 -0.722364 0 0"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="429.333 117.104 -85.205"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="3 3 5"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="265877248" name="BillboardSet_d#flowers02" typename="BillboardSet Object" parentnode="flowers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="billboard0::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard0::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard0::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard0::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard0::texrect" type="10" value="0 0 0 0"></PROPERTY>
-    <PROPERTY id="billboard1::colour" type="11" value="1 1 1 1"></PROPERTY>
-    <PROPERTY id="billboard1::dimensions" type="8" value="1 1"></PROPERTY>
-    <PROPERTY id="billboard1::position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="billboard1::rotation" type="6" value="0"></PROPERTY>
-    <PROPERTY id="billboard1::texcoordindex" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboard1::texrect" type="10" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="billboardcount" type="2" value="2"></PROPERTY>
-    <PROPERTY id="billboardorigin" type="2" value="4"></PROPERTY>
-    <PROPERTY id="billboardrotation" type="2" value="0"></PROPERTY>
-    <PROPERTY id="billboardtype" type="2" value="1"></PROPERTY>
-    <PROPERTY id="defaultheight" type="6" value="1"></PROPERTY>
-    <PROPERTY id="defaultwidth" type="6" value="1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="material" type="7" value="billboard_flower2_d"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.668819 -0.742798 -0.0233939 0.0196298"></PROPERTY>
-    <PROPERTY id="pointrendering" type="12" value="false"></PROPERTY>
-    <PROPERTY id="position" type="9" value="515.196 137.866 166.324"></PROPERTY>
-    <PROPERTY id="renderdistance" type="6" value="0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <PROPERTY id="sorting" type="12" value="true"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="272377696" name="WalkabilityNode_n#91" typename="Marker Object" parentnode="WalkabilityMapNightmares">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 1 0 1"></PROPERTY>
@@ -21458,7 +21051,7 @@
     <PROPERTY id="position" type="9" value="825 240 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="13" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -21653,61 +21246,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="699758912" name="StaticCamera#tower1_3" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.771625 0 0 0.636078"></PROPERTY>
-    <PROPERTY id="position" type="9" value="781.561 351.808 -145.081"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -22380,22 +21918,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="978423424" name="StaticCamera#island2_tower1_1" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0.333333 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-412.501 659.676 -1750.13"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#island2_tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#island2_tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="637684224" name="WalkabilityNode_d#19" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -22548,7 +22070,7 @@
     <PROPERTY id="position" type="9" value="830 300 -58.3179"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="18" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -22944,22 +22466,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="4333629" name="StaticCamera#columns" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.108184 0.700294 0.696495 0.113046"></PROPERTY>
-    <PROPERTY id="position" type="9" value="74.8815 384.796 -289.945"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#columns" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#columns" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="442182688" name="WalkabilityNode_d#77" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -23081,61 +22587,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="852626176" name="StaticCamera#tower1_2" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.771625 0 0 0.636078"></PROPERTY>
-    <PROPERTY id="position" type="9" value="623.123 325.694 -102.685"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -23767,7 +23218,7 @@
     <PROPERTY id="position" type="9" value="830 400 -58.3179"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="18" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -24591,61 +24042,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="1617482" name="StaticCamera#tower1_1" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.771625 0 0 0.636078"></PROPERTY>
-    <PROPERTY id="position" type="9" value="711.778 460.207 68.2247"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#tower1_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="624897024" name="Trajectory#TRIPOLLO_STATUES" typename="Marker Object" parentnode="CameraTrajectory">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
@@ -25299,22 +24695,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="592211648" name="StaticCamera#island2_tower1_3" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0.333333 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-409.795 589.002 -1816.11"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#island2_tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#island2_tower1_3" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="963744000" name="TrajectoryNode#plataform_n#connector1_2#0" typename="Marker Object" parentnode="connector1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
@@ -25481,22 +24861,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="640980224" name="StaticCamera#towerback1" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.447086 0.407826 0.759001 0.240228"></PROPERTY>
-    <PROPERTY id="position" type="9" value="951.662 343.092 -184.105"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#towerback1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#towerback1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -25675,6 +25039,61 @@
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="155" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="932767744" name="StaticCamera#PLATFORM_TO_MOUNTAIN_1" typename="Marker Object" parentnode="CameraTrajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.876878 -0.168074 -0.319345 0.317575"></PROPERTY>
+    <PROPERTY id="position" type="9" value="558.672 312.649 166.787"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectory::name" type="7" value="PLATFORM_TO_MOUNTAIN_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#PLATFORM_TO_MOUNTAIN_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -26765,22 +26184,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="342539744" name="StaticCamera#island2_tower1_2" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0.333333 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-464.08 705.646 -1915.45"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#island2_tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#island2_tower1_2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="710074176" name="TrajectoryNode#plataform_n#connector1_2#1" typename="Marker Object" parentnode="connector1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
@@ -26887,22 +26290,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="793359168" name="StaticCamera#towerback2" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.168042 0.688387 0.686738 -0.162096"></PROPERTY>
-    <PROPERTY id="position" type="9" value="1046.87 331.836 91.358"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#towerback2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#towerback2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -27579,22 +26966,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="915646848" name="StaticCamera#island2_tower2" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0.333333 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="291.009 851.639 -2051.49"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#island2_tower2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#island2_tower2" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="85207680" name="WalkabilityNode_d#35" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -27929,7 +27300,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-468.784 502.228 -2691.48"></PROPERTY>
+    <PROPERTY id="position" type="9" value="649.607 502.228 76.1644"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
@@ -28455,10 +27826,10 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="825 330 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="825 345.591 0"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="13" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -28786,61 +28157,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="252723776" name="StaticCamera#tower1_4" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.771625 0 0 0.636078"></PROPERTY>
-    <PROPERTY id="position" type="9" value="861.858 437.837 -24.5282"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="StaticCamera#tower1_4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#tower1_4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
