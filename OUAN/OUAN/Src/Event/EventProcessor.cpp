@@ -217,12 +217,16 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			std::vector<double> distances;
 			mWorldManager->activateChangeWorld();
 
-			CameraParametersPtr pCameraParameters;
-			pCameraParameters.reset(new CameraParameters());
-			Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
-			pCameraParameters->setTarget(mWorldManager->getGameObjectOny()->getName());
-			pCameraParameters->setDistance(mWorldManager->CHANGEWORLD_CAMERA_DISTANCE);
-			Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
+			bool isGameRunningState=Application::getInstance()->getGameStateManager()->getCurrentGameStateType()==GAME_STATE_RUNNING;
+			if(isGameRunningState)
+			{
+				CameraParametersPtr pCameraParameters;
+				pCameraParameters.reset(new CameraParameters());
+				Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
+				pCameraParameters->setTarget(mWorldManager->getGameObjectOny()->getName());
+				pCameraParameters->setDistance(mWorldManager->CHANGEWORLD_CAMERA_DISTANCE);
+				Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
+			}
 
 			for (TGameObjectContainerIterator it = objs->begin(); it!=objs->end();++it)
 			{

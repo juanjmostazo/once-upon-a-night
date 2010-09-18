@@ -22,6 +22,11 @@ GamePausedState::~GamePausedState()
 
 }
 
+GameStateType GamePausedState::getGameStateType()
+{
+	return GAME_STATE_PAUSED;
+}
+
 /// init main menu's resources
 void GamePausedState::init(ApplicationPtr app)
 {

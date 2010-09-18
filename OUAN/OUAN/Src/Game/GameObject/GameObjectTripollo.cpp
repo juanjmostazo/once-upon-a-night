@@ -202,6 +202,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 			{
 				std::string onyName = mGameWorldManager->getGameObjectOny()->getName();
 
+
+				if (currentState!=logicSS->getGlobalInt(TRIPOLLO_STATE_ATTACK) && mLogicComponentEnemy->isStateChanged())
+				{
+					mPhysicsComponentWeapon->endAttack();
+				}
+
 				if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE) && 
 					mLogicComponentEnemy->isStateChanged())
 				{
@@ -309,7 +315,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							?TRIPOLLO_ANIM_ATTACK_00
 							:TRIPOLLO_ANIM_ATTACK_01);
 						mTrajectoryComponent->activateIdle(getName(),world);
-						//mPhysicsComponentWeapon->startAttack();
+						mPhysicsComponentWeapon->startAttack();
 						mLogicComponentEnemy->setAttackFinished(false);
 						mAudioComponent->playSound(TRIPOLLO_SOUND_ATTACK);
 					}
@@ -412,6 +418,20 @@ void GameObjectTripollo::update(double elapsedSeconds)
 			}
 			if (mPhysicsComponentWeapon->isInUse())
 			{
+				Ogre::Vector3 pos;
+				if (entity.get() && entity->getEntity()->hasSkeleton()
+					&& entity->getEntity()->getSkeleton()->hasBone(HEAD_BONE_NAME))
+				{
+					Ogre::Entity* ent = entity->getEntity();
+					Ogre::Node* bone = ent->getSkeleton()->getBone(HEAD_BONE_NAME);
+					pos=Utils::getNodeWorldPosition(ent,bone);			
+				}
+				else
+				{
+					mRenderComponentPositional->getPosition();			
+				}
+				mPhysicsComponentWeapon->setPosition(pos);			
+				mPhysicsComponentWeapon->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw());
 				mPhysicsComponentWeapon->update(elapsedSeconds);
 			}
 		}
@@ -443,6 +463,30 @@ void GameObjectTripollo::checkTripolloPlataformPuzzleActivations()
 	else if(getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
 	{
 		obj=getGameWorldManager()->getObject("switch#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
+	}
+	else if(getName().compare("tripollo#satue1")==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_1_STATUE_DEFEATED);
+	}
+	else if(getName().compare("tripollo#satue2")==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_2_STATUE_DEFEATED);
+	}
+	else if(getName().compare("tripollo#satue3")==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_3_STATUE_DEFEATED);
+	}
+	else if(getName().compare("tripollo#satue4")==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_4_STATUE_DEFEATED);
+	}
+	else if(getName().compare("tripollo#satue5")==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_5_STATUE_DEFEATED);
+	}
+	else
+	{
+		Logger::getInstance()->log("tripollo "+getName()+" defeated");
 	}
 
 	if(obj.get())

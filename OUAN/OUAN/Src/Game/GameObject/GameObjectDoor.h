@@ -10,14 +10,21 @@
 
 namespace OUAN
 {
+	const std::string DOOR_ANIM_IDLE_CLOSE="idle01";
+	const std::string DOOR_ANIM_OPEN="open";
+	const std::string DOOR_ANIM_IDLE_OPEN="idle02";
+	const std::string DOOR_ANIM_CLOSE="close";
+
+	const std::string DOOR_SOUND_OPEN="door_open";
+	const std::string DOOR_SOUND_CLOSE="door_close";
+
 	/// Class to hold Door information
 	class GameObjectDoor : public GameObject, public boost::enable_shared_from_this<GameObjectDoor>
 	{
 	private:
 		
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -46,13 +53,11 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -81,6 +86,7 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void update(double elapsedSeconds);
 
 		/// Reset object
 		virtual void reset();
@@ -105,8 +111,6 @@ namespace OUAN
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
-
-		
 		
 
 		bool hasLogicComponent() const;
@@ -121,9 +125,7 @@ namespace OUAN
 		~TGameObjectDoorParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
-
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;
 

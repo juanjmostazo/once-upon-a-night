@@ -203,6 +203,12 @@ void GameObjectPlataform::reset()
 	{
 		mActivated=false;
 	}
+	else if((getName().compare("plataform#tower2_1")==0 ||
+		getName().compare("plataform#tower2_2")==0) &&
+		!getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_8_0_TRIPOLLO_STATUES_END))
+	{
+		mActivated=false;
+	}
 	else
 	{
 		mActivated=true;

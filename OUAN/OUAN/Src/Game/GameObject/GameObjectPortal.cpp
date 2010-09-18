@@ -216,7 +216,7 @@ void GameObjectPortal::changeToWorld(int newWorld, double perc)
 	}
 
 	std::string currentAnimName=mRenderComponentEntityBroken->getCurrentAnimationName();
-	float currentAnimLen=mRenderComponentEntityBroken->getCurrentAnimationLength();
+	double currentAnimLen=mRenderComponentEntityBroken->getCurrentAnimationLength();
 	if(!mRenderComponentEntityBroken->getCurrentAnimation()) return;
 
 	switch(newWorld)

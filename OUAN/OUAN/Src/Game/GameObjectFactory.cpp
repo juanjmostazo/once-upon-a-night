@@ -831,24 +831,12 @@ GameObjectDoorPtr GameObjectFactory::createGameObjectDoor(TGameObjectDoorParamet
 	pGameObjectDoor->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectDoor->getRenderComponentPositional()));
 
-	if(pGameObjectDoor->getLogicComponent()->existsInDreams())
-	{
-		//Create RenderComponentEntity Dreams
-		pGameObjectDoor->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectDoorParameters.dreamsName,
-			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectDoor->getLogicComponent()->existsInDreams(),
-		pGameObjectDoor->getLogicComponent()->existsInNightmares()));
-	}
-	if(pGameObjectDoor->getLogicComponent()->existsInNightmares())
-	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectDoor->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectDoorParameters.nightmaresName,
-			pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectDoor->getLogicComponent()->existsInDreams(),
-		pGameObjectDoor->getLogicComponent()->existsInNightmares()));
-	}
+	//Create RenderComponentEntity
+	pGameObjectDoor->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectDoorParameters.name,
+		pGameObjectDoor,tGameObjectDoorParameters.tRenderComponentEntityParameters,
+	pGameObjectDoor->getLogicComponent()->existsInDreams(),
+	pGameObjectDoor->getLogicComponent()->existsInNightmares()));
 
 	//Create audio component
 	pGameObjectDoor->setAudioComponent(

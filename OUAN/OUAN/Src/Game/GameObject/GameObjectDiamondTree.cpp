@@ -182,7 +182,7 @@ void GameObjectDiamondTree::changeToWorld(int newWorld, double perc)
 	if (!isEnabled()) return;
 	
 	//std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-	//float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	//double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
 	//if(!mRenderComponentEntity->getCurrentAnimation()) return;
 
 	//switch(newWorld)
@@ -407,7 +407,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			{
 				mTotalHitTime+=elapsedSeconds;
 				std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-				float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+				double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
 
 				if(mTotalHitTime>DT_ANIMATION_TIME)
 				{

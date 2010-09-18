@@ -583,10 +583,10 @@ void GameObjectBomb::checkPlayFartSound()
 	if(!mRenderComponentEntity->getCurrentAnimation()) return;
 
 	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-	float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
-	float currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
+	double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	double currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
 
-	float animPerc=currentAnimPosition/currentAnimLen;
+	double animPerc=currentAnimPosition/currentAnimLen;
 
 	//STEP SOUNDS
 	if(animPerc>=BOMB_ANIMATION_EXPLODE_FART_MOMENT && !mPlayedFart)

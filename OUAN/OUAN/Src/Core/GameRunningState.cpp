@@ -53,6 +53,11 @@ GameRunningState::~GameRunningState()
 
 }
 
+GameStateType GameRunningState::getGameStateType()
+{
+	return GAME_STATE_RUNNING;
+}
+
 /// init game running state's resources
 void GameRunningState::init(ApplicationPtr app)
 {
@@ -135,6 +140,7 @@ void GameRunningState::cleanUp()
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
 		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_ONY_DEATH);
 		eh=EventHandlerPtr(new EventHandler<GameRunningState,GameOverEvent>(this_,&GameRunningState::processGameOver));
+		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_GAMEOVER);
 	}
 	
 	//Destroy HUD
@@ -238,7 +244,7 @@ void GameRunningState::handleEvents()
 	bool onyCanAttack=!mApp->getGameWorldManager()->isOnyDying() && 
 		!mApp->getGameWorldManager()->isOnyHit();
 
-	if ( onyCanAttack && mApp->isDownUseWeapon(&pad,&key))
+	if (onyCanAttack && mApp->isDownUseWeapon(&pad,&key))
 	{
 		if(mApp->getCameraManager()->targetMovementAllowed())
 		{
