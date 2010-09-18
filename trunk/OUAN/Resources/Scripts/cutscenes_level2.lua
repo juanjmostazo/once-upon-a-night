@@ -31,21 +31,10 @@ FINAL_BOSS_DEFEATED="FINAL_BOSS_DEFEATED";
 TRIPOLLO_PLATFORM_PUZZLE_END="TRIPOLLO_PLATFORM_PUZZLE_END";
 
 -- CUTSCENE 1: LEVEL START
-function startCutScene1(pOny)
-	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
-	log ("CUTSCENE 1: ");
-	log (CUTSCENE_1_LEVEL_START);
-	launchCutScene("cutscenes_level2.lua","cutScene1");
-	return
-end
-
-function conditionCutScene1(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
-end
-
 function cutScene1(timer)
 	log ("CUTSCENE 1: ");
 	log (CUTSCENE_1_LEVEL_START);
+	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 	local any=getAny()
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
@@ -86,22 +75,10 @@ function cutScene1_1(timer)
 end
 
 -- CUTSCENE 2: FIRST CHANGE WORLD
-function startCutScene2(pOny)
-	log ("CUTSCENE 2 START");
-	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
-	launchCutScene("cutscenes_level2.lua","cutScene2");
-
-	return
-end
-
-function conditionCutScene2(pOny)
-	log ("CUTSCENE 2 CONDITION TRIGGER");
-	return not hasExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD) and hasExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
-end
-
 function cutScene2(timer)
 	log ("CUTSCENE 2: ");
 	log (CUTSCENE_2_FIRST_CHANGE_WORLD);
+	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
 	local any=getAny()	
 	
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,true);
@@ -280,21 +257,11 @@ end
 
 
 -- CUTSCENE 8: TRIPOLLO_STATUES
-function startCutScene8(pOny)
-	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
-	launchCutScene("cutscenes_level2.lua","cutScene8");
-	return
-end
-
-function conditionCutScene8(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES) and getCheckPointNumber()>=70;
-end
-
 function cutScene8(timer)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_TRIPOLLO_STATUES);
 	local any=getAny()	
-	
+	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
 	setCameraTrajectory(CUTSCENE_8_TRIPOLLO_STATUES,false,true);
 	trajectoryCamWait();
 	busyWait(timer,3);

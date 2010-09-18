@@ -105,6 +105,10 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
 
+	if(mApp->getGameWorldManager()->getLevelName().compare(LEVEL_2)==0)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene1");
+	}
 }
 
 /// Clean up main menu's resources

@@ -397,8 +397,6 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 
 				mTotalHitTime=0;
 
-				mGameWorldManager->increaseOnyDiamonds(1);
-
 				mAudioComponent->playSound(DT_SOUND_TREE);
 				mLogicComponent->setRecovered(false);
 				//play sound and particles
@@ -427,6 +425,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);
 			mLogicComponent->setHasTakenHit(false);
 			mAudioComponent->playSound(DT_SOUND_DIAMOND);
+			mGameWorldManager->increaseOnyDiamonds(1);
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
 			mRenderComponentEntity.get() && mLogicComponent->isStateChanged())

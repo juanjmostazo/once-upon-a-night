@@ -45,6 +45,8 @@ namespace OUAN
 		//checks if a predefined trajectory exists
 		bool predefinedTrajectoryExists(std::string name);
 
+		void reset();
+
 		void setAs2DTrajectory();
 		void setAs3DTrajectory();
 
