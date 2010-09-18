@@ -262,8 +262,10 @@ function cutScene8(timer)
 	log (CUTSCENE_8_TRIPOLLO_STATUES);
 	local any=getAny()	
 	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
+	
 	setCameraTrajectory(CUTSCENE_8_TRIPOLLO_STATUES,false,true);
 	trajectoryCamWait();
+	changeWorld(OUAN_WORLD_NIGHTMARES);
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);

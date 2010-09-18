@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-433.043 514.333 -2650.78" orientation="-0.764723 0.196525 -0.594114 -0.153642"></OPTION>
+    <OPTION id="2" position="-141.733 515.474 -2081.02" orientation="-0.997303 -0.0729067 -0.00839786 -9.29108e-005"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.764807 0.196546 -0.594179 -0.153659"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.997421 -0.0729153 -0.00839885 -9.29217e-005"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-433.043 514.333 -2650.78"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-141.733 515.474 -2081.02"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -19404,7 +19404,7 @@
     <PROPERTY id="orientation" type="13" value="0.672376 -0.118747 0.722703 0.107283"></PROPERTY>
     <PROPERTY id="position" type="9" value="-85.0848 681.312 -2769.4"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="49.2604 231.723 348.555"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="49.2604 231.723 223.329"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="Scene_Material"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
