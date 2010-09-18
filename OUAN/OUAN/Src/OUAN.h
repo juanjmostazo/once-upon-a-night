@@ -322,7 +322,7 @@ namespace OUAN
 
 		GAMEOBJECT_CLASS_DECL(Bridge);
 
-		//Some object have types in mayus for Ogitor convenience
+		//Some object have types in capital letters for Ogitor convenience
 		const std::string GAME_OBJECT_TYPE="object";
 		const std::string GAME_OBJECT_TYPE_SCENE="SceneManager";
 		const std::string GAME_OBJECT_TYPE_TERRAIN="terrain";

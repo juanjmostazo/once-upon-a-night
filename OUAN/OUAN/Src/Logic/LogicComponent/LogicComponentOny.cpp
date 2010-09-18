@@ -1,5 +1,6 @@
 #include "OUAN_Precompiled.h"
 
+#include "../../Utils/Utils.h"
 #include "LogicComponentOny.h"
 #include "../LogicSubsystem.h"
 #include "../../Application.h"
@@ -20,6 +21,8 @@ LogicComponentOny::LogicComponentOny(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_ONY)
 {
 	mHitRecoveryTime=-1;
+	mIdleTime=0;
+	mNapBufferState=-1;
 }
 
 LogicComponentOny::~LogicComponentOny()
@@ -66,28 +69,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 			BOOST_PTR_CAST(GameObjectTripollo,pGameObject);
 		bool mayHitTripollo=tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && 
 			!tripollo->isStatueEnabled();
-		if( mayHitTripollo && mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
-		{		
-			int oldLives=getNumLives();
-			decreaseHP();
-			mHitRecoveryTime=POST_HIT_INVULNERABILITY;
-
-			if (getNumLives()==oldLives)
-			{
-				OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
-				getParent()->getGameWorldManager()->addEvent(evt);
-			}			
-		}
-	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TENTETIESO)==0 
-		&& pGameObject->getGameWorldManager()->getWorld()==NIGHTMARES 
-		&& !getParent()->getGameWorldManager()->isGodMode())
-	{
-		GameObjectTentetiesoPtr tentetieso= 
-			BOOST_PTR_CAST(GameObjectTentetieso,pGameObject);
-
-		if(tentetieso.get() && !tentetieso->hasBeenHit() &&!tentetieso->hasDied() 
-			&& mHitRecoveryTime<0 && !CHECK_BIT(mState,ONY_STATE_BIT_FIELD_DIE))
+		if( mayHitTripollo && mHitRecoveryTime<0 && mState!=ONY_STATE_DIE)
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();
@@ -136,17 +118,53 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 {
 	if (!Application::getInstance()->isPlayingCutscene())
 	{
+		if (animationName.compare(ONY_ANIM_IDLE02)==0)
+		{
+			mNewState=ONY_STATE_IDLE;
+		}
+		if (animationName.compare(
+			ONY_ANIM_NAP_START)==0)
+		{
+			mParent->changeAnimation(ONY_ANIM_NAP_KEEP);
+		}
+		if (animationName.compare(
+			ONY_ANIM_JUMP01_END)==0 ||
+			animationName.compare(
+			ONY_ANIM_JUMP02_END)==0 )
+		{
+			mParent->changeAnimation(ONY_ANIM_IDLE01);
+		}
+		if (animationName.compare(ONY_ANIM_FALL_END)==0)
+		{
+			mParent->changeAnimation(ONY_ANIM_IDLE01);
+		}
+		if (animationName.compare(
+			ONY_ANIM_JUMP01_START)==0)
+		{
+ 			mParent->changeAnimation(ONY_ANIM_JUMP01_KEEP);
+		}
+		if (animationName.compare(
+			ONY_ANIM_JUMP02_START)==0)
+		{
+			mParent->changeAnimation(ONY_ANIM_JUMP02_KEEP);
+		}
+		if (animationName.compare(ONY_ANIM_NAP_END)==0)
+		{
+			mNewState = mNapBufferState;
+			mNapBufferState=-1;
+		}
 		if (animationName.compare(ONY_ANIM_HIT01)==0)
 		{
 			//if (mHitRecoveryTime<0)
 			//{								
-				mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_HIT);			
+				mNewState=ONY_STATE_IDLE;			
+
 				//mInvulnerabilityCounter=POST_HIT_INVULNERABILITY;
 			//}
 		}
 		else if (animationName.compare(ONY_ANIM_DIE)==0)
 		{
-			mNewState=CLEAR_BIT(mNewState,ONY_STATE_BIT_FIELD_DIE);
+			mNewState=ONY_STATE_IDLE;
 			mParent->getGameWorldManager()->onyDied();
 		}
 	}
@@ -270,38 +288,33 @@ void LogicComponentOny::update(double elapsedTime)
 	int oldState=mState;
 	int finalState=mNewState;
 
-	if (finalState!=ONY_STATE_IDLE)
-	{
-		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_MOVEMENT))
-		{
-			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
-			{
-				//Interrupt hit animation
-				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
-			}
-		}
-		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_WALK))
-		{
-			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
-			{
-				//Interrupt hit animation
-				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
-			}
+	if (mIdleTime>=0) 
+		mIdleTime-=elapsedTime;
 
-		}
-		if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP))
+	if (oldState==ONY_STATE_NAP && finalState!=ONY_STATE_NAP)
+	{
+		mNapBufferState=finalState;
+		finalState=ONY_STATE_NAP_END;
+		mParent->changeAnimation(ONY_ANIM_NAP_END);
+	}
+
+	if (finalState==ONY_STATE_IDLE)
+	{
+		if ((oldState!=ONY_STATE_IDLE && oldState!=ONY_STATE_IDLE1)|| mParent->isFirstUpdate())
+			mIdleTime=IDLE_SECONDS_TO_NAP;
+		if (Utils::Random::getInstance()->getRandomDouble()<ONY_IDLE2_CHANCE)
 		{
-			if (!ony->getPhysicsComponentCharacterOny()->isJumping())
-			{
-				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_JUMP);
-			}
-			if (CHECK_BIT(finalState,ONY_STATE_BIT_FIELD_HIT) && CHECK_BIT(oldState,ONY_STATE_BIT_FIELD_HIT))
-			{
-				//Interrupt hit animation
-				finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_HIT);
-			}
+			finalState=ONY_STATE_IDLE1;
+		} 
+		else if (mIdleTime<0)
+		{
+			finalState=ONY_STATE_NAP;	
 		}
 	}
+	else if (finalState==ONY_STATE_JUMP && !ony->getPhysicsComponentCharacterOny()->isJumping())
+	{
+		finalState=ONY_STATE_IDLE;//or maybe falling?
+	}		
 
 	if(mHitRecoveryTime>=0)
 	{
@@ -309,7 +322,7 @@ void LogicComponentOny::update(double elapsedTime)
 	}
 	else
 	{
-		finalState=CLEAR_BIT(finalState,ONY_STATE_BIT_FIELD_INVULNERABLE);
+		BOOST_PTR_CAST(GameObjectOny, mParent)->setInvulnerable(false);
 	}
 
 	setState(finalState);
@@ -413,6 +426,19 @@ void LogicComponentOny::showMessage()
 bool LogicComponentOny::isMessageVisible() const
 {
 	return BOOST_PTR_CAST(GameObjectOny,mParent)->isMessageVisible();
+}
+
+double LogicComponentOny::getIdleTime() const
+{
+	return mIdleTime;
+}
+void LogicComponentOny::setIdleTime(double idleTime)
+{
+	mIdleTime=idleTime;
+}
+bool LogicComponentOny::awaitingForNapEnd() const
+{
+	return mNapBufferState!=-1;
 }
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()

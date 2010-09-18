@@ -282,39 +282,49 @@ void GameRunningState::handleEvents()
 			outernMovement=Vector3::ZERO;
 		}
 
-		if (useWeaponKeyPressed && !CHECK_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK))
+		if (useWeaponKeyPressed && newState!=ONY_STATE_ATTACK)
 		{
-			newState=SET_BIT(newState,ONY_STATE_BIT_FIELD_ATTACK);
+			newState=ONY_STATE_ATTACK;
 			//Logger::getInstance()->log("SETTING ATTACK FLAG");
 		}
 		bool zeroMovement = 
 			fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
 			fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
 
-		newState = zeroMovement
-			? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
-			: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+		if (!zeroMovement)
+		{
+			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+				newState=ONY_STATE_RUN;
+		}
+
 
 		if (mApp->isDownWalk(&pad,&key) && 
 			!mApp->getGameWorldManager()->isOnyDying())
 		{
-			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
-			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
+			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+			{
+				newState=ONY_STATE_RUN;
+				mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
+
+				newState = ONY_STATE_WALK;
+			}
 		}
 		else
 		{
-			newState = CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_WALK);
+			newState = (newState==ONY_STATE_WALK)?ONY_STATE_IDLE:newState;
 		}
 
 		if (mApp->isDownJump(&pad,&key) && 
-			!mApp->getGameWorldManager()->isOnyDying())
+			!mApp->getGameWorldManager()->isOnyDying() &&
+			ony->getLogicCurrentState()!=ONY_STATE_NAP &&
+			ony->getLogicCurrentState()!=ONY_STATE_NAP_END)
 		{
 			if(mApp->getCameraManager()->targetMovementAllowed())
-			{
+				{
 				ony->getPhysicsComponentCharacterOny()->jump();
-			}
+				}
 
-			newState = SET_BIT(newState,ONY_STATE_BIT_FIELD_JUMP);
+				newState = ONY_STATE_JUMP;
 		}			
 
 		if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIRST_PERSON)
@@ -325,16 +335,15 @@ void GameRunningState::handleEvents()
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
-
-			ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
+			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+				ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
 			
 			zeroMovement = 
 				fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
 				fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
 
-			newState = zeroMovement
-				? CLEAR_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT)
-				: SET_BIT(newState,ONY_STATE_BIT_FIELD_MOVEMENT);
+			if (zeroMovement && (newState==ONY_STATE_WALK || newState==ONY_STATE_RUN))
+				newState = ONY_STATE_IDLE;
 		}
 
 		ony->getLogicComponentOny()->setNewState(newState);

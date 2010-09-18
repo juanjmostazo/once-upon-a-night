@@ -35,6 +35,7 @@
 #include "../Game/GameObject/GameObjectMagicClock.h"
 #include "../Game/GameObject/GameObjectNest.h"
 #include "../Game/GameObject/GameObjectNightGoblin.h"
+#include "../Game/GameObject/GameObjectNonGrassArea.h"
 #include "../Game/GameObject/GameObjectOny.h"
 #include "../Game/GameObject/GameObjectParticleSystem.h"
 #include "../Game/GameObject/GameObjectPillow.h"
@@ -68,7 +69,6 @@
 #include "../Game/GameObject/GameObjectTotem.h"
 #include "../Game/GameObject/GameObjectLevelEntrance.h"
 #include "../Game/GameObject/GameObjectInvisibleWall.h"
-#include "../Game/GameObject/GameObjectNonGrassArea.h"
 #include "../Game/GameObject/GameObjectBreakableRock.h"
 #include "../Game/GameObject/GameObjectBridge.h"
 

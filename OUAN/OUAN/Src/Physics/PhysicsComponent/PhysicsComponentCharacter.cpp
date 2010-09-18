@@ -449,6 +449,7 @@ void PhysicsComponentCharacter::resetFallingVars()
 {
 	mFalling = false;
 	mFallingTime = 0;
+
 }
 
 void PhysicsComponentCharacter::resetCyclicVars()

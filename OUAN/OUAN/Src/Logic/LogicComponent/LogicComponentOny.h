@@ -77,7 +77,13 @@ namespace OUAN
 		void showMessage();
 		bool isMessageVisible() const;
 
+		double getIdleTime() const;
+		void setIdleTime(double idleTime);
+
+		bool awaitingForNapEnd() const;
+
 	private:
+		double mIdleTime;
 		/// Number of lives of the component
 		int mNumLives;
 		/// Health points of the component
@@ -97,6 +103,9 @@ namespace OUAN
 		//This variable will hold the state changes caused by game or input events
 		//This way, there will only be a state change per frame, as it should be.
 		int mNewState; 
+
+		//State to return to after the stand-up animation has finished
+		int mNapBufferState;
 	};
 	
 	class TLogicComponentOnyParameters: public TLogicComponentParameters
