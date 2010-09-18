@@ -208,7 +208,7 @@ bool GameObjectCameraTrigger::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectCameraTrigger::getLogicComponentInstance() const
+LogicComponentPtr GameObjectCameraTrigger::getLogicComponent() const
 {
 	return mLogicComponent;
 }

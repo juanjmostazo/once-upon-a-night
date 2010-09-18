@@ -146,7 +146,7 @@ bool GameObjectLight::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectLight::getLogicComponentInstance() const
+LogicComponentPtr GameObjectLight::getLogicComponent() const
 {
 	return mLogicComponent;
 }

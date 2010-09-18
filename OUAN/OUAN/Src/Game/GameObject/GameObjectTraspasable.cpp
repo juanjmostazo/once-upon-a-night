@@ -276,7 +276,7 @@ bool GameObjectTraspasable::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTraspasable::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTraspasable::getLogicComponent() const
 {
 	return mLogicComponent;
 }

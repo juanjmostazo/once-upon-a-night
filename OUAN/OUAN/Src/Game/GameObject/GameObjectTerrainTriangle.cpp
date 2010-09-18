@@ -326,7 +326,7 @@ bool GameObjectTerrainTriangle::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTerrainTriangle::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTerrainTriangle::getLogicComponent() const
 {
 	return mLogicComponent;
 }

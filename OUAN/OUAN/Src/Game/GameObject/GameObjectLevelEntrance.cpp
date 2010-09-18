@@ -187,7 +187,7 @@ bool GameObjectLevelEntrance::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectLevelEntrance::getLogicComponentInstance() const
+LogicComponentPtr GameObjectLevelEntrance::getLogicComponent() const
 {
 	return mLogicComponent;
 }

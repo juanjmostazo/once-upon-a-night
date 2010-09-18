@@ -345,7 +345,7 @@ bool GameObjectClockPiece::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectClockPiece::getLogicComponentInstance() const
+LogicComponentPtr GameObjectClockPiece::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

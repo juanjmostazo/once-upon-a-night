@@ -108,7 +108,7 @@ namespace OUAN
 		RenderComponentEntityPtr getEntityComponent() const;
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 	};
 	

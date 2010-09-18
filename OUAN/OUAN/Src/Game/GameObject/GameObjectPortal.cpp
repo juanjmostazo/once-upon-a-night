@@ -464,7 +464,7 @@ bool GameObjectPortal::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectPortal::getLogicComponentInstance() const
+LogicComponentPtr GameObjectPortal::getLogicComponent() const
 {
 	return mLogicComponent;
 }

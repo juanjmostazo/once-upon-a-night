@@ -390,7 +390,7 @@ bool GameObjectSignpost::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectSignpost::getLogicComponentInstance() const
+LogicComponentPtr GameObjectSignpost::getLogicComponent() const
 {
 	return mLogicComponent;
 }

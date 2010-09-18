@@ -22,7 +22,6 @@ GameObjectOny::GameObjectOny(const std::string& name)
 	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
 	mCurrentWeaponMode=WEAPON_MODE_0;
-	mOnWater=false;
 	mAttackAnimationName = ONY_ANIM_ATTACK03;
 }
 
@@ -466,6 +465,30 @@ void GameObjectOny::resetStepSounds()
 	mPlayedStep01=true;
 }
 
+void GameObjectOny::playStep00()
+{
+	if(mLogicComponentOny->isOnWater())
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WATER_00);
+	}
+	else
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_00);
+	}
+}
+void GameObjectOny::playStep01()
+{
+	if(mLogicComponentOny->isOnWater())
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WATER_01);
+	}
+	else
+	{
+		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_01);
+	}
+}
+
+
 void GameObjectOny::playStepSounds()
 {
 	if(!mRenderComponentEntity->getCurrentAnimation()) return;
@@ -479,13 +502,13 @@ void GameObjectOny::playStepSounds()
 	//STEP SOUNDS
 	if(animPerc>=ONY_SOUND_STEP_TIME_00 && animPerc<ONY_SOUND_STEP_TIME_01 && mPlayedStep01 )
 	{
-		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_00);
+		playStep00();
 		mPlayedStep00=true;
 		mPlayedStep01=false;
 	}
 	else if(animPerc>=ONY_SOUND_STEP_TIME_01 && mPlayedStep00)
 	{
-		mAudioComponent->playSound(ONY_SOUND_STEP_WOOD_01);
+		playStep01();
 		mPlayedStep00=false;
 		mPlayedStep01=true;
 	}
@@ -495,7 +518,7 @@ void GameObjectOny::startRunParticleSystem()
 {
 	if (mPhysicsComponentCharacterOny->isOnSurface())
 	{
-		if (isOnWater())
+		if (mLogicComponentOny->isOnWater())
 		{
 			Logger::getInstance()->log("Launching ONY_PS_RUN_WATER");
 			startParticleSystem(ONY_PS_RUN_WATER);
@@ -773,7 +796,7 @@ bool GameObjectOny::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectOny::getLogicComponentInstance() const
+LogicComponentPtr GameObjectOny::getLogicComponent() const
 {
 	return mLogicComponentOny;
 }
@@ -840,16 +863,6 @@ bool GameObjectOny::isTrajectoryFinished() const
 	}
 
 	return true;
-}
-
-bool GameObjectOny::isOnWater() const
-{
-	return mOnWater;
-}
-
-void GameObjectOny::setOnWater(bool onWater)
-{
-	mOnWater = onWater;
 }
 
 RenderComponentMessageBoxPtr GameObjectOny::getMsgBoxComponent() const

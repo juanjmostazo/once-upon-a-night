@@ -36,7 +36,7 @@ sound any_step_grass_01
 
 sound any_step_water_00
 {
-	sound_file 	Any/any_step_water_00.mp3
+	sound_file 	Any/any_splash_01.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true
@@ -48,7 +48,7 @@ sound any_step_water_00
 
 sound any_step_water_01
 {
-	sound_file 	Any/any_step_water_01.mp3
+	sound_file 	Any/any_splash_02.mp3
 	sound_type 	sfx
 	3D		true
 	hardware	true

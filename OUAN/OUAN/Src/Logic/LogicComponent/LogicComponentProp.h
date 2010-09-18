@@ -12,6 +12,9 @@ namespace OUAN
 		~LogicComponentProp();
 
 		void processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal);
+		void processEnterTrigger(GameObjectPtr pGameObject);
+		void processExitTrigger(GameObjectPtr pGameObject);
+
 		//void processActivate(ActivateEventPtr evt);
 		//void processAnimationEnded(AnimationEndedEventPtr evt);
 		//...

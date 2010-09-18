@@ -3814,10 +3814,10 @@ GameObjectWaterPtr GameObjectFactory::createGameObjectWater(TGameObjectWaterPara
 	pGameObjectWater->setMaxRenderRadium(tGameObjectWaterParameters.mMaxRenderRadium);
 
 	//Create LogicComponent
-	pGameObjectWater->setLogicComponent(
-		mComponentFactory->createLogicComponent(
+	pGameObjectWater->setLogicComponentProp(
+		mComponentFactory->createLogicComponentProp(
 		pGameObjectWater,
-		tGameObjectWaterParameters.tLogicComponentParameters));
+		tGameObjectWaterParameters.tLogicComponentPropParameters));
 
 	//Create RenderComponentPositional
 	pGameObjectWater->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(

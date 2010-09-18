@@ -104,7 +104,7 @@ namespace OUAN
 		void setChangeWorldFactor(double factor);
 		
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 		/// Update object
 		virtual void update(double elapsedSeconds);

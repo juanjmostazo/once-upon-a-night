@@ -385,7 +385,7 @@ bool GameObjectItem1UP::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectItem1UP::getLogicComponentInstance() const
+LogicComponentPtr GameObjectItem1UP::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

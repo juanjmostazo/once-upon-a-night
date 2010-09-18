@@ -46,7 +46,7 @@ namespace OUAN
 		void changeWorldStarted(int newWorld);
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 
 	};

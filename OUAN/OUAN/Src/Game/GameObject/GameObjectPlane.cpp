@@ -146,7 +146,7 @@ bool GameObjectPlane::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectPlane::getLogicComponentInstance() const
+LogicComponentPtr GameObjectPlane::getLogicComponent() const
 {
 	return mLogicComponent;
 }

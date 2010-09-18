@@ -205,7 +205,7 @@ bool GameObjectCloud::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectCloud::getLogicComponentInstance() const
+LogicComponentPtr GameObjectCloud::getLogicComponent() const
 {
 	return mLogicComponent;
 }

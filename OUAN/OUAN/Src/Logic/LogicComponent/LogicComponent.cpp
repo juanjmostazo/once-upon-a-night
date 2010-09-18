@@ -13,6 +13,7 @@ LogicComponent::LogicComponent(const std::string& type)
 {
 	//mPatrolTrajectory.reset();
 	mStateChanged=true;
+	mOnWater=false;
 	mLastFrameState=-1;
 }
 
@@ -34,6 +35,16 @@ void LogicComponent::processEnterTrigger(GameObjectPtr pGameObject)
 void LogicComponent::processExitTrigger(GameObjectPtr pGameObject)
 {
 
+}
+
+bool LogicComponent::isOnWater() const
+{
+	return mOnWater;
+}
+
+void LogicComponent::setOnWater(bool onWater)
+{
+	mOnWater=onWater;
 }
 
 void LogicComponent::update(double elapsedTime)

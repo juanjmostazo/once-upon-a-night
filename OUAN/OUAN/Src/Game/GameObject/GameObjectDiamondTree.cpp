@@ -473,7 +473,7 @@ bool GameObjectDiamondTree::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectDiamondTree::getLogicComponentInstance() const
+LogicComponentPtr GameObjectDiamondTree::getLogicComponent() const
 {
 	return mLogicComponent;
 }

@@ -187,7 +187,7 @@ bool GameObjectTower::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTower::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTower::getLogicComponent() const
 {
 	return mLogicComponent;
 }

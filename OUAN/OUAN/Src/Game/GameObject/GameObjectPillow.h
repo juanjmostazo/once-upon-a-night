@@ -154,7 +154,7 @@ namespace OUAN
 		void startAttackParticles();
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 
 	class TGameObjectPillowParameters: public TGameObjectParameters

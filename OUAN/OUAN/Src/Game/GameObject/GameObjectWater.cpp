@@ -278,13 +278,13 @@ PhysicsComponentPtr GameObjectWater::getPhysicsComponent() const
 
 
 /// Set logic component
-void GameObjectWater::setLogicComponent(LogicComponentPtr logicComponent)
+void GameObjectWater::setLogicComponentProp(LogicComponentPropPtr logicComponent)
 {
 	mLogicComponent=logicComponent;
 }
 
 /// return logic component
-LogicComponentPtr GameObjectWater::getLogicComponent()
+LogicComponentPropPtr GameObjectWater::getLogicComponent()
 {
 	return mLogicComponent;
 }
@@ -348,6 +348,16 @@ void GameObjectWater::postUpdate()
 	}
 }
 
+void GameObjectWater::gameObjectInsideWater(GameObjectPtr pGameObject)
+{
+	mAudioComponent->playSound(WATER_SOUND_SPLASH);
+}
+
+void GameObjectWater::gameObjectOutsideWater(GameObjectPtr pGameObject)
+{
+
+}
+
 
 //bool GameObjectWater::hasRenderComponentWater() const
 //{
@@ -386,7 +396,7 @@ bool GameObjectWater::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectWater::getLogicComponentInstance() const
+LogicComponentPtr GameObjectWater::getLogicComponent() const
 {
 	return mLogicComponent;
 }

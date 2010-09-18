@@ -317,7 +317,7 @@ bool GameObjectSwitch::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectSwitch::getLogicComponentInstance() const
+LogicComponentPtr GameObjectSwitch::getLogicComponent() const
 {
 	return mLogicComponent;
 }

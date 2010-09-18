@@ -212,7 +212,7 @@ bool GameObjectInvisibleWall::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectInvisibleWall::getLogicComponentInstance() const
+LogicComponentPtr GameObjectInvisibleWall::getLogicComponent() const
 {
 	return mLogicComponent;
 }

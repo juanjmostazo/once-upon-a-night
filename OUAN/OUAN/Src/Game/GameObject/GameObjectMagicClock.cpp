@@ -101,7 +101,7 @@ bool GameObjectMagicClock::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectMagicClock::getLogicComponentInstance() const
+LogicComponentPtr GameObjectMagicClock::getLogicComponent() const
 {
 	return mLogicComponent;
 }

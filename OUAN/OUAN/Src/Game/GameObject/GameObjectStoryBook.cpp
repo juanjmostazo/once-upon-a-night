@@ -370,7 +370,7 @@ bool GameObjectStoryBook::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectStoryBook::getLogicComponentInstance() const
+LogicComponentPtr GameObjectStoryBook::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

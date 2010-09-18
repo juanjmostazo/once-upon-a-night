@@ -389,7 +389,7 @@ bool GameObjectTreeComplex::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTreeComplex::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTreeComplex::getLogicComponent() const
 {
 	return mLogicComponent;
 }

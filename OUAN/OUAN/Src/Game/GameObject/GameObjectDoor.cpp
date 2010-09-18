@@ -246,7 +246,7 @@ bool GameObjectDoor::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectDoor::getLogicComponentInstance() const
+LogicComponentPtr GameObjectDoor::getLogicComponent() const
 {
 	return mLogicComponent;
 }

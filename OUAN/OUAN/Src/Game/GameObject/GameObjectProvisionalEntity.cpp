@@ -224,7 +224,7 @@ bool GameObjectProvisionalEntity::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectProvisionalEntity::getLogicComponentInstance() const
+LogicComponentPtr GameObjectProvisionalEntity::getLogicComponent() const
 {
 	return mLogicComponent;
 }

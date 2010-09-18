@@ -182,7 +182,7 @@ bool GameObjectParticleSystem::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectParticleSystem::getLogicComponentInstance() const
+LogicComponentPtr GameObjectParticleSystem::getLogicComponent() const
 {
 	return mLogicComponent;
 }

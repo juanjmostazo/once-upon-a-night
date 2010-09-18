@@ -214,7 +214,7 @@ bool GameObjectEye::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectEye::getLogicComponentInstance() const
+LogicComponentPtr GameObjectEye::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

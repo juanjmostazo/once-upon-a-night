@@ -234,7 +234,7 @@ bool GameObjectBridge::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectBridge::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBridge::getLogicComponent() const
 {
 	return mLogicComponent;
 }

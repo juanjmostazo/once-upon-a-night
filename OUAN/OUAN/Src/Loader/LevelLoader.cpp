@@ -3126,18 +3126,18 @@ void LevelLoader::processGameObjectWater(XMLGameObject* gameObject)
 			tGameObjectWaterParameters.tPhysicsComponentVolumeConvexParameters = processPhysicsComponentVolumeConvex(gameObject->XMLNodeCustomProperties,
 				volumeTriangle);
 
-			tGameObjectWaterParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			tGameObjectWaterParameters.tLogicComponentPropParameters=processLogicComponentProp(gameObject->XMLNodeDreams,
 				gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 			tGameObjectWaterParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 			
-			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInDreams)
+			if(tGameObjectWaterParameters.tLogicComponentPropParameters.existsInDreams)
 			{
 				tGameObjectWaterParameters.tRenderComponentWaterDreamsParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeDreams, DREAMS, gameObject->XMLNodeCustomProperties);
 			}
 			
-			if(tGameObjectWaterParameters.tLogicComponentParameters.existsInNightmares)
+			if(tGameObjectWaterParameters.tLogicComponentPropParameters.existsInNightmares)
 			{
 				tGameObjectWaterParameters.tRenderComponentWaterNightmaresParameters.tRenderComponentEntityParameters=processRenderComponentEntity(
 					gameObject->XMLNodeNightmares,NIGHTMARES, gameObject->XMLNodeCustomProperties);

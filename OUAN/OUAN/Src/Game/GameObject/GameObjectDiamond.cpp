@@ -482,7 +482,7 @@ void GameObjectDiamond::startCollisionEffects()
 	mAudioComponent->playSound("diamond");
 }
 
-LogicComponentPtr GameObjectDiamond::getLogicComponentInstance() const
+LogicComponentPtr GameObjectDiamond::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

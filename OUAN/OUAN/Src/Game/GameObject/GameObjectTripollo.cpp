@@ -864,7 +864,7 @@ bool GameObjectTripollo::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTripollo::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTripollo::getLogicComponent() const
 {
 	if (mGameWorldManager->getWorld()==DREAMS && mLogicComponentEnemy->existsInDreams()
 		|| mGameWorldManager->getWorld()==NIGHTMARES && mLogicComponentEnemy->existsInNightmares())

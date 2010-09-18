@@ -206,7 +206,7 @@ bool GameObjectScepter::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectScepter::getLogicComponentInstance() const
+LogicComponentPtr GameObjectScepter::getLogicComponent() const
 {
 	return mLogicComponent;
 }

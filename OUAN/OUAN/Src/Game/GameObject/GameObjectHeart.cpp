@@ -395,7 +395,7 @@ bool GameObjectHeart::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectHeart::getLogicComponentInstance() const
+LogicComponentPtr GameObjectHeart::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

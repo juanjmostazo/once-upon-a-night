@@ -23,7 +23,7 @@ function diamondTreeLogic(pDiamondTree,state)
 	if state==DT_STATE_IDLE and hit then
 		newState=DT_STATE_HIT
 	elseif state==DT_STATE_HIT and recovered then
-		if timeSpent<10 then
+		if timeSpent<15 then
 			log("READY TO HIT!")
 			newState=DT_STATE_MAY_HIT
 		else

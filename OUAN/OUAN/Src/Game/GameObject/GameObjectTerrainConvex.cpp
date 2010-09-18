@@ -377,7 +377,7 @@ bool GameObjectTerrainConvex::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTerrainConvex::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTerrainConvex::getLogicComponent() const
 {
 	return mLogicComponent;
 }

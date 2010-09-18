@@ -235,7 +235,7 @@ bool GameObjectTotem::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTotem::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTotem::getLogicComponent() const
 {
 	return mLogicComponent;
 }

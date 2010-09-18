@@ -596,7 +596,7 @@ void GameObjectBomb::checkPlayFartSound()
 	}
 }
 
-LogicComponentPtr GameObjectBomb::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBomb::getLogicComponent() const
 {
 	return mLogicComponentProp;
 }

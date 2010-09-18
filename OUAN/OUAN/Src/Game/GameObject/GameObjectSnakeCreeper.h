@@ -107,7 +107,7 @@ namespace OUAN
 		
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 	
 	/// Information data structure to carry around data between the

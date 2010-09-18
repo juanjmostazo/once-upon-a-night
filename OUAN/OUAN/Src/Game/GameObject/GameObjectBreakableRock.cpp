@@ -306,7 +306,7 @@ bool GameObjectBreakableRock::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectBreakableRock::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBreakableRock::getLogicComponent() const
 {
 	return mLogicComponent;
 }

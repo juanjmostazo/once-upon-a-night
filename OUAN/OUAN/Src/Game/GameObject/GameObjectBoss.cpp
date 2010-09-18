@@ -220,7 +220,7 @@ bool GameObjectBoss::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectBoss::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBoss::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

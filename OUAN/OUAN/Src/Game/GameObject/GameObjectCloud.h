@@ -84,7 +84,7 @@ namespace OUAN
 		void updateLogic(double elapsedSeconds);
 		
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 
 	class TGameObjectCloudParameters: public TGameObjectParameters
