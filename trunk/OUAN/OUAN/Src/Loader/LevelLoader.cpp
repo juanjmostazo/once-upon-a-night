@@ -1188,8 +1188,7 @@ void LevelLoader::processGameObjectNonGrassArea(XMLGameObject* gameObject)
 	OUAN::TGameObjectNonGrassAreaParameters tGameObjectNonGrassAreaParameters;
 	tGameObjectNonGrassAreaParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
 	tGameObjectNonGrassAreaParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
-
-	Logger::getInstance()->log("PROCESSING GAME OBJECT NON GRASS AREA");
+	
 	try
 	{
 		//Check parsing errors
@@ -1208,15 +1207,13 @@ void LevelLoader::processGameObjectNonGrassArea(XMLGameObject* gameObject)
 		tGameObjectNonGrassAreaParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentVolumeBox
-		tGameObjectNonGrassAreaParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
+		tGameObjectNonGrassAreaParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBoxUsingScale(gameObject->XMLNodeCustomProperties,gameObject->getMainXMLNode());
 	}
 	catch( std::string error )
 	{
 		throw error;
 		return;
 	}
-
-	Logger::getInstance()->log("END OF PROCESSING GAME OBJECT NON GRASS AREA");
 
 	//Create GameObject
 	mGameWorldManager->addGameObjectNonGrassArea(mGameObjectFactory->createGameObjectNonGrassArea(tGameObjectNonGrassAreaParameters,mGameWorldManager));

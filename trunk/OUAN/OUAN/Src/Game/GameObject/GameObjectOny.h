@@ -250,7 +250,6 @@ namespace OUAN
 
 		TWeaponMode mCurrentWeaponMode;
 
-
 		RenderComponentMessageBoxPtr mMsgBoxComponent;
 
 		bool mPlayedStep00;
@@ -268,6 +267,7 @@ namespace OUAN
 		//plataform related vars and function
 		bool mIsOnPlataform;
 		bool mLastFrameIsOnPlataform;
+		bool mInNonGrassArea;
 		GameObjectPlataformPtr mPlataform;
 		void applyPlataformEffect();
 
@@ -448,6 +448,9 @@ namespace OUAN
 		void setOnPlataform(bool onPlataform,GameObjectPlataformPtr plataform);
 
 		void setCurrentAttackAnimation(const std::string& animationName);
+
+		bool isInNonGrassArea() const;
+		void setInNonGrassArea(bool inNonGrassArea);
 	};
 
 	/// Carries data between the level loader and the object factories

@@ -109,6 +109,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_LEVEL_ENTRANCE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TOTEM);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_INVISIBLE_WALL);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_NON_GRASS_AREA);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BREAKABLE_ROCK);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BRIDGE);
 
