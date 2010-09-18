@@ -1,6 +1,7 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameObjectNonGrassArea.h"
+#include "GameObjectOny.h"
 #include "../GameWorldManager.h"
 
 using namespace OUAN;
@@ -185,7 +186,13 @@ void GameObjectNonGrassArea::processEnterTrigger(GameObjectPtr pGameObject)
 		mLogicComponent->processEnterTrigger(pGameObject);
 	}
 
-	Logger::getInstance()->log("ENTERING NONGRASS " + pGameObject->getName());
+	if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
+	{
+		Logger::getInstance()->log("ONY IS EXITING NON GRASS AREA" + pGameObject->getName());	
+
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);
+		ony->setInNonGrassArea(true);
+	}
 }
 
 void GameObjectNonGrassArea::processExitTrigger(GameObjectPtr pGameObject)
@@ -195,13 +202,20 @@ void GameObjectNonGrassArea::processExitTrigger(GameObjectPtr pGameObject)
 		mLogicComponent->processExitTrigger(pGameObject);
 	}
 
-	Logger::getInstance()->log("EXITING NONGRASS " + pGameObject->getName());
+	if (pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY) == 0)
+	{
+		Logger::getInstance()->log("ONY IS EXITING NON GRASS AREA" + pGameObject->getName());	
+
+		GameObjectOnyPtr ony = BOOST_PTR_CAST(GameObjectOny,pGameObject);
+		ony->setInNonGrassArea(false);
+	}
 }
 
 bool GameObjectNonGrassArea::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectNonGrassArea::getLogicComponent() const
 {
 	return mLogicComponent;

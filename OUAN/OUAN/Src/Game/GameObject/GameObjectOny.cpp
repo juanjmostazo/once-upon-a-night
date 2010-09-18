@@ -18,6 +18,7 @@ GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 ,mUsingTrajectory(false)
 ,mIdleTime(-1)
+,mInNonGrassArea(false)
 {
 	mDreamsWeapon="pillow#0";
 	mNightmaresWeapon="flashlight#1";
@@ -85,7 +86,10 @@ void GameObjectOny::startParticleSystem(OnyParticleSystemID id)
 {
 	if (mParticleSystemsComponent.find(id)!=mParticleSystemsComponent.end())
 	{
-		mParticleSystemsComponent[id]->start();
+		if (id != ONY_PS_RUN_SAND || !isInNonGrassArea())
+		{
+			mParticleSystemsComponent[id]->start();
+		}
 	}
 }
 void GameObjectOny::stopParticleSystem(OnyParticleSystemID id)
@@ -263,6 +267,8 @@ void GameObjectOny::reset()
 
 	mIsOnPlataform=false;
 	mLastFrameIsOnPlataform=false;
+	
+	setInNonGrassArea(false);
 }
 
 void GameObjectOny::changeWorldFinished(int newWorld)
@@ -883,6 +889,7 @@ void GameObjectOny::changeMessage(const std::string& stringKey, double duration)
 		showMessage();
 	}
 }
+
 void GameObjectOny::changeMessage(const std::string& stringKey)
 {
 	if (mMsgBoxComponent.get())
@@ -891,6 +898,7 @@ void GameObjectOny::changeMessage(const std::string& stringKey)
 		showMessage();
 	}
 }
+
 void GameObjectOny::showMessage()
 {
 	if (mMsgBoxComponent.get())
@@ -899,6 +907,7 @@ void GameObjectOny::showMessage()
 		mMsgBoxComponent->show();
 	}
 }
+
 void GameObjectOny::hideMessage()
 {
 	if (mMsgBoxComponent.get())
@@ -906,6 +915,7 @@ void GameObjectOny::hideMessage()
 		mMsgBoxComponent->hide();
 	}
 }
+
 bool GameObjectOny::isMessageVisible() const
 {
 	if (mMsgBoxComponent.get())
@@ -915,6 +925,17 @@ bool GameObjectOny::isMessageVisible() const
 
 	return false;
 }
+
+bool GameObjectOny::isInNonGrassArea() const
+{
+	return mInNonGrassArea;
+}
+
+void GameObjectOny::setInNonGrassArea(bool inNonGrassArea)
+{
+	mInNonGrassArea = inNonGrassArea;
+}
+
 void GameObjectOny::setCurrentAttackAnimation(const std::string& animationName)
 {
 	mAttackAnimationName=animationName;
