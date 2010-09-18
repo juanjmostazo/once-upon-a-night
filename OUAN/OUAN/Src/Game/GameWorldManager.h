@@ -361,6 +361,8 @@ namespace OUAN
 
 		void rescaleViewport(double left, double top, double width, double height);
 
+		std::string getLevelName();
+
 	private:		
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 

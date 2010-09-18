@@ -528,6 +528,12 @@ void GameWorldManager::init(ApplicationPtr app)
 	mFirstSignpostHit=true;
 }
 
+std::string GameWorldManager::getLevelName()
+{
+	return level;
+}
+
+
 void GameWorldManager::cleanUp()
 {
 	Logger::getInstance()->log("[GAME WORLD MANAGER GENERAL CLEANUP STARTED]");
@@ -1831,6 +1837,10 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		plataform->activate();
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_6"));
 		plataform->activate();
+	}
+	else if(cutscene.compare(EVENT_FIRST_CHANGE_WORLD_ACTIVATED)==0)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene2");
 	}
 
 }

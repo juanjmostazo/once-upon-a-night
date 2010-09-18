@@ -22,6 +22,11 @@ void TrajectoryComponent::update(double elapsedSeconds)
 	//}
 }
 
+void TrajectoryComponent::reset()
+{
+	mTrajectory->reset();
+}
+
 void TrajectoryComponent::setTrajectory(Trajectory * pTrajectory)
 {
 	mTrajectory=pTrajectory;

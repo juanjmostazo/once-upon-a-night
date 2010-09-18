@@ -207,6 +207,13 @@ void GameObjectPlataform::reset()
 	{
 		mActivated=true;
 	}
+
+	mTrajectoryComponent->reset();
+	mRenderComponentPositional->setPosition(mTrajectoryComponent->getCurrentPosition());
+	if (mPhysicsComponentComplexConvex.get() && mPhysicsComponentComplexConvex->isInUse())
+	{
+		mPhysicsComponentComplexConvex->setPosition(mTrajectoryComponent->getCurrentPosition());
+	}
 }
 
 bool GameObjectPlataform::hasPositionalComponent() const
