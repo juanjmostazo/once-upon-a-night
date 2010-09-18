@@ -112,11 +112,13 @@ void LogicComponent::setState(int state)
 {
 	int oldState=mState;
 	mState=state;
+
 	for (int i=GAMESTATE_HISTORY_SIZE-1;i>0;--i)
 	{
 		stateHistory[i]=stateHistory[i-1];
 	}
-		stateHistory[0]=oldState;
+
+	stateHistory[0]=oldState;
 	setStateChanged(oldState!=mState);
 }
 
@@ -161,26 +163,32 @@ void LogicComponent::printMessage(const std::string& msg,double time)
 	std::string translation = getParent()->getTranslation(msg);
 	getParent()->displayText(translation,time);
 }
+
 bool LogicComponent::isEnabled() const
 {
 	return mParent->isEnabled();
 }
+
 void LogicComponent::setCurrentWorldVisibility(bool visibility)
 {
 	mParent->setCurrentWorldVisibility(visibility);
 }
+
 void LogicComponent::changeAnimation(const std::string& animationName)
 {
 	mParent->changeAnimation(animationName);
 }
+
 bool LogicComponent::isLoopingAnimation(const std::string& animationName) const
 {
 	return mParent->isLoopingAnimation(animationName);
 }
+
 bool LogicComponent::hasFinishedAnimation(const std::string& animationName) const
 {
 	return mParent->hasFinishedAnimation(animationName);
 }
+
 TLogicComponentParameters::TLogicComponentParameters() : TComponentParameters()
 {
 

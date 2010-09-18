@@ -116,9 +116,6 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-
-		
-
 		void postUpdate();
 		void update(double elapsedSeconds);
 

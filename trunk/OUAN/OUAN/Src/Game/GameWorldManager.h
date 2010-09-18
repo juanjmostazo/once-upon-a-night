@@ -54,7 +54,6 @@ namespace OUAN
 		TGameObjectSignpostContainer* getGameObjectSignpostContainer();
 		TGameObjectNestContainer* getGameObjectNestContainer();
 
-
 		TGameObjectPortalContainer * getGameObjectPortalContainer();
 
 		TGameObjectPhysicsContainer * getGameObjectPhysicsContainer();
@@ -75,8 +74,6 @@ namespace OUAN
 
 		TGameObjectSoundContainer* getGameObjectSoundContainer();
 		TGameObjectContainer* getAmbientSoundContainer();
-
-
 
 		///// Load level from the given file
 		///// @param levelFileName name of the level file
@@ -312,6 +309,7 @@ namespace OUAN
 		void addGameObjectLevelEntrance(GameObjectLevelEntrancePtr pGameObjectLevelEntrance);
 
 		void addGameObjectInvisibleWall(GameObjectInvisibleWallPtr pGameObjectInvisibleWall);
+		void addGameObjectNonGrassArea(GameObjectNonGrassAreaPtr pGameObjectNonGrassArea);
 		void addGameObjectBreakableRock(GameObjectBreakableRockPtr pGameObjectBreakableRock);
 
 		void addGameObjectBridge(GameObjectBridgePtr pGameObjectBridge);

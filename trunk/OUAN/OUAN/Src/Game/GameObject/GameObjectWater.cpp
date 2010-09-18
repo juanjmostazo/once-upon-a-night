@@ -43,7 +43,6 @@ void GameObjectWater::setAudioComponent(AudioComponentPtr audioComponent)
 	mAudioComponent=audioComponent;
 }
 
-
 RenderComponentWaterPtr GameObjectWater::getRenderComponentWaterNightmares() const
 {
 	return mRenderComponentWaterNightmares;
@@ -358,7 +357,6 @@ void GameObjectWater::gameObjectOutsideWater(GameObjectPtr pGameObject)
 
 }
 
-
 //bool GameObjectWater::hasRenderComponentWater() const
 //{
 //	return true;
@@ -396,10 +394,12 @@ bool GameObjectWater::hasLogicComponent() const
 {
 	return true;
 }
+
 LogicComponentPtr GameObjectWater::getLogicComponent() const
 {
 	return mLogicComponent;
 }
+
 TGameObjectWaterParameters::TGameObjectWaterParameters() : TGameObjectParameters()
 {
 

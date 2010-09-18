@@ -302,6 +302,7 @@ namespace OUAN
 
 		GAMEOBJECT_CLASS_DECL(BreakableRock);
 		GAMEOBJECT_CLASS_DECL(InvisibleWall);
+		GAMEOBJECT_CLASS_DECL(NonGrassArea);
 
 		GAMEOBJECT_CLASS_DECL(Bridge);
 
@@ -382,6 +383,7 @@ namespace OUAN
 
 		const std::string GAME_OBJECT_TYPE_BREAKABLE_ROCK="breakable-rock";
 		const std::string GAME_OBJECT_TYPE_INVISIBLE_WALL="invisible-wall";
+		const std::string GAME_OBJECT_TYPE_NON_GRASS_AREA="non-grass-area";
 		const std::string GAME_OBJECT_TYPE_BRIDGE="bridge";
 
 		const std::string PRESET_PATROL_TRAJECTORY_PREFIX="patrol_";

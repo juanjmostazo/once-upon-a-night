@@ -16,6 +16,7 @@
 #include "GameObject/GameObjectDiamondTree.h"
 #include "GameObject/GameObjectBreakableRock.h"
 #include "GameObject/GameObjectInvisibleWall.h"
+#include "GameObject/GameObjectNonGrassArea.h"
 #include "GameObject/GameObjectDoor.h"
 #include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
@@ -1004,6 +1005,51 @@ GameObjectInvisibleWallPtr GameObjectFactory::createGameObjectInvisibleWall(TGam
 		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
 	}
 	return pGameObjectInvisibleWall;
+}
+
+GameObjectNonGrassAreaPtr GameObjectFactory::createGameObjectNonGrassArea(TGameObjectNonGrassAreaParameters tGameObjectNonGrassAreaParameters, 
+																			GameWorldManagerPtr gameWorldMgr)
+{
+	GameObjectNonGrassAreaPtr pGameObjectNonGrassArea;
+
+	//Create GameObject
+	pGameObjectNonGrassArea = GameObjectNonGrassAreaPtr(new GameObjectNonGrassArea(tGameObjectNonGrassAreaParameters.name));
+	pGameObjectNonGrassArea->setMaxUpdateRadium(tGameObjectNonGrassAreaParameters.mMaxUpdateRadium);
+	pGameObjectNonGrassArea->setParentNest(tGameObjectNonGrassAreaParameters.parentNest);
+	pGameObjectNonGrassArea->setSpawnProbability(tGameObjectNonGrassAreaParameters.spawnProbability);
+	pGameObjectNonGrassArea->setMaxRenderRadium(tGameObjectNonGrassAreaParameters.mMaxRenderRadium);
+
+	//Create LogicComponent
+	pGameObjectNonGrassArea->setLogicComponent(
+		mComponentFactory->createLogicComponent(
+		pGameObjectNonGrassArea,
+		tGameObjectNonGrassAreaParameters.tLogicComponentParameters));
+
+	//Create RenderComponentPositional
+	pGameObjectNonGrassArea->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectNonGrassArea,tGameObjectNonGrassAreaParameters.tRenderComponentPositionalParameters));
+
+	//Create RenderComponentInitial
+	pGameObjectNonGrassArea->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectNonGrassArea->getRenderComponentPositional()));
+
+	//Create PhysicsComponent
+	pGameObjectNonGrassArea->setPhysicsComponentVolumeBox(
+		mComponentFactory->createPhysicsComponentVolumeBox(
+		pGameObjectNonGrassArea, 
+		tGameObjectNonGrassAreaParameters.tPhysicsComponentVolumeBoxParameters, 
+		pGameObjectNonGrassArea->getRenderComponentPositional()));
+
+	//Add reference to this
+	pGameObjectNonGrassArea->setGameWorldManager(gameWorldMgr);
+
+	std::string scriptFile="";
+	pGameObjectNonGrassArea->getLogicScriptFile(scriptFile);
+	if (!scriptFile.empty())
+	{
+		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
+	}
+	return pGameObjectNonGrassArea;
 }
 
 GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParameters tGameObjectBossParameters, 

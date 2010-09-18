@@ -68,6 +68,7 @@
 #include "../Game/GameObject/GameObjectTotem.h"
 #include "../Game/GameObject/GameObjectLevelEntrance.h"
 #include "../Game/GameObject/GameObjectInvisibleWall.h"
+#include "../Game/GameObject/GameObjectNonGrassArea.h"
 #include "../Game/GameObject/GameObjectBreakableRock.h"
 #include "../Game/GameObject/GameObjectBridge.h"
 
@@ -204,7 +205,7 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 	{
 		gameObjectType=gameObject->gameObjectType;
 
-		Logger::getInstance()->log("[LevelLoader] Loading GameObject "+gameObject->name);
+		Logger::getInstance()->log("[LevelLoader] Loading GameObject " + gameObject->name);
 
 		if( gameObjectType.compare(GAME_OBJECT_TYPE_ONY)==0)
 		{
@@ -465,6 +466,10 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_INVISIBLE_WALL)==0)
 		{
 			processGameObjectInvisibleWall(gameObject);
+		}
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_NON_GRASS_AREA)==0)
+		{
+			processGameObjectNonGrassArea(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BREAKABLE_ROCK)==0)
 		{
@@ -1180,6 +1185,45 @@ void LevelLoader::processGameObjectInvisibleWall(XMLGameObject* gameObject)
 	//Create GameObject
 	//mGameWorldManager->createGameObjectInvisibleWall(tGameObjectInvisibleWallParameters);
 	mGameWorldManager->addGameObjectInvisibleWall(mGameObjectFactory->createGameObjectInvisibleWall(tGameObjectInvisibleWallParameters,mGameWorldManager));
+}
+
+void LevelLoader::processGameObjectNonGrassArea(XMLGameObject* gameObject)
+{
+	OUAN::TGameObjectNonGrassAreaParameters tGameObjectNonGrassAreaParameters;
+	tGameObjectNonGrassAreaParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
+	tGameObjectNonGrassAreaParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+
+	Logger::getInstance()->log("PROCESSING GAME OBJECT NON GRASS AREA");
+	try
+	{
+		//Check parsing errors
+		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
+
+		//Get names
+		tGameObjectNonGrassAreaParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectNonGrassAreaParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectNonGrassAreaParameters.name = gameObject->name;
+
+		//Get logic component
+		tGameObjectNonGrassAreaParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
+			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
+
+		//Get RenderComponentPositional
+		tGameObjectNonGrassAreaParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());
+
+		//Get PhysicsComponentVolumeBox
+		tGameObjectNonGrassAreaParameters.tPhysicsComponentVolumeBoxParameters = processPhysicsComponentVolumeBox(gameObject->XMLNodeCustomProperties);
+	}
+	catch( std::string error )
+	{
+		throw error;
+		return;
+	}
+
+	Logger::getInstance()->log("END OF PROCESSING GAME OBJECT NON GRASS AREA");
+
+	//Create GameObject
+	mGameWorldManager->addGameObjectNonGrassArea(mGameObjectFactory->createGameObjectNonGrassArea(tGameObjectNonGrassAreaParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectBreakableRock(XMLGameObject* gameObject)

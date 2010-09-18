@@ -137,6 +137,8 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectInvisibleWallPtr createGameObjectInvisibleWall(TGameObjectInvisibleWallParameters tGameObjectInvisibleWallParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
+		GameObjectNonGrassAreaPtr createGameObjectNonGrassArea(TGameObjectNonGrassAreaParameters tGameObjectNonGrassAreaParameters, 
+			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectBreakableRockPtr createGameObjectBreakableRock(TGameObjectBreakableRockParameters tGameObjectBreakableRockParameters, 
 			GameWorldManagerPtr gameWorldMgr);	
 		GameObjectBridgePtr createGameObjectBridge(TGameObjectBridgeParameters tGameObjectBridgeParameters, 
