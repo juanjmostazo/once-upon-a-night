@@ -44,6 +44,8 @@ namespace OUAN
 		void gotoOptions();
 		void gotoExtras();
 		void quit();
+
+		GameStateType getGameStateType();
 		
 		/// Default constructor
 		MainMenuState();

@@ -28,24 +28,14 @@ void GameObjectDoor::setAudioComponent(AudioComponentPtr audioComponent)
 }
 
 
-void GameObjectDoor::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectDoor::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
-void GameObjectDoor::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+RenderComponentEntityPtr GameObjectDoor::getRenderComponentEntity() const
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
-}
-
-RenderComponentEntityPtr GameObjectDoor::getRenderComponentEntityDreams() const
-{
-	return mRenderComponentEntityDreams;
-}
-
-RenderComponentEntityPtr GameObjectDoor::getRenderComponentEntityNightmares() const
-{
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 
 void GameObjectDoor::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -85,58 +75,18 @@ void GameObjectDoor::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				mPhysicsComponentSimpleBox->destroy();
 			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
-			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-			}		
+			mRenderComponentEntity->changeAnimation(DOOR_ANIM_IDLE_OPEN);
 			break;
 		case NIGHTMARES:
-			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
+				mPhysicsComponentSimpleBox->create();
 			}
-			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->destroy();
-				}
-			}
-			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
-				{
-					mPhysicsComponentSimpleBox->create();
-				}
-			}		
+			mRenderComponentEntity->changeAnimation(DOOR_ANIM_IDLE_CLOSE);
 			break;
 		default:
 			break;
@@ -150,8 +100,12 @@ void GameObjectDoor::changeWorldStarted(int newWorld)
 	switch(newWorld)
 	{
 	case DREAMS:
+		mRenderComponentEntity->changeAnimation(DOOR_ANIM_OPEN);
+		mAudioComponent->playSound(DOOR_SOUND_OPEN);
 		break;
 	case NIGHTMARES:
+		mRenderComponentEntity->changeAnimation(DOOR_ANIM_CLOSE);
+		mAudioComponent->playSound(DOOR_SOUND_CLOSE);
 		break;
 	default:
 		break;
@@ -162,11 +116,25 @@ void GameObjectDoor::changeToWorld(int newWorld, double perc)
 {
 	if (!isEnabled()) return;
 
+	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+	double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	if(!mRenderComponentEntity->getCurrentAnimation()) return;
+
 	switch(newWorld)
 	{
 	case DREAMS:
+		if(currentAnimName.compare(DOOR_ANIM_OPEN)!=0)
+		{
+			mRenderComponentEntity->changeAnimation(DOOR_ANIM_OPEN);
+			mAudioComponent->playSound(DOOR_SOUND_OPEN);
+		}
 		break;
 	case NIGHTMARES:
+		if(currentAnimName.compare(DOOR_ANIM_CLOSE)!=0)
+		{
+			mRenderComponentEntity->changeAnimation(DOOR_ANIM_CLOSE);
+			mAudioComponent->playSound(DOOR_SOUND_CLOSE);
+		}
 		break;
 	default:
 		break;
@@ -195,6 +163,13 @@ bool GameObjectDoor::hasPhysicsComponent() const
 PhysicsComponentPtr GameObjectDoor::getPhysicsComponent() const
 {
 	return getPhysicsComponentSimpleBox();
+}
+
+void GameObjectDoor::update(double elapsedSeconds)
+{
+	GameObject::update(elapsedSeconds);
+
+	mRenderComponentEntity->update(elapsedSeconds);
 }
 
 
@@ -240,7 +215,7 @@ bool GameObjectDoor::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectDoor::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return mRenderComponentEntity;
 }
 bool GameObjectDoor::hasLogicComponent() const
 {

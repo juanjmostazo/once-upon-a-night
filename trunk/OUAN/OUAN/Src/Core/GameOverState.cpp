@@ -29,6 +29,11 @@ GameOverState::~GameOverState()
 
 }
 
+GameStateType GameOverState::getGameStateType()
+{
+	return GAME_STATE_GAME_OVER;
+}
+
 /// init main menu's resources
 void GameOverState::init(ApplicationPtr app)
 {

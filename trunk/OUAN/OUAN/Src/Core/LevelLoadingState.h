@@ -78,6 +78,8 @@ namespace OUAN
 
 			void processStage(const TLoadingStage& stage);
 
+			GameStateType getGameStateType();
+
 			void setLevelFileName(const std::string& levelFilename);
 
 			void unloadAll();

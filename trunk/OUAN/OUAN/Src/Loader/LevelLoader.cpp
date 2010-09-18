@@ -1122,16 +1122,12 @@ void LevelLoader::processGameObjectDoor(XMLGameObject* gameObject)
 		tGameObjectDoorParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		//Get RenderComponentEntityDreams
-		tGameObjectDoorParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
-			DREAMS, gameObject->XMLNodeCustomProperties);
-		//Get RenderComponentEntityNightmares
-		tGameObjectDoorParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			NIGHTMARES,gameObject->XMLNodeCustomProperties);
+		//Get RenderComponentEntity
+		tGameObjectDoorParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+			BOTH_WORLDS, gameObject->XMLNodeCustomProperties);
 		
 		//Get AudioComponent
 		tGameObjectDoorParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
-
 
 		//Get RenderComponentPositional
 		tGameObjectDoorParameters.tRenderComponentPositionalParameters = processRenderComponentPositional(gameObject->getMainXMLNode());

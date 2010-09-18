@@ -16,6 +16,7 @@ CUTSCENE_7_1_TRIPOLLOS_PLATFORM="1_TRIPOLLOS_PLATFORM";
 CUTSCENE_7_2_TRIPOLLOS_PLATFORM="2_TRIPOLLOS_PLATFORM";
 CUTSCENE_7_3_TRIPOLLOS_PLATFORM="3_TRIPOLLOS_PLATFORM";
 CUTSCENE_8_TRIPOLLO_STATUES="TRIPOLLO_STATUES";
+CUTSCENE_8_0_TRIPOLLO_STATUES_END="TRIPOLLO_STATUES_END";
 CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS="PLATFORMS_TO_FINAL_BOSS";
 CUTSCENE_9_FINAL_BOSS_START="FINAL_BOSS_START";
 CUTSCENE_10_FINAL_BOSS_END="FINAL_BOSS_END";
@@ -93,6 +94,8 @@ function cutScene2(timer)
 	timedMessage(any,"FIRST_CHANGE_WORLD#3",5,timer,5);
 	timedMessage(any,"FIRST_CHANGE_WORLD#4",5,timer,5);
 	timedMessage(any,"FIRST_CHANGE_WORLD#5",5,timer,5);
+	worldChangeWait();
+	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end
@@ -266,6 +269,22 @@ function cutScene8(timer)
 	setCameraTrajectory(CUTSCENE_8_TRIPOLLO_STATUES,false,true);
 	trajectoryCamWait();
 	changeWorld(OUAN_WORLD_NIGHTMARES);
+	worldChangeWait();
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+-- CUTSCENE 8_0: TRIPOLLO_STATUES_END
+function cutScene8_0(timer)
+	log ("CUTSCENE 8_0: ");
+	log (CUTSCENE_8_0_TRIPOLLO_STATUES_END);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_8_TRIPOLLO_STATUES,false,true);
+	trajectoryCamWait();
+	addExecutedLevelEvent(CUTSCENE_8_0_TRIPOLLO_STATUES_END);
+
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);

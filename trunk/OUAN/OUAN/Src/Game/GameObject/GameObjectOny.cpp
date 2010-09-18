@@ -494,10 +494,10 @@ void GameObjectOny::playStepSounds()
 	if(!mRenderComponentEntity->getCurrentAnimation()) return;
 
 	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-	float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
-	float currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
+	double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	double currentAnimPosition=mRenderComponentEntity->getAnimationPosition();
 
-	float animPerc=currentAnimPosition/currentAnimLen;
+	double animPerc=currentAnimPosition/currentAnimLen;
 
 	//STEP SOUNDS
 	if(animPerc>=ONY_SOUND_STEP_TIME_00 && animPerc<ONY_SOUND_STEP_TIME_01 && mPlayedStep01 )

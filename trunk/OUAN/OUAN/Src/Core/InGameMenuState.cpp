@@ -28,6 +28,11 @@ InGameMenuState::~InGameMenuState()
 
 }
 
+GameStateType InGameMenuState::getGameStateType()
+{
+	return GAME_STATE_IN_GAME_MENU;
+}
+
 /// init main menu's resources
 void InGameMenuState::init(ApplicationPtr app)
 {

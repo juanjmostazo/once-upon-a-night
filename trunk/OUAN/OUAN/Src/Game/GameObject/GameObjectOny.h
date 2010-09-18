@@ -180,8 +180,8 @@ namespace OUAN
 	const std::string ONY_SOUND_FLASHLIGHT_OVERHEAT="flashlight_overheat";
 
 	//animation perc when foot hits the floor
-	const float ONY_SOUND_STEP_TIME_00=0;
-	const float ONY_SOUND_STEP_TIME_01=0.5;
+	const double ONY_SOUND_STEP_TIME_00=0;
+	const double ONY_SOUND_STEP_TIME_01=0.5;
 
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>

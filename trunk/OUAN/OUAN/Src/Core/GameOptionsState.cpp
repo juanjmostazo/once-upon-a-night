@@ -27,6 +27,11 @@ GameOptionsState::~GameOptionsState()
 
 }
 
+GameStateType GameOptionsState::getGameStateType()
+{
+	return GAME_STATE_OPTIONS;
+}
+
 /// init main menu's resources
 void GameOptionsState::init(ApplicationPtr app)
 {

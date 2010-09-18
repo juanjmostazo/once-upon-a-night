@@ -27,6 +27,8 @@ namespace OUAN
 		/// resume state
 		void resume();
 
+		GameStateType getGameStateType();
+
 		/// process input events
 		/// @param app	the parent application
 		void handleEvents();

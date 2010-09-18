@@ -193,7 +193,7 @@ void GameObjectTree::changeToWorld(int newWorld, double perc)
 	if (!isEnabled()) return;
 	
 	std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-	float currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
+	double currentAnimLen=mRenderComponentEntity->getCurrentAnimationLength();
 	if(!mRenderComponentEntity->getCurrentAnimation()) return;
 
 	switch(newWorld)

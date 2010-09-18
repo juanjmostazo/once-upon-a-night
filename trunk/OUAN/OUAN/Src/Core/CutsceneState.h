@@ -3,6 +3,8 @@
 
 #include "../OUAN.h"
 #include "GameState.h"
+#include "../Event/EventDefs.h"
+
 namespace OUAN
 {
 	class CutsceneState;
@@ -18,19 +20,34 @@ namespace OUAN
 		lua_State* mCoroutine;
 		static CutsceneState* mInst;
 
-		float mChangeWorldTotalTime;
-		float CHANGE_WORLD_RADIUM;
+		double CHANGE_WORLD_RADIUM;
 		bool mRandomChangeWorld;
-		bool mIsChangingWorld;
-		float mChangeWorldElapsedTime;
-		float mCurrentChangeWorldFrame;
+		double mCurrentChangeWorldFrame;
 		bool mReturningToGameTransition;
+
+		//Changeworld functions and variables
+		void changeToWorld(int newWorld, double perc);
+		void changeWorldFinished(int newWorld);
+		void changeWorldStarted(int newWorld);
+		void activateChangeWorld();
+		void activateChangeWorldFast();
+
+		void processChangeWorld(ChangeWorldEventPtr evt);
+
+		double mChangeWorldTotalTime;
+		double mChangeWorldElapsedTime;
+		bool mIsChangingWorld;
+		bool mFinishedChangeWorld;
+
+		int mWorldAfterCutscene;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
 
 		/// Clean up extras screen's resources
 		void cleanUp();
+
+		GameStateType getGameStateType();
 
 		/// pause state
 		void pause();
@@ -47,10 +64,6 @@ namespace OUAN
 		bool render();
 
 		void doChangeWorld(int world);
-		void activateChangeWorld();
-		void changeWorldStarted(int newWorld);
-		void changeToWorld(int newWorld, double percent);
-		void changeWorldFinished(int newWorld);
 		bool isWorldChangeFinished() const;
 
 		static void changeWorld(int world);

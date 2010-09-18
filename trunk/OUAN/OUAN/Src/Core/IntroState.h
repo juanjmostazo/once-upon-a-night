@@ -49,6 +49,8 @@ namespace OUAN
 		bool keyPressed( const OIS::KeyEvent& e );
 		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 
+		GameStateType getGameStateType();
+
 		/// Default constructor
 		IntroState();
 		/// Destructor

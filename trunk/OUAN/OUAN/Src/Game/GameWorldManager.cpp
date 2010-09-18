@@ -132,6 +132,7 @@ void GameWorldManager::update(double elapsedSeconds)
 			changeToWorld(mWorld,1.0f);
 			changeWorldFinished(mWorld);
 			mIsChangingWorld=false;
+			mApp->setWorld(mWorld);
 		}
 		else
 		{
@@ -1248,11 +1249,15 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
 	GameObjectSoundPtr sound;
 
-	CameraParametersPtr pCameraParameters;
-	pCameraParameters.reset(new CameraParameters());
-	Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
-	pCameraParameters->setTarget(getGameObjectOny()->getName());
-	Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
+	bool isGameRunningState=mApp->getGameStateManager()->getCurrentGameStateType()==GAME_STATE_RUNNING;;
+	if(isGameRunningState)
+	{
+		CameraParametersPtr pCameraParameters;
+		pCameraParameters.reset(new CameraParameters());
+		Application::getInstance()->getCameraManager()->setToDefaultCameraParameters(pCameraParameters);
+		pCameraParameters->setTarget(getGameObjectOny()->getName());
+		Application::getInstance()->getCameraManager()->setCameraFree(pCameraParameters,true);
+	}
 
 	switch(newWorld)
 	{
@@ -1801,6 +1806,8 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 {
 	mExecutedLevelEvents.insert(cutscene);
 
+	Logger::getInstance()->log("LEVEL EVENT: "+cutscene);
+
 	if(cutscene.compare(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK)==0)
 	{
 		GameObjectPtr obj = getObject("invisible-wall#BOMBS_PUZZLE");
@@ -1844,6 +1851,24 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 	else if(cutscene.compare(EVENT_FIRST_CHANGE_WORLD_ACTIVATED)==0)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene2");
+	}
+	else if(hasExecutedLevelEvent(TRIPOLLO_1_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(TRIPOLLO_2_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(TRIPOLLO_3_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(TRIPOLLO_4_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(TRIPOLLO_5_STATUE_DEFEATED) &&
+			!hasExecutedLevelEvent(CUTSCENE_8_0_TRIPOLLO_STATUES_END)
+		)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene8_0");
+	}
+	else if(cutscene.compare(CUTSCENE_8_0_TRIPOLLO_STATUES_END)==0)
+	{
+		GameObjectPlataformPtr plataform;
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower2_1"));
+		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower2_2"));
+		plataform->activate();
 	}
 
 }

@@ -32,6 +32,11 @@ CutsceneState::~CutsceneState()
 
 }
 
+GameStateType CutsceneState::getGameStateType()
+{
+	return GAME_STATE_CUTSCENE;
+}
+
 void CutsceneState::init(ApplicationPtr app)
 {
 	GameState::init(app);
@@ -42,8 +47,18 @@ void CutsceneState::init(ApplicationPtr app)
 	//mApp->getAudioSubsystem()->stopAllSounds();
 	mApp->rescaleViewport(0,0.15,1,0.7);
 
+	//Register events
+	if (mApp->getGameWorldManager()->getEventManager().get())
+	{
+		EventHandlerPtr eh;
+		boost::shared_ptr<CutsceneState> this_ = shared_from_this();
+		eh = EventHandlerPtr(new EventHandler<CutsceneState,ChangeWorldEvent>(this_,&CutsceneState::processChangeWorld));
+		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
+	}
 
+	mWorldAfterCutscene=mApp->getGameWorldManager()->getWorld();
 	mReturningToGameTransition=false;
+	mFinishedChangeWorld=true;
 }
 
 /// Clean up extras screen's resources
@@ -55,6 +70,14 @@ void CutsceneState::cleanUp()
 	mApp->setPlayingCutscene(false);
 	mCutsceneLaunched=false;
 	mApp->rescaleViewport(0,0,1,1);
+
+	if (mApp->getGameWorldManager()->getEventManager().get())
+	{
+		EventHandlerPtr eh;
+		boost::shared_ptr<CutsceneState> this_ = shared_from_this();
+		eh = EventHandlerPtr(new EventHandler<CutsceneState,ChangeWorldEvent>(this_,&CutsceneState::processChangeWorld));
+		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+	}
 }
 
 /// pause state
@@ -91,6 +114,7 @@ void CutsceneState::update(long elapsedTime)
 	//BREAKPOINT HIT CHECK
 	if (elapsedSeconds>1)
 		elapsedSeconds=1/30.0f;
+
 	if (!mCutsceneFile.empty() && !mCutsceneFunction.empty())
 	{
 		//Check if cutscene launched. If not, do it. Otherwise, 
@@ -105,7 +129,6 @@ void CutsceneState::update(long elapsedTime)
 		else logicSS->updateCutsceneFunction(mCutsceneFunction,elapsedSeconds);
 		do 
 		{
-
 			if(mIsChangingWorld)
 			{
 				mChangeWorldElapsedTime+=elapsedSeconds;
@@ -160,6 +183,11 @@ void CutsceneState::update(long elapsedTime)
 			{
 				ony->hideMessage();
 			}
+	
+			mApp->getGameWorldManager()->setWorld(mWorldAfterCutscene);
+			mApp->getGameWorldManager()->dispatchEvents();
+			mIsChangingWorld=false;
+
 			mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
 			mApp->getGameStateManager()->popState();
 			logicSS->terminateCutsceneFunction(mCutsceneFunction);
@@ -184,17 +212,32 @@ void CutsceneState::changeWorld(int world)
 }
 void CutsceneState::doChangeWorld(int world)
 {
-	Configuration config;
-	std::string value;
-	if (config.loadFromFile(GAMEWORLDMANAGER_CFG))
-	{
-		mChangeWorldTotalTime = config.parseFloat("CHANGE_WORLD_TIME");
-		mRandomChangeWorld= config.parseBool("CHANGE_WORLD_TREES_RANDOM");
-		CHANGE_WORLD_RADIUM= config.parseFloat("CHANGE_WORLD_RADIUM");
-	}
-	mApp->setWorld(world);
-	activateChangeWorld();
+	mApp->getGameWorldManager()->changeWorld();
+	mApp->getGameWorldManager()->dispatchEvents();
+	mWorldAfterCutscene=world;
+	mFinishedChangeWorld=false;
 }
+
+void CutsceneState::processChangeWorld(ChangeWorldEventPtr evt)
+{
+	mApp->setWorld(evt->getNewWorld());
+	mChangeWorldTotalTime=evt->time;
+	if (evt->fast)
+	{
+		activateChangeWorldFast();
+	}
+	else
+	{
+		activateChangeWorld();
+	}
+}
+
+void CutsceneState::activateChangeWorldFast()
+{
+	mIsChangingWorld=false;
+	changeWorldFinished(mApp->getGameWorldManager()->getWorld());
+}
+
 void CutsceneState::activateChangeWorld()
 {
 	if(mIsChangingWorld)
@@ -208,65 +251,35 @@ void CutsceneState::activateChangeWorld()
 		changeWorldStarted(mApp->getWorld());
 	}
 }
-void CutsceneState::changeWorldStarted(int newWorld)
-{
-	mApp->getGameWorldManager()->setChangeWorldRender();
 
-	switch(newWorld)
-	{
-	case DREAMS:
-		mApp->setOldWorld(NIGHTMARES);
-		mApp->getGameWorldManager()->setChangeWorldFactor(1);
-		break;
-	case NIGHTMARES:
-		mApp->setOldWorld(DREAMS);
-		mApp->getGameWorldManager()->setChangeWorldFactor(0);
-		break;
-	default:
-		break;
-	}
-
-	mCurrentChangeWorldFrame=0;
-}
 bool CutsceneState::isWorldChangeFinished() const
 {
-	return mIsChangingWorld;
+	return mFinishedChangeWorld;
 }
+
 bool CutsceneState::hasFinishedChangingWorld()
 {
-	return mInst->mIsChangingWorld;
+	return mInst->mFinishedChangeWorld;
 }
-void CutsceneState::changeToWorld(int newWorld, double percent)
-{
-	switch(newWorld)
-	{
-	case DREAMS:
-		mApp->getGameWorldManager()->setChangeWorldFactor(1-percent);
-		break;
-	case NIGHTMARES:
-		mApp->getGameWorldManager()->setChangeWorldFactor(percent);
-		break;
-	default:
-		break;
-	}
-}
+
 void CutsceneState::changeWorldFinished(int newWorld)
 {
+	//endMusicFading(newWorld);
 
 	mApp->setWorld(newWorld);
-
+	
 	switch(newWorld)
 	{
-	case DREAMS:
-		mApp->setOldWorld(NIGHTMARES);
-		mApp->getGameWorldManager()->setChangeWorldFactor(1);
-		break;
-	case NIGHTMARES:
-		mApp->setOldWorld(DREAMS);
-		mApp->getGameWorldManager()->setChangeWorldFactor(0);
-		break;
-	default:
-		break;
+		case DREAMS:
+			mApp->setOldWorld(NIGHTMARES);
+			mApp->getGameWorldManager()->setChangeWorldFactor(1);
+			break;
+		case NIGHTMARES:
+			mApp->setOldWorld(DREAMS);
+			mApp->getGameWorldManager()->setChangeWorldFactor(0);
+			break;
+		default:
+			break;
 	}
 	int world=mApp->getWorld();
 	switch(world)
@@ -280,8 +293,48 @@ void CutsceneState::changeWorldFinished(int newWorld)
 	default:
 		break;
 	}
-	mIsChangingWorld=false;
-	mApp->getGameWorldManager()->setWorld(world);
+
+	mFinishedChangeWorld=true;
+}
+
+void CutsceneState::changeWorldStarted(int newWorld)
+{
+	//initMusicFading(newWorld);
+
+	mApp->getGameWorldManager()->setChangeWorldRender();
+
+	switch(newWorld)
+	{
+		case DREAMS:
+			mApp->setOldWorld(NIGHTMARES);
+			mApp->getGameWorldManager()->setChangeWorldFactor(1);
+			break;
+		case NIGHTMARES:
+			mApp->setOldWorld(DREAMS);
+			mApp->getGameWorldManager()->setChangeWorldFactor(0);
+			break;
+		default:
+			break;
+	}
+
+	//currentChangeWorldFrame=0;
+}
+
+void CutsceneState::changeToWorld(int newWorld, double perc)
+{
+	//advanceMusicFading(newWorld,perc);
+
+	switch(newWorld)
+	{
+		case DREAMS:
+			mApp->getGameWorldManager()->setChangeWorldFactor(1-perc);
+			break;
+		case NIGHTMARES:
+			mApp->getGameWorldManager()->setChangeWorldFactor(perc);
+			break;
+		default:
+			break;
+	}
 }
 
 bool CutsceneState::render()

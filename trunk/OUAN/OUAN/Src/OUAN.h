@@ -52,6 +52,22 @@ namespace OUAN
 		CLASS_DECLARATIONS_NO_PARAMS(GameRunningState);
 		CLASS_DECLARATIONS_NO_PARAMS(Application);
 
+		enum GameStateType
+		{
+			GAME_STATE_NONE,
+			GAME_STATE_CUTSCENE,
+			GAME_STATE_RUNNING,
+			GAME_STATE_EXTRAS,
+			GAME_STATE_OPTIONS,
+			GAME_STATE_GAME_OVER,
+			GAME_STATE_PAUSED,
+			GAME_STATE_IN_GAME_MENU,
+			GAME_STATE_INTRO,
+			GAME_STATE_LEVEL_LOADING,
+			GAME_STATE_MAIN_MENU,
+			GAME_STATE_PROFILE_SELECT
+		};
+
 	//---------------
 	// Game module-related constants, type definitions and forwarded declarations
 	//---------------

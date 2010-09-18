@@ -29,6 +29,8 @@ namespace OUAN
 
 		bool stateChanged();
 
+		GameStateType getCurrentGameStateType();
+
 		void update();
 	private: 
 		/// the stack of states
