@@ -10,6 +10,9 @@ namespace OUAN
 	private:
 		Ogre::Viewport * mViewport;
 		RenderSubsystemPtr mRenderSubsystem;
+
+		double mOriginalHeight;
+		double mOriginalWidth;
 	public:
 
 		RenderComponentViewport(const std::string& type="");
