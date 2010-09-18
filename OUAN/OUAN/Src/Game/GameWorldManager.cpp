@@ -15,6 +15,7 @@
 #include "GameObject/GameObjectDiamondTree.h"
 #include "GameObject/GameObjectDoor.h"
 #include "GameObject/GameObjectInvisibleWall.h"
+#include "GameObject/GameObjectNonGrassArea.h"
 #include "GameObject/GameObjectBreakableRock.h"
 #include "GameObject/GameObjectBoss.h"
 #include "GameObject/GameObjectEye.h"
@@ -716,6 +717,10 @@ void GameWorldManager::addGameObjectInvisibleWall(GameObjectInvisibleWallPtr gam
 	mGameObjects[gameObjectInvisibleWall->getName()]=gameObjectInvisibleWall;
 }
 
+void GameWorldManager::addGameObjectNonGrassArea(GameObjectNonGrassAreaPtr gameObjectNonGrassArea)
+{
+	mGameObjects[gameObjectNonGrassArea->getName()]=gameObjectNonGrassArea;
+}
 
 void GameWorldManager::addGameObjectBoss(GameObjectBossPtr gameObjectBoss)
 {
@@ -1800,14 +1805,12 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 	{
 		GameObjectPtr obj = getObject("invisible-wall#BOMBS_PUZZLE");
 
-		GameObjectInvisibleWallPtr wall= 
-				BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
+		GameObjectInvisibleWallPtr wall = BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
 		wall->desactivateWall();
 	}
 	else if(cutscene.compare(CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0 ||
 		cutscene.compare(CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0 ||
-		cutscene.compare(CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0
-		)
+		cutscene.compare(CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
 	{
 		GameObjectPtr obj = getObject("totem#0");
 

@@ -110,6 +110,7 @@ namespace OUAN
 		void processGameObjectSwitch(XMLGameObject* gameObject);
 		void processGameObjectLevelEntrance(XMLGameObject* gameObject);
 		void processGameObjectInvisibleWall(XMLGameObject* gameObject);
+		void processGameObjectNonGrassArea(XMLGameObject* gameObject);
 		void processGameObjectBreakableRock(XMLGameObject* gameObject);
 		void processGameObjectBridge(XMLGameObject* gameObject);
 

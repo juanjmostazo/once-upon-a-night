@@ -570,6 +570,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonGrassArea.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectOny.cpp"
 						>
 					</File>
@@ -1668,6 +1672,10 @@
 					</File>
 					<File
 						RelativePath=".\Src\Game\GameObject\GameObjectNightGoblin.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Src\Game\GameObject\GameObjectNonGrassArea.h"
 						>
 					</File>
 					<File
