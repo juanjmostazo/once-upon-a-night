@@ -251,7 +251,7 @@ namespace OUAN
 		void stopAttackParticles();
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 	};
 

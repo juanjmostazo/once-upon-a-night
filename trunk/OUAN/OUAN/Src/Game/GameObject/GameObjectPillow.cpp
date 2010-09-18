@@ -449,7 +449,7 @@ bool GameObjectPillow::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectPillow::getLogicComponentInstance() const
+LogicComponentPtr GameObjectPillow::getLogicComponent() const
 {
 	return mLogicComponent;
 }

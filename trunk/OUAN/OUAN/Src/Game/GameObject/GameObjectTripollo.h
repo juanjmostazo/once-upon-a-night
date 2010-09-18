@@ -240,7 +240,7 @@ namespace OUAN
 		AudioComponentPtr getAudioComponentInstance() const; //INHERITED!!
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 		double getMeleeRange() const;
 		int countNeighboursInRange(double range, bool call) const;

@@ -13,6 +13,7 @@
 #include "../../Game/GameObject/GameObjectCryKing.h"
 #include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Game/GameObject/GameObjectSwitch.h"
+#include "../../Game/GameObject/GameObjectWater.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 
 using namespace OUAN;
@@ -132,6 +133,38 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		mHasTakenHit=true;
 	}
 
+}
+
+void LogicComponentProp::processEnterTrigger(GameObjectPtr pGameObject)
+{
+	bool isParentWater = mParent->getType().compare(GAME_OBJECT_TYPE_WATER)==0;
+	if (isParentWater)
+	{
+		GameObjectWaterPtr water= 
+			BOOST_PTR_CAST(GameObjectWater,getParent());
+
+		water->gameObjectInsideWater(pGameObject);
+		if(pGameObject->hasLogicComponent())
+		{
+			pGameObject->getLogicComponent()->setOnWater(true);
+		}
+	}
+}
+
+void LogicComponentProp::processExitTrigger(GameObjectPtr pGameObject)
+{
+	bool isParentWater = mParent->getType().compare(GAME_OBJECT_TYPE_WATER)==0;
+	if (isParentWater)
+	{
+		GameObjectWaterPtr water= 
+			BOOST_PTR_CAST(GameObjectWater,getParent());
+
+		water->gameObjectOutsideWater(pGameObject);
+		if(pGameObject->hasLogicComponent())
+		{
+			pGameObject->getLogicComponent()->setOnWater(false);
+		}
+	}
 }
 //void processActivate(ActivateEventPtr evt);
 //void processAnimationEnded(AnimationEndedEventPtr evt);

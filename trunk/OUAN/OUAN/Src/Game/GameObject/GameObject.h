@@ -239,7 +239,7 @@ namespace OUAN
 		virtual void setCurrentWorldVisibility(bool visibility);
 
 		virtual bool hasLogicComponent() const;
-		virtual LogicComponentPtr getLogicComponentInstance() const;
+		virtual LogicComponentPtr getLogicComponent() const;
 
 		// Facade method to avoid adding unnecessary dependencies
 		// with the logic components

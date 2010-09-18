@@ -525,7 +525,7 @@ bool GameObjectWoodBox::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectWoodBox::getLogicComponentInstance() const
+LogicComponentPtr GameObjectWoodBox::getLogicComponent() const
 {
 	return mLogicComponentBreakable;
 }

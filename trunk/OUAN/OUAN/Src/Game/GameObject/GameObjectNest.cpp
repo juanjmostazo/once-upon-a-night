@@ -454,7 +454,7 @@ bool GameObjectNest::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectNest::getLogicComponentInstance() const
+LogicComponentPtr GameObjectNest::getLogicComponent() const
 {
 	return mLogicComponent;
 }

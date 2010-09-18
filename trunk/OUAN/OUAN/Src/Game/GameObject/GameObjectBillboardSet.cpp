@@ -245,7 +245,7 @@ bool GameObjectBillboardSet::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectBillboardSet::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBillboardSet::getLogicComponent() const
 {
 	return mLogicComponent;
 }

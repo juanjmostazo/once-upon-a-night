@@ -207,7 +207,7 @@ bool GameObjectTriggerBox::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTriggerBox::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTriggerBox::getLogicComponent() const
 {
 	return mLogicComponent;
 }

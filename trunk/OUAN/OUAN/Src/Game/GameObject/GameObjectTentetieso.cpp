@@ -314,7 +314,7 @@ bool GameObjectTentetieso::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTentetieso::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTentetieso::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

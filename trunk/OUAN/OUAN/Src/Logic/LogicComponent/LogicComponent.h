@@ -33,6 +33,9 @@ namespace OUAN
 		bool isStateChanged() const;
 		void setStateChanged(bool stateChanged);
 
+		bool isOnWater() const;
+		void setOnWater(bool onWater);
+
 		int getLastFrameState() const;
 		
 		void initStateHistory();
@@ -52,7 +55,7 @@ namespace OUAN
 	protected:
 		int mState;
 		int mLastFrameState;
-
+		bool mOnWater;
 
 		/// Size of the number of states
 		int stateHistory[GAMESTATE_HISTORY_SIZE];

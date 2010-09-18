@@ -6,9 +6,11 @@
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentVolumeConvex.h"
-#include "../../Logic/LogicComponent/LogicComponent.h"
+#include "../../Logic/LogicComponent/LogicComponentProp.h"
 namespace OUAN
 {
+	const std::string WATER_SOUND_SPLASH="splash";
+
 	/// Class to hold terrain information
 	class GameObjectWater : public GameObject, public boost::enable_shared_from_this<GameObjectWater>
 	{
@@ -24,7 +26,7 @@ namespace OUAN
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
-		LogicComponentPtr mLogicComponent;
+		LogicComponentPropPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
@@ -38,10 +40,10 @@ namespace OUAN
 		RenderComponentWaterPtr getRenderComponentWaterDreams() const;
 		RenderComponentWaterPtr getRenderComponentWaterNightmares() const;
 		/// Set logic component
-		void setLogicComponent(LogicComponentPtr logicComponent);
+		void setLogicComponentProp(LogicComponentPropPtr logicComponent);
 
 		/// return logic component
-		LogicComponentPtr getLogicComponent();
+		LogicComponentPropPtr getLogicComponent();
 
 		/// Set render component
 		/// @param pRenderComponentWater
@@ -53,6 +55,8 @@ namespace OUAN
 		AudioComponentPtr getAudioComponent() const;
 		void setAudioComponent(AudioComponentPtr audioComponent);
 
+		void gameObjectInsideWater(GameObjectPtr pGameObject);
+		void gameObjectOutsideWater(GameObjectPtr pGameObject);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -112,14 +116,14 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
+
 		
 
 		void postUpdate();
 		void update(double elapsedSeconds);
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 
 	class TGameObjectWaterParameters: public TGameObjectParameters
@@ -141,9 +145,8 @@ namespace OUAN
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;
 
-
 		///Logic parameters
-		TLogicComponentParameters tLogicComponentParameters;
+		TLogicComponentPropParameters tLogicComponentPropParameters;
 	};
 }
 #endif

@@ -88,7 +88,7 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 	};
 

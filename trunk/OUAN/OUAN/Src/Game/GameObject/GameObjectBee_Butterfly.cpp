@@ -204,7 +204,7 @@ bool GameObjectBee_Butterfly::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectBee_Butterfly::getLogicComponentInstance() const
+LogicComponentPtr GameObjectBee_Butterfly::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

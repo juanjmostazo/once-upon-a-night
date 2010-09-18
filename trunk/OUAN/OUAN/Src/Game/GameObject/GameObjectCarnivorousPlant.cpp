@@ -203,7 +203,7 @@ bool GameObjectCarnivorousPlant::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectCarnivorousPlant::getLogicComponentInstance() const
+LogicComponentPtr GameObjectCarnivorousPlant::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

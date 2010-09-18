@@ -250,7 +250,6 @@ namespace OUAN
 
 		TWeaponMode mCurrentWeaponMode;
 
-		bool mOnWater;
 
 		RenderComponentMessageBoxPtr mMsgBoxComponent;
 
@@ -259,6 +258,9 @@ namespace OUAN
 
 		void resetStepSounds();
 		void playStepSounds();
+		void playStep00();
+		void playStep01();
+
 		void startRunParticleSystem();
 
 		std::string mAttackAnimationName;
@@ -419,7 +421,7 @@ namespace OUAN
 		int getLogicCurrentState() const;
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 		RenderComponentMessageBoxPtr getMsgBoxComponent() const;
 		void setMsgBoxComponent(RenderComponentMessageBoxPtr msgBoxComponent);
@@ -441,9 +443,6 @@ namespace OUAN
 		void setRunParticlesMax(double runParticlesMax);
 
 		void addDiamonds(int amount=1);
-		
-		bool isOnWater() const;
-		void setOnWater(bool onWater);
 
 		bool isOnPlataform() const;
 		void setOnPlataform(bool onPlataform,GameObjectPlataformPtr plataform);

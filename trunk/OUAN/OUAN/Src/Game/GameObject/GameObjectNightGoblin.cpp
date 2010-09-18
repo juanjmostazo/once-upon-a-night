@@ -204,7 +204,7 @@ bool GameObjectNightGoblin::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectNightGoblin::getLogicComponentInstance() const
+LogicComponentPtr GameObjectNightGoblin::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

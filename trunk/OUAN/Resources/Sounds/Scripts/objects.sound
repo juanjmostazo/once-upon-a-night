@@ -420,4 +420,18 @@ sound roulette
 	volume 1
 }
 
+sound splash
+{
+	sound_file 	Any/any_jump_onto_water.mp3
+	sound_type 	sfx
+	3D		true
+	hardware	true
+	stream		false
+	loop		false
+	min_max_distance 400 5000
+	volume 1
+}
+
+
+
 

@@ -316,7 +316,7 @@ bool GameObjectScaredPlant::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectScaredPlant::getLogicComponentInstance() const
+LogicComponentPtr GameObjectScaredPlant::getLogicComponent() const
 {
 	return mLogicComponent;
 }

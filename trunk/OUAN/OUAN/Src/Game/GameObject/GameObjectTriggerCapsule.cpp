@@ -203,7 +203,7 @@ bool GameObjectTriggerCapsule::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectTriggerCapsule::getLogicComponentInstance() const
+LogicComponentPtr GameObjectTriggerCapsule::getLogicComponent() const
 {
 	return mLogicComponent;
 }

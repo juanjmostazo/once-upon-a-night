@@ -226,9 +226,9 @@ void GameObject::processAnimationEnded(const std::string& animationName)
 
 void GameObject::updateLogic(double elapsedSeconds)
 {
-	if (hasLogicComponent() && getLogicComponentInstance().get())
+	if (hasLogicComponent() && getLogicComponent().get())
 	{
-		getLogicComponentInstance()->update(elapsedSeconds);
+		getLogicComponent()->update(elapsedSeconds);
 	}
 }
 
@@ -670,7 +670,7 @@ bool GameObject::hasLogicComponent() const
 	return false;
 }
 
-LogicComponentPtr GameObject::getLogicComponentInstance() const
+LogicComponentPtr GameObject::getLogicComponent() const
 {
 	return LogicComponentPtr();
 }
@@ -678,9 +678,9 @@ LogicComponentPtr GameObject::getLogicComponentInstance() const
 void GameObject::getLogicScriptFile(std::string& scriptFile) const
 {
 	scriptFile="";
-	if (hasLogicComponent() && getLogicComponentInstance().get())
+	if (hasLogicComponent() && getLogicComponent().get())
 	{
-		scriptFile = getLogicComponentInstance()->getScriptFilename();
+		scriptFile = getLogicComponent()->getScriptFilename();
 	}
 }
 

@@ -168,7 +168,7 @@ namespace OUAN
 		void updatePhysicsComponents(double elapsedSeconds);
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 
 		void startCollisionEffects();
 	};

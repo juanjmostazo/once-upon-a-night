@@ -91,7 +91,7 @@ namespace OUAN
 		void setChangeWorldFactor(double factor);
 
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 
 	class TGameObjectLevelEntranceParameters: public TGameObjectParameters

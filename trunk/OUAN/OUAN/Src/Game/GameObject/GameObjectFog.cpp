@@ -240,7 +240,7 @@ bool GameObjectFog::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectFog::getLogicComponentInstance() const
+LogicComponentPtr GameObjectFog::getLogicComponent() const
 {
 	return mLogicComponent;
 }

@@ -425,7 +425,7 @@ void GameObjectPlataform::processAnimationEnded(const std::string& animationName
 
 }
 
-LogicComponentPtr GameObjectPlataform::getLogicComponentInstance() const
+LogicComponentPtr GameObjectPlataform::getLogicComponent() const
 {
 	return mLogicComponent;
 }

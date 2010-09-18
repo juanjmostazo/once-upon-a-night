@@ -388,7 +388,7 @@ bool GameObjectItemMaxHP::hasLogicComponent() const
 	return true;
 }
 
-LogicComponentPtr GameObjectItemMaxHP::getLogicComponentInstance() const
+LogicComponentPtr GameObjectItemMaxHP::getLogicComponent() const
 {
 	return mLogicComponentItem;
 }

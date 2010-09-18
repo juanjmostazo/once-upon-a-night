@@ -118,7 +118,7 @@ namespace OUAN
 		
 		
 		bool hasLogicComponent() const;
-		LogicComponentPtr getLogicComponentInstance() const;
+		LogicComponentPtr getLogicComponent() const;
 	};
 
 	class TGameObjectBridgeParameters: public TGameObjectParameters

@@ -399,7 +399,7 @@ bool GameObjectSkyBody::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectSkyBody::getLogicComponentInstance() const
+LogicComponentPtr GameObjectSkyBody::getLogicComponent() const
 {
 	return mLogicComponent;
 }

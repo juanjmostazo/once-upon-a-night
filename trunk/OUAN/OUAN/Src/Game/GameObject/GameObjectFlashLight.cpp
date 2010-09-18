@@ -685,7 +685,7 @@ bool GameObjectFlashLight::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectFlashLight::getLogicComponentInstance() const
+LogicComponentPtr GameObjectFlashLight::getLogicComponent() const
 {
 	return mLogicComponent;
 }

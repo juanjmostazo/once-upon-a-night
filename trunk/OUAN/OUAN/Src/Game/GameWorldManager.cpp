@@ -1746,12 +1746,12 @@ LogicComponentOny* GameWorldManager::getOny()
 
 LogicComponent* GameWorldManager::getCryKing()
 {
-	return mInst->getGameObject("cryking#0")->getLogicComponentInstance().get();
+	return mInst->getGameObject("cryking#0")->getLogicComponent().get();
 }
 
 LogicComponent* GameWorldManager::getBomb()
 {
-	return mInst->getGameObject("bomb#0")->getLogicComponentInstance().get();
+	return mInst->getGameObject("bomb#0")->getLogicComponent().get();
 }
 
 

@@ -202,7 +202,7 @@ bool GameObjectSnakeCreeper::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectSnakeCreeper::getLogicComponentInstance() const
+LogicComponentPtr GameObjectSnakeCreeper::getLogicComponent() const
 {
 	return mLogicComponentEnemy;
 }

@@ -220,7 +220,7 @@ bool GameObjectCryKing::hasLogicComponent() const
 {
 	return true;
 }
-LogicComponentPtr GameObjectCryKing::getLogicComponentInstance() const
+LogicComponentPtr GameObjectCryKing::getLogicComponent() const
 {
 	return mLogicComponent;
 }
