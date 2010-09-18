@@ -2,6 +2,8 @@
 
 #include "RenderComponentViewport.h"
 #include "../RenderSubsystem.h"
+#include "../CameraManager/CameraManager.h"
+#include "../../Application.h"
 using namespace OUAN;
 
 RenderComponentViewport::RenderComponentViewport(const std::string& type)
@@ -120,6 +122,9 @@ void RenderComponentViewport::initEffects()
 void RenderComponentViewport::setViewport(Ogre::Viewport* viewport)
 {
 	mViewport=viewport;
+
+	mOriginalWidth=mViewport->getActualWidth();
+	mOriginalHeight=mViewport->getActualHeight();
 }
 
 void RenderComponentViewport::setEffect(std::string effectName, bool activated)
@@ -187,6 +192,7 @@ void RenderComponentViewport::rescaleViewport(double left, double top, double wi
 	{
 		clearViewport();	
 		mViewport->setDimensions(left,top,width,height);
+		Application::getInstance()->getCameraManager()->getCamera()->setAspectRatio((mOriginalWidth/mOriginalHeight)*width/height);
 	}	
 }
 
