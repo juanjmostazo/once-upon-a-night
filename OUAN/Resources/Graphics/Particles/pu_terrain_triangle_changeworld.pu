@@ -1,13 +1,13 @@
 system PU/terrain_triangle_changeworld
 {
-    technique 
+    technique main_technique
     {
-        visual_particle_quota                   50
+        visual_particle_quota                   40
         material                                PU/terrain_triangle_changeworld
         renderer                                Billboard
         {
         }
-        emitter                                 Box 
+        emitter                                 Box main_emitter
         {
             emission_rate                       dyn_oscillate
             {
@@ -25,8 +25,9 @@ system PU/terrain_triangle_changeworld
             }
             direction                           0 0 0
             colour                              0.85 0.85 0.15 1
-            box_em_width                        200
-            box_em_height                       200
-            box_em_depth                        200
+            box_em_width                        300
+            box_em_height                       300
+            box_em_depth                        300
+        }
     }
 }
