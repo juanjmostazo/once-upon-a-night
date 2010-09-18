@@ -37,18 +37,17 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 		int newState = 0;	
 		if (isFalling())
 		{
-			if (!CHECK_BIT(onyState,ONY_STATE_BIT_FIELD_FALL))
-			{
-				newState = SET_BIT(onyState,ONY_STATE_BIT_FIELD_FALL);
-				ony->setLogicNewState(newState);
+			
+			if (onyState!=ONY_STATE_FALL)
+			{				
+				ony->setLogicNewState(ONY_STATE_FALL);
 			}
 		}
 		else
 		{
-			if (CHECK_BIT(onyState,ONY_STATE_BIT_FIELD_FALL))
+			if (onyState==ONY_STATE_FALL)
 			{
-				newState = CLEAR_BIT(onyState,ONY_STATE_BIT_FIELD_FALL);
-				ony->setLogicNewState(newState);
+				ony->setLogicNewState(ONY_STATE_IDLE);
 			}
 		}
 	}
@@ -132,6 +131,18 @@ void PhysicsComponentCharacterOny::applyOuternMovement(double elapsedSeconds)
 	{
 		setNextMovement(app->getCameraManager()->rotateMovementVector(getOuternMovement(), elapsedSeconds));
 	}
+}
+
+void PhysicsComponentCharacterOny::resetFallingVars()
+{
+	mFalling = false;
+	mLastFallingTime=mFallingTime;
+	mFallingTime = 0;
+}
+
+double PhysicsComponentCharacterOny::getLastFallingTime() const
+{
+	return mLastFallingTime;
 }
 
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()

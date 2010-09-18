@@ -214,7 +214,8 @@ std::string RenderComponentEntity::getCurrentAnimationName() const
 {
 	if (mAnimationBlender)
 	{
-		return mAnimationBlender->getSource()->getAnimationName();
+		std::string animName = mAnimationBlender->getSource()->getAnimationName();
+		return animName;
 	}
 	return "";
 }

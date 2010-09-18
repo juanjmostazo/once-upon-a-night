@@ -16,13 +16,18 @@ namespace OUAN
 
 		void disactivateGravityNextFrame();
 
+		double getLastFallingTime() const;
+
 	protected:
 		virtual bool isWorthUpdating();
 		virtual bool canJump();
 		virtual void applyOuternMovement(double elapsedSeconds);
 		virtual void applyFallY(double elapsedSeconds);
+		void resetFallingVars();
 
 		bool mApplyGravityNextFrame;
+	private:
+		double mLastFallingTime;
 	};
 
 	class TPhysicsComponentCharacterOnyParameters: public TPhysicsComponentCharacterParameters

@@ -438,7 +438,7 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 		//Last, update the entity
 		if (mRenderComponentEntity.get())
 		{
-			mRenderComponentEntity->update(elapsedSeconds*0.1);
+			mRenderComponentEntity->update(elapsedSeconds);
 		}
 	}
 }
