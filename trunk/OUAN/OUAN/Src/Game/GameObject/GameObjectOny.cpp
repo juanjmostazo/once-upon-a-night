@@ -576,7 +576,13 @@ void GameObjectOny::postUpdate()
 					}
 				}
 			}
-		}		
+		}
+		else if (currentState == ONY_STATE_VICTORY && lastState!=ONY_STATE_VICTORY &&
+			mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_VICTORY)
+		{
+			changeAnimation(ONY_ANIM_VICTORY);
+			playSound(ONY_SOUND_TRIUMPH_A);
+		}
 		else if (currentState==ONY_STATE_DIE && lastState!=ONY_STATE_DIE && 
 			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE)!=0)
 		{

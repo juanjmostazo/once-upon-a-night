@@ -361,7 +361,11 @@ namespace OUAN
 
 		std::string getLevelName();
 
-	private:		
+		bool victoryAnimationEnded() const;
+		void setVictoryAnimationEnded(bool victoryAnimationEnded);
+
+	private:	
+		bool mVictoryAnimationEnded;
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
 
 		/// Pointer to the main application object

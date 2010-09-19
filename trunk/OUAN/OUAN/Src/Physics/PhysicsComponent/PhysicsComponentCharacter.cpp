@@ -409,11 +409,12 @@ void PhysicsComponentCharacter::stabilize(double elapsedSeconds)
 {
 	if(isInUse() && !mFlyingCharacter)
 	{
+		PhysicsSubsystemPtr physicsSS = Application::getInstance()->getPhysicsSubsystem();
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		getNxOgreController()->move(
-			NxOgre::Vec3(0,-Application::getInstance()->getPhysicsSubsystem()->mStabilizeCharacterMoveY,0),
+			NxOgre::Vec3(0,-physicsSS->mStabilizeCharacterMoveY,0),
 			collisionFlags,
-			Application::getInstance()->getPhysicsSubsystem()->mMinDistance,
+			physicsSS->mMinDistance,
 			collisionFlags);
 
 		setOnSurface(true);
@@ -652,27 +653,57 @@ double PhysicsComponentCharacter::calculateAngleDifference(double angle1, double
 void PhysicsComponentCharacter::create()
 {
 	PhysicsComponent::create();
+	PhysicsSubsystemPtr physicsSS=Application::getInstance()->getPhysicsSubsystem();
+
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS CREATE - Creating tripollo 1");
+	}
 
 	NxOgre::ControllerDescription pNxOgreControllerDescription;
-	pNxOgreControllerDescription.mCallback=Application::getInstance()->getPhysicsSubsystem().get();
+	pNxOgreControllerDescription.mCallback=physicsSS.get();
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS Callback address "+StringConverter::toString((int)physicsSS.get()));
+	}
 	pNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(getSceneNode()->getPosition()-mOffsetRenderPosition+SAFE_SURFACE_DISTANCE));
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS Position "+StringConverter::toString(getSceneNode()->getPosition()-mOffsetRenderPosition+SAFE_SURFACE_DISTANCE));
+	}
+
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS Size "+StringConverter::toString(getNxOgreSize().x)+", "+StringConverter::toString(getNxOgreSize().y));
+	}
+
 	setNxOgreControllerDescription(pNxOgreControllerDescription);
 
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS "+StringConverter::toString((int)physicsSS->getNxOgreScene()));
+	}
+
 	setNxOgreController(
-		Application::getInstance()->getPhysicsSubsystem()->getNxOgreControllerManager()->createCapsuleController(
+		physicsSS->getNxOgreControllerManager()->createCapsuleController(
 			getNxOgreControllerDescription(), 
 			getNxOgreSize(), 
-			Application::getInstance()->getPhysicsSubsystem()->getNxOgreScene(), 		
+			physicsSS->getNxOgreScene(), 		
 			NxOgre::String(getParent()->getName().c_str()),
 			getMass(),
 			getSceneNode()->getOrientation().getYaw().valueDegrees(),
-			Ogre::Math::Cos(Application::getInstance()->getPhysicsSubsystem()->mSlopeLimit * TO_RADIANS),   
-			Application::getInstance()->getPhysicsSubsystem()->mStepOffset,
-			Application::getInstance()->getPhysicsSubsystem()->mSkinWidth));
+			Ogre::Math::Cos(physicsSS->mSlopeLimit * TO_RADIANS),   
+			physicsSS->mStepOffset,
+			physicsSS->mSkinWidth));
+	
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("PHYSICS CREATE END- Creating tripollo 1");
+	}
 
 	if(Application::getInstance()->getGameWorldManager()->isInitialized())
 	{
-		stabilize(Application::getInstance()->getPhysicsSubsystem()->mStabilizeSeconds);
+		stabilize(physicsSS->mStabilizeSeconds);
 	}
 }
 

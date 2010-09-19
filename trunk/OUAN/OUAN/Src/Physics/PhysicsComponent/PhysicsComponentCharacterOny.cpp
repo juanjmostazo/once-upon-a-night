@@ -38,7 +38,7 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 		if (isFalling())
 		{
 			
-			if (onyState!=ONY_STATE_FALL)
+			if (onyState!=ONY_STATE_FALL && onyState!=ONY_STATE_VICTORY && ony->getLogicNewState()!=ONY_STATE_VICTORY)
 			{				
 				ony->setLogicNewState(ONY_STATE_FALL);
 			}

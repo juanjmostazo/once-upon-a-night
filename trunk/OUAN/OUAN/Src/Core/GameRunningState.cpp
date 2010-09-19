@@ -282,7 +282,8 @@ void GameRunningState::handleEvents()
 			outernMovement=Vector3::ZERO;
 		}
 
-		if (useWeaponKeyPressed && newState!=ONY_STATE_ATTACK)
+		if (useWeaponKeyPressed && newState!=ONY_STATE_ATTACK &&
+			ony->getLogicCurrentState()!=ONY_STATE_VICTORY)
 		{
 			newState=ONY_STATE_ATTACK;
 			//Logger::getInstance()->log("SETTING ATTACK FLAG");
@@ -293,13 +294,14 @@ void GameRunningState::handleEvents()
 
 		if (!zeroMovement)
 		{
-			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+			if (!ony->getLogicComponentOny()->awaitingForNapEnd() && newState!=ONY_STATE_VICTORY)
 				newState=ONY_STATE_RUN;
 		}
 
 
 		if (mApp->isDownWalk(&pad,&key) && 
-			!mApp->getGameWorldManager()->isOnyDying())
+			!mApp->getGameWorldManager()->isOnyDying()
+			&& ony->getLogicCurrentState()!=ONY_STATE_VICTORY)
 		{
 			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
 			{
@@ -317,7 +319,8 @@ void GameRunningState::handleEvents()
 		if (mApp->isDownJump(&pad,&key) && 
 			!mApp->getGameWorldManager()->isOnyDying() &&
 			ony->getLogicCurrentState()!=ONY_STATE_NAP &&
-			ony->getLogicCurrentState()!=ONY_STATE_NAP_END)
+			ony->getLogicCurrentState()!=ONY_STATE_NAP_END &&
+			ony->getLogicNewState()!=ONY_STATE_VICTORY)
 		{
 			if(mApp->getCameraManager()->targetMovementAllowed())
 				{
@@ -335,14 +338,14 @@ void GameRunningState::handleEvents()
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
-			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+			if (ony->getLogicCurrentState()!=ONY_STATE_VICTORY && !ony->getLogicComponentOny()->awaitingForNapEnd())
 				ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
 			
 			zeroMovement = 
 				fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
 				fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
 
-			if (zeroMovement && (newState==ONY_STATE_WALK || newState==ONY_STATE_RUN))
+			if (zeroMovement && newState!=ONY_STATE_VICTORY && (newState==ONY_STATE_WALK || newState==ONY_STATE_RUN))
 				newState = ONY_STATE_IDLE;
 		}
 
@@ -729,7 +732,6 @@ void GameRunningState::processGameOver(GameOverEventPtr evt)
 	if (evt->isWin())
 	{
 		playMusic("SUCCESS");
-		playSoundFromGameObject(mApp->getGameWorldManager()->getGameObjectOny()->getName(),"any_triumph");
 	}
 }
 void GameRunningState::processChangeWorld(ChangeWorldEventPtr evt)
@@ -1016,12 +1018,13 @@ void GameRunningState::unpauseMusic()
 }
 bool GameRunningState::mayProceedToGameOver()
 {
-	if (mApp->getGameWorldManager()->isGameOver())
+	bool isGameOver = mApp->getGameWorldManager()->isGameOver();
+	if (isGameOver)
 	{
 		Logger::getInstance()->log("Game over is set!");
 	}
 	int channel=mMusicChannels[-1].channelId;
-	return mApp->getGameWorldManager()->isGameOver() && 
-		(!mApp->getAudioSubsystem()->isMusicPlaying(channel)
+	return isGameOver && 
+		(mApp->getGameWorldManager()->victoryAnimationEnded() && !mApp->getAudioSubsystem()->isMusicPlaying(channel)
 		|| toGameOverElapsed>=toGameOverTime);
 }
