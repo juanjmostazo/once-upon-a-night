@@ -3686,6 +3686,33 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	{
 		tRenderComponentEntityParameters.initialAnimation="";
 	}
+	if (tRenderComponentEntityParameters.initialAnimation.empty())
+	{
+		try
+		{
+			tRenderComponentEntityParameters.initialAnimation=getPropertyString(XMLCustomPropertiesNode,"initialAnimation#d");
+		}
+		catch(std::string err)
+		{
+			tRenderComponentEntityParameters.initialAnimation="";
+		}
+	}
+	try
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt=getPropertyString(XMLCustomPropertiesNode,"initialAnimation#a");
+	}
+	catch(std::string err)
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt="";
+	}
+	try
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt2=getPropertyString(XMLCustomPropertiesNode,"initialAnimation#a2");
+	}
+	catch(std::string err)
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt2="";
+	}
 	
 	
 	//Process Query flags

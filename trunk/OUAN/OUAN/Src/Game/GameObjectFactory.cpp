@@ -3601,12 +3601,14 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	}
 	if (existsInNightmares)
 	{
+		bool isFlyingTripollo = tGameObjectTripolloParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_FLYING;
 		//Create RenderComponentEntityNightmares
 		pGameObjectTripollo->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters,
 		existsInDreams,
-		existsInNightmares));
+		existsInNightmares,
+		isFlyingTripollo?INIT_ANIMATION_ALT2:INIT_ANIMATION_ALT));
 	}
 
 	//Create RenderComponenetParticleSystem

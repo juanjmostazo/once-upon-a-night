@@ -2,6 +2,7 @@
 #define GameObjectTripolloH_H
 
 #include "GameObject.h"
+#include "GameObjectTripolloDefs.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -13,64 +14,6 @@
 
 namespace OUAN
 {
-	//State names
-	const std::string TRIPOLLO_STATE_IDLE="TRIPOLLO_STATE_IDLE";
-	const std::string TRIPOLLO_STATE_PATROL="TRIPOLLO_STATE_PATROL";
-	const std::string TRIPOLLO_STATE_CHASE="TRIPOLLO_STATE_CHASE";
-	const std::string TRIPOLLO_STATE_FIND="TRIPOLLO_STATE_FIND";
-	const std::string TRIPOLLO_STATE_ATTACK="TRIPOLLO_STATE_ATTACK";
-	const std::string TRIPOLLO_STATE_FLEE="TRIPOLLO_STATE_FLEE";
-	const std::string TRIPOLLO_STATE_DEAD="TRIPOLLO_STATE_DEAD";
-	const std::string TRIPOLLO_STATE_HIT="TRIPOLLO_STATE_HIT";
-	const std::string TRIPOLLO_STATE_SURPRISE = "TRIPOLLO_STATE_SURPRISE";
-	const std::string TRIPOLLO_STATE_FALSE_ALARM = "TRIPOLLO_STATE_FALSE_ALARM";
-	const std::string TRIPOLLO_STATE_ALERT = "TRIPOLLO_STATE_ALERT";
-	const std::string TRIPOLLO_STATE_TIRED = "TRIPOLLO_STATE_TIRED";
-	const std::string TRIPOLLO_STATE_CALL_TO_ARMS = "TRIPOLLO_STATE_CALL_TO_ARMS";
-	const std::string TRIPOLLO_STATE_TREMBLING = "TRIPOLLO_STATE_TREMBLING";
-	const std::string TRIPOLLO_STATE_IDLE1 = "TRIPOLLO_STATE_IDLE1";
-	const std::string TRIPOLLO_STATE_CALL_TO_CHASE = "TRIPOLLO_STATE_CALL_TO_CHASE";	
-	const std::string TRIPOLLO_STATE_STATUE="TRIPOLLO_STATE_STATUE";
-
-	const std::string TRIPOLLO_ATTACK_PECK="peck";
-	const std::string TRIPOLLO_ATTACK_CLAW="claw";
-
-	//Animation names
-	const std::string TRIPOLLO_ANIM_ALERT="alert";
-	const std::string TRIPOLLO_ANIM_ATTACK_00="attack00";
-	const std::string TRIPOLLO_ANIM_ATTACK_01="attack_01";
-	const std::string TRIPOLLO_ANIM_CALL_TO_ARMS="call_to_arms";
-	const std::string TRIPOLLO_ANIM_DIE="die";
-	const std::string TRIPOLLO_ANIM_FALSE_ALARM="false_alarm";
-	const std::string TRIPOLLO_ANIM_AFRAID="flee_afraid";
-	const std::string TRIPOLLO_ANIM_HIT01="hit01";
-	const std::string TRIPOLLO_ANIM_HIT02="hit02";
-	const std::string TRIPOLLO_ANIM_IDLE="idle_00";	
-	const std::string TRIPOLLO_ANIM_IDLE1="idle01";
-	const std::string TRIPOLLO_ANIM_STATUE="rest";
-	const std::string TRIPOLLO_ANIM_RUN="run";
-	const std::string TRIPOLLO_ANIM_STUN="stun";
-	const std::string TRIPOLLO_ANIM_SURPRISE="surprise";
-	const std::string TRIPOLLO_ANIM_TIRED="tired";
-	const std::string TRIPOLLO_ANIM_WALK="walk";
-	const std::string TRIPOLLO_ANIM_WALK_FAST="walk_fast";
-
-	//Should poses were used
-	const std::string TRIPOLLO_ANIM_MANUAL="manual";
-
-	//bones attach points
-	const std::string HEAD_BONE_NAME="cresta1";
-
-	const std::string TRIPOLLO_SOUND_HIT="tripollo_hit";
-	const std::string TRIPOLLO_SOUND_DIE="tripollo_die";
-	const std::string TRIPOLLO_SOUND_EXPLODE="tripollo_explosion";
-	const std::string TRIPOLLO_SOUND_SCRATCH="tripollo_scratch";
-	const std::string TRIPOLLO_SOUND_WINGS="tripollo_wings";
-	const std::string TRIPOLLO_SOUND_GRAZNIDO="tripollo_graznido";
-	const std::string TRIPOLLO_SOUND_ATTACK="tripollo_attack";
-	const std::string TRIPOLLO_SOUND_SURPRISE="tripollo_surprise";
-	const std::string TRIPOLLO_SOUND_CALL_TO_ARMS="tripollo_call_to_arms";
-
 	const double CALL_TO_ARMS_SOUND_DISTANCE=500;
 
 	/// Class modelling a particular enemy type
@@ -107,6 +50,13 @@ namespace OUAN
 		bool activateTrajectory(int newWorld);
 
 		void checkTripolloPlataformPuzzleActivations();
+
+		bool isHitAnimation(const std::string& animationName) const;
+		bool isDieAnimation(const std::string& animationName) const;
+		bool isAlertAnimation(const std::string& animationName) const;
+		bool isFalseAlarmAnimation(const std::string& animationName) const;
+		bool isSurpriseAnimation(const std::string& animationName) const;
+		bool isTiredAnimation(const std::string& animationName) const;
 
 	public:
 		/// Constructor
