@@ -34,11 +34,11 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-530.088 552.813 -2273.33" orientation="-0.986538 0.136745 0.0889187 0.0117149"></OPTION>
+    <OPTION id="2" position="-380.797 338.902 161.044" orientation="0.539977 -0.0190698 0.840899 0.0308262"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="false"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.986608 0.136754 0.088925 0.0117158"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.539997 -0.0190705 0.840931 0.0308273"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-530.088 552.813 -2273.33"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-380.797 338.902 161.044"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -226,72 +226,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="736381120" name="Isla2" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="372692064" name="items" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="615222656" name="Particles" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="73885312" name="Terrain" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="597827072" name="Island2_Trees" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="519241920" name="WaterIsla2" typename="Node Object" parentnode="Isla2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="737998592" name="Triggers" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -314,7 +248,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="380108032" name="Isla1" typename="Node Object" parentnode="SceneManager">
+  <OBJECT object_id="954985216" name="NonGrassArea" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -325,7 +259,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="554673920" name="WaterIsla1" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="745445120" name="TripollosPuzzle" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -336,7 +270,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="39338356" name="waterfall_small" typename="Node Object" parentnode="WaterIsla1">
+  <OBJECT object_id="380108032" name="Island1" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -347,7 +281,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="409131136" name="algas" typename="Node Object" parentnode="WaterIsla1">
+  <OBJECT object_id="554673920" name="WaterIsland1" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -358,7 +292,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="860652480" name="particulas" typename="Node Object" parentnode="WaterIsla1">
+  <OBJECT object_id="39338356" name="waterfall_small" typename="Node Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -369,7 +303,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="694021376" name="Scared Plants" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="409131136" name="algas" typename="Node Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -380,7 +314,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="638050496" name="Sky bodies" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="860652480" name="particulas" typename="Node Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -391,7 +325,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="703390592" name="Bush" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="694021376" name="Scared Plants" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -402,7 +336,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="79012424" name="Ony" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="638050496" name="Sky bodies" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -413,7 +347,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="806878848" name="Tripollos" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="703390592" name="Bush" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -424,7 +358,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="714499328" name="Nightgoblin" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="79012424" name="Ony" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -435,7 +369,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="662984064" name="Signposts" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="806878848" name="Tripollos" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -446,7 +380,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="654835648" name="Stairs" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="714499328" name="Nightgoblin" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -457,7 +391,29 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="169560832" name="Mountains" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="662984064" name="Signposts" typename="Node Object" parentnode="Island1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="654835648" name="Stairs" typename="Node Object" parentnode="Island1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="169560832" name="Mountains" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -490,7 +446,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="203070160" name="Items" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="203070160" name="Items" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -589,7 +545,18 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="84994048" name="nest" typename="Node Object" parentnode="Isla1">
+  <OBJECT object_id="989684736" name="ParticlesWaterfall" typename="Node Object" parentnode="Island1">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="84994048" name="nest" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -688,29 +655,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="863582272" name="Trees" typename="Node Object" parentnode="Isla1">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="954985216" name="NonGrassArea" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="745445120" name="TripollosPuzzle" typename="Node Object" parentnode="SceneManager">
+  <OBJECT object_id="863582272" name="Trees" typename="Node Object" parentnode="Island1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -931,6 +876,72 @@
   </OBJECT>
 
   <OBJECT object_id="153782768" name="Invisible Walls" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="736381120" name="Island2" typename="Node Object" parentnode="SceneManager">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="372692064" name="items" typename="Node Object" parentnode="Island2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="615222656" name="ParticlesTorches" typename="Node Object" parentnode="Island2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="73885312" name="Terrain" typename="Node Object" parentnode="Island2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="597827072" name="Island2_Trees" typename="Node Object" parentnode="Island2">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="519241920" name="WaterIsla2" typename="Node Object" parentnode="Island2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -2034,7 +2045,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="709402752" name="water_n#seabed02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="709402752" name="water_n#seabed02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -3588,7 +3599,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="674581120" name="water_d#lake02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="674581120" name="water_d#lake02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -5237,7 +5248,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="44465468" name="water_n#lake02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="44465468" name="water_n#lake02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -5643,7 +5654,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="266212976" name="water_d#waterfall03" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="266212976" name="water_d#waterfall03" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -8981,7 +8992,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="392437504" name="water_d#waterfall02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="392437504" name="water_d#waterfall02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -9167,7 +9178,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="599047808" name="water_d#foam03" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="599047808" name="water_d#foam03" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -9552,7 +9563,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="495162816" name="water_n#waterfall03" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="495162816" name="water_n#waterfall03" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -11387,7 +11398,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="361339136" name="water_n#seabed01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="361339136" name="water_n#seabed01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -13090,7 +13101,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="468459136" name="water_n#foam01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="468459136" name="water_n#foam01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -13160,7 +13171,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="374980928" name="water_n#waterfall02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="374980928" name="water_n#waterfall02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -15662,7 +15673,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="108279672" name="water_n#lake01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="108279672" name="water_n#lake01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -16421,7 +16432,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="297280800" name="water_d#foam01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="297280800" name="water_d#foam01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -17236,7 +17247,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="451704480" name="water_d#seabed02" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="451704480" name="water_d#seabed02" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -19717,7 +19728,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="307626560" name="water_n#foam03" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="307626560" name="water_n#foam03" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -19791,7 +19802,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="611499392" name="water_d#lake01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="611499392" name="water_d#lake01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -19878,7 +19889,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="390240192" name="switch_n#PLATFORMS_TO_FINAL_BOSS" typename="Entity Object" parentnode="Isla2">
+  <OBJECT object_id="390240192" name="switch_n#PLATFORMS_TO_FINAL_BOSS" typename="Entity Object" parentnode="Island2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20469,7 +20480,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="837611008" name="water_d#seabed01" typename="Entity Object" parentnode="WaterIsla1">
+  <OBJECT object_id="837611008" name="water_d#seabed01" typename="Entity Object" parentnode="WaterIsland1">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
@@ -20598,7 +20609,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="98361160" name="Particle_n#torch_6" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="36896876" name="Particle_d#waterfall_5" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-786.72 233.145 118.516"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="98361160" name="Particle_n#torch_6" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20612,7 +20637,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="151554912" name="Particle_n#torch_1" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="610858496" name="Particle_d#waterfall_4" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-777.053 228.541 151.004"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="151554912" name="Particle_n#torch_1" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20626,7 +20665,35 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="313516640" name="Particle_n#torch_3" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="329203168" name="Particle_d#waterfall_3" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-748.316 219.336 220.928"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="421887872" name="Particle_d#waterfall_2" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-732.814 213.784 258.82"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="313516640" name="Particle_n#torch_3" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20640,7 +20707,35 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="130680264" name="Particle_n#torch_12" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="567125440" name="Particle_d#waterfall_1" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.984808 0 -0.173648 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-730.906 184.661 413.36"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="817621440" name="Particle_d#waterfall_9" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-722.335 194.468 376.393"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="130680264" name="Particle_n#torch_12" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20654,7 +20749,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="334513408" name="Particle_n#torch_2" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="334513408" name="Particle_n#torch_2" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20668,7 +20763,35 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="134434032" name="Particle_n#torch_13" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="772942336" name="Particle_d#waterfall_0" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.984808 0 -0.173648 0"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-746.928 180.41 457.325"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="775841536" name="Particle_d#waterfall_8" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-724.714 201.506 335.954"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="134434032" name="Particle_n#torch_13" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20682,7 +20805,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="146763520" name="Particle_n#torch_5" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="146763520" name="Particle_n#torch_5" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20696,7 +20819,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="325510400" name="Particle_n#torch_4" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="773522112" name="Particle_d#waterfall_7" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-722.768 206.523 291.986"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="325510400" name="Particle_n#torch_4" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20710,7 +20847,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="715445376" name="Particle_n#torch_11" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="741721856" name="Particle_d#waterfall_6" typename="Particle Object" parentnode="ParticlesWaterfall">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
+    <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-763.105 224.66 185.748"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="715445376" name="Particle_n#torch_11" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
@@ -20724,7 +20875,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="339335296" name="Particle_n#torch_7" typename="Particle Object" parentnode="Particles">
+  <OBJECT object_id="339335296" name="Particle_n#torch_7" typename="Particle Object" parentnode="ParticlesTorches">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
