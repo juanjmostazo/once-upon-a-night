@@ -837,6 +837,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleShowSceneNodes,KEY_TOGGLE_SHOW_SCENE_NODES,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugTrajectory,KEY_DEBUG_TRAJECTORY,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyRunCutscene,KEY_RUN_CUTSCENE,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleGodMode,KEY_TOGGLE_GOD_MODE,false);
 
 	c.saveToFile(DEFAULTINPUT_CFG);
 }

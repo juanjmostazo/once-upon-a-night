@@ -102,6 +102,8 @@ GameWorldManager::GameWorldManager()
 	mDefaultAmbientSoundIDNightmares="scary";
 
 	mInitialized=false;
+
+	mVictoryAnimationEnded = false;
 }
 
 GameWorldManager::~GameWorldManager()
@@ -414,6 +416,7 @@ void GameWorldManager::clearContainers()
 void GameWorldManager::initGame()
 {
 	mWorld=DREAMS;
+	mVictoryAnimationEnded=false;
 	GameWorldManager::setCheckPointLUA(LEVEL_START_CHECKPOINT,0);
 	mExecutedLevelEventsPermanent.clear();
 	resetAll();
@@ -1923,6 +1926,15 @@ void GameWorldManager::checkpointLevelEvents()
 		mExecutedLevelEventsPermanent.insert(it->data());
 	}
 	mExecutedLevelEvents.clear();
+}
+
+bool GameWorldManager::victoryAnimationEnded() const
+{
+	return mVictoryAnimationEnded;
+}
+void GameWorldManager::setVictoryAnimationEnded(bool victoryAnimationEnded)
+{
+	mVictoryAnimationEnded=victoryAnimationEnded;
 }
 
 void GameWorldManager::rescaleViewport(double left, double top, double width, double height)

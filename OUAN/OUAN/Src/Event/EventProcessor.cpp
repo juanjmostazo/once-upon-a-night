@@ -173,7 +173,7 @@ void EventProcessor::processGameOver(GameOverEventPtr evt)
 	{
 		if (evt->isWin())
 		{
-			mWorldManager->win();
+			mWorldManager->getGameObjectOny()->setLogicNewState(ONY_STATE_VICTORY);
 		}
 		else 
 		{

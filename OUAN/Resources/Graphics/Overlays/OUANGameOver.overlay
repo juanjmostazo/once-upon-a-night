@@ -37,7 +37,7 @@ OUAN/GameOverOverlay
 				left 0.1
 				font_name FunnyPages
 				char_height 0.04
-				caption Reload to return to menu, Jump or pause to restart
+				caption Press pause to return to menu, Jump to restart the level
 				colour_top 0.6 0.6 0.2
 				colour_bottom 0.6 0.6 0.2
 			}			

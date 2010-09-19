@@ -138,6 +138,11 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 		{
 			mParent->changeAnimation(ONY_ANIM_IDLE01);
 		}
+		if (animationName.compare(ONY_ANIM_VICTORY)==0)
+		{
+			mParent->getGameWorldManager()->setVictoryAnimationEnded(true);
+			mParent->getGameWorldManager()->win();
+		}
 		if (animationName.compare(
 			ONY_ANIM_JUMP01_START)==0)
 		{
@@ -291,38 +296,42 @@ void LogicComponentOny::update(double elapsedTime)
 	if (mIdleTime>=0) 
 		mIdleTime-=elapsedTime;
 
-	if (oldState==ONY_STATE_NAP && finalState!=ONY_STATE_NAP)
+	if (finalState!=ONY_STATE_VICTORY)
 	{
-		mNapBufferState=finalState;
-		finalState=ONY_STATE_NAP_END;
-		mParent->changeAnimation(ONY_ANIM_NAP_END);
-	}
 
-	if (finalState==ONY_STATE_IDLE)
-	{
-		if ((oldState!=ONY_STATE_IDLE && oldState!=ONY_STATE_IDLE1)|| mParent->isFirstUpdate())
-			mIdleTime=IDLE_SECONDS_TO_NAP;
-		if (Utils::Random::getInstance()->getRandomDouble()<ONY_IDLE2_CHANCE)
+		if (oldState==ONY_STATE_NAP && finalState!=ONY_STATE_NAP)
 		{
-			finalState=ONY_STATE_IDLE1;
-		} 
-		else if (mIdleTime<0)
-		{
-			finalState=ONY_STATE_NAP;	
+			mNapBufferState=finalState;
+			finalState=ONY_STATE_NAP_END;
+			mParent->changeAnimation(ONY_ANIM_NAP_END);
 		}
-	}
-	else if (finalState==ONY_STATE_JUMP && !ony->getPhysicsComponentCharacterOny()->isJumping())
-	{
-		finalState=ONY_STATE_IDLE;//or maybe falling?
-	}		
 
-	if(mHitRecoveryTime>=0)
-	{
-		mHitRecoveryTime-=elapsedTime;
-	}
-	else
-	{
-		BOOST_PTR_CAST(GameObjectOny, mParent)->setInvulnerable(false);
+		if (finalState==ONY_STATE_IDLE)
+		{
+			if ((oldState!=ONY_STATE_IDLE && oldState!=ONY_STATE_IDLE1)|| mParent->isFirstUpdate())
+				mIdleTime=IDLE_SECONDS_TO_NAP;
+			if (Utils::Random::getInstance()->getRandomDouble()<ONY_IDLE2_CHANCE)
+			{
+				finalState=ONY_STATE_IDLE1;
+			} 
+			else if (mIdleTime<0)
+			{
+				finalState=ONY_STATE_NAP;	
+			}
+		}
+		else if (finalState==ONY_STATE_JUMP && !ony->getPhysicsComponentCharacterOny()->isJumping())
+		{
+			finalState=ONY_STATE_IDLE;//or maybe falling?
+		}		
+
+		if(mHitRecoveryTime>=0)
+		{
+			mHitRecoveryTime-=elapsedTime;
+		}
+		else
+		{
+			BOOST_PTR_CAST(GameObjectOny, mParent)->setInvulnerable(false);
+		}
 	}
 
 	setState(finalState);

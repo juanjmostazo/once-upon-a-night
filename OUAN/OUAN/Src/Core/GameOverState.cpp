@@ -81,7 +81,7 @@ void GameOverState::handleEvents()
 
 	if (mApp.get())
 	{
-		if (mApp->isPressedJump(&pad1,&key1) || mApp->isPressedPause(&pad2,&key2))
+		if (mApp->isPressedJump(&pad1,&key1))
 		{
 			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 
@@ -90,7 +90,7 @@ void GameOverState::handleEvents()
 			mApp->getGameStateManager()->changeState(levelLoadingState,mApp);
 
 		}
-		else if (mApp->isPressedUseWeapon(&pad1,&key1))
+		else if (mApp->isPressedPause(&pad2,&key2))
 		{
 			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 			

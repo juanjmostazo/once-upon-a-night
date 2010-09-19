@@ -83,7 +83,7 @@
   <PROPERTY id="animation0::transition8::duration" type="6" value="0.2"></PROPERTY>
   <PROPERTY id="animation0::transition8::blend_type" type="2" value="1"></PROPERTY>
   <PROPERTY id="animation0::transition9::target" type="7" value="shoot_center"></PROPERTY>
-  <PROPERTY id="animation0::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation0::transition9::duration" type="6" value="0.4"></PROPERTY>
   <PROPERTY id="animation0::transition9::blend_type" type="2" value="1"></PROPERTY> 
   
   
@@ -445,7 +445,7 @@
   <PROPERTY id="animation44::transition8::duration" type="6" value="0.1"></PROPERTY>
   <PROPERTY id="animation44::transition8::blend_type" type="2" value="1"></PROPERTY>
 	<PROPERTY id="animation44::transition9::target" type="7" value="run"></PROPERTY>
-  <PROPERTY id="animation44::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation44::transition9::duration" type="6" value="0.4"></PROPERTY>
   <PROPERTY id="animation44::transition9::blend_type" type="2" value="1"></PROPERTY>  
   
   
@@ -491,7 +491,7 @@
   <PROPERTY id="animation50::transition8::duration" type="6" value="0.1"></PROPERTY>
   <PROPERTY id="animation50::transition8::blend_type" type="2" value="1"></PROPERTY>
 	<PROPERTY id="animation50::transition9::target" type="7" value="run"></PROPERTY>
-  <PROPERTY id="animation50::transition9::duration" type="6" value="0.1"></PROPERTY>
+  <PROPERTY id="animation50::transition9::duration" type="6" value="0.4"></PROPERTY>
   <PROPERTY id="animation50::transition9::blend_type" type="2" value="1"></PROPERTY> 
 
   <!-- Audio component -->
