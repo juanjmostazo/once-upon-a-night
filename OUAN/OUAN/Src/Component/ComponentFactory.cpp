@@ -104,7 +104,7 @@ RenderComponentBillboardSetPtr ComponentFactory::createRenderComponentBillboardS
 //	return pRenderComponentCameraPtr;
 //}
 
-RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters entityParams,bool existInDreams, bool existInNightmares)
+RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::string name,GameObjectPtr gameObject,TRenderComponentEntityParameters entityParams,bool existInDreams, bool existInNightmares,TInitialAnimationType initAnimation)
 {
 	//Create void Render Component
 	RenderComponentEntityPtr pRenderComponentEntity = RenderComponentEntityPtr(new RenderComponentEntity()); 
@@ -119,8 +119,25 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 	//init Render Component
 	pRenderComponentEntity->setEntity(ent,existInDreams,existInNightmares);
 
-	if (!entityParams.initialAnimation.empty() && ent->getAllAnimationStates())
-		pRenderComponentEntity->initAnimationBlender(entityParams.initialAnimation);
+	std::string selectedInitialAnimation="";
+	switch(initAnimation)
+	{
+		case INIT_ANIMATION_DEFAULT:	
+			selectedInitialAnimation=entityParams.initialAnimation;
+			break;
+		case INIT_ANIMATION_ALT:
+			selectedInitialAnimation=entityParams.initialAnimationAlt;
+			break;
+		case INIT_ANIMATION_ALT2:
+			selectedInitialAnimation=entityParams.initialAnimationAlt2;
+			break;
+		default:
+			selectedInitialAnimation=entityParams.initialAnimation;
+			break;
+	}
+
+	if (!selectedInitialAnimation.empty() && ent->getAllAnimationStates())
+		pRenderComponentEntity->initAnimationBlender(selectedInitialAnimation);
 
 	pRenderComponentEntity->initAnimations(entityParams.tRenderComponentEntityAnimParams);
 

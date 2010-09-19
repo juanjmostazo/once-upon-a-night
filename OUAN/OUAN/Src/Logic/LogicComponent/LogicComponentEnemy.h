@@ -30,6 +30,8 @@ namespace OUAN
 		EnemyType getEnemyType() const;
 		void setEnemyType(EnemyType enemyType);
 
+		bool isFlying() const;
+
 		int getColourSensitivityMask() const;
 		void setColourSensitivityMask(int colourSensitivityMask);
 		int getMaskValueFromColour(int colour);

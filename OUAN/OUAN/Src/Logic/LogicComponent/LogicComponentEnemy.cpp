@@ -151,7 +151,10 @@ void LogicComponentEnemy::setEnemyType(EnemyType enemyType)
 {
 	mEnemyType=enemyType;
 }
-
+bool LogicComponentEnemy::isFlying() const
+{
+	return mEnemyType==ENEMY_TYPE_FLYING;
+}
 int LogicComponentEnemy::getNumLives() const
 {
 	return 1;

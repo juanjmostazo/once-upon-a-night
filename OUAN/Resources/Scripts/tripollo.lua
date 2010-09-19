@@ -16,6 +16,7 @@ TRIPOLLO_STATE_TREMBLING = 13
 TRIPOLLO_STATE_IDLE1 = 14
 TRIPOLLO_STATE_STATUE = 15
 TRIPOLLO_STATE_CALL_TO_CHASE = 16
+TRIPOLLO_STATE_DIVING_ATTACK=17
 
 -- State names
 TRIPOLLO_STATE_NAMES= {}
@@ -35,6 +36,7 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_CALL_TO_ARMS]="CALL_TO_ARMS"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_TREMBLING]="TREMBLING"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_STATUE]="STATUE"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_CALL_TO_CHASE]="CALL_TO_CHASE"
+TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_DIVING_ATTACK]="DIVING_ATTACK"
 
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
 PATROL_TO_IDLE_CHANCE = 0.15
@@ -56,6 +58,8 @@ function tripolloLogic(pTripollo,state)
 	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pTripollo:getLineOfSight()
 	local any = getAny()
+	local world = getWorld();
+	local isFlying = pTripollo:isFlying();
 	
 	--local newState=state
 	
@@ -186,6 +190,7 @@ function tripolloLogic(pTripollo,state)
 	-- CHASE TRANSITIONS
 	if state==TRIPOLLO_STATE_CHASE then
 		local meleeRange =  pTripollo:getMeleeRange()
+
 		log ("PLAYER DISTANCE: "..playerDistance..", LOS: "..(myLOS/3)..", Melée range: "..meleeRange)
 		if playerDistance>=(myLOS/3) then
 			log (myName.." CHANGED STATE TO TIRED")

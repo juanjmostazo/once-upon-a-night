@@ -184,8 +184,6 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 
 		int currentState=mLogicComponentEnemy->getState();
-		bool debugTripollos = getName().compare("tripollo#19")==0;
-
 
 		if (mPhysicsComponentCharacter.get())
 		{
@@ -211,7 +209,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE) && 
 					mLogicComponentEnemy->isStateChanged())
 				{
-					entity->changeAnimation(TRIPOLLO_ANIM_STATUE);
+					std::string nextAnim=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+						?TRIPOLLO_ANIM_FNM_STATUE
+						:TRIPOLLO_ANIM_STATUE;
+					changeAnimation(nextAnim);
 					mTrajectoryComponent->activateIdle(getName(),world);
 				}
 				//Check for state changes and update things appropriately
@@ -219,12 +220,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_IDLE);
-						if (debugTripollos)
-						{
-							Logger::getInstance()->log("tripollo has changed to idle");
-							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
-						}
+						std::string animationName=TRIPOLLO_ANIM_IDLE;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+								?TRIPOLLO_ANIM_FNM_WALK
+								:TRIPOLLO_ANIM_NM_IDLE;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
 				}
@@ -232,12 +233,14 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_IDLE1);
-						if (debugTripollos)
-						{
-							Logger::getInstance()->log("tripollo has changed to idle1");
-							Logger::getInstance()->log("Current animation name"+entity->getCurrentAnimationName());
-						}
+
+						std::string animationName=TRIPOLLO_ANIM_IDLE1;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_IDLE
+							:TRIPOLLO_ANIM_NM_IDLE1;
+						entity->changeAnimation(animationName);
+						
 						//mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
 						//Idle 1 can only come from idle, so there is no trajectory change
 					}
@@ -246,7 +249,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_SURPRISE);
+						std::string animationName=TRIPOLLO_ANIM_SURPRISE;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_SURPRISE
+							:TRIPOLLO_ANIM_NM_SURPRISE;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
 						mRenderComponentParticleSystemSurprise->start();
@@ -257,10 +265,11 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{				
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						
-						entity->changeAnimation(activateTrajectory(mGameWorldManager->getWorld())
-							?TRIPOLLO_ANIM_WALK
-							:TRIPOLLO_ANIM_IDLE);
+						std::string walkAnim=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_WALK
+							:TRIPOLLO_ANIM_NM_WALK;
+						activateTrajectory(mGameWorldManager->getWorld());
+						entity->changeAnimation(walkAnim);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_FIND))
@@ -268,7 +277,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					//Logger::getInstance()->log("FIND");
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_WALK_FAST);
+						std::string animationName=TRIPOLLO_ANIM_WALK_FAST;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_WALK_FAST
+							:TRIPOLLO_ANIM_NM_WALK_FAST;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activatePathFinding(onyName,world);
 					}
 				}
@@ -276,7 +290,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_FALSE_ALARM);
+						std::string animationName=TRIPOLLO_ANIM_FALSE_ALARM;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_FALSE_ALARM
+							:TRIPOLLO_ANIM_NM_FALSE_ALARM;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setFalseAlarmFinished(false);
 					}
@@ -285,7 +304,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_ALERT);
+						std::string animationName=TRIPOLLO_ANIM_ALERT;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_ALERT
+							:TRIPOLLO_ANIM_NM_ALERT;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setAlertFinished(false);
 					}
@@ -294,7 +318,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{			
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_RUN);
+						std::string animationName=TRIPOLLO_ANIM_RUN;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_RUN
+							:TRIPOLLO_ANIM_NM_RUN;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateChase(onyName);
 					}
 				}
@@ -302,7 +331,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_TIRED);
+						std::string animationName=TRIPOLLO_ANIM_TIRED;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_FNM_TIRED
+							:TRIPOLLO_ANIM_NM_TIRED;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setTiredFinished(false);
 					}
@@ -324,7 +358,9 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				{
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_RUN);
+						entity->changeAnimation(mGameWorldManager->getWorld()==NIGHTMARES
+							?TRIPOLLO_ANIM_NM_RUN
+							:TRIPOLLO_ANIM_RUN);
 						mTrajectoryComponent->activateFlee(onyName, mLogicComponentEnemy->getLineOfSight()*0.3);
 					}
 				}
@@ -335,9 +371,19 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						mRenderComponentParticleSystemShock->start();
 						mAudioComponent->playSound(TRIPOLLO_SOUND_HIT);
 
-						entity->changeAnimation(Utils::Random::getInstance()->getRandomDouble()>0.5
-							?TRIPOLLO_ANIM_HIT01
-							:TRIPOLLO_ANIM_HIT02);
+						std::string hitAnimation = 
+							Utils::Random::getInstance()->getRandomDouble()>0.5
+								?TRIPOLLO_ANIM_HIT01
+								:TRIPOLLO_ANIM_HIT02;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+						{
+							hitAnimation=mLogicComponentEnemy->getEnemyType()
+								==ENEMY_TYPE_FLYING
+								?TRIPOLLO_ANIM_FNM_HIT01
+								:TRIPOLLO_ANIM_NM_HIT01;
+						}
+
+						entity->changeAnimation(hitAnimation);
 
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
@@ -364,7 +410,10 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					//Logger::getInstance()->log("CHASE");
 					if (mLogicComponentEnemy->isStateChanged())
 					{
-						entity->changeAnimation(TRIPOLLO_ANIM_AFRAID);					
+						entity->changeAnimation(
+							mGameWorldManager->getWorld()==NIGHTMARES
+							?TRIPOLLO_ANIM_NM_AFRAID
+							:TRIPOLLO_ANIM_AFRAID);					
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
 				}
@@ -383,7 +432,12 @@ void GameObjectTripollo::update(double elapsedSeconds)
 					{
 
 						mAudioComponent->playSound(TRIPOLLO_SOUND_DIE);
-						entity->changeAnimation(TRIPOLLO_ANIM_DIE);
+						std::string animationName=TRIPOLLO_ANIM_DIE;
+						if (mGameWorldManager->getWorld()==NIGHTMARES)
+							animationName=mLogicComponentEnemy->getEnemyType()==ENEMY_TYPE_FLYING
+							?TRIPOLLO_ANIM_NM_DIE
+							:TRIPOLLO_ANIM_FNM_DIE;
+						entity->changeAnimation(animationName);
 						mTrajectoryComponent->activateIdle(getName(),world);
 					}
 				}
@@ -403,17 +457,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 
 			if (mPhysicsComponentCharacter->isInUse())
 			{
-				Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();
-				if (debugTripollos)
-				{
-					std::stringstream logMsg;
-					logMsg<<"Outern movement :"<<movement.x<<" , "<<movement.y<<" , "<<movement.z;
-					Logger::getInstance()->log(logMsg.str());
-					logMsg.clear();
-					logMsg.str("");
-					logMsg<<"Current state :"<<mLogicComponentEnemy->getState();
-					Logger::getInstance()->log(logMsg.str());
-				}
+				Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();				
 				mPhysicsComponentCharacter->setOuternMovement(movement);
 			}
 			if (mPhysicsComponentWeapon->isInUse())
@@ -799,12 +843,11 @@ RenderComponentEntityPtr GameObjectTripollo::getEntityComponent() const
 //
 void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 {
-	if (animationName.compare(TRIPOLLO_ANIM_HIT01)==0 || 
-		animationName.compare(TRIPOLLO_ANIM_HIT02)==0)
+	if (isHitAnimation(animationName))
 	{
 		mLogicComponentEnemy->setHasBeenHit(false);
 	}
-	if (animationName.compare(TRIPOLLO_ANIM_DIE)==0)
+	if (isDieAnimation(animationName))
 	{
 		disableDisplayMsg();
 		std::string msg="Enemy ";
@@ -823,7 +866,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 
 		disable();		
 	}
-	if (animationName.compare(TRIPOLLO_ANIM_ALERT)==0)
+	if (isAlertAnimation(animationName))
 	{
 		mLogicComponentEnemy->setAlertFinished(true);
 	}
@@ -837,15 +880,15 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 	{
 		mLogicComponentEnemy->setCallToArmsFinished(true);
 	}
-	if (animationName.compare(TRIPOLLO_ANIM_SURPRISE)==0)
+	if (isSurpriseAnimation(animationName))
 	{
 		mLogicComponentEnemy->setSurpriseFinished(true);
 	}
-	if (animationName.compare(TRIPOLLO_ANIM_FALSE_ALARM)==0)
+	if (isFalseAlarmAnimation(animationName))
 	{
 		mLogicComponentEnemy->setFalseAlarmFinished(true);
 	}
-	if (animationName.compare(TRIPOLLO_ANIM_TIRED)==0)
+	if (isTiredAnimation(animationName))
 	{
 		mLogicComponentEnemy->setTiredFinished(true);
 	}
@@ -853,7 +896,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 
 bool GameObjectTripollo::hasBeenHit() const
 {
-	if (mLogicComponentEnemy.get())
+	if (mLogicComponentEnemy.get())	
 		return mLogicComponentEnemy->hasBeenHit();
 	return false;
 }
@@ -976,6 +1019,46 @@ std::string GameObjectTripollo::getPatrolTrajectoryName(int world)
 	std::string trajectoryName = getName();
 	trajectoryName.append(world==DREAMS?SUFFIX_DREAMS:SUFFIX_NIGHTMARES);
 	return trajectoryName;
+}
+
+bool GameObjectTripollo::isHitAnimation(const std::string& animationName) const
+{
+	return 
+		animationName.compare(TRIPOLLO_ANIM_HIT01)==0 || 
+		animationName.compare(TRIPOLLO_ANIM_HIT02)==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_HIT01) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_HIT01)==0;
+}
+bool GameObjectTripollo::isDieAnimation(const std::string& animationName) const
+{
+	return animationName.compare(TRIPOLLO_ANIM_DIE)==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_DIE)==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_DIE)==0;
+
+}
+bool GameObjectTripollo::isAlertAnimation(const std::string& animationName) const
+{
+	return animationName.compare(TRIPOLLO_ANIM_ALERT)==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_ALERT)==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_ALERT)==0;
+}
+bool GameObjectTripollo::isFalseAlarmAnimation(const std::string& animationName) const
+{
+	return animationName.compare(TRIPOLLO_ANIM_FALSE_ALARM) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_FALSE_ALARM) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_FALSE_ALARM) ==0;
+}
+bool GameObjectTripollo::isSurpriseAnimation(const std::string& animationName) const
+{
+	return animationName.compare(TRIPOLLO_ANIM_SURPRISE) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_SURPRISE) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_SURPRISE) ==0;
+}
+bool GameObjectTripollo::isTiredAnimation(const std::string& animationName) const
+{
+	return animationName.compare(TRIPOLLO_ANIM_TIRED) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_NM_TIRED) ==0 ||
+		animationName.compare(TRIPOLLO_ANIM_FNM_TIRED) ==0;
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()

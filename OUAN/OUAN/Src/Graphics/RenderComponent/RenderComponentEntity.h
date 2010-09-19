@@ -143,6 +143,8 @@ namespace OUAN
 		bool mInitManualAnimations;
 		std::string mManualAnimationName;
 		std::string initialAnimation;
+		std::string initialAnimationAlt;
+		std::string initialAnimationAlt2;
 	};
 }
 

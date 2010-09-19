@@ -6,6 +6,12 @@
 
 namespace OUAN
 {
+	enum TInitialAnimationType 
+	{
+		INIT_ANIMATION_DEFAULT,
+		INIT_ANIMATION_ALT,
+		INIT_ANIMATION_ALT2
+	};
 	/// Class in charge for
 	/// creating components
 	class ComponentFactory
@@ -29,7 +35,7 @@ namespace OUAN
 		//RenderComponentCameraPtr createRenderComponentCamera(GameObjectPtr gameObject,
 		//	TRenderComponentCameraParameters tRenderComponentCameraParameters);
 		RenderComponentEntityPtr createRenderComponentEntity(std::string name,GameObjectPtr gameObject,
-			TRenderComponentEntityParameters tRenderComponentEntityParameters,bool existInDreams, bool existInNightmares);
+			TRenderComponentEntityParameters tRenderComponentEntityParameters,bool existInDreams, bool existInNightmares, TInitialAnimationType initAnimationType=INIT_ANIMATION_DEFAULT);
 		RenderComponentLightPtr createRenderComponentLight(std::string name,GameObjectPtr gameObject,
 			TRenderComponentLightParameters tRenderComponentLightParameters);
 		RenderComponentParticleSystemPtr createRenderComponentParticleSystem(GameObjectPtr gameObject,
