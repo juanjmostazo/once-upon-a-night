@@ -55,6 +55,7 @@ void GameObjectParticleSystem::changeWorldFinished(int newWorld)
 	case DREAMS:
 		if(mLogicComponent->existsInDreams())
 		{
+			Logger::getInstance()->log("Starting static GameObjectParticleSystem dreams: " + getName());
 			mRenderComponentParticleSystem->start();
 		}
 		else
@@ -65,6 +66,7 @@ void GameObjectParticleSystem::changeWorldFinished(int newWorld)
 	case NIGHTMARES:
 		if(mLogicComponent->existsInNightmares())
 		{
+			Logger::getInstance()->log("Starting static GameObjectParticleSystem nightmares: " + getName());
 			mRenderComponentParticleSystem->start();
 		}
 		else

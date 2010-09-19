@@ -1,0 +1,36 @@
+material PU/waterfall_1
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_waterfall_1.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/waterfall_2
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_waterfall_2.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
