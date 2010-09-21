@@ -25,7 +25,7 @@ BOSS_STATE_NAMES[BOSS_STATE_STUNNED]="STUNNED"
 BOSS_STATE_NAMES[BOSS_STATE_LEAVING_NIGHTMARES]="LEAVING_NIGHTMARES"
 BOSS_STATE_NAMES[BOSS_STATE_PILLOW_HIT]="PILLOW_HIT"
 BOSS_STATE_NAMES[BOSS_STATE_DIE]="DIE"
-BOSS_STATE_NAMES[BOSS_STATE_WARCRY]="DIE"
+BOSS_STATE_NAMES[BOSS_STATE_WARCRY]="WARCRY"
 
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
 SP_ATTACK_CHANCE = 0.2
@@ -51,17 +51,16 @@ function bossLogic(pBoss,state)
 	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pBoss:getLineOfSight()
 	local any = getAny()
-	local world = getWorld()
 	
 	--local newState=state
 	
 	-- DEATH CHECK
 	if pBoss:hasDied() then
-		return BOSS_STATE_DEAD
+		return BOSS_STATE_DIE
 	end
 	
 	-- FLASHLIGHT HIT CHECK
-	if pBoss:hasBeenHit() and world == OUAN_WORLD_NIGHTMARES then
+	if pBoss:hasBeenHit() and pBoss:getWorld() == OUAN_WORLD_NIGHTMARES and pBoss:isFlashLightHitFinished() then
 		pBoss:setTimeSpent(0);
 		return BOSS_STATE_FLASHLIGHT_HIT
 	end
@@ -102,7 +101,7 @@ function bossLogic(pBoss,state)
 	-- STUNNED CHECK
 	if state == BOSS_STATE_STUNNED then
 		-- PILLOW HIT CHECK
-		if  pBoss:hasBeenHit() and world == OUAN_WORLD_DREAMS then
+		if  pBoss:hasBeenHit() and pBoss:getWorld() == OUAN_WORLD_DREAMS then
 			return BOSS_STATE_PILLOW_HIT
 		elseif pBoss:getTimeSpent() >= STUNNED_TIME then
 			return BOSS_STATE_PATROL
@@ -116,7 +115,7 @@ function bossLogic(pBoss,state)
 		
 	-- PATROL TRANSITION:
 	if state==BOSS_STATE_PATROL then
-		if playerDistance<=myLOS then
+		if playerDistance <= myLOS then
 			log (myName.." CHANGED STATE TO ALERT")
 			return BOSS_STATE_ALERT
 		end
@@ -124,15 +123,15 @@ function bossLogic(pBoss,state)
 	
 	-- CHASE TRANSITIONS
 	if state==BOSS_STATE_CHASE then
-		local meleeRange =  pBoss:getMeleeRange()
+		local meleeRange = pBoss:getMeleeRange()
 		log ("PLAYER DISTANCE: "..playerDistance..", LOS: "..(myLOS/3)..", Melée range: "..meleeRange)
-		if playerDistance>=(myLOS/3) then
+		if playerDistance >= (myLOS/3) then
 			log (myName.." CHANGED STATE TO TIRED")
 			return BOSS_STATE_TIRED
-		elseif playerDistance<=meleeRange and math.random()<=SP_ATTACK_CHANCE then
+		elseif playerDistance <= meleeRange and math.random() <= SP_ATTACK_CHANCE then
 			log (myName.." CHANGED STATE TO SP_ATTACK")
 			return BOSS_STATE_SP_ATTACK
-		elseif playerDistance<=meleeRange then
+		elseif playerDistance <= meleeRange then
 			log (myName.." CHANGED STATE TO ATTACK")
 			return BOSS_STATE_ATTACK
 		end
