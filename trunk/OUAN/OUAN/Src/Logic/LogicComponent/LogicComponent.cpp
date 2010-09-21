@@ -10,6 +10,7 @@ using namespace OUAN;
 
 LogicComponent::LogicComponent(const std::string& type)
 :Component(type)
+,mTimeSpent(0)
 {
 	//mPatrolTrajectory.reset();
 	mStateChanged=true;
@@ -63,6 +64,20 @@ void LogicComponent::update(double elapsedTime)
 	//	mStateChanged=true;
 	//	mLastFrameState=mState;
 	//}
+
+	if (mTimeSpent>=0 && mTimeSpent<MAX_TIME_SPENT)
+	{
+		mTimeSpent+=elapsedTime;
+	}
+}
+
+double LogicComponent::getTimeSpent() const
+{
+	return mTimeSpent;
+}
+void LogicComponent::setTimeSpent(double timeSpent)
+{
+	mTimeSpent=timeSpent;
 }
 
 void LogicComponent::initStateHistory()

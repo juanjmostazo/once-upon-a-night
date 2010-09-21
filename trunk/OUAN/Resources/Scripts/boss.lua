@@ -10,6 +10,7 @@ BOSS_STATE_STUNNED = 7
 BOSS_STATE_LEAVING_NIGHTMARES = 8
 BOSS_STATE_PILLOW_HIT = 9
 BOSS_STATE_DIE = 10
+BOSS_STATE_WARCRY = 11
 
 -- State names
 BOSS_STATE_NAMES= {}
@@ -24,6 +25,7 @@ BOSS_STATE_NAMES[BOSS_STATE_STUNNED]="STUNNED"
 BOSS_STATE_NAMES[BOSS_STATE_LEAVING_NIGHTMARES]="LEAVING_NIGHTMARES"
 BOSS_STATE_NAMES[BOSS_STATE_PILLOW_HIT]="PILLOW_HIT"
 BOSS_STATE_NAMES[BOSS_STATE_DIE]="DIE"
+BOSS_STATE_NAMES[BOSS_STATE_WARCRY]="DIE"
 
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
 SP_ATTACK_CHANCE = 0.2
@@ -40,6 +42,8 @@ NEIGHBOURS_RANGE = 180
 
 OUAN_WORLD_DREAMS=0
 OUAN_WORLD_NIGHTMARES=1
+
+STUNNED_TIME=20
 
 function bossLogic(pBoss,state)
 
@@ -58,6 +62,7 @@ function bossLogic(pBoss,state)
 	
 	-- FLASHLIGHT HIT CHECK
 	if pBoss:hasBeenHit() and world == OUAN_WORLD_NIGHTMARES then
+		pBoss:setTimeSpent(0);
 		return BOSS_STATE_FLASHLIGHT_HIT
 	end
 		
@@ -84,16 +89,27 @@ function bossLogic(pBoss,state)
 		return BOSS_STATE_CHASE	
 	end
 	
-	-- PILLOW HIT CHECK
-	if state == BOSS_STATE_STUNNED then
-		if  pBoss:hasBeenHit() and world == OUAN_WORLD_DREAMS then
-			return BOSS_STATE_PILLOW_HIT
-		elseif pBoss:isStunnedFinished() then
-			return BOSS_STATE_PATROL
-		end
-			return state
+	-- PILLOW HIT END CHECK
+	if state == BOSS_STATE_PILLOW_HIT and pBoss:isPillowHitFinished() then
+		return BOSS_STATE_WARCRY
 	end	
 	
+	-- WARCRY CHECK
+	if state == BOSS_STATE_WARCRY and pBoss:isCallToArmsFinished() then
+		return BOSS_STATE_PATROL
+	end	
+	
+	-- STUNNED CHECK
+	if state == BOSS_STATE_STUNNED then
+		-- PILLOW HIT CHECK
+		if  pBoss:hasBeenHit() and world == OUAN_WORLD_DREAMS then
+			return BOSS_STATE_PILLOW_HIT
+		elseif pBoss:getTimeSpent() >= STUNNED_TIME then
+			return BOSS_STATE_PATROL
+		end
+	end	
+	
+	-- FLASHLIGHT HIT END CHECK
 	if state == BOSS_STATE_FLASHLIGHT_HIT and pBoss:isFlashLightHitFinished() then
 		return BOSS_STATE_STUNNED
 	end	
@@ -104,7 +120,6 @@ function bossLogic(pBoss,state)
 			log (myName.." CHANGED STATE TO ALERT")
 			return BOSS_STATE_ALERT
 		end
-		return state
 	end
 	
 	-- CHASE TRANSITIONS

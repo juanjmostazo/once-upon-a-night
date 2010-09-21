@@ -95,10 +95,10 @@ void CutsceneState::resume()
 /// @param app	the parent application
 void CutsceneState::handleEvents()
 {
-	int pad1,pad2;
-	int key1,key2;
+	int pad1,pad2,pad3;
+	int key1,key2,key3;
 
-	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2))
+	if (mApp->isPressedMenu(&pad1,&key1) || mApp->isPressedJump(&pad2,&key2) || mApp->isPressedToggleCutScenesDebug(&pad3,&key3))
 	{
 		mSkippingCutscene=true;
 	}

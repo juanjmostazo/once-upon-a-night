@@ -64,6 +64,10 @@ namespace OUAN
 		void setIdle1Finished(bool idle1);
 		bool isAttackFinished() const;
 		void setAttackFinished(bool attackFinished);
+		bool isFlashLightHitFinished() const;
+		void setFlashLightHitFinished(bool flashlightHitFinished);
+		bool isPillowHitFinished() const;
+		void setPillowHitFinished(bool pillowHitFinished);
 
 		bool hasPatrolTrajectory() const;
 
@@ -122,6 +126,8 @@ namespace OUAN
 		bool mTiredFinished;
 		bool mIdle1Finished;
 		bool mAttackFinished;
+		bool mFlashlightHitFinished;
+		bool mPillowHitFinished;
 		bool mCallWasHeard;
 		bool mHasHeardCall;
 		bool mStatueEnabled;

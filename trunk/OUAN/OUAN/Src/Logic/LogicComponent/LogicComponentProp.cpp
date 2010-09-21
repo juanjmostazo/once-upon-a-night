@@ -20,7 +20,6 @@ using namespace OUAN;
 
 LogicComponentProp::LogicComponentProp(const std::string& type)
 :LogicComponent(COMPONENT_TYPE_LOGIC_PROP)
-,mTimeSpent(0)
 ,mHasTakenHit(false)
 ,mRecovered(true)
 {
@@ -173,10 +172,6 @@ void LogicComponentProp::processExitTrigger(GameObjectPtr pGameObject)
 void LogicComponentProp::update(double elapsedTime)
 {
 	LogicComponent::update(elapsedTime);
-	if (mTimeSpent>=0 && mTimeSpent<MAX_TIME_SPENT)
-	{
-		mTimeSpent+=elapsedTime;
-	}
 	mHasTakenHit=false;
 }
 
@@ -198,14 +193,6 @@ void LogicComponentProp::setRecovered(bool recovered)
 	mRecovered=recovered;
 }
 
-double LogicComponentProp::getTimeSpent() const
-{
-	return mTimeSpent;
-}
-void LogicComponentProp::setTimeSpent(double timeSpent)
-{
-	mTimeSpent=timeSpent;
-}
 double LogicComponentProp::getDelay() const
 {
 	return mDelay;

@@ -27,7 +27,7 @@
         <Option key="Walk">0x12</Option>
 	<Option key="ToggleVolumes">0x3E</Option>
 	<Option key="ToggleGodMode">0x3B</Option>
-	<Option key="ToggleChangeWorldDebug">0x3C</Option>
+	<Option key="ToggleCutScenesDebug">0x3C</Option>
 	<Option key="ToggleShowSceneNodes">0x0B</Option>
 	<Option key="RunCutscene">0x0E</Option><!--Backspace-->
     </Options>

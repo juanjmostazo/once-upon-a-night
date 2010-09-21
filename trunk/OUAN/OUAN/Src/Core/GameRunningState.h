@@ -79,6 +79,10 @@ namespace OUAN
 		std::string mNextLevel;
 
 		int currentChangeWorldFrame;
+
+
+		std::vector<std::string> mCutScenes;
+		unsigned int mCurrentCutScene;
 	public:
 		/// init main menu's resources
 		void init(ApplicationPtr app);

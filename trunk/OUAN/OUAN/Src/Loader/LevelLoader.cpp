@@ -1308,6 +1308,9 @@ void LevelLoader::processGameObjectBoss(XMLGameObject* gameObject)
 		//Get PhysicsComponentCharacter
 		tGameObjectBossParameters.tPhysicsComponentCharacterParameters = processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
 	
+		//Get PhysicsComponentWeapon
+		tGameObjectBossParameters.tPhysicsComponentWeaponParameters = processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
+
 	}
 	catch( std::string error )
 	{

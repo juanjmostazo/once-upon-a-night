@@ -1091,6 +1091,12 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 		tGameObjectBossParameters.tPhysicsComponentCharacterParameters,
 		pGameObjectBoss->getRenderComponentPositional()));
 
+	pGameObjectBoss->setPhysicsComponentWeapon(
+		mComponentFactory->createPhysicsComponentWeapon(
+		pGameObjectBoss,
+		tGameObjectBossParameters.tPhysicsComponentWeaponParameters,
+		pGameObjectBoss->getRenderComponentPositional()));
+
 	//Add reference to this
 	pGameObjectBoss->setGameWorldManager(gameWorldMgr);
 

@@ -114,6 +114,23 @@ void GameRunningState::init(ApplicationPtr app)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene1");
 	}
+
+	mCurrentCutScene=0;
+	mCutScenes.clear();
+	mCutScenes.push_back("cutScene1");
+	mCutScenes.push_back("cutScene2");
+	mCutScenes.push_back("cutScene3");
+	mCutScenes.push_back("cutScene4");
+	mCutScenes.push_back("cutScene7_1");
+	mCutScenes.push_back("cutScene7_2");
+	mCutScenes.push_back("cutScene7_3");
+	mCutScenes.push_back("cutScene8");
+	mCutScenes.push_back("cutScene8_0");
+	mCutScenes.push_back("cutScene8_1");
+	mCutScenes.push_back("startCutScene9");
+	mCutScenes.push_back("cutScene10_1");
+	mCutScenes.push_back("cutScene10_2");
+	mCutScenes.push_back("cutScene10_3");
 }
 
 /// Clean up main menu's resources
@@ -414,11 +431,15 @@ void GameRunningState::checkDebuggingKeys()
 		Logger::getInstance()->log("ToggleGodMode key pressed");
 		mApp->getGameWorldManager()->setGodMode(!mApp->getGameWorldManager()->isGodMode());
 	}
-	else if (mApp->isPressedToggleChangeWorldDebug(&pad,&key))
+	else if (mApp->isPressedToggleCutScenesDebug(&pad,&key))
 	{
-		Logger::getInstance()->log("ToggleChangeWorldDebug key pressed");
-		mApp->getRenderSubsystem()->getChangeWorldRenderer()->setDebugScreensActive(
-			!mApp->getRenderSubsystem()->getChangeWorldRenderer()->getDebugScreensActive());
+		Logger::getInstance()->log("ToggleCutScenesDebug key pressed");
+		launchCutScene("cutscenes_level2.lua",mCutScenes[mCurrentCutScene]);
+		mCurrentCutScene++;
+		if(mCurrentCutScene>mCutScenes.size())
+		{
+			mCurrentCutScene=0;
+		}
 	}
 	else if (mApp->isPressedToggleShowSceneNodes(&pad,&key))
 	{	

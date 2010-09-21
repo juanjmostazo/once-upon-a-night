@@ -44,7 +44,7 @@ void ControlInputManager::init(Ogre::RenderWindow* window, const std::string& la
 	mLastFrameDown[mDefaultInputData.keyToggleConsole]=false;
 	mLastFrameDown[mDefaultInputData.keyToggleVolumes]=false;
 	mLastFrameDown[mDefaultInputData.keyToggleGodMode]=false;
-	mLastFrameDown[mDefaultInputData.keyToggleChangeWorldDebug]=false;
+	mLastFrameDown[mDefaultInputData.keyToggleCutScenesDebug]=false;
 	mLastFrameDown[mDefaultInputData.keyToggleShowSceneNodes]=false;
 	mLastFrameDown[mDefaultInputData.keyRunCutscene]=false;
 
@@ -88,7 +88,7 @@ void ControlInputManager::updateDownKeys()
 	mLastFrameDown[mDefaultInputData.keyToggleConsole]=isDownToggleConsole(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyToggleVolumes]=isDownToggleVolumes(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyToggleGodMode]=isDownToggleGodMode(&pad,&key);
-	mLastFrameDown[mDefaultInputData.keyToggleChangeWorldDebug]=isDownToggleChangeWorldDebug(&pad,&key);
+	mLastFrameDown[mDefaultInputData.keyToggleCutScenesDebug]=isDownToggleCutScenesDebug(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyToggleShowSceneNodes]=isDownToggleShowSceneNodes(&pad,&key);
 	mLastFrameDown[mDefaultInputData.keyRunCutscene]=isDownRunCutscene(&pad,&key);
 }
@@ -341,11 +341,11 @@ bool ControlInputManager::isPressedToggleGodMode(int *pad, int* key)
 	return isPressed(-1,mDefaultInputData.keyToggleGodMode);
 }
 
-bool ControlInputManager::isPressedToggleChangeWorldDebug(int *pad, int* key)
+bool ControlInputManager::isPressedToggleCutScenesDebug(int *pad, int* key)
 {
 	*pad = -1;
-	*key = mDefaultInputData.keyToggleChangeWorldDebug;
-	return isPressed(-1,mDefaultInputData.keyToggleChangeWorldDebug);
+	*key = mDefaultInputData.keyToggleCutScenesDebug;
+	return isPressed(-1,mDefaultInputData.keyToggleCutScenesDebug);
 }
 
 bool ControlInputManager::isPressedToggleShowSceneNodes(int *pad, int* key)
@@ -541,11 +541,11 @@ bool ControlInputManager::isDownToggleGodMode(int *pad, int* key)
 	return isDown(-1,mDefaultInputData.keyToggleGodMode);
 }
 
-bool ControlInputManager::isDownToggleChangeWorldDebug(int *pad, int* key)
+bool ControlInputManager::isDownToggleCutScenesDebug(int *pad, int* key)
 {
 	*pad = -1;
-	*key = mDefaultInputData.keyToggleChangeWorldDebug;
-	return isDown(-1,mDefaultInputData.keyToggleChangeWorldDebug);
+	*key = mDefaultInputData.keyToggleCutScenesDebug;
+	return isDown(-1,mDefaultInputData.keyToggleCutScenesDebug);
 }
 
 bool ControlInputManager::isDownToggleShowSceneNodes(int *pad, int* key)
@@ -833,7 +833,7 @@ void ControlInputManager::saveDefaultInput()
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyChangeLevel,KEY_CHANGE_LEVEL,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleConsole,KEY_TOGGLE_CONSOLE,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleVolumes,KEY_TOGGLE_VOLUMES,false);
-	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleChangeWorldDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
+	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleCutScenesDebug,KEY_TOGGLE_CHANGEWORLD_DEBUG,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyToggleShowSceneNodes,KEY_TOGGLE_SHOW_SCENE_NODES,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyDebugTrajectory,KEY_DEBUG_TRAJECTORY,false);
 	ADD_CONFIG_ENTRY(mDefaultInputData.keyRunCutscene,KEY_RUN_CUTSCENE,false);

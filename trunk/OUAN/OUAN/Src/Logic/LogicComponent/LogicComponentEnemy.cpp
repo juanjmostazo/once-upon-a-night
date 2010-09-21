@@ -26,6 +26,8 @@ LogicComponentEnemy::LogicComponentEnemy(const std::string& type)
 	mTiredFinished=true;	
 	mIdle1Finished=true;
 	mStatueEnabled=false;
+	mPillowHitFinished=false;
+	mFlashlightHitFinished=false;
 }
 
 LogicComponentEnemy::~LogicComponentEnemy()
@@ -269,7 +271,22 @@ void LogicComponentEnemy::setIdle1Finished(bool idle1)
 {
 	mIdle1Finished=idle1;
 }
-
+bool LogicComponentEnemy::isFlashLightHitFinished() const
+{
+	return mFlashlightHitFinished;
+}
+void LogicComponentEnemy::setFlashLightHitFinished(bool flashlightHitFinished)
+{
+	mFlashlightHitFinished=flashlightHitFinished;
+}
+bool LogicComponentEnemy::isPillowHitFinished() const
+{
+	return mPillowHitFinished;
+}
+void LogicComponentEnemy::setPillowHitFinished(bool pillowHitFinished)
+{
+	mPillowHitFinished=pillowHitFinished;
+}
 int LogicComponentEnemy::getPreviousState() const
 {
 	return getOldState();

@@ -19,7 +19,9 @@ CUTSCENE_8_TRIPOLLO_STATUES="TRIPOLLO_STATUES";
 CUTSCENE_8_0_TRIPOLLO_STATUES_END="TRIPOLLO_STATUES_END";
 CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS="PLATFORMS_TO_FINAL_BOSS";
 CUTSCENE_9_FINAL_BOSS_START="FINAL_BOSS_START";
-CUTSCENE_10_FINAL_BOSS_END="FINAL_BOSS_END";
+CUTSCENE_10_1_FINAL_BOSS_HIT_1="FINAL_BOSS_HIT_1";
+CUTSCENE_10_2_FINAL_BOSS_HIT_2="FINAL_BOSS_HIT_2";
+CUTSCENE_10_3_FINAL_BOSS_HIT_3="FINAL_BOSS_HIT_3";
 
 -- LEVEL 2 EVENTS
 EVENT_FIRST_CHANGE_WORLD_ACTIVATED="FIRST_CHANGE_WORLD_ACTIVATED";
@@ -309,10 +311,8 @@ end
 
 -- CUTSCENE 9: FINAL BOSS START
 function startCutScene9(pOny)
-	log ("CUTSCENE 9: ");
-	log (CUTSCENE_9_FINAL_BOSS_START);
 	addExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
+	launchCutScene("cutscenes_level2.lua","cutScene9");
 	return
 end
 
@@ -320,15 +320,60 @@ function conditionCutScene9(pOny)
 	return not hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START) and getCheckPointNumber()>=90;
 end
 
--- CUTSCENE 10: FINAL BOSS END
-function startCutScene10(pOny)
-	log ("CUTSCENE 10: ");
-	log (CUTSCENE_10_FINAL_BOSS_END);
-	addExecutedLevelEvent(CUTSCENE_10_FINAL_BOSS_END);
-	-- launchCutScene("cutscenes_level2.lua","cutScene2");
-	return
+function cutScene9(timer)
+	log ("CUTSCENE 9: ");
+	log (CUTSCENE_9_FINAL_BOSS_START);
+	local any=getAny()	
+	
+	setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
+	trajectoryCamWait();
+	busyWait(timer,3);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
 end
 
-function conditionCutScene10(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_10_FINAL_BOSS_END) and hasExecutedLevelEvent(FINAL_BOSS_DEFEATED);
+-- CUTSCENE 10_1: CUTSCENE_10_1_FINAL_BOSS_HIT_1
+function cutScene10_1(timer)
+	log ("CUTSCENE 10_1: ");
+	log (CUTSCENE_10_1_FINAL_BOSS_HIT_1);
+	local any=getAny()	
+	
+	addExecutedLevelEvent(CUTSCENE_10_1_FINAL_BOSS_HIT_1);
+	setCameraTrajectory(CUTSCENE_10_1_FINAL_BOSS_HIT_1,false,true);
+	trajectoryCamWait();
+	busyWait(timer,3);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+-- CUTSCENE 10_2: CUTSCENE_10_2_FINAL_BOSS_HIT_2
+function cutScene10_2(timer)
+	log ("CUTSCENE 10_2: ");
+	log (CUTSCENE_10_2_FINAL_BOSS_HIT_2);
+	local any=getAny()	
+	
+	addExecutedLevelEvent(CUTSCENE_10_2_FINAL_BOSS_HIT_2);
+	setCameraTrajectory(CUTSCENE_10_2_FINAL_BOSS_HIT_2,false,true);
+	trajectoryCamWait();
+	busyWait(timer,3);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+-- CUTSCENE 10_3: CUTSCENE_10_3_FINAL_BOSS_HIT_3
+function cutScene10_3(timer)
+	log ("CUTSCENE 10_3: ");
+	log (CUTSCENE_10_3_FINAL_BOSS_HIT_3);
+	local any=getAny()	
+	
+	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
+	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
+	trajectoryCamWait();
+	busyWait(timer,3);
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
 end
