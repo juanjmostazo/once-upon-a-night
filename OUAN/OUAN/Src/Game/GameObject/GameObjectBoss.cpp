@@ -144,13 +144,19 @@ void GameObjectBoss::setCurrentWalkAnimation()
 void GameObjectBoss::updateHPEvents()
 {
 	int hp=mLogicComponentEnemy->getHealthPoints();
-	if(hp==2)
+	if(hp==3)
+	{
+		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_BLUE);
+	}
+	else if(hp==2)
 	{
 		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_1_DONE);
+		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_GREEN);
 	}
 	else if(hp==1)
 	{
 		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_2_DONE);
+		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_RED);
 	}
 	else if(hp==0)
 	{
@@ -347,6 +353,7 @@ void GameObjectBoss::reset()
 	mLogicComponentEnemy->setHasDied(false);
 	mLogicComponentEnemy->setHasBeenHit(false);
 	mLogicComponentEnemy->setInitialHealthPoints(3);
+	updateHPEvents();
 }
 
 void GameObjectBoss::changeWorldFinished(int newWorld)
