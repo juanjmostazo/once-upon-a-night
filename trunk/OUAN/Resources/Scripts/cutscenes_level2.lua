@@ -312,7 +312,7 @@ end
 -- CUTSCENE 9: FINAL BOSS START
 function startCutScene9(pOny)
 	addExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START);
-	launchCutScene("cutscenes_level2.lua","cutScene9");
+	-- launchCutScene("cutscenes_level2.lua","cutScene9");
 	return
 end
 
