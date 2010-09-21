@@ -205,7 +205,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		readOption(config,KEY_TOGGLE_CONSOLE,mDefaultInputData.keyToggleConsole);
 		readOption(config,KEY_TOGGLE_VOLUMES,mDefaultInputData.keyToggleVolumes);
 		readOption(config,KEY_TOGGLE_GOD_MODE,mDefaultInputData.keyToggleGodMode);
-		readOption(config,KEY_TOGGLE_CHANGEWORLD_DEBUG,mDefaultInputData.keyToggleChangeWorldDebug);
+		readOption(config,KEY_TOGGLE_CHANGEWORLD_DEBUG,mDefaultInputData.keyToggleCutScenesDebug);
 		readOption(config,KEY_TOGGLE_SHOW_SCENE_NODES,mDefaultInputData.keyToggleShowSceneNodes);
 		readOption(config,KEY_RUN_CUTSCENE,mDefaultInputData.keyRunCutscene);
 		return true;
@@ -239,7 +239,7 @@ bool FullInputManager::loadDefaultInputConfig(const std::string& configFilePath)
 		mDefaultInputData.keyToggleConsole=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleVolumes=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleGodMode=OIS::KC_UNASSIGNED;
-		mDefaultInputData.keyToggleChangeWorldDebug=OIS::KC_UNASSIGNED;
+		mDefaultInputData.keyToggleCutScenesDebug=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyToggleShowSceneNodes=OIS::KC_UNASSIGNED;
 		mDefaultInputData.keyRunCutscene=OIS::KC_UNASSIGNED;
 		return false;

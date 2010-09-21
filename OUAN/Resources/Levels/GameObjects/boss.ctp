@@ -15,6 +15,12 @@
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="200" fields="X;Y;Z;W"></PROPERTY> 
 
+  <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentWeapon::height" type="6" value="6" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentWeapon::movementfactor" type="6" value="0.01" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentWeapon::inflatespeed" type="6" value="8" fields="X;Y;Z;W"></PROPERTY>
+
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.4" fields="X;Y;Z;W"></PROPERTY>

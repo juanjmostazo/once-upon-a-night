@@ -4,7 +4,7 @@
 #include "../../Component/Component.h"
 namespace OUAN
 {
-
+	const double MAX_TIME_SPENT=100;
 	class LogicComponent: public Component
 	{
 	public:
@@ -29,6 +29,9 @@ namespace OUAN
 		void setScriptFunction(const std::string& scriptFunction);
 
 		virtual void update(double elapsedTime);
+
+		double getTimeSpent() const;
+		void setTimeSpent(double timeSpent);
 
 		bool isStateChanged() const;
 		void setStateChanged(bool stateChanged);
@@ -61,7 +64,8 @@ namespace OUAN
 		int stateHistory[GAMESTATE_HISTORY_SIZE];
 
 		bool mStateChanged;
-	
+		double mTimeSpent;
+
 	private:
 		/// Filename of the script that'll be executed by the logic subsystem
 		/// to update this component's parent game object

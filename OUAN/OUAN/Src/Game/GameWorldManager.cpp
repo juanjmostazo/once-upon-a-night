@@ -1873,7 +1873,24 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower2_2"));
 		plataform->activate();
 	}
-
+	else if(hasExecutedLevelEvent(BOSS_HIT_1_DONE) &&
+			!hasExecutedLevelEvent(CUTSCENE_10_1_FINAL_BOSS_HIT_1)
+		)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene10_1");
+	}
+	else if(hasExecutedLevelEvent(BOSS_HIT_2_DONE) &&
+			!hasExecutedLevelEvent(CUTSCENE_10_2_FINAL_BOSS_HIT_2)
+		)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene10_2");
+	}
+	else if(hasExecutedLevelEvent(BOSS_HIT_3_DONE) &&
+			!hasExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3)
+		)
+	{
+		launchCutScene("cutscenes_level2.lua","cutScene10_3");
+	}
 }
 
 void GameWorldManager::launchCutScene(const std::string& scriptFile,const std::string& scriptFunction)

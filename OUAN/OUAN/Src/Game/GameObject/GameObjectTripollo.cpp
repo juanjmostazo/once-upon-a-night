@@ -141,19 +141,11 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 	{
 		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
 			newWorld,true);
-		if (!getName().compare("tripollo#19"))
-		{
-			Logger::getInstance()->log("TRAJECTORY FOUND");
-		}
 		return true;
 	}
 	else
 	{
 		mTrajectoryComponent->activateIdle(getName(),newWorld);
-		if (!getName().compare("tripollo#19"))
-		{
-			Logger::getInstance()->log("TRAJECTORY NOT FOUND");
-		}
 		return false;
 	}
 }

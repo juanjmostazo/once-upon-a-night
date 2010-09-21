@@ -39,6 +39,9 @@ namespace OUAN
 		LogicComponentBreakablePtr mLogicComponentBreakable;
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
+
+		void releaseItem();
+
 	public:
 		//Constructor
 		GameObjectWoodBox(const std::string& name);

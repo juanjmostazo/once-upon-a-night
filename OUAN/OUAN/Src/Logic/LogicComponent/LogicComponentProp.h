@@ -3,8 +3,6 @@
 #include "LogicComponent.h"
 namespace OUAN
 {
-	const double MAX_TIME_SPENT=100;
-
 	class LogicComponentProp: public LogicComponent
 	{
 	public:
@@ -24,9 +22,6 @@ namespace OUAN
 		double getApproachDistance() const;
 		void setApproachDistance(double approachDistance);
 
-		double getTimeSpent() const;
-		void setTimeSpent(double timeSpent);
-
 		double getDelay() const;
 		void setDelay(double delay);
 
@@ -42,7 +37,6 @@ namespace OUAN
 	private:
 		double mApproachDistance;
 		double mDelay;
-		double mTimeSpent;
 		bool mHasTakenHit;
 		bool mReload;
 		bool mRecovered;

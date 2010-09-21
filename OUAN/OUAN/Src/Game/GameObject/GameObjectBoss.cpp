@@ -1,9 +1,11 @@
 #include "OUAN_Precompiled.h"
 
 #include "GameObjectBoss.h"
+#include "GameObjectOny.h"
 #include "../GameWorldManager.h"
 #include "../../Event/Event.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "../../Logic/LogicSubsystem.h"
 
 using namespace OUAN;
 
@@ -90,11 +92,240 @@ PhysicsComponentCharacterPtr GameObjectBoss::getPhysicsComponentCharacter() cons
 	return mPhysicsComponentCharacter;
 }
 
+bool GameObjectBoss::hasPatrolTrajectory()
+{
+	return mTrajectoryComponent->predefinedTrajectoryExists(getPatrolTrajectoryName(
+		mGameWorldManager->getWorld()));
+}
+
+std::string GameObjectBoss::getPatrolTrajectoryName(int world)
+{
+	std::string trajectoryName = getName();
+	trajectoryName.append(world==DREAMS?SUFFIX_DREAMS:SUFFIX_NIGHTMARES);
+	return trajectoryName;
+}
+
+bool GameObjectBoss::activateTrajectory(int newWorld)
+{
+	std::string trajectoryName = getPatrolTrajectoryName(newWorld);
+	if(mTrajectoryComponent->predefinedTrajectoryExists(trajectoryName))
+	{
+		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
+			newWorld,true);
+		return true;
+	}
+	else
+	{
+		mTrajectoryComponent->activateIdle(getName(),newWorld);
+		return false;
+	}
+}
+
+void GameObjectBoss::setCurrentWalkAnimation()
+{
+	int hp=mLogicComponentEnemy->getHealthPoints();
+	if(hp==3)
+	{
+		mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_WALK);
+		mTrajectoryComponent->setDefaultSpeed(BOSS_SPEED_WALK);
+	}
+	else if(hp==2)
+	{
+		mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_RUN);
+		mTrajectoryComponent->setDefaultSpeed(BOSS_SPEED_RUN);
+	}
+	else if(hp==1)
+	{
+		mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_RUN_PISSED_OFF);
+		mTrajectoryComponent->setDefaultSpeed(BOSS_SPEED_RUN_PISSED_OFF);
+	}
+}
+
+void GameObjectBoss::updateHPEvents()
+{
+	int hp=mLogicComponentEnemy->getHealthPoints();
+	if(hp==2)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_1_DONE);
+	}
+	else if(hp==1)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_2_DONE);
+	}
+	else if(hp==0)
+	{
+		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_3_DONE);
+	}
+}
+
+
+void GameObjectBoss::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
+{
+	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
+}
+
+PhysicsComponentWeaponPtr GameObjectBoss::getPhysicsComponentWeapon() const
+{
+	return mPhysicsComponentWeapon;
+}
+
 void GameObjectBoss::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 
-	unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+
+	int currentState=mLogicComponentEnemy->getState();
+	int world = getGameWorldManager()->getWorld();
+
+	std::string onyName=getGameWorldManager()->getGameObjectOny()->getName();
+
+	if(isEnabled())
+	{
+		if (mLogicComponentEnemy->isStateChanged())
+		{
+			if(currentState==logicSS->getGlobalInt(BOSS_STATE_PATROL))
+			{
+				setCurrentWalkAnimation();
+				activateTrajectory(mGameWorldManager->getWorld());
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_CHASE))
+			{
+				setCurrentWalkAnimation();
+				mTrajectoryComponent->activateChase(onyName);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_ALERT))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_ALERT);
+				mLogicComponentEnemy->setAlertFinished(false);
+				mTrajectoryComponent->activateIdle(getName(),world);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_TIRED))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_TIRED);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setTiredFinished(false);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_ATTACK))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_ATTACK);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setAttackFinished(false);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_SP_ATTACK))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_SP_ATTACK);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setAttackFinished(false);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_FLASHLIGHT_HIT))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_FLASHLIGHT_HIT);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setFlashLightHitFinished(false);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_STUNNED))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_STUNNED);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setPillowHitFinished(false);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_LEAVING_NIGHTMARES))
+			{
+				//THIS IS NOT USED
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_LEAVE);
+				mTrajectoryComponent->activateIdle(getName(),world);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_PILLOW_HIT))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_PILLOW_HIT);
+				mLogicComponentEnemy->setPillowHitFinished(false);
+				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->decreaseHP();
+				updateHPEvents();
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_WARCRY))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_WARCRY);
+				mLogicComponentEnemy->setCallToArmsFinished(false);
+				mTrajectoryComponent->activateIdle(getName(),world);
+			}
+			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_DIE))
+			{
+				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_DIE);
+				mTrajectoryComponent->activateIdle(getName(),world);
+			}
+		}
+
+		mTrajectoryComponent->update(elapsedSeconds);
+
+		if (mPhysicsComponentCharacter->isInUse())
+		{
+			Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();				
+			mPhysicsComponentCharacter->setOuternMovement(movement);
+		}
+		//if (mPhysicsComponentWeapon->isInUse())
+		//{
+		//	Ogre::Vector3 pos;
+		//	if (entity.get() && entity->getEntity()->hasSkeleton()
+		//		&& entity->getEntity()->getSkeleton()->hasBone(HEAD_BONE_NAME))
+		//	{
+		//		Ogre::Entity* ent = entity->getEntity();
+		//		Ogre::Node* bone = ent->getSkeleton()->getBone(HEAD_BONE_NAME);
+		//		pos=Utils::getNodeWorldPosition(ent,bone);			
+		//	}
+		//	else
+		//	{
+		//		mRenderComponentPositional->getPosition();			
+		//	}
+		//	mPhysicsComponentWeapon->setPosition(pos);			
+		//	mPhysicsComponentWeapon->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw());
+		//	mPhysicsComponentWeapon->update(elapsedSeconds);
+		//}
+
+		mRenderComponentEntity->update(elapsedSeconds);
+	}
+	else
+	{
+		if (mRenderComponentEntity.get())
+			mRenderComponentEntity->setVisible(false);
+		if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
+		{
+			mPhysicsComponentCharacter->destroy();
+		}
+	}
+}
+
+void GameObjectBoss::processAnimationEnded(const std::string& animationName)
+{
+	if (animationName.compare(BOSS_ANIMATION_ALERT)==0)
+	{
+		mLogicComponentEnemy->setAlertFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_TIRED)==0)
+	{
+		mLogicComponentEnemy->setTiredFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_ATTACK)==0)
+	{
+		mLogicComponentEnemy->setAttackFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_SP_ATTACK)==0)
+	{
+		mLogicComponentEnemy->setAttackFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_FLASHLIGHT_HIT)==0)
+	{
+		mLogicComponentEnemy->setFlashLightHitFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_PILLOW_HIT)==0)
+	{
+		mLogicComponentEnemy->setPillowHitFinished(true);
+	}
+	else if(animationName.compare(BOSS_ANIMATION_WARCRY)==0)
+	{
+		mLogicComponentEnemy->setCallToArmsFinished(true);
+	}
 }
 
 void GameObjectBoss::reset()
@@ -112,11 +343,18 @@ void GameObjectBoss::reset()
 		mPhysicsComponentCharacter->getSceneNode()->setPosition(mRenderComponentInitial->getPosition());
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 	}
+
+	mLogicComponentEnemy->setHasDied(false);
+	mLogicComponentEnemy->setHasBeenHit(false);
+	mLogicComponentEnemy->setInitialHealthPoints(3);
 }
 
 void GameObjectBoss::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	int currentState=mLogicComponentEnemy->getState();
 
 	switch(newWorld)
 	{
@@ -125,6 +363,11 @@ void GameObjectBoss::changeWorldFinished(int newWorld)
 		case NIGHTMARES:
 			break;
 		default:break;
+	}
+
+	if(currentState==logicSS->getGlobalInt(BOSS_STATE_PATROL))
+	{
+		activateTrajectory(mGameWorldManager->getWorld());
 	}
 }
 

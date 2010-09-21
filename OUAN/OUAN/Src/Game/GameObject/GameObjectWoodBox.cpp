@@ -420,6 +420,11 @@ void GameObjectWoodBox::update(double elapsedSeconds)
 	}
 }
 
+void GameObjectWoodBox::releaseItem()
+{
+
+}
+
 //TODO DO IT PROPERLY WHEN THERE ARE TWO RENDER COMPONENT ENTITIES
 void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 {
@@ -430,6 +435,7 @@ void GameObjectWoodBox::updateLogic(double elapsedSeconds)
 			if (mPhysicsComponentSimpleBox->isInUse())
 			{
 				mPhysicsComponentSimpleBox->destroy();
+				releaseItem();
 			}
 			if (mLogicComponentBreakable->getIsBroken() && mLogicComponentBreakable->isStateChanged())
 			{

@@ -6,11 +6,49 @@
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacter.h"
+#include "../../Physics/PhysicsComponent/PhysicsComponentWeapon.h"
 #include "../../Logic/LogicComponent/LogicComponentEnemy.h"
 #include "../../Graphics/TrajectoryManager/TrajectoryComponent.h"
 
 namespace OUAN
 {
+
+	//States
+	const std::string BOSS_STATE_PATROL="BOSS_STATE_PATROL";
+	const std::string BOSS_STATE_ALERT="BOSS_STATE_ALERT";
+	const std::string BOSS_STATE_CHASE="BOSS_STATE_CHASE";
+	const std::string BOSS_STATE_TIRED="BOSS_STATE_TIRED";
+	const std::string BOSS_STATE_ATTACK="BOSS_STATE_ATTACK";
+	const std::string BOSS_STATE_SP_ATTACK="BOSS_STATE_SP_ATTACK";
+	const std::string BOSS_STATE_FLASHLIGHT_HIT="BOSS_STATE_FLASHLIGHT_HIT";
+	const std::string BOSS_STATE_STUNNED = "BOSS_STATE_STUNNED";
+	const std::string BOSS_STATE_LEAVING_NIGHTMARES = "BOSS_STATE_LEAVING_NIGHTMARES";
+	const std::string BOSS_STATE_PILLOW_HIT = "BOSS_STATE_PILLOW_HIT";
+	const std::string BOSS_STATE_DIE = "BOSS_STATE_DIE";
+	const std::string BOSS_STATE_WARCRY = "BOSS_STATE_WARCRY";
+
+	//Animations
+	const std::string BOSS_ANIMATION_ALERT = "alert";
+	const std::string BOSS_ANIMATION_ATTACK = "attack00";
+	const std::string BOSS_ANIMATION_SP_ATTACK = "sp_attack";
+	const std::string BOSS_ANIMATION_DIE = "die";
+	const std::string BOSS_ANIMATION_FLASHLIGHT_HIT = "flashlight_hit";
+	const std::string BOSS_ANIMATION_LEAVE = "flashlight_hit";
+	const std::string BOSS_ANIMATION_MANUAL = "manual";
+	const std::string BOSS_ANIMATION_PILLOW_HIT = "pillow_hit";
+	const std::string BOSS_ANIMATION_REST = "rest";
+	const std::string BOSS_ANIMATION_WALK = "trot";
+	const std::string BOSS_ANIMATION_RUN = "run";
+	const std::string BOSS_ANIMATION_RUN_PISSED_OFF = "run_pissed_off";
+	const std::string BOSS_ANIMATION_STUNNED = "stunned";
+	const std::string BOSS_ANIMATION_TIRED = "tired";
+	const std::string BOSS_ANIMATION_WARCRY = "war_cry";
+
+	//Trajectory Speeds
+	const double BOSS_SPEED_WALK = 0.4;
+	const double BOSS_SPEED_RUN = 0.7;
+	const double BOSS_SPEED_RUN_PISSED_OFF = 1.0;
+
 	/// Class modelling a particular enemy type
 	class GameObjectBoss : public GameObject, public boost::enable_shared_from_this<GameObjectBoss>
 	{
@@ -23,6 +61,7 @@ namespace OUAN
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
 		PhysicsComponentCharacterPtr mPhysicsComponentCharacter;
+		PhysicsComponentWeaponPtr mPhysicsComponentWeapon;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -33,6 +72,12 @@ namespace OUAN
 
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
+
+		bool activateTrajectory(int newWorld);
+		bool hasPatrolTrajectory();
+		std::string getPatrolTrajectoryName(int world);
+		void setCurrentWalkAnimation();
+		void updateHPEvents();
 	public:
 		/// Constructor
 		/// @param name name of the game object, specific to this class
@@ -79,9 +124,13 @@ namespace OUAN
 
 		/// Set physics component
 		void setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter);
-
 		/// Get physics component
 		PhysicsComponentCharacterPtr getPhysicsComponentCharacter() const;
+
+		/// Set physics component weapon
+		void setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon);
+		/// Get physics component weapon
+		PhysicsComponentWeaponPtr getPhysicsComponentWeapon() const;
 
 		/// Update object
 		virtual void update(double elapsedSeconds);
@@ -119,7 +168,7 @@ namespace OUAN
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
 
-		
+		void processAnimationEnded(const std::string& animationName);
 		
 
 		bool hasLogicComponent() const;
@@ -144,6 +193,7 @@ namespace OUAN
 
 		///Physics parameters
 		TPhysicsComponentCharacterParameters tPhysicsComponentCharacterParameters;
+		TPhysicsComponentWeaponParameters tPhysicsComponentWeaponParameters;
 
 		/// Audio component params
 		TAudioComponentMap tAudioComponentParameters;

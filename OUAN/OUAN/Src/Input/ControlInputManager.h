@@ -78,9 +78,9 @@ namespace OUAN
 		/// Detect if the 'toggle-godmode' key has been pressed
 		/// @return true if there has been a 'toggle-godmode' key press
 		bool isPressedToggleGodMode(int *pad, int *key);
-		/// Detect if the 'toggle-changeworlddebug' key has been pressed
-		/// @return true if there has been a 'toggle-changeworlddebug' key press
-		bool isPressedToggleChangeWorldDebug(int *pad, int *key);
+		/// Detect if the 'toggle-CutScenesDebug' key has been pressed
+		/// @return true if there has been a 'toggle-CutScenesDebug' key press
+		bool isPressedToggleCutScenesDebug(int *pad, int *key);
 		/// Detect if the 'toggle-showscenenodes' key has been pressed
 		/// @return true if there has been a 'toggle-showscenenodes' key press
 		bool isPressedToggleShowSceneNodes(int *pad, int *key);
@@ -127,9 +127,9 @@ namespace OUAN
 		/// Detect if the 'toggle-godmode' key has been Down
 		/// @return true if there has been a 'toggle-godmode' key press
 		bool isDownToggleGodMode(int *pad, int *key);
-		/// Detect if the 'toggle-changeworlddebug' key has been Down
-		/// @return true if there has been a 'toggle-changeworlddebug' key press
-		bool isDownToggleChangeWorldDebug(int *pad, int *key);
+		/// Detect if the 'toggle-CutScenesDebug' key has been Down
+		/// @return true if there has been a 'toggle-CutScenesDebug' key press
+		bool isDownToggleCutScenesDebug(int *pad, int *key);
 		/// Detect if the 'toggle-showscenenodes' key has been Down
 		/// @return true if there has been a 'toggle-showscenenodes' key press
 		bool isDownToggleShowSceneNodes(int *pad, int *key);
