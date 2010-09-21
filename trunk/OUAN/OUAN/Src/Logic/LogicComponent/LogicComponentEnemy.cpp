@@ -44,14 +44,23 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 		{
 			std::stringstream msg;
 					if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
-			{
-				getParent()->displayText("FWOOOOSHH!!!!");			
-				mHasBeenHit=true;
-				decreaseHP(flashlight->getAttackDamage());
-				std::stringstream msg("");
-				msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
-				Logger::getInstance()->log(msg.str());
-				mHitRecoveryTime=1;//TODO: use animation instead of hit time
+			{	
+				if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+				{
+					getParent()->displayText("FWOOOOSHH!!!!");		
+					decreaseHP(flashlight->getAttackDamage());
+					std::stringstream msg("");
+					msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
+					Logger::getInstance()->log(msg.str());
+					mHitRecoveryTime=1;//TODO: use animation instead of hit time
+					//only hit if nightmares
+					mHasBeenHit=getParent()->getWorld()==NIGHTMARES;
+				}
+				else if(getParent()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0)
+				{
+					//only hit if nightmares
+					mHasBeenHit=getParent()->getWorld()==NIGHTMARES;
+				}
 			}		
 			else
 			{
@@ -67,17 +76,31 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 			pGameObject);
 		if (mHitRecoveryTime<0)
 		{
-			getParent()->displayText("ZASCA!");
-			mHasBeenHit=true;
-			decreaseHP(pillow->getAttackDamage());
-			std::stringstream msg("");
-			msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
-			Logger::getInstance()->log(msg.str());
-
-			mHitRecoveryTime=1;
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+			{
+				getParent()->displayText("ZASCA!");
+				decreaseHP(pillow->getAttackDamage());
+				std::stringstream msg("");
+				msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
+				Logger::getInstance()->log(msg.str());
+				mHitRecoveryTime=1;
+				//only hit if dreams
+				mHasBeenHit=getParent()->getWorld()==DREAMS;
+			}
+			else if(getParent()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0)
+			{
+				//only hit if dreams
+				mHasBeenHit=getParent()->getWorld()==DREAMS;
+			}
 		}		
 	}
 }
+
+int LogicComponentEnemy::getWorld()
+{
+	return getParent()->getWorld();
+}
+
 int LogicComponentEnemy::getMaskValueFromColour(int colour)
 {
 	int retVal=0;

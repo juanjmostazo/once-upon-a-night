@@ -50,6 +50,8 @@ namespace OUAN
 		bool hasDied() const;
 		void setHasDied(bool hasDied);
 
+		int getWorld();
+
 		bool isAlertFinished() const;
 		void setAlertFinished(bool alert);
 		bool isSurpriseFinished() const;

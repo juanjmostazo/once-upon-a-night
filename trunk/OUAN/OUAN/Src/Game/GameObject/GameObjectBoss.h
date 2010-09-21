@@ -49,6 +49,9 @@ namespace OUAN
 	const double BOSS_SPEED_RUN = 0.7;
 	const double BOSS_SPEED_RUN_PISSED_OFF = 1.0;
 
+	//Attack Range
+	const double MELEE_RANGE = 50;
+
 	/// Class modelling a particular enemy type
 	class GameObjectBoss : public GameObject, public boost::enable_shared_from_this<GameObjectBoss>
 	{
@@ -169,6 +172,8 @@ namespace OUAN
 		void processExitTrigger(GameObjectPtr pGameObject);
 
 		void processAnimationEnded(const std::string& animationName);
+
+		double getMeleeRange() const;
 		
 
 		bool hasLogicComponent() const;

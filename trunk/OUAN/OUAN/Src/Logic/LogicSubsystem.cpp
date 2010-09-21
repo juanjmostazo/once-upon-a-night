@@ -112,6 +112,7 @@ void LogicSubsystem::registerModules()
 			.def("animFinished",&LogicComponent::hasFinishedAnimation),
 		class_<LogicComponentEnemy, LogicComponent > ("LogicComponentEnemy")
 			.def(constructor<const std::string&>())
+			.def("getWorld",&LogicComponentEnemy::getWorld)
 			.def("getNumLives",&LogicComponentEnemy::getNumLives)
 			.def("getLineOfSight",&LogicComponentEnemy::getLineOfSight)
 			.def("getHP",&LogicComponentEnemy::getHealthPoints)

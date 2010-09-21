@@ -17,7 +17,7 @@
   <PROPERTY id="PhysicsComponentCharacterOny::scale_correction" type="6" value="1.5 1.5 1.5" ></PROPERTY>
   
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" ></PROPERTY>
-  <PROPERTY id="LogicComponent::defaultState" type="2" value="-1" ></PROPERTY>
+  <PROPERTY id="LogicComponent::defaultState" type="2" value="0" ></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" ></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="3" ></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="-1" ></PROPERTY>

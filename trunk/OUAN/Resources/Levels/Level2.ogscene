@@ -2731,31 +2731,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="418775008" name="volume-box_d#cutscene9" typename="Entity Object" parentnode="CutScenes">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872655 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="442.7 1346.83 -2845.91"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="346.25 83.0287 312.934"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene9" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene9" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="721640640" name="diamond_d#d0Copy#12" typename="Entity Object" parentnode="Diamonds_Zone1_d">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -4266,31 +4241,6 @@
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="LogicComponent::colourSensitivityMask" type="2" value="2" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="397686688" name="volume-box_d#cutscene10" typename="Entity Object" parentnode="CutScenes">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999962 0 0.00872655 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="442.7 1346.83 -2845.91"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="346.25 83.0287 312.934"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cutscenes_level2.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="startCutScene10" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCutScene10" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 

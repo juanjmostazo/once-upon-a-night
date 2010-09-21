@@ -164,7 +164,6 @@ void GameObjectBoss::updateHPEvents()
 	}
 }
 
-
 void GameObjectBoss::setPhysicsComponentWeapon(PhysicsComponentWeaponPtr pPhysicsComponentWeapon)
 {
 	mPhysicsComponentWeapon=pPhysicsComponentWeapon;
@@ -194,47 +193,54 @@ void GameObjectBoss::update(double elapsedSeconds)
 			{
 				setCurrentWalkAnimation();
 				activateTrajectory(mGameWorldManager->getWorld());
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_CHASE))
 			{
 				setCurrentWalkAnimation();
 				mTrajectoryComponent->activateChase(onyName);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_ALERT))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_ALERT);
 				mLogicComponentEnemy->setAlertFinished(false);
 				mTrajectoryComponent->activateIdle(getName(),world);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_TIRED))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_TIRED);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setTiredFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_ATTACK))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_ATTACK);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setAttackFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_SP_ATTACK))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_SP_ATTACK);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setAttackFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_FLASHLIGHT_HIT))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_FLASHLIGHT_HIT);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setFlashLightHitFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_STUNNED))
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_STUNNED);
 				mTrajectoryComponent->activateIdle(getName(),world);
-				mLogicComponentEnemy->setPillowHitFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_LEAVING_NIGHTMARES))
 			{
@@ -246,6 +252,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 			{
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_PILLOW_HIT);
 				mLogicComponentEnemy->setPillowHitFinished(false);
+				mLogicComponentEnemy->setHasBeenHit(false);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->decreaseHP();
 				updateHPEvents();
@@ -332,6 +339,10 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	{
 		mLogicComponentEnemy->setCallToArmsFinished(true);
 	}
+	else if(animationName.compare(BOSS_ANIMATION_DIE)==0)
+	{
+		disable();
+	}
 }
 
 void GameObjectBoss::reset()
@@ -352,8 +363,21 @@ void GameObjectBoss::reset()
 
 	mLogicComponentEnemy->setHasDied(false);
 	mLogicComponentEnemy->setHasBeenHit(false);
+	mLogicComponentEnemy->setAttackFinished(false);
 	mLogicComponentEnemy->setInitialHealthPoints(3);
 	updateHPEvents();
+
+	mLogicComponentEnemy->setAlertFinished(true);
+	mLogicComponentEnemy->setTiredFinished(true);
+	mLogicComponentEnemy->setFlashLightHitFinished(true);
+	mLogicComponentEnemy->setPillowHitFinished(true);
+	mLogicComponentEnemy->setCallToArmsFinished(true);
+
+}
+
+double GameObjectBoss::getMeleeRange() const
+{
+	return MELEE_RANGE;
 }
 
 void GameObjectBoss::changeWorldFinished(int newWorld)
@@ -376,6 +400,8 @@ void GameObjectBoss::changeWorldFinished(int newWorld)
 	{
 		activateTrajectory(mGameWorldManager->getWorld());
 	}
+
+	mLogicComponentEnemy->setHasBeenHit(false);
 }
 
 void GameObjectBoss::changeWorldStarted(int newWorld)

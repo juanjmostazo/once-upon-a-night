@@ -340,8 +340,8 @@ function cutScene10_1(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_1_FINAL_BOSS_HIT_1);
-	setCameraTrajectory(CUTSCENE_10_1_FINAL_BOSS_HIT_1,false,true);
-	trajectoryCamWait();
+	-- setCameraTrajectory(CUTSCENE_10_1_FINAL_BOSS_HIT_1,false,true);
+	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -355,8 +355,8 @@ function cutScene10_2(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_2_FINAL_BOSS_HIT_2);
-	setCameraTrajectory(CUTSCENE_10_2_FINAL_BOSS_HIT_2,false,true);
-	trajectoryCamWait();
+	-- setCameraTrajectory(CUTSCENE_10_2_FINAL_BOSS_HIT_2,false,true);
+	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -370,8 +370,8 @@ function cutScene10_3(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
-	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
-	trajectoryCamWait();
+	-- setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
+	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);

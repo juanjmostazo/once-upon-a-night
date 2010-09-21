@@ -62,7 +62,8 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		//TODO
 	}
-	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 
+	else if((pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 ||
+		pGameObject->getType().compare(GAME_OBJECT_TYPE_BOSS)==0) 
 		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTripolloPtr tripollo= 
