@@ -2,8 +2,8 @@
 <CUSTOMPROPERTIES>
 
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="200" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="20" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::radius" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="PhysicsComponentCharacter::height" type="6" value="24" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::position_correction" type="6" value="0 0 0" ></PROPERTY>
   <PROPERTY id="PhysicsComponentCharacter::scale_correction" type="6" value="1 1 1" ></PROPERTY>
 
@@ -13,7 +13,7 @@
   <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="500" fields="X;Y;Z;W"></PROPERTY> 
+  <PROPERTY id="LogicComponent::lineOfSight" type="2" value="150" fields="X;Y;Z;W"></PROPERTY> 
 
   <PROPERTY id="PhysicsComponentWeapon::mass" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="PhysicsComponentWeapon::radius" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
