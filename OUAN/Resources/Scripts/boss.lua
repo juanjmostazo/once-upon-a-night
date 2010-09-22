@@ -28,17 +28,12 @@ BOSS_STATE_NAMES[BOSS_STATE_DIE]="DIE"
 BOSS_STATE_NAMES[BOSS_STATE_WARCRY]="WARCRY"
 
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
-SP_ATTACK_CHANCE = 0.2
-IDLE_TO_PATROL_CHANCE = 0.25
-IDLE_TO_IDLE1_CHANCE = 0.4
-TREMBLING_TO_CALL_CHANCE = 0.05
-BACK_FROM_CALL_TO_CHASE_CHANCE = 0.1
+SP_ATTACK_CHANCE = 0.002
 
--- Unused for the moment: Modify the value for the field on boss.ctp instead
--- key: (AttackComponent::attack0#attackRange)
-MELEE_RANGE = 40
-
-NEIGHBOURS_RANGE = 180
+-- ATTACKS RANGE
+NORMAL_ATTACK_RANGE = 50
+SP_ATTACK_RANGE = 150
+SP_ATTACK_TIME = 2
 
 OUAN_WORLD_DREAMS=0
 OUAN_WORLD_NIGHTMARES=1
@@ -51,8 +46,6 @@ function bossLogic(pBoss,state)
 	local playerDistance=getPlayerDistance(myName)
 	local myLOS = pBoss:getLineOfSight()
 	local any = getAny()
-	
-	--local newState=state
 	
 	-- DEATH CHECK
 	if pBoss:hasDied() then
@@ -83,9 +76,13 @@ function bossLogic(pBoss,state)
 	end
 	
 	-- SPECIAL ATTACK CHECK
-	if pBoss:isAttackFinished() and state == BOSS_STATE_SP_ATTACK then
+	if pBoss:getTimeSpent() >= STUNNED_TIME and state == BOSS_STATE_SP_ATTACK then
 		log(myName.." : CHANGED STATE TO CHASE")
-		return BOSS_STATE_CHASE	
+		if playerDistance <= myLOS then
+			return BOSS_STATE_CHASE	
+		else
+			return BOSS_STATE_PATROL	
+		end
 	end
 	
 	-- PILLOW HIT END CHECK
@@ -123,15 +120,14 @@ function bossLogic(pBoss,state)
 	
 	-- CHASE TRANSITIONS
 	if state==BOSS_STATE_CHASE then
-		local meleeRange = pBoss:getMeleeRange()
-		log ("PLAYER DISTANCE: "..playerDistance..", LOS: "..(myLOS/3)..", Melée range: "..meleeRange)
-		if playerDistance >= (myLOS/3) then
+		if playerDistance > myLOS then
 			log (myName.." CHANGED STATE TO TIRED")
 			return BOSS_STATE_TIRED
-		elseif playerDistance <= meleeRange and math.random() <= SP_ATTACK_CHANCE then
+		elseif playerDistance <= SP_ATTACK_RANGE and math.random() <= SP_ATTACK_CHANCE then
 			log (myName.." CHANGED STATE TO SP_ATTACK")
+			pBoss:setTimeSpent(0);
 			return BOSS_STATE_SP_ATTACK
-		elseif playerDistance <= meleeRange then
+		elseif playerDistance <= NORMAL_ATTACK_RANGE then
 			log (myName.." CHANGED STATE TO ATTACK")
 			return BOSS_STATE_ATTACK
 		end

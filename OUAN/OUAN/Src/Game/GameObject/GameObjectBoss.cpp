@@ -345,6 +345,16 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	}
 }
 
+bool GameObjectBoss::isWorthUpdatingPhysicsComponents()
+{
+	return true;
+}
+
+bool GameObjectBoss::isWorthUpdatingLogicComponents()
+{
+	return true;
+}
+
 void GameObjectBoss::reset()
 {
 	GameObject::reset();
@@ -361,6 +371,8 @@ void GameObjectBoss::reset()
 		mPhysicsComponentCharacter->getSceneNode()->setOrientation(mRenderComponentInitial->getOrientation());
 	}
 
+	mTrajectoryComponent->setAs2DTrajectory();
+
 	mLogicComponentEnemy->setHasDied(false);
 	mLogicComponentEnemy->setHasBeenHit(false);
 	mLogicComponentEnemy->setAttackFinished(false);
@@ -373,11 +385,12 @@ void GameObjectBoss::reset()
 	mLogicComponentEnemy->setPillowHitFinished(true);
 	mLogicComponentEnemy->setCallToArmsFinished(true);
 
-}
+	setCurrentWalkAnimation();
+	activateTrajectory(mGameWorldManager->getWorld());
 
-double GameObjectBoss::getMeleeRange() const
-{
-	return MELEE_RANGE;
+	LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
+	mLogicComponentEnemy->setState(logicSS->getGlobalInt(BOSS_STATE_PATROL));
+
 }
 
 void GameObjectBoss::changeWorldFinished(int newWorld)
