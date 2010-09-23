@@ -353,6 +353,7 @@ bool GameObjectBoss::isWorthUpdatingPhysicsComponents()
 bool GameObjectBoss::isWorthUpdatingLogicComponents()
 {
 	return true;
+
 }
 
 void GameObjectBoss::reset()

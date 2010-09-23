@@ -1859,7 +1859,6 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 			hasExecutedLevelEvent(TRIPOLLO_2_STATUE_DEFEATED) &&
 			hasExecutedLevelEvent(TRIPOLLO_3_STATUE_DEFEATED) &&
 			hasExecutedLevelEvent(TRIPOLLO_4_STATUE_DEFEATED) &&
-			hasExecutedLevelEvent(TRIPOLLO_5_STATUE_DEFEATED) &&
 			!hasExecutedLevelEvent(CUTSCENE_8_0_TRIPOLLO_STATUES_END)
 		)
 	{
