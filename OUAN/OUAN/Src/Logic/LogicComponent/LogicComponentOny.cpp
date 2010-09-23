@@ -454,6 +454,11 @@ bool LogicComponentOny::awaitingForNapEnd() const
 {
 	return mNapBufferState!=-1;
 }
+void LogicComponentOny::initPostHitInvulnerability()
+{
+	BOOST_PTR_CAST(GameObjectOny,mParent)->setInvulnerable(true);
+	mHitRecoveryTime=POST_HIT_INVULNERABILITY;
+}
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {
