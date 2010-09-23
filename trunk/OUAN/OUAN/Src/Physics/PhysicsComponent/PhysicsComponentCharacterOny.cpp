@@ -144,6 +144,10 @@ double PhysicsComponentCharacterOny::getLastFallingTime() const
 {
 	return mLastFallingTime;
 }
+double PhysicsComponentCharacterOny::getFallingTime() const
+{
+	return mFallingTime;
+}
 
 TPhysicsComponentCharacterOnyParameters::TPhysicsComponentCharacterOnyParameters() : TPhysicsComponentCharacterParameters()
 {

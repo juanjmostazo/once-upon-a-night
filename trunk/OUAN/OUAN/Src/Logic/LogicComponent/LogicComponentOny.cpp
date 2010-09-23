@@ -154,6 +154,10 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 		{
 			mParent->changeAnimation(ONY_ANIM_JUMP02_KEEP);
 		}
+		if (animationName.compare(ONY_ANIM_FALL_START)==0)
+		{
+			mParent->changeAnimation(ONY_ANIM_FALL_KEEP);
+		}
 		if (animationName.compare(ONY_ANIM_NAP_END)==0)
 		{
 			mNewState = mNapBufferState;

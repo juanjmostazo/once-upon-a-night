@@ -552,18 +552,26 @@ void GameObjectOny::postUpdate()
 		{
 			if (mLogicComponentOny->isStateChanged())
 			{
-				if (currentState==ONY_STATE_IDLE)
+				if (currentState==ONY_STATE_IDLE && lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP)
+				{
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
-				else if (currentState==ONY_STATE_IDLE1 && mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_IDLE02)
+				}
+
+					
+				else if (currentState==ONY_STATE_IDLE1 && mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_IDLE02 && lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP)
 					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
 
 				if (lastState==ONY_STATE_JUMP)
 				{
 					double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
+					Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
+					movement.y=0;
+
+					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END))
 						
 					changeAnimation(fTime>2.0
 						?ONY_ANIM_FALL_END
-						:ONY_ANIM_JUMP01_END);
+						:movement.isZeroLength()?ONY_ANIM_JUMP01_END:ONY_ANIM_JUMP02_END);
 					if (mGameWorldManager->getWorld() == DREAMS)
 					{
 						startParticleSystem(ONY_PS_LAND_DREAMS);
@@ -600,6 +608,17 @@ void GameObjectOny::postUpdate()
 		{
 			mRenderComponentEntity->changeAnimation(ONY_ANIM_NAP_START);
 		}
+		else if (currentState==ONY_STATE_FALL)
+		{
+			if (lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END))
+			{
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_START);
+			}
+			else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP) && mPhysicsComponentCharacterOny->getFallingTime()>0.5)
+			{
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_KEEP);
+			}
+		}
 		else if (currentState==ONY_STATE_ATTACK && lastState !=ONY_STATE_ATTACK)
 		{
 			if (mWorld == DREAMS)
@@ -626,7 +645,12 @@ void GameObjectOny::postUpdate()
 		else if (currentState==ONY_STATE_JUMP
 			&& lastState!=ONY_STATE_JUMP)
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP01_START);	
+			Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
+			movement.y=0;
+			if (movement.isZeroLength())
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP01_START);	
+			else
+				mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP02_START);
 			mAudioComponent->playSound(ONY_SOUND_JUMP);
 		}
 		else if (currentState==ONY_STATE_WALK || currentState==ONY_STATE_RUN)
@@ -637,10 +661,13 @@ void GameObjectOny::postUpdate()
 				{
 					resetStepSounds();
 
-					if (currentState==ONY_STATE_WALK)
-						mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
-					else
-						mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+					if ( lastState!=ONY_STATE_JUMP && lastState!=ONY_STATE_FALL)
+					{
+						if (currentState==ONY_STATE_WALK)
+							mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
+						else
+							mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+					}
 				}
 				else //Walk/run toggle
 				{
@@ -648,7 +675,7 @@ void GameObjectOny::postUpdate()
 					bool toRun= currentState==ONY_STATE_RUN && lastState!=ONY_STATE_RUN;
 					bool fromJump = currentState!=ONY_STATE_JUMP && lastState==ONY_STATE_JUMP;
 
-					if (toWalk || toRun || fromJump)
+					if ((toWalk || toRun) && lastState!=ONY_STATE_JUMP && lastState!=ONY_STATE_FALL)
 					{
 						if (currentState==ONY_STATE_WALK)
 							mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
@@ -671,10 +698,13 @@ void GameObjectOny::postUpdate()
 			&& lastState==ONY_STATE_FALL)
 		{
 			double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
+			Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
+			movement.y=0;
 
+			if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END))
 			changeAnimation(fTime>2.0
 				?ONY_ANIM_FALL_END
-				:ONY_ANIM_JUMP01_END);
+				:movement.isZeroLength()?ONY_ANIM_JUMP01_END:ONY_ANIM_JUMP02_END);
 			if (mGameWorldManager->getWorld() == DREAMS)
 			{
 				startParticleSystem(ONY_PS_LAND_DREAMS);

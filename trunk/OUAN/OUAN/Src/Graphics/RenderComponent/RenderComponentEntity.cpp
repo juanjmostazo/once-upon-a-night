@@ -152,6 +152,9 @@ bool RenderComponentEntity::hasAnimation(const std::string& anim)
 
 void RenderComponentEntity::changeAnimation(const std::string& anim)
 {
+	if (mParent->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+		Logger::getInstance()->log("ONY CHANGED ANIM FROM "+getCurrentAnimationName()+" TO "+anim);
+	
 	TAnimationData oldAnimData= mAnimations[getCurrentAnimationName()];
 	TAnimationData newAnimData= mAnimations[anim];
 
