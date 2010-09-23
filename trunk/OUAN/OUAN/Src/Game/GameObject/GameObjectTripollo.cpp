@@ -516,10 +516,6 @@ void GameObjectTripollo::checkTripolloPlataformPuzzleActivations()
 	{
 		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_4_STATUE_DEFEATED);
 	}
-	else if(getName().compare("tripollo#satue5")==0)
-	{
-		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_5_STATUE_DEFEATED);
-	}
 	else
 	{
 		Logger::getInstance()->log("tripollo "+getName()+" defeated");

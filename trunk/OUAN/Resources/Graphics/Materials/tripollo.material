@@ -62,7 +62,8 @@ material tripollo_red_n : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_red_n.dds
+				//texture tripollo_red_n.dds
+				texture random.png
 			}
 		}
 	}
@@ -77,7 +78,8 @@ material tripollo_green_n : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_green_n.dds
+				//texture tripollo_green_n.dds
+				texture random.png
 			}
 		}
 	}
@@ -93,7 +95,8 @@ material tripollo_blue_n : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_blue_n.dds
+				//texture tripollo_blue_n.dds
+				texture random.png
 			}
 		}
 	}
