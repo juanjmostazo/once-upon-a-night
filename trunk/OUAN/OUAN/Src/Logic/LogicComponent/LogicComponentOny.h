@@ -81,6 +81,7 @@ namespace OUAN
 		void setIdleTime(double idleTime);
 
 		bool awaitingForNapEnd() const;
+		void initPostHitInvulnerability();
 
 	private:
 		double mIdleTime;

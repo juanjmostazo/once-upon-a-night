@@ -567,11 +567,24 @@ void GameObjectOny::postUpdate()
 					Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
 					movement.y=0;
 
-					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END))
+					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) )
 						
-					changeAnimation(fTime>2.0
-						?ONY_ANIM_FALL_END
-						:movement.isZeroLength()?ONY_ANIM_JUMP01_END:ONY_ANIM_JUMP02_END);
+						if (fTime>ONY_ANIM_FALL_END_TIME)
+						{
+							changeAnimation(ONY_ANIM_FALL_END);
+							if (!mGameWorldManager->isGodMode() && !isInvulnerable())
+							{
+								mLogicComponentOny->decreaseHP();
+								mLogicComponentOny->initPostHitInvulnerability();
+							}
+						}
+						else
+						{
+							changeAnimation(movement.isZeroLength()
+								?ONY_ANIM_JUMP01_END
+								:ONY_ANIM_JUMP02_END);
+						}					
+
 					if (mGameWorldManager->getWorld() == DREAMS)
 					{
 						startParticleSystem(ONY_PS_LAND_DREAMS);
@@ -610,11 +623,12 @@ void GameObjectOny::postUpdate()
 		}
 		else if (currentState==ONY_STATE_FALL)
 		{
-			if (lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END))
+			if (lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP)
+				)
 			{
 				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_START);
 			}
-			else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP) && mPhysicsComponentCharacterOny->getFallingTime()>0.5)
+			else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP) && mPhysicsComponentCharacterOny->getFallingTime()>ONY_ANIM_FALL_LOOP_TIME)
 			{
 				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_KEEP);
 			}
@@ -697,25 +711,47 @@ void GameObjectOny::postUpdate()
 		if (currentState!=ONY_STATE_FALL
 			&& lastState==ONY_STATE_FALL)
 		{
-			double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
-			Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
-			movement.y=0;
+  			if (mPhysicsComponentCharacterOny->isOnSurface())
+			{
+				double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
+				Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
+				movement.y=0;
+				std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
+				bool notJumpAnim=currentAnimName.compare(ONY_ANIM_JUMP01_END) && currentAnimName.compare(ONY_ANIM_JUMP02_END);
+				bool notFallAnim=currentAnimName.compare(ONY_ANIM_FALL_END) && currentAnimName.compare(ONY_ANIM_FALL_START);
 
-			if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END))
-			changeAnimation(fTime>2.0
-				?ONY_ANIM_FALL_END
-				:movement.isZeroLength()?ONY_ANIM_JUMP01_END:ONY_ANIM_JUMP02_END);
-			if (mGameWorldManager->getWorld() == DREAMS)
-			{
-				startParticleSystem(ONY_PS_LAND_DREAMS);
-				startParticleSystem(ONY_PS_LAND_WAVE);
+				if (notJumpAnim && notFallAnim)
+				{
+
+					if (fTime>ONY_ANIM_FALL_END_TIME)
+					{
+						changeAnimation(ONY_ANIM_FALL_END);
+						if (!mGameWorldManager->isGodMode() && !isInvulnerable())
+						{
+							mLogicComponentOny->decreaseHP();
+							mLogicComponentOny->initPostHitInvulnerability();
+						}
+					}
+					else
+					{
+						changeAnimation(movement.isZeroLength()
+							?ONY_ANIM_JUMP01_END
+							:ONY_ANIM_JUMP02_END);
+					}
+				}
+				if (mGameWorldManager->getWorld() == DREAMS)
+				{
+					startParticleSystem(ONY_PS_LAND_DREAMS);
+					startParticleSystem(ONY_PS_LAND_WAVE);
+				}
+				else if (mGameWorldManager->getWorld() == NIGHTMARES)
+				{
+					startParticleSystem(ONY_PS_LAND_NIGHTMARES);
+					startParticleSystem(ONY_PS_LAND_WAVE);
+				}
+				mAudioComponent->playSound(ONY_SOUND_JUMP_ONTO_HARD_SURFACE);
+
 			}
-			else if (mGameWorldManager->getWorld() == NIGHTMARES)
-			{
-				startParticleSystem(ONY_PS_LAND_NIGHTMARES);
-				startParticleSystem(ONY_PS_LAND_WAVE);
-			}
-			mAudioComponent->playSound(ONY_SOUND_JUMP_ONTO_HARD_SURFACE);
 		}
 		bool wasRunning = lastState==ONY_STATE_RUN;
 		bool hasStoppedRunning = currentState!= ONY_STATE_RUN;
