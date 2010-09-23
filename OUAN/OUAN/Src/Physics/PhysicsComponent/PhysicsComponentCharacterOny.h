@@ -17,6 +17,7 @@ namespace OUAN
 		void disactivateGravityNextFrame();
 
 		double getLastFallingTime() const;
+		double getFallingTime() const;
 
 	protected:
 		virtual bool isWorthUpdating();

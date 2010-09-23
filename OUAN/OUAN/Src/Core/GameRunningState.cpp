@@ -300,7 +300,8 @@ void GameRunningState::handleEvents()
 		}
 
 		if (useWeaponKeyPressed && newState!=ONY_STATE_ATTACK &&
-			ony->getLogicCurrentState()!=ONY_STATE_VICTORY)
+			ony->getLogicCurrentState()!=ONY_STATE_VICTORY && 
+			!ony->getLogicComponentOny()->awaitingForNapEnd()) 
 		{
 			newState=ONY_STATE_ATTACK;
 			//Logger::getInstance()->log("SETTING ATTACK FLAG");
@@ -337,7 +338,8 @@ void GameRunningState::handleEvents()
 			!mApp->getGameWorldManager()->isOnyDying() &&
 			ony->getLogicCurrentState()!=ONY_STATE_NAP &&
 			ony->getLogicCurrentState()!=ONY_STATE_NAP_END &&
-			ony->getLogicNewState()!=ONY_STATE_VICTORY)
+			ony->getLogicNewState()!=ONY_STATE_VICTORY &&
+			(ony->getLogicCurrentState()!=ONY_STATE_FALL || mApp->getGameWorldManager()->isGodMode()))
 		{
 			if(mApp->getCameraManager()->targetMovementAllowed())
 				{
