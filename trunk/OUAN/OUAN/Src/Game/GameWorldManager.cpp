@@ -1890,7 +1890,16 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene10_3");
 	}
+	else if(cutscene.compare(CUTSCENE_10_3_FINAL_BOSS_HIT_3)==0)
+	{
+		GameObjectClockPiecePtr clockpiece;
+		clockpiece=BOOST_PTR_CAST(GameObjectClockPiece,getObject("clockpiece#FINAL_BOSS"));
+		GameObjectBossPtr boss;
+		boss=BOOST_PTR_CAST(GameObjectBoss,getObject("boss#FINAL_BOSS"));
+		clockpiece->makeAppear(boss->getRenderComponentPositional()->getPosition());
+	}
 }
+
 
 void GameWorldManager::launchCutScene(const std::string& scriptFile,const std::string& scriptFunction)
 {

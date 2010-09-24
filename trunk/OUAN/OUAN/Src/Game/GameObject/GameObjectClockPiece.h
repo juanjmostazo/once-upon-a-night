@@ -84,6 +84,9 @@ namespace OUAN
 
 		void setVisible(bool visible);
 
+		/// make appear
+		void makeAppear(Ogre::Vector3 position);
+
 		/// Return positional component 
 		/// @return positional component
 		RenderComponentPositionalPtr getRenderComponentPositional() const;
