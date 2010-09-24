@@ -18,6 +18,19 @@ GameObjectClockPiece::~GameObjectClockPiece()
 
 }
 
+void GameObjectClockPiece::makeAppear(Ogre::Vector3 position)
+{
+	mRenderComponentEntity->setVisible(true);
+	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->create();		
+
+	mPhysicsComponentVolumeBox->getSceneNode()->setPosition(position);
+	mRenderComponentPositional->setPosition(position);
+
+	mRenderComponentGlow->setVisible(true);
+	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+}
+
 RenderComponentEntityPtr GameObjectClockPiece::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -238,7 +251,11 @@ void GameObjectClockPiece::changeToWorld(int newWorld, double perc)
 void GameObjectClockPiece::reset()
 {
 	GameObject::reset();
-	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mLogicComponentItem->setState(STATE_ITEM_TAKEN);
+	mRenderComponentEntity->setVisible(false);
+	mRenderComponentGlow->setVisible(false);
+	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->destroy();		
 }
 
 bool GameObjectClockPiece::hasPositionalComponent() const
@@ -259,7 +276,6 @@ PhysicsComponentPtr GameObjectClockPiece::getPhysicsComponent() const
 {
 	return getPhysicsComponentVolumeBox();
 }
-
 
 /// Set logic component
 void GameObjectClockPiece::setLogicComponentItem(LogicComponentItemPtr logicComponentItem)
@@ -305,8 +321,16 @@ void GameObjectClockPiece::update(double elapsedSeconds)
 		if (mLogicComponentItem->getState()==STATE_ITEM_TAKEN)
 		{
 			mRenderComponentEntity->setVisible(false);
+			mRenderComponentGlow->setVisible(false);
 			if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
 				mPhysicsComponentVolumeBox->destroy();		
+		}
+		else if (mLogicComponentItem->getState()==STATE_ITEM_NOT_TAKEN)
+		{
+			mRenderComponentEntity->setVisible(true);
+			mRenderComponentGlow->setVisible(true);
+			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+				mPhysicsComponentVolumeBox->create();		
 		}
 	}	
 }
@@ -321,22 +345,25 @@ RenderComponentEntityPtr GameObjectClockPiece::getEntityComponent() const
 
 void GameObjectClockPiece::setVisible(bool visible)
 {
-	switch(mWorld)
+	if (mLogicComponentItem->getState()!=STATE_ITEM_TAKEN)
 	{
-	case DREAMS:
-		if(mLogicComponentItem->existsInDreams())
+		switch(mWorld)
 		{
-			mRenderComponentEntity->setVisible(visible);
+		case DREAMS:
+			if(mLogicComponentItem->existsInDreams())
+			{
+				mRenderComponentEntity->setVisible(visible);
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponentItem->existsInNightmares())
+			{
+				mRenderComponentEntity->setVisible(visible);
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentItem->existsInNightmares())
-		{
-			mRenderComponentEntity->setVisible(visible);
-		}
-		break;
-	default:
-		break;
 	}
 }
 

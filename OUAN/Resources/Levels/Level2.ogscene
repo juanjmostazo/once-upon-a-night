@@ -34,16 +34,16 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-396.865 1626.68 -2914.92" orientation="-0.667879 0.0823262 0.734204 0.0900298"></OPTION>
+    <OPTION id="2" position="393.868 1351.79 -2878.72" orientation="0.133824 -0.0464581 0.934506 0.326545"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="false"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
-      <LAYER id="5" name="Layer 5" visible="true"></LAYER>
-      <LAYER id="6" name="Layer 6" visible="false"></LAYER>
+      <LAYER id="5" name="Layer 5" visible="false"></LAYER>
+      <LAYER id="6" name="Layer 6" visible="true"></LAYER>
       <LAYER id="7" name="Layer 7" visible="true"></LAYER>
       <LAYER id="8" name="Layer 8" visible="true"></LAYER>
       <LAYER id="9" name="Layer 9" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.66791 0.0823301 0.734238 0.0900341"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.133833 -0.0464612 0.934567 0.326567"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-396.865 1626.68 -2914.92"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="393.868 1351.79 -2878.72"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -4431,23 +4431,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="686147648" name="clockpiece_n#2" typename="Entity Object" parentnode="items">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="piece_clock.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="372.365 1290.86 -2805.25"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="8 8 8"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="169469280" name="diamond_d#d12Copy#4" typename="Entity Object" parentnode="Diamonds_Zone2_d">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -5272,23 +5255,6 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="181249424" name="clockpiece_d#2" typename="Entity Object" parentnode="items">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="piece_clock.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="512.281 1290.86 -2677.04"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="8 8 8"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6765,6 +6731,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="181249424" name="clockpiece_d#FINAL_BOSS" typename="Entity Object" parentnode="FinalBoss">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="piece_clock.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="512.281 1290.86 -2677.04"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="8 8 8"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -10090,6 +10073,8 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -10943,6 +10928,8 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+      <PROPERTY id="Camera Collisions::Type" type="2" value="0" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
+      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -11108,6 +11095,23 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="686147648" name="clockpiece_n#FINAL_BOSS" typename="Entity Object" parentnode="FinalBoss">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="piece_clock.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.932008 0 -0.362438 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="372.365 1290.86 -2805.25"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="8 8 8"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="yellow"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -21478,7 +21482,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="569.475 1359.03 -2868.88"></PROPERTY>
+    <PROPERTY id="position" type="9" value="569.475 1219.39 -2868.88"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#122" fields="X;Y;Z;W"></PROPERTY>
@@ -21710,7 +21714,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="399.785 1359.03 -2949.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="399.785 1235.55 -2949.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#122" fields="X;Y;Z;W"></PROPERTY>
@@ -21913,7 +21917,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="399.785 1359.03 -2949.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="399.785 1236.89 -2949.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#123" fields="X;Y;Z;W"></PROPERTY>
@@ -22272,7 +22276,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="569.475 1359.03 -2868.88"></PROPERTY>
+    <PROPERTY id="position" type="9" value="569.475 1232.58 -2868.88"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#128" fields="X;Y;Z;W"></PROPERTY>
@@ -22956,7 +22960,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="309.156 1359.03 -2752.46"></PROPERTY>
+    <PROPERTY id="position" type="9" value="309.156 1252.98 -2752.46"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#125" fields="X;Y;Z;W"></PROPERTY>
@@ -23234,7 +23238,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="504.503 1359.03 -2949.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="504.503 1227.58 -2949.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#127" fields="X;Y;Z;W"></PROPERTY>
@@ -23609,7 +23613,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="564.173 1359.03 -2754.41"></PROPERTY>
+    <PROPERTY id="position" type="9" value="564.173 1235.33 -2754.41"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#126" fields="X;Y;Z;W"></PROPERTY>
@@ -24541,7 +24545,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="423.134 1359.03 -2695.39"></PROPERTY>
+    <PROPERTY id="position" type="9" value="423.134 1237.27 -2695.39"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#126" fields="X;Y;Z;W"></PROPERTY>
@@ -24831,7 +24835,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="303.259 1359.03 -2889.46"></PROPERTY>
+    <PROPERTY id="position" type="9" value="303.259 1256.71 -2889.46"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#121" fields="X;Y;Z;W"></PROPERTY>
@@ -25831,7 +25835,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="564.173 1359.03 -2754.41"></PROPERTY>
+    <PROPERTY id="position" type="9" value="564.173 1220.69 -2754.41"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#127" fields="X;Y;Z;W"></PROPERTY>
@@ -26161,7 +26165,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="504.503 1359.03 -2949.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="504.503 1228.65 -2949.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#121" fields="X;Y;Z;W"></PROPERTY>
@@ -26377,7 +26381,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="309.156 1359.03 -2752.46"></PROPERTY>
+    <PROPERTY id="position" type="9" value="309.156 1262.87 -2752.46"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#123" fields="X;Y;Z;W"></PROPERTY>
@@ -27423,7 +27427,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="303.259 1359.03 -2889.46"></PROPERTY>
+    <PROPERTY id="position" type="9" value="303.259 1241.37 -2889.46"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#124" fields="X;Y;Z;W"></PROPERTY>
@@ -27771,7 +27775,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="423.134 1359.03 -2695.39"></PROPERTY>
+    <PROPERTY id="position" type="9" value="423.134 1238.76 -2695.39"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#124" fields="X;Y;Z;W"></PROPERTY>
@@ -28628,7 +28632,7 @@
     <PROPERTY id="layer" type="2" value="6"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="506.887 1359.03 -2697.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="506.887 1242.17 -2697.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_n#128" fields="X;Y;Z;W"></PROPERTY>
@@ -29274,7 +29278,7 @@
     <PROPERTY id="layer" type="2" value="5"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="506.887 1359.03 -2697.95"></PROPERTY>
+    <PROPERTY id="position" type="9" value="506.887 1239.69 -2697.95"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="walkability::node#1" type="7" value="WalkabilityNode_d#125" fields="X;Y;Z;W"></PROPERTY>
