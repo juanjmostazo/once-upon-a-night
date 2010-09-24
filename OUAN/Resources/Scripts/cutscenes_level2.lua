@@ -325,8 +325,8 @@ function cutScene9(timer)
 	log (CUTSCENE_9_FINAL_BOSS_START);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
-	trajectoryCamWait();
+	-- setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
+	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
