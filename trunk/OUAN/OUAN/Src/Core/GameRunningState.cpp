@@ -240,11 +240,11 @@ void GameRunningState::handleEvents()
 	{		
 		mApp->getCameraManager()->setCameraFixedFirstPerson(true);
 	}
-	else if (mApp->isPressedRotateLeft(&pad,&key))
+	else if (mApp->isPressedRotateLeft(&pad,&key) || mApp->isMouseWheelDown())
 	{
 		mHUD->spinRoulette(true);
 	}
-	else if (mApp->isPressedRotateRight(&pad,&key))
+	else if (mApp->isPressedRotateRight(&pad,&key) || mApp->isMouseWheelUp())
 	{
 		mHUD->spinRoulette(false);
 	}

@@ -420,4 +420,21 @@ double FullInputManager::getJoystickNormalisedAxe(int axeState, int maxAxis, int
         return value;
 }
 
+bool FullInputManager::isMouseWheelUp()
+{
+	if (getMouse())
+	{
+		return getMouse()->getMouseState().Z.rel >0;
+	}
+	return false;
+}
+
+bool FullInputManager::isMouseWheelDown()
+{
+	if (getMouse())
+	{
+		return getMouse()->getMouseState().Z.rel <0;
+	}
+	return false;
+}
 

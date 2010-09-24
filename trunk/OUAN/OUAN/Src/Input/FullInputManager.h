@@ -165,6 +165,9 @@ namespace OUAN
 		virtual void init(Ogre::RenderWindow* window, const std::string& language, bool showDefaultMousePointer = true );
 		virtual void finalise();
 
+		virtual bool isMouseWheelUp();
+		virtual bool isMouseWheelDown();
+
 	protected:
 
 		double getJoystickNormalisedAxe(int axeState, int maxAxis, int border);

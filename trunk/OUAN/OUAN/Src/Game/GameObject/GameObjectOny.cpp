@@ -14,6 +14,35 @@
 
 using namespace OUAN;
 
+/*
+	RefX and RefY are used to define the steep of the
+	line. Assuming our function has the form
+	y = mX + n, 
+	m will be computed the following way:
+
+	refY= m(refX)+n. With n taking the 'offset' value,
+	m= (refY-n)/(refX)
+*/
+int computeLinearHPLoss(double t, double refX, double refY, double offset=0)
+{
+	double steep = (refY-offset)/refX;
+	return static_cast<int>(floor(steep*t+offset));
+}
+/*
+	RefX and RefY are used to define the quadratic constant. 
+	Now our function will have the form
+	y = k1X^2 + n, (forget about the linear component as well)
+	
+	Let's replace y and x with the reference values:
+	refY= k1*(refX)*(refX)+n. With n taking the 'offset' value,
+	k1= (refY-n)/(refX*refX)
+*/
+int computeQuadraticHPLoss(double t, double refX, double refY, double offset=0)
+{
+	double k1 = (refY-offset)/(refX*refX);
+	return static_cast<int>(floor(k1*t*t+offset));
+}
+
 GameObjectOny::GameObjectOny(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_ONY)
 ,mUsingTrajectory(false)
@@ -572,18 +601,19 @@ void GameObjectOny::postUpdate()
 						if (fTime>ONY_ANIM_FALL_END_TIME)
 						{
 							changeAnimation(ONY_ANIM_FALL_END);
-							if (!mGameWorldManager->isGodMode() && !isInvulnerable())
-							{
-								mLogicComponentOny->decreaseHP();
-								mLogicComponentOny->initPostHitInvulnerability();
-							}
-						}
+						}						
 						else
 						{
 							changeAnimation(movement.isZeroLength()
 								?ONY_ANIM_JUMP01_END
 								:ONY_ANIM_JUMP02_END);
 						}					
+						int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
+						if (hpLoss>0 && !mGameWorldManager->isGodMode() && !isInvulnerable())
+						{
+							mLogicComponentOny->decreaseHP(hpLoss);
+							mLogicComponentOny->initPostHitInvulnerability();
+						}
 
 					if (mGameWorldManager->getWorld() == DREAMS)
 					{
@@ -726,17 +756,18 @@ void GameObjectOny::postUpdate()
 					if (fTime>ONY_ANIM_FALL_END_TIME)
 					{
 						changeAnimation(ONY_ANIM_FALL_END);
-						if (!mGameWorldManager->isGodMode() && !isInvulnerable())
-						{
-							mLogicComponentOny->decreaseHP();
-							mLogicComponentOny->initPostHitInvulnerability();
-						}
 					}
 					else
 					{
 						changeAnimation(movement.isZeroLength()
 							?ONY_ANIM_JUMP01_END
 							:ONY_ANIM_JUMP02_END);
+					}
+					int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
+					if (hpLoss>0 && !mGameWorldManager->isGodMode() && !isInvulnerable())
+					{
+						mLogicComponentOny->decreaseHP(hpLoss);
+						mLogicComponentOny->initPostHitInvulnerability();
 					}
 				}
 				if (mGameWorldManager->getWorld() == DREAMS)

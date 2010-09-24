@@ -298,7 +298,7 @@ void LogicComponentOny::update(double elapsedTime)
 	int oldState=mState;
 	int finalState=mNewState;
 
-	if (mIdleTime>=0) 
+	if (mIdleTime>0) 
 		mIdleTime-=elapsedTime;
 
 	if (finalState!=ONY_STATE_VICTORY)
@@ -319,7 +319,7 @@ void LogicComponentOny::update(double elapsedTime)
 			{
 				finalState=ONY_STATE_IDLE1;
 			} 
-			else if (mIdleTime<0)
+			else if (mIdleTime<=0)
 			{
 				finalState=ONY_STATE_NAP;	
 			}

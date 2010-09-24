@@ -30,11 +30,13 @@ namespace OUAN
 		GUI_KEYUP,
 	} TGUIKeyboardEvent;
 
-	/// Mouse event types ([TODO - Incomplete: Mouse wheel events should be added as well]
+	/// Mouse event types
 	typedef enum{
 		GUI_MOUSEDOWN,
 		GUI_MOUSEUP,
 		GUI_MOUSEMOVE,
+		GUI_MOUSEWHEEL_UP,
+		GUI_MOUSEWHEEL_DOWN
 	} TGUIMouseEvent;
 	const std::string GUI_LAYOUT_OPTIONS="OUAN_OptionsMenu.layout";
 	const std::string GUI_LAYOUT_MAINMENU="OUAN_MainMenu.layout";
