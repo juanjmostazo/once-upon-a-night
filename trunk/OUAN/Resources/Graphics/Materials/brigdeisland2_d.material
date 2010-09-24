@@ -1,5 +1,5 @@
 
-material Material90
+material brigdeisland2_d
 {
 	technique
 	{
@@ -11,7 +11,7 @@ material Material90
 
 			texture_unit
 			{
-				texture brigde_d.dds
+				texture brigdeisland2n2.dds
 			}
 		}
 
