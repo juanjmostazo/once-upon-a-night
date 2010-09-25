@@ -29,11 +29,6 @@ MainMenuState::~MainMenuState()
 
 }
 
-GameStateType MainMenuState::getGameStateType()
-{
-	return GAME_STATE_MAIN_MENU;
-}
-
 /// init main menu's resources
 void MainMenuState::init(ApplicationPtr app)
 {
@@ -123,7 +118,7 @@ void MainMenuState::handleEvents()
 	if (mApp->isPressedJump(&pad,&key))
 	{
 		mApp->cycleLanguage();
-		mGUI->setStrings(mApp->getCurrentLanguage());
+		mGUI->setStrings();
 	}
 }
 

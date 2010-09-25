@@ -61,10 +61,6 @@ LevelLoadingState::~LevelLoadingState()
 
 }
 
-GameStateType LevelLoadingState::getGameStateType()
-{
-	return GAME_STATE_LEVEL_LOADING;
-}
 
 /// init main menu's resources
 void LevelLoadingState::init(ApplicationPtr app)

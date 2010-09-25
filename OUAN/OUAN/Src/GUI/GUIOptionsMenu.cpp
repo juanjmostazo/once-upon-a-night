@@ -22,7 +22,7 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	mNewAudioConfig=mCurrentAudioConfig;
 	initSoundTab();
 	initGraphicsTab();
-	setStrings(parentGameState->getApp()->getCurrentLanguage());
+	setStrings();
 
 }
 void GUIOptionsMenu::initTabs()
@@ -505,7 +505,7 @@ bool GUIOptionsMenu::onSfxCheckBoxStateChanged(const CEGUI::EventArgs& args)
 	}
 	return true;
 }
-void GUIOptionsMenu::setStrings(const std::string& language)
+void GUIOptionsMenu::setStrings()
 {
 	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
 	if (texts.get())

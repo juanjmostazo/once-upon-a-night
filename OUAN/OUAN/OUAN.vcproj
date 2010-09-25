@@ -411,7 +411,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Core\ProfileSelectState.cpp"
+					RelativePath=".\Src\Core\StorybookState.cpp"
 					>
 				</File>
 			</Filter>
@@ -436,6 +436,10 @@
 				</File>
 				<File
 					RelativePath=".\Src\GUI\GUIOptionsMenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIStoryBook.cpp"
 					>
 				</File>
 				<File
@@ -1277,7 +1281,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\Src\Core\ProfileSelectState.h"
+					RelativePath=".\Src\Core\StorybookState.h"
 					>
 				</File>
 			</Filter>
@@ -1841,6 +1845,10 @@
 							Name="VCCustomBuildTool"
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\Src\GUI\GUIStorybook.h"
+					>
 				</File>
 				<File
 					RelativePath=".\Src\GUI\GUISubsystem.h"

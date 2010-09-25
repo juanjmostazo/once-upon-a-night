@@ -47,9 +47,7 @@ namespace OUAN
 		/// @param app	the parent app
 		void update(long elapsedTime);
 		bool keyPressed( const OIS::KeyEvent& e );
-		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
-
-		GameStateType getGameStateType();
+		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);	
 
 		/// Default constructor
 		IntroState();

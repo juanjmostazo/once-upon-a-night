@@ -60,7 +60,10 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	}
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_STORYBOOK)==0)
 	{
-		//TODO
+		GameWorldManagerPtr worldMgr = mParent->getGameWorldManager();
+		worldMgr->setPickedStoryParts(worldMgr->getPickedStoryParts()+1);
+		StorybookPartPickedEventPtr evt = StorybookPartPickedEventPtr(new StorybookPartPickedEvent(worldMgr->getPickedStoryParts(),worldMgr->getTotalStoryParts()));
+		worldMgr->addEvent(evt);
 	}
 	else if((pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 ||
 		pGameObject->getType().compare(GAME_OBJECT_TYPE_BOSS)==0) 

@@ -1,16 +1,16 @@
-#ifndef INGAMEMENUSTATEH_H
-#define INGAMEMENUSTATEH_H
+#ifndef STORYBOOKSTATEH_H
+#define STORYBOOKSTATEH_H
 
 #include "../OUAN.h"
 #include "GameState.h"
 namespace OUAN
-{
+{	
 	///State corresponding to the game's extras menu
-	class InGameMenuState: public GameState, public boost::enable_shared_from_this<InGameMenuState>
-	{
+	class StorybookState: public GameState, public boost::enable_shared_from_this<StorybookState>{
 	private:
-		GUIInGamePtr mGUI;
-		int mClickChannel;
+		GUIStoryBookPtr mGUI;
+
+		int mWhisperChannel,mClickChannel;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
@@ -21,7 +21,7 @@ namespace OUAN
 		/// pause state
 		void pause();
 		/// resume state
-		void resume();
+		void resume();	
 
 		/// process input events
 		/// @param app	the parent application
@@ -31,14 +31,10 @@ namespace OUAN
 		void update(long elapsedTime);
 
 		/// Default constructor
-		InGameMenuState();
+		StorybookState();
 		/// Destructor
-		~InGameMenuState();
+		~StorybookState();
 
-		void backToGame();
-		void goToOptions();
-		void backToMenu();
-		void quit();
 	};
 }
 #endif

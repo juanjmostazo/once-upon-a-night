@@ -24,7 +24,7 @@ namespace OUAN{
 
 		void initGUI(GameStatePtr parentGameState);
 
-		void setStrings(const std::string& language);
+		void setStrings();
 
 	};
 }

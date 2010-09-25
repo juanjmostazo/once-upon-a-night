@@ -9,6 +9,7 @@
 #include "GamePausedState.h"
 #include "InGameMenuState.h"
 #include "CutsceneState.h"
+#include "StorybookState.h"
 
 #include "../Application.h"
 #include "../Graphics/RenderSubsystem.h"
@@ -27,6 +28,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectViewport.h"
+#include "../Event/EventManager.h"
 #include "../Audio/AudioSubsystem.h"
 #include "../Utils/Utils.h"
 
@@ -53,22 +55,22 @@ GameRunningState::~GameRunningState()
 
 }
 
-GameStateType GameRunningState::getGameStateType()
-{
-	return GAME_STATE_RUNNING;
-}
-
 /// init game running state's resources
 void GameRunningState::init(ApplicationPtr app)
 {
 	Logger::getInstance()->log("GAME RUNNING INIT");
+	
 	GameState::init(app);
+	
+	GameWorldManagerPtr worldMgr = mApp->getGameWorldManager();
+	int currentWorld=worldMgr->getWorld();
+	GameObjectOnyPtr ony = worldMgr->getGameObjectOny();
 	firstRender=true;
 
-	mApp->getGameWorldManager()->initGame();
+	worldMgr->initGame();
 
 	//...and initialise the active weapon according to the current world
-	mApp->getGameWorldManager()->getGameObjectOny()->setInitialWeaponComponent(mApp->getGameWorldManager()->getWorld());
+	ony->setInitialWeaponComponent(currentWorld);
 	
 	//create GUI
 	mGUI = BOOST_PTR_CAST(GUIConsole,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_CONSOLE));
@@ -77,32 +79,40 @@ void GameRunningState::init(ApplicationPtr app)
 
 	//create HUD
 	mHUD.reset(new HUDInGame());
-	LogicComponentOnyPtr onyLogic = mApp->getGameWorldManager()->getGameObjectOny()->getLogicComponentOny();
-	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),mApp->getGameWorldManager()->getWorld(), onyLogic->getDiamonds());
-	mApp->getGameWorldManager()->getGameObjectOny()->setAttack(convertRouletteValue(mHUD->getCurrentState()));
+	LogicComponentOnyPtr onyLogic = ony->getLogicComponentOny();
+	mHUD->init(onyLogic->getHealthPoints(),onyLogic->getNumLives(),currentWorld, onyLogic->getDiamonds());
+	ony->setAttack(convertRouletteValue(mHUD->getCurrentState()));
 
-	mHUD->registerEventHandlers(mApp->getGameWorldManager()->getEventManager());
+	EventManagerPtr evtMgr = worldMgr->getEventManager();
+	if (evtMgr.get())
+	{
+		mHUD->registerEventHandlers(evtMgr);
+	}
+	
 
 	//Load music
 	mMusicChannels.clear();
 	loadMusic();
-	mApp->getAudioSubsystem()->playMusic(mMusicChannels[mApp->getGameWorldManager()->getWorld()].id,
-		mMusicChannels[mApp->getGameWorldManager()->getWorld()].channelId,
+	mApp->getAudioSubsystem()->playMusic(mMusicChannels[currentWorld].id,
+		mMusicChannels[currentWorld].channelId,
 		true);
 	mApp->mAudioFrameCnt=0;
 	
 	//Register events
-	if (mApp->getGameWorldManager()->getEventManager().get())
+	if (evtMgr.get())
 	{
 		EventHandlerPtr eh;
 		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
-		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
+		evtMgr->registerHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
-		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_ONY_DEATH);
+		evtMgr->registerHandler(eh,EVENT_TYPE_ONY_DEATH);
 		eh=EventHandlerPtr(new EventHandler<GameRunningState,GameOverEvent>(this_,&GameRunningState::processGameOver));
-		mApp->getGameWorldManager()->getEventManager()->registerHandler(eh,EVENT_TYPE_GAMEOVER);
+		evtMgr->registerHandler(eh,EVENT_TYPE_GAMEOVER);
+
+		eh=EventHandlerPtr(new EventHandler<GameRunningState,StorybookPartPickedEvent>(this_,&GameRunningState::processStoryPartPicked));
+		evtMgr->registerHandler(eh,EVENT_TYPE_STORYBOOK_PART_PICKED);
 	}
 
 	//Set up initial world change
@@ -110,7 +120,7 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mApp->getRenderSubsystem()->getChangeWorldRenderer()->createDebugMiniScreens();
 
-	if(mApp->getGameWorldManager()->getLevelName().compare(LEVEL_2)==0)
+	if(worldMgr->getLevelName().compare(LEVEL_2)==0)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene1");
 	}
@@ -147,17 +157,21 @@ void GameRunningState::cleanUp()
 	mApp->getGUISubsystem()->cleanUp();	
 	mApp->getGUISubsystem()->init(mApp);
 
-	if (mApp->getGameWorldManager()->getEventManager().get())
+	EventManagerPtr evtMgr;
+	if ((evtMgr=mApp->getGameWorldManager()->getEventManager()).get())
 	{
 		EventHandlerPtr eh;
 		boost::shared_ptr<GameRunningState> this_ = shared_from_this();
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,ChangeWorldEvent>(this_,&GameRunningState::processChangeWorld));
-		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_CHANGEWORLD);
 
 		eh = EventHandlerPtr(new EventHandler<GameRunningState,OnyDiesEvent>(this_,&GameRunningState::processOnyDies));
-		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_ONY_DEATH);
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_ONY_DEATH);
 		eh=EventHandlerPtr(new EventHandler<GameRunningState,GameOverEvent>(this_,&GameRunningState::processGameOver));
-		mApp->getGameWorldManager()->getEventManager()->unregisterHandler(eh,EVENT_TYPE_GAMEOVER);
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_GAMEOVER);
+
+		eh=EventHandlerPtr(new EventHandler<GameRunningState,StorybookPartPickedEvent>(this_,&GameRunningState::processStoryPartPicked));
+		evtMgr->unregisterHandler(eh,EVENT_TYPE_STORYBOOK_PART_PICKED);
 	}
 	
 	//Destroy HUD
@@ -1050,4 +1064,10 @@ bool GameRunningState::mayProceedToGameOver()
 	return isGameOver && 
 		(mApp->getGameWorldManager()->victoryAnimationEnded() && !mApp->getAudioSubsystem()->isMusicPlaying(channel)
 		|| toGameOverElapsed>=toGameOverTime);
+}
+
+void GameRunningState::processStoryPartPicked(StorybookPartPickedEventPtr evt)
+{
+	GameStatePtr nextState(new StorybookState());
+	mApp->getGameStateManager()->pushState(nextState,mApp);
 }

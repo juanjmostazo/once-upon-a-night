@@ -239,5 +239,13 @@ namespace OUAN
 		std::string level_event_name;
 	};
 
+	class StorybookPartPickedEvent: public Event
+	{
+	public:
+		StorybookPartPickedEvent(int currentParts, int totalParts);
+		int currentPickedParts;
+		int totalPickedParts;
+	};
+
 }
 #endif

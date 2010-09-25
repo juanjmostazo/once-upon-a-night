@@ -45,9 +45,7 @@ namespace OUAN
 		void init(ApplicationPtr app);
 
 		/// Clean up extras screen's resources
-		void cleanUp();
-
-		GameStateType getGameStateType();
+		void cleanUp();		
 
 		/// pause state
 		void pause();

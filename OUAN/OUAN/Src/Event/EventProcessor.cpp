@@ -20,8 +20,7 @@
 #include "../Game/GameObject/GameObjectPillow.h"
 #include "../Game/GameObject/GameObjectFlashlight.h"
 #include "../Game/GameObject/GameObjectInvisibleWall.h"
-#include "../Core/LevelLoadingState.h"
-#include "../Core/GameStateManager.h"
+
 #include "../Utils/Utils.h"
 
 using namespace OUAN;
@@ -217,7 +216,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			std::vector<double> distances;
 			mWorldManager->activateChangeWorld();
 
-			bool isGameRunningState=Application::getInstance()->getGameStateManager()->getCurrentGameStateType()==GAME_STATE_RUNNING;
+			bool isGameRunningState = Application::getInstance()->isCurrentGameStateGameRunning();
 			if(isGameRunningState)
 			{
 				CameraParametersPtr pCameraParameters;

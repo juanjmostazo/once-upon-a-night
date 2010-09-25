@@ -32,11 +32,6 @@ CutsceneState::~CutsceneState()
 
 }
 
-GameStateType CutsceneState::getGameStateType()
-{
-	return GAME_STATE_CUTSCENE;
-}
-
 void CutsceneState::init(ApplicationPtr app)
 {
 	GameState::init(app);

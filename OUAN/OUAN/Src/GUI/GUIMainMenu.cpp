@@ -24,7 +24,7 @@ void GUIMainMenu::initGUI(GameStatePtr parentGameState)
 		CEGUI::Event::Subscriber(&GUIMainMenu::onExtras,this));
 
 	ConfigurationPtr config = ConfigurationPtr(new Configuration());
-	setStrings(parentGameState->getApp()->getCurrentLanguage());
+	setStrings();
 }
 bool GUIMainMenu::onPlay(const CEGUI::EventArgs& args)
 {
@@ -46,7 +46,7 @@ bool GUIMainMenu::onQuit(const CEGUI::EventArgs& args)
 	(static_cast<MainMenuState*>(mParentGameState.get()))->quit();
 	return true;
 }
-void GUIMainMenu::setStrings(const std::string& language)
+void GUIMainMenu::setStrings()
 {
 	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
 	if (texts.get())

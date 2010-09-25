@@ -26,8 +26,6 @@ namespace OUAN
 		/// @param app	the parent app
 		void update(long elapsedTime);
 
-		GameStateType getGameStateType();
-
 		/// Default constructor
 		ProfileSelectState();
 		/// Destructor

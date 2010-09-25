@@ -26,11 +26,6 @@ IntroState::~IntroState()
 
 }
 
-GameStateType IntroState::getGameStateType()
-{
-	return GAME_STATE_INTRO;
-}
-
 /// init main menu's resources
 void IntroState::init(ApplicationPtr app)
 {

@@ -31,11 +31,6 @@ void GameState::pause()
 
 }
 
-GameStateType GameState::getGameStateType()
-{
-	return GAME_STATE_NONE;
-}
-
 void GameState::handleEvents()
 {
 

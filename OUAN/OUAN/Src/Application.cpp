@@ -414,14 +414,20 @@ void Application::changeCurrentLanguage(const std::string& newLanguage)
 		std::stringstream menusStringsPath("");
 		std::string lang= mLanguage;
 		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
-		menusStringsPath<<MENUSSTRINGS_PATH<<lang<<"/"<<MENUSSTRINGS;
+		menusStringsPath<<TEXTS_PATH<<lang<<"/"<<MENUSSTRINGS;
 		mMenusTextStrings->loadFromFile(menusStringsPath.str());
 
 		mIngameTextStrings.reset(new Configuration());
 		std::stringstream ingameStringsPath("");
 		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
-		ingameStringsPath<<INGAME_STRINGS_PATH<<lang<<"/"<<INGAME_STRINGS;
+		ingameStringsPath<<TEXTS_PATH<<lang<<"/"<<INGAME_STRINGS;
 		mIngameTextStrings->loadFromFile(ingameStringsPath.str(),0);
+
+		mStoryStrings.reset(new Configuration());
+		std::stringstream storyStringsPath("");
+		std::transform(lang.begin(),lang.end(),lang.begin(),tolower);
+		storyStringsPath<<TEXTS_PATH<<lang<<"/"<<STORY_STRINGS;
+		mStoryStrings->loadFromFile(storyStringsPath.str(),0);
 	}
 }
 
@@ -497,4 +503,20 @@ void Application::rescaleViewport(double left, double top, double width, double 
 	{
 		mGameWorldManager->rescaleViewport(left,top,width,height);
 	}
+}
+
+bool Application::isCurrentGameStateGameRunning() const
+{
+	return BOOST_PTR_CAST(GameRunningState, getGameStateManager()->getCurrentState()) != NULL;
+}
+
+void Application::launchCutscene(const std::string& fileName, const std::string& function)
+{
+	if (isCurrentGameStateGameRunning())
+	BOOST_PTR_CAST(GameRunningState,getGameStateManager()->getCurrentState())->launchCutScene(fileName,function);
+}
+
+ConfigurationPtr Application::getStoryTextStrings() const
+{
+	return mStoryStrings;
 }

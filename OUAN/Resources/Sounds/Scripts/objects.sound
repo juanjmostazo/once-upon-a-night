@@ -299,6 +299,17 @@ sound book
 	volume 1
 }
 
+sound book_loop
+{
+	sound_file 	Objects/Susurros_libro.mp3
+	sound_type 	sfx
+	3D			false
+	hardware	true
+	stream		false
+	loop		true
+	volume 1
+}
+
 sound bomb_2
 {
 	sound_file 	Objects/Anothers/Bomba.mp3
