@@ -21,7 +21,7 @@ system PU/tripollo_shock
         {
             colour_aff_time_colour              0    1 1 1 1
             colour_aff_time_colour              0.8  1 1 1 1
-            colour_aff_time_colour              1    0 0 0 0
+            colour_aff_time_colour              1    1 1 1 0.5
             colour_operation                    multiply
         }
     }
