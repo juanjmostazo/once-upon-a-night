@@ -4,8 +4,8 @@
 	<Option key="GRAVITY_X">0</Option>
     <Option key="GRAVITY_Y">-80</Option>
     <Option key="GRAVITY_Z">0</Option>
-	<Option key="IMPULSE_HEIGHT">36</Option>
-	<Option key="IMPULSE_TIME">0.5</Option>
+	<Option key="IMPULSE_HEIGHT">42</Option>
+	<Option key="IMPULSE_TIME">0.6</Option>
 	<Option key="FALLING_TIME_LIMIT">1</Option>
 	<Option key="WALK_SPEED_FACTOR">0.5</Option>
 	<Option key="MIN_ALLOWED_Y">-150</Option>
