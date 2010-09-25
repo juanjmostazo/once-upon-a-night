@@ -1,22 +1,26 @@
 system PU/bomb_explosion
 {
-    scale_velocity                              0.06
-    scale                                       0.06 0.06 0.06
+    scale_velocity                              0.08
+    scale                                       0.08 0.08 0.08
     technique Fire
     {
         position                                0 80 0
-        visual_particle_quota                   300
+        visual_particle_quota                   100
         material                                PU/bomb_explosion_1
         renderer                                Billboard
         {
         }
         emitter                                 Point FireEmitter
         {
-            emission_rate                       60
+            emission_rate                       dyn_random
+            {
+                min                             20
+                max                             30
+            }
             angle                               360
-            time_to_live                        1
-            velocity                            60
-            duration                            0.3
+            time_to_live                        1.5
+            velocity                            50
+            duration                            0.4
             all_particle_dimensions             dyn_random
             {
                 min                             20
@@ -47,11 +51,11 @@ system PU/bomb_explosion
         {
             colour_aff_time_colour              0    1 1 1 1
             colour_aff_time_colour              0.05 0.3 0.3 0.3 1
-            colour_aff_time_colour              1    0 0 0 1
+            colour_aff_time_colour              1    0 0 0 0.5
             colour_operation                    multiply
         }
     }
-    technique 
+    technique SmallPieces
     {
         position                                0 80 0
         visual_particle_quota                   100
@@ -115,7 +119,7 @@ system PU/bomb_explosion
             on_time                             greater_than 0.1
         }
     }
-    technique 
+    technique FirstFire
     {
         position                                0 80 0
         visual_particle_quota                   300
