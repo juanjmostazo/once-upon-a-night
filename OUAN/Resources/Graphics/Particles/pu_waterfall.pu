@@ -1,177 +1,91 @@
-system PU/bomb_explosion
+system PU/waterfall
 {
-    scale_velocity                              0.06
-    scale                                       0.06 0.06 0.06
-    technique                                   SmallRedFire
+    scale_velocity                              0.25
+    scale                                       0.25 0.25 0.25
+    technique 
     {
-        position                                0 80 0
         visual_particle_quota                   100
-        material                                PU/bomb_explosion_2
+        material                                PU/waterfall_1
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
         renderer                                Billboard
         {
-            billboard_type                      oriented_self
         }
-        emitter                                 Point Debris
+        emitter                                 Box 
         {
-            emission_rate                       100
-            angle                               360
-            time_to_live                        2
+            emission_rate                       6
+            angle                               30
+            time_to_live                        dyn_random
+            {
+                min                             2
+                max                             2.5
+            }
             velocity                            dyn_random
-            {
-                min                             600
-                max                             1200
-            }
-            particle_width                      dyn_random
-            {
-                min                             3
-                max                             10
-            }
-            particle_height                     dyn_random
             {
                 min                             50
                 max                             100
             }
-            enabled                             false
-            force_emission                      true
-        }
-        affector                                Scale 
-        {
-            y_scale                             dyn_curved_linear
+            all_particle_dimensions             dyn_random
             {
-                control_point                   0 -200
-                control_point                   0.3 -20
-                control_point                   1 0
+                min                             120
+                max                             200
             }
-        }
-        affector                                Jet 
-        {
-            jet_aff_accel                       -2
+            colour                              0.5 0.7 0.9 1
+            box_em_width                        90
+            box_em_height                       30
+            box_em_depth                        90
         }
         affector                                LinearForce 
         {
-            force_aff_vector                    0 -100 0
-        }
-        affector                                Colour 
-        {
-            colour_aff_time_colour              0    0.8 1 1 1
-            colour_aff_time_colour              1    0 0 0 1
-        }
-        observer                                OnTime 
-        {
-            handler                             DoEnableComponent 
-            {
-                enable_component                emitter_component Debris true
-            }
-            since_start_system                  true
-            on_time                             greater_than 0.1
-        }
-    }
-    technique Fire
-    {
-        position                                0 80 0
-        visual_particle_quota                   300
-        material                                PU/bomb_explosion_1
-        renderer                                Billboard
-        {
-        }
-        emitter                                 Point FireEmitter
-        {
-            emission_rate                       60
-            angle                               360
-            time_to_live                        1
-            velocity                            60
-            duration                            0.3
-            all_particle_dimensions             dyn_random
-            {
-                min                             20
-                max                             80
-            }
-            colour                              1 0.5 0.3 1
-        }
-        affector                                Scale 
-        {
-            xyz_scale                           dyn_curved_linear
-            {
-                control_point                   0 2000
-                control_point                   0.3 20
-                control_point                   1 0
-            }
-        }
-        affector                                TextureRotator 
-        {
-            tex_rot_use_own_rotation            true
-            tex_rot_rotation                    dyn_random
-            {
-                min                             -90
-                max                             90
-            }
-            tex_rot_speed                       0
+            force_aff_vector                    0 -80 0
         }
         affector                                Colour 
         {
             colour_aff_time_colour              0    1 1 1 1
-            colour_aff_time_colour              0.05 0.3 0.3 0.3 1
-            colour_aff_time_colour              1    0 0 0 1
+            colour_aff_time_colour              0.2  1 1 1 1
+            colour_aff_time_colour              0.4  1 1 1 1
+            colour_aff_time_colour              1    1 1 1 0
             colour_operation                    multiply
         }
     }
     technique 
     {
-        position                                0 80 0
-        visual_particle_quota                   300
-        material                                PU/bomb_explosion_3
+        material                                PU/waterfall_2
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
         renderer                                Billboard
         {
-            render_queue_group                  51
-            texture_coords_rows                 4
-            texture_coords_columns              4
-            billboard_rotation_type             vertex
         }
-        emitter                                 Slave 
+        emitter                                 Box 
         {
-            time_to_live                        1.2
-            all_particle_dimensions             dyn_random
+            emission_rate                       12
+            time_to_live                        dyn_random
             {
-                min                             40
-                max                             100
+                min                             0.8
+                max                             1
             }
-            direction                           0 0 0
-            master_technique_name               Fire
-            master_emitter_name                 FireEmitter
-        }
-        affector                                TextureRotator 
-        {
-            tex_rot_use_own_rotation            true
-            tex_rot_rotation                    dyn_random
+            velocity                            dyn_random
             {
-                min                             -90
-                max                             90
+                min                             180
+                max                             240
             }
-            tex_rot_speed                       0
+            box_em_width                        180
+            box_em_height                       60
+            box_em_depth                        180
         }
-        affector                                TextureAnimator 
+        affector                                LinearForce 
         {
-            texture_coords_end                  15
-        }
-        affector                                Scale 
-        {
-            xyz_scale                           dyn_curved_linear
-            {
-                control_point                   0 2000
-                control_point                   0.2 20
-                control_point                   1 0
-            }
+            force_aff_vector                    0 -400 0
         }
         affector                                Colour 
         {
-            colour_aff_time_colour              0    0 0 0 1
-            colour_aff_time_colour              0.1  0 0 0 1
-            colour_aff_time_colour              0.11 0.3 0.3 0.3 1
-            colour_aff_time_colour              0.8  0.3 0.3 0.3 1
-            colour_aff_time_colour              1    0 0 0 0
-        }
-        behaviour                               Slave
-        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.2  1 1 1 1
+            colour_aff_time_colour              0.4  1 1 1 1
+            colour_aff_time_colour              1    1 1 1 0
+            colour_operation                    multiply
         }
     }
 }
