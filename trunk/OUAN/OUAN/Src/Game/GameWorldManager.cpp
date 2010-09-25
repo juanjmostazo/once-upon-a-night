@@ -74,9 +74,6 @@
 
 #include "../Audio/AudioComponent/AudioComponent.h"
 
-#include "../Core/GameStateManager.h"
-#include "../Core/GameRunningState.h"
-
 using namespace OUAN;
 
 bool nestChildrenSortPredicate(GameObjectPtr obj1, GameObjectPtr obj2)
@@ -415,6 +412,8 @@ void GameWorldManager::clearContainers()
 }
 void GameWorldManager::initGame()
 {
+	pickedStoryParts=0;
+	totalStoryParts=2;
 	mWorld=DREAMS;
 	mVictoryAnimationEnded=false;
 	GameWorldManager::setCheckPointLUA(LEVEL_START_CHECKPOINT,0);
@@ -445,13 +444,15 @@ void GameWorldManager::unloadLevel()
 	mApp->getRenderSubsystem()->clear();
 	mApp->getTrajectoryManager()->clear();
 
-	TGameObjectContainerIterator it;
-	TGameObjectContainer * container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
+	//All containers are being managed in the call to clearContainers.
+	//TGameObjectContainerIterator it;
+	//TGameObjectContainer * container = Application::getInstance()->getGameWorldManager()->getAllGameObjects();
 
-	for(it = container->begin(); it != container->end(); it++)
-	{
-		it->second.get()->~GameObject();
-	}
+	////WTF!!!
+	//for(it = container->begin(); it != container->end(); it++)
+	//{
+	//	//it->second.get()->~GameObject(); <- //C++ 101: IF THOSE WERE NORMAL POINTERS, WHICH THEY'RE NOT, THE NORMAL WAY TO DELETE THE OBJECTS WOULD BE THROUGH 'DELETE'!!!
+	//}
 
 	mApp->getCameraManager()->clear();
 
@@ -1252,7 +1253,7 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 	GameObjectFlashLightPtr flashlight=getGameObjectFlashLight();
 	GameObjectSoundPtr sound;
 
-	bool isGameRunningState=mApp->getGameStateManager()->getCurrentGameStateType()==GAME_STATE_RUNNING;;
+	bool isGameRunningState=mApp->isCurrentGameStateGameRunning();
 	if(isGameRunningState)
 	{
 		CameraParametersPtr pCameraParameters;
@@ -1903,8 +1904,7 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 
 void GameWorldManager::launchCutScene(const std::string& scriptFile,const std::string& scriptFunction)
 {
-		GameRunningStatePtr state=BOOST_PTR_CAST(GameRunningState,Application::getInstance()->getGameStateManager()->getCurrentState());
-		state->launchCutScene(scriptFile,scriptFunction);
+	mApp->launchCutscene(scriptFile,scriptFunction);
 }
 
 bool GameWorldManager::hasExecutedLevelEventLUA(std::string cutscene)
@@ -1965,4 +1965,21 @@ void GameWorldManager::setVictoryAnimationEnded(bool victoryAnimationEnded)
 void GameWorldManager::rescaleViewport(double left, double top, double width, double height)
 {
 	getGameObjectViewport()->rescaleViewport(left,top,width,height);
+}
+
+int GameWorldManager::getPickedStoryParts() const
+{
+	return pickedStoryParts;
+}
+void GameWorldManager::setPickedStoryParts(int pickedParts)
+{
+	pickedStoryParts=pickedParts;
+}
+int GameWorldManager::getTotalStoryParts() const
+{
+	return totalStoryParts;
+}
+void GameWorldManager::setTotalStoryParts(int totalParts)
+{
+	totalStoryParts=totalParts;
 }

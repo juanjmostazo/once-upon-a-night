@@ -6,23 +6,14 @@ namespace OUAN
 	//-------------------------------------
 	//	GUI module-related constants, type definitions and forwarded declarations
 	//-------------------------------------
-	class GUISubsystem;
-	typedef boost::shared_ptr<GUISubsystem> GUISubsystemPtr;
-	class GUIWindow;
-	typedef boost::shared_ptr<GUIWindow> GUIWindowPtr;
-
-	class GUIOptionsMenu;
-	typedef boost::shared_ptr<GUIOptionsMenu> GUIOptionsMenuPtr;
-
-	class GUIMainMenu;
-	typedef boost::shared_ptr<GUIMainMenu> GUIMainMenuPtr;
-	class GUIExtrasMenu;
-	typedef boost::shared_ptr<GUIExtrasMenu> GUIExtrasMenuPtr;
-	class GUIConsole;
-	typedef boost::shared_ptr<GUIConsole> GUIConsolePtr;
-
-	class GUIInGame;
-	typedef boost::shared_ptr<GUIInGame> GUIInGamePtr;
+	CLASS_DECLARATIONS_NO_PARAMS(GUISubsystem);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIWindow);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIOptionsMenu);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIMainMenu);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIExtrasMenu);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIConsole);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIInGame);
+	CLASS_DECLARATIONS_NO_PARAMS(GUIStoryBook);
 
 	/// Keyboard event types
 	typedef enum{
@@ -43,5 +34,6 @@ namespace OUAN
 	const std::string GUI_LAYOUT_EXTRAS="OUAN_ExtrasMenu.layout";
 	const std::string GUI_LAYOUT_CONSOLE="OUAN_Console.layout";
 	const std::string GUI_LAYOUT_INGAMEMENU="OUAN_InGameMenu.layout";
+	const std::string GUI_LAYOUT_STORYBOOK="OUAN_Storybook.layout";
 }
 #endif

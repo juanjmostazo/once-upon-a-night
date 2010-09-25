@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout >
+    <Window Type="OUANLook/StaticImage" Name="OUANStory/Background" >
+        <Property Name="Font" Value="BlueHighway-9" />
+        <Property Name="Image" Value="set:OUANLook-Storybook image:OUAN-Storybook" />
+        <Property Name="FrameEnabled" Value="False" />
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0.09,0},{0.09,0},{0.9,0},{0.9,0}}" />
+        <Window Type="OUANLook/StaticText" Name="OUANStory/Page0" >
+            <Property Name="Font" Value="BlueHighway-9" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="TextColours" Value="tl:FF554126 tr:FF554126 bl:FF554126 br:FF554126" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="WordWrapJustified" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="VertFormatting" Value="TopAligned" />
+            <Property Name="UnifiedAreaRect" Value="{{0.114226,0},{0.112092,0},{0.42516,0},{0.89965,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="OUANLook/StaticText" Name="OUANStory/Page1" >
+            <Property Name="Font" Value="BlueHighway-9" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="TextColours" Value="tl:FF554126 tr:FF554126 bl:FF554126 br:FF554126" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="WordWrapJustified" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="VertFormatting" Value="TopAligned" />
+            <Property Name="UnifiedAreaRect" Value="{{0.568474,0},{0.113894,0},{0.875171,0},{0.89965,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="OUANLook/StaticText" Name="OUANStory/Label" >
+            <Property Name="Text" Value="OUAN_STORY_EXIT_STRING" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="HorzFormatting" Value="HorzCentred" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="ClippedByParent" Value="False" />
+            <Property Name="UnifiedAreaRect" Value="{{0.192426,0},{1.02598,0},{0.792426,0},{1.12598,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+    </Window>
+</GUILayout>

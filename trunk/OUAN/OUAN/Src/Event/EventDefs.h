@@ -66,9 +66,9 @@ namespace OUAN
 	class LevelEvent;
 	typedef boost::shared_ptr<LevelEvent> LevelEventPtr;
 
-
 	CLASS_DECLARATIONS_NO_PARAMS(MsgBoxVisibilityChangedEvent);
 	CLASS_DECLARATIONS_NO_PARAMS(FirstSignpostHitEvent);
+	CLASS_DECLARATIONS_NO_PARAMS(StorybookPartPickedEvent);
 
 	// Event types
 	typedef enum{
@@ -93,7 +93,8 @@ namespace OUAN
 		EVENT_TYPE_CHANGE_LEVEL,
 		EVENT_TYPE_LEVEL,
 		EVENT_TYPE_MSGBOX_VISIBILITY_CHANGED,
-		EVENT_TYPE_FIRST_SIGNPOST_HIT
+		EVENT_TYPE_FIRST_SIGNPOST_HIT,
+		EVENT_TYPE_STORYBOOK_PART_PICKED
 	} TEventType;
 
 
@@ -101,6 +102,7 @@ namespace OUAN
 	const int EVT_PRIORITY_GAMEOVER=0;
 	const int EVT_PRIORITY_ONY_DEATH=1;	//Ony loses 1 life
 	const int EVT_PRIORITY_ONY_FALLS=1;
+	const int EVT_PRIORITY_STORYBOOK_PART_PICKED=2;
 	const int EVT_PRIORITY_CHANGEWORLD=2;
 	const int EVT_PRIORITY_CLEARQUEUE=2;
 	const int EVT_PRIORITY_ANIMATION_STARTED=3;

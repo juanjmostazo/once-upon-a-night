@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Imageset Name="OUANLook-Storybook" Imagefile="Storybook.jpg" NativeHorzRes="800" NativeVertRes="600" >
+    <Image Name="OUAN-Storybook" XPos="0" YPos="0" Width="800" Height="600"/>
+</Imageset>

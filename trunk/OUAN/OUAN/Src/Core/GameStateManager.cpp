@@ -43,15 +43,6 @@ void GameStateManager::popState()
 	}
 }
 
-GameStateType GameStateManager::getCurrentGameStateType()
-{
-	if (!mStates.empty())
-	{
-		return mStates.back()->getGameStateType();
-	}
-	return GAME_STATE_NONE;
-}
-
 GameStatePtr GameStateManager::getCurrentState() const
 {
 	if (!mStates.empty())

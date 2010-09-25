@@ -10,6 +10,7 @@
 #include "GUIConsole.h"
 #include "GUIExtrasMenu.h"
 #include "GUIInGame.h"
+#include "GUIStorybook.h"
 
 using namespace OUAN;
 CEGUI::MouseButton OUAN::convertMouseButton(const OIS::MouseButtonID& buttonId)
@@ -127,6 +128,8 @@ GUIWindowPtr GUISubsystem::createGUI(const std::string& guiLayout)
 			ptr.reset(new GUIConsole());
 		else if (guiLayout.compare(GUI_LAYOUT_INGAMEMENU)==0)
 			ptr.reset(new GUIInGame());
+		else if (guiLayout.compare(GUI_LAYOUT_STORYBOOK)==0)
+			ptr.reset(new GUIStoryBook());
 		//Add more inits as needed
 		else ptr.reset(new GUIWindow());
 		ptr->init(guiLayout,sheet);

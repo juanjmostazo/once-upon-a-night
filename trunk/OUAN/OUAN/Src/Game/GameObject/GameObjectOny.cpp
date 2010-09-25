@@ -596,9 +596,11 @@ void GameObjectOny::postUpdate()
 					Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
 					movement.y=0;
 
-					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) )
+					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) ){
+
+						int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
 						
-						if (fTime>ONY_ANIM_FALL_END_TIME)
+						if (hpLoss>0 || (mGameWorldManager->isGodMode() && fTime>ONY_ANIM_FALL_END_TIME))
 						{
 							changeAnimation(ONY_ANIM_FALL_END);
 						}						
@@ -608,13 +610,13 @@ void GameObjectOny::postUpdate()
 								?ONY_ANIM_JUMP01_END
 								:ONY_ANIM_JUMP02_END);
 						}					
-						int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
+
 						if (hpLoss>0 && !mGameWorldManager->isGodMode() && !isInvulnerable())
 						{
 							mLogicComponentOny->decreaseHP(hpLoss);
 							mLogicComponentOny->initPostHitInvulnerability();
 						}
-
+					}
 					if (mGameWorldManager->getWorld() == DREAMS)
 					{
 						startParticleSystem(ONY_PS_LAND_DREAMS);
@@ -752,8 +754,8 @@ void GameObjectOny::postUpdate()
 
 				if (notJumpAnim && notFallAnim)
 				{
-
-					if (fTime>ONY_ANIM_FALL_END_TIME)
+					int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
+					if (hpLoss>0 || (mGameWorldManager->isGodMode() && fTime>ONY_ANIM_FALL_END_TIME))
 					{
 						changeAnimation(ONY_ANIM_FALL_END);
 					}
@@ -763,7 +765,7 @@ void GameObjectOny::postUpdate()
 							?ONY_ANIM_JUMP01_END
 							:ONY_ANIM_JUMP02_END);
 					}
-					int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
+
 					if (hpLoss>0 && !mGameWorldManager->isGodMode() && !isInvulnerable())
 					{
 						mLogicComponentOny->decreaseHP(hpLoss);

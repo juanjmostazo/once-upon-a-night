@@ -184,7 +184,7 @@ OPTIONS_CEGUI_ID_DEVICESELECT="OUANOptions/Controls/DeviceSelect";
 		bool mousePressed(const OIS::MouseEvent &e, OIS::MouseButtonID id);
 		bool buttonPressed( const OIS::JoyStickEvent &e, int button );
 
-		void setStrings(const std::string& language);
+		void setStrings();
 	};
 }
 #endif

@@ -21,11 +21,6 @@ ProfileSelectState::~ProfileSelectState()
 
 }
 
-GameStateType ProfileSelectState::getGameStateType()
-{
-	return GAME_STATE_PROFILE_SELECT;
-}
-
 /// init main menu's resources
 void ProfileSelectState::init(ApplicationPtr app)
 {

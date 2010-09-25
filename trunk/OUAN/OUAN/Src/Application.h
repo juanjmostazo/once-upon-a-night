@@ -14,10 +14,11 @@ namespace OUAN
 	const std::string OUAN_CONFIG_FILE="../../Config/ouan-cfg.xml";
 
 	const std::string DEFAULT_LANGUAGE="en";
-	const std::string MENUSSTRINGS_PATH="../../Resources/Text/";
+	const std::string TEXTS_PATH="../../Resources/Text/";
 	const std::string MENUSSTRINGS = "menu-strings.xml";
-	const std::string INGAME_STRINGS_PATH="../../Resources/Text/";
+
 	const std::string INGAME_STRINGS = "ingame-strings.xml";
+	const std::string STORY_STRINGS="story-strings.xml";
 	/// Main application class which will hold all of the game's
 	/// subsystems.
 	class Application: public ControlInputManager, public boost::enable_shared_from_this<Application>
@@ -101,6 +102,7 @@ namespace OUAN
 
 			ConfigurationPtr getMenusTextStrings() const;
 			ConfigurationPtr getIngameTextStrings() const;
+			ConfigurationPtr getStoryTextStrings() const;
 
 			///Return a data structure containing the audio subsystem config information
 			void getAudioConfig(TAudioSubsystemConfigData& audioCfg);
@@ -152,6 +154,10 @@ namespace OUAN
 
 			void rescaleViewport(double left, double top, double width, double height);
 
+			bool isCurrentGameStateGameRunning() const;
+
+			void launchCutscene(const std::string& fileName, const std::string& function);
+
 		protected:
 
 			/// Singleton instance
@@ -200,6 +206,9 @@ namespace OUAN
 
 			/// Map containing text strings
 			ConfigurationPtr mIngameTextStrings;
+
+			/// Map containing text strings for the stories
+			ConfigurationPtr mStoryStrings;
 
 			/// UniqueId
 			int mUniqueId;

@@ -268,3 +268,10 @@ FirstSignpostHitEvent::FirstSignpostHitEvent()
 {
 
 }
+//---
+StorybookPartPickedEvent::StorybookPartPickedEvent(int currentParts, int totalParts)
+:Event(EVT_PRIORITY_STORYBOOK_PART_PICKED,EVENT_TYPE_STORYBOOK_PART_PICKED)
+{
+	currentPickedParts=currentParts;
+	totalPickedParts=totalParts;
+}

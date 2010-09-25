@@ -23,7 +23,7 @@ namespace OUAN
 		bool onExtras (const CEGUI::EventArgs& args);
 		bool onQuit(const CEGUI::EventArgs& args);
 
-		void setStrings(const std::string& language);
+		void setStrings();
 
 	};
 }

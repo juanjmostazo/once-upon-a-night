@@ -364,6 +364,12 @@ namespace OUAN
 		bool victoryAnimationEnded() const;
 		void setVictoryAnimationEnded(bool victoryAnimationEnded);
 
+		int getPickedStoryParts() const;
+		void setPickedStoryParts(int pickedParts);
+
+		int getTotalStoryParts() const;
+		void setTotalStoryParts(int totalParts);
+
 	private:	
 		bool mVictoryAnimationEnded;
 		std::string makeIdString(const std::string& baseString,const int& padding, const unsigned long& value);
@@ -480,6 +486,9 @@ namespace OUAN
 		std::set<std::string> mExecutedLevelEvents;
 			//Events saved from last checkpoint
 		std::set<std::string> mExecutedLevelEventsPermanent;
+
+		int pickedStoryParts;
+		int totalStoryParts;
 	};
 }
 #endif

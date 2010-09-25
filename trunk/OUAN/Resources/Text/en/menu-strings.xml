@@ -80,6 +80,8 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_GRAPHICS_UNAVAILABLE">Coming soon!</Option>
 		
 		<Option key="OPTIONS_GENERAL_TAB">General</Option>
+		
+		<Option key="OUAN_STORY_EXIT_STRING">Press "Jump" to go back</Option>
 
 	</Options>
 </Configuration>

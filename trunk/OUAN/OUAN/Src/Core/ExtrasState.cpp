@@ -27,11 +27,6 @@ ExtrasState::~ExtrasState()
 
 }
 
-GameStateType ExtrasState::getGameStateType()
-{
-	return GAME_STATE_EXTRAS;
-}
-
 /// init main menu's resources
 void ExtrasState::init(ApplicationPtr app)
 {

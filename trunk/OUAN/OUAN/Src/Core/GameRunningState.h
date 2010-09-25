@@ -43,6 +43,7 @@ namespace OUAN
 		void clearMusic();
 		void processChangeWorld(ChangeWorldEventPtr evt);
 		void processOnyDies(OnyDiesEventPtr evt);
+		void processStoryPartPicked(StorybookPartPickedEventPtr evt);
 
 		void pauseMusic();
 		void unpauseMusic();
@@ -93,9 +94,7 @@ namespace OUAN
 		/// pause state
 		void pause();
 		/// resume state
-		void resume();
-
-		GameStateType getGameStateType();
+		void resume();		
 
 		/// process input events
 		/// @param app	the parent application
