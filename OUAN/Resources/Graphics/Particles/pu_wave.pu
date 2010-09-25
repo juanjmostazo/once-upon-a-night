@@ -15,8 +15,8 @@ system PU/wave
         {
             emission_rate                       dyn_random
             {
-                min                             12
-                max                             20
+                min                             3
+                max                             4
             }
             angle                               10
             time_to_live                        dyn_random
@@ -26,17 +26,17 @@ system PU/wave
             }
             velocity                            dyn_random
             {
-                min                             40
-                max                             60
+                min                             30
+                max                             50
             }
-            duration                            0.4
-            position                            0 1 0
-            sphere_surface_em_radius            2
+            duration                            0.5
+            sphere_surface_em_radius            0.1
+			position                            0 1 0
         }
         affector                                Colour Affector29
         {
-            colour_aff_time_colour              0    1 0.498039 0 1
-            colour_aff_time_colour              1    1 1 0 1
+            colour_aff_time_colour              0    0.8 0.3 0 1
+            colour_aff_time_colour              1    0.9 0.4 0 1
         }
         affector                                LinearForce Affector31
         {
@@ -44,7 +44,7 @@ system PU/wave
         }
         affector                                Scale Affector84
         {
-            xyz_scale                           100
+            xyz_scale                           80
         }
     }
 }
