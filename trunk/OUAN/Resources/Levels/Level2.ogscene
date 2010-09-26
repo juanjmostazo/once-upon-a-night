@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="458.611 1007.47 56.3795" orientation="0.437229 -0.0708456 -0.885353 -0.141289"></OPTION>
+    <OPTION id="2" position="-422.349 1307.55 -1077.22" orientation="-0.986875 0.161284 0.00805684 0.000368087"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.437261 -0.0708508 -0.885418 -0.1413"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.986903 0.161289 0.00805707 0.000368097"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="458.611 1007.47 56.3795"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-422.349 1307.55 -1077.22"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -17017,7 +17017,7 @@
     <PROPERTY id="position" type="9" value="-472.111 509.686 -2689.22"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tower1nisland2"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tower1_d1"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
