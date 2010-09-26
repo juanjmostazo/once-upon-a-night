@@ -248,6 +248,7 @@ namespace OUAN
 		void initBombPuzzle();
 
 		bool isInitialized();
+		void setInitialized(bool initialized);
 
 
 		/// Add the game object pointer to the objects List

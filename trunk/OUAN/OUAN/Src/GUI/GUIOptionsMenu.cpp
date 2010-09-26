@@ -82,8 +82,53 @@ void GUIOptionsMenu::initSoundTab()
 }
 void GUIOptionsMenu::initGraphicsTab()
 {
+	using namespace CEGUI;
 
+	initLanguageCombo();	
 }
+
+void GUIOptionsMenu::initLanguageCombo()
+{
+	using namespace CEGUI;
+	ApplicationPtr app = mParentGameState->getApp();
+	//Get language combo
+	Combobox* combo=(Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/LanguageSelector");
+	std::string itemName="";
+	ConfigurationPtr menuStrings=app->getMenusTextStrings();
+
+	//Set default value: Pick the default language, make it uppercase
+	// and  retrieve the i18n key
+	std::string defaultLanguagePrefix = app->getCurrentLanguage();
+	std::transform(defaultLanguagePrefix.begin(),defaultLanguagePrefix.end(),defaultLanguagePrefix.begin(),toupper);
+
+	std::string defaultLanguage="OPTIONS_LANGUAGE_";
+	defaultLanguage.append(defaultLanguagePrefix);
+
+	menuStrings->getOption(defaultLanguage,itemName);
+	combo->setText(itemName);
+
+	//Initialize the combo items:
+	std::vector<std::string> languages=mParentGameState->getApp()->getSupportedLanguages();
+	std::string currentLangPrefix;
+	std::string currentLang;
+	ListboxTextItem* lti;
+	//Loop through the available languages list
+	for (std::vector<std::string>::iterator it=languages.begin();it!=languages.end();++it)
+	{
+		currentLangPrefix=*it;
+		std::transform(currentLangPrefix.begin(),currentLangPrefix.end(),currentLangPrefix.begin(),toupper);
+		currentLang="OPTIONS_LANGUAGE_";
+		currentLang.append(currentLangPrefix);
+		menuStrings->getOption(currentLang,itemName);
+
+		lti = new ListboxTextItem(itemName,0);
+		lti->setSelected(currentLangPrefix.compare(defaultLanguagePrefix)==0);
+		lti->setAutoDeleted(true);
+		lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+		combo->addItem(lti);
+	}
+}
+
 void GUIOptionsMenu::initVolumeSlider(const std::string& windowName, float maxValue, float defaultValue, float clickStep)
 {
 	CEGUI::Slider* slider = (CEGUI::Slider*) CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)windowName.c_str());
@@ -520,10 +565,14 @@ void GUIOptionsMenu::setStrings()
 			OPTIONS_CEGUI_ID_SFXDISABLELABEL,OPTIONS_CEGUI_ID_SFXVOLUMELABEL,
 			OPTIONS_CEGUI_ID_SOUND_APPLY,OPTIONS_CEGUI_ID_SOUND_CANCEL,
 			OPTIONS_CEGUI_ID_SOUND_INFO,OPTIONS_CEGUI_ID_SOUND_TAB,
-			OPTIONS_CEGUI_ID_BACK,OPTIONS_CEGUI_ID_TITLE
+			OPTIONS_CEGUI_ID_BACK,OPTIONS_CEGUI_ID_TITLE,
+			OPTIONS_CEGUI_ID_LANGUAGE,OPTIONS_CEGUI_ID_RESOLUTION,
+			OPTIONS_CEGUI_ID_FULLSCREEN,OPTIONS_CEGUI_ID_ANTIALIASING,
+			OPTIONS_CEGUI_ID_VSYNC,OPTIONS_CEGUI_ID_SKIPINTRO,
+			OPTIONS_CEGUI_ID_APPLY,OPTIONS_CEGUI_ID_RESET
 		};
 
-		int windowNamesLen=18;
+		int windowNamesLen=26;
 		std::string stringKey="";
 		std::string stringVal="";
 		CEGUI::Window* win=NULL;
