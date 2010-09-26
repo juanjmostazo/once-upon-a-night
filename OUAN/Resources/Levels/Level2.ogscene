@@ -30,15 +30,15 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="15"></CAMERASPEED>
+  <CAMERASPEED value="4.44444"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-422.349 1307.55 -1077.22" orientation="-0.986875 0.161284 0.00805684 0.000368087"></OPTION>
+    <OPTION id="2" position="590.514 509.345 74.7907" orientation="-0.986875 0.161284 0.00805684 0.000368087"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="false"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.986903 0.161289 0.00805707 0.000368097"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.986875 0.161284 0.00805684 0.000368087"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-422.349 1307.55 -1077.22"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="590.514 509.345 74.7907"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1265,15 +1265,15 @@
     <PROPERTY id="position" type="9" value="591.16 496.286 35.9378"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="any_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="any_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="any_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="any_eyes_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="any_eyes_d"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="any_teeth_n"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity3::material" type="7" value="any_hair_d"></PROPERTY>
+    <PROPERTY id="subentity3::material" type="7" value="flashlight_n"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity4::material" type="7" value="pillow_d"></PROPERTY>
+    <PROPERTY id="subentity4::material" type="7" value="pillow_n"></PROPERTY>
     <PROPERTY id="subentity4::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="5"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -17473,11 +17473,11 @@
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="any_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="any_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="any_eyes_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="any_eyes_d"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="any_teeth_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity3::material" type="7" value="any_hair_d"></PROPERTY>
+    <PROPERTY id="subentity3::material" type="7" value="flashlight_d"></PROPERTY>
     <PROPERTY id="subentity3::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity4::material" type="7" value="pillow_d"></PROPERTY>
     <PROPERTY id="subentity4::visible" type="12" value="true"></PROPERTY>
