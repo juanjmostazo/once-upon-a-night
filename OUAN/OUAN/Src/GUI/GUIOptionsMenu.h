@@ -82,12 +82,20 @@ OPTIONS_CEGUI_ID_DEVICESELECT="OUANOptions/Controls/DeviceSelect";
 		const std::string OPTIONS_CEGUI_ID_SOUND_APPLY="OUANOptions/Sound/Apply";
 		const std::string OPTIONS_CEGUI_ID_SOUND_CANCEL="OUANOptions/Sound/Cancel";
 		const std::string OPTIONS_CEGUI_ID_GRAPHICS_TAB="OUANOptions/GraphicsTab";
-	const std::string OPTIONS_CEGUI_ID_GRAPHICS_UNAVAILABLE="OUANOptions/Graphics/UnderConstructionLabel";
+	const std::string OPTIONS_CEGUI_ID_GRAPHICS_UNAVAILABLE="OUANOptions/Graphics/InfoLabel";
 	const std::string OPTIONS_CEGUI_ID_BACK="OUANOptions/Back";
 	const std::string OPTIONS_CEGUI_ID_TITLE="OUANOptions/OptionsLabel";
 
+	const std::string OPTIONS_CEGUI_ID_LANGUAGE="OUANOptions/Graphics/LanguageLabel";
 
+	const std::string OPTIONS_CEGUI_ID_RESOLUTION="OUANOptions/Graphics/ResolutionLabel";
 
+const std::string OPTIONS_CEGUI_ID_FULLSCREEN="OUANOptions/Graphics/FullscreenLabel";
+const std::string OPTIONS_CEGUI_ID_ANTIALIASING="OUANOptions/Graphics/AntiAliasingLabel";
+const std::string OPTIONS_CEGUI_ID_VSYNC="OUANOptions/Graphics/VSyncLabel";
+const std::string OPTIONS_CEGUI_ID_SKIPINTRO="OUANOptions/Graphics/SkipIntroLabel";
+const std::string OPTIONS_CEGUI_ID_APPLY="OUANOptions/Graphics/Apply";
+const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 
 
 	class GUIOptionsMenu: public GUIWindow
@@ -172,6 +180,7 @@ OPTIONS_CEGUI_ID_DEVICESELECT="OUANOptions/Controls/DeviceSelect";
 		//bool onMusicSliderValueStopped(const CEGUI::EventArgs& args);
 		bool onMusicCheckBoxStateChanged(const CEGUI::EventArgs& args);
 
+		void initLanguageCombo();
 
 	public:
 		/// Free resources

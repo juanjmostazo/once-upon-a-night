@@ -615,6 +615,10 @@ bool GameWorldManager::isInitialized()
 {
 	return mInitialized;
 }
+void GameWorldManager::setInitialized(bool initialized)
+{
+	mInitialized=initialized;
+}
 
 std::string GameWorldManager::makeIdString(const std::string& baseString,const int& padding, const unsigned long& value)
 {
