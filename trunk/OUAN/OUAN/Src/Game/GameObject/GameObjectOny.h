@@ -23,7 +23,7 @@ namespace OUAN
 	//Time during which Ony will be invulnerable, after having taken a hit.
 	const double POST_HIT_INVULNERABILITY=5.0;
 
-	const double ONY_ANIM_FALL_LOOP_TIME=0.5;
+	const double ONY_ANIM_FALL_LOOP_TIME=0.75;
 	const double ONY_ANIM_FALL_END_TIME=1.5;
 
 	//Name of the bone whose position to retrieve to attach  to Ony

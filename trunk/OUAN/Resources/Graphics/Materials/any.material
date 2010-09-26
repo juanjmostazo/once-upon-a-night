@@ -57,15 +57,34 @@ material any_hair_tint: tint_texture
 	set_texture_alias diffuse_texture any_hair.dds
 }
 
+//TEETH
+//HAIR
+material any_teeth_d : basic_texture
+{
+	set_texture_alias diffuse_texture any_teeth.dds
+}
+material any_teeth_n : basic_texture
+{
+	set_texture_alias diffuse_texture any_teeth.dds
+}
+
+material any_teeth_cw : default_changeworld
+{
+}
+material any_teeth_tint: tint_texture
+{
+	set_texture_alias diffuse_texture any_teeth.dds
+}
+
 //FLASHLIGHT
 material flashlight_d : basic_texture
 {
-	set_texture_alias diffuse_texture flashlight_blue.dds
+	set_texture_alias diffuse_texture flashlight.dds
 }
 
 material flashlight_n : basic_texture
 {
-	set_texture_alias diffuse_texture flashlight_blue.dds
+	set_texture_alias diffuse_texture flashlight.dds
 }
 
 material flashlight_cw : default_changeworld
@@ -73,7 +92,7 @@ material flashlight_cw : default_changeworld
 }
 material flashlight_tint: tint_texture
 {
-	set_texture_alias diffuse_texture flashlight_blue.dds
+	set_texture_alias diffuse_texture flashlight.dds
 }
 
 //PILLOW
