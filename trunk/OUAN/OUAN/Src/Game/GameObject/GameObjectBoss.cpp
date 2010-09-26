@@ -345,6 +345,20 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	}
 }
 
+bool GameObjectBoss::hasBeenHit() const
+{
+	if (mLogicComponentEnemy.get())	
+		return mLogicComponentEnemy->hasBeenHit();
+	return false;
+}
+
+bool GameObjectBoss::hasDied() const
+{
+	if (mLogicComponentEnemy.get())
+		return mLogicComponentEnemy->hasDied();
+	return false;
+}
+
 bool GameObjectBoss::isWorthUpdatingPhysicsComponents()
 {
 	return true;

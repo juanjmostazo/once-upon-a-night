@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="599.496 242.077 217.365" orientation="-0.890201 0.249756 0.367089 0.102023"></OPTION>
+    <OPTION id="2" position="458.611 1007.47 56.3795" orientation="0.437229 -0.0708456 -0.885353 -0.141289"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.890297 0.249783 0.367129 0.102034"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.437261 -0.0708508 -0.885418 -0.1413"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="599.496 242.077 217.365"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="458.611 1007.47 56.3795"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1658,6 +1658,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="889645056" name="storybook_d#0" typename="Entity Object" parentnode="Items">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="storybook.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="730 380 -65"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="storybook_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="112521744" name="tree2_d#island2_4" typename="Entity Object" parentnode="Island2_Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -3186,9 +3203,9 @@
     <PROPERTY id="position" type="9" value="177.27 140.837 189.402"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 4 4"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="woodbox_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="terrain1_01_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13550,9 +13567,9 @@
     <PROPERTY id="position" type="9" value="280.036 75.0847 -370.507"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 4 4"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="woodbox_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="terrain1_01_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -13695,9 +13712,9 @@
     <PROPERTY id="position" type="9" value="279.269 75.0847 -371.59"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 4 4"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_01_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="terrain1_01_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -17070,9 +17087,9 @@
     <PROPERTY id="position" type="9" value="177.27 140.837 189.402"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="4 4 4"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="terrain1_01_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="woodbox_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="terrain1_01_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -23721,7 +23738,7 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.095159 0.485434 0.868892 -0.0180554"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.0963683 0.712222 0.69524 0.00971474"></PROPERTY>
     <PROPERTY id="position" type="9" value="175.294 1000 182.934"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -25348,8 +25365,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.091537 -0.727615 -0.6726 0.0990242"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-535.952 1004.91 364.382"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.0355258 -0.733316 -0.67787 0.0384316"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-535.952 1000 364.382"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="155" fields="X;Y;Z;W"></PROPERTY>
@@ -25838,7 +25855,7 @@
       <PROPERTY id="trajectory::node#2" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_2" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#3" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_3" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#4" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_4" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="TrajectoryNode#BOMBS_PUZZLE_START#2_5" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
@@ -26071,8 +26088,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.986536 -0.000932601 -0.0305243 0.160668"></PROPERTY>
-    <PROPERTY id="position" type="9" value="343.556 230.942 235.901"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.978712 0.0219341 -0.150082 0.138266"></PROPERTY>
+    <PROPERTY id="position" type="9" value="341.618 230.687 267.863"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="70" fields="X;Y;Z;W"></PROPERTY>
@@ -27724,7 +27741,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="655.837 171.076 161.258"></PROPERTY>
+    <PROPERTY id="position" type="9" value="428.404 1554.82 -2926.99"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
@@ -27820,20 +27837,6 @@
       <PROPERTY id="walkability::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="walkability::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="763573120" name="TrajectoryNode#BOMBS_PUZZLE_START#2_5" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.847133 -0.119177 -0.381514 0.350158"></PROPERTY>
-    <PROPERTY id="position" type="9" value="437.323 216.635 -230.486"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -29326,13 +29329,13 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="856776640" name="TrajectoryNode#BOMBS_PUZZLE_START#2_4" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
+  <OBJECT object_id="763573120" name="TrajectoryNode#BOMBS_PUZZLE_START#2_4" typename="Marker Object" parentnode="NodesTrajectory#BOMBS_PUZZLE_START#2">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.792714 -0.149927 -0.549926 0.216119"></PROPERTY>
-    <PROPERTY id="position" type="9" value="512.918 331.448 -51.3567"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.847133 -0.119177 -0.381514 0.350158"></PROPERTY>
+    <PROPERTY id="position" type="9" value="437.323 216.635 -230.486"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
