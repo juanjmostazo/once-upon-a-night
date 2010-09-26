@@ -8,6 +8,7 @@
 #include "../../Game/GameObject/GameObject.h"
 #include "../../Game/GameObject/GameObjectOny.h"
 #include "../../Game/GameObject/GameObjectTripollo.h"
+#include "../../Game/GameObject/GameObjectBoss.h"
 #include "../../Game/GameObject/GameObjectTentetieso.h"
 #include "../../Game/GameObject/GameObjectPlataform.h"
 #include "../../Physics/PhysicsComponent/PhysicsComponentCharacterOny.h"
@@ -35,7 +36,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		return;
 	}
-	//Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
+	Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
 
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 	{
@@ -65,8 +66,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		StorybookPartPickedEventPtr evt = StorybookPartPickedEventPtr(new StorybookPartPickedEvent(worldMgr->getPickedStoryParts(),worldMgr->getTotalStoryParts()));
 		worldMgr->addEvent(evt);
 	}
-	else if((pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0 ||
-		pGameObject->getType().compare(GAME_OBJECT_TYPE_BOSS)==0) 
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
 		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
 		GameObjectTripolloPtr tripollo= 
@@ -74,6 +74,25 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 		bool mayHitTripollo=tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && 
 			!tripollo->isStatueEnabled();
 		if( mayHitTripollo && mHitRecoveryTime<0 && mState!=ONY_STATE_DIE)
+		{		
+			int oldLives=getNumLives();
+			decreaseHP();
+			mHitRecoveryTime=POST_HIT_INVULNERABILITY;
+
+			if (getNumLives()==oldLives)
+			{
+				OnyTakesHitEventPtr evt = OnyTakesHitEventPtr(new OnyTakesHitEvent());
+				getParent()->getGameWorldManager()->addEvent(evt);
+			}			
+		}
+	}
+	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_BOSS)==0
+		&& !getParent()->getGameWorldManager()->isGodMode())
+	{
+		GameObjectBossPtr boss= 
+			BOOST_PTR_CAST(GameObjectBoss,pGameObject);
+		bool mayHitBoss=boss.get() && !boss->hasBeenHit() &&!boss->hasDied();
+		if( mayHitBoss && mHitRecoveryTime<0 && mState!=ONY_STATE_DIE)
 		{		
 			int oldLives=getNumLives();
 			decreaseHP();
