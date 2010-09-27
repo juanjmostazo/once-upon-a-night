@@ -1,8 +1,8 @@
 system PU/box_dust
 {
     keep_local                                  true
-    scale_velocity                              0.1
-    scale                                       0.1 0.1 0.1
+    scale_velocity                              0.15
+    scale                                       0.15 0.15 0.15
     technique Technique4
     {
         material                                PU/box_dust
