@@ -6,7 +6,7 @@ material PU/tripollo_die_1
         {
             lighting off
             depth_write off
-            scene_blend alpha_blend
+            scene_blend add
             fog_override true
 
             texture_unit

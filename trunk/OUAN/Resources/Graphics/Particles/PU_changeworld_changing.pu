@@ -4,7 +4,6 @@ system PU/changeworld_changing
     scale                                       0.1 0.1 0.1
     technique 
     {
-        visual_particle_quota                   250
         material                                PU/changeworld_changing
         renderer                                Billboard
         {
@@ -14,23 +13,23 @@ system PU/changeworld_changing
         {
             emission_rate                       200
             angle                               360
-            time_to_live                        1
+            time_to_live                        2
             velocity                            dyn_random
             {
-                min                             200
-                max                             500
+                min                             400
+                max                             600
             }
             particle_width                      dyn_random
             {
                 min                             20
-                max                             90
+                max                             180
             }
             particle_height                     dyn_random
             {
-                min                             400
-                max                             800
+                min                             500
+                max                             1000
             }
-            colour                              0.85 0.15 0.15 1
+            colour                              0.85 0.85 0.15 1
         }
         affector                                Colour 
         {
