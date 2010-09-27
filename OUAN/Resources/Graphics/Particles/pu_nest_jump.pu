@@ -1,8 +1,8 @@
 system PU/nest_jump
 {
     keep_local                                  true
-    scale_velocity                              0.1
-    scale                                       0.1 0.1 0.1
+    scale_velocity                              0.25
+    scale                                       0.25 0.25 0.25
     technique Technique4
     {
         keep_local                              true
@@ -13,7 +13,7 @@ system PU/nest_jump
         renderer                                Billboard
         {
         }
-        emitter                                 Point Emitter5
+        emitter                                 Box 
         {
             emission_rate                       dyn_random
             {
@@ -23,20 +23,19 @@ system PU/nest_jump
             angle                               45
             time_to_live                        dyn_random
             {
-                min                             1.2
-                max                             1.5
+                min                             0.8
+                max                             1
             }
             velocity                            dyn_random
             {
                 min                             120
                 max                             180
             }
-            duration                            dyn_random
-            {
-                min                             0.8
-                max                             1
-            }
+            duration                            0.6
             keep_local                          true
+            box_em_width                        40
+            box_em_height                       10
+            box_em_depth                        40
         }
         affector                                LinearForce Affector39
         {
