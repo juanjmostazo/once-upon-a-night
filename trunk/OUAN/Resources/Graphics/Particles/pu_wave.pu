@@ -7,7 +7,6 @@ system PU/wave
         material                                PU/wave
         renderer                                Billboard
         {
-            billboard_type                      perpendicular_common
             common_direction                    0 1 0
             common_up_vector                    0 0 1
         }
@@ -18,7 +17,7 @@ system PU/wave
                 min                             3
                 max                             4
             }
-            angle                               10
+            angle                               5
             time_to_live                        dyn_random
             {
                 min                             0.6
@@ -26,17 +25,20 @@ system PU/wave
             }
             velocity                            dyn_random
             {
-                min                             30
-                max                             50
+                min                             25
+                max                             30
             }
-            duration                            0.5
+            duration                            0.8
+            position                            0 1 0
+            colour                              0.65 0.65 0.45 1
             sphere_surface_em_radius            0.1
-			position                            0 1 0
         }
-        affector                                Colour Affector29
+        affector                                Colour 
         {
-            colour_aff_time_colour              0    0.8 0.3 0 1
-            colour_aff_time_colour              1    0.9 0.4 0 1
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.8  1 1 1 1
+            colour_aff_time_colour              1    0 0 0 0
+            colour_operation                    multiply
         }
         affector                                LinearForce Affector31
         {
@@ -44,7 +46,7 @@ system PU/wave
         }
         affector                                Scale Affector84
         {
-            xyz_scale                           80
+            xyz_scale                           60
         }
     }
 }

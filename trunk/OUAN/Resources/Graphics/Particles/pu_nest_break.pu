@@ -1,8 +1,8 @@
 system PU/nest_break
 {
     keep_local                                  true
-    scale_velocity                              0.1
-    scale                                       0.1 0.1 0.1
+    scale_velocity                              0.25
+    scale                                       0.25 0.25 0.25
     technique Technique4
     {
         position                                0 175 0
@@ -21,22 +21,18 @@ system PU/nest_break
                 min                             12
                 max                             15
             }
-            angle                               30
+            angle                               60
             time_to_live                        dyn_random
             {
-                min                             1.2
-                max                             1.5
+                min                             0.8
+                max                             1
             }
             velocity                            dyn_random
             {
                 min                             120
                 max                             180
             }
-            duration                            dyn_random
-            {
-                min                             0.8
-                max                             1
-            }
+            duration                            0.6
             keep_local                          true
             box_em_width                        80
             box_em_height                       10
