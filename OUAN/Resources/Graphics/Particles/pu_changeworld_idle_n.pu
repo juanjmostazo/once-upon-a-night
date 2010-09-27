@@ -26,6 +26,7 @@ system PU/changeworld_idle_n
             particle_depth                      36
             keep_local                          true
             direction                           0 0 0
+            colour                              0.85 0.85 0.15 1
             circle_em_radius                    300
         }
         affector                                Vortex 

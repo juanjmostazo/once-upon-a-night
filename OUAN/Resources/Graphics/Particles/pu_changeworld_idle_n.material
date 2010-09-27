@@ -32,7 +32,7 @@ material PU/changeworld_idle_n_2
         pass
         {
             lighting off
-            scene_blend alpha_blend
+            scene_blend add
             depth_write off
 
             texture_unit
