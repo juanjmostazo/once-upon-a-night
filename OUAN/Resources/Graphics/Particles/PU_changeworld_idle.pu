@@ -21,13 +21,13 @@ system PU/changeworld_idle
                 max                             1.2
             }
             velocity                            10
-            particle_width                      36
-            particle_height                     36
-            particle_depth                      36
+            particle_width                      42
+            particle_height                     42
+            particle_depth                      42
             keep_local                          true
             direction                           0 0 0
             colour                              0.15 0.15 0.85 1
-            circle_em_radius                    300
+            circle_em_radius                    240
         }
         affector                                Vortex 
         {
