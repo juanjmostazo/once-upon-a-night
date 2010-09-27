@@ -4,24 +4,26 @@ system PU/bag_hearts_fountain_double
     scale                                       0.1 0.1 0.1
     technique 
     {
-        visual_particle_quota                   30
-        material                                PU/bag_hearts_fountain
+        visual_particle_quota                   60
+        material                                PU/bag_hearts_fountain_double
         default_particle_width                  36
         default_particle_height                 36
         default_particle_depth                  36
         renderer                                Billboard
         {
         }
-        emitter                                 Point myPointEmitter
+        emitter                                 Circle myPointEmitter
         {
             angle                               30
-            time_to_live                        2.5
-            velocity                            250
+            time_to_live                        2
+            velocity                            350
             duration                            1
+            colour                              0.85 0.15 0.15 1
+            circle_em_radius                    50
         }
         affector                                LinearForce 
         {
-            force_aff_vector                    0 -300 0
+            force_aff_vector                    0 -400 0
         }
         affector                                Colour 
         {
