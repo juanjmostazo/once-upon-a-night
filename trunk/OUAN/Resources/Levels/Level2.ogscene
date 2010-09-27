@@ -30,25 +30,25 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="4.44444"></CAMERASPEED>
+  <CAMERASPEED value="4"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="590.514 509.345 74.7907" orientation="-0.986875 0.161284 0.00805684 0.000368087"></OPTION>
+    <OPTION id="2" position="732.401 276.231 213.221" orientation="-0.56964 0.195052 -0.754874 -0.260059"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
       <LAYER id="1" name="Layer 1" visible="true"></LAYER>
-      <LAYER id="2" name="Layer 2" visible="false"></LAYER>
+      <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
-      <LAYER id="5" name="Layer 5" visible="false"></LAYER>
+      <LAYER id="5" name="Layer 5" visible="true"></LAYER>
       <LAYER id="6" name="Layer 6" visible="true"></LAYER>
       <LAYER id="7" name="Layer 7" visible="true"></LAYER>
       <LAYER id="8" name="Layer 8" visible="true"></LAYER>
       <LAYER id="9" name="Layer 9" visible="true"></LAYER>
-      <LAYER id="10" name="Layer 10" visible="false"></LAYER>
-      <LAYER id="11" name="Layer 11" visible="false"></LAYER>
+      <LAYER id="10" name="Layer 10" visible="true"></LAYER>
+      <LAYER id="11" name="Layer 11" visible="true"></LAYER>
       <LAYER id="12" name="Layer 12" visible="true"></LAYER>
       <LAYER id="13" name="Layer 13" visible="true"></LAYER>
       <LAYER id="14" name="Layer 14" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.986875 0.161284 0.00805684 0.000368087"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.569678 0.195065 -0.754924 -0.260076"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="590.514 509.345 74.7907"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="732.401 276.231 213.221"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -27741,7 +27741,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="428.404 1554.82 -2926.99"></PROPERTY>
+    <PROPERTY id="position" type="9" value="600 200 200"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>

@@ -15,7 +15,7 @@ using namespace OUAN;
 GameObjectTripollo::GameObjectTripollo(const std::string& name)
 :GameObject(name,GAME_OBJECT_TYPE_TRIPOLLO)
 {
-
+	
 }
 
 GameObjectTripollo::~GameObjectTripollo()
@@ -139,8 +139,7 @@ bool GameObjectTripollo::activateTrajectory(int newWorld)
 	std::string trajectoryName = getPatrolTrajectoryName(newWorld);
 	if(mTrajectoryComponent->predefinedTrajectoryExists(trajectoryName))
 	{
-		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
-			newWorld,true);
+		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,newWorld,true);
 		return true;
 	}
 	else
@@ -164,16 +163,16 @@ void GameObjectTripollo::activateFlying(bool flying)
 	}
 }
 
-
 void GameObjectTripollo::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
+
+	checkDeathParticleSystem(elapsedSeconds);
 
 	if (isEnabled())
 	{
 		unsigned int collisionFlags = GROUP_COLLIDABLE_MASK;
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
-
 
 		int currentState=mLogicComponentEnemy->getState();
 
@@ -551,6 +550,8 @@ std::string GameObjectTripollo::getDefaultAttack()
 
 void GameObjectTripollo::reset()
 {
+	mDeathTime = -1;
+
 	if((getName().compare("tripollo#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0 ||
 		getName().compare("tripollo#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0 || 
 		getName().compare("tripollo#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0) &&
@@ -583,7 +584,6 @@ void GameObjectTripollo::reset()
 		//TODO DO THAT PROPERLY
 		mLogicComponentEnemy->setInitialHealthPoints(3);
 	}
-
 }
 
 void GameObjectTripollo::setDreamsRender()
@@ -850,6 +850,9 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 			case NIGHTMARES: mRenderComponentParticleSystemDieNightmares->start(); break;
 		}
 
+		mDeathTime = 0;
+		Logger::getInstance()->log("Check death PS :: mDeathTime set to 0 :: " + getName() + " :: " + Ogre::StringConverter::toString(Ogre::Real(mDeathTime)) + " :: " + Ogre::StringConverter::toString(Ogre::Real(MAX_TIME_DEATH_PARTICLE_SYSTEM)));
+
 		checkTripolloPlataformPuzzleActivations();
 
 		disable();		
@@ -1017,6 +1020,7 @@ bool GameObjectTripollo::isHitAnimation(const std::string& animationName) const
 		animationName.compare(TRIPOLLO_ANIM_NM_HIT01) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_FNM_HIT01)==0;
 }
+
 bool GameObjectTripollo::isDieAnimation(const std::string& animationName) const
 {
 	return animationName.compare(TRIPOLLO_ANIM_DIE)==0 ||
@@ -1024,29 +1028,61 @@ bool GameObjectTripollo::isDieAnimation(const std::string& animationName) const
 		animationName.compare(TRIPOLLO_ANIM_FNM_DIE)==0;
 
 }
+
 bool GameObjectTripollo::isAlertAnimation(const std::string& animationName) const
 {
 	return animationName.compare(TRIPOLLO_ANIM_ALERT)==0 ||
 		animationName.compare(TRIPOLLO_ANIM_NM_ALERT)==0 ||
 		animationName.compare(TRIPOLLO_ANIM_FNM_ALERT)==0;
 }
+
 bool GameObjectTripollo::isFalseAlarmAnimation(const std::string& animationName) const
 {
 	return animationName.compare(TRIPOLLO_ANIM_FALSE_ALARM) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_NM_FALSE_ALARM) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_FNM_FALSE_ALARM) ==0;
 }
+
 bool GameObjectTripollo::isSurpriseAnimation(const std::string& animationName) const
 {
 	return animationName.compare(TRIPOLLO_ANIM_SURPRISE) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_NM_SURPRISE) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_FNM_SURPRISE) ==0;
 }
+
 bool GameObjectTripollo::isTiredAnimation(const std::string& animationName) const
 {
 	return animationName.compare(TRIPOLLO_ANIM_TIRED) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_NM_TIRED) ==0 ||
 		animationName.compare(TRIPOLLO_ANIM_FNM_TIRED) ==0;
+}
+
+void GameObjectTripollo::checkDeathParticleSystem(double elapsedSeconds)
+{
+	if (mDeathTime >= 0)
+	{
+		Logger::getInstance()->log("Check death PS :: mDeathTime is > 0 :: " + getName() + " :: ES " + Ogre::StringConverter::toString(Ogre::Real(elapsedSeconds)) + " :: DT " + Ogre::StringConverter::toString(Ogre::Real(mDeathTime)) + " :: MDT " + Ogre::StringConverter::toString(Ogre::Real(MAX_TIME_DEATH_PARTICLE_SYSTEM)));
+		mDeathTime += elapsedSeconds;	
+
+		if (mDeathTime >= MAX_TIME_DEATH_PARTICLE_SYSTEM)
+		{
+			Logger::getInstance()->log("Check death PS :: mDeathTime border crossed :: " + getName());
+
+			if(mLogicComponentEnemy->existsInDreams())
+			{
+				Logger::getInstance()->log("Check death PS :: stopping dreams die PS :: " + getName());
+				mRenderComponentParticleSystemDieDreams->stop();	
+			}
+
+			if(mLogicComponentEnemy->existsInNightmares())
+			{
+				Logger::getInstance()->log("Check death PS :: stopping nightmares die PS :: " + getName());
+				mRenderComponentParticleSystemDieNightmares->stop();
+			}	
+
+			mDeathTime = -1;
+		}
+	}
 }
 //-------------------------------------------------------------------------------------------
 TGameObjectTripolloParameters::TGameObjectTripolloParameters() : TGameObjectParameters()

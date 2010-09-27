@@ -14,7 +14,8 @@
 
 namespace OUAN
 {
-	const double CALL_TO_ARMS_SOUND_DISTANCE=500;
+	const double CALL_TO_ARMS_SOUND_DISTANCE = 500;
+	const double MAX_TIME_DEATH_PARTICLE_SYSTEM = 3;
 
 	/// Class modelling a particular enemy type
 	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
@@ -41,6 +42,10 @@ namespace OUAN
 		AttackComponentPtr mAttackComponent;
 
 		AudioComponentPtr mAudioComponent;
+
+		double mDeathTime;
+
+		void checkDeathParticleSystem(double elapsedSeconds);
 
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),

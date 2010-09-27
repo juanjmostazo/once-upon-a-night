@@ -13,13 +13,14 @@ system PU/tripollo_surprise
         }
         emitter                                 Point Emitter4
         {
-            time_to_live                        2.5
+            time_to_live                        3
             velocity                            dyn_random
             {
-                min                             10
-                max                             12
+                min                             8
+                max                             10
             }
-            duration                            2.5
+            duration                            3
+            position                            0 180 0
         }
         affector                                Scale Affector10
         {
