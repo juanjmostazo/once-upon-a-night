@@ -1,0 +1,73 @@
+material PU/tripollo_die_1_boss
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            depth_write off
+            scene_blend add
+            fog_override true
+
+            texture_unit
+            {
+                texture pu_tripollo_die_1_boss.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/tripollo_die_2_boss
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_tripollo_die_2_boss.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/tripollo_die_3_boss
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_tripollo_die_3_boss.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/tripollo_die_4_boss
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_tripollo_die_4_boss.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}

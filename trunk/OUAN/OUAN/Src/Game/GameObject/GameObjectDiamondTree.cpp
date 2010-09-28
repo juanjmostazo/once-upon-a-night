@@ -5,6 +5,7 @@
 #include "../GameWorldManager.h"
 #include "../../Logic/LogicSubsystem.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -60,6 +61,16 @@ RenderComponentInitialPtr GameObjectDiamondTree::getRenderComponentInitial() con
 	return mRenderComponentInitial;
 }
 
+void GameObjectDiamondTree::setRenderComponentParticleSystemStars(RenderComponentParticleSystemPtr pRenderComponentParticleSystemStars)
+{
+	mRenderComponentParticleSystemStars = pRenderComponentParticleSystemStars;
+}
+
+RenderComponentParticleSystemPtr GameObjectDiamondTree::getRenderComponentParticleSystemStars() const
+{
+	return mRenderComponentParticleSystemStars;
+}
+
 void GameObjectDiamondTree::setPhysicsComponentSimpleBox(PhysicsComponentSimpleBoxPtr physicsComponentSimpleBox)
 {
 	mPhysicsComponentSimpleBox=physicsComponentSimpleBox;
@@ -80,7 +91,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			setDreamsRender();
 			if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
+				mRenderComponentParticleSystemStars->start();
 				mRenderComponentEntity->setVisible(true);
+
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -92,7 +105,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
+				mRenderComponentParticleSystemStars->stop();
 				mRenderComponentEntity->setVisible(false);
+
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -106,7 +121,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			setNightmaresRender();
 			if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
+				mRenderComponentParticleSystemStars->start();
 				mRenderComponentEntity->setVisible(true);
+
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -118,7 +135,9 @@ void GameObjectDiamondTree::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
 			{
+				mRenderComponentParticleSystemStars->stop();
 				mRenderComponentEntity->setVisible(false);
+
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -370,6 +389,11 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 
 	if (isEnabled())
 	{	
+		if (isFirstUpdate() && mLogicComponent->existsInDreams())
+		{
+			mRenderComponentParticleSystemStars->start();
+		}
+
 		LogicSubsystemPtr logicSS = mGameWorldManager->getParent()->getLogicSubsystem();
 
 		int currentState=mLogicComponent->getState();

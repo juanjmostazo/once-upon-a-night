@@ -1,0 +1,35 @@
+system PU/diamond_tree_stars
+{
+    scale_velocity                              0.25
+    scale                                       0.25 0.25 0.25
+    technique 
+    {
+        visual_particle_quota                   60
+        material                                PU/diamond_tree_stars
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       dyn_oscillate
+            {
+                oscillate_frequency             0.08
+                oscillate_phase                 180
+                oscillate_base                  500
+                oscillate_amplitude             500
+                oscillate_type                  sine
+            }
+            time_to_live                        0.15
+            all_particle_dimensions             dyn_random
+            {
+                min                             12
+                max                             72
+            }
+            direction                           0 0 0
+            colour                              0.2 0.2 0.8 1
+            box_em_width                        200
+            box_em_height                       400
+            box_em_depth                        200
+        }
+    }
+}

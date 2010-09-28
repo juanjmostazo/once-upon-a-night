@@ -345,6 +345,11 @@ void GameObjectItemMaxHP::update(double elapsedSeconds)
 	{
 		if (isFirstUpdate())
 		{
+			if (mLogicComponentItem->existsInDreams())
+			{
+				mRenderComponentParticleSystemHeartsFountain->start();
+			}
+
 			mRenderComponentEntity->changeAnimation(MAXHP_ANIM_IDLE);
 		}
 		else
@@ -419,7 +424,6 @@ void GameObjectItemMaxHP::enable()
 	mRenderComponentEntity->setVisible(true);
 	mPhysicsComponentVolumeBox->create();
 	mRenderComponentParticleSystemHeartsFountain->start();
-
 }
 
 TGameObjectItemMaxHPParameters::TGameObjectItemMaxHPParameters() : TGameObjectParameters()

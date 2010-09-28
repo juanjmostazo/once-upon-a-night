@@ -78,6 +78,7 @@ bool ParticleTemplates::loadConfig()
 
 		config.getOption("TRIPOLLO_DIE_DREAMS", TRIPOLLO_DIE_DREAMS); 
 		config.getOption("TRIPOLLO_DIE_NIGHTMARES", TRIPOLLO_DIE_NIGHTMARES);
+		config.getOption("TRIPOLLO_DIE_BOSS", TRIPOLLO_DIE_BOSS);
 		config.getOption("TRIPOLLO_SHOCK", TRIPOLLO_SHOCK); 
 		config.getOption("TRIPOLLO_SURPRISE", TRIPOLLO_SURPRISE); 
 
@@ -85,6 +86,7 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("NEST_JUMP", NEST_JUMP); 
 
 		config.getOption("TREE_STARS", TREE_STARS); 
+		config.getOption("DIAMOND_TREE_STARS", DIAMOND_TREE_STARS); 
 
 		config.getOption("ROCK_BREAK", ROCK_BREAK); 
 		config.getOption("TERRAIN_TRIANGLE_CHANGEWORLD", TERRAIN_TRIANGLE_CHANGEWORLD); 
