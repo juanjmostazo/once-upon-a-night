@@ -31,7 +31,7 @@ system PU/attack_light
                 min                             128
                 max                             256
             }
-            colour                              0.8 0.8 0.8 1
+            colour                              0.65 0.65 0.45 1
         }
         affector                                Colour 
         {
