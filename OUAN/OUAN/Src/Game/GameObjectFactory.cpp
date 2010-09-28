@@ -785,6 +785,18 @@ GameObjectDiamondTreePtr GameObjectFactory::createGameObjectDiamondTree(TGameObj
 			tGameObjectDiamondTreeParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
 
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->DIAMOND_TREE_STARS;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectDiamondTree->setRenderComponentParticleSystemStars(
+		mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectDiamondTree,
+		tRenderComponentParticleSystemParameters,
+		pGameObjectDiamondTree->getRenderComponentPositional()));
+
 	//Create PhysicsComponent
 	pGameObjectDiamondTree->setPhysicsComponentSimpleBox(
 		mComponentFactory->createPhysicsComponentSimpleBox(
@@ -1084,6 +1096,18 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 			pGameObjectBoss,
 			tGameObjectBossParameters.tAudioComponentParameters,
 			gameWorldMgr->getParent()->getAudioSubsystem()));
+
+	//Create RenderComponenetParticleSystem
+	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_BOSS;
+	tRenderComponentParticleSystemParameters.attached = true;
+	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
+	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
+	pGameObjectBoss->setRenderComponentParticleSystemDie(
+		mComponentFactory->createRenderComponentParticleSystem(
+			pGameObjectBoss,
+			tRenderComponentParticleSystemParameters,
+			pGameObjectBoss->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
 	pGameObjectBoss->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(

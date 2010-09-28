@@ -6,6 +6,7 @@
 #include "../../Event/Event.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
 #include "../../Logic/LogicSubsystem.h"
+#include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 
 using namespace OUAN;
 
@@ -82,6 +83,16 @@ RenderComponentEntityPtr GameObjectBoss::getRenderComponentEntity() const
 	return mRenderComponentEntity;
 }
 
+void GameObjectBoss::setRenderComponentParticleSystemDie(RenderComponentParticleSystemPtr pRenderComponentParticleSystemDie)
+{
+	mRenderComponentParticleSystemDie = pRenderComponentParticleSystemDie;
+}
+
+RenderComponentParticleSystemPtr GameObjectBoss::getRenderComponentParticleSystemDie() const
+{
+	return mRenderComponentParticleSystemDie;
+}
+
 void GameObjectBoss::setPhysicsComponentCharacter(PhysicsComponentCharacterPtr pPhysicsComponentCharacter)
 {
 	mPhysicsComponentCharacter=pPhysicsComponentCharacter;
@@ -110,8 +121,7 @@ bool GameObjectBoss::activateTrajectory(int newWorld)
 	std::string trajectoryName = getPatrolTrajectoryName(newWorld);
 	if(mTrajectoryComponent->predefinedTrajectoryExists(trajectoryName))
 	{
-		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,
-			newWorld,true);
+		mTrajectoryComponent->activatePathfindingToPredefinedTrajectory(trajectoryName,newWorld,true);
 		return true;
 	}
 	else
@@ -265,6 +275,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_DIE))
 			{
+				mRenderComponentParticleSystemDie->start();
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_DIE);
 				mTrajectoryComponent->activateIdle(getName(),world);
 			}

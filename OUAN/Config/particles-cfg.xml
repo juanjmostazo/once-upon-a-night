@@ -46,6 +46,7 @@
 	
 	<Option key="TRIPOLLO_DIE_DREAMS">PU/tripollo_die</Option>
 	<Option key="TRIPOLLO_DIE_NIGHTMARES">PU/tripollo_die_n</Option>
+	<Option key="TRIPOLLO_DIE_BOSS">PU/tripollo_die_boss</Option>
 	<Option key="TRIPOLLO_SHOCK">PU/tripollo_shock</Option>
 	<Option key="TRIPOLLO_SURPRISE">PU/tripollo_surprise</Option>
 	
@@ -53,6 +54,7 @@
 	<Option key="NEST_JUMP">PU/nest_jump</Option>
 	
 	<Option key="TREE_STARS">PU/tree_stars</Option>
+	<Option key="DIAMOND_TREE_STARS">PU/diamond_tree_stars</Option>
 	
 	<Option key="ROCK_BREAK">PU/rock_break</Option>
 	

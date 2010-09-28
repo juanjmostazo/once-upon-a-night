@@ -64,12 +64,14 @@ namespace OUAN
 
 		std::string TRIPOLLO_DIE_DREAMS;
 		std::string TRIPOLLO_DIE_NIGHTMARES;
+		std::string TRIPOLLO_DIE_BOSS;
 		std::string TRIPOLLO_SHOCK;
 		std::string TRIPOLLO_SURPRISE;
 
 		std::string NEST_BREAK;
 		std::string NEST_JUMP;
 
+		std::string DIAMOND_TREE_STARS;
 		std::string TREE_STARS;
 
 		std::string ROCK_BREAK;
