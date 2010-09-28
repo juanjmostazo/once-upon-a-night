@@ -1,31 +1,35 @@
 system PU/attack_light_green
 {
-    scale                                       0.05 0.05 0.05
-    technique Technique3
+    scale_velocity                              0.25
+    scale                                       0.25 0.25 0.25
+    technique 
     {
-        visual_particle_quota                   6
+        visual_particle_quota                   15
         material                                PU/attack_light_green
         renderer                                Billboard
         {
         }
-        emitter                                 Point Emitter4
+        emitter                                 Box 
         {
-            angle                               5
-            time_to_live                        dyn_random
+            emission_rate                       dyn_oscillate
             {
-                min                             0.8
-                max                             1.2
+                oscillate_frequency             0.8
+                oscillate_phase                 180
+                oscillate_base                  500
+                oscillate_amplitude             500
+                oscillate_type                  sine
             }
-            velocity                            dyn_random
+            time_to_live                        0.18
+            all_particle_dimensions             dyn_random
             {
-                min                             5
-                max                             10
+                min                             4
+                max                             16
             }
-        }
-        affector                                Colour Affector8
-        {
-            colour_aff_time_colour              0    0.2 0.8 0.2 1
-            colour_aff_time_colour              2    0 1 0 1
+            direction                           0 0 0
+            colour                              0.25 0.75 0.25 1
+            box_em_width                        24
+            box_em_height                       6
+            box_em_depth                        24
         }
     }
 }
