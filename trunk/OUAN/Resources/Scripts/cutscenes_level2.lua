@@ -162,7 +162,7 @@ function cutScene4(timer)
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false);
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true);
 	trajectoryCamWait();
 	busyWait(timer,5);
 	
@@ -228,7 +228,7 @@ function cutScene7_1(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_1_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,5);
+	busyWait(timer,8);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -241,7 +241,7 @@ function cutScene7_2(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_2_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,5);
+	busyWait(timer,8);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -254,7 +254,7 @@ function cutScene7_3(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_3_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,5);
+	busyWait(timer,8);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -325,8 +325,8 @@ function cutScene9(timer)
 	log (CUTSCENE_9_FINAL_BOSS_START);
 	local any=getAny()	
 	
-	-- setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
-	-- trajectoryCamWait();
+	setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
+	trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -340,8 +340,6 @@ function cutScene10_1(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_1_FINAL_BOSS_HIT_1);
-	-- setCameraTrajectory(CUTSCENE_10_1_FINAL_BOSS_HIT_1,false,true);
-	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -355,8 +353,6 @@ function cutScene10_2(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_2_FINAL_BOSS_HIT_2);
-	-- setCameraTrajectory(CUTSCENE_10_2_FINAL_BOSS_HIT_2,false,true);
-	-- trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -370,8 +366,8 @@ function cutScene10_3(timer)
 	local any=getAny()	
 	
 	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
-	-- setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
-	-- trajectoryCamWait();
+	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
+	trajectoryCamWait();
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
