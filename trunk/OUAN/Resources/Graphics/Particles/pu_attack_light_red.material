@@ -15,7 +15,7 @@ material PU/attack_light_red
         pass
         {
             lighting off
-            scene_blend alpha_blend
+            scene_blend add
             depth_write off
 
             texture_unit

@@ -1,7 +1,7 @@
 system PU/rock_break
 {
-    scale_velocity                              0.2
-    scale                                       0.2 0.2 0.2
+    scale_velocity                              0.18
+    scale                                       0.18 0.18 0.18
     technique 
     {
         visual_particle_quota                   100
@@ -21,8 +21,8 @@ system PU/rock_break
             }
             velocity                            dyn_random
             {
-                min                             200
-                max                             400
+                min                             300
+                max                             450
             }
             all_particle_dimensions             dyn_random
             {
