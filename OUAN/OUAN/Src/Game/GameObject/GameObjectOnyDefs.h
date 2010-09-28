@@ -19,6 +19,7 @@ namespace OUAN
 	const int ONY_STATE_DIE=11;
 	const int ONY_STATE_APPROACH_PORTAL=12;
 	const int ONY_STATE_VICTORY=13;
+	const int ONY_STATE_ATTACK_END=14;
 
 	const double ONY_IDLE2_CHANCE=0.015;
 
@@ -54,6 +55,8 @@ namespace OUAN
 	const std::string ONY_ANIM_NAP_KEEP="nap_loop";
 	const std::string ONY_ANIM_NAP_END="nap_post";
 	const std::string ONY_ANIM_SHOOT_CENTER="shoot_center";
+	const std::string ONY_ANIM_DRAW_FLASHLIGHT="draw_flash";
+	const std::string ONY_ANIM_HIDE_FLASHLIGHT="hide_flash";
 	const std::string ONY_ANIM_VICTORY="victory";
 	const std::string ONY_ANIM_VICTORY_START="victory_pre";
 	const std::string ONY_ANIM_VICTORY_LOOP="victory_loop";
@@ -105,5 +108,22 @@ namespace OUAN
 	const std::string ONY_SOUND_FLASHLIGHT_ATTACK_START="flashlight_attack_start";
 	const std::string ONY_SOUND_FLASHLIGHT_ATTACK_END="flashlight_attack_end";
 	const std::string ONY_SOUND_FLASHLIGHT_OVERHEAT="flashlight_overheat";
+
+
+	const std::string ONY_BLOCKING_ANIMATIONS[] =
+	{
+		ONY_ANIM_NAP_END,
+		ONY_ANIM_HIDE_FLASHLIGHT,
+		ONY_ANIM_DIE,
+		ONY_ANIM_VICTORY,
+		ONY_ANIM_HIT01,
+		ONY_ANIM_FALL_END,
+		ONY_ANIM_FALL_KEEP,
+		ONY_ANIM_JUMP01_END,
+		ONY_ANIM_JUMP02_END,
+		ONY_ANIM_JUMP02_KEEP,
+		ONY_ANIM_JUMP01_KEEP,
+	};
+	const int ONY_BLOCKING_ANIMATIONS_NUM=9;
 }
 #endif

@@ -305,6 +305,14 @@ namespace OUAN
 
 		bool isInNonGrassArea() const;
 		void setInNonGrassArea(bool inNonGrassArea);
+
+		bool isNapping() const;
+		bool isAttacking() const;
+
+		bool isBlockingAnimation() const;
+
+		const std::string& getCurrentAnimationName() const;
+
 	};
 
 	/// Carries data between the level loader and the object factories

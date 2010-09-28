@@ -447,6 +447,9 @@
 	<PROPERTY id="animation44::transition9::target" type="7" value="run"></PROPERTY>
   <PROPERTY id="animation44::transition9::duration" type="6" value="0.4"></PROPERTY>
   <PROPERTY id="animation44::transition9::blend_type" type="2" value="1"></PROPERTY>  
+  <PROPERTY id="animation44::transition10::target" type="7" value="hide_flash"></PROPERTY>
+  <PROPERTY id="animation44::transition10::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation44::transition10::duration" type="6" value="0.1"></PROPERTY>
   
   
   <PROPERTY id="animation45::name" type="7" value="tickling_loop"></PROPERTY>
@@ -493,6 +496,27 @@
 	<PROPERTY id="animation50::transition9::target" type="7" value="run"></PROPERTY>
   <PROPERTY id="animation50::transition9::duration" type="6" value="0.4"></PROPERTY>
   <PROPERTY id="animation50::transition9::blend_type" type="2" value="1"></PROPERTY> 
+  
+  <PROPERTY id="animation51::name" type="7" value="draw_flash"></PROPERTY>
+  <PROPERTY id="animation51::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation51::timescale" type="6" value="1.5"></PROPERTY>
+  <PROPERTY id="animation51::transition0::target" type="7" value="shoot_center"></PROPERTY>
+  <PROPERTY id="animation51::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation51::transition0::duration" type="6" value="0.1"></PROPERTY>
+  
+  
+  <PROPERTY id="animation52::name" type="7" value="hide_flash"></PROPERTY>
+  <PROPERTY id="animation52::loop" type="12" value="false"></PROPERTY>
+  <PROPERTY id="animation52::timescale" type="6" value="1.5"></PROPERTY>
+  <PROPERTY id="animation52::transition0::target" type="7" value="hide_flash"></PROPERTY>
+  <PROPERTY id="animation52::transition0::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation52::transition0::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation52::transition1::target" type="7" value="run"></PROPERTY>
+  <PROPERTY id="animation52::transition1::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation52::transition1::duration" type="6" value="0.2"></PROPERTY>
+  <PROPERTY id="animation52::transition2::target" type="7" value="walk"></PROPERTY>
+  <PROPERTY id="animation52::transition2::blend_type" type="2" value="1"></PROPERTY>
+  <PROPERTY id="animation52::transition2::duration" type="6" value="0.2"></PROPERTY>  
 
   <!-- Audio component -->
   <PROPERTY id="AudioComponent::soundID#0" type="7" value="any_triumph_laught"></PROPERTY>

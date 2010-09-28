@@ -224,168 +224,116 @@ void GameRunningState::resume()
 }
 void GameRunningState::handleEvents()
 {
+	checkDebuggingKeys();
+	checkInterfaceKeys();
+
 	int pad;
 	int key;
 
-	bool actionKeyPressed=false;
+	GameWorldManagerPtr worldMgr = mApp->getGameWorldManager();
+	CameraManagerPtr cameraMgr = mApp->getCameraManager();
+	GameObjectOnyPtr ony= worldMgr->getGameObjectOny();
+	LogicComponentOnyPtr onyLogic = ony->getLogicComponentOny();
+	PhysicsComponentCharacterOnyPtr onyPhysics = ony->getPhysicsComponentCharacterOny();
+
+	int newState = onyLogic->getNewState();
+	int currentState = onyLogic->getState();
+
 	bool useWeaponKeyPressed=false;
-	bool useSpWeaponKeyPressed=false;
 
-	checkDebuggingKeys();
+	bool onyDying = ony->isDying() || newState==ONY_STATE_DIE;
+	bool onyHit = ony->isHit();
+	bool onyCanAttack=!onyDying && !onyHit;
 
-	if (mApp->isPressedQuickExit(&pad,&key))
+	if (!onyDying)
 	{
-		//Logger::getInstance()->log("isPressedQuickExit IN");
-		//mApp->mExitRequested=true;
-		//mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
-		GameOverEventPtr evt;
-		evt.reset(new GameOverEvent(false));
-		mApp->getGameWorldManager()->addEvent(evt);
-	}
-	else if (mApp->isPressedPause(&pad,&key))
-	{
-		GameStatePtr nextState(new GamePausedState());
-		// Notice how pushState is called instead of changeState.
-		// The reason to use push this time is to prevent unnecessary cleanup and initialisation, since
-		// after the pause the application flow will come back to "GameRunning"
-		mApp->getGameStateManager()->pushState(nextState,mApp);
-	}
-	else if(mApp->isPressedCameraFixedFirstPerson(&pad,&key))
-	{		
-		mApp->getCameraManager()->setCameraFixedFirstPerson(true);
-	}
-	else if (mApp->isPressedRotateLeft(&pad,&key) || mApp->isMouseWheelDown())
-	{
-		mHUD->spinRoulette(true);
-	}
-	else if (mApp->isPressedRotateRight(&pad,&key) || mApp->isMouseWheelUp())
-	{
-		mHUD->spinRoulette(false);
-	}
-	else if (mApp->isPressedCenterCamera(&pad,&key))
-	{
-		mApp->getCameraManager()->centerToTargetBack(true);
-	}
-	else if (mApp->isPressedMenu(&pad,&key))
-	{
-		GameStatePtr nextState(new InGameMenuState());
-		mApp->getGameStateManager()->pushState(nextState,mApp);
-	}
-
-	bool onyCanAttack=!mApp->getGameWorldManager()->isOnyDying() && 
-		!mApp->getGameWorldManager()->isOnyHit();
-
-	if (onyCanAttack && mApp->isDownUseWeapon(&pad,&key))
-	{
-		if(mApp->getCameraManager()->targetMovementAllowed())
+		if (onyCanAttack && mApp->isDownUseWeapon(&pad,&key))
 		{
-			mApp->getGameWorldManager()->useWeapon();
-			useWeaponKeyPressed=true;
+			if(cameraMgr->targetMovementAllowed())
+			{
+				useWeaponKeyPressed=true;
+
+				if (newState!=ONY_STATE_ATTACK &&
+					currentState!=ONY_STATE_VICTORY && 
+					!onyLogic->awaitingForNapEnd() &&
+					!onyLogic->awaitingForAttackEnd())
+				{
+					ony->beginAttack();
+					newState=ONY_STATE_ATTACK;
+				}
+			}
 		}
-	}
-	else
-	{
-		//this method will basically apply to the flashlight, as it'll stop working
-		//when the button is not being pressed
-		if (!mApp->getGameWorldManager()->isOnyDying())		
+		else
 		{
-			mApp->getGameWorldManager()->stopUsingWeapon();
-		}
-	}
-
-	///////////////////////////////////////////////////////////
-	// ONY (or first person camera): TYPE OF MOVEMENT
-	//TODO: separate jump from movement?
-	
-	GameObjectOnyPtr ony = mApp->getGameWorldManager()->getGameObjectOny();
-	if (ony.get())
-	{
-		int newState = ony->getLogicComponentOny()->getNewState();
-
-		
-		Ogre::Vector3 outernMovement = !mApp->getGameWorldManager()->isOnyDying() 
-				? mApp->getMovement()
-				: Ogre::Vector3::ZERO;
-		
-
-		if(mApp->getGameWorldManager()->isOnyDying())
-		{
-			outernMovement=Vector3::ZERO;
+			ony->switchOff();
 		}
 
-		if (useWeaponKeyPressed && newState!=ONY_STATE_ATTACK &&
-			ony->getLogicCurrentState()!=ONY_STATE_VICTORY && 
-			!ony->getLogicComponentOny()->awaitingForNapEnd()) 
-		{
-			newState=ONY_STATE_ATTACK;
-			//Logger::getInstance()->log("SETTING ATTACK FLAG");
-		}
-		bool zeroMovement = 
-			fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
-			fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
+		Ogre::Vector3 inputReadMovement = mApp->getMovement();
+		bool zeroMovement = inputReadMovement.isZeroLength();
+
+		Ogre::Vector3 outernMovement = !onyDying
+			?inputReadMovement
+			:Ogre::Vector3::ZERO;
+
 
 		if (!zeroMovement)
 		{
-			if (!ony->getLogicComponentOny()->awaitingForNapEnd() && newState!=ONY_STATE_VICTORY)
+			if (!onyLogic->awaitingForNapEnd() && newState!=ONY_STATE_VICTORY && !onyLogic->awaitingForAttackEnd() && newState!=ONY_STATE_FALL && newState!=ONY_STATE_JUMP)
 				newState=ONY_STATE_RUN;
 		}
 
 
 		if (mApp->isDownWalk(&pad,&key) && 
-			!mApp->getGameWorldManager()->isOnyDying()
-			&& ony->getLogicCurrentState()!=ONY_STATE_VICTORY)
+			!onyDying
+			&& currentState!=ONY_STATE_VICTORY)
 		{
-			if (!ony->getLogicComponentOny()->awaitingForNapEnd())
+			if (!onyLogic->awaitingForNapEnd() && !onyLogic->awaitingForAttackEnd())
 			{
-				newState=ONY_STATE_RUN;
-				mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->walk();
-
+				onyPhysics->walk();
 				newState = ONY_STATE_WALK;
 			}
 		}
 		else
 		{
-			newState = (newState==ONY_STATE_WALK)?ONY_STATE_IDLE:newState;
+			newState = (newState==ONY_STATE_WALK && !ony->isNapping() && !ony->isAttacking())?ONY_STATE_IDLE:newState;
 		}
 
 		if (mApp->isDownJump(&pad,&key) && 
-			!mApp->getGameWorldManager()->isOnyDying() &&
-			ony->getLogicCurrentState()!=ONY_STATE_NAP &&
-			ony->getLogicCurrentState()!=ONY_STATE_NAP_END &&
-			ony->getLogicNewState()!=ONY_STATE_VICTORY &&
-			(ony->getLogicCurrentState()!=ONY_STATE_FALL || mApp->getGameWorldManager()->isGodMode()))
+			!onyDying &&
+			currentState!=ONY_STATE_NAP &&
+			currentState!=ONY_STATE_NAP_END &&
+			newState!=ONY_STATE_VICTORY &&
+			(currentState!=ONY_STATE_FALL || worldMgr->isGodMode()))
 		{
-			if(mApp->getCameraManager()->targetMovementAllowed())
-				{
-				ony->getPhysicsComponentCharacterOny()->jump();
-				}
+			if(cameraMgr->targetMovementAllowed())
+			{
+				onyPhysics->jump();
+			}
 
-				newState = ONY_STATE_JUMP;
+			newState = ONY_STATE_JUMP;
 		}			
 
-		if(mApp->getCameraManager()->getCameraControllerType()==CAMERA_FIRST_PERSON)
+		if(cameraMgr->getCameraControllerType()==CAMERA_FIRST_PERSON)
 		{
-			mApp->getCameraManager()->processSimpleTranslation(outernMovement);
+			cameraMgr->processSimpleTranslation(outernMovement);
 		}
-		else if(mApp->getCameraManager()->targetMovementAllowed())
+		else if(cameraMgr->targetMovementAllowed())
 		{
 			//Access to [0] because there's only one Ony, otherwise it should be a loop
 			//rotate movement vector using the current camera direction
-			if (ony->getLogicCurrentState()!=ONY_STATE_VICTORY && !ony->getLogicComponentOny()->awaitingForNapEnd())
-				ony->getPhysicsComponentCharacterOny()->setOuternMovement(outernMovement);
-			
-			zeroMovement = 
-				fabs(outernMovement.x) < Utils::DOUBLE_COMPARISON_DELTA && 
-				fabs(outernMovement.z) < Utils::DOUBLE_COMPARISON_DELTA;
+			if (currentState!=ONY_STATE_VICTORY && !onyLogic->awaitingForNapEnd() && !onyLogic->awaitingForAttackEnd())
+				onyPhysics->setOuternMovement(outernMovement);
 
-			if (zeroMovement && newState!=ONY_STATE_VICTORY && (newState==ONY_STATE_WALK || newState==ONY_STATE_RUN))
+			if (zeroMovement && newState!=ONY_STATE_VICTORY && !ony->isNapping() && !ony->isAttacking() && (newState==ONY_STATE_WALK || newState==ONY_STATE_RUN)){
+				bool debugAttacking=ony->isAttacking();
 				newState = ONY_STATE_IDLE;
+			}
 		}
 
-		ony->getLogicComponentOny()->setNewState(newState);
-	}
+		onyLogic->setNewState(newState);
 
-	mApp->getCameraManager()->processCameraRotation(mApp->getCameraRotation());
+		cameraMgr->processCameraRotation(mApp->getCameraRotation());
+	}	
 }
 
 void GameRunningState::checkDebuggingKeys()
@@ -466,6 +414,49 @@ void GameRunningState::checkDebuggingKeys()
 	{
 		Logger::getInstance()->log("RunCutscene pressed");
 		launchCutScene("cutscene_engine.lua","helloWorld");
+	}
+}
+
+void GameRunningState::checkInterfaceKeys()
+{
+	int pad, key;
+	if (mApp->isPressedQuickExit(&pad,&key))
+	{
+		//Logger::getInstance()->log("isPressedQuickExit IN");
+		//mApp->mExitRequested=true;
+		//mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
+		GameOverEventPtr evt;
+		evt.reset(new GameOverEvent(false));
+		mApp->getGameWorldManager()->addEvent(evt);
+	}
+	else if (mApp->isPressedPause(&pad,&key))
+	{
+		GameStatePtr nextState(new GamePausedState());
+		// Notice how pushState is called instead of changeState.
+		// The reason to use push this time is to prevent unnecessary cleanup and initialisation, since
+		// after the pause the application flow will come back to "GameRunning"
+		mApp->getGameStateManager()->pushState(nextState,mApp);
+	}
+	else if(mApp->isPressedCameraFixedFirstPerson(&pad,&key))
+	{		
+		mApp->getCameraManager()->setCameraFixedFirstPerson(true);
+	}
+	else if (mApp->isPressedRotateLeft(&pad,&key) || mApp->isMouseWheelDown())
+	{
+		mHUD->spinRoulette(true);
+	}
+	else if (mApp->isPressedRotateRight(&pad,&key) || mApp->isMouseWheelUp())
+	{
+		mHUD->spinRoulette(false);
+	}
+	else if (mApp->isPressedCenterCamera(&pad,&key))
+	{
+		mApp->getCameraManager()->centerToTargetBack(true);
+	}
+	else if (mApp->isPressedMenu(&pad,&key))
+	{
+		GameStatePtr nextState(new InGameMenuState());
+		mApp->getGameStateManager()->pushState(nextState,mApp);
 	}
 }
 
