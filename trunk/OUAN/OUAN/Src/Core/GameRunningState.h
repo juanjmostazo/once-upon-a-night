@@ -29,6 +29,7 @@ namespace OUAN
 
 		//Refactored code into functions to improve legibility
 		void checkDebuggingKeys();
+		void checkInterfaceKeys();
 		void toggleDebugPerformance();
 		void toggleDebugPhysics();
 		void toggleChangeLevel();

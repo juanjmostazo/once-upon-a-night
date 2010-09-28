@@ -568,8 +568,9 @@ void GameObjectOny::postUpdate()
 
 		int currentState=mLogicComponentOny->getState();
 		int lastState=mLogicComponentOny->getOldState();
+		std::string currentAnimationName = mRenderComponentEntity->getCurrentAnimationName();
 
-		//TO REALLOCATE BETTER
+		//TO RELOCATE BETTER
 		if ((currentState==ONY_STATE_WALK || currentState==ONY_STATE_RUN) && lastState==ONY_STATE_IDLE){
 			startParticleSystem(ONY_PS_RUN_SAND);
 		}
@@ -583,20 +584,23 @@ void GameObjectOny::postUpdate()
 			{
 				if (currentState==ONY_STATE_IDLE && lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP)
 				{
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+					changeAnimation(ONY_ANIM_IDLE01);
 				}
 
 					
-				else if (currentState==ONY_STATE_IDLE1 && mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_IDLE02 && lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP)
-					mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE02);
-
+				else if (currentState==ONY_STATE_IDLE1 && currentAnimationName.compare(ONY_ANIM_IDLE02) && lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP)
+					changeAnimation(ONY_ANIM_IDLE02);
+				//Process hit-ground animation
 				if (lastState==ONY_STATE_JUMP)
 				{
 					double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
 					Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
 					movement.y=0;
 
-					if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) ){
+					if (currentAnimationName.compare(ONY_ANIM_JUMP01_END) 
+						&& currentAnimationName.compare(ONY_ANIM_JUMP02_END) 
+						&& currentAnimationName.compare(ONY_ANIM_FALL_END) 
+						&& currentAnimationName.compare(ONY_ANIM_FALL_START) )					{
 
 						int hpLoss = computeQuadraticHPLoss(fTime, ONY_ANIM_FALL_END_TIME, mLogicComponentOny->getInitialHealthPoints());
 						
@@ -631,45 +635,53 @@ void GameObjectOny::postUpdate()
 			}
 		}
 		else if (currentState == ONY_STATE_VICTORY && lastState!=ONY_STATE_VICTORY &&
-			mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_VICTORY)
+			currentAnimationName.compare(ONY_ANIM_VICTORY))
 		{
 			changeAnimation(ONY_ANIM_VICTORY);
 			playSound(ONY_SOUND_TRIUMPH_A);
 		}
 		else if (currentState==ONY_STATE_DIE && lastState!=ONY_STATE_DIE && 
-			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_DIE)!=0)
+			currentAnimationName.compare(ONY_ANIM_DIE))
 		{
 			mAudioComponent->playSound(ONY_SOUND_DIE);
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_DIE);
+			changeAnimation(ONY_ANIM_DIE);
 		}
 
-		else if (currentState == ONY_STATE_HIT && lastState != ONY_STATE_HIT && 
-			mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_HIT01)!=0)
+		else if (currentState == ONY_STATE_HIT 
+			&& lastState != ONY_STATE_HIT 
+			&& currentAnimationName.compare(ONY_ANIM_HIT01))
 		{
 			mAudioComponent->playSound(ONY_SOUND_HIT_B);
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_HIT01);
+			changeAnimation(ONY_ANIM_HIT01);
 		}
-		else if (currentState == ONY_STATE_NAP && lastState!=ONY_STATE_NAP && mRenderComponentEntity->getCurrentAnimationName()!=ONY_ANIM_NAP_START)
+		else if (currentState == ONY_STATE_NAP 
+			&& lastState!=ONY_STATE_NAP 
+			&& currentAnimationName!=ONY_ANIM_NAP_START)
 		{
-			mRenderComponentEntity->changeAnimation(ONY_ANIM_NAP_START);
+			changeAnimation(ONY_ANIM_NAP_START);
 		}
 		else if (currentState==ONY_STATE_FALL)
 		{
-			if (lastState!=ONY_STATE_FALL && lastState!=ONY_STATE_JUMP && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP01_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_JUMP02_END) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_START) && mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP)
+			if (lastState!=ONY_STATE_FALL 
+				&& lastState!=ONY_STATE_JUMP 
+				&& currentAnimationName.compare(ONY_ANIM_JUMP01_END) 
+				&& currentAnimationName.compare(ONY_ANIM_JUMP02_END) 
+				&& currentAnimationName.compare(ONY_ANIM_FALL_START) 
+				&& currentAnimationName.compare(ONY_ANIM_FALL_KEEP)
 				)
 			{
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_START);
+				changeAnimation(ONY_ANIM_FALL_START);
 			}
-			else if (mRenderComponentEntity->getCurrentAnimationName().compare(ONY_ANIM_FALL_KEEP) && mPhysicsComponentCharacterOny->getFallingTime()>ONY_ANIM_FALL_LOOP_TIME)
+			else if (currentAnimationName.compare(ONY_ANIM_FALL_KEEP) && mPhysicsComponentCharacterOny->getFallingTime()>ONY_ANIM_FALL_LOOP_TIME)
 			{
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_FALL_KEEP);
+				changeAnimation(ONY_ANIM_FALL_KEEP);
 			}
 		}
 		else if (currentState==ONY_STATE_ATTACK && lastState !=ONY_STATE_ATTACK)
 		{
 			if (mWorld == DREAMS)
 			{
-				mRenderComponentEntity->changeAnimation(mAttackAnimationName);
+				changeAnimation(mAttackAnimationName);
 
 				GameObjectPillowPtr pillow = BOOST_PTR_CAST(GameObjectPillow,
 					mWeaponComponent->getActiveWeapon());
@@ -682,7 +694,8 @@ void GameObjectOny::postUpdate()
 			else if (mWorld == NIGHTMARES) 
 			{
 				//get Camera Direction and change animation accordingly:
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+				changeAnimation(ONY_ANIM_DRAW_FLASHLIGHT);
+				//mRenderComponentEntity->changeAnimation(ONY_ANIM_SHOOT_CENTER);
 
 				GameObjectFlashLightPtr flashLight = BOOST_PTR_CAST(GameObjectFlashLight,
 					mWeaponComponent->getActiveWeapon());
@@ -694,9 +707,9 @@ void GameObjectOny::postUpdate()
 			Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
 			movement.y=0;
 			if (movement.isZeroLength())
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP01_START);	
+				changeAnimation(ONY_ANIM_JUMP01_START);	
 			else
-				mRenderComponentEntity->changeAnimation(ONY_ANIM_JUMP02_START);
+				changeAnimation(ONY_ANIM_JUMP02_START);
 			mAudioComponent->playSound(ONY_SOUND_JUMP);
 		}
 		else if (currentState==ONY_STATE_WALK || currentState==ONY_STATE_RUN)
@@ -707,12 +720,13 @@ void GameObjectOny::postUpdate()
 				{
 					resetStepSounds();
 
-					if ( lastState!=ONY_STATE_JUMP && lastState!=ONY_STATE_FALL)
+					if ( lastState!=ONY_STATE_JUMP 
+						&& lastState!=ONY_STATE_FALL)
 					{
 						if (currentState==ONY_STATE_WALK)
-							mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
+							changeAnimation(ONY_ANIM_WALK);
 						else
-							mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+							changeAnimation(ONY_ANIM_RUN);
 					}
 				}
 				else //Walk/run toggle
@@ -724,9 +738,9 @@ void GameObjectOny::postUpdate()
 					if ((toWalk || toRun) && lastState!=ONY_STATE_JUMP && lastState!=ONY_STATE_FALL)
 					{
 						if (currentState==ONY_STATE_WALK)
-							mRenderComponentEntity->changeAnimation(ONY_ANIM_WALK);
+							changeAnimation(ONY_ANIM_WALK);
 						else
-							mRenderComponentEntity->changeAnimation(ONY_ANIM_RUN);
+							changeAnimation(ONY_ANIM_RUN);
 					}
 				}
 			}
@@ -747,10 +761,9 @@ void GameObjectOny::postUpdate()
 			{
 				double fTime=mPhysicsComponentCharacterOny->getLastFallingTime();
 				Ogre::Vector3 movement = mPhysicsComponentCharacterOny->getOuternMovement();
-				movement.y=0;
-				std::string currentAnimName=mRenderComponentEntity->getCurrentAnimationName();
-				bool notJumpAnim=currentAnimName.compare(ONY_ANIM_JUMP01_END) && currentAnimName.compare(ONY_ANIM_JUMP02_END);
-				bool notFallAnim=currentAnimName.compare(ONY_ANIM_FALL_END) && currentAnimName.compare(ONY_ANIM_FALL_START);
+				movement.y=0;				
+				bool notJumpAnim=currentAnimationName.compare(ONY_ANIM_JUMP01_END) && currentAnimationName.compare(ONY_ANIM_JUMP02_END);
+				bool notFallAnim=currentAnimationName.compare(ONY_ANIM_FALL_END) && currentAnimationName.compare(ONY_ANIM_FALL_START);
 
 				if (notJumpAnim && notFallAnim)
 				{
@@ -1052,6 +1065,30 @@ bool GameObjectOny::isInvulnerable() const
 void GameObjectOny::setInvulnerable(bool invulnerable)
 {
 	mInvulnerable=invulnerable;
+}
+bool GameObjectOny::isNapping() const
+{
+	return mLogicComponentOny->awaitingForNapEnd();
+}
+bool GameObjectOny::isAttacking() const
+{
+	return mLogicComponentOny->awaitingForAttackEnd();
+}
+
+bool GameObjectOny::isBlockingAnimation() const
+{
+	std::string currentAnim = mRenderComponentEntity->getCurrentAnimationName();
+	for (int i=0;i<ONY_BLOCKING_ANIMATIONS_NUM;i++)
+	{
+		if (!currentAnim.compare(ONY_BLOCKING_ANIMATIONS[i]))		
+			return true;
+	}
+	return false;
+}
+
+const std::string& GameObjectOny::getCurrentAnimationName() const
+{
+	return mRenderComponentEntity->getCurrentAnimationName();
 }
 //-------
 

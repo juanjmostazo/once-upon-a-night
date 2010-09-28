@@ -83,6 +83,8 @@ namespace OUAN
 		bool awaitingForNapEnd() const;
 		void initPostHitInvulnerability();
 
+		bool awaitingForAttackEnd() const;
+
 	private:
 		double mIdleTime;
 		/// Number of lives of the component
@@ -107,6 +109,8 @@ namespace OUAN
 
 		//State to return to after the stand-up animation has finished
 		int mNapBufferState;
+
+		int mAttackBufferState;
 	};
 	
 	class TLogicComponentOnyParameters: public TLogicComponentParameters

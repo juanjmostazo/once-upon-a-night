@@ -121,7 +121,7 @@ void PhysicsComponentSimpleBox::update(double elapsedSeconds)
 		}
 		else
 		{
-			getNxOgreVolume()->setGlobalPosition(mNxOgreKinematicBody->getGlobalPosition());
+			getNxOgreVolume()->setGlobalPosition(mNxOgreKinematicBody->getGlobalPosition())	;
 			getNxOgreVolume()->setGlobalOrientationQuat(mNxOgreKinematicBody->getGlobalOrientationQuat());
 		}
 	}

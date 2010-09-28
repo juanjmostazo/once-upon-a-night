@@ -1,0 +1,60 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material cryingking_d: basic_texture
+{
+	set_texture_alias diffuse_texture rey_llorica.dds
+	set_texture_alias normal_texture cryingking_nm.dds
+}
+
+material cryingking_n: basic_texture
+{
+	set_texture_alias diffuse_texture rey_llorica.dds
+	set_texture_alias normal_texture cryingking_nm.dds
+}
+
+material cryingking_cw : default_changeworld
+{
+}
+
+//CAPE
+material cryingking_cape_d : basic_texture
+{
+	set_texture_alias diffuse_texture capa_rey.dds
+}
+material cryingking_cape_n : basic_texture
+{
+	set_texture_alias diffuse_texture capa_rey.dds
+}
+
+material cryingking_cape_cw : default_changeworld
+{
+}
+
+//BOW TIE
+material cryingking_bowtie_d : basic_texture
+{
+	set_texture_alias diffuse_texture pajarita.dds
+}
+material cryingking_bowtie_n : basic_texture
+{
+	set_texture_alias diffuse_texture pajarita.dds
+}
+
+material cryingking_bowtie_cw : default_changeworld
+{
+}
+
+//eyes
+material cryingking_eyes_d : basic_texture
+{
+	set_texture_alias diffuse_texture rey_eyes.dds
+}
+material cryingking_eyes_n : basic_texture
+{
+	set_texture_alias diffuse_texture rey_eyes.dds
+}
+
+material cryingking_eyes_cw : default_changeworld
+{
+}

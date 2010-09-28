@@ -34,11 +34,11 @@ void PhysicsComponentCharacterOny::update(double elapsedSeconds)
 		//Use a facade method to prevent a dependency
 		//between the logic and physics component
 		int onyState = ony->getLogicCurrentState();
-		int newState = 0;	
+		int newState = ony->getLogicNewState();	
 		if (isFalling())
 		{
 			
-			if (onyState!=ONY_STATE_FALL && onyState!=ONY_STATE_VICTORY && ony->getLogicNewState()!=ONY_STATE_VICTORY)
+			if (onyState!=ONY_STATE_FALL && onyState!=ONY_STATE_VICTORY && newState!=ONY_STATE_VICTORY && !ony->isNapping() && !ony->isAttacking())
 			{				
 				ony->setLogicNewState(ONY_STATE_FALL);
 			}

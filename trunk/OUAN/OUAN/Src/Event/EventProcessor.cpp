@@ -450,7 +450,8 @@ void EventProcessor::processAttackEnded(AttackEndedEventPtr evt)
 	if ((ony=mWorldManager->getGameObjectOny()).get())
 	{
 		//Careful with: movement states, and combos
-		ony->setLogicNewState(ONY_STATE_IDLE);
+		if (!ony->isDying() && !ony->isNapping() && !ony->isAttacking())
+			ony->setLogicNewState(ONY_STATE_IDLE);
 	}
 }
 

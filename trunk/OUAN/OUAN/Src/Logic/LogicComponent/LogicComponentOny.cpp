@@ -24,6 +24,7 @@ LogicComponentOny::LogicComponentOny(const std::string& type)
 	mHitRecoveryTime=-1;
 	mIdleTime=0;
 	mNapBufferState=-1;
+	mAttackBufferState=-1;
 }
 
 LogicComponentOny::~LogicComponentOny()
@@ -199,6 +200,15 @@ void LogicComponentOny::processAnimationEnded(const std::string& animationName)
 			mNewState=ONY_STATE_IDLE;
 			mParent->getGameWorldManager()->onyDied();
 		}
+		else if (animationName.compare(ONY_ANIM_DRAW_FLASHLIGHT)==0)
+		{
+			mParent->changeAnimation(ONY_ANIM_SHOOT_CENTER);
+		}
+		else if (animationName.compare(ONY_ANIM_HIDE_FLASHLIGHT)==0)
+		{
+			mNewState=mAttackBufferState;
+			mAttackBufferState=-1;
+		}
 	}
 }
 
@@ -332,6 +342,15 @@ void LogicComponentOny::update(double elapsedTime)
 			finalState=ONY_STATE_NAP_END;
 			mParent->changeAnimation(ONY_ANIM_NAP_END);
 		}
+		else if (oldState==ONY_STATE_ATTACK && finalState!=ONY_STATE_ATTACK)
+		{
+			if (mParent->getGameWorldManager()->getWorld()==NIGHTMARES)
+			{
+				mAttackBufferState=finalState;
+				finalState=ONY_STATE_ATTACK_END;
+				mParent->changeAnimation(ONY_ANIM_HIDE_FLASHLIGHT);
+			}
+		}
 
 		if (finalState==ONY_STATE_IDLE)
 		{
@@ -368,7 +387,9 @@ void LogicComponentOny::update(double elapsedTime)
 
 void LogicComponentOny::setNewState(int newState)
 {
+
 	mNewState=newState;
+	Logger::getInstance()->log("ONY::SET NEW STATE: "+StringConverter::toString(newState));
 }
 
 int LogicComponentOny::getNewState()const
@@ -480,6 +501,10 @@ void LogicComponentOny::initPostHitInvulnerability()
 {
 	BOOST_PTR_CAST(GameObjectOny,mParent)->setInvulnerable(true);
 	mHitRecoveryTime=POST_HIT_INVULNERABILITY;
+}
+bool LogicComponentOny::awaitingForAttackEnd() const
+{
+	return mAttackBufferState!=-1;
 }
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
