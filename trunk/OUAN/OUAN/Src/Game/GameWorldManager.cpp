@@ -1853,6 +1853,8 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		plataform->activate();
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_4"));
 		plataform->activate();
+		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_5"));
+		plataform->activate();
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower3_6"));
 		plataform->activate();
 	}
