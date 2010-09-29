@@ -4003,7 +4003,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="moon.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-811.51 3300 -6534.85"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-811.51 3000 -6534.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="150 150 150"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="sun"></PROPERTY>
@@ -7255,7 +7255,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="moon.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-811.51 3300 -6534.85"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-811.51 3000 -6534.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="150 150 150"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="moon"></PROPERTY>
