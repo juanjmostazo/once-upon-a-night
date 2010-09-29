@@ -9,6 +9,7 @@ CUTSCENE_3_BOMBS_PUZZLE_START="BOMBS_PUZZLE_START";
 CUTSCENE_3_BOMBS_PUZZLE_START_1="BOMBS_PUZZLE_START#1";
 CUTSCENE_3_BOMBS_PUZZLE_START_2="BOMBS_PUZZLE_START#2";
 CUTSCENE_3_BOMBS_PUZZLE_START_3="BOMBS_PUZZLE_START#3";
+CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB="BOMBS_PUZZLE_PLACE_BOMB";
 CUTSCENE_4_BOMBS_PUZZLE_END="BOMBS_PUZZLE_END";
 CUTSCENE_5_NIGHT_GOBLIN_APPEARS="NIGHT_GOBLIN_APPEARS";
 CUTSCENE_6_NIGHT_GOBLIN_APPEARS="NIGHT_GOBLIN_APPEARS";
@@ -140,6 +141,31 @@ function cutScene3(timer)
 	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
 	
 	cryking:changeAnimation("idle03_Clip");
+	
+	setMyReturningToGameTransition(true);
+	return COROUTINE_FINISHED
+end
+
+-- CUTSCENE 3_1: BOMBS_PUZZLE_PLACE_BOMB
+function startCutScene3_1(pOny)
+	addExecutedLevelEvent(CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB);
+    launchCutScene("cutscenes_level2.lua","cutScene3_1");
+	return
+end
+
+function conditionCutScene3_1(pOny)
+	local bombDistance=getPlayerDistance("bomb#0");
+	return not hasExecutedLevelEvent(CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB) and bombDistance<=30;
+end
+
+function cutScene3_1(timer)
+	log ("CUTSCENE 3_1: ");
+	log (CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB);
+	local any=getAny()	
+	local cryking=getCryKing()
+	
+	setCameraTrajectory(CUTSCENE_4_BOMBS_PUZZLE_END,false,true)	
+	trajectoryCamWait();
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
