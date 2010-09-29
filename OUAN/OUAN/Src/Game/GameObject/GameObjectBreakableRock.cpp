@@ -100,7 +100,7 @@ void GameObjectBreakableRock::breakRock()
 		mBroken=true;
 		mRenderComponentEntity->setVisible(false);
 		mRenderComponentEntityBroken->setVisible(true);
-		mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+BROKEN_DISPLACEMENT);
+		mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+Vector3(0,BROKEN_DISPLACEMENT,0));
 		if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->destroy();
@@ -231,7 +231,11 @@ void GameObjectBreakableRock::reset()
 	GameObject::reset();
 	if(getName().compare("breakable-rock#rock_big")!=0 || !getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
 	{
-		mBroken=false;
+		if(mBroken)
+		{
+			mBroken=false;
+			mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()-Vector3(0,BROKEN_DISPLACEMENT,0));
+		}
 		mRenderComponentEntity->setVisible(true);
 		mRenderComponentEntityBroken->setVisible(false);
 	}
