@@ -40,5 +40,16 @@
 		<Option key="BOMBS_PUZZLE_START#6">...snif, But remember! to make it explode, ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#7">...snif, you need an intense red light ...snif</Option>
 
+		<Option key="SIGNPOST_MSG_1">Welcome to Ruinous World, a place disputed between the Cry King and the Tripollo King!</Option>
+		<Option key="SIGNPOST_MSG_1_1">Try jumping onto this flower!</Option>
+		<Option key="SIGNPOST_MSG_2">Beware, Do not touch!</Option>
+		<Option key="SIGNPOST_MSG_3">To the right. The Thick forest</Option>
+		<Option key="SIGNPOST_MSG_4">To the left. Huge fall</Option>
+		<Option key="SIGNPOST_MSG_5">Common Tripollo (gallus comunis): It is the most common and numerous bird inhabitant of the Ruinous World. They are insectivore and very territorial. Their life expectation is between five and ten nights.</Option>
+		<Option key="SIGNPOST_MSG_6">What are you looking at?!</Option>
+		<Option key="SIGNPOST_MSG_7">What are you waiting for! I want my clockpieces now!</Option>
+		<Option key="SIGNPOST_MSG_8">Not everything in this castle is what is supposed to be.</Option>
+
+
 	</Options>
 </Configuration>
