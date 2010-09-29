@@ -10,14 +10,15 @@
 
 namespace OUAN
 {
+	const double BROKEN_DISPLACEMENT = 32;
 	/// Class to hold Door information
 	class GameObjectBreakableRock : public GameObject, public boost::enable_shared_from_this<GameObjectBreakableRock>
 	{
 	private:
 		
 		/// Visual component
-		RenderComponentEntityPtr mRenderComponentEntityDreams;
-		RenderComponentEntityPtr mRenderComponentEntityNightmares;
+		RenderComponentEntityPtr mRenderComponentEntity;
+		RenderComponentEntityPtr mRenderComponentEntityBroken;
 		/// Position information
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
@@ -49,13 +50,13 @@ namespace OUAN
 
 		/// Return render component entity 
 		/// @return render component entity
-		RenderComponentEntityPtr getRenderComponentEntityDreams() const;
-		RenderComponentEntityPtr getRenderComponentEntityNightmares() const;
+		RenderComponentEntityPtr getRenderComponentEntity() const;
+		RenderComponentEntityPtr getRenderComponentEntityBroken() const;
 
 		/// Set render component
 		/// @param pRenderComponentEntity
-		void setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntityDreams);
-		void setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntityNightmares);
+		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
+		void setRenderComponentEntityBroken(RenderComponentEntityPtr pRenderComponentEntityBroken);
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -133,8 +134,8 @@ namespace OUAN
 		~TGameObjectBreakableRockParameters();
 
 		///Parameters specific to an Ogre Entity
-		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;
-		TRenderComponentEntityParameters tRenderComponentEntityNightmaresParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityParameters;
+		TRenderComponentEntityParameters tRenderComponentEntityBrokenParameters;
 
 		///Positional parameters
 		TRenderComponentPositionalParameters tRenderComponentPositionalParameters;

@@ -19,9 +19,9 @@ GameObjectBreakableRock::~GameObjectBreakableRock()
 
 }
 
-void GameObjectBreakableRock::setRenderComponentEntityDreams(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectBreakableRock::setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityDreams=pRenderComponentEntity;
+	mRenderComponentEntity=pRenderComponentEntity;
 }
 
 AudioComponentPtr GameObjectBreakableRock::getAudioComponent() const
@@ -34,20 +34,19 @@ void GameObjectBreakableRock::setAudioComponent(AudioComponentPtr audioComponent
 	mAudioComponent=audioComponent;
 }
 
-
-void GameObjectBreakableRock::setRenderComponentEntityNightmares(RenderComponentEntityPtr pRenderComponentEntity)
+void GameObjectBreakableRock::setRenderComponentEntityBroken(RenderComponentEntityPtr pRenderComponentEntity)
 {
-	mRenderComponentEntityNightmares=pRenderComponentEntity;
+	mRenderComponentEntityBroken=pRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectBreakableRock::getRenderComponentEntityDreams() const
+RenderComponentEntityPtr GameObjectBreakableRock::getRenderComponentEntity() const
 {
-	return mRenderComponentEntityDreams;
+	return mRenderComponentEntity;
 }
 
-RenderComponentEntityPtr GameObjectBreakableRock::getRenderComponentEntityNightmares() const
+RenderComponentEntityPtr GameObjectBreakableRock::getRenderComponentEntityBroken() const
 {
-	return mRenderComponentEntityNightmares;
+	return mRenderComponentEntityBroken;
 }
 
 void GameObjectBreakableRock::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
@@ -99,14 +98,16 @@ void GameObjectBreakableRock::breakRock()
 			getGameWorldManager()->addExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK);
 		}
 		mBroken=true;
-		mRenderComponentEntityDreams->setVisible(false);
-		mRenderComponentEntityNightmares->setVisible(false);
+		mRenderComponentEntity->setVisible(false);
+		mRenderComponentEntityBroken->setVisible(true);
+		mRenderComponentPositional->setPosition(mRenderComponentPositional->getPosition()+BROKEN_DISPLACEMENT);
 		if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 		{
 			mPhysicsComponentSimpleBox->destroy();
 		}
 		mAudioComponent->playSound("explosion");
 		getRenderComponentParticleSystemBreak()->start(); 
+
 	}
 }
 
@@ -119,8 +120,6 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 		case DREAMS:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityNightmares->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -128,7 +127,7 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(true);
+				getEntityComponent()->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -136,7 +135,7 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(false);
+				getEntityComponent()->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -146,8 +145,6 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 		case NIGHTMARES:
 			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
-				mRenderComponentEntityNightmares->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -155,7 +152,7 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponent->existsInDreams()&& !mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityDreams->setVisible(false);
+				getEntityComponent()->setVisible(false);
 				if (mPhysicsComponentSimpleBox.get() && mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->destroy();
@@ -163,7 +160,7 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponent->existsInDreams()&& mLogicComponent->existsInNightmares())
 			{
-				mRenderComponentEntityNightmares->setVisible(true);
+				getEntityComponent()->setVisible(true);
 				if (mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 				{
 					mPhysicsComponentSimpleBox->create();
@@ -177,26 +174,26 @@ void GameObjectBreakableRock::changeWorldFinished(int newWorld)
 
 void GameObjectBreakableRock::setVisible(bool visible)
 {
-	if(!mBroken)
+
+	switch(mWorld)
 	{
-		switch(mWorld)
+	case DREAMS:
+		if(mLogicComponent->existsInDreams())
 		{
-		case DREAMS:
-			if(mLogicComponent->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(visible);
-			}
-			break;
-		case NIGHTMARES:
-			if(mLogicComponent->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(visible);
-			}
-			break;
-		default:
-			break;
+			getEntityComponent()->setVisible(visible);
 		}
+		break;
+	case NIGHTMARES:
+		if(mLogicComponent->existsInNightmares())
+		{
+			getEntityComponent()->setVisible(visible);
+		}
+		break;
+	default:
+		break;
 	}
+
+
 }
 
 void GameObjectBreakableRock::changeWorldStarted(int newWorld)
@@ -235,7 +232,10 @@ void GameObjectBreakableRock::reset()
 	if(getName().compare("breakable-rock#rock_big")!=0 || !getGameWorldManager()->hasExecutedLevelEvent(BOMB_EXPLODED_NEAR_BRIGDGE_ROCK))
 	{
 		mBroken=false;
+		mRenderComponentEntity->setVisible(true);
+		mRenderComponentEntityBroken->setVisible(false);
 	}
+
 }
 
 bool GameObjectBreakableRock::hasPositionalComponent() const
@@ -256,7 +256,6 @@ PhysicsComponentPtr GameObjectBreakableRock::getPhysicsComponent() const
 {
 	return getPhysicsComponentSimpleBox();
 }
-
 
 /// Set logic component
 void GameObjectBreakableRock::setLogicComponentProp(LogicComponentPropPtr logicComponent)
@@ -300,7 +299,7 @@ bool GameObjectBreakableRock::hasRenderComponentEntity() const
 }
 RenderComponentEntityPtr GameObjectBreakableRock::getEntityComponent() const
 {
-	return (mWorld==DREAMS)?mRenderComponentEntityDreams:mRenderComponentEntityNightmares;
+	return (mBroken)?mRenderComponentEntityBroken:mRenderComponentEntity;
 }
 bool GameObjectBreakableRock::hasLogicComponent() const
 {

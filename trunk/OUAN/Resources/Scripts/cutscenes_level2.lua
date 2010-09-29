@@ -155,7 +155,7 @@ end
 
 function conditionCutScene3_1(pOny)
 	local bombDistance=getPlayerDistance("bomb#0");
-	return not hasExecutedLevelEvent(CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB) and bombDistance<=30;
+	return not hasExecutedLevelEvent(CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB) and bombDistance<=60;
 end
 
 function cutScene3_1(timer)
