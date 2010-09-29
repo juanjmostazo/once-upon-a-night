@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
 <Configuration>
 	<Options>						
 		<Option key="SIGNPOST_MSG_HURRY_UP">¡¡Date prisa, Any, si quieres despertar!!</Option>
@@ -14,6 +14,17 @@
 		<Option key="SIGNPOST_MSG_GETTINGCLOSE">Vas por buen camino...¿o era al revés?</Option>
 		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Apadrina a un programador del mundo real\n...Ah, y sí: vas bien</Option>
 		
+		<Option key="SIGNPOST_MSG_1">¡Bienvenida al Reino Ruinoso, lugar disputado entre el Rey Llorica y el Rey Tripollo!</Option>
+		<Option key="SIGNPOST_MSG_1_1">¡Prueba de saltar encima de esta flor!</Option>
+		<Option key="SIGNPOST_MSG_2">Peligro, ¡No tocar!</Option>
+		<Option key="SIGNPOST_MSG_3">Hacia la derecha. Bosque boscoso</Option>
+		<Option key="SIGNPOST_MSG_4">Hacia la izquierda. Gran catarata</Option>
+		<Option key="SIGNPOST_MSG_5">Tripollo común (gallus comunis) : es el ave autóctona más común y numerosa del Reino Ruinoso. Son insectívoros y muy territoriales. Su esperanza de vida va de 5 a 10 noches.</Option>
+		<Option key="SIGNPOST_MSG_6">¿¡Qué estás mirando?!</Option>
+		<Option key="SIGNPOST_MSG_7">¡A qué esperas cabeza de chorlito! ¡Quiero mis piezas ya!</Option>
+		<Option key="SIGNPOST_MSG_8">En este castillo no todo es lo que parece</Option>
+
+
 		<Option key="CUTSCENE_HELLOWORLD_INTRO">¡Hola, mundo!</Option>
 		<Option key="CUTSCENE_HELLOWORLD_SECOND">Me llamo Any</Option>
 		<Option key="CUTSCENE_HELLOWORLD_LAST">y necesito escapar de este mundo de locos</Option>
