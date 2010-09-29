@@ -166,6 +166,7 @@ function cutScene3_1(timer)
 	
 	setCameraTrajectory(CUTSCENE_4_BOMBS_PUZZLE_END,false,true)	
 	trajectoryCamWait();
+	busyWait(timer,5);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
