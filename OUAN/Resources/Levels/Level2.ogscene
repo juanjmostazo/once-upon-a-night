@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="762.376 238.119 311.154" orientation="-0.911096 0.0973019 -0.398245 -0.0428574"></OPTION>
+    <OPTION id="2" position="446.853 201.704 -205.219" orientation="-0.897187 0.224271 -0.369022 -0.0926294"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.911344 0.0973284 -0.398353 -0.0428691"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.897438 0.224334 -0.369125 -0.0926552"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="762.376 238.119 311.154"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="446.853 201.704 -205.219"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -13096,6 +13096,29 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="615131072" name="signpost_d#BOMB_PUZZLE" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.911762 0 0.410719 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="356.188 95.1384 -278.203"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="873683840" name="tree1_d#5" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14366,6 +14389,29 @@
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
+  <OBJECT object_id="623493120" name="signpost_n#BOMB_PUZZLE" typename="Entity Object" parentnode="Signposts">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="signpost.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.911762 0 0.410719 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="356.188 95.1384 -278.203"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="signpost3_d"></PROPERTY>
+    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="RenderComponentMessageBox::charPanelMaterialName" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::duration" type="6" value="3" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::message" type="7" value="SIGNPOST_MSG_10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="RenderComponentMessageBox::visible" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
