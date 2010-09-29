@@ -17,6 +17,9 @@ namespace OUAN
 	const std::string TREE_ANIM_IDLE_UP2="idle02";
 	const std::string TREE_ANIM_IDLE_DOWN="idle03";
 
+	const double TREE_MAX_PARTICLES_ELAPSED_TIME = 60;
+	const double TREE_PARTICLES_ACTIVE_TIME = 2;
+
 	/// Class to hold GameObjectTree information
 	class GameObjectTree : public GameObject, public boost::enable_shared_from_this<GameObjectTree>
 	{
@@ -37,6 +40,9 @@ namespace OUAN
 		/// or the world(s) the object belongs to
 		LogicComponentPtr mLogicComponent;
 		//TODO: think what happens when world changes with the rendercomponent
+
+		double mNextParticlesCountDown;
+		void recalculateNextParticlesCountDown();
 	public:
 		//Constructor
 		GameObjectTree(const std::string& name);

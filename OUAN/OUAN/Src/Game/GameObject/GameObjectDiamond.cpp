@@ -5,7 +5,7 @@
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
 #include "../../Audio/AudioComponent/AudioComponent.h"
-
+#include "../../Utils/Utils.h"
 using namespace OUAN;
 
 GameObjectDiamond::GameObjectDiamond(const std::string& name)
@@ -167,7 +167,6 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
-				//mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
@@ -186,7 +185,6 @@ void GameObjectDiamond::changeWorldFinished(int newWorld)
 			if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
 			{
 				mPhysicsComponentVolumeBox->create();
-				//mRenderComponentParticleSystemBrightness->start();
 			}
 		}
 		else
@@ -286,6 +284,7 @@ void GameObjectDiamond::reset()
 	GameObject::reset();
 	//mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 	mLogicComponentItem->setIsTaken(false);
+	recalculateNextParticlesCountDown();
 }
 
 bool GameObjectDiamond::hasPositionalComponent() const
@@ -373,8 +372,26 @@ void GameObjectDiamond::update(double elapsedSeconds)
 				mPhysicsComponentVolumeBox->setPosition(position);
 			}
 		}
+
+		mNextParticlesCountDown-=elapsedSeconds;
+
+		if(mNextParticlesCountDown<-DIAMOND_PARTICLES_ACTIVE_TIME)
+		{
+			recalculateNextParticlesCountDown();
+			mRenderComponentParticleSystemBrightness->stop();
+		}
+		else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemBrightness->hasStarted())
+		{
+			mRenderComponentParticleSystemBrightness->start();
+		}
 	}
 }
+
+void GameObjectDiamond::recalculateNextParticlesCountDown()
+{
+	mNextParticlesCountDown=Utils::Random::getInstance()->getRandomDouble(0,DIAMOND_MAX_PARTICLES_ELAPSED_TIME);
+}
+
 bool GameObjectDiamond::hasRenderComponentEntity() const
 {
 	return true;
@@ -455,12 +472,14 @@ void GameObjectDiamond::setVisible(bool visible)
 		if(mLogicComponentItem->existsInDreams())
 		{
 			mRenderComponentEntity->setVisible(visible);
+			mRenderComponentParticleSystemBrightness->setVisible(visible);
 		}
 		break;
 	case NIGHTMARES:
 		if(mLogicComponentItem->existsInNightmares())
 		{
 			mRenderComponentEntity->setVisible(visible);
+			mRenderComponentParticleSystemBrightness->setVisible(visible);
 		}
 		break;
 	default:

@@ -12,6 +12,7 @@ namespace OUAN
 		std::vector<ParticleUniverse::ParticleSystem*> mParticleSystems;
 		int mPoolPointer;
 		int mPoolSize;
+		bool mStarted;
 
 		void advancePoolPointer();
 
@@ -29,6 +30,7 @@ namespace OUAN
 		void stop();
 		void pause();
 		void resume();
+		bool hasStarted();
 
 		void startAll();
 		void stopAll();

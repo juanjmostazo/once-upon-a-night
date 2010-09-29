@@ -3,6 +3,7 @@
 #include "GameObjectTree.h"
 #include "../GameWorldManager.h"
 #include "../../Graphics/RenderComponent/RenderComponentParticleSystem.h"
+#include "../../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -130,7 +131,7 @@ void GameObjectTree::changeWorldFinished(int newWorld)
 
 				if (mType == 9)
 				{
-					mRenderComponentParticleSystemStars->start();
+					recalculateNextParticlesCountDown();
 				}
 			}
 			else
@@ -256,6 +257,12 @@ void GameObjectTree::reset()
 	GameObject::reset();
 
 	mRenderComponentEntity->changeAnimation(TREE_ANIM_IDLE_UP);
+	recalculateNextParticlesCountDown();
+}
+
+void GameObjectTree::recalculateNextParticlesCountDown()
+{
+	mNextParticlesCountDown=Utils::Random::getInstance()->getRandomDouble(0,TREE_MAX_PARTICLES_ELAPSED_TIME);
 }
 
 bool GameObjectTree::hasPositionalComponent() const
@@ -318,6 +325,21 @@ void GameObjectTree::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);
 	mRenderComponentEntity->update(elapsedSeconds);
+
+	if(isEnabled())
+	{
+		mNextParticlesCountDown-=elapsedSeconds;
+
+		if(mNextParticlesCountDown<-TREE_PARTICLES_ACTIVE_TIME)
+		{
+			recalculateNextParticlesCountDown();
+			mRenderComponentParticleSystemStars->stop();
+		}
+		else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemStars->hasStarted())
+		{
+			mRenderComponentParticleSystemStars->start();
+		}
+	}
 }
 
 bool GameObjectTree::hasRenderComponentEntity() const

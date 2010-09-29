@@ -8,6 +8,7 @@ RenderComponentParticleSystem::RenderComponentParticleSystem(const std::string& 
 {
 	mPoolSize = poolSize;
 	mPoolPointer = 0;
+	mStarted=false;
 }
 
 RenderComponentParticleSystem::~RenderComponentParticleSystem()
@@ -48,6 +49,7 @@ void RenderComponentParticleSystem::setVisible(bool visible)
 void RenderComponentParticleSystem::start()
 {
 	start(Ogre::Vector3::ZERO);
+	mStarted=true;
 }
 
 void RenderComponentParticleSystem::start(Ogre::Vector3 position)
@@ -74,6 +76,7 @@ void RenderComponentParticleSystem::start(Ogre::Vector3 position)
 	{
 		Logger::getInstance()->log("RCParticleSystem - start(): mParticleSystems is NULL from " + getParentName());
 	}
+	mStarted=true;
 }
 
 void RenderComponentParticleSystem::stop()
@@ -93,6 +96,7 @@ void RenderComponentParticleSystem::stop()
 	{
 		Logger::getInstance()->log("RCParticleSystem - stop(): mParticleSystem is NULL from " + getParentName());
 	}
+	mStarted=false;
 }
 
 void RenderComponentParticleSystem::pause()
@@ -220,6 +224,11 @@ void RenderComponentParticleSystem::resumeAll()
 	{
 		Logger::getInstance()->log("RCParticleSystem - resumeAll(): mParticleSystems is NULL from " + getParentName());
 	}
+}
+
+bool RenderComponentParticleSystem::hasStarted()
+{
+	return mStarted;
 }
 
 TRenderComponentParticleSystemParameters::TRenderComponentParticleSystemParameters() : TRenderComponentParameters()

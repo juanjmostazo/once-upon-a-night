@@ -15,6 +15,9 @@ namespace OUAN
 
 	const std::string SOUND_DIAMOND="diamond";
 
+	const double DIAMOND_MAX_PARTICLES_ELAPSED_TIME = 20;
+	const double DIAMOND_PARTICLES_ACTIVE_TIME = 2;
+
 	/// Class to hold GameObjectDiamond information
 	class GameObjectDiamond : public GameObject, public boost::enable_shared_from_this<GameObjectDiamond>
 	{
@@ -49,6 +52,9 @@ namespace OUAN
 		GameObjectDiamondTreePtr mParentDiamondTree;
 		/// Audio component
 		AudioComponentPtr mAudioComponent;
+
+		double mNextParticlesCountDown;
+		void recalculateNextParticlesCountDown();
 	public:
 		//Constructor
 		GameObjectDiamond(const std::string& name);
@@ -151,8 +157,6 @@ namespace OUAN
 		/// Process collision event
 		/// @param gameObject which has collision with
 		void processExitTrigger(GameObjectPtr pGameObject);
-
-		
 		
 		void update(double elapsedSeconds);
 
