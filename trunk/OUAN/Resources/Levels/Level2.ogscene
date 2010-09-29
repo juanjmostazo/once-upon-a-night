@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="102.516"></CAMERASPEED>
+  <CAMERASPEED value="45.3333"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="466.369 895.502 -1045.15" orientation="0.986942 0.0140064 0.160463 -0.0013439"></OPTION>
+    <OPTION id="2" position="-502.654 743.438 -1559.43" orientation="-0.989277 -0.0863096 0.117289 -0.0111696"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.987031 0.0140077 0.160478 -0.00134402"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.989308 -0.0863122 0.117293 -0.01117"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="466.369 895.502 -1045.15"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-502.654 743.438 -1559.43"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -4003,7 +4003,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="moon.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-811.51 3000 -6534.85"></PROPERTY>
+    <PROPERTY id="position" type="9" value="913.248 3000 -6534.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="150 150 150"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="sun"></PROPERTY>
@@ -7255,7 +7255,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="moon.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-811.51 3000 -6534.85"></PROPERTY>
+    <PROPERTY id="position" type="9" value="913.248 3000 -6534.85"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="150 150 150"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="moon"></PROPERTY>
