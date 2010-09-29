@@ -904,24 +904,21 @@ GameObjectBreakableRockPtr GameObjectFactory::createGameObjectBreakableRock(TGam
 	pGameObjectBreakableRock->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
 		pGameObjectBreakableRock->getRenderComponentPositional()));
 
-	if(pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams())
-	{
-		//Create RenderComponentEntity Dreams
-		pGameObjectBreakableRock->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.dreamsName,
-			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityDreamsParameters,
-		pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
-		pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
-	}
-	if(pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares())
-	{
-		//Create RenderComponentEntity Nightmares
-		pGameObjectBreakableRock->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.nightmaresName,
-			pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityNightmaresParameters,
-		pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
-		pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
-	}
+	//Create RenderComponentEntity
+	pGameObjectBreakableRock->setRenderComponentEntity(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.name,
+		pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityParameters,
+	pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
+	pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
+
+	tGameObjectBreakableRockParameters.tRenderComponentEntityParameters.meshfile="rock_big_destroy.mesh";
+
+	//Create RenderComponentEntity Broken
+	pGameObjectBreakableRock->setRenderComponentEntityBroken(
+		mComponentFactory->createRenderComponentEntity(tGameObjectBreakableRockParameters.name+"#broken",
+		pGameObjectBreakableRock,tGameObjectBreakableRockParameters.tRenderComponentEntityParameters,
+	pGameObjectBreakableRock->getLogicComponentProp()->existsInDreams(),
+	pGameObjectBreakableRock->getLogicComponentProp()->existsInNightmares()));
 
 	//Create audio component
 	pGameObjectBreakableRock->setAudioComponent(

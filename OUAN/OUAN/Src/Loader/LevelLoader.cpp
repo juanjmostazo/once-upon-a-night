@@ -1242,11 +1242,8 @@ void LevelLoader::processGameObjectBreakableRock(XMLGameObject* gameObject)
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
 		//Get RenderComponentEntityDreams
-		tGameObjectBreakableRockParameters.tRenderComponentEntityDreamsParameters = processRenderComponentEntity(gameObject->XMLNodeDreams,
+		tGameObjectBreakableRockParameters.tRenderComponentEntityParameters = processRenderComponentEntity(gameObject->getMainXMLNode(),
 			DREAMS, gameObject->XMLNodeCustomProperties);
-		//Get RenderComponentEntityNightmares
-		tGameObjectBreakableRockParameters.tRenderComponentEntityNightmaresParameters = processRenderComponentEntity(gameObject->XMLNodeNightmares,
-			NIGHTMARES,gameObject->XMLNodeCustomProperties);
 		
 		//Get AudioComponent
 		tGameObjectBreakableRockParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
