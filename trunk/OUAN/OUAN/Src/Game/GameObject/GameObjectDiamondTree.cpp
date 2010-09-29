@@ -450,10 +450,13 @@ void GameObjectDiamondTree::update(double elapsedSeconds)
 			mLogicComponent->setHasTakenHit(false);
 			mAudioComponent->playSound(DT_SOUND_DIAMOND);
 			mGameWorldManager->increaseOnyDiamonds(1);
+			mRenderComponentParticleSystemStars->start();
 		}
 		else if (currentState==logicSS->getGlobalInt(DT_STATE_DEPLETED) &&
 			mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 		{
+			mRenderComponentParticleSystemStars->stop();
+
 			//TODO: Replace with depletion animation when it is done
 			//TODO: Add particles
 			mRenderComponentEntity->changeAnimation(DT_ANIM_IDLE);

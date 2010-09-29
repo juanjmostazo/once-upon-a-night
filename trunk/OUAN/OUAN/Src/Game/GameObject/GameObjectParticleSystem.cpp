@@ -112,6 +112,7 @@ void GameObjectParticleSystem::changeToWorld(int newWorld, double perc)
 void GameObjectParticleSystem::reset()
 {
 	GameObject::reset();
+	mRenderComponentParticleSystem->start();
 }
 
 bool GameObjectParticleSystem::hasPositionalComponent() const
