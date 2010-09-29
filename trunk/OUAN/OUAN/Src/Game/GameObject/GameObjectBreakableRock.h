@@ -10,7 +10,7 @@
 
 namespace OUAN
 {
-	const double BROKEN_DISPLACEMENT = 32;
+	const double BROKEN_DISPLACEMENT = -32;
 	/// Class to hold Door information
 	class GameObjectBreakableRock : public GameObject, public boost::enable_shared_from_this<GameObjectBreakableRock>
 	{
