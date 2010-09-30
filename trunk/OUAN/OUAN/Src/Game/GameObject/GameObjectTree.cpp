@@ -326,7 +326,7 @@ void GameObjectTree::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 	mRenderComponentEntity->update(elapsedSeconds);
 
-	if(isEnabled() && ((mLogicComponent->existsInDreams() && mWorld==DREAMS) || (mLogicComponent->existsInNightmares() && mWorld==NIGHTMARES)))
+	if(isEnabled() && isWorthRendering() &&  ((mLogicComponent->existsInDreams() && mWorld==DREAMS) || (mLogicComponent->existsInNightmares() && mWorld==NIGHTMARES)))
 	{
 		if(mType == 9)
 		{
