@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-562.764 611.412 -2557.37" orientation="-0.882158 0.153166 0.43899 0.074995"></OPTION>
+    <OPTION id="2" position="932.539 1604.28 -1731.45" orientation="-0.980616 0.0889459 -0.173769 -0.0168677"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.882374 0.153204 0.439098 0.0750134"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.980861 0.088968 -0.173812 -0.0168719"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-562.764 611.412 -2557.37"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="932.539 1604.28 -1731.45"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -22618,8 +22618,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.85482 0.00354955 -0.515056 0.0631422"></PROPERTY>
-    <PROPERTY id="position" type="9" value="924.456 1977.07 -1753.55"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.85462 -0.0188283 -0.516533 0.049638"></PROPERTY>
+    <PROPERTY id="position" type="9" value="924.456 1600 -1753.55"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="50" fields="X;Y;Z;W"></PROPERTY>
