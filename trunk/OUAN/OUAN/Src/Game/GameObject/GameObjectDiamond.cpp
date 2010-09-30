@@ -373,16 +373,19 @@ void GameObjectDiamond::update(double elapsedSeconds)
 			}
 		}
 
-		mNextParticlesCountDown-=elapsedSeconds;
+		if((mLogicComponentItem->existsInDreams() && mWorld==DREAMS) || (mLogicComponentItem->existsInNightmares() && mWorld==NIGHTMARES))
+		{
+			mNextParticlesCountDown-=elapsedSeconds;
 
-		if(mNextParticlesCountDown<-DIAMOND_PARTICLES_ACTIVE_TIME)
-		{
-			recalculateNextParticlesCountDown();
-			mRenderComponentParticleSystemBrightness->stop();
-		}
-		else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemBrightness->hasStarted())
-		{
-			mRenderComponentParticleSystemBrightness->start();
+			if(mNextParticlesCountDown<-DIAMOND_PARTICLES_ACTIVE_TIME)
+			{
+				recalculateNextParticlesCountDown();
+				mRenderComponentParticleSystemBrightness->stop();
+			}
+			else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemBrightness->hasStarted())
+			{
+				mRenderComponentParticleSystemBrightness->start();
+			}
 		}
 	}
 }
