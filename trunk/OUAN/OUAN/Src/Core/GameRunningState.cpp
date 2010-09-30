@@ -132,9 +132,9 @@ void GameRunningState::init(ApplicationPtr app)
 	//mCutScenes.push_back("cutScene3");
 	//mCutScenes.push_back("cutScene3_1");
 	//mCutScenes.push_back("cutScene4");
-	mCutScenes.push_back("cutScene7_1");
-	mCutScenes.push_back("cutScene7_2");
-	mCutScenes.push_back("cutScene7_3");
+	//mCutScenes.push_back("cutScene7_1");
+	//mCutScenes.push_back("cutScene7_2");
+	//mCutScenes.push_back("cutScene7_3");
 	mCutScenes.push_back("cutScene8");
 	mCutScenes.push_back("cutScene8_0");
 	mCutScenes.push_back("cutScene8_1");
