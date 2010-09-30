@@ -67,5 +67,16 @@
 
 		<Option key="BOMBS_PUZZLE_END#0">You are so slow! Snif, snif...</Option>
 		<Option key="BOMBS_PUZZLE_END#1">That's ok, now make it explode with some red light.</Option>
+
+		<Option key="FINAL_BOSS_START#0">The Tripollo King</Option>
+
+		<Option key="FINAL_BOSS_END#0">BUUAAAAAAAAAAAAAAAAA!!</Option>
+		<Option key="FINAL_BOSS_END#1">BUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Option>
+		<Option key="FINAL_BOSS_END#2">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!...</Option>
+		<Option key="FINAL_BOSS_END#3">Oh well, I didn't really like this stupid scepter that much</Option>
+		<Option key="FINAL_BOSS_END#4">Snif, snif... Ony, you can go now, you can get this old, ugly and rusty engine, snif, sinf...</Option>
+		<Option key="FINAL_BOSS_END#5">I don't want to see it again, It messed up all my palace decoration</Option>
+		<Option key="FINAL_BOSS_END#6">This guy has a loose screw...</Option>
+		<Option key="FINAL_BOSS_END#7">Or two...</Option>
 	</Options>
 </Configuration>

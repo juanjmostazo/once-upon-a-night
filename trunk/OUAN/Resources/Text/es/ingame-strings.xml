@@ -57,5 +57,17 @@
 
 		<Option key="BOMBS_PUZZLE_END#0">¡Qué lenta eres! Snif, snif...</Option>
 		<Option key="BOMBS_PUZZLE_END#1">Bueno, ahora enciéndela con algo de luz roja.</Option>
+
+		<Option key="FINAL_BOSS_START#0">El Rey Tripollo</Option>
+
+		<Option key="FINAL_BOSS_END#0">¡¡BUUAAAAAAAAAAAAAAAAA!! </Option>
+		<Option key="FINAL_BOSS_END#1">¡¡¡BUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Option>
+		<Option key="FINAL_BOSS_END#2">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!...</Option>
+		<Option key="FINAL_BOSS_END#3">Bueno, tampoco me gustaba tanto ese estúpido cetro.</Option>
+		<Option key="FINAL_BOSS_END#4">Snif, snif... Ony, ya puedes irte y toma, llévate este engranaje oxidado y feo, snif, sinf...</Option>
+		<Option key="FINAL_BOSS_END#5">No quiero volverlo a ver en mi palacio, me estropea toda la decoración.</Option>
+		<Option key="FINAL_BOSS_END#6">A este tío le falta un tornillo...</Option>
+		<Option key="FINAL_BOSS_END#7">O dos...</Option>
+
 	</Options>
 </Configuration>

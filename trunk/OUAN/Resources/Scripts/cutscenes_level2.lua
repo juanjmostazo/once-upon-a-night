@@ -369,6 +369,7 @@ function cutScene9(timer)
 	
 	setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
 	trajectoryCamWait();
+	timedMessage(any,"FINAL_BOSS_START#0",5,timer,5);
 	busyWait(timer,3);
 	
 	setMyReturningToGameTransition(true);
@@ -410,7 +411,14 @@ function cutScene10_3(timer)
 	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
 	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
 	trajectoryCamWait();
-	busyWait(timer,3);
+	timedMessage(any,"FINAL_BOSS_END#0",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#1",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#2",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#3",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#4",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#5",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#6",5,timer,5);
+	timedMessage(any,"FINAL_BOSS_END#7",5,timer,5);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
