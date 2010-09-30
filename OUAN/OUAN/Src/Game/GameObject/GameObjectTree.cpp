@@ -326,18 +326,21 @@ void GameObjectTree::update(double elapsedSeconds)
 	GameObject::update(elapsedSeconds);
 	mRenderComponentEntity->update(elapsedSeconds);
 
-	if(isEnabled())
+	if(isEnabled() && ((mLogicComponent->existsInDreams() && mWorld==DREAMS) || (mLogicComponent->existsInNightmares() && mWorld==NIGHTMARES)))
 	{
-		mNextParticlesCountDown-=elapsedSeconds;
+		if(mType == 9)
+		{
+			mNextParticlesCountDown-=elapsedSeconds;
 
-		if(mNextParticlesCountDown<-TREE_PARTICLES_ACTIVE_TIME)
-		{
-			recalculateNextParticlesCountDown();
-			mRenderComponentParticleSystemStars->stop();
-		}
-		else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemStars->hasStarted())
-		{
-			mRenderComponentParticleSystemStars->start();
+			if(mNextParticlesCountDown<-TREE_PARTICLES_ACTIVE_TIME)
+			{
+				recalculateNextParticlesCountDown();
+				mRenderComponentParticleSystemStars->stop();
+			}
+			else if(mNextParticlesCountDown<0 && !mRenderComponentParticleSystemStars->hasStarted())
+			{
+				mRenderComponentParticleSystemStars->start();
+			}
 		}
 	}
 }

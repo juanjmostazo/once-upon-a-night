@@ -43,10 +43,8 @@ function cutScene1(timer)
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
-	timedMessage(any,"LEVEL_START#0",5,timer,3);
-	timedMessage(any,"LEVEL_START#1",5,timer,3);
-	timedMessage(any,"LEVEL_START#2",5,timer,3);
-	timedMessage(any,"LEVEL_START#3",5,timer,3);
+	timedMessage(any,"LEVEL_START#0",5,timer,6);
+	timedMessage(any,"LEVEL_START#1",5,timer,6);
 	
 	setMyReturningToGameTransition(false);
 	return COROUTINE_FINISHED
@@ -87,17 +85,15 @@ function cutScene2(timer)
 	
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,true);
 	trajectoryCamWait();
-	timedMessage(any,"FIRST_CHANGE_WORLD#0",5,timer,5);
-	timedMessage(any,"FIRST_CHANGE_WORLD#1",5,timer,5);
-	timedMessage(any,"FIRST_CHANGE_WORLD#2",5,timer,5);
+	timedMessage(any,"FIRST_CHANGE_WORLD#0",5,timer,4);
+	timedMessage(any,"FIRST_CHANGE_WORLD#1",5,timer,7);
+	timedMessage(any,"FIRST_CHANGE_WORLD#2",5,timer,4);
 
 	changeWorld(OUAN_WORLD_NIGHTMARES);
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_2,false,true);
 	trajectoryCamWait();
-	timedMessage(any,"FIRST_CHANGE_WORLD#3",5,timer,5);
-	timedMessage(any,"FIRST_CHANGE_WORLD#4",5,timer,5);
-	timedMessage(any,"FIRST_CHANGE_WORLD#5",5,timer,5);
 	worldChangeWait();
+	busyWait(timer,6);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED

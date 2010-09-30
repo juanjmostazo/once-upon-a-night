@@ -13,7 +13,12 @@
 		<Option key="SIGNPOST_MSG_ADVERTISING">¡Anúnciate aquí por un par de diamantes al mes!</Option>
 		<Option key="SIGNPOST_MSG_GETTINGCLOSE">Vas por buen camino...¿o era al revés?</Option>
 		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Apadrina a un programador del mundo real\n...Ah, y sí: vas bien</Option>
-		
+
+		<Option key="CUTSCENE_HELLOWORLD_INTRO">¡Hola, mundo!</Option>
+		<Option key="CUTSCENE_HELLOWORLD_SECOND">Me llamo Any</Option>
+		<Option key="CUTSCENE_HELLOWORLD_LAST">y necesito escapar de este mundo de locos</Option>
+		<Option key="CUTSCENE_HELLOWORLD_DYING">..¡¡o me moriré!!</Option>
+
 		<Option key="SIGNPOST_MSG_1">¡Bienvenida al Reino Ruinoso, lugar disputado entre el Rey Llorica y el Rey Tripollo!</Option>
 		<Option key="SIGNPOST_MSG_1_1">¡Prueba de saltar encima de esta flor!</Option>
 		<Option key="SIGNPOST_MSG_2">Peligro, ¡No tocar!</Option>
@@ -26,9 +31,11 @@
 		<Option key="SIGNPOST_MSG_9">No hay esfuerzo sin recompensa</Option>
 		<Option key="SIGNPOST_MSG_10">Una roca enorme impide el paso por el puente</Option>
 
-		<Option key="CUTSCENE_HELLOWORLD_INTRO">¡Hola, mundo!</Option>
-		<Option key="CUTSCENE_HELLOWORLD_SECOND">Me llamo Any</Option>
-		<Option key="CUTSCENE_HELLOWORLD_LAST">y necesito escapar de este mundo de locos</Option>
-		<Option key="CUTSCENE_HELLOWORLD_DYING">..¡¡o me moriré!!</Option>
+		<Option key="LEVEL_START#0">¡Venga Any!, vamos a por la primera pieza del Gran Reloj,</Option>
+		<Option key="LEVEL_START#1">no tenemos tiempo que perder.</Option>
+
+		<Option key="FIRST_CHANGE_WORLD#0">¡Hola Any!</Option>
+		<Option key="FIRST_CHANGE_WORLD#1">Yo te ayudaré cuando estés en pesadillas.</Option>
+		<Option key="FIRST_CHANGE_WORLD#2">¡Vamos allá!</Option>
 	</Options>
 </Configuration>

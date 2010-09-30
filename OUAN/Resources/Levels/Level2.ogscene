@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="2"></CAMERASPEED>
+  <CAMERASPEED value="22.7813"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="1067.8 2432.22 1039.41" orientation="-0.690766 0.398391 -0.522091 -0.302569"></OPTION>
+    <OPTION id="2" position="526.286 356.097 -265.428" orientation="-0.0599352 0.00480898 -0.99346 -0.097063"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.690777 0.398397 -0.522099 -0.302574"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.0599399 0.00480935 -0.993538 -0.0970706"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="1067.8 2432.22 1039.41"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="526.286 356.097 -265.428"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -21631,8 +21631,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.536165 0.235459 0.794898 0.158819"></PROPERTY>
-    <PROPERTY id="position" type="9" value="651.204 186.769 317.792"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.631751 0.0488115 0.773105 0.0285907"></PROPERTY>
+    <PROPERTY id="position" type="9" value="681.806 125.559 417.673"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="225" fields="X;Y;Z;W"></PROPERTY>
@@ -22728,8 +22728,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.5373 0 0.843392 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="33.1147 297.599 -782.663"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.525066 0.178949 0.824188 0.114003"></PROPERTY>
+    <PROPERTY id="position" type="9" value="33.1147 542.759 -782.663"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="175" fields="X;Y;Z;W"></PROPERTY>
@@ -24261,7 +24261,7 @@
     <PROPERTY id="position" type="9" value="463.577 141.972 80.3595"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -25578,6 +25578,61 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="932767744" name="StaticCamera#PLATFORM_TO_MOUNTAIN_1" typename="Marker Object" parentnode="CameraTrajectory">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.876878 -0.168074 -0.319345 0.317575"></PROPERTY>
+    <PROPERTY id="position" type="9" value="558.672 312.649 166.787"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
+    <CUSTOMPROPERTIES>
+      <PROPERTY id="trajectory::name" type="7" value="PLATFORM_TO_MOUNTAIN_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#PLATFORM_TO_MOUNTAIN_1" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#1" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="100" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="849360640" name="WalkabilityNode_d#11" typename="Marker Object" parentnode="WalkabilityMapDreams">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 0 0 1"></PROPERTY>
@@ -25886,7 +25941,7 @@
     <PROPERTY id="position" type="9" value="463.577 246.86 80.3595"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="10" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="15" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -26219,7 +26274,7 @@
     <PROPERTY id="position" type="9" value="341.618 230.687 267.863"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="70" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="150" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -27117,20 +27172,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="242133856" name="TrajectoryNode#PLATFORM_TO_MOUNTAIN_1_a" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.916626 0.0127099 0.398882 -0.0229943"></PROPERTY>
-    <PROPERTY id="position" type="9" value="679.038 189.262 260.846"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="420453504" name="WalkabilityNode_n#50" typename="Marker Object" parentnode="WalkabilityMapNightmares">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="colour" type="11" value="1 1 0 1"></PROPERTY>
@@ -27495,7 +27536,7 @@
     <PROPERTY id="position" type="9" value="791.161 251.229 -25.4837"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectorynode::speed" type="6" value="70" fields="X;Y;Z;W"></PROPERTY>
+      <PROPERTY id="trajectorynode::speed" type="6" value="150" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
@@ -27896,7 +27937,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="30.2942 278.075 378.879"></PROPERTY>
+    <PROPERTY id="position" type="9" value="689.896 220.901 441.872"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
@@ -28176,61 +28217,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="CheckPoint55" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectory::node#0" type="7" value="CheckPoint55" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="932767744" name="StaticCamera#PLATFORM_TO_MOUNTAIN_1_b" typename="Marker Object" parentnode="CameraTrajectory">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="colour" type="11" value="0 1 1 1"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.876878 -0.168074 -0.319345 0.317575"></PROPERTY>
-    <PROPERTY id="position" type="9" value="558.672 312.649 166.787"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="trajectory::name" type="7" value="PLATFORM_TO_MOUNTAIN_1" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#0" type="7" value="StaticCamera#PLATFORM_TO_MOUNTAIN_1_a" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#1" type="7" value="StaticCamera#PLATFORM_TO_MOUNTAIN_1_b" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#2" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#3" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#4" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#5" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#6" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#7" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#8" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#9" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#10" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#11" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#12" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#13" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#14" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#15" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#16" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#17" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#18" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#19" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#20" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#21" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#22" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#23" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#24" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#25" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#26" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#27" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#28" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#29" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#30" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#31" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#32" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#33" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#34" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#35" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#36" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#37" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#38" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="trajectory::node#39" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::speed" type="6" value="0" fields="X;Y;Z;W"></PROPERTY>
       <PROPERTY id="trajectorynode::bezier" type="12" value="false" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>

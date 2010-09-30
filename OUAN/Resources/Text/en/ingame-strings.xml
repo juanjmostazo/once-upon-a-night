@@ -18,17 +18,6 @@
 		
 		<Option key="CUTSCENE_HELLOWORLD_DYING">..or I'll die!!</Option>
 
-		<Option key="LEVEL_START#0">Hello, world!</Option>
-		<Option key="LEVEL_START#1">I am Any,</Option>
-		<Option key="LEVEL_START#2">and I need to escape from this crazy world</Option>
-		<Option key="LEVEL_START#3">..or I'll die!!</Option>
-
-		<Option key="FIRST_CHANGE_WORLD#0">You just hit a change world portal</Option>
-		<Option key="FIRST_CHANGE_WORLD#1">The world is going to change</Option>
-		<Option key="FIRST_CHANGE_WORLD#2">Don't be afraid!</Option>
-		<Option key="FIRST_CHANGE_WORLD#3">Now you might be able to go</Option>
-		<Option key="FIRST_CHANGE_WORLD#4">To places you couldn't before</Option>
-		<Option key="FIRST_CHANGE_WORLD#5">Also, your weapon is now different too!</Option>
 
 		<Option key="BOMBS_PUZZLE_START#0">...snif, Hi, I am the king of this region, ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#1">...snif, You have to find the clock piece, ...snif</Option>
@@ -51,6 +40,13 @@
 		<Option key="SIGNPOST_MSG_8">Not everything in this castle is what is supposed to be.</Option>
 		<Option key="SIGNPOST_MSG_9">There is no effort without reward</Option>
 		<Option key="SIGNPOST_MSG_10">An enormous rock blocks the bridge</Option>
+
+		<Option key="LEVEL_START#0">Come on Any!, let's find the Big clock's first piece,</Option>
+		<Option key="LEVEL_START#1">we have no time to lose.</Option>
+
+		<Option key="FIRST_CHANGE_WORLD#0">Hello Any!</Option>
+		<Option key="FIRST_CHANGE_WORLD#1">I will help you when you're in nightmares</Option>
+		<Option key="FIRST_CHANGE_WORLD#2">Let's go!</Option>
 
 	</Options>
 </Configuration>
