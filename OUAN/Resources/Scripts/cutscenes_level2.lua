@@ -116,32 +116,37 @@ function cutScene3(timer)
 	local any=getAny()	
 	local cryking=getCryKing()
 	
-	cryking:changeAnimation("speak_loop1_Clip")
-	
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
 	trajectoryCamWait();
+	cryking:changeAnimation("cry_loop1_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#0",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#1",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#2",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#3",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
+	cryking:changeAnimation("speak_loop1_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#5",5,timer,5);
+	cryking:changeAnimation("idle03_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#6",5,timer,5);
+	cryking:changeAnimation("speak_loop1_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#8",5,timer,5);
+	cryking:changeAnimation("idle03_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#9",5,timer,5);
+	cryking:changeAnimation("speak_loop1_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#10",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#11",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#12",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#13",5,timer,5);
+	cryking:changeAnimation("idle02_Clip");
 	timedMessage(any,"BOMBS_PUZZLE_START#14",5,timer,5);
 	initBombPuzzle();
 	timedMessage(any,"BOMBS_PUZZLE_START#15",5,timer,5);
-	busyWait(timer,5);
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
 	trajectoryCamWait();
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false)	
 	trajectoryCamWait();
+	busyWait(timer,5);
 
 	cryking:changeAnimation("idle03_Clip");
 	
@@ -169,7 +174,8 @@ function cutScene3_1(timer)
 	
 	setCameraTrajectory(CUTSCENE_4_BOMBS_PUZZLE_END,false,true)	
 	trajectoryCamWait();
-	busyWait(timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_END#0",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_END#1",5,timer,5);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -258,7 +264,7 @@ function cutScene7_1(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_1_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,8);
+	busyWait(timer,14);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -271,7 +277,7 @@ function cutScene7_2(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_2_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,8);
+	busyWait(timer,14);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -284,7 +290,7 @@ function cutScene7_3(timer)
 	
 	setCameraTrajectory(CUTSCENE_7_3_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
-	busyWait(timer,8);
+	busyWait(timer,14);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED

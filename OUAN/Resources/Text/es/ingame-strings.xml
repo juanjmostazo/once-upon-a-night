@@ -45,7 +45,7 @@
 		<Option key="BOMBS_PUZZLE_START#4">Y que lo digas.</Option>
 		<Option key="BOMBS_PUZZLE_START#5">Mmmm, ¿quién eres tu niña?</Option>
 		<Option key="BOMBS_PUZZLE_START#6">Soy Any y estoy busc...</Option>
-		<Option key="BOMBS_PUZZLE_START#7">Muy bien Ony, snif, snif…</Option>
+		<Option key="BOMBS_PUZZLE_START#7">Muy bien Ony, snif, snif...</Option>
 		<Option key="BOMBS_PUZZLE_START#8">Tu recuperarás mi querido cetro y...</Option>
 		<Option key="BOMBS_PUZZLE_START#9">¡Ei! No soy Ony, he dicho que me llam...</Option>
 		<Option key="BOMBS_PUZZLE_START#10">¡¿Cómo osas interrumpir a un Rey?!</Option>
@@ -55,6 +55,7 @@
 		<Option key="BOMBS_PUZZLE_START#14">Coge esta bomba y llévala junto a la piedra.</Option>
 		<Option key="BOMBS_PUZZLE_START#15">¡DATE PRISA! Snif, snif...</Option>
 
-
+		<Option key="BOMBS_PUZZLE_END#0">¡Qué lenta eres! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_END#1">Bueno, ahora enciéndela con algo de luz roja.</Option>
 	</Options>
 </Configuration>

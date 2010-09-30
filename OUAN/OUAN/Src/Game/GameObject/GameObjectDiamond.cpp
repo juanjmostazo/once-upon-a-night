@@ -373,7 +373,7 @@ void GameObjectDiamond::update(double elapsedSeconds)
 			}
 		}
 
-		if((mLogicComponentItem->existsInDreams() && mWorld==DREAMS) || (mLogicComponentItem->existsInNightmares() && mWorld==NIGHTMARES))
+		if(isWorthRendering() && (mLogicComponentItem->existsInDreams() && mWorld==DREAMS) || (mLogicComponentItem->existsInNightmares() && mWorld==NIGHTMARES))
 		{
 			mNextParticlesCountDown-=elapsedSeconds;
 
