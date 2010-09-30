@@ -124,18 +124,25 @@ function cutScene3(timer)
 	timedMessage(any,"BOMBS_PUZZLE_START#1",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#2",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#3",5,timer,5);
-	initBombPuzzle();
 	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
-	busyWait(timer,5);
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
-	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
-	trajectoryCamWait();
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false)	
-	trajectoryCamWait();
 	timedMessage(any,"BOMBS_PUZZLE_START#5",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#6",5,timer,5);
 	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
-	
+	timedMessage(any,"BOMBS_PUZZLE_START#8",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#9",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#10",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#11",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#12",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#13",5,timer,5);
+	timedMessage(any,"BOMBS_PUZZLE_START#14",5,timer,5);
+	initBombPuzzle();
+	timedMessage(any,"BOMBS_PUZZLE_START#15",5,timer,5);
+	busyWait(timer,5);
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
+	trajectoryCamWait();
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false)	
+	trajectoryCamWait();
+
 	cryking:changeAnimation("idle03_Clip");
 	
 	setMyReturningToGameTransition(true);

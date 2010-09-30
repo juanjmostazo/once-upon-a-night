@@ -48,5 +48,23 @@
 		<Option key="FIRST_CHANGE_WORLD#1">I will help you when you're in nightmares</Option>
 		<Option key="FIRST_CHANGE_WORLD#2">Let's go!</Option>
 
+		<Option key="BOMBS_PUZZLE_START#0">¡Buaaaaaaaaaaaa! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#1">The Tripollo King stolen my precious scepter... Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#2">¡BUAAAAAAAAA! ¡I want my scepter! ¡¡I WANT MY SCEPTER!!</Option>
+		<Option key="BOMBS_PUZZLE_START#3">It seems his head is going to explode...</Option>
+		<Option key="BOMBS_PUZZLE_START#4">Indeed.</Option>
+		<Option key="BOMBS_PUZZLE_START#5">Mmmm, Who are you little girl?</Option>
+		<Option key="BOMBS_PUZZLE_START#6">I am Any and I am find...</Option>
+		<Option key="BOMBS_PUZZLE_START#7">That's ok Ony, snif, snif…</Option>
+		<Option key="BOMBS_PUZZLE_START#8">You will retrieve my precious scepter...</Option>
+		<Option key="BOMBS_PUZZLE_START#9">¡Hey! I am not Ony, I have told you my name is...</Option>
+		<Option key="BOMBS_PUZZLE_START#10">How you interrupt a king?!</Option>
+		<Option key="BOMBS_PUZZLE_START#11">You will go to that tower to get my scepter back, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#12">But King Tripollo has blocked the path...</Option>
+		<Option key="BOMBS_PUZZLE_START#13">Not for a long time, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#14">Take this bomb to the rock which is blocking the bridge.</Option>
+		<Option key="BOMBS_PUZZLE_START#15">HURRY UP! Snif, snif...</Option>
+
+
 	</Options>
 </Configuration>

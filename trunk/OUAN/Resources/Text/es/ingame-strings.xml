@@ -37,5 +37,24 @@
 		<Option key="FIRST_CHANGE_WORLD#0">¡Hola Any!</Option>
 		<Option key="FIRST_CHANGE_WORLD#1">Yo te ayudaré cuando estés en pesadillas.</Option>
 		<Option key="FIRST_CHANGE_WORLD#2">¡Vamos allá!</Option>
+
+		<Option key="BOMBS_PUZZLE_START#0">¡Buaaaaaaaaaaaa! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#1">El Rey Tripollo  me ha robado mi querido cetro... Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#2">¡BUAAAAAAAAA! ¡Quiero mi cetro! ¡¡QUIERO MI CETRO!!</Option>
+		<Option key="BOMBS_PUZZLE_START#3">Como se ponga más rojo le va a explotar la cabeza...</Option>
+		<Option key="BOMBS_PUZZLE_START#4">Y que lo digas.</Option>
+		<Option key="BOMBS_PUZZLE_START#5">Mmmm, ¿quién eres tu niña?</Option>
+		<Option key="BOMBS_PUZZLE_START#6">Soy Any y estoy busc...</Option>
+		<Option key="BOMBS_PUZZLE_START#7">Muy bien Ony, snif, snif…</Option>
+		<Option key="BOMBS_PUZZLE_START#8">Tu recuperarás mi querido cetro y...</Option>
+		<Option key="BOMBS_PUZZLE_START#9">¡Ei! No soy Ony, he dicho que me llam...</Option>
+		<Option key="BOMBS_PUZZLE_START#10">¡¿Cómo osas interrumpir a un Rey?!</Option>
+		<Option key="BOMBS_PUZZLE_START#11">Irás a aquella torre a buscar el cetro, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#12">Pero el Rey Tripollo ha bloqueado el camino...</Option>
+		<Option key="BOMBS_PUZZLE_START#13">No por mucho tiempo, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#14">Coge esta bomba y llévala junto a la piedra.</Option>
+		<Option key="BOMBS_PUZZLE_START#15">¡DATE PRISA! Snif, snif...</Option>
+
+
 	</Options>
 </Configuration>
