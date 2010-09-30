@@ -1,11 +1,24 @@
-import basic_texture from BasicTexture.material
+--import alpha_test_anim_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
 import no_changeworld from ChangeWorld.material
 
-material tree7_d : basic_texture
+material tree7_d : alpha_test_texture 
 {
 }
 
-material tree7_n : basic_texture
+material tree7_n : alpha_test_texture 
 {
 	set_texture_alias diffuse_texture tree7_n.dds
+	//ANIMATED TEXTURE TEST: IT DOES WORK :)
+	//technique
+	//{
+	//pass
+	//{
+	//	texture_unit diffuse_texture
+	//{
+	//	anim_texture tree7_n.dds 4 2.5
+	//	mipmap_bias -1
+	//}
+	//}
+	//}	
 }

@@ -1,0 +1,20 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material ruins01_d : basic_texture
+{
+	set_texture_alias diffuse_texture ruins01_d.dds
+	set_texture_alias normal_texture ruins01_nm.dds
+}
+
+material ruins01_n : basic_texture
+{
+	set_texture_alias diffuse_texture ruins01_n.dds
+	set_texture_alias normal_texture ruins01_nm.dds
+}
+
+material ruins01_cw : default_changeworld
+{
+	set_texture_alias dreams ruins01_d.dds
+	set_texture_alias nightmares ruins01_n.dds
+}

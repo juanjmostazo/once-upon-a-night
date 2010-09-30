@@ -1,0 +1,20 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material stairs_start_d : basic_texture
+{
+	set_texture_alias diffuse_texture stairs_start_d.dds
+	set_texture_alias normal_texture stairs_start_nm.dds
+}
+
+material stairs_start_n : basic_texture
+{
+	set_texture_alias diffuse_texture stairs_start_n.dds
+	set_texture_alias normal_texture stairs_start_nm.dds	
+}
+
+material stairs_start_cw : default_changeworld
+{
+	set_texture_alias dreams stairs_start_d.dds
+	set_texture_alias nightmares stairs_start_n.dds
+}

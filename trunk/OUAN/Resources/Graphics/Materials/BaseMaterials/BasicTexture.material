@@ -110,6 +110,62 @@ material alpha_test_texture
 	}
 }
 
+material basic_anim_texture
+{
+	technique
+	{
+		pass
+		{
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			texture_unit diffuse_texture
+			{
+				anim_texture default.png 1 2.5
+				mipmap_bias -1
+			}
+			texture_unit normal_texture
+			{
+				anim_texture white.dds 1 2.5
+				mipmap_bias -2
+			}
+			texture_unit lightmap
+			{
+				anim_texture white.dds 1 2.5
+			}				
+		}
+	}
+}
+
+material alpha_test_anim_texture
+{
+	technique
+	{
+		pass
+		{
+			alpha_rejection greater 128
+			depth_write on
+			alpha_to_coverage on
+
+			fragment_program_ref rim_normal_diffuse_fs{}
+			vertex_program_ref rim_normal_diffuse_vs{}
+			texture_unit diffuse_texture
+			{
+				anim_texture default.png 1 2.5
+				mipmap_bias -1
+			}
+			texture_unit normal_texture
+			{
+				anim_texture white.dds 1 2.5
+				mipmap_bias -2
+			}	
+			texture_unit lightmap
+			{
+				anim_texture white.dds 1 2.5
+			}		
+		}
+	}
+}
+
 material alpha_test_anisotropic
 {
 	technique

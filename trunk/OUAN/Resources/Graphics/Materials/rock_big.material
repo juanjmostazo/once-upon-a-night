@@ -1,0 +1,34 @@
+import basic_texture from BasicTexture.material
+import default_changeworld from ChangeWorld.material
+
+material rock_big_d : basic_texture
+{
+	set_texture_alias diffuse_texture rock_big_d.dds
+}
+
+material rock_big_n : basic_texture
+{
+	set_texture_alias diffuse_texture rock_big_n.dds
+}
+
+material rock_big_cw : default_changeworld
+{
+	set_texture_alias dreams rock_big_d.dds
+	set_texture_alias nightmares rock_big_n.dds
+}
+
+material big_rock_destroy_d : basic_texture
+{
+	set_texture_alias diffuse_texture big_rock_destroy_d.dds
+}
+
+material big_rock_destroy_n : basic_texture
+{
+	set_texture_alias diffuse_texture big_rock_destroy_n.dds
+}
+
+material big_rock_destroy_cw : default_changeworld
+{
+	set_texture_alias dreams big_rock_destroy_d.dds
+	set_texture_alias nightmares big_rock_destroy_n.dds
+}
