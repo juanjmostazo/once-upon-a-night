@@ -49,7 +49,7 @@ BACK_FROM_CALL_TO_CHASE_CHANCE = 0.1
 -- key: (AttackComponent::attack0#attackRange)
 MELEE_RANGE = 40
 
-NEIGHBOURS_RANGE = 180
+NEIGHBOURS_RANGE = 220
 
 
 function tripolloLogic(pTripollo,state)
@@ -181,7 +181,7 @@ function tripolloLogic(pTripollo,state)
 		if playerDistance>(myLOS) then
 			--log (myName.." CHANGED STATE TO FALSE ALARM")
 			return TRIPOLLO_STATE_FALSE_ALARM
-		elseif playerDistance<(myLOS/3) then
+		elseif playerDistance<(myLOS/3.5) then
 			--log (myName.." CHANGED STATE TO ALERT")
 			return TRIPOLLO_STATE_ALERT	
 		end
@@ -192,7 +192,7 @@ function tripolloLogic(pTripollo,state)
 		local meleeRange =  pTripollo:getMeleeRange()
 
 		--log ("PLAYER DISTANCE: "..playerDistance..", LOS: "..(myLOS/3)..", Melée range: "..meleeRange)
-		if playerDistance>=(myLOS/3) then
+		if playerDistance>=(myLOS/3.5) then
 			--log (myName.." CHANGED STATE TO TIRED")
 			return TRIPOLLO_STATE_TIRED
 		elseif playerDistance<=meleeRange then
@@ -203,7 +203,7 @@ function tripolloLogic(pTripollo,state)
 	
 	-- CALL TO CHASE TRANSITIONS
 	if state == TRIPOLLO_STATE_CALL_TO_CHASE then
-		if playerDistance<(myLOS/3) then
+		if playerDistance<(myLOS/3.5) then
 			--log (myName.." CHANGED STATE TO CHASE")
 			return TRIPOLLO_STATE_CHASE
 		elseif playerDistance<(myLOS) then
