@@ -70,6 +70,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	else if(pGameObject->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
 		&& !getParent()->getGameWorldManager()->isGodMode())
 	{
+		getParent()->displayText("TRIPOLLOHIT!");
 		GameObjectTripolloPtr tripollo= 
 			BOOST_PTR_CAST(GameObjectTripollo,pGameObject);
 		bool mayHitTripollo=tripollo.get() && !tripollo->hasBeenHit() &&!tripollo->hasDied() && 

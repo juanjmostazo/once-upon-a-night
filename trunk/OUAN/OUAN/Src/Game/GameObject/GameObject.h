@@ -108,6 +108,9 @@ namespace OUAN
 		// update logic component
 		virtual void updateLogic(double elapsedSeconds);
 
+		// update wapons component
+		virtual void updateWeapons(double elapsedSeconds);
+
 		virtual bool isMoving();
 		virtual bool isJumping();
 		virtual bool cancelAutoCameraMovement();

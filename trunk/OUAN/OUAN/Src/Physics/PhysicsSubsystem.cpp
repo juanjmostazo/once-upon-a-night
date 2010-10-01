@@ -165,27 +165,37 @@ void PhysicsSubsystem::update(double elapsedSeconds)
 					it->second->setElapsedTimeSinceLastPhysicsUpdate(it->second->getElapsedTimeSinceLastPhysicsUpdate()+elapsedSeconds);
 				}
 			}
+
+
 		}
-	}
+	
+		if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
+		{
+			mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
+		}
 
-	if(mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isInUse())
-	{
-		mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->update(elapsedSeconds);
-	}
+		if (!container->empty())
+		{
+			for (TGameObjectContainer::iterator it=container->begin();it!=container->end();++it)
+			{
+				it->second->updateWeapons(elapsedSeconds);
+			}
+		}
 
-	//update pillow
-	if(mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->isInUse())
-	{
-		mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->update(elapsedSeconds);
-	}
+		//update pillow
+		if(mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->isInUse())
+		{
+			mApp->getGameWorldManager()->getGameObjectPillow()->getPhysicsComponentWeapon()->update(elapsedSeconds);
+		}
 
-	//update flashlight
-	if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
-	{
-		mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(elapsedSeconds);
-	}
+		//update flashlight
+		if(mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->isInUse())
+		{
+			mApp->getGameWorldManager()->getGameObjectFlashLight()->getPhysicsComponentWeapon()->update(elapsedSeconds);
+		}
 
-	mNxOgreTimeController->advance(elapsedSeconds);
+		mNxOgreTimeController->advance(elapsedSeconds);
+	}
 }
 
 void PhysicsSubsystem::stabilize()

@@ -162,6 +162,8 @@ namespace OUAN
 		void setChangeWorldRender();
 		void setChangeWorldFactor(double factor);
 
+		void updateWeapons(double elapsedSeconds);
+
 		/// Reset object
 		virtual void reset();
 

@@ -47,8 +47,13 @@ namespace OUAN
 
 		bool hasBeenHit() const;
 		void setHasBeenHit(bool hasBeenHit);
+
 		bool hasDied() const;
 		void setHasDied(bool hasDied);
+
+
+		bool hasHitOny() const;
+		void setHasHitOny(bool hasHasHitOny);
 
 		int getWorld();
 
@@ -134,6 +139,8 @@ namespace OUAN
 		bool mHasHeardCall;
 		bool mStatueEnabled;
 		bool mFlyingEnabled;
+
+		bool mHasHitOny;
 
 		EnemyType mEnemyType;
 

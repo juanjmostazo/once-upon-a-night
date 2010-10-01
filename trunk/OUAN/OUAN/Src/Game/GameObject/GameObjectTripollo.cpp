@@ -22,6 +22,40 @@ GameObjectTripollo::~GameObjectTripollo()
 {
 
 }
+
+void GameObjectTripollo::updateWeapons(double elapsedSeconds)
+{
+	if(!isEnabled()) return;
+
+	int world = mGameWorldManager->getWorld();
+
+	RenderComponentEntityPtr entity;
+	if (world == DREAMS && mRenderComponentEntityDreams.get())
+		entity = mRenderComponentEntityDreams;
+	else if (world ==NIGHTMARES && mLogicComponentEnemy->existsInNightmares() &&
+			mRenderComponentEntityNightmares.get())
+		entity = mRenderComponentEntityNightmares;
+
+	if (mPhysicsComponentWeapon->isInUse() && entity.get())
+	{
+		Ogre::Vector3 pos;
+		if (entity.get() && entity->getEntity()->hasSkeleton()
+			&& entity->getEntity()->getSkeleton()->hasBone(HEAD_BONE_NAME))
+		{
+			Ogre::Entity* ent = entity->getEntity();
+			Ogre::Node* bone = ent->getSkeleton()->getBone(HEAD_BONE_NAME);
+			pos=Utils::getNodeWorldPosition(ent,bone);			
+		}
+		else
+		{
+			mRenderComponentPositional->getPosition();			
+		}
+		mPhysicsComponentWeapon->setPosition(pos);			
+		mPhysicsComponentWeapon->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw());
+		mPhysicsComponentWeapon->update(elapsedSeconds);
+	}
+}
+
 /// Set logic component
 void GameObjectTripollo::setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy)
 {
@@ -451,24 +485,6 @@ void GameObjectTripollo::update(double elapsedSeconds)
 				Ogre::Vector3 movement = mTrajectoryComponent->getNextMovementAbsolute();				
 				mPhysicsComponentCharacter->setOuternMovement(movement);
 			}
-			if (mPhysicsComponentWeapon->isInUse())
-			{
-				Ogre::Vector3 pos;
-				if (entity.get() && entity->getEntity()->hasSkeleton()
-					&& entity->getEntity()->getSkeleton()->hasBone(HEAD_BONE_NAME))
-				{
-					Ogre::Entity* ent = entity->getEntity();
-					Ogre::Node* bone = ent->getSkeleton()->getBone(HEAD_BONE_NAME);
-					pos=Utils::getNodeWorldPosition(ent,bone);			
-				}
-				else
-				{
-					mRenderComponentPositional->getPosition();			
-				}
-				mPhysicsComponentWeapon->setPosition(pos);			
-				mPhysicsComponentWeapon->setDisplayYaw(mPhysicsComponentCharacter->getDisplayYaw());
-				mPhysicsComponentWeapon->update(elapsedSeconds);
-			}
 		}
 	}
 	else
@@ -865,6 +881,7 @@ void GameObjectTripollo::processAnimationEnded(const std::string& animationName)
 		animationName.compare(TRIPOLLO_ANIM_ATTACK_01)==0)
 	{
 		mLogicComponentEnemy->setAttackFinished(true);
+		mLogicComponentEnemy->setHasHitOny(false);
 		mPhysicsComponentWeapon->endAttack();
 	}
 	if (animationName.compare(TRIPOLLO_ANIM_CALL_TO_ARMS)==0)

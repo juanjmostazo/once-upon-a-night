@@ -3,16 +3,16 @@ import default_changeworld from ChangeWorld.material
 
 material almena_d : basic_texture
 {
-	set_texture_alias diffuse_texture almena2_island2.dds
+	set_texture_alias diffuse_texture almenaisland2.dds
 }
 
 material almena_n : basic_texture
 {
-	set_texture_alias diffuse_texture almena2_island2n.dds
+	set_texture_alias diffuse_texture almenaisland2n.dds
 }
 
 material almena_cw : default_changeworld
 {
-	set_texture_alias dreams almena2_island2.dds
-	set_texture_alias nightmares almena2_island2n.dds
+	set_texture_alias dreams almenaisland2.dds
+	set_texture_alias nightmares almenaisland2n.dds
 }

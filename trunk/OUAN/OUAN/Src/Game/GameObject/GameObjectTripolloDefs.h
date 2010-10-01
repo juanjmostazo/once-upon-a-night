@@ -78,7 +78,7 @@ namespace OUAN
 	const std::string TRIPOLLO_ANIM_MANUAL="manual";
 
 	//bones attach points
-	const std::string HEAD_BONE_NAME="cresta1";
+	const std::string HEAD_BONE_NAME="bone31";
 
 	const std::string TRIPOLLO_SOUND_HIT="tripollo_hit";
 	const std::string TRIPOLLO_SOUND_DIE="tripollo_die";
