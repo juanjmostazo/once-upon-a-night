@@ -4,5 +4,22 @@ import no_changeworld from ChangeWorld.material
 
 material tree7_n : alpha_test_texture
 {
-	set_texture_alias diffuse_texture tree7_n.dds
+	technique
+	{
+		pass
+		{
+			fragment_program_ref rim_normal_diffuse_fs
+			{
+			}
+			vertex_program_ref rim_normal_diffuse_vs
+			{
+				param_named rimStrength float4 0 0 0 0
+			}
+			texture_unit diffuse_texture
+			{
+				texture tree7_n.dds
+				mipmap_bias -1
+			}
+		}
+	}
 }
