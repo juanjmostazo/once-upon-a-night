@@ -93,8 +93,6 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_GRAPHICS_SKIPINTRO">Skip intro</Option>
 		
 		<Option key="OPTIONS_LANGUAGE_EN">English</Option>
-		<Option key="OPTIONS_LANGUAGE_ES">Spanish</Option>
-		
-
+		<Option key="OPTIONS_LANGUAGE_ES">Spanish</Option>		
 	</Options>
 </Configuration>

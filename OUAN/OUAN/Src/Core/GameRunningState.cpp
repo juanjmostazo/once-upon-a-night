@@ -279,7 +279,7 @@ void GameRunningState::handleEvents()
 
 		if (!zeroMovement)
 		{
-			if (!onyLogic->awaitingForNapEnd() && newState!=ONY_STATE_VICTORY && !onyLogic->awaitingForAttackEnd() && newState!=ONY_STATE_FALL && newState!=ONY_STATE_JUMP)
+ 			if (!onyLogic->awaitingForNapEnd() && newState!=ONY_STATE_VICTORY && !onyLogic->awaitingForAttackEnd() && newState!=ONY_STATE_FALL && newState!=ONY_STATE_JUMP)
 				newState=ONY_STATE_RUN;
 		}
 

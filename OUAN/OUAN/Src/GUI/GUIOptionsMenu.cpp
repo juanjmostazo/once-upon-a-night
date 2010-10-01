@@ -9,10 +9,10 @@ using namespace OUAN;
 void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 {
 	GUIWindow::initGUI(parentGameState);
-	mParentGameState->getApp()->getInputMappings(mCurrentConfig);
+	ApplicationPtr app = mParentGameState->getApp();
+	app->getInputMappings(mCurrentConfig);
 	mNewConfig=mCurrentConfig;
-	mButtonTextStrings.reset(new Configuration());
-	mButtonTextStrings->loadFromFile(MENUSTRINGS);
+	mButtonTextStrings=app->getMenusTextStrings();
 	bindEvents();
 	mCurrentlyEditedDevice=DEVICE_KEYB_MOUSE;
 	mCurrentlyEditedMapping="";
@@ -23,6 +23,8 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	initSoundTab();
 	initGraphicsTab();
 	setStrings();
+
+	mOldLanguage = mCurrentLanguage = mParentGameState->getApp()->getCurrentLanguage();	
 
 }
 void GUIOptionsMenu::initTabs()
@@ -58,6 +60,57 @@ void GUIOptionsMenu::initControlsTab()
 	combo->addItem(lti);
 
 	initTextButtons();
+}
+void GUIOptionsMenu::changeControlsComboTexts()
+{
+	using namespace CEGUI;
+	CEGUI::Combobox* combo=(CEGUI::Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Controls/DeviceSelect");
+	std::string itemName="";
+	mButtonTextStrings->getOption("OPTIONS_CONTROLS_COMBO_DEFAULT",itemName);
+	combo->setText(itemName);
+	mButtonTextStrings->getOption(COMBO_ITEM_DEVICE_MOUSEKEYBOARD,itemName);	
+	ListboxTextItem* lti = dynamic_cast<ListboxTextItem*> (combo->getListboxItemFromIndex(0));
+	if (lti)
+		lti->setText(itemName);
+	
+	mButtonTextStrings->getOption(COMBO_ITEM_DEVICE_PSXPAD,itemName);
+	lti= dynamic_cast<ListboxTextItem*> (combo->getListboxItemFromIndex(1));
+	if (lti)
+		lti->setText(itemName);
+
+}
+void GUIOptionsMenu::changeLanguageSelectorTexts()
+{
+	using namespace CEGUI;
+	CEGUI::Combobox* combo=(CEGUI::Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/LanguageSelector");
+	std::string itemName="";
+	int selectedLang=combo->getSelectedItem()->getID();	
+	std::string upperKey=mLanguageComboMappings[selectedLang];
+	std::transform(upperKey.begin(),upperKey.end(),upperKey.begin(),toupper);
+
+	std::string defaultLanguage="OPTIONS_LANGUAGE_";
+	std::string key=defaultLanguage;
+	key.append(upperKey);
+	mButtonTextStrings->getOption(key,itemName);
+	combo->setText(itemName);
+
+	int itemIndex;
+	ListboxTextItem* lti = dynamic_cast<ListboxTextItem*> (combo->getListboxItemFromIndex(0));
+	for (unsigned int i=0;i<combo->getItemCount();i++)
+	{
+		lti = dynamic_cast<ListboxTextItem*> (combo->getListboxItemFromIndex(i));
+		if (lti)
+		{
+			itemIndex=lti->getID();
+			upperKey=mLanguageComboMappings[itemIndex];
+			std::transform(upperKey.begin(),upperKey.end(),
+				upperKey.begin(),toupper);
+			key=defaultLanguage;
+			key.append(upperKey);
+			mButtonTextStrings->getOption(key,itemName);
+			lti->setText(itemName);
+		}
+	}
 }
 void GUIOptionsMenu::initSoundTab()
 {
@@ -95,6 +148,7 @@ void GUIOptionsMenu::initLanguageCombo()
 	Combobox* combo=(Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/LanguageSelector");
 	std::string itemName="";
 	ConfigurationPtr menuStrings=app->getMenusTextStrings();
+	mLanguageComboMappings.clear();
 
 	//Set default value: Pick the default language, make it uppercase
 	// and  retrieve the i18n key
@@ -112,16 +166,18 @@ void GUIOptionsMenu::initLanguageCombo()
 	std::string currentLangPrefix;
 	std::string currentLang;
 	ListboxTextItem* lti;
+	int ltiIndex=0;
 	//Loop through the available languages list
 	for (std::vector<std::string>::iterator it=languages.begin();it!=languages.end();++it)
 	{
+		mLanguageComboMappings[ltiIndex]=*it;
 		currentLangPrefix=*it;
 		std::transform(currentLangPrefix.begin(),currentLangPrefix.end(),currentLangPrefix.begin(),toupper);
 		currentLang="OPTIONS_LANGUAGE_";
 		currentLang.append(currentLangPrefix);
 		menuStrings->getOption(currentLang,itemName);
 
-		lti = new ListboxTextItem(itemName,0);
+		lti = new ListboxTextItem(itemName,ltiIndex++);
 		lti->setSelected(currentLangPrefix.compare(defaultLanguagePrefix)==0);
 		lti->setAutoDeleted(true);
 		lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
@@ -236,6 +292,17 @@ void GUIOptionsMenu::bindEvents()
 		CHECKBOX_NAME_MASTER,
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onMasterCheckBoxStateChanged,this));
 
+	//Graphics
+	guiSS->bindEvent(CEGUI::Combobox::EventListSelectionAccepted,
+		"OUANOptions/Graphics/LanguageSelector",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onLanguageSelectorChanged,this));
+	guiSS->bindEvent(CEGUI::PushButton::EventClicked,
+		"OUANOptions/Graphics/Apply",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onApplyGraphics,this));
+	guiSS->bindEvent(CEGUI::PushButton::EventClicked,
+		"OUANOptions/Graphics/Reset",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onCancelGraphics,this));
+
 }
 void GUIOptionsMenu::initTextButtons()
 {
@@ -281,8 +348,7 @@ void GUIOptionsMenu::initButton(const std::string& buttonName, const std::string
 }
 void GUIOptionsMenu::destroy()
 {
-	GUIWindow::destroy();
-	mButtonTextStrings.reset();
+	GUIWindow::destroy();	
 }
 bool GUIOptionsMenu::onApply (const CEGUI::EventArgs& args)
 {
@@ -344,6 +410,7 @@ bool GUIOptionsMenu::onDeviceSelectionChanged(const CEGUI::EventArgs& args)
 }
 bool GUIOptionsMenu::onBackToMenu(const CEGUI::EventArgs& args)
 {
+	onCancelGraphics(args);
 	(static_cast<GameOptionsState*>(mParentGameState.get()))->backToMenu();
 	return true;
 }
@@ -550,10 +617,51 @@ bool GUIOptionsMenu::onSfxCheckBoxStateChanged(const CEGUI::EventArgs& args)
 	}
 	return true;
 }
+
+bool GUIOptionsMenu::onLanguageSelectorChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Combobox* combo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingletonPtr()->
+		getWindow((CEGUI::utf8*)"OUANOptions/Graphics/LanguageSelector"));
+	if (combo)
+	{		
+		CEGUI::ListboxItem* selection = static_cast<CEGUI::ListboxItem*>(combo->getSelectedItem());
+		if (selection)
+			changeLanguage(mLanguageComboMappings[selection->getID()]);
+
+		return true;
+	}
+	return false;
+}
+bool GUIOptionsMenu::onApplyGraphics(const CEGUI::EventArgs& args)
+{
+	mOldLanguage=mCurrentLanguage;
+	mParentGameState->getApp()->saveGraphicsConfig(mCurrentLanguage);
+	return true;
+}
+bool GUIOptionsMenu::onCancelGraphics(const CEGUI::EventArgs& args)
+{
+	if (mCurrentLanguage.compare(mOldLanguage))
+	{		
+		mParentGameState->getApp()->changeCurrentLanguage(mOldLanguage);
+		changeLanguage(mOldLanguage);
+	}
+	return true;
+}
+void GUIOptionsMenu::changeLanguage(const std::string& newLang)
+{
+	mParentGameState->getApp()->changeCurrentLanguage(newLang);
+	mCurrentLanguage=newLang;
+	mButtonTextStrings=mParentGameState->getApp()->getMenusTextStrings();
+
+	setStrings();
+	initTextButtons();
+	changeControlsComboTexts();
+	changeLanguageSelectorTexts();
+}
 void GUIOptionsMenu::setStrings()
 {
 	ConfigurationPtr texts=mParentGameState->getApp()->getMenusTextStrings();
-	if (texts.get())
+	if (mButtonTextStrings.get())
 	{
 
 		std::string windowNames[] = {
@@ -572,12 +680,42 @@ void GUIOptionsMenu::setStrings()
 			OPTIONS_CEGUI_ID_APPLY,OPTIONS_CEGUI_ID_RESET
 		};
 
+		std::string defaultValues[]=
+		{
+			"OPTIONS_APPLY","OPTIONS_RESET",
+			"OPTION_CONTROLS_INFO",
+			"OPTIONS_CONTROLS_TAB",
+			"OPTIONS_GRAPHICS_TAB",
+			"OPTIONS_GRAPHICS_INFO",			
+			"OPTIONS_SOUND_ENABLED",
+			"OPTIONS_SOUND_MASTER_VOL",			
+			"OPTIONS_SOUND_ENABLED",
+			"OPTIONS_SOUND_MUSIC_VOL",
+			"OPTIONS_SOUND_ENABLED",
+			"OPTIONS_SOUND_SFX_VOL",
+			"OPTIONS_APPLY",
+			"OPTIONS_RESET",
+			"OPTIONS_SOUND_INFO",
+			"OPTIONS_SOUND_TAB",
+			"OPTIONS_SCREEN_BACK",
+			"OPTIONS_SCREEN_TITLE",
+			"OPTIONS_GRAPHICS_LANGUAGE",
+			"OPTIONS_GRAPHICS_RESOLUTION",
+			"OPTIONS_GRAPHICS_FULLSCREEN",
+			"OPTIONS_GRAPHICS_AA",
+			"OPTIONS_GRAPHICS_VSYNC",
+			"OPTIONS_GRAPHICS_SKIPINTRO",
+			"OPTIONS_APPLY",
+			"OPTIONS_RESET"
+		};
+
 		int windowNamesLen=26;
 		std::string stringKey="";
 		std::string stringVal="";
 		CEGUI::Window* win=NULL;
 		for (int i=0;i<windowNamesLen;i++)
 		{
+			stringVal="";
 			win=CEGUI::WindowManager::getSingletonPtr()->getWindow(windowNames[i]);
 			if (win)
 			{
@@ -585,7 +723,11 @@ void GUIOptionsMenu::setStrings()
 					stringKey="OPTIONS_CONTROLS_INFO";
 				else
 					stringKey=win->getText().c_str();
-				texts->getOption(stringKey,stringVal);
+				mButtonTextStrings->getOption(stringKey,stringVal);
+				if (stringVal.empty())
+				{
+					mButtonTextStrings->getOption(defaultValues[i],stringVal);
+				}
 				win->setText(stringVal);
 			}
 		}

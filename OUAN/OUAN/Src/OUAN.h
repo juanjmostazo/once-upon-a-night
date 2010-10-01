@@ -633,6 +633,28 @@ namespace OUAN
 
 		//Message boxes/texts display time
 		const double DEFAULT_DISPLAY_LIFETIME=2.0;
+
+		const std::string RENDERSYSTEM_D3D="Direct3D9 Rendering Subsystem";
+
+
+		const std::string RESOLUTION_800X600X16 ="800 x 600 @ 16-bit"; 
+		const std::string RESOLUTION_800X600X32 ="800 x 600 @ 32-bit";
+		const std::string RESOLUTION_1024X768X16 ="1024 x 768 @ 16-bit";
+		const std::string RESOLUTION_1024X768X32 ="1024 x 768 @ 32-bit";
+		const std::string RESOLUTION_1280X1024X16 ="1280 x 1024 @ 16-bit"; 
+		const std::string RESOLUTION_1280x1024x32 ="1280 x 1024 @ 32-bit"; 
+
+
+		const std::string RESOLUTION_SUFFIX = " colour";
+
+		const std::string OPTION_YES="Yes";
+		const std::string OPTION_NO="No";
+
+		const std::string AA_LEVEL_0="No";
+		const std::string AA_LEVEL_2="Level 2";
+		const std::string AA_LEVEL_4="Level 4";
+		const std::string AA_LEVEL_8="Level 8";
+
 }
 
 #endif

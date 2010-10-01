@@ -406,7 +406,7 @@ std::vector<std::string>& Application::getSupportedLanguages()
 
 void Application::changeCurrentLanguage(const std::string& newLanguage)
 {
-	if (find(mSupportedLanguages.begin(),mSupportedLanguages.end(),newLanguage)!=mSupportedLanguages.end())
+		if (find(mSupportedLanguages.begin(),mSupportedLanguages.end(),newLanguage)!=mSupportedLanguages.end())
 	{
 		mLanguage=newLanguage;
 
@@ -519,4 +519,14 @@ void Application::launchCutscene(const std::string& fileName, const std::string&
 ConfigurationPtr Application::getStoryTextStrings() const
 {
 	return mStoryStrings;
+}
+
+void Application::saveGraphicsConfig(const std::string& newLanguage)
+{
+	if (!newLanguage.empty())
+	{
+		mConfiguration->setOption(CONFIG_KEYS_INITIAL_LANGUAGE,newLanguage);	
+		mConfiguration->saveToFile(OUAN_CONFIG_FILE);
+	}	
+
 }
