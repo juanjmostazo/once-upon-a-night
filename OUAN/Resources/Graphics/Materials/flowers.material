@@ -1,0 +1,225 @@
+import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
+import default_changeworld_alpha_test from ChangeWorld.material
+
+///FLOWER 1
+material flower1_d : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture flower1.dds
+			}
+		}
+	}
+}
+
+material flower1_n : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture flower1n.dds
+			}
+		}
+	}
+}
+
+material flower1_cw : default_changeworld
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		        texture_unit dreams
+		        {
+				texture flower1.dds
+				mipmap_bias -1
+		        }
+		        texture_unit nightmares
+		        {
+				texture flower1n.dds
+				mipmap_bias -1
+	                }
+		}
+	}
+}
+
+///FLOWER 1 JUMP
+material flower1_jump_d : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
+			}
+		}
+	}
+}
+
+material flower1_jump_n : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
+			}
+		}
+	}
+}
+
+material flower1_jump_cw : default_changeworld
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		        texture_unit dreams
+		        {
+				texture Grass1.jpg
+				mipmap_bias -1
+		        }
+		        texture_unit nightmares
+		        {
+				texture Dirt2.jpg
+				mipmap_bias -1
+	                }
+		}
+	}
+}
+
+///FLOWER 2
+material flower2_d : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture flower2n.dds
+			}
+		}
+	}
+}
+
+material flower2_n : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture flower2n.dds
+			}
+		}
+	}
+}
+
+material flower2_cw : default_changeworld
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		        texture_unit dreams
+		        {
+				texture flower2n.dds
+				mipmap_bias -1
+		        }
+		        texture_unit nightmares
+		        {
+				texture flower2n.dds
+				mipmap_bias -1
+	                }
+		}
+	}
+}
+
+
+///FLOWER 2 JUMP
+material flower2_jump_d : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
+			}
+		}
+	}
+}
+
+material flower2_jump_n : basic_texture 
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_d.dds
+			}
+		}
+	}
+}
+
+material flower2_jump_cw : default_changeworld
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		        texture_unit dreams
+		        {
+				texture Grass1.jpg
+				mipmap_bias -1
+		        }
+		        texture_unit nightmares
+		        {
+				texture Dirt2.jpg
+				mipmap_bias -1
+	                }
+		}
+	}
+}
+
