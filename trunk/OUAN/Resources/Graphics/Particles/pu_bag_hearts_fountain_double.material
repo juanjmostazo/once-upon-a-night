@@ -15,7 +15,7 @@ material PU/bag_hearts_fountain_double
         pass
         {
             lighting off
-            scene_blend add
+            scene_blend alpha_blend
             depth_write off
 
             texture_unit
