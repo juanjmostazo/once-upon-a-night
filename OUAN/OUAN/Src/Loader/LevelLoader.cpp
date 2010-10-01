@@ -3713,6 +3713,14 @@ TRenderComponentEntityParameters LevelLoader::processRenderComponentEntity(TiXml
 	{
 		tRenderComponentEntityParameters.initialAnimationAlt2="";
 	}
+	try
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt3=getPropertyString(XMLCustomPropertiesNode,"initialAnimation#a3");
+	}
+	catch(std::string err)
+	{
+		tRenderComponentEntityParameters.initialAnimationAlt3="";
+	}
 	
 	
 	//Process Query flags

@@ -131,6 +131,9 @@ RenderComponentEntityPtr ComponentFactory::createRenderComponentEntity(std::stri
 		case INIT_ANIMATION_ALT2:
 			selectedInitialAnimation=entityParams.initialAnimationAlt2;
 			break;
+		case INIT_ANIMATION_ALT3:
+			selectedInitialAnimation=entityParams.initialAnimationAlt3;
+			break;
 		default:
 			selectedInitialAnimation=entityParams.initialAnimation;
 			break;

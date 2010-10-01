@@ -993,7 +993,14 @@ void GameObjectTripollo::enable()
 {
 	GameObject::enable();
 	LogicSubsystemPtr logicSS = Application::getInstance()->getLogicSubsystem();
-	mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
+	if(!mLogicComponentEnemy->isStatueEnabled())
+	{
+		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_IDLE));
+	}
+	else
+	{
+		mLogicComponentEnemy->setState(logicSS->getGlobalInt(TRIPOLLO_STATE_STATUE));
+	}
 	if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 	{
 		mPhysicsComponentCharacter->create();

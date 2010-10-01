@@ -24,7 +24,7 @@
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.6" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.75" fields="X;Y;Z;W"></PROPERTY>
 
 	<!-- TODO: add animations! -->
 	  <!-- Animations -->

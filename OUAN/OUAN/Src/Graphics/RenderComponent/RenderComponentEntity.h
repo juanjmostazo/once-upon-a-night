@@ -145,6 +145,7 @@ namespace OUAN
 		std::string initialAnimation;
 		std::string initialAnimationAlt;
 		std::string initialAnimationAlt2;
+		std::string initialAnimationAlt3;
 	};
 }
 

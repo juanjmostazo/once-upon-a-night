@@ -29,7 +29,7 @@ material tripollo_statue_red : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture tripollo_rock_n.dds
 			}
 		}
 	}
@@ -45,7 +45,7 @@ material tripollo_statue_green : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture tripollo_rock_n.dds
 			}
 		}
 	}
@@ -61,7 +61,7 @@ material tripollo_statue_blue : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture tripollo_rock_n.dds
 			}
 		}
 	}
