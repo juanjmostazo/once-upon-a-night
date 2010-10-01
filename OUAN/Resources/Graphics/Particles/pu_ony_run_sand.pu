@@ -14,7 +14,7 @@ system PU/ony_run_sand
         }
         emitter                                 Circle Emitter4
         {
-            emission_rate                       12
+            emission_rate                       6
             time_to_live                        dyn_random
             {
                 min                             0.8

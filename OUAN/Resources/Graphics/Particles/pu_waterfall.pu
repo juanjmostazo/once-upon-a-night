@@ -31,7 +31,6 @@ system PU/waterfall
                 min                             120
                 max                             200
             }
-            colour                              0.5 0.7 0.9 1
             box_em_width                        90
             box_em_height                       30
             box_em_depth                        90
