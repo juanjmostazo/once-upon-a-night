@@ -132,6 +132,11 @@ const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 		/// Initialise the graphics tab window
 		void initGraphicsTab();
 
+		void changeControlsComboTexts();
+		void changeLanguageSelectorTexts();
+
+		void changeLanguage(const std::string& newLanguage);
+
 		/// Initialise a volume slider
 		/// @param windowName	name of the slider
 		/// @float maxValue		value corresponding to the slider's max
@@ -167,6 +172,8 @@ const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 		bool onCancel (const CEGUI::EventArgs& args);
 		bool onApplySound(const CEGUI::EventArgs& args);
 		bool onCancelSound(const CEGUI::EventArgs& args);
+		bool onApplyGraphics(const CEGUI::EventArgs& args);
+		bool onCancelGraphics(const CEGUI::EventArgs& args);
 		bool onDeviceSelectionChanged(const CEGUI::EventArgs& args);
 		bool onRadioButtonDown(const CEGUI::EventArgs& args);
 		//TODO: Generalise this
@@ -180,7 +187,14 @@ const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 		//bool onMusicSliderValueStopped(const CEGUI::EventArgs& args);
 		bool onMusicCheckBoxStateChanged(const CEGUI::EventArgs& args);
 
+		bool onLanguageSelectorChanged(const CEGUI::EventArgs& args);
+
 		void initLanguageCombo();
+
+		std::map<int,std::string> mLanguageComboMappings;
+
+		std::string mCurrentLanguage;
+		std::string mOldLanguage;
 
 	public:
 		/// Free resources

@@ -158,6 +158,8 @@ namespace OUAN
 
 			void launchCutscene(const std::string& fileName, const std::string& function);
 
+			void saveGraphicsConfig(const std::string& newLanguage);
+
 		protected:
 
 			/// Singleton instance

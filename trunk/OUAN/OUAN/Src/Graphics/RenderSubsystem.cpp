@@ -214,8 +214,28 @@ void RenderSubsystem::defineResources(ConfigurationPtr config)
 
 bool RenderSubsystem::setupRenderSystem(ConfigurationPtr config)
 {
-	//[TODO - Get rid of config dialog]
-	return mRoot->showConfigDialog();
+	std::string value;
+	config->getOption(CONFIG_KEYS_RENDER_SYSTEM,value);
+	Ogre::RenderSystem* rs=  mRoot->getRenderSystemByName(value);
+	if (rs)
+	{
+		mRoot->setRenderSystem(rs);
+		config->getOption(CONFIG_KEYS_FULLSCREEN,value);
+		rs->setConfigOption("Full Screen",value.empty()?OPTION_NO:value);
+		value="";
+		config->getOption(CONFIG_KEYS_RES,value);
+		rs->setConfigOption("Video Mode", value.empty()?RESOLUTION_1024X768X32:value);
+		value="";
+		config->getOption(CONFIG_KEYS_AA,value);
+		rs->setConfigOption("Anti aliasing", value.empty()?AA_LEVEL_0:value);
+		value="";
+		config->getOption(CONFIG_KEYS_VSYNC,value);	
+		rs->setConfigOption("VSync",value.empty()?OPTION_NO:value);		
+
+		return true;
+	}
+	return false;
+	//return mRoot->showConfigDialog();
 }
 
 void RenderSubsystem::createRenderWindow(ConfigurationPtr config)

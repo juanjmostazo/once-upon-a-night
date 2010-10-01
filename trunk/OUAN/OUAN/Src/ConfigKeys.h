@@ -14,13 +14,11 @@ namespace OUAN
 	const std::string CONFIG_KEYS_SUPPORTED_LANGUAGES="SUPPORTED_LANGUAGES";
 	const std::string CONFIG_KEYS_INITIAL_LANGUAGE="INITIAL_LANGUAGE";
 	
-	//Video option keys
+	////Video option keys
 	const std::string CONFIG_KEYS_RENDER_SYSTEM="RENDER_SYSTEM";
 	const std::string CONFIG_KEYS_FULLSCREEN="FULLSCREEN";
 	const std::string CONFIG_KEYS_AA="ANTIALIASING";
-	const std::string CONFIG_KEYS_BPP="BPP";
-	const std::string CONFIG_KEYS_VRES="VERT_RESOLUTION";
-	const std::string CONFIG_KEYS_HRES="HORIZ_RESOLUTION";
+	const std::string CONFIG_KEYS_RES="RESOLUTION";
 	const std::string CONFIG_KEYS_VSYNC="V_SYNC";
 }
 
