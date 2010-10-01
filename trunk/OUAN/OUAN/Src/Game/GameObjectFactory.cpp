@@ -3616,26 +3616,42 @@ GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTri
 	bool existsInDreams = pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams();
 	bool existsInNightmares = pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares();
 
+	TInitialAnimationType initialAnimation;
+	
 	if(existsInDreams)
 	{
+		initialAnimation=INIT_ANIMATION_DEFAULT;
+		bool isStatueTripollo = tGameObjectTripolloParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_STATUE;
+		if(isStatueTripollo)
+		{
+			initialAnimation=INIT_ANIMATION_ALT3;
+		}
+
 		//Create RenderComponentEntityDreams
 		pGameObjectTripollo->setRenderComponentEntityDreams(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters,
 		existsInDreams,
-		existsInNightmares));
+		existsInNightmares,
+		initialAnimation));
 		
 	}
 	if (existsInNightmares)
 	{
+		initialAnimation=INIT_ANIMATION_ALT;
 		bool isFlyingTripollo = tGameObjectTripolloParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_FLYING;
+		if(isFlyingTripollo)
+		{
+			initialAnimation=INIT_ANIMATION_ALT2;
+		}
+
 		//Create RenderComponentEntityNightmares
 		pGameObjectTripollo->setRenderComponentEntityNightmares(
 			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
 			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters,
 		existsInDreams,
 		existsInNightmares,
-		isFlyingTripollo?INIT_ANIMATION_ALT2:INIT_ANIMATION_ALT));
+		initialAnimation));
 	}
 
 	//Create RenderComponenetParticleSystem

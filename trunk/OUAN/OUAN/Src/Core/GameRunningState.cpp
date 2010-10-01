@@ -127,17 +127,17 @@ void GameRunningState::init(ApplicationPtr app)
 
 	mCurrentCutScene=0;
 	mCutScenes.clear();
-	//mCutScenes.push_back("cutScene1");
-	//mCutScenes.push_back("cutScene2");
-	//mCutScenes.push_back("cutScene3");
-	//mCutScenes.push_back("cutScene3_1");
-	//mCutScenes.push_back("cutScene4");
-	//mCutScenes.push_back("cutScene7_1");
-	//mCutScenes.push_back("cutScene7_2");
-	//mCutScenes.push_back("cutScene7_3");
-	//mCutScenes.push_back("cutScene8");
-	//mCutScenes.push_back("cutScene8_0");
-	//mCutScenes.push_back("cutScene8_1");
+	mCutScenes.push_back("cutScene1");
+	mCutScenes.push_back("cutScene2");
+	mCutScenes.push_back("cutScene3");
+	mCutScenes.push_back("cutScene3_1");
+	mCutScenes.push_back("cutScene4");
+	mCutScenes.push_back("cutScene7_1");
+	mCutScenes.push_back("cutScene7_2");
+	mCutScenes.push_back("cutScene7_3");
+	mCutScenes.push_back("cutScene8");
+	mCutScenes.push_back("cutScene8_0");
+	mCutScenes.push_back("cutScene8_1");
 	mCutScenes.push_back("cutScene9");
 	mCutScenes.push_back("cutScene10_1");
 	mCutScenes.push_back("cutScene10_2");

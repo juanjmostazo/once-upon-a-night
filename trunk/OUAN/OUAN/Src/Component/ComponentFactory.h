@@ -10,7 +10,8 @@ namespace OUAN
 	{
 		INIT_ANIMATION_DEFAULT,
 		INIT_ANIMATION_ALT,
-		INIT_ANIMATION_ALT2
+		INIT_ANIMATION_ALT2,
+		INIT_ANIMATION_ALT3
 	};
 	/// Class in charge for
 	/// creating components

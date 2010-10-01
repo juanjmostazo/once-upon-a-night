@@ -53,6 +53,7 @@
   <PROPERTY id="initialAnimation#d" type="7" value="idle_00"></PROPERTY>
   <PROPERTY id="initialAnimation#a" type="7" value="idle00"></PROPERTY>
   <PROPERTY id="initialAnimation#a2" type="7" value="flying_idle"></PROPERTY>
+  <PROPERTY id="initialAnimation#a3" type="7" value="rest"></PROPERTY>
   
   <PROPERTY id="animation0d::name" type="7" value="die" ></PROPERTY>  
   <PROPERTY id="animation0d::loop" type="12" value="false"></PROPERTY>
