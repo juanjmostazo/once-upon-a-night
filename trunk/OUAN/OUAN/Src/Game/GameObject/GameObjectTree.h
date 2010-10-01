@@ -17,7 +17,7 @@ namespace OUAN
 	const std::string TREE_ANIM_IDLE_UP2="idle02";
 	const std::string TREE_ANIM_IDLE_DOWN="idle03";
 
-	const double TREE_MAX_PARTICLES_ELAPSED_TIME = 60;
+	const double TREE_MAX_PARTICLES_ELAPSED_TIME = 30;
 	const double TREE_PARTICLES_ACTIVE_TIME = 2;
 
 	/// Class to hold GameObjectTree information
