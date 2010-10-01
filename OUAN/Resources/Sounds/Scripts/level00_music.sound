@@ -2,7 +2,7 @@
 
 sound DREAMS00
 {
-	sound_file 	dreams00.mp3
+	sound_file 	Music/dreams.mp3
 	sound_type	music
 	3D			false
 	hardware	true
@@ -13,7 +13,7 @@ sound DREAMS00
 }
 sound NIGHTMARES00
 {
-	sound_file 	nightmares00b.mp3
+	sound_file 	Music/nightmares.mp3
 	sound_type	music
 	3D			false
 	hardware	true

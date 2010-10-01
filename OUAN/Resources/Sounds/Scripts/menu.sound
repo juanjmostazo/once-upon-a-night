@@ -2,7 +2,7 @@
 
 sound MUSIC
 {
-	sound_file 	menu00.mp3
+	sound_file 	Music/menu.mp3
 	sound_type	music
 	3D			false
 	hardware	true
