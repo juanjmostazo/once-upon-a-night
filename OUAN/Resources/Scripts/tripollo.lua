@@ -195,7 +195,7 @@ function tripolloLogic(pTripollo,state)
 		if playerDistance>=(myLOS/3.5) then
 			--log (myName.." CHANGED STATE TO TIRED")
 			return TRIPOLLO_STATE_TIRED
-		elseif playerDistance<=meleeRange then
+		elseif pTripollo:hasHitOny() then
 			--log (myName.." CHANGED STATE TO ATTACK")
 			return TRIPOLLO_STATE_ATTACK
 		end

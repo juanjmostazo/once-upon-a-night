@@ -28,10 +28,21 @@ LogicComponentEnemy::LogicComponentEnemy(const std::string& type)
 	mStatueEnabled=false;
 	mPillowHitFinished=false;
 	mFlashlightHitFinished=false;
+	mHasHitOny=false;
 }
 
 LogicComponentEnemy::~LogicComponentEnemy()
 {
+}
+
+bool LogicComponentEnemy::hasHitOny() const
+{
+	return mHasHitOny;
+}
+
+void LogicComponentEnemy::setHasHitOny(bool hasHasHitOny)
+{
+	mHasHitOny=hasHasHitOny;
 }
 
 void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vector3 pNormal)
@@ -93,6 +104,11 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 				mHasBeenHit=getParent()->getWorld()==DREAMS;
 			}
 		}		
+	}
+	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
+	{
+		getParent()->displayText("ONYHIT!");
+		mHasHitOny=true;
 	}
 }
 

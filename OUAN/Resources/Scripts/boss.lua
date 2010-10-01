@@ -123,11 +123,7 @@ function bossLogic(pBoss,state)
 		if playerDistance > myLOS then
 			log (myName.." CHANGED STATE TO TIRED")
 			return BOSS_STATE_TIRED
-		elseif playerDistance <= SP_ATTACK_RANGE and math.random() <= SP_ATTACK_CHANCE then
-			log (myName.." CHANGED STATE TO SP_ATTACK")
-			pBoss:setTimeSpent(0);
-			return BOSS_STATE_SP_ATTACK
-		elseif playerDistance <= NORMAL_ATTACK_RANGE then
+		elseif pBoss:hasHitOny() then
 			log (myName.." CHANGED STATE TO ATTACK")
 			return BOSS_STATE_ATTACK
 		end

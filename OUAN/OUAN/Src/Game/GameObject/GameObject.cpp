@@ -43,6 +43,11 @@ void GameObject::destroy()
 	
 }
 
+void GameObject::updateWeapons(double elapsedSeconds)
+{
+
+}
+
 void GameObject::reset()
 {
 	mEnabled=true;
