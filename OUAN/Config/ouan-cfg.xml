@@ -1,22 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?>
 <Configuration>
-  <Options>
-	<!--	Skip intro -->
-	<Option key="LAUNCH_OGRE_CONFIG">false</Option>
-	<Option key="SKIP_INTRO">false</Option>
-	<!--	Language options -->
-	<Option key="SUPPORTED_LANGUAGES">en;es</Option>
-	<Option key="INITIAL_LANGUAGE">en</Option>
-	<!--	Video options		-->
-	<Option key="RENDER_SYSTEM">D3D</Option>
-    <Option key="HORIZ_RESOLUTION">800</Option>
-	<Option key="VERT_RESOLUTION">600</Option>
-	<Option key="BPP">32</Option>
-	<Option key="FULLSCREEN">No</Option>
-	<Option key="ANTIALIASING">8</Option>
-	<Option key="V_SYNC">false</Option>
-	
-	<!--	Misc. options		-->
-    <Option key="HIT_RECOVERY_DELAY">500000</Option>   
-  </Options>
+    <!--Config options-->
+    <Options>
+        <Option key="ANTIALIASING">Level 8</Option>
+        <Option key="FULLSCREEN">No</Option>
+        <Option key="HIT_RECOVERY_DELAY">500000</Option>
+        <Option key="INITIAL_LANGUAGE">es</Option>
+        <Option key="RENDER_SYSTEM">Direct3D9 Rendering Subsystem</Option>
+        <Option key="RESOLUTION">1024 x 768 @ 32-bit colour</Option>
+        <Option key="SKIP_INTRO">false</Option>
+        <Option key="SUPPORTED_LANGUAGES">en;es</Option>
+        <Option key="V_SYNC">No</Option>
+    </Options>
 </Configuration>
