@@ -6,6 +6,7 @@
 	<Imageset Name="OUANLook-BG-Logo" Filename="OUANLook-logo.imageset" />
 	<Imageset Name="OUAN_MainButtons" Filename="OUAN_MainButtons.imageset" />
 	<Imageset Name="OUAN_IngameMenu" Filename="OUAN_IngameMenu.imageset"/>
+	<Imageset Name="OUAN_Menu" Filename="OUAN_Menu.imageset"/>	
     <Font Name="BlueHighway-12" Filename="bluehighway-12.font" />
     <Font Name="BlueHighway-10" Filename="bluehighway-10.font" />
     <Font Name="BlueHighway-8" Filename="bluehighway-8.font" />
@@ -18,7 +19,26 @@
 	<LookNFeel Filename="OUANLook.looknfeel" />
 	<LookNFeel Filename="OUANMain.looknfeel" />	
 	<WindowRendererSet Filename="CEGUIFalagardWRBase" />
-	<FalagardMapping WindowType="OUANLook/GearButton" TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANMain/GearButton" />	
+	<FalagardMapping WindowType="OUANLook/GearButton" TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANMain/GearButton" />
+	<FalagardMapping WindowType="OUANLook/OUANSlider"      TargetType="CEGUI/Slider"      Renderer="Falagard/Slider"  LookNFeel="OUANMenu/Slider" />
+	<FalagardMapping WindowType="OUANLook/OUANSliderThumb" TargetType="CEGUI/Thumb" Renderer="Falagard/Button"  LookNFeel="OUANMenu/SliderThumb" />
+<FalagardMapping WindowType="OUANMenu/Checkbox"    		TargetType="CEGUI/Checkbox"    Renderer="Falagard/ToggleButton" LookNFeel="OUANMenu/Checkbox" />
+	<FalagardMapping WindowType="OUANMenu/Button"     		 TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANMenu/Button" />
+	<FalagardMapping WindowType="OUANMenu/ImageButton"     		 TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANMenu/ImageButton" />		
+	<FalagardMapping WindowType="OUANMenu/ToggleButton"    TargetType="CEGUI/RadioButton"    Renderer="Falagard/ToggleButton" LookNFeel="OUANMenu/ToggleButton" />
+	<FalagardMapping WindowType="OUANMenu/EditBox"    TargetType="CEGUI/Editbox"    Renderer="Falagard/Editbox" LookNFeel="OUANMenu/EditBox" />	
+	
+
+<FalagardMapping WindowType="OUANMenu/ComboBox"    TargetType="CEGUI/Combobox"    Renderer="Falagard/Default" LookNFeel="OUANMenu/ComboBox" />
+<FalagardMapping WindowType="OUANMenu/ComboDropList"    TargetType="CEGUI/ComboDropList"    Renderer="Falagard/Listbox" LookNFeel="OUANMenu/ComboDropList" />
+
+<FalagardMapping WindowType="OUANMenu/HScrollBarThumb"    TargetType="CEGUI/Thumb"    Renderer="Falagard/Button" LookNFeel="OUANMenu/HScrollBarThumb" />
+<FalagardMapping WindowType="OUANMenu/VScrollBarThumb"    TargetType="CEGUI/Thumb"    Renderer="Falagard/Button" LookNFeel="OUANMenu/VScrollBarThumb" />
+
+<FalagardMapping WindowType="OUANMenu/HScrollBar"    TargetType="CEGUI/Scrollbar"    Renderer="Falagard/Scrollbar" LookNFeel="OUANMenu/HScrollBar" />
+
+<FalagardMapping WindowType="OUANMenu/VScrollBar"    TargetType="CEGUI/Scrollbar"    Renderer="Falagard/Scrollbar" LookNFeel="OUANMenu/VScrollBar" />
+	
 	<FalagardMapping WindowType="OUANLook/Button"     		 TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANLook/Button" />
 	<FalagardMapping WindowType="OUANLook/Checkbox"    		TargetType="CEGUI/Checkbox"    Renderer="Falagard/ToggleButton" LookNFeel="OUANLook/Checkbox" />
 	<FalagardMapping WindowType="OUANLook/ToggleButton"    TargetType="CEGUI/RadioButton"    Renderer="Falagard/ToggleButton" LookNFeel="OUANLook/ToggleButton" />
