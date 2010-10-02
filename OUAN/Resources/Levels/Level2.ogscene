@@ -34,11 +34,11 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="211.362 253.499 500.176" orientation="-0.980263 0.197014 0.0163335 0.0018978"></OPTION>
+    <OPTION id="2" position="-724.043 262.157 181.095" orientation="0.0867392 -0.0214919 -0.971245 -0.220677"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.980418 0.197045 0.0163361 0.0018981"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.0867611 -0.0214973 -0.97149 -0.220733"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="211.362 253.499 500.176"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-724.043 262.157 181.095"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2759,7 +2759,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree5_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.503774 0 0.863836 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-177.632 253.221 116.978"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-177.632 253.22 116.978"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree5_d"></PROPERTY>
@@ -5389,10 +5389,10 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-220.182 225.358 260.031"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-242.739 225.358 260.031"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6760,7 +6760,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.977231 0 -0.212178 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-352.419 40.2185 -423.609"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-339.874 40.2185 -417.892"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -7519,7 +7519,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-299.823 235.536 141.258"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-299.823 245.207 141.258"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -8713,7 +8713,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999762 -0.0218149 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-84.7701 45.6713 -505.322"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-84.7701 59.6611 -505.933"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
@@ -9375,7 +9375,7 @@
     <PROPERTY id="position" type="9" value="-754.02 254.231 -12.8748"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9556,7 +9556,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.922201 0 0.386711 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-384.796 241.744 15.2358"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-384.796 249.159 15.2358"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
@@ -10346,10 +10346,10 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.885959 -0.0293245 -0.462602 0.0146924"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-666.735 42.7933 -692.579"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-666.735 100 -692.579"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11031,7 +11031,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-212.929 225.775 321.161"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-205.335 225.775 299.353"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -11325,7 +11325,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.942641 0 0.333807 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-380.188 229.622 183.78"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-380.188 236.507 183.78"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
@@ -11499,7 +11499,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="seabed01.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-690.374 193.617 341.01"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.374 193 341.01"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="water_lake_seabed_n"></PROPERTY>
@@ -13833,10 +13833,10 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-673.822 42.6123 -706.226"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-673.822 100 -706.226"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="BaseWhite"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -15051,7 +15051,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-299.823 235.536 141.258"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-299.823 259.457 141.258"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_n"></PROPERTY>
@@ -15680,7 +15680,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="lake01.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-690.374 193.617 341.01"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.374 194.617 341.01"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="water_foam_lake1_n"></PROPERTY>
@@ -17029,7 +17029,7 @@
     <PROPERTY id="orientation" type="13" value="0.99999 0 -0.00436312 0"></PROPERTY>
     <PROPERTY id="position" type="9" value="471.2 1402.38 -2796.89"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="462.162 375.067 487.811"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="400 300 400"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -17943,7 +17943,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="woodbox.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-220.182 225.358 260.031"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-220.182 225.358 271.791"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="woodbox_d"></PROPERTY>
@@ -19917,7 +19917,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="lake01.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-690.374 193.617 341.01"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-690.374 195 341.01"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="water_foam_lake1_d"></PROPERTY>
