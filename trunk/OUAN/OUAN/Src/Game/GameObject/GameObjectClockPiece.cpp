@@ -27,7 +27,7 @@ void GameObjectClockPiece::makeAppear(Ogre::Vector3 position)
 	mPhysicsComponentVolumeBox->getSceneNode()->setPosition(position);
 	mRenderComponentPositional->setPosition(position);
 
-	mRenderComponentGlow->setVisible(true);
+	//mRenderComponentGlow->setVisible(true);
 	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
 }
 
@@ -109,12 +109,12 @@ void GameObjectClockPiece::setDreamsRender()
 	{
 		mRenderComponentEntity->setVisible(true);
 		mRenderComponentEntity->setDreamsMaterials();
-		mRenderComponentGlow->setVisible(true);
+		//mRenderComponentGlow->setVisible(true);
 	}
 	else
 	{
 		mRenderComponentEntity->setVisible(false);
-		mRenderComponentGlow->setVisible(false);
+		//mRenderComponentGlow->setVisible(false);
 	}
 }
 
@@ -125,12 +125,12 @@ void GameObjectClockPiece::setNightmaresRender()
 	{
 		mRenderComponentEntity->setVisible(true);
 		mRenderComponentEntity->setNightmaresMaterials();
-		mRenderComponentGlow->setVisible(true);
+		//mRenderComponentGlow->setVisible(true);
 	}
 	else
 	{
 		mRenderComponentEntity->setVisible(false);
-		mRenderComponentGlow->setVisible(false);
+		//mRenderComponentGlow->setVisible(false);
 	}
 }
 
@@ -380,6 +380,7 @@ LogicComponentPtr GameObjectClockPiece::getLogicComponent() const
 void GameObjectClockPiece::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
+
 }
 
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()

@@ -52,8 +52,15 @@ function bossLogic(pBoss,state)
 		return BOSS_STATE_DIE
 	end
 	
+	-- FLASHLIGHT HIT END CHECK
+	if state == BOSS_STATE_FLASHLIGHT_HIT and pBoss:isFlashLightHitFinished() then
+		log (myName.." CHANGED STATE TO STUNNED")
+		return BOSS_STATE_STUNNED
+	end	
+	
 	-- FLASHLIGHT HIT CHECK
 	if pBoss:hasBeenHit() and pBoss:getWorld() == OUAN_WORLD_NIGHTMARES and pBoss:isFlashLightHitFinished() then
+		log (myName.." CHANGED STATE TO FLASHLIGHT_HIT")
 		pBoss:setTimeSpent(0);
 		return BOSS_STATE_FLASHLIGHT_HIT
 	end
@@ -71,13 +78,13 @@ function bossLogic(pBoss,state)
 	
 	-- ATTACK CHECK
 	if pBoss:isAttackFinished() and state == BOSS_STATE_ATTACK then
-		log(myName.." : CHANGED STATE TO CHASE")
+		log(myName.." : CHANGED STATE TO ATTACK")
 		return BOSS_STATE_CHASE	
 	end
 	
 	-- SPECIAL ATTACK CHECK
 	if pBoss:getTimeSpent() >= STUNNED_TIME and state == BOSS_STATE_SP_ATTACK then
-		log(myName.." : CHANGED STATE TO CHASE")
+		log(myName.." : CHANGED STATE TO SPECIAL ATTACK")
 		if playerDistance <= myLOS then
 			return BOSS_STATE_CHASE	
 		else
@@ -103,11 +110,6 @@ function bossLogic(pBoss,state)
 		elseif pBoss:getTimeSpent() >= STUNNED_TIME then
 			return BOSS_STATE_PATROL
 		end
-	end	
-	
-	-- FLASHLIGHT HIT END CHECK
-	if state == BOSS_STATE_FLASHLIGHT_HIT and pBoss:isFlashLightHitFinished() then
-		return BOSS_STATE_STUNNED
 	end	
 		
 	-- PATROL TRANSITION:

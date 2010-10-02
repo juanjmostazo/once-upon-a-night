@@ -283,7 +283,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
 						mRenderComponentParticleSystemSurprise->start();
-						//mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))
