@@ -26,8 +26,8 @@ LogicComponentEnemy::LogicComponentEnemy(const std::string& type)
 	mTiredFinished=true;	
 	mIdle1Finished=true;
 	mStatueEnabled=false;
-	mPillowHitFinished=false;
-	mFlashlightHitFinished=false;
+	mPillowHitFinished=true;
+	mFlashlightHitFinished=true;
 	mHasHitOny=false;
 }
 
