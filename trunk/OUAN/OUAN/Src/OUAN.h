@@ -328,7 +328,6 @@ namespace OUAN
 		const std::string GAME_OBJECT_TYPE_VIEWPORT="Viewport1";
 		const std::string GAME_OBJECT_TYPE_NIGHTGOBLIN="nightgoblin";
 		const std::string GAME_OBJECT_TYPE_CRYKING="cryking";
-		const std::string GAME_OBJECT_TYPE_BOSS="boss";
 		const std::string GAME_OBJECT_TYPE_MAGICCLOCK="magicclock";
 		const std::string GAME_OBJECT_TYPE_PILLOW="pillow";
 		const std::string GAME_OBJECT_TYPE_FLASHLIGHT="flashlight";
