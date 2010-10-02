@@ -150,42 +150,6 @@ void GameObjectSignpost::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectSignpost::calculateChangeWorldTotalTime(double changeWorldTotalTime)
-{
-	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
-}
-
-void GameObjectSignpost::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
-{
-	double fraction=0.25f;
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		if(mLogicComponent->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		else if(mLogicComponent->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponent->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		else if(mLogicComponent->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		break;
-	default:
-		break;
-	}	
-}
-
 void GameObjectSignpost::reset()
 {
 	GameObject::reset();
