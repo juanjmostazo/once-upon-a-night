@@ -45,9 +45,14 @@ namespace OUAN
 	const std::string BOSS_ANIMATION_WARCRY = "war_cry";
 
 	//Trajectory Speeds
-	const double BOSS_SPEED_WALK = 0.4;
-	const double BOSS_SPEED_RUN = 0.7;
-	const double BOSS_SPEED_RUN_PISSED_OFF = 1.0;
+	const double BOSS_SPEED_WALK = 0.5;
+	const double BOSS_SPEED_RUN = 0.8;
+	const double BOSS_SPEED_RUN_PISSED_OFF = 1.2;
+
+	//materials
+	const std::string BOSS_MATERIAL_RED = "boss_red_d";
+	const std::string BOSS_MATERIAL_BLUE = "boss_blue_d";
+	const std::string BOSS_MATERIAL_GREEN = "boss_green_d";
 
 	/// Class modelling a particular enemy type
 	class GameObjectBoss : public GameObject, public boost::enable_shared_from_this<GameObjectBoss>
@@ -150,6 +155,11 @@ namespace OUAN
 		void changeToWorld(int newWorld, double perc);
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
+
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		bool hasBeenHit() const;
 		bool hasDied() const;

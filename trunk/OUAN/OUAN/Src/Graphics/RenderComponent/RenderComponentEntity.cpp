@@ -287,6 +287,33 @@ void RenderComponentEntity::detachGameObject(GameObjectPtr gameObject)
 	}
 }
 
+void RenderComponentEntity::setNewMaterial(std::string material,bool existInDreams,bool existInNightmares)
+{
+	Ogre::SubEntity* subEnt;
+	unsigned int i;
+
+	mDreamsMaterial.clear();
+	mNightmaresMaterial.clear();
+	mChangeWorldMaterial.clear();
+
+	if(mEntity)
+	{
+		for ( i = 0; i < mEntity->getNumSubEntities(); i++)
+		{
+			// Get the material of this sub entity and build the clone material name
+			subEnt = mEntity->getSubEntity(i);
+
+			if(subEnt)
+			{
+				mDreamsMaterial.push_back(WorldNameConverter::getDreamsName(material));
+				mNightmaresMaterial.push_back(WorldNameConverter::getNightmaresName(material));
+				mChangeWorldMaterial.push_back(WorldNameConverter::getChangeWorldName(material));
+				mChangeWorldMaterial[i]=setChangeWorldMaterialTransparentTextures(mChangeWorldMaterial[i],existInDreams,existInNightmares);
+			}
+		}
+	}
+}
+
 void RenderComponentEntity::setMaterial(std::vector<std::string> & material)
 {
 	Ogre::SubEntity* subEnt;

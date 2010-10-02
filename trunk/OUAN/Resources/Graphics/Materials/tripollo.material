@@ -129,10 +129,6 @@ material tripollo_red_cw : default_changeworld_alpha_test
 		      {
 			param_named blending_tiling float3 5 5 0
 		      }
-		      texture_unit changeworld
-		      {
-				texture noise.dds
-		      }
 		      texture_unit dreams
 		      {
 				texture tripollo_d.dds
@@ -160,10 +156,6 @@ material tripollo_green_cw : default_changeworld_alpha_test
 		      {
 			param_named blending_tiling float3 5 5 0
 		      }
-		      texture_unit changeworld
-		      {
-				texture noise.dds
-		      }
 		      texture_unit dreams
 		      {
 				texture tripollo_d.dds
@@ -189,10 +181,6 @@ material tripollo_blue_cw : default_changeworld_alpha_test
 		      fragment_program_ref erosion_fs
 		      {
 			param_named blending_tiling float3 5 5 0
-		      }
-		      texture_unit changeworld
-		      {
-				texture noise.dds
 		      }
 		      texture_unit dreams
 		      {

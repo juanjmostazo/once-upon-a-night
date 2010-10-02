@@ -153,24 +153,40 @@ void GameObjectBoss::setCurrentWalkAnimation()
 
 void GameObjectBoss::updateHPEvents()
 {
+	std::vector<std::string> newMaterial;
 	int hp=mLogicComponentEnemy->getHealthPoints();
 	if(hp==3)
 	{
 		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_BLUE);
+		mRenderComponentEntity->setNewMaterial(BOSS_MATERIAL_BLUE,true,true);
 	}
 	else if(hp==2)
 	{
 		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_1_DONE);
 		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_GREEN);
+		mRenderComponentEntity->setNewMaterial(BOSS_MATERIAL_GREEN,true,true);
 	}
 	else if(hp==1)
 	{
 		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_2_DONE);
 		mLogicComponentEnemy->setColourSensitivityMask(COLOUR_FLAG_RED);
+		mRenderComponentEntity->setNewMaterial(BOSS_MATERIAL_RED,true,true);
 	}
 	else if(hp==0)
 	{
 		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_3_DONE);
+	}
+
+	switch(mWorld)
+	{
+	case DREAMS:
+		mRenderComponentEntity->setDreamsMaterials();
+		break;
+	case NIGHTMARES:
+		mRenderComponentEntity->setNightmaresMaterials();
+		break;
+	default:
+		break;
 	}
 }
 
@@ -333,6 +349,7 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	else if(animationName.compare(BOSS_ANIMATION_ATTACK)==0)
 	{
 		mLogicComponentEnemy->setAttackFinished(true);
+		mLogicComponentEnemy->setHasHitOny(false);
 	}
 	else if(animationName.compare(BOSS_ANIMATION_SP_ATTACK)==0)
 	{
@@ -419,6 +436,26 @@ void GameObjectBoss::reset()
 
 }
 
+void GameObjectBoss::setDreamsRender()
+{
+	mRenderComponentEntity->setDreamsMaterials();
+}
+
+void GameObjectBoss::setNightmaresRender()
+{
+	mRenderComponentEntity->setNightmaresMaterials();
+}
+
+void GameObjectBoss::setChangeWorldRender()
+{
+	mRenderComponentEntity->setChangeWorldMaterials();
+}
+
+void GameObjectBoss::setChangeWorldFactor(double factor)
+{
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
 void GameObjectBoss::changeWorldFinished(int newWorld)
 {
 	if (!isEnabled()) return;
@@ -429,8 +466,10 @@ void GameObjectBoss::changeWorldFinished(int newWorld)
 	switch(newWorld)
 	{
 		case DREAMS:
+			
 			break;
 		case NIGHTMARES:
+			
 			break;
 		default:break;
 	}
@@ -446,6 +485,8 @@ void GameObjectBoss::changeWorldFinished(int newWorld)
 void GameObjectBoss::changeWorldStarted(int newWorld)
 {
 	if (!isEnabled()) return;
+
+	
 
 	switch(newWorld)
 	{
@@ -472,6 +513,8 @@ void GameObjectBoss::changeToWorld(int newWorld, double perc)
 		break;
 	}
 }
+
+
 
 int GameObjectBoss::getTimeStunned() const
 {

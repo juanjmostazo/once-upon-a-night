@@ -191,6 +191,7 @@ void GameObjectFlashLight::reset()
 	GameObject::reset();
 	mCurrentColour=RED;
 	mTargetColour=RED;
+	
 	stopAttackParticles();
 }
 

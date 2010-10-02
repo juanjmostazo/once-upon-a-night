@@ -48,7 +48,11 @@ function cutScene1(timer)
 	timedMessage(any,"LEVEL_START#0",5,timer,6);
 	timedMessage(any,"LEVEL_START#1",5,timer,6);
 	
-	setMyReturningToGameTransition(false);
+	setCameraTrajectory(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1,false,true)	
+	trajectoryCamWait()
+	busyWait(timer,5);
+	
+	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
 end
 
