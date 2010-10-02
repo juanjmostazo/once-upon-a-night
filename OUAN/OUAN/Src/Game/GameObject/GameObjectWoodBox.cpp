@@ -277,50 +277,6 @@ void GameObjectWoodBox::changeToWorld(int newWorld, double perc)
 
 }
 
-void GameObjectWoodBox::calculateChangeWorldTotalTime(double changeWorldTotalTime)
-{
-	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
-}
-
-void GameObjectWoodBox::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
-{
-	double fraction=0.25f;
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		else if(mLogicComponentBreakable->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		else if(mLogicComponentBreakable->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentBreakable->existsInDreams() && mLogicComponentBreakable->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		else if(mLogicComponentBreakable->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		else if(mLogicComponentBreakable->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		break;
-	default:
-		break;
-	}	
-}
-
 void GameObjectWoodBox::reset()
 {
 	GameObject::reset();

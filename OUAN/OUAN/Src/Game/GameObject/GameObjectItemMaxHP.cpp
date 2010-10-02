@@ -243,42 +243,6 @@ void GameObjectItemMaxHP::changeToWorld(int newWorld, double perc)
 	}
 }
 
-void GameObjectItemMaxHP::calculateChangeWorldTotalTime(double changeWorldTotalTime)
-{
-	mChangeWorldTotalTime=changeWorldTotalTime*0.25f;
-}
-
-void GameObjectItemMaxHP::calculateChangeWorldDelay(double totalElapsedTime,double totalTime,int newWorld,double delay_factor,double intersection)
-{
-	double fraction=0.25f;
-
-	switch(newWorld)
-	{
-	case DREAMS:
-		if(mLogicComponentItem->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		else if(mLogicComponentItem->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		break;
-	case NIGHTMARES:
-		if(mLogicComponentItem->existsInDreams())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor;
-		}
-		else if(mLogicComponentItem->existsInNightmares())
-		{
-			mChangeWorldDelay=(fraction+intersection)*totalTime*delay_factor+(2*fraction-intersection)*totalTime;
-		}
-		break;
-	default:
-		break;
-	}	
-}
-
 void GameObjectItemMaxHP::reset()
 {
 	GameObject::reset();

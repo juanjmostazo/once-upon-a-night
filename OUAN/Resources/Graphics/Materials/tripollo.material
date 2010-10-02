@@ -2,6 +2,7 @@ import basic_texture from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
 import default_changeworld_alpha_test from ChangeWorld.material
 
+//DREAMS
 material tripollo_d : alpha_test_texture
 {	
 	technique
@@ -18,54 +19,35 @@ material tripollo_d : alpha_test_texture
 	}
 }
 
-
-material tripollo_statue_red : alpha_test_texture
-{	
+material tripollo_cw : default_changeworld_alpha_test
+{
 	technique
 	{
-		pass
-		{
+	        pass
+	        {
 			cull_hardware none 
 			cull_software none 
-			texture_unit diffuse_texture
-			{
-				texture tripollo_rock_n.dds
-			}
-		}
-	}
+		      vertex_program_ref erosion_vs
+		      {
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+			param_named blending_tiling float3 1 1 0
+		      }
+		      texture_unit dreams
+		      {
+				texture tripollo_d.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_d.dds
+	            }
+		  }
+      }
 }
 
-material tripollo_statue_green : alpha_test_texture
-{	
-	technique
-	{
-		pass
-		{
-			cull_hardware none 
-			cull_software none 
-			texture_unit diffuse_texture
-			{
-				texture tripollo_rock_n.dds
-			}
-		}
-	}
-}
 
-material tripollo_statue_blue : alpha_test_texture
-{	
-	technique
-	{
-		pass
-		{
-			cull_hardware none 
-			cull_software none 
-			texture_unit diffuse_texture
-			{
-				texture tripollo_rock_n.dds
-			}
-		}
-	}
-}
+//NIGHTMARES
 
 material tripollo_red_n : alpha_test_texture
 {	
@@ -127,7 +109,7 @@ material tripollo_red_cw : default_changeworld_alpha_test
 		      }
 		      fragment_program_ref erosion_fs
 		      {
-			param_named blending_tiling float3 5 5 0
+			param_named blending_tiling float3 1 1 0
 		      }
 		      texture_unit dreams
 		      {
@@ -154,7 +136,7 @@ material tripollo_green_cw : default_changeworld_alpha_test
 		      }
 		      fragment_program_ref erosion_fs
 		      {
-			param_named blending_tiling float3 5 5 0
+			param_named blending_tiling float3 1 1 0
 		      }
 		      texture_unit dreams
 		      {
@@ -180,7 +162,7 @@ material tripollo_blue_cw : default_changeworld_alpha_test
 		      }
 		      fragment_program_ref erosion_fs
 		      {
-			param_named blending_tiling float3 5 5 0
+			param_named blending_tiling float3 1 1 0
 		      }
 		      texture_unit dreams
 		      {
@@ -190,6 +172,103 @@ material tripollo_blue_cw : default_changeworld_alpha_test
 		      {
 				texture tripollo_blue_n.dds
 	            }
+		}
+	}
+}
+
+//STATUES
+material tripollo_statue_red_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_rock_n.dds
+			}
+		}
+	}
+}
+
+material tripollo_statue_green_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_rock_n.dds
+			}
+		}
+	}
+}
+
+material tripollo_statue_blue_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_blue_n.dds
+			}
+		}
+	}
+}
+
+material tripollo_statue_red_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_red_n.dds
+			}
+		}
+	}
+}
+
+material tripollo_statue_green_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_green_n.dds
+			}
+		}
+	}
+}
+
+material tripollo_statue_blue_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_rock_n.dds
+			}
 		}
 	}
 }
