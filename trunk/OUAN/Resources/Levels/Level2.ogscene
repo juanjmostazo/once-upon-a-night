@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="11.5556"></CAMERASPEED>
+  <CAMERASPEED value="11"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="660.645 140.253 407.076" orientation="-0.918815 0.0790122 0.385441 0.0311658"></OPTION>
+    <OPTION id="2" position="469.76 1984.45 -2925.33" orientation="-0.539534 0.493723 -0.501447 -0.462267"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.918953 0.079024 0.385499 0.0311704"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.539551 0.493739 -0.501462 -0.462281"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="660.645 140.253 407.076"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="469.76 1984.45 -2925.33"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -16993,9 +16993,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99999 0 -0.00436312 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="471.2 1402.38 -2796.89"></PROPERTY>
+    <PROPERTY id="position" type="9" value="455.573 1355.5 -2766.82"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="400 300 400"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="314.749 300 358.981"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
