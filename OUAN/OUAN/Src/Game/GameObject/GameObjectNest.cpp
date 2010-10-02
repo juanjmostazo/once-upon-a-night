@@ -413,9 +413,9 @@ void GameObjectNest::spawnChild()
 			(*it)->reset();
 			(*it)->enable();
 
-			if((*it)->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+			if((*it)->getType().compare(GAME_OBJECT_TYPE_BOSS)==0)
 			{
-				mAudioComponent->playSound(NEST_SOUND_TRIPOLLO);
+				mAudioComponent->playSound(NEST_SOUND_BOSS);
 			}
 			break;
 		}

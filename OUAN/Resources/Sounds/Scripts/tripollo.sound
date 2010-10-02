@@ -30,7 +30,7 @@ sound tripollo_explosion
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 120 5000
+	min_max_distance 200 5000
 	volume 1
 }
 
@@ -54,7 +54,7 @@ sound tripollo_attack
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 90 5000
+	min_max_distance 130 5000
 	volume 0.3
 }
 
@@ -91,7 +91,7 @@ sound tripollo_surprise
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 200 5000
+	min_max_distance 300 5000
 	volume 1
 }
 

@@ -2127,6 +2127,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Resources\Scripts\cameratriggers.lua"
+				>
+			</File>
+			<File
 				RelativePath="..\Resources\Scripts\carnivorousplant.lua"
 				>
 			</File>

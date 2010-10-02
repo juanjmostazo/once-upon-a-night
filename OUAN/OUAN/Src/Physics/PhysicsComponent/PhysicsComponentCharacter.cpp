@@ -655,31 +655,31 @@ void PhysicsComponentCharacter::create()
 	PhysicsComponent::create();
 	PhysicsSubsystemPtr physicsSS=Application::getInstance()->getPhysicsSubsystem();
 
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
-		Logger::getInstance()->log("PHYSICS CREATE - Creating tripollo 1");
+		Logger::getInstance()->log("PHYSICS CREATE - Creating BOSS 1");
 	}
 
 	NxOgre::ControllerDescription pNxOgreControllerDescription;
 	pNxOgreControllerDescription.mCallback=physicsSS.get();
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
 		Logger::getInstance()->log("PHYSICS Callback address "+StringConverter::toString((int)physicsSS.get()));
 	}
 	pNxOgreControllerDescription.mPosition.set(NxOgre::Vec3(getSceneNode()->getPosition()-mOffsetRenderPosition+SAFE_SURFACE_DISTANCE));
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
 		Logger::getInstance()->log("PHYSICS Position "+StringConverter::toString(getSceneNode()->getPosition()-mOffsetRenderPosition+SAFE_SURFACE_DISTANCE));
 	}
 
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
 		Logger::getInstance()->log("PHYSICS Size "+StringConverter::toString(getNxOgreSize().x)+", "+StringConverter::toString(getNxOgreSize().y));
 	}
 
 	setNxOgreControllerDescription(pNxOgreControllerDescription);
 
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
 		Logger::getInstance()->log("PHYSICS "+StringConverter::toString((int)physicsSS->getNxOgreScene()));
 	}
@@ -696,9 +696,9 @@ void PhysicsComponentCharacter::create()
 			physicsSS->mStepOffset,
 			physicsSS->mSkinWidth));
 	
-	if (!mParent->getName().compare("tripollo#01"))
+	if (!mParent->getName().compare("BOSS#01"))
 	{
-		Logger::getInstance()->log("PHYSICS CREATE END- Creating tripollo 1");
+		Logger::getInstance()->log("PHYSICS CREATE END- Creating BOSS 1");
 	}
 
 	if(Application::getInstance()->getGameWorldManager()->isInitialized())

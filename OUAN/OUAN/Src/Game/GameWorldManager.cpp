@@ -48,7 +48,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectTripollo.h"
+#include "GameObject/GameObjectBOSS.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 #include "GameObject/GameObjectWater.h"
@@ -201,9 +201,9 @@ TGameObjectSceneContainer * GameWorldManager::getGameObjectSceneContainer()
 	return &mGameObjectSceneContainer;
 }
 
-TGameObjectTripolloContainer * GameWorldManager::getGameObjectTripolloContainer()
+TGameObjectBOSSContainer * GameWorldManager::getGameObjectBOSSContainer()
 {
-	return &mGameObjectTripolloContainer;
+	return &mGameObjectBOSSContainer;
 }
 
 TGameObjectTentetiesoContainer * GameWorldManager::getGameObjectTentetiesoContainer()
@@ -377,7 +377,7 @@ void GameWorldManager::clearContainers()
 	EMPTY_VECTOR(TGameObjectPositionalContainer,mGameObjectPositionalContainer);
 	EMPTY_VECTOR(TGameObjectSceneContainer,mGameObjectSceneContainer);
 
-	EMPTY_VECTOR(TGameObjectTripolloContainer,mGameObjectTripolloContainer);
+	EMPTY_VECTOR(TGameObjectBOSSContainer,mGameObjectBOSSContainer);
 	EMPTY_VECTOR(TGameObjectEyeContainer,mGameObjectEyeContainer);
 	EMPTY_VECTOR(TGameObjectTriggerBoxContainer,mGameObjectTriggerBoxContainer);
 	EMPTY_VECTOR(TGameObjectTriggerCapsuleContainer,mGameObjectTriggerCapsuleContainer);
@@ -1042,19 +1042,19 @@ void GameWorldManager::addGameObjectTriggerCapsule(GameObjectTriggerCapsulePtr p
 	mGameObjectPhysicsVolumeCapsuleContainer.push_back(pGameObjectTriggerCapsule);
 }
 
-void GameWorldManager::addGameObjectTripollo(GameObjectTripolloPtr pGameObjectTripollo)
+void GameWorldManager::addGameObjectBOSS(GameObjectBOSSPtr pGameObjectBOSS)
 {
-	mGameObjects[pGameObjectTripollo->getName()]=pGameObjectTripollo;
+	mGameObjects[pGameObjectBOSS->getName()]=pGameObjectBOSS;
 
-	mGameObjectPositionalContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableContainer.push_back(pGameObjectTripollo);
-	mGameObjectMovableEntityContainer.push_back(pGameObjectTripollo);
+	mGameObjectPositionalContainer.push_back(pGameObjectBOSS);
+	mGameObjectMovableContainer.push_back(pGameObjectBOSS);
+	mGameObjectMovableEntityContainer.push_back(pGameObjectBOSS);
 
-	mGameObjectPhysicsContainer.push_back(pGameObjectTripollo);
-	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectTripollo);
+	mGameObjectPhysicsContainer.push_back(pGameObjectBOSS);
+	mGameObjectPhysicsCharacterContainer.push_back(pGameObjectBOSS);
 
-	mGameObjectTripolloContainer.push_back(pGameObjectTripollo);
-	mGameObjectLogicContainer.push_back(pGameObjectTripollo);
+	mGameObjectBOSSContainer.push_back(pGameObjectBOSS);
+	mGameObjectLogicContainer.push_back(pGameObjectBOSS);
 }
 
 void GameWorldManager::addGameObjectViewport(GameObjectViewportPtr pGameObjectViewport)
@@ -1823,9 +1823,9 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		GameObjectInvisibleWallPtr wall = BOOST_PTR_CAST(GameObjectInvisibleWall,obj);
 		wall->desactivateWall();
 	}
-	else if(cutscene.compare(CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0 ||
-		cutscene.compare(CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0 ||
-		cutscene.compare(CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
+	else if(cutscene.compare(CUTSCENE_7_1_BOSSS_PLATFORM)==0 ||
+		cutscene.compare(CUTSCENE_7_2_BOSSS_PLATFORM)==0 ||
+		cutscene.compare(CUTSCENE_7_3_BOSSS_PLATFORM)==0)
 	{
 		GameObjectPtr obj = getObject("totem#0");
 
@@ -1833,7 +1833,7 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 				BOOST_PTR_CAST(GameObjectTotem,obj);
 		totem->levelDown();
 	}
-	else if(cutscene.compare(TRIPOLLO_PLATFORM_PUZZLE_END)==0)
+	else if(cutscene.compare(BOSS_PLATFORM_PUZZLE_END)==0)
 	{
 		GameObjectPtr obj = getObject("changeworld#platform_big");
 
@@ -1862,16 +1862,16 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene2");
 	}
-	else if(hasExecutedLevelEvent(TRIPOLLO_1_STATUE_DEFEATED) &&
-			hasExecutedLevelEvent(TRIPOLLO_2_STATUE_DEFEATED) &&
-			hasExecutedLevelEvent(TRIPOLLO_3_STATUE_DEFEATED) &&
-			hasExecutedLevelEvent(TRIPOLLO_4_STATUE_DEFEATED) &&
-			!hasExecutedLevelEvent(CUTSCENE_8_0_TRIPOLLO_STATUES_END)
+	else if(hasExecutedLevelEvent(BOSS_1_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(BOSS_2_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(BOSS_3_STATUE_DEFEATED) &&
+			hasExecutedLevelEvent(BOSS_4_STATUE_DEFEATED) &&
+			!hasExecutedLevelEvent(CUTSCENE_8_0_BOSS_STATUES_END)
 		)
 	{
 		launchCutScene("cutscenes_level2.lua","cutScene8_0");
 	}
-	else if(cutscene.compare(CUTSCENE_8_0_TRIPOLLO_STATUES_END)==0)
+	else if(cutscene.compare(CUTSCENE_8_0_BOSS_STATUES_END)==0)
 	{
 		GameObjectPlataformPtr plataform;
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower2_1"));
