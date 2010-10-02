@@ -13,7 +13,7 @@ material flower1_d : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture flower1.dds
+				texture flower0_d.dds
 			}
 		}
 	}
@@ -29,7 +29,7 @@ material flower1_n : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture flower1n.dds
+				texture flower0_n.dds
 			}
 		}
 	}
@@ -45,13 +45,11 @@ material flower1_cw : default_changeworld
 			cull_software none 
 		        texture_unit dreams
 		        {
-				texture flower1.dds
-				mipmap_bias -1
+				texture flower0_d.dds
 		        }
 		        texture_unit nightmares
 		        {
-				texture flower1n.dds
-				mipmap_bias -1
+				texture flower0_n.dds
 	                }
 		}
 	}
@@ -68,7 +66,7 @@ material flower1_jump_d : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture flower0b_d.dds
 			}
 		}
 	}
@@ -84,7 +82,7 @@ material flower1_jump_n : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture flower0b_n.dds
 			}
 		}
 	}
@@ -100,13 +98,11 @@ material flower1_jump_cw : default_changeworld
 			cull_software none 
 		        texture_unit dreams
 		        {
-				texture Grass1.jpg
-				mipmap_bias -1
+				texture flower0b_d.dds
 		        }
 		        texture_unit nightmares
 		        {
-				texture Dirt2.jpg
-				mipmap_bias -1
+				texture flower0b_n.dds
 	                }
 		}
 	}
@@ -123,7 +119,7 @@ material flower2_d : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture flower2n.dds
+				texture flower1_d.dds
 			}
 		}
 	}
@@ -139,7 +135,7 @@ material flower2_n : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture flower2n.dds
+				texture flower1_n.dds
 			}
 		}
 	}
@@ -155,13 +151,11 @@ material flower2_cw : default_changeworld
 			cull_software none 
 		        texture_unit dreams
 		        {
-				texture flower2n.dds
-				mipmap_bias -1
+				texture flower1_d.dds
 		        }
 		        texture_unit nightmares
 		        {
-				texture flower2n.dds
-				mipmap_bias -1
+				texture flower1_n.dds
 	                }
 		}
 	}
@@ -179,7 +173,7 @@ material flower2_jump_d : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture flower1_d.dds
 			}
 		}
 	}
@@ -195,7 +189,7 @@ material flower2_jump_n : basic_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_d.dds
+				texture flower1_n.dds
 			}
 		}
 	}
@@ -211,13 +205,11 @@ material flower2_jump_cw : default_changeworld
 			cull_software none 
 		        texture_unit dreams
 		        {
-				texture Grass1.jpg
-				mipmap_bias -1
+				texture flower1_d.dds
 		        }
 		        texture_unit nightmares
 		        {
-				texture Dirt2.jpg
-				mipmap_bias -1
+				texture flower1_n.dds
 	                }
 		}
 	}
