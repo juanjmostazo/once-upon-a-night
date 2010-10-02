@@ -73,6 +73,24 @@ namespace OUAN
 			std::string materialGroup;
 			std::string textureName;
 			std::string sceneNodeName;
+
+			bool alphaRejection;
+			unsigned char alphaRejectionValue;
+			Ogre::CompareFunction alphaRejectionFunction;
+			bool depthWrite;
+			bool alphaToCoverage;
+
+			bool textureAnimation;
+			int texAnimNumFrames;
+			double texAnimDuration;
+			
+
+			TTexturedRectangleDesc()
+				:alphaRejection(false)
+				,depthWrite(false)
+			{
+
+			}
 		};
 
 		void createTexturedRectangle (const TTexturedRectangleDesc& description, Ogre::Rectangle2D*& rectangle,

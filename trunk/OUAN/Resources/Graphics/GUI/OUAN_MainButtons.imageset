@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Imageset Name="OUAN_MainButtons" Imagefile="ouan_main_buttons.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" >
+	<Image Name="arrow_clicked" XPos="56" YPos="436" Width="112" Height="86" />
+	<Image Name="arrow_mouseover" XPos="56" YPos="319" Width="113" Height="85" />
+	<Image Name="gear_clicked" XPos="55" YPos="166" Width="93" Height="92" />
+	<Image Name="gear_mouseover" XPos="52" YPos="38" Width="94" Height="92" />
+</Imageset>

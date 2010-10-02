@@ -12,6 +12,7 @@
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Audio/AudioSubsystem.h"
 #include "../Graphics/RenderSubsystem.h"
+#include "../Utils/Utils.h"
 
 
 using namespace OUAN;
@@ -36,16 +37,38 @@ void GameOverState::init(ApplicationPtr app)
 
 	mApp->getGameWorldManager()->getGameObjectViewport()->disableAllCompositors();
 
-	if (mApp->getGameWorldManager()->isGameBeaten())
-	{
-		mApp->getRenderSubsystem()->showOverlayElement("OUAN/GameOver/Gratz");
-		mApp->getRenderSubsystem()->hideOverlayElement("OUAN/GameOver/GameOver");
-	}
-	else
-	{
-		mApp->getRenderSubsystem()->showOverlayElement("OUAN/GameOver/GameOver");
-		mApp->getRenderSubsystem()->hideOverlayElement("OUAN/GameOver/Gratz");
-	}
+	Ogre::TexturePtr tex=Ogre::TextureManager::getSingletonPtr()->load("savedRTT.png",Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=GAMEOVER_BG_MATERIAL_NAME;
+	desc.materialGroup=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+	desc.textureName= "savedRTT.png";
+	desc.sceneNodeName=GAMEOVER_BG_SCREENNODE;
+	Utils::createTexturedRectangle(desc,mBackground,mApp->getRenderSubsystem());
+
+
+
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=GAMEOVER_MATERIAL_NAME;
+	desc.materialGroup=GAMEOVER_GROUP;
+	desc.textureName=(mApp->getGameWorldManager()->isGameBeaten()
+		?GAMEOVER_WIN_IMG_NAME
+		:GAMEOVER_LOSE_IMG_NAME)+"_"+mApp->getCurrentLanguage()+GAMEOVER_IMG_EXTENSION;
+	desc.sceneNodeName=GAMEOVER_SCREENNODE;
+	desc.alphaRejection=true;
+	desc.alphaRejectionValue=128;
+	desc.alphaRejectionFunction=Ogre::CMPF_GREATER_EQUAL;
+	desc.alphaToCoverage=true;
+	desc.depthWrite=true;
+
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
+
 }
 
 /// Clean up main menu's resources
@@ -54,6 +77,8 @@ void GameOverState::cleanUp()
 	GameState::cleanUp();
 
 	mApp->getAudioSubsystem()->unloadAll();
+	Utils::destroyTexturedRectangle(mScreen,GAMEOVER_MATERIAL_NAME,mApp->getRenderSubsystem());
+	Utils::destroyTexturedRectangle(mBackground,GAMEOVER_BG_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
 
 /// pause state
@@ -78,7 +103,6 @@ void GameOverState::handleEvents()
 	{
 		if (mApp->isPressedJump(&pad1,&key1))
 		{
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 
 			LevelLoadingStatePtr levelLoadingState(new LevelLoadingState());
 			levelLoadingState->setLevelFileName(LEVEL_2);
@@ -87,7 +111,6 @@ void GameOverState::handleEvents()
 		}
 		else if (mApp->isPressedPause(&pad2,&key2))
 		{
-			mApp->getRenderSubsystem()->hideOverlay(OVERLAY_GAMEOVER_SCREEN);
 			
 			GameStatePtr mainMenuState = GameStatePtr(new MainMenuState());
 			mApp->getGameStateManager()->changeState(mainMenuState,mApp);
@@ -102,13 +125,3 @@ void GameOverState::update(long elapsedTime)
 	GameState::update(elapsedTime);
 }
 
-bool GameOverState::render()
-{
-	if (mApp.get() && mApp->getRenderSubsystem().get())
-	{
-		mApp->getRenderSubsystem()->showOverlay(OVERLAY_GAMEOVER_SCREEN);
-		return mApp->getRenderSubsystem()->render();
-	} 
-
-	return false;
-}

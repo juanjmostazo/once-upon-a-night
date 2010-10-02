@@ -5,10 +5,10 @@
         <Option key="ANTIALIASING">Level 8</Option>
         <Option key="FULLSCREEN">No</Option>
         <Option key="HIT_RECOVERY_DELAY">500000</Option>
-        <Option key="INITIAL_LANGUAGE">es</Option>
+        <Option key="INITIAL_LANGUAGE">en</Option>
         <Option key="RENDER_SYSTEM">Direct3D9 Rendering Subsystem</Option>
         <Option key="RESOLUTION">1024 x 768 @ 32-bit colour</Option>
-        <Option key="SKIP_INTRO">false</Option>
+        <Option key="SKIP_INTRO">true</Option>
         <Option key="SUPPORTED_LANGUAGES">en;es</Option>
         <Option key="V_SYNC">No</Option>
     </Options>

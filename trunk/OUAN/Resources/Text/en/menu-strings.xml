@@ -84,15 +84,23 @@ Pere Ferrera\n</Option>
 		<Option key="OUAN_STORY_EXIT_STRING">Press "Jump" to go back</Option>
 		
 		<Option key="OPTIONS_GRAPHICS_INFO">Select the desired values for the following system options.\n
-		Some of them may require an application restart</Option>
+		Those labelled with '*' will require an application restart</Option>
 		<Option key="OPTIONS_GRAPHICS_LANGUAGE">Language</Option>
-		<Option key="OPTIONS_GRAPHICS_RESOLUTION">Resolution and colour depth</Option>
-		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">Full Screen</Option>
-		<Option key="OPTIONS_GRAPHICS_VSYNC">VSync</Option>
-		<Option key="OPTIONS_GRAPHICS_AA">Antialiasing</Option>
-		<Option key="OPTIONS_GRAPHICS_SKIPINTRO">Skip intro</Option>
+		<Option key="OPTIONS_GRAPHICS_RESOLUTION">Resolution and colour depth*</Option>
+		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">Full Screen*</Option>
+		<Option key="OPTIONS_GRAPHICS_VSYNC">VSync*</Option>
+		<Option key="OPTIONS_GRAPHICS_AA">Antialiasing*</Option>
+		<Option key="OPTIONS_GRAPHICS_SKIPINTRO">Skip to game</Option>
 		
 		<Option key="OPTIONS_LANGUAGE_EN">English</Option>
-		<Option key="OPTIONS_LANGUAGE_ES">Spanish</Option>		
+		<Option key="OPTIONS_LANGUAGE_ES">Spanish</Option>	
+
+		<Option key="OPTIONS_AA_NONE">None</Option>
+		<Option key="OPTIONS_AA_LEVEL2">Level 2</Option>
+		<Option key="OPTIONS_AA_LEVEL4">Level 4</Option>
+		<Option key="OPTIONS_AA_LEVEL8">Level 8</Option>
+		
+		<Option key="OPTIONS_YES">Yes</Option>
+		<Option key="OPTIONS_NO">No</Option>
 	</Options>
 </Configuration>

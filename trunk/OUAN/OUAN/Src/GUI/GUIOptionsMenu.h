@@ -135,6 +135,13 @@ const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 		void changeControlsComboTexts();
 		void changeLanguageSelectorTexts();
 
+		void changeAAComboTexts();
+		void initAAComboTexts();
+		void initResolutionCombo();
+
+		std::map<std::string,std::string> mAAMappings;
+
+
 		void changeLanguage(const std::string& newLanguage);
 
 		/// Initialise a volume slider
@@ -189,12 +196,36 @@ const std::string OPTIONS_CEGUI_ID_RESET="OUANOptions/Graphics/Reset";
 
 		bool onLanguageSelectorChanged(const CEGUI::EventArgs& args);
 
+		bool onResolutionSelectorChanged(const CEGUI::EventArgs& args);
+		bool onAASelectorChanged(const CEGUI::EventArgs& args);
+		bool onFullscreenChange(const CEGUI::EventArgs& args);
+		bool onVSyncChange(const CEGUI::EventArgs& args);
+		bool onSkipChange(const CEGUI::EventArgs& args);
+
+
 		void initLanguageCombo();
 
 		std::map<int,std::string> mLanguageComboMappings;
 
+		//REFACTOR TO TWO DIFFERENT STRUCTS
 		std::string mCurrentLanguage;
 		std::string mOldLanguage;
+		
+		std::string mCurrentResolution;
+		std::string mOldResolution;
+
+		std::string mCurrentAA;
+		std::string mOldAA;
+
+		std::string mCurrentVSync;
+		std::string mOldVSync;
+
+		std::string mCurrentFullscreen;
+		std::string mOldFullscreen;
+
+		bool mCurrentSkip;
+		bool mOldSkip;
+		
 
 	public:
 		/// Free resources

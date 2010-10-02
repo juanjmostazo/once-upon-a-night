@@ -212,9 +212,15 @@ void OUAN::Utils::createTexturedRectangle (const TTexturedRectangleDesc& descrip
 		description.materialGroup);
 
 	material->getTechnique(0)->getPass(0)->createTextureUnitState(description.textureName);
+	material->getTechnique(0)->getPass(0)->setCullingMode(Ogre::CULL_NONE);   
 	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(description.depthWrite);
 	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+	if (description.alphaRejection)
+	{
+		material->getTechnique(0)->getPass(0)->setAlphaRejectSettings(description.alphaRejectionFunction,description.alphaRejectionValue,description.alphaToCoverage);
+	}
+
 	rectangle->setMaterial(description.materialName);
 
 	Ogre::SceneNode* screenNode;

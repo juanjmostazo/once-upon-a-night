@@ -58,7 +58,6 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 			{	
 				if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 				{
-					getParent()->displayText("FWOOOOSHH!!!!");		
 					decreaseHP(flashlight->getAttackDamage());
 					std::stringstream msg("");
 					msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
@@ -73,12 +72,6 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 					mHasBeenHit=getParent()->getWorld()==NIGHTMARES;
 				}
 			}		
-			else
-			{
-				msg.str("");
-				msg<<"TRY "<<getMaskString();
-				getParent()->displayText(msg.str());
-			}
 		}
 	}
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_PILLOW)==0 && !mHasBeenHit && !mHasDied)
@@ -89,7 +82,6 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 		{
 			if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 			{
-				getParent()->displayText("ZASCA!");
 				decreaseHP(pillow->getAttackDamage());
 				std::stringstream msg("");
 				msg<<getParentName()<<" remaining HP: "<<mHealthPoints;
@@ -107,7 +99,6 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 	}
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ONY)==0)
 	{
-		getParent()->displayText("ONYHIT!");
 		mHasHitOny=true;
 	}
 }

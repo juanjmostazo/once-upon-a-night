@@ -245,12 +245,12 @@
             <Property Name="Font" Value="BlueHighway-10" />
             <Property Name="Text" Value="OPTIONS_GRAPHICS_TAB" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{-0.00245398,0},{0.00291972,0},{0.997546,0},{1.00292,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.00194135,0},{0.00291972,0},{1.00194,0},{1.00292,0}}" />
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/InfoLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_INFO" />
                 <Property Name="FrameEnabled" Value="False" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0449077,0},{0.0834149,0},{0.942824,0},{0.188744,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0255013,0},{0.0685561,0},{0.923418,0},{0.173885,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/LanguageLabel" >
@@ -258,73 +258,79 @@
                 <Property Name="AlwaysOnTop" Value="True" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0693252,0},{0.19781,0},{0.612577,0},{0.25365,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{-0.0239263,0},{0.178832,0},{0.519324,0},{0.234672,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/ResolutionLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_RESOLUTION" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0717792,0},{0.278102,0},{0.626075,0},{0.354379,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.127302,0},{0.324817,0},{0.518356,0},{0.401094,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/Combobox" Name="OUANOptions/Graphics/LanguageSelector" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.644171,0},{0.205839,0},{0.894172,0},{0.289417,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.18978,0},{0.843865,0},{0.273359,0}}" />
                 <Property Name="MaxEditTextLength" Value="1073741823" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/FullscreenLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_FULLSCREEN" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0730062,0},{0.310219,0},{0.323006,0},{0.56022,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.130675,0},{0.454744,0},{0.51687,0},{0.525183,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/Checkbox" Name="OUANOptions/Graphics/FullscreenCheck" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.644173,0},{0.39562,0},{0.667179,0},{0.439783,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.467153,0},{0.618098,0},{0.511317,0}}" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/AntiAliasingLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_AA" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.076687,0},{0.469343,0},{0.594172,0},{0.528104,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.000613384,0},{0.551095,0},{0.518098,0},{0.609856,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/Combobox" Name="OUANOptions/Graphics/AntiAliasing" >
                 <Property Name="Font" Value="BlueHighway-10" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.642946,0},{0.478832,0},{0.892946,0},{0.521533,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.56783,0},{0.840612,0},{0.762355,0}}" />
                 <Property Name="MaxEditTextLength" Value="1073741823" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/VSyncLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_VSYNC" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0730062,0},{0.558395,0},{0.504601,0},{0.605476,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0901842,0},{0.670804,0},{0.52178,0},{0.717885,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/Checkbox" Name="OUANOptions/Graphics/VSync" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.642946,0},{0.573721,0},{0.665951,0},{0.604745,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.677371,0},{0.627914,0},{0.708395,0}}" />
             </Window>
             <Window Type="OUANLook/StaticText" Name="OUANOptions/Graphics/SkipIntroLabel" >
                 <Property Name="Text" Value="OPTIONS_GRAPHICS_SKIPINTRO" />
                 <Property Name="TextColours" Value="tl:DDDDDDFF tr:DDDDDDFF bl:DDDDDDFF br:DDDDDDFF" />
                 <Property Name="FrameEnabled" Value="False" />
+                <Property Name="HorzFormatting" Value="RightAligned" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.0730062,0},{0.660584,0},{0.526687,0},{0.710584,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.0680983,0},{0.254744,0},{0.521778,0},{0.304744,0}}" />
                 <Property Name="BackgroundEnabled" Value="False" />
             </Window>
             <Window Type="OUANLook/Checkbox" Name="OUANOptions/Graphics/SkipIntro" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.644173,0},{0.665694,0},{0.664725,0},{0.705475,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.259855,0},{0.614417,0},{0.299636,0}}" />
             </Window>
             <Window Type="OUANLook/Button" Name="OUANOptions/Graphics/Apply" >
                 <Property Name="Font" Value="BlueHighway-10" />
@@ -340,7 +346,8 @@
             </Window>
             <Window Type="OUANLook/Combobox" Name="OUANOptions/Graphics/ResolutionSelector" >
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-                <Property Name="UnifiedAreaRect" Value="{{0.645399,0},{0.29489,0},{0.895399,0},{0.397447,0}}" />
+                <Property Name="Font" Value="BlueHighway-10" />				
+                <Property Name="UnifiedAreaRect" Value="{{0.59,0},{0.345985,0},{0.895399,0},{0.631023,0}}" />
                 <Property Name="MaxEditTextLength" Value="1073741823" />
             </Window>
         </Window>

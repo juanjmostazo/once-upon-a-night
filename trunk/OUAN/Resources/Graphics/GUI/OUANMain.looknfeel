@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<Falagard>
+  <!--     ***************************************************         OUANLook/Button      ***************************************************      -->
+  <WidgetLook name="OUANMain/GearButton">
+	<ImagerySection name="label">
+	  <TextComponent>
+		  <Area>
+		  <Dim type="LeftEdge">
+			  <ImageDim
+					imageset="OUAN_MainButtons"
+					image="gear_mouseover"
+					dimension="Width"
+				  />
+		  </Dim>
+		  <Dim type="TopEdge"><AbsoluteDim value="0" /></Dim>
+		  <Dim type="Width">
+				<UnifiedDim scale="1" type="Width" >
+					<DimOperator op="Subtract">
+						<ImageDim
+					imageset="OUAN_MainButtons"
+					image="gear_mouseover"
+					dimension="Width"
+				  />
+					</DimOperator>
+				</UnifiedDim>
+			</Dim>
+		  <Dim type="Height"><UnifiedDim scale="1" type="Height" /></Dim>
+		</Area>
+		<VertFormat type="CentreAligned" />
+		<HorzFormat type="WordWrapLeftAligned" />
+	  </TextComponent>
+	</ImagerySection> 
+
+	<ImagerySection name="normal_imagery">
+	</ImagerySection>
+
+	<ImagerySection name="hover_imagery">
+		<ImageryComponent>
+
+		  <Area>
+			<Dim type="LeftEdge"><AbsoluteDim value="0" /></Dim>
+			<Dim type="TopEdge"><AbsoluteDim value="0" /></Dim>
+			<Dim type="Width"><UnifiedDim scale="1" type="Width" /></Dim>
+			<Dim type="Height"><UnifiedDim scale="1" type="Height" /></Dim>
+		  </Area>
+
+		  <Image imageset="OUAN_MainButtons" image="gear_mouseover" />
+		  <VertFormat type="Stretched" />
+		  <HorzFormat type="LeftAligned" />
+
+		</ImageryComponent>
+	</ImagerySection>
+
+	<ImagerySection name="pushed_imagery">
+		<ImageryComponent>
+
+		  <Area>
+			<Dim type="LeftEdge"><AbsoluteDim value="0" /></Dim>
+			<Dim type="TopEdge"><AbsoluteDim value="0" /></Dim>
+			<Dim type="Width"><UnifiedDim scale="1" type="Width" /></Dim>
+			<Dim type="Height"><UnifiedDim scale="1" type="Height" /></Dim>
+		  </Area>
+
+		  <Image imageset="OUAN_MainButtons" image="gear_clicked" />
+		  <VertFormat type="Stretched" />
+		  <HorzFormat type="LeftAligned" />
+
+		</ImageryComponent>	
+	</ImagerySection>
+    <StateImagery name="Normal">
+		<Layer>
+			<Section section="label" />
+		</Layer>
+	</StateImagery>
+
+	<StateImagery name="Hover">
+	  <Layer>
+			<Section section="label">
+			  <Colours
+				topLeft="FFfadb3e"
+				topRight="FFfadb3e"
+				bottomLeft="FFfadb3e"
+				bottomRight="FFfadb3e"
+			  />			
+			</Section>
+			<Section section="hover_imagery" />			
+	  </Layer>
+	</StateImagery>
+
+	<StateImagery name="Pushed">
+	  <Layer>
+			<Section section="label" >
+				<Colours
+				topLeft="FFbe5c07"
+				topRight="FFbe5c07"
+				bottomLeft="FFbe5c07"
+				bottomRight="FFbe5c07"
+			  />			
+			</Section>
+			<Section section="pushed_imagery" />
+	  </Layer>
+	</StateImagery>
+
+	<StateImagery name="Disabled">
+		<Layer>
+			<Section section="label">
+			  <Colours
+				topLeft="FF52420b"
+				topRight="FF52420b"
+				bottomLeft="FF52420b"
+				bottomRight="FF52420b"
+			  />
+			</Section>			
+		</Layer>	
+	</StateImagery>
+	</WidgetLook>
+	<!--
+	    <WidgetLook name="OUANMenu/SliderThumb">
+        <Property name="VertFree" value="True" />
+        <ImagerySection name="normal">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
+                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
+                </Area>
+                <Image imageset="OUANMenu" image="slider_thumb_normal" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
+                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
+                </Area>
+                <Image imageset="OUANMenu" image="slider_thumb_click" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section section="hover" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+  -->
+</Falagard>

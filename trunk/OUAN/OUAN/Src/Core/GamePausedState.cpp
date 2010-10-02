@@ -6,6 +6,7 @@
 #include "GameStateManager.h"
 #include "../Graphics/CameraManager/CameraManager.h"
 #include "../Graphics/CameraManager/CameraParameters.h"
+#include "../Utils/Utils.h"
 
 using namespace OUAN;
 
@@ -30,13 +31,30 @@ void GamePausedState::init(ApplicationPtr app)
 	CameraParametersPtr params= CameraParametersPtr(new CameraParameters());
 	mApp->getCameraManager()->setToDefaultCameraParameters(params);
 	mApp->getCameraManager()->setCameraTrajectory(params,"camera-map",false,true);
+
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=GAMEPAUSED_MATERIAL_NAME;
+	desc.materialGroup=GAMEPAUSED_GROUP;
+	desc.textureName=GAMEPAUSED_IMG_NAME+"_"+mApp->getCurrentLanguage()+GAMEPAUSED_IMG_EXTENSION;
+	desc.sceneNodeName=GAMEPAUSED_SCREENNODE;
+	desc.alphaRejection=true;
+	desc.alphaRejectionValue=128;
+	desc.alphaRejectionFunction=Ogre::CMPF_GREATER;
+	desc.alphaToCoverage=true;
+	desc.depthWrite=true;
+
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 }
 
 /// Clean up main menu's resources
 void GamePausedState::cleanUp()
 {
 	GameState::cleanUp();
-
+	Utils::destroyTexturedRectangle(mScreen,GAMEPAUSED_MATERIAL_NAME,mApp->getRenderSubsystem());
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 }
 
@@ -60,7 +78,6 @@ void GamePausedState::handleEvents()
 
 	if (mApp.get() && mApp->isPressedPause(&pad,&key))
 	{
-		mApp->getRenderSubsystem()->hideOverlay(OVERLAY_PAUSE_SCREEN);
 		mApp->getGameStateManager()->popState();
 	}
 }
@@ -74,12 +91,3 @@ void GamePausedState::update(long elapsedTime)
 	mApp->getCameraManager()->update(elapsedTime*0.000001);
 }
 
-bool GamePausedState::render()
-{
-	if (mApp.get() && mApp->getRenderSubsystem().get())
-	{
-		mApp->getRenderSubsystem()->showOverlay(OVERLAY_PAUSE_SCREEN);
-		return mApp->getRenderSubsystem()->render();
-	}
-	return false;
-}

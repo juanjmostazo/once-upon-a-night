@@ -12,6 +12,11 @@ void GUIInGame::initGUI(GameStatePtr parentGameState)
 	GUIWindow::initGUI(parentGameState);
 	bindEvents();
 	setStrings();
+	CEGUI::PushButton* button = (CEGUI::PushButton*)CEGUI::WindowManager::getSingletonPtr()->getWindow("OUANInGameMenu/Return");
+	if (button)
+	{
+		
+	}
 }
 void GUIInGame::bindEvents()
 {

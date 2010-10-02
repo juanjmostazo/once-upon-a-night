@@ -3,26 +3,41 @@
 <GUILayout >
     <Window Type="DefaultWindow" Name="OUANInGameMenu/" >
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
-        <Window Type="OUANLook/Button" Name="OUANInGameMenu/Return" >
+        <Property Name="UnifiedAreaRect" Value="{{0.00228311,0},{0.00297177,0},{1.00228,0},{1.00297,0}}" />
+        <Window Type="OUANLook/StaticImage" Name="OUANInGameMenu/Background" >
+            <Property Name="Image" Value="set:OUAN_IngameMenu image:signpost" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Property Name="BackgroundEnabled" Value="False" />
+        </Window>
+        <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/Return" >
+            <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="INGAME_MENU_SCREEN_BTG" />
+            <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.323313,0},{0.308759,0},{0.675155,0},{0.558759,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.380078,0},{0.4,0},{0.964648,0},{0.471379,0}}" />
         </Window>
-        <Window Type="OUANLook/Button" Name="OUANInGameMenu/Options" >
-            <Property Name="Text" Value="INGAME_MENU_SCREEN_OPTIONS" />
-            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.326994,0},{0.409489,0},{0.677609,0},{0.659489,0}}" />
-        </Window>
-        <Window Type="OUANLook/Button" Name="OUANInGameMenu/GameQuit" >
+        <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/GameQuit" >
+            <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="INGAME_MENU_SCREEN_BTM" />
+            <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.326381,0},{0.518248,0},{0.675767,0},{0.768248,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.314063,0},{0.671494,0},{0.866406,0},{0.751494,0}}" />
         </Window>
-        <Window Type="OUANLook/Button" Name="OUANInGameMenu/AppQuit" >
-            <Property Name="Text" Value="INGAME_MENU_SCREEN_EXIT" />
+        <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/Options" >
+            <Property Name="Font" Value="OUANMain-48" />
+            <Property Name="Text" Value="INGAME_MENU_SCREEN_OPTIONS" />
+            <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.32454,0},{0.629927,0},{0.673926,0},{0.879927,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.318945,0},{0.530172,0},{0.904492,0},{0.610173,0}}" />
+        </Window>
+        <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/AppQuit" >
+            <Property Name="Font" Value="OUANMain-48" />
+            <Property Name="Text" Value="INGAME_MENU_SCREEN_EXIT" />
+            <Property Name="AlwaysOnTop" Value="True" />
+            <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.232031,0},{0.813046,0},{0.753633,0},{0.893046,0}}" />
         </Window>
     </Window>
 </GUILayout>
