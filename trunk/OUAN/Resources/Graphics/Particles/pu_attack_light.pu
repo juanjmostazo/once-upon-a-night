@@ -28,8 +28,8 @@ system PU/attack_light
             }
             all_particle_dimensions             dyn_random
             {
-                min                             128
-                max                             256
+                min                             192
+                max                             384
             }
             colour                              0.65 0.65 0.45 1
         }

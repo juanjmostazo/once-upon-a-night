@@ -4,7 +4,7 @@ system PU/changeworld_idle_n
     scale                                       0.1 0.1 0.1
     technique 
     {
-        position                                0 300 0
+        position                                0 100 0
         visual_particle_quota                   200
         emitted_emitter_quota                   10
         material                                PU/changeworld_idle_n_2
