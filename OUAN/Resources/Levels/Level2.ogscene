@@ -30,15 +30,15 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="26.6667"></CAMERASPEED>
+  <CAMERASPEED value="26"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-56.4068 348.783 647.993" orientation="0.908084 -0.288187 -0.290122 -0.0903423"></OPTION>
+    <OPTION id="2" position="211.362 253.499 500.176" orientation="-0.980263 0.197014 0.0163335 0.0018978"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.908235 -0.288235 -0.29017 -0.0903573"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.980418 0.197045 0.0163361 0.0018981"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-56.4068 348.783 647.993"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="211.362 253.499 500.176"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -20738,7 +20738,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-777.053 228.541 151.004"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-774.356 228.522 146.836"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
@@ -21102,7 +21102,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.325556 -0.00678179 -0.945483 -0.00549179"></PROPERTY>
     <PROPERTY id="particle" type="7" value="EmptyParticle"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-777.053 228.541 151.004"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-775.859 228.553 145.681"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="templateName" type="7" value="PU/waterfall" fields="X;Y;Z;W"></PROPERTY>
@@ -26457,8 +26457,8 @@
     <PROPERTY id="colour" type="11" value="0 0 1 1"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.978712 0.0219341 -0.150082 0.138266"></PROPERTY>
-    <PROPERTY id="position" type="9" value="341.618 230.687 267.863"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.739069 -0.0212732 -0.67329 -0.00216054"></PROPERTY>
+    <PROPERTY id="position" type="9" value="195.314 188.321 369.766"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectorynode::speed" type="6" value="70" fields="X;Y;Z;W"></PROPERTY>
