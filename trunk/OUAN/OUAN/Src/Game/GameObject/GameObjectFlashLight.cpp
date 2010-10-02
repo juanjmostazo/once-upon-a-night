@@ -340,16 +340,6 @@ int GameObjectFlashLight::calculateCurrentColour(double elapsedSeconds)
 		Ogre::Math::Abs(ogreTargetColour.b-ogreCurrentColour.b)<incr)
 	{
 		nextColour=mTargetColour;
-
-		if(mAttackComponent.get())
-		{
-			FlashlightAttackDataPtr attackData= BOOST_PTR_CAST(FlashlightAttackData,
-			mAttackComponent->getSelectedAttack());
-			if(attackData.get())
-			{
-				attackData->rgb=mTargetColour;
-			}
-		}
 	}
 	else
 	{

@@ -44,10 +44,10 @@ function bombLogic(pBomb,state)
 		log("BOMB transitioning to idle")
 		newState=BOMB_STATE_IDLE
 	elseif state==BOMB_STATE_EXPLOSION and time > BOMB_EXPLOSION_TIME then
-		log("BOMB transitioning to off")	
+		log("BOMB transitioning to BOMB_STATE_PUZZLE_START")	
 		newState=BOMB_STATE_PUZZLE_START
 	elseif state==BOMB_STATE_EXPLOSION_TO_PUZZLE_START and time > BOMB_EXPLOSION_TIME then
-		log("BOMB transitioning to off")	
+		log("BOMB transitioning to BOMB_STATE_PUZZLE_START")	
 		newState=BOMB_STATE_PUZZLE_START
 	end
 	return newState
