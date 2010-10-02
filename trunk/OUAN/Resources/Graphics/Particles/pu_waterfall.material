@@ -34,3 +34,39 @@ material PU/waterfall_2
         }
     }
 }
+material PU/waterfall_3
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_waterfall_3.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
+material PU/waterfall_4
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend add
+            depth_write off
+
+            texture_unit
+            {
+                texture pu_waterfall_4.png
+                tex_address_mode clamp
+            }
+        }
+    }
+}
