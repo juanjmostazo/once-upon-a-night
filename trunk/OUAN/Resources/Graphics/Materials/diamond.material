@@ -1,5 +1,5 @@
 import alpha_blending_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import default_changeworld_alpha_blending from ChangeWorld.material
 
 material diamond_d : alpha_blending_texture
 {
@@ -11,4 +11,12 @@ material diamond_n : alpha_blending_texture
 {
 	set_texture_alias diffuse_texture diamond.dds
 	set_texture_alias normal_texture diamond_nm.dds
+}
+
+material diamond_cw : default_changeworld_alpha_blending
+{
+	set_texture_alias dreams diamond.dds
+	set_texture_alias nightmares diamond.dds
+	set_texture_alias normal_dreams diamond_nm.dds
+	set_texture_alias normal_nightmares diamond_nm.dds
 }
