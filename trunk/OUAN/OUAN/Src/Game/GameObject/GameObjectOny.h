@@ -24,7 +24,7 @@ namespace OUAN
 	const double POST_HIT_INVULNERABILITY=5.0;
 
 	const double ONY_ANIM_FALL_LOOP_TIME=0.9;
-	const double ONY_ANIM_FALL_END_TIME=1.7;
+	const double ONY_ANIM_FALL_END_TIME=2.2;
 
 	//Name of the bone whose position to retrieve to attach  to Ony
 	const std::string ATTACH_BONE_NAME="LThumbRoot";

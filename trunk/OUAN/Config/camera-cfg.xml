@@ -9,7 +9,7 @@
     <Option key="INITIAL_DIRECTION_Y">0.5</Option>
     <Option key="INITIAL_DIRECTION_Z">-0.5</Option>
 
-    <Option key="DISTANCE">66</Option>
+    <Option key="DISTANCE">85</Option>
     <Option key="TARGET">ony#0</Option>
 
     <Option key="ALPHA_BLENDING_SPEED">2</Option>

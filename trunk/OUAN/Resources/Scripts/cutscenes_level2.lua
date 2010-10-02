@@ -148,9 +148,9 @@ function cutScene3(timer)
 	timedMessage(any,"BOMBS_PUZZLE_START#14",5,timer,5);
 	initBombPuzzle();
 	timedMessage(any,"BOMBS_PUZZLE_START#15",5,timer,5);
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
-	trajectoryCamWait();
-	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,false)	
+	-- setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
+	-- trajectoryCamWait();
+	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true)	
 	trajectoryCamWait();
 	busyWait(timer,5);
 
