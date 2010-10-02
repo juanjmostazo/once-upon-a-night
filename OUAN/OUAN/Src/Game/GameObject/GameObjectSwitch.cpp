@@ -249,17 +249,17 @@ void GameObjectSwitch::update(double elapsedSeconds)
 void GameObjectSwitch::applySwitchEffect()
 {
 	GameObjectPtr obj;
-	if(getName().compare("switch#"+CUTSCENE_7_1_BOSSS_PLATFORM)==0)
+	if(getName().compare("switch#"+CUTSCENE_7_1_TRIPOLLOS_PLATFORM)==0)
 	{
-		getGameWorldManager()->addExecutedLevelEvent(BOSS_1_SWITCH_ACTIVATED);
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_1_SWITCH_ACTIVATED);
 	}
-	else if(getName().compare("switch#"+CUTSCENE_7_2_BOSSS_PLATFORM)==0)
+	else if(getName().compare("switch#"+CUTSCENE_7_2_TRIPOLLOS_PLATFORM)==0)
 	{
-		getGameWorldManager()->addExecutedLevelEvent(BOSS_2_SWITCH_ACTIVATED);
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_2_SWITCH_ACTIVATED);
 	}
-	else if(getName().compare("switch#"+CUTSCENE_7_3_BOSSS_PLATFORM)==0)
+	else if(getName().compare("switch#"+CUTSCENE_7_3_TRIPOLLOS_PLATFORM)==0)
 	{
-		getGameWorldManager()->addExecutedLevelEvent(BOSS_3_SWITCH_ACTIVATED);
+		getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_3_SWITCH_ACTIVATED);
 	}
 	else if(getName().compare("switch#"+CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS)==0)
 	{

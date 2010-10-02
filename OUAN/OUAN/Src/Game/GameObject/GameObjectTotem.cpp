@@ -118,7 +118,7 @@ void GameObjectTotem::update(double elapsedSeconds)
 				disable();
 				if(getName().compare("totem#0")==0)
 				{
-					getGameWorldManager()->addExecutedLevelEvent(BOSS_PLATFORM_PUZZLE_END);
+					getGameWorldManager()->addExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END);
 				}
 			}
 		}
@@ -168,7 +168,7 @@ void GameObjectTotem::reset()
 	GameObject::reset();
 
 	if(getName().compare("totem#0")!=0 || 
-		!(getGameWorldManager()->hasExecutedLevelEvent(BOSS_PLATFORM_PUZZLE_END)))
+		!(getGameWorldManager()->hasExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END)))
 	{
 		if(mPhysicsComponentSimpleBox.get() && !mPhysicsComponentSimpleBox->isInUse())
 		{

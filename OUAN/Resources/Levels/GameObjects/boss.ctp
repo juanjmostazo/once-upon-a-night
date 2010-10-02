@@ -58,15 +58,4 @@
   <PROPERTY id="animation13::loop" type="12" value="true" ></PROPERTY>
   <PROPERTY id="animation14::name" type="7" value="war_cry" ></PROPERTY>
   <PROPERTY id="animation14::loop" type="12" value="false" ></PROPERTY>
-
-  <!-- Sounds -->
-  <PROPERTY id="AudioComponent::soundID#0" type="7" value="tripollo_wings"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#1" type="7" value="tripollo_scratch"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#2" type="7" value="tripollo_explosion"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#3" type="7" value="tripollo_graznido"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#4" type="7" value="tripollo_attack"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#5" type="7" value="tripollo_hit"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#6" type="7" value="tripollo_surprise"></PROPERTY>
-  <PROPERTY id="AudioComponent::soundID#6" type="7" value="tripollo_die"></PROPERTY>
-
 </CUSTOMPROPERTIES>

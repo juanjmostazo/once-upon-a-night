@@ -4,38 +4,38 @@ TRIGGER_NAME_BIG_PLATFORM="trigger-action#platform_big"
 PORTAL_NAME_BIG_PLATFORM="changeworld#platform_big"
 
 -- Being a specific puzzle, it seems wiser and more intuitive to use directly
--- the names of the BOSSs Any has to kill instead of setting a radius
+-- the names of the tripollos Any has to kill instead of setting a radius
 -- and parsing the whole container
-BOSS1_NAME="BOSS#0"
-BOSS2_NAME="BOSS#11"
-BOSS3_NAME="BOSS#12"
-BOSS4_NAME="BOSS#13"
+TRIPOLLO1_NAME="tripollo#0"
+TRIPOLLO2_NAME="tripollo#11"
+TRIPOLLO3_NAME="tripollo#12"
+TRIPOLLO4_NAME="tripollo#13"
 
 -- TODO Define a function to return the length of a LUA table, 
 -- so we can get rid of the global var
-NUM_BOSSS=4
+NUM_TRIPOLLOS=4
 
-BOSSS={}
+TRIPOLLOS={}
 
-function initBOSSs()
+function initTripollos()
 	local varname=""
-	for i=1,NUM_BOSSS do
-		varname="BOSS"..i.."_NAME"
-		BOSSS[i]=_G[varname]
+	for i=1,NUM_TRIPOLLOS do
+		varname="TRIPOLLO"..i.."_NAME"
+		TRIPOLLOS[i]=_G[varname]
 	end
 return
 end
 
 --initialize array.
-initBOSSs()
+initTripollos()
 
-function areAllBOSSsDisabled()
+function areAllTripollosDisabled()
 	local allDisabled=true
-	local currentBOSS = nil
+	local currentTripollo = nil
 	local i=1
-	while allDisabled and i<=NUM_BOSSS do
-		currentBOSS = getObject(BOSSS[i])
-		allDisabled = currentBOSS ==nil or not currentBOSS:enabled()
+	while allDisabled and i<=NUM_TRIPOLLOS do
+		currentTripollo = getObject(TRIPOLLOS[i])
+		allDisabled = currentTripollo ==nil or not currentTripollo:enabled()
 		i = i+1
 	end
 	return allDisabled
@@ -45,7 +45,7 @@ function bigPlatformEnterFunction(pOny)
 	--Careful on casting!!
 	local bigPlatform = getObject(PORTAL_NAME_BIG_PLATFORM)
 	if bigPlatform ~= nil then		
-		bigPlatform:setCurrentWorldVisible(areAllBOSSsDisabled())
+		bigPlatform:setCurrentWorldVisible(areAllTripollosDisabled())
 	else
 		log("BOX TRIGGER - Big platform portal not found!!")
 	end

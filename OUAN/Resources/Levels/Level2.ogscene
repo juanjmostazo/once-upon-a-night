@@ -34,11 +34,11 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="589.208 2390.46 -2278.86" orientation="0.827924 -0.546256 0.10588 0.0702614"></OPTION>
+    <OPTION id="2" position="508.469 2344.92 -2752.15" orientation="0.682859 -0.686764 0.175404 0.176896"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
-      <LAYER id="0" name="Layer 0" visible="false"></LAYER>
-      <LAYER id="1" name="Layer 1" visible="true"></LAYER>
+      <LAYER id="0" name="Layer 0" visible="true"></LAYER>
+      <LAYER id="1" name="Layer 1" visible="false"></LAYER>
       <LAYER id="2" name="Layer 2" visible="true"></LAYER>
       <LAYER id="3" name="Layer 3" visible="true"></LAYER>
       <LAYER id="4" name="Layer 4" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.827956 -0.546277 0.105884 0.0702641"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.682859 -0.686764 0.175404 0.176896"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="589.208 2390.46 -2278.86"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="508.469 2344.92 -2752.15"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -953,17 +953,6 @@
   </OBJECT>
 
   <OBJECT object_id="193792544" name="Patrols" typename="Node Object" parentnode="SceneManager">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="472060288" name="CameraTriggers" typename="Node Object" parentnode="SceneManager">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
@@ -14254,31 +14243,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="899685696" name="volume-box_n#trigger#FINAL_BOSS" typename="Entity Object" parentnode="CameraTriggers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999657 0 0.026177 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="463.764 1397.52 -2812.18"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="456.554 349.892 440.514"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cameratriggers.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCameraFinalBoss" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCameraFinalBoss" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="183141568" name="tree4_d#4" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -15331,31 +15295,6 @@
     <CUSTOMPROPERTIES>
       <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
       <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="430921344" name="volume-box_d#trigger#FINAL_BOSS" typename="Entity Object" parentnode="CameraTriggers">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="0"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999657 0 0.026177 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="463.764 1397.52 -2812.18"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="456.554 349.892 440.514"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="LogicComponent::scriptFilename" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::scriptFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::defaultState" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::triggerScriptFile" type="7" value="cameratriggers.lua" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterActionFunction" type="7" value="enterCameraFinalBoss" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::enterConditionFunction" type="7" value="conditionCameraFinalBoss" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitActionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
-      <PROPERTY id="LogicComponent::exitConditionFunction" type="7" value="" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -28229,7 +28168,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="689 220 441"></PROPERTY>
+    <PROPERTY id="position" type="9" value="452.746 1522.3 -2728.78"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>

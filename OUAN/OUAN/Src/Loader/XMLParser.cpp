@@ -51,7 +51,7 @@ void XMLParser::parseGameObjectTypes()
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BILLBOARDSET);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PARTICLESYSTEM);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ONY);
-	gameObjectTypes.push_back(GAME_OBJECT_TYPE_BOSS);
+	gameObjectTypes.push_back(GAME_OBJECT_TYPE_TRIPOLLO);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_PORTAL);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_EYE);
 	gameObjectTypes.push_back(GAME_OBJECT_TYPE_ITEM_1UP);

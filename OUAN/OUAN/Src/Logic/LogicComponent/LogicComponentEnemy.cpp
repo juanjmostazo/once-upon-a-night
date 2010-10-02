@@ -56,7 +56,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 			std::stringstream msg;
 					if (getMaskValueFromColour(flashlightColour) & mColourSensitivityMask)
 			{	
-				if(getParent()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0)
+				if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 				{
 					getParent()->displayText("FWOOOOSHH!!!!");		
 					decreaseHP(flashlight->getAttackDamage());
@@ -87,7 +87,7 @@ void LogicComponentEnemy::processCollision(GameObjectPtr pGameObject, Ogre::Vect
 			pGameObject);
 		if (mHitRecoveryTime<0)
 		{
-			if(getParent()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0)
+			if(getParent()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 			{
 				getParent()->displayText("ZASCA!");
 				decreaseHP(pillow->getAttackDamage());

@@ -97,7 +97,7 @@ namespace OUAN
 		void processGameObjectTree(XMLGameObject* gameObject, int type);
 		void processGameObjectTriggerBox(XMLGameObject* gameObject);
 		void processGameObjectTriggerCapsule(XMLGameObject* gameObject);
-		void processGameObjectBOSS(XMLGameObject* gameObject);
+		void processGameObjectTripollo(XMLGameObject* gameObject);
 		void processGameObjectViewport(XMLGameObject* gameObject);
 		void processGameObjectWoodBox(XMLGameObject* gameObject);
 		void processGameObjectWater(XMLGameObject* gameObject);
