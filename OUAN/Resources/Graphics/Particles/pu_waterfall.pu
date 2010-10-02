@@ -59,7 +59,85 @@ system PU/waterfall
         }
         emitter                                 Box 
         {
-            emission_rate                       12
+            emission_rate                       5
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             180
+                max                             240
+            }
+            box_em_width                        180
+            box_em_height                       60
+            box_em_depth                        180
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -400 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.2  1 1 1 1
+            colour_aff_time_colour              0.4  1 1 1 1
+            colour_aff_time_colour              1    1 1 1 0
+            colour_operation                    multiply
+        }
+    }
+    technique 
+    {
+        material                                PU/waterfall_3
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       5
+            time_to_live                        dyn_random
+            {
+                min                             0.8
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             180
+                max                             240
+            }
+            box_em_width                        180
+            box_em_height                       60
+            box_em_depth                        180
+        }
+        affector                                LinearForce 
+        {
+            force_aff_vector                    0 -400 0
+        }
+        affector                                Colour 
+        {
+            colour_aff_time_colour              0    1 1 1 1
+            colour_aff_time_colour              0.2  1 1 1 1
+            colour_aff_time_colour              0.4  1 1 1 1
+            colour_aff_time_colour              1    1 1 1 0
+            colour_operation                    multiply
+        }
+    }
+    technique 
+    {
+        material                                PU/waterfall_4
+        default_particle_width                  36
+        default_particle_height                 36
+        default_particle_depth                  36
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Box 
+        {
+            emission_rate                       5
             time_to_live                        dyn_random
             {
                 min                             0.8
