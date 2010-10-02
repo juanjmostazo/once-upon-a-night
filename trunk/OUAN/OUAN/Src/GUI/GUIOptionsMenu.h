@@ -46,13 +46,10 @@ namespace OUAN
 	const std::string BUTTON_NAME_JUMP="OUANOptions/Controls/JumpBtn";
 	const std::string BUTTON_NAME_ACTION="OUANOptions/Controls/ActionBtn";
 	const std::string BUTTON_NAME_USEWEAPON="OUANOptions/Controls/WeaponBtn";
-	const std::string BUTTON_NAME_RELOAD="OUANOptions/Controls/AutoTargetBtn";
 
 	const std::string BUTTON_NAME_LROTATE="OUANOptions/Controls/RotateLeftBtn";
 	const std::string BUTTON_NAME_RROTATE="OUANOptions/Controls/RotateRightBtn";
 	const std::string BUTTON_NAME_WALK="OUANOptions/Controls/WalkBtn";
-	const std::string BUTTON_NAME_AUTOTARGET="OUANOptions/Controls/AutoTargetBtn";
-
 	const std::string BUTTON_NAME_PAUSE="OUANOptions/Controls/PauseBtn";
 	const std::string BUTTON_NAME_MENU="OUANOptions/Controls/MenuBtn";
 

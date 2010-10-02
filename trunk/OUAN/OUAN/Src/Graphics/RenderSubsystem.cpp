@@ -353,7 +353,7 @@ bool RenderSubsystem::render()
 {
 	//Logger::getInstance()->log("[PHYSICS RENDER]");
 	return mRoot->renderOneFrame();
-}
+}	
 
 bool RenderSubsystem::isWindowClosed() const
 {

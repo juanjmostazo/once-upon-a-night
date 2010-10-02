@@ -2,6 +2,10 @@
 <Falagard>
   <!--     ***************************************************         OUANLook/Button      ***************************************************      -->
   <WidgetLook name="OUANMain/GearButton">
+    <PropertyDefinition name="NormalTextColour" initialValue="FFFADB3E" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverTextColour" initialValue="FFBE5C07" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="DisabledTextColour" initialValue="FF52420B" redrawOnWrite="true" />  
 	<ImagerySection name="label">
 	  <TextComponent>
 		  <Area>
@@ -114,35 +118,118 @@
 		</Layer>	
 	</StateImagery>
 	</WidgetLook>
-	<!--
-	    <WidgetLook name="OUANMenu/SliderThumb">
-        <Property name="VertFree" value="True" />
-        <ImagerySection name="normal">
-            <ImageryComponent>
-                <Area>
-                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
-                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
-                </Area>
-                <Image imageset="OUANMenu" image="slider_thumb_normal" />
-                <VertFormat type="Stretched" />
-                <HorzFormat type="Stretched" />
-            </ImageryComponent>
-        </ImagerySection>
+<!--
+	SLIDER
+-->	
+<WidgetLook name="OUANMenu/Slider">
+        <Property name="VerticalSlider" value="False" />
+        <Property name="MouseButtonDownAutoRepeat" value="True" />
+        <Property name="WantsMultiClickEvents" value="False" />
+        <NamedArea name="ThumbTrackArea">
+            <Area>
+                <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                <Dim type="RightEdge" ><UnifiedDim scale="1.0" type="RightEdge" /></Dim>
+                <Dim type="BottomEdge" ><UnifiedDim scale="1.0" type="BottomEdge" /></Dim>
+            </Area>
+        </NamedArea>
+        <Child  type="OUANLook/OUANSliderThumb" nameSuffix="__auto_thumb__">
+            <Area>
+                <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                <Dim type="Width" ><ImageDim imageset="OUAN_Menu" image="slider_thumb_normal" dimension="Width" /></Dim>
+                <Dim type="Height"><UnifiedDim scale="1.0" type="Height" /></Dim>
+            </Area>
+        </Child>
         <ImagerySection name="hover">
             <ImageryComponent>
                 <Area>
                     <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
                     <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
-                    <Dim type="Width" ><UnifiedDim scale="1.0" type="Width" /></Dim>
-                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" /></Dim>
+                    <Dim type="Width" ><UnifiedDim scale="1.0" offset="-6" type="Width" /></Dim>
+                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" />
+                <ImageDim imageset="OUAN_Menu" image="slider_thumb_normal" dimension="Height" />			
+					</Dim>
                 </Area>
-                <Image imageset="OUANMenu" image="slider_thumb_click" />
-                <VertFormat type="Stretched" />
+                <Image imageset="OUAN_Menu" image="slider_right" />
+                <VertFormat type="CentreAligned" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+						
+        </ImagerySection>
+		
+		        <ImagerySection name="main">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="Width" ><UnifiedDim scale="1.0" offset="-6" type="Width" /></Dim>
+                    <Dim type="Height" ><UnifiedDim scale="1.0" type="Height" />
+                <ImageDim imageset="OUAN_Menu" image="slider_thumb_normal" dimension="Height" />			
+					</Dim>
+                </Area>
+                <Image imageset="OUAN_Menu" image="slider_left" />
+                <VertFormat type="CentreAligned" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+						
+        </ImagerySection>
+
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="main" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="hover">
+                    <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+					</Section>
+
+            </Layer>
+        </StateImagery>
+    </WidgetLook>	
+
+<!-- SLIDER THUMB -->
+	
+    <WidgetLook name="OUANMenu/SliderThumb">
+        <Property name="HorzFree" value="True" />
+        <ImagerySection name="normal">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="Width" >
+          <ImageDim imageset="OUAN_Menu" image="slider_thumb_normal" dimension="Height" />
+        </Dim>
+        <Dim type="Height" >
+          <ImageDim imageset="OUAN_Menu" image="slider_thumb_normal" dimension="Width" />
+        </Dim>
+		</Area>
+                <Image imageset="OUAN_Menu" image="slider_thumb_normal" />
+                <VertFormat type="CentreAligned" />
                 <HorzFormat type="Stretched" />
             </ImageryComponent>
         </ImagerySection>
+		
+		        <ImagerySection name="hover">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+                    <Dim type="Width" >
+          <ImageDim imageset="OUAN_Menu" image="slider_thumb_click" dimension="Height" />
+        </Dim>
+        <Dim type="Height" >
+          <ImageDim imageset="OUAN_Menu" image="slider_thumb_click" dimension="Width" />
+        </Dim>
+		</Area>
+                <Image imageset="OUAN_Menu" image="slider_thumb_click" />
+                <VertFormat type="CentreAligned" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+       
         <StateImagery name="Normal">
             <Layer>
                 <Section section="normal" />
@@ -150,7 +237,7 @@
         </StateImagery>
         <StateImagery name="Hover">
             <Layer>
-                <Section section="hover" />
+                <Section section="normal" />
             </Layer>
         </StateImagery>
         <StateImagery name="Pushed">
@@ -166,5 +253,1315 @@
             </Layer>
         </StateImagery>
     </WidgetLook>
-  -->
+
+	<!--	
+	CHECKBOXES
+	-->
+	
+	<WidgetLook name="OUANMenu/Checkbox">
+
+    <ImagerySection name="normal">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <UnifiedDim scale="1" type="Height" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="check_unselected" />
+        <VertFormat type="CentreAligned" />
+        <HorzFormat type="LeftAligned" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="hover">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <UnifiedDim scale="1" type="Height" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="check_unselected_hover" />
+        <VertFormat type="CentreAligned" />
+        <HorzFormat type="LeftAligned" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="normalselected">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <UnifiedDim scale="1" type="Height" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="check_selected" />
+        <VertFormat type="CentreAligned" />
+        <HorzFormat type="LeftAligned" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="hoverselected">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <UnifiedDim scale="1" type="Height" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="check_selected_hover" />
+        <VertFormat type="CentreAligned" />
+        <HorzFormat type="LeftAligned" />
+      </ImageryComponent>
+    </ImagerySection>
+    <StateImagery name="Normal">
+      <Layer>
+        <Section section="normal" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Hover">
+      <Layer>
+        <Section section="hover" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Disabled">
+      <Layer>
+        <Section section="normal">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedNormal">
+      <Layer>
+        <Section section="normalselected" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedHover">
+      <Layer>
+        <Section section="hoverselected" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedDisabled">
+      <Layer>
+        <Section section="normal">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+      </Layer>
+    </StateImagery>
+  </WidgetLook>
+  
+  <!--
+	BUTTON
+-->
+	
+  <WidgetLook name="OUANMenu/Button">
+    <PropertyDefinition name="DrawStandardImagery" initialValue="True" redrawOnWrite="true" />
+    <PropertyDefinition name="NormalTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="DisabledTextColour" initialValue="FF7F7F7F" redrawOnWrite="true" />
+    <PropertyDefinition name="VertLabelFormatting" initialValue="CentreAligned" />
+    <PropertyDefinition name="HorzLabelFormatting" initialValue="CentreAligned" />
+    <ImagerySection name="label">
+      <TextComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_normal" dimension="Height" />
+          </Dim>
+        </Area>
+        <VertFormatProperty name="VertLabelFormatting" />
+        <HorzFormatProperty name="HorzLabelFormatting" />
+      </TextComponent>
+    </ImagerySection>
+    <ImagerySection name="normal">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_normal" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_normal" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_normal" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_normal" />
+      </FrameComponent>
+    </ImagerySection>    
+    <ImagerySection name="hover">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_hover" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_hover" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_hover" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_hover" />
+      </FrameComponent>
+    </ImagerySection>
+
+    <ImagerySection name="pushed">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_click" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_click" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_click" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_click" />
+      </FrameComponent>
+    </ImagerySection>
+    
+    <StateImagery name="Normal">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Hover">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Pushed">
+      <Layer>
+        <Section section="pushed" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="PushedTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="PushedOff">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Disabled">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="normal_image" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="label">
+          <ColourProperty name="DisabledTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+  </WidgetLook>
+<!-- TOGGLE BUTTON -->
+<WidgetLook name="OUANMenu/ToggleButton">
+    <PropertyDefinition name="DrawStandardImagery" initialValue="True" redrawOnWrite="true" />
+    <PropertyDefinition name="NormalTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="DisabledTextColour" initialValue="FF7F7F7F" redrawOnWrite="true" />
+    <PropertyDefinition name="VertLabelFormatting" initialValue="CentreAligned" />
+    <PropertyDefinition name="HorzLabelFormatting" initialValue="CentreAligned" />
+    <ImagerySection name="label">
+      <TextComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_normal" dimension="Height" />
+          </Dim>
+        </Area>
+        <VertFormatProperty name="VertLabelFormatting" />
+        <HorzFormatProperty name="HorzLabelFormatting" />
+      </TextComponent>
+    </ImagerySection>
+    <ImagerySection name="normal">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge">
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width">
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height">
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_normal" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_normal" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_normal" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_normal" />
+      </FrameComponent>
+    </ImagerySection>    
+    <ImagerySection name="normalselected">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_click" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_click" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_click" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_click" />
+      </FrameComponent>
+    </ImagerySection>	
+    <ImagerySection name="hover">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ibutton_middle_hover" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_hover" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_hover" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_hover" />
+      </FrameComponent>
+    </ImagerySection>
+    <ImagerySection name="hoverselected">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ibutton_left_click" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ibutton_right_click" />
+        <Image type="Background" imageset="OUAN_Menu" image="ibutton_middle_click" />
+      </FrameComponent>
+    </ImagerySection>		
+    
+    <ImagerySection name="pushed">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="ButtonMiddlePushed" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="ButtonLeftPushed" />
+        <Image type="RightEdge" imageset="OUAN_Menu" image="ButtonRightPushed" />
+        <Image type="Background" imageset="OUAN_Menu" image="ButtonMiddlePushed" />
+      </FrameComponent>
+    </ImagerySection>
+    
+    <StateImagery name="Normal">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Hover">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedNormal">
+      <Layer>
+        <Section section="normalselected" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedHover">
+      <Layer>
+        <Section section="hover" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="SelectedPushed">
+      <Layer>
+        <Section section="normalselected" />
+        <Section section="label">
+          <ColourProperty name="NormalTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>	
+    <StateImagery name="SelectedDisabled">
+      <Layer>
+        <Section section="normal">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="select_mark">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="label">
+          <ColourProperty name="DisabledTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>	
+    <StateImagery name="Pushed">
+      <Layer>
+        <Section section="pushed" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="PushedTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="PushedOff">
+      <Layer>
+        <Section section="hover" controlProperty="DrawStandardImagery" />
+        <Section section="label">
+          <ColourProperty name="HoverTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Disabled">
+      <Layer>
+        <Section section="normal" controlProperty="DrawStandardImagery" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="normal_image" >
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+        <Section section="label">
+          <ColourProperty name="DisabledTextColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+  </WidgetLook>
+  
+  
+<WidgetLook name="OUANMenu/EditBox">
+    <PropertyDefinition name="NormalTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="SelectedTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
+    <PropertyDefinition name="ActiveSelectionColour" initialValue="FF607FFF" redrawOnWrite="true" />
+    <PropertyDefinition name="InactiveSelectionColour" initialValue="FF808080" redrawOnWrite="true" />
+    <Property name="MouseCursorImage" value="set:OUAN_Menu image:mouse_text_bar" />
+    <NamedArea name="TextArea">
+      <Area>
+        <Dim type="LeftEdge" >
+          <AbsoluteDim value="5" />
+        </Dim>
+        <Dim type="TopEdge" >
+          <AbsoluteDim value="0" />
+        </Dim>
+        <Dim type="RightEdge" >
+          <UnifiedDim scale="1.0" offset="-5" type="RightEdge" />
+        </Dim>
+        <Dim type="Height" >
+          <ImageDim imageset="OUAN_Menu" image="edit_middle" dimension="Height" />
+        </Dim>
+      </Area>
+    </NamedArea>
+    <ImagerySection name="container_normal">
+      <FrameComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="Width" >
+            <UnifiedDim scale="1" type="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="combo_middle_normal" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image type="LeftEdge" imageset="OUAN_Menu" image="combo_left_normal" />
+        <Image type="Background" imageset="OUAN_Menu" image="combo_middle_normal" />
+      </FrameComponent>
+    </ImagerySection>
+    <ImagerySection name="selection">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="RightEdge" >
+            <UnifiedDim scale="1.0" type="RightEdge" />
+          </Dim>
+          <Dim type="BottomEdge" >
+            <UnifiedDim scale="1.0" type="BottomEdge" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="text_selection_brush" />
+        <VertFormat type="Stretched" />
+        <HorzFormat type="Stretched" />
+      </ImageryComponent>
+    </ImagerySection>
+    <ImagerySection name="Carat">
+      <ImageryComponent>
+        <Area>
+          <Dim type="LeftEdge" >
+            <AbsoluteDim value="0" />
+          </Dim>
+          <Dim type="TopEdge" >
+            <AbsoluteDim value="3" />
+          </Dim>
+          <Dim type="Width" >
+            <ImageDim imageset="OUAN_Menu" image="carat" dimension="Width" />
+          </Dim>
+          <Dim type="Height" >
+            <ImageDim imageset="OUAN_Menu" image="carat" dimension="Height" />
+          </Dim>
+        </Area>
+        <Image imageset="OUAN_Menu" image="carat" />
+        <VertFormat type="Stretched" />
+        <HorzFormat type="Stretched" />
+      </ImageryComponent>
+    </ImagerySection>
+    <StateImagery name="Enabled">
+      <Layer>
+        <Section section="container_normal" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="ReadOnly">
+      <Layer>
+        <Section section="container_normal" />
+      </Layer>
+    </StateImagery>
+    <StateImagery name="Disabled">
+      <Layer>
+        <Section section="container_normal">
+          <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="ActiveSelection">
+      <Layer>
+        <Section section="selection">
+          <ColourProperty name="ActiveSelectionColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+    <StateImagery name="InactiveSelection">
+      <Layer>
+        <Section section="selection">
+          <ColourProperty name="InactiveSelectionColour" />
+        </Section>
+      </Layer>
+    </StateImagery>
+  </WidgetLook>  
+
+  <WidgetLook name="OUANMenu/ComboBox">
+<PropertyLinkDefinition name="NormalEditTextColour" widget="__auto_editbox__" targetProperty="NormalTextColour" initialValue="FF000000" />
+<PropertyLinkDefinition name="SelectedEditTextColour" widget="__auto_editbox__" targetProperty="SelectedTextColour" initialValue="FFFFFFFF" />
+<PropertyLinkDefinition name="ActiveEditSelectionColour" widget="__auto_editbox__" targetProperty="ActiveSelectionColour" initialValue="FF0055C9" />
+<PropertyLinkDefinition name="InactiveEditSelectionColour" widget="__auto_editbox__" targetProperty="InactiveSelectionColour" initialValue="FF808080" />
+<Child  type="OUANMenu/EditBox" nameSuffix="__auto_editbox__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <UnifiedDim scale="1" type="Width">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_button_normal" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="Height" >
+      <ImageDim imageset="OUAN_Menu" image="combo_middle_normal" dimension="Height" />
+    </Dim>
+  </Area>
+</Child>
+
+<Child  type="OUANMenu/ComboDropList" nameSuffix="__auto_droplist__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <UnifiedDim scale="1" type="Width" />
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge" />
+    </Dim>
+  </Area>
+  <Property name="AlwaysOnTop" value="True" />
+</Child>
+<Child  type="OUANMenu/ImageButton" nameSuffix="__auto_button__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="combo_button_normal" dimension="Width" />
+    </Dim>
+    <Dim type="Height" >
+      <ImageDim imageset="OUAN_Menu" image="combo_button_normal" dimension="Height" />
+    </Dim>
+  </Area>
+  <HorzAlignment type="RightAligned" />
+  <Property name="NormalImage" value="set:OUAN_Menu image:combo_button_normal" />
+  <Property name="HoverImage" value="set:OUAN_Menu image:combo_button_hover" />
+  <Property name="PushedImage" value="set:OUAN_Menu image:combo_button_click" />
+</Child>
+<StateImagery name="Enabled" />
+<StateImagery name="Disabled" />
+</WidgetLook>
+
+<WidgetLook name="OUANMenu/ComboDropList">
+<NamedArea name="ItemRenderingArea">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="combo_list_left" dimension="Width">
+        <DimOperator op="Add">
+          <AbsoluteDim value="3" />
+        </DimOperator>
+      </ImageDim>
+    </Dim>
+    <Dim type="TopEdge">
+      <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_list_right" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_list_bottom" dimension="Height"/>
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="ItemRenderingAreaHScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="combo_list_left" dimension="Width">
+        <DimOperator op="Add">
+          <AbsoluteDim value="3" />
+        </DimOperator>
+      </ImageDim>
+    </Dim>
+    <Dim type="TopEdge">
+      <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_list_right" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="ItemRenderingAreaVScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="combo_list_left" dimension="Width">
+        <DimOperator op="Add">
+          <AbsoluteDim value="3" />
+        </DimOperator>
+      </ImageDim>
+    </Dim>
+    <Dim type="TopEdge">
+      <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_list_bottom" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="ItemRenderingAreaHVScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="combo_list_left" dimension="Width">
+        <DimOperator op="Add">
+          <AbsoluteDim value="3" />
+        </DimOperator>
+      </ImageDim>
+    </Dim>
+    <Dim type="TopEdge">
+      <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_hscrollbar__" dimension="Height">
+            <DimOperator op="Add">
+              <ImageDim imageset="OUAN_Menu" image="combo_list_bottom" dimension="Height" />
+            </DimOperator>
+          </WidgetDim>
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<Child  type="OUANMenu/HScrollBar" nameSuffix="__auto_hscrollbar__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Height" >
+      <AbsoluteDim value="0" />
+    </Dim>
+  </Area>
+  <VertAlignment type="BottomAligned" />
+</Child>
+<Child  type="OUANMenu/VScrollBar" nameSuffix="__auto_vscrollbar__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="vert_scroll_bar" dimension="Width">
+            <DimOperator op="Add">
+              <ImageDim imageset="OUAN_Menu" image="combo_list_right" dimension="Width" />
+            </DimOperator>
+          </ImageDim>
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="vert_scroll_bar" dimension="Width" />
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="combo_list_bottom" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</Child>
+<ImagerySection name="main">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="combo_list_topleft" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="combo_list_topright" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="combo_list_bottomleft" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="combo_list_bottomright" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="combo_list_left" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="combo_list_right" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="combo_list_top" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="combo_list_bottom" />
+    <Image type="Background" imageset="OUAN_Menu" image="combo_back" />
+  </FrameComponent>
+</ImagerySection>
+<StateImagery name="Enabled">
+  <Layer>
+    <Section section="main" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="main">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>
+
+<WidgetLook name="OUANMenu/HScrollBarThumb">
+  <Property name="HorzFree" value="True" />
+  <ImagerySection name="normal">
+    <ImageryComponent>
+      <Area>
+        <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+        <Dim type="TopEdge" ><AbsoluteDim value="0" /></Dim>
+        <Dim type="Width" >
+          <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Width" />
+        </Dim>
+        <Dim type="Height" >
+          <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Height" />
+        </Dim>
+      </Area>
+      <Image imageset="OUAN_Menu" image="hscrollbar_thumb" />
+      <VertFormat type="Stretched" />
+      <HorzFormat type="Stretched" />
+    </ImageryComponent>
+  </ImagerySection>  
+  <StateImagery name="Normal">
+    <Layer>
+      <Section section="normal" />
+    </Layer>
+  </StateImagery>
+  <StateImagery name="Hover">
+    <Layer>
+      <Section section="normal" />
+    </Layer>
+  </StateImagery>
+  <StateImagery name="Pushed">
+    <Layer>
+      <Section section="normal" />
+    </Layer>
+  </StateImagery>
+  <StateImagery name="Disabled">
+    <Layer>
+      <Section section="normal">
+        <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+      </Section>
+    </Layer>
+  </StateImagery>
+</WidgetLook>
+<WidgetLook name="OUANMenu/HScrollBar">
+  <NamedArea name="ThumbTrackArea">
+    <Area>
+      <Dim type="LeftEdge" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_left" dimension="Width" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="RightEdge" >
+        <UnifiedDim scale="1.0" type="RightEdge">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="hscrollbar_right" dimension="Width" />
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+      <Dim type="BottomEdge" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar" dimension="Height" />
+      </Dim>
+    </Area>
+  </NamedArea>
+  <Child  type="OUANMenu/ImageButton" nameSuffix="__auto_incbtn__">
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_right" dimension="Width" />
+</Dim>
+      <Dim type="Height" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_right" dimension="Height" />
+      </Dim>
+    </Area>
+    <HorzAlignment type="RightAligned" />
+    <Property name="NormalImage" value="set:OUAN_Menu image:hscrollbar_right" />
+    <Property name="HoverImage" value="set:OUAN_Menu image:hscrollbar_right" />
+    <Property name="PushedImage" value="set:OUAN_Menu image:hscrollbar_right" />
+  </Child>
+  <Child  type="OUANMenu/ImageButton" nameSuffix="__auto_decbtn__">
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_left" dimension="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_left" dimension="Height" />
+      </Dim>
+    </Area>
+    <Property name="NormalImage" value="set:OUAN_Menu image:hscrollbar_left" />
+    <Property name="HoverImage" value="set:OUAN_Menu image:hscrollbar_left" />
+    <Property name="PushedImage" value="set:OUAN_Menu image:hscrollbar_left" />
+  </Child>
+  <Child  type="OUANMenu/HScrollBarThumb" nameSuffix="__auto_thumb__">
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Height" />
+      </Dim>
+    </Area>
+  </Child>
+  <ImagerySection name="main">
+    <FrameComponent>
+      <Area>
+        <Dim type="LeftEdge">
+          <ImageDim imageset="OUAN_Menu" image="hscrollbar_left" dimension="Width" />
+        </Dim>
+        <Dim type="TopEdge">
+          <AbsoluteDim value="0" />
+        </Dim>
+        <Dim type="RightEdge">
+          <UnifiedDim scale="1" type="RightEdge">
+            <DimOperator op="Subtract">
+              <ImageDim imageset="OUAN_Menu" image="hscrollbar_right" dimension="Width" />
+            </DimOperator>
+          </UnifiedDim>
+        </Dim>
+        <Dim type="Height">
+          <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Height" />
+        </Dim>
+      </Area>
+    </FrameComponent>
+  </ImagerySection>
+  <StateImagery name="Enabled">
+    <Layer>
+      <Section section="main" />
+    </Layer>
+  </StateImagery>
+  <StateImagery name="Disabled">
+    <Layer>
+      <Section section="main">
+        <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+      </Section>
+    </Layer>
+  </StateImagery>
+</WidgetLook>	
+	
+
+<WidgetLook name="OUANMenu/VScrollBarThumb">
+<Property name="VertFree" value="True" />
+<ImagerySection name="normal">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="vscrollbar_thumb" dimension="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <ImageDim imageset="OUAN_Menu" image="vscrollbar_thumb" dimension="Height" />
+      </Dim>
+    </Area>
+    <Image imageset="OUAN_Menu" image="vscrollbar_thumb" />
+    <VertFormat type="Stretched" />
+    <HorzFormat type="Stretched" />
+  </ImageryComponent>
+</ImagerySection>
+<StateImagery name="Normal">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Hover">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Pushed">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="normal">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>
+
+<WidgetLook name="OUANMenu/VScrollBar">
+<Property name="VerticalScrollbar" value="True" />
+<NamedArea name="ThumbTrackArea">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_up" dimension="Height" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar" dimension="Width" />
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1.0" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="vscrollbar_down" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<Child  type="OUANMenu/ImageButton" nameSuffix="__auto_incbtn__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_down" dimension="Width" />
+    </Dim>
+    <Dim type="Height" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_down" dimension="Height" />
+    </Dim>
+  </Area>
+  <VertAlignment type="BottomAligned" />
+  <Property name="NormalImage" value="set:OUAN_Menu image:vscrollbar_down" />
+  <Property name="HoverImage" value="set:OUAN_Menu image:vscrollbar_down" />
+  <Property name="PushedImage" value="set:OUAN_Menu image:vscrollbar_down" />
+</Child>
+<Child  type="OUANMenu/ImageButton" nameSuffix="__auto_decbtn__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_up" dimension="Width" />
+    </Dim>
+    <Dim type="Height" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_up" dimension="Height" />
+    </Dim>
+  </Area>
+  <Property name="NormalImage" value="set:OUAN_Menu image:vscrollbar_up" />
+  <Property name="HoverImage" value="set:OUAN_Menu image:vscrollbar_up" />
+  <Property name="PushedImage" value="set:OUAN_Menu image:vscrollbar_up" />
+</Child>
+<Child  type="OUANMenu/VScrollBarThumb" nameSuffix="__auto_thumb__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_thumb" dimension="Width" />
+    </Dim>
+    <Dim type="Height" >
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar_thumb" dimension="Height" />
+    </Dim>
+  </Area>
+	</Child>
+<ImagerySection name="main">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <ImageDim imageset="OUAN_Menu" image="vscrollbar_up" dimension="Height" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="vscrollbar" dimension="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1.0" type="BottomEdge">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="vscrollbar_down" dimension="Height" />
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+    </Area>   
+  </FrameComponent>
+</ImagerySection>
+<StateImagery name="Enabled">
+  <Layer>
+    <Section section="main" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="main">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>		
+		
+ <WidgetLook name="OUANMenu/ImageButton">
+<PropertyDefinition name="NormalImage" initialValue="" redrawOnWrite="true" />
+<PropertyDefinition name="HoverImage" initialValue="" redrawOnWrite="true" />
+<PropertyDefinition name="PushedImage" initialValue="" redrawOnWrite="true" />
+<PropertyDefinition name="DisabledImage" initialValue="" redrawOnWrite="true" />
+<PropertyDefinition name="VertImageFormatting" initialValue="Stretched" redrawOnWrite="true" />
+<PropertyDefinition name="HorzImageFormatting" initialValue="Stretched" redrawOnWrite="true" />
+<ImagerySection name="normal">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <ImageProperty name="NormalImage" />
+    <VertFormatProperty name="VertImageFormatting" />
+    <HorzFormatProperty name="HorzImageFormatting" />
+  </ImageryComponent>
+</ImagerySection>
+<ImagerySection name="hover">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <ImageProperty name="HoverImage" />
+    <VertFormatProperty name="VertImageFormatting" />
+    <HorzFormatProperty name="HorzImageFormatting" />
+  </ImageryComponent>
+</ImagerySection>
+<ImagerySection name="pushed">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <ImageProperty name="PushedImage" />
+    <VertFormatProperty name="VertImageFormatting" />
+    <HorzFormatProperty name="HorzImageFormatting" />
+  </ImageryComponent>
+</ImagerySection>
+<ImagerySection name="disabled">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <ImageProperty name="DisabledImage" />
+    <VertFormatProperty name="VertImageFormatting" />
+    <HorzFormatProperty name="HorzImageFormatting" />
+  </ImageryComponent>
+</ImagerySection>
+<StateImagery name="Normal">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Hover">
+  <Layer>
+    <Section section="hover" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Pushed">
+  <Layer>
+    <Section section="pushed" />
+  </Layer>
+</StateImagery>
+<StateImagery name="PushedOff">
+  <Layer>
+    <Section section="hover" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="disabled" />
+  </Layer>
+</StateImagery>
+</WidgetLook>
+
 </Falagard>

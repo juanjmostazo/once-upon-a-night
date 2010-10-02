@@ -260,9 +260,6 @@ void GUIOptionsMenu::bindEvents()
 		BUTTON_NAME_USEWEAPON,
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
 	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
-		BUTTON_NAME_RELOAD,
-		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
-	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
 		BUTTON_NAME_LROTATE,
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
 	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
@@ -270,9 +267,6 @@ void GUIOptionsMenu::bindEvents()
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
 	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
 		BUTTON_NAME_WALK,
-		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
-	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
-		BUTTON_NAME_AUTOTARGET,
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onRadioButtonStateChange,this));
 	guiSS->bindEvent(CEGUI::RadioButton::EventSelectStateChanged,
 		BUTTON_NAME_PAUSE,
@@ -356,13 +350,11 @@ void GUIOptionsMenu::initTextButtons()
 
 	initButton(BUTTON_NAME_JUMP,BUTTON_TEXT_JUMP,KEY_JUMP,mButtonData);
 	initButton(BUTTON_NAME_ACTION,BUTTON_TEXT_ACTION,KEY_CENTER_CAMERA,mButtonData);
-	initButton(BUTTON_NAME_RELOAD,BUTTON_TEXT_RELOAD,KEY_RELOADWEAPON,mButtonData);
 	initButton(BUTTON_NAME_USEWEAPON,BUTTON_TEXT_USEWEAPON,KEY_USEWEAPON,mButtonData);
 
 	initButton(BUTTON_NAME_LROTATE,BUTTON_TEXT_LROTATE,KEY_ROTATELEFT,mButtonData);
 	initButton(BUTTON_NAME_RROTATE,BUTTON_TEXT_RROTATE,KEY_ROTATERIGHT,mButtonData);
 	initButton(BUTTON_NAME_WALK,BUTTON_TEXT_WALK,KEY_WALK,mButtonData);
-	initButton(BUTTON_NAME_AUTOTARGET,BUTTON_TEXT_AUTOTARGET,KEY_FIRST_PERSON_CAMERA,mButtonData);
 
 	initButton(BUTTON_NAME_PAUSE,BUTTON_TEXT_PAUSE,KEY_PAUSE,mButtonData);
 	initButton(BUTTON_NAME_MENU,BUTTON_TEXT_INGAME_MENU,KEY_MENU,mButtonData);	
