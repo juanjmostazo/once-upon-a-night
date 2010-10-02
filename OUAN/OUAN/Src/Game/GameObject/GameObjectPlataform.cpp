@@ -191,6 +191,7 @@ void GameObjectPlataform::reset()
 	mElapsedTimeSinceLastCollision=0;
 	mHit=false;
 	mLastFrameHit=false;
+	mOnyOntoPlatform=false;
 
 
 	if((getName().compare("plataform#tower3_1")==0 ||
@@ -309,14 +310,51 @@ void GameObjectPlataform::setVisible(bool visible)
 
 void GameObjectPlataform::activateHit()
 {
+	mOnyOntoPlatform=!mOnyOntoPlatform;
+
 	if(mLogicComponent->existsInDreams())
 	{
 		mRenderComponentEntityDreams->changeAnimation(PLATFORM_ANIM_JUMP);
+
+		if(mRenderComponentEntityDreams->getEntity()->getMesh()->getName().compare(FLOWER_JUMPABLE_MESH)==0)
+		{
+			if(mOnyOntoPlatform)
+			{
+				mRenderComponentEntityDreams->setNewMaterial(PLATFORM_MATERIAL_1_JUMP_DREAMS,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
+			}
+			else
+			{
+				mRenderComponentEntityDreams->setNewMaterial(PLATFORM_MATERIAL_1_NORMAL_DREAMS,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
+			}
+			mRenderComponentEntityNightmares->setDreamsMaterials();
+		}
 	}
 	if(mLogicComponent->existsInNightmares())
 	{
 		mRenderComponentEntityNightmares->changeAnimation(PLATFORM_ANIM_JUMP);
+
+		if(mRenderComponentEntityNightmares->getEntity()->getMesh()->getName().compare(FLOWER_JUMPABLE_MESH)==0)
+		{
+			if(mOnyOntoPlatform)
+			{
+				mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_JUMP_NIGHTMARES,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
+			}
+			else
+			{
+				mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_NORMAL_NIGHTMARES,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
+			}
+			mRenderComponentEntityNightmares->setNightmaresMaterials();
+		}
 	}
+
 }
 
 Ogre::Vector3 GameObjectPlataform::getLastPositionDifference()

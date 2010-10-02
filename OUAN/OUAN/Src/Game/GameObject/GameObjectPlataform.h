@@ -18,6 +18,13 @@ namespace OUAN
 	const double PLATAFORM_COLLISION_HEIGHT_CORRECTION = 40;
 	const double PLATAFORM_MAX_DIFFERENCE_FALL = 10;
 
+	const std::string PLATFORM_MATERIAL_1_NORMAL_DREAMS = "flower1_d";
+	const std::string PLATFORM_MATERIAL_1_JUMP_DREAMS = "flower1_jump_d";
+	const std::string PLATFORM_MATERIAL_1_NORMAL_NIGHTMARES = "flower1_n";
+	const std::string PLATFORM_MATERIAL_1_JUMP_NIGHTMARES = "flower1_jump_n";
+
+	const std::string FLOWER_JUMPABLE_MESH = "flor1_ani.mesh";
+
 	/// Class to hold terrain information
 	class GameObjectPlataform : public GameObject, public boost::enable_shared_from_this<GameObjectPlataform>
 	{
@@ -44,6 +51,7 @@ namespace OUAN
 		bool mHit;
 		bool mLastFrameHit;
 		bool mActivated;
+		bool mOnyOntoPlatform;
 	public:
 		//Constructor
 		GameObjectPlataform(const std::string& name);
