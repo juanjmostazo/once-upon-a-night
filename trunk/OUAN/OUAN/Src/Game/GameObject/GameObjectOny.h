@@ -18,13 +18,13 @@
 namespace OUAN
 {
 	//Time to be spent in idle state before the animation changes to 'napping'
-	const double IDLE_SECONDS_TO_NAP=15.0;
+	const double IDLE_SECONDS_TO_NAP=45.0;
 
 	//Time during which Ony will be invulnerable, after having taken a hit.
 	const double POST_HIT_INVULNERABILITY=5.0;
 
-	const double ONY_ANIM_FALL_LOOP_TIME=0.75;
-	const double ONY_ANIM_FALL_END_TIME=1.5;
+	const double ONY_ANIM_FALL_LOOP_TIME=0.9;
+	const double ONY_ANIM_FALL_END_TIME=1.7;
 
 	//Name of the bone whose position to retrieve to attach  to Ony
 	const std::string ATTACH_BONE_NAME="LThumbRoot";
