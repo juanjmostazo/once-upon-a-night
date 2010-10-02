@@ -310,7 +310,7 @@ void GameObjectPlataform::setVisible(bool visible)
 
 void GameObjectPlataform::activateHit()
 {
-	/*mOnyOntoPlatform=!mOnyOntoPlatform;
+	mOnyOntoPlatform=!mOnyOntoPlatform;
 	
 	if(mLogicComponent->existsInDreams())
 	{
@@ -330,7 +330,7 @@ void GameObjectPlataform::activateHit()
 					mLogicComponent->existsInDreams(),
 					mLogicComponent->existsInNightmares());
 			}
-			//mRenderComponentEntityNightmares->setDreamsMaterials();
+			mRenderComponentEntityDreams->setDreamsMaterials();
 		}
 	}
 	if(mLogicComponent->existsInNightmares())
@@ -341,19 +341,19 @@ void GameObjectPlataform::activateHit()
 		{
 			if(mOnyOntoPlatform)
 			{
-				//mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_JUMP_NIGHTMARES,
-				//	mLogicComponent->existsInDreams(),
-				//	mLogicComponent->existsInNightmares());
+				mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_JUMP_NIGHTMARES,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
 			}
 			else
 			{
-				//mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_NORMAL_NIGHTMARES,
-				//	mLogicComponent->existsInDreams(),
-				//	mLogicComponent->existsInNightmares());
+				mRenderComponentEntityNightmares->setNewMaterial(PLATFORM_MATERIAL_1_NORMAL_NIGHTMARES,
+					mLogicComponent->existsInDreams(),
+					mLogicComponent->existsInNightmares());
 			}
 			mRenderComponentEntityNightmares->setNightmaresMaterials();
 		}
-	}*/
+	}
 
 }
 
