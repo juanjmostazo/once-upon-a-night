@@ -266,7 +266,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							:TRIPOLLO_ANIM_NM_IDLE1;
 						entity->changeAnimation(animationName);
 						
-						//mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_WINGS);
 						//Idle 1 can only come from idle, so there is no trajectory change
 					}
 				}
@@ -283,7 +283,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 						mTrajectoryComponent->activateIdle(getName(),world);
 						mLogicComponentEnemy->setSurpriseFinished(false);
 						mRenderComponentParticleSystemSurprise->start();
-						//mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
+						mAudioComponent->playSound(TRIPOLLO_SOUND_SURPRISE);
 					}
 				}
 				else if (currentState==logicSS->getGlobalInt(TRIPOLLO_STATE_PATROL))

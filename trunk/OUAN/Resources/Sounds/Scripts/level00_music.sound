@@ -25,7 +25,7 @@ sound NIGHTMARES00
 
 sound SUCCESS
 {
-	sound_file 	win.mp3
+	sound_file 	Music/victory.mp3
 	sound_type	music
 	3D			false
 	hardware	true

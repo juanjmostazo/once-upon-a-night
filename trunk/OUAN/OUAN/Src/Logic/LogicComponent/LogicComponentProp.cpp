@@ -75,7 +75,7 @@ void LogicComponentProp::processCollision(GameObjectPtr pGameObject, Ogre::Vecto
 		{
 			mParent->getGameWorldManager()->addExecutedLevelEvent(EVENT_FIRST_CHANGE_WORLD_ACTIVATED);
 		}
-		else if(mParent->getName().compare(TRIPOLLO_STATUES_CHANGE_WORLD_GAME_OBJECT)==0 && !mParent->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES))
+		else if(mParent->getName().compare(BOSS_STATUES_CHANGE_WORLD_GAME_OBJECT)==0 && !mParent->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_8_BOSS_STATUES))
 		{
 			mParent->getGameWorldManager()->launchCutScene("cutscenes_level2.lua","cutScene8");
 		}

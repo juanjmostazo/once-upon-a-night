@@ -258,7 +258,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 					}
 				}
 			}
-			//BUG WHEN TRIPOLLO FALLS
+			//BUG WHEN BOSS FALLS
 			//Logger::getInstance()->log("MAX DISTANCE "+Ogre::StringConverter::toString(Ogre::Real(max_distance)));
 
 			if(!evt->random_trees)
@@ -328,7 +328,7 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 					sendCollision=filterWeaponAttack(pillow->getPhysicsComponentWeapon(),evt->getGameObject1()->getName());
 			}
 			else if(evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0 
-				&& !evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
+				&& !evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0
 				&& !evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0
 				)
 			{
@@ -337,7 +337,7 @@ void EventProcessor::processCollision(CollisionEventPtr evt)
 					sendCollision=filterWeaponAttack(flashlight->getPhysicsComponentWeapon(),evt->getGameObject2()->getName());
 			}
 			else if(evt->getGameObject2()->getType().compare(GAME_OBJECT_TYPE_FLASHLIGHT)==0
-				&& !evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0
+				&& !evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0
 				&& !evt->getGameObject1()->getType().compare(GAME_OBJECT_TYPE_BOSS)==0
 				)
 			{

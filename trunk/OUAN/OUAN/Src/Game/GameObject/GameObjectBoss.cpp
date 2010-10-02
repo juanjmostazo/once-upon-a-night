@@ -233,6 +233,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 				mLogicComponentEnemy->setAlertFinished(false);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setHasBeenHit(false);
+				mAudioComponent->playSound(BOSS_SOUND_SURPRISE);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_TIRED))
 			{
@@ -247,6 +248,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setAttackFinished(false);
 				mLogicComponentEnemy->setHasBeenHit(false);
+				mAudioComponent->playSound(BOSS_SOUND_ATTACK);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_SP_ATTACK))
 			{
@@ -261,6 +263,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->setFlashLightHitFinished(false);
 				mLogicComponentEnemy->setHasBeenHit(false);
+				mAudioComponent->playSound(BOSS_SOUND_HIT);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_STUNNED))
 			{
@@ -281,6 +284,7 @@ void GameObjectBoss::update(double elapsedSeconds)
 				mLogicComponentEnemy->setHasBeenHit(false);
 				mTrajectoryComponent->activateIdle(getName(),world);
 				mLogicComponentEnemy->decreaseHP();
+				mAudioComponent->playSound(BOSS_SOUND_HIT);
 				updateHPEvents();
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_WARCRY))
@@ -288,12 +292,14 @@ void GameObjectBoss::update(double elapsedSeconds)
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_WARCRY);
 				mLogicComponentEnemy->setCallToArmsFinished(false);
 				mTrajectoryComponent->activateIdle(getName(),world);
+				mAudioComponent->playSound(BOSS_SOUND_CALL_TO_ARMS);
 			}
 			else if(currentState==logicSS->getGlobalInt(BOSS_STATE_DIE))
 			{
 				mRenderComponentParticleSystemDie->start();
 				mRenderComponentEntity->changeAnimation(BOSS_ANIMATION_DIE);
 				mTrajectoryComponent->activateIdle(getName(),world);
+				mAudioComponent->playSound(BOSS_SOUND_DIE);
 			}
 		}
 
@@ -369,6 +375,7 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	}
 	else if(animationName.compare(BOSS_ANIMATION_DIE)==0)
 	{
+		mAudioComponent->playSound(BOSS_SOUND_EXPLODE);
 		disable();
 	}
 }

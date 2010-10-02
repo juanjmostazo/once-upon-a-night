@@ -551,7 +551,7 @@ bool GameObject::isWorthUpdatingPhysicsComponents()
 
 	Ogre::Vector3 positionOny = Application::getInstance()->getGameWorldManager()->getGameObjectOnyPosition();
 
-	//if(mName.find("tripollo") != std::string::npos)
+	//if(mName.find("BOSS") != std::string::npos)
 	//{
 	//	Logger::getInstance()->log("##### " + mName + " #####");
 	//	Logger::getInstance()->log("getPosition: " + Ogre::StringConverter::toString(getPositionalComponent()->getPosition()));

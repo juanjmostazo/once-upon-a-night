@@ -54,6 +54,17 @@ namespace OUAN
 	const std::string BOSS_MATERIAL_BLUE = "boss_blue_d";
 	const std::string BOSS_MATERIAL_GREEN = "boss_green_d";
 
+	//sounds
+	const std::string BOSS_SOUND_HIT="tripollo_hit";
+	const std::string BOSS_SOUND_DIE="tripollo_die";
+	const std::string BOSS_SOUND_EXPLODE="tripollo_explosion";
+	const std::string BOSS_SOUND_SCRATCH="tripollo_scratch";
+	const std::string BOSS_SOUND_WINGS="tripollo_wings";
+	const std::string BOSS_SOUND_GRAZNIDO="tripollo_graznido";
+	const std::string BOSS_SOUND_ATTACK="tripollo_attack";
+	const std::string BOSS_SOUND_SURPRISE="tripollo_surprise";
+	const std::string BOSS_SOUND_CALL_TO_ARMS="tripollo_call_to_arms";
+
 	/// Class modelling a particular enemy type
 	class GameObjectBoss : public GameObject, public boost::enable_shared_from_this<GameObjectBoss>
 	{
