@@ -1,0 +1,161 @@
+import basic_texture from BasicTexture.material
+import alpha_test_texture from BasicTexture.material
+import default_changeworld_alpha_test from ChangeWorld.material
+
+material boss_red_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king.dds
+			}
+		}
+	}
+}
+
+material boss_green_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king.dds
+			}
+		}
+	}
+}
+
+material boss_blue_d : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king.dds
+			}
+		}
+	}
+}
+
+material boss_red_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king_red_n.dds
+			}
+		}
+	}
+}
+material boss_green_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king_green_n.dds
+			}
+		}
+	}
+}
+
+material boss_blue_n : alpha_test_texture
+{	
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+			texture_unit diffuse_texture
+			{
+				texture tripollo_king_blue_n.dds
+			}
+		}
+	}
+}
+
+material boss_red_cw : default_changeworld_alpha_test
+{
+	technique
+	{
+	        pass
+	        {
+		      cull_hardware none 
+		      cull_software none 
+
+		      texture_unit dreams
+		      {
+				texture tripollo_king.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_king_red_n.dds
+	              }
+		  }
+      }
+}
+
+material boss_green_cw : default_changeworld_alpha_test
+{
+	technique
+	{
+	      pass
+	      {
+		      cull_hardware none 
+		      cull_software none 
+
+		      texture_unit dreams
+		      {
+				texture tripollo_king.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_king_green_n.dds
+	              }
+	}	}
+}
+
+material boss_blue_cw : default_changeworld_alpha_test
+{
+	technique
+	{
+	      pass
+	      {
+		      cull_hardware none 
+		      cull_software none 
+
+
+		      texture_unit dreams
+		      {
+				texture tripollo_king.dds
+		      }
+		      texture_unit nightmares
+		      {
+				texture tripollo_king_blue_n.dds
+	            }
+		}
+	}
+}

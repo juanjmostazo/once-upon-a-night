@@ -96,6 +96,8 @@ namespace OUAN
 		void setChangeWorldMaterials();
 		void setChangeWorldFactor(double factor);
 
+		void setNewMaterial(std::string material,bool existInDreams,bool existInNightmares);
+
 		void applyTint(const Ogre::ColourValue& tintColour);
 		void removeTint();
 		void setTintFactor(double tintFactor);

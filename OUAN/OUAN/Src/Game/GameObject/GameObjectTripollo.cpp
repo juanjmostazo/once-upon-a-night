@@ -653,29 +653,22 @@ void GameObjectTripollo::setChangeWorldRender()
 	switch(mWorld)
 	{
 		case DREAMS:
-			if(mLogicComponentEnemy->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(true);
-				mRenderComponentEntityDreams->setChangeWorldMaterials();
-			}
-			if(mLogicComponentEnemy->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(false);
-			}	
 			break;
 		case NIGHTMARES:
-			if(mLogicComponentEnemy->existsInDreams())
-			{
-				mRenderComponentEntityDreams->setVisible(false);
-			}
-			if(mLogicComponentEnemy->existsInNightmares())
-			{
-				mRenderComponentEntityNightmares->setVisible(true);
-				mRenderComponentEntityNightmares->setChangeWorldMaterials();
-			}	
 			break;
 		default:break;
 	}
+
+	if(mLogicComponentEnemy->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityDreams->setChangeWorldMaterials();
+	}
+	if(mLogicComponentEnemy->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(true);
+		mRenderComponentEntityNightmares->setChangeWorldMaterials();
+	}	
 }
 
 void GameObjectTripollo::changeWorldFinished(int newWorld)
