@@ -19665,7 +19665,7 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="636097280" name="heartbag_n#11" typename="Entity Object" parentnode="items">
+  <OBJECT object_id="636097280" name="heartbag_n#111" typename="Entity Object" parentnode="items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
