@@ -158,7 +158,18 @@ namespace OUAN
 
 			void launchCutscene(const std::string& fileName, const std::string& function);
 
-			void saveGraphicsConfig(const std::string& newLanguage);
+			void saveSystemConfig(const std::string& newLanguage,
+				const std::string& newVideoMode,
+				const std::string& newFullscreen,
+				const std::string& newAntialiasing,
+				const std::string& newVSync,
+				bool newSkip);
+
+			std::string getCurrentResolution() const;
+			std::string getCurrentFullscreen() const;
+			std::string getCurrentAntialiasing() const;
+			std::string getCurrentVsync() const;
+			bool getCurrentSkip() const;
 
 		protected:
 

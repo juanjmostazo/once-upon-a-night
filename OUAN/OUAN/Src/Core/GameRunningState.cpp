@@ -1054,8 +1054,8 @@ bool GameRunningState::mayProceedToGameOver()
 	}
 	int channel=mMusicChannels[-1].channelId;
 	return isGameOver && 
-		(mApp->getGameWorldManager()->victoryAnimationEnded() && !mApp->getAudioSubsystem()->isMusicPlaying(channel)
-		|| toGameOverElapsed>=toGameOverTime);
+		(!mApp->getGameWorldManager()->isGameBeaten() || (mApp->getGameWorldManager()->victoryAnimationEnded() && !mApp->getAudioSubsystem()->isMusicPlaying(channel)
+		|| toGameOverElapsed>=toGameOverTime));
 }
 
 void GameRunningState::processStoryPartPicked(StorybookPartPickedEventPtr evt)

@@ -202,7 +202,6 @@ void GameObjectPillow::beginAttack()
 {
 	PillowAttackDataPtr attackData = BOOST_PTR_CAST(PillowAttackData,
 		mAttackComponent->getSelectedAttack());
-	std::stringstream textMsg("");
 
 	if (attackData.get() && attackData->comboDelay>0.0 && mLastAttackTime>0 && mLastAttackTime<=(attackData->cooldownDelay-attackData->comboDelay))
 	{
@@ -210,19 +209,7 @@ void GameObjectPillow::beginAttack()
 		//Logger::getInstance()->log("COMBO!!");
 		setAttack(attackData->nextComboAttack);
 		attackData=BOOST_PTR_CAST(PillowAttackData,mAttackComponent->getSelectedAttack());
-		textMsg<<"It's a COMBO! ";
-		GameObjectOnyPtr ony = mGameWorldManager->getGameObjectOny();
-		//ony->setCurrentAttackAnimation(attackData->animationName);
 
-	}
-
-	//Logger::getInstance()->log("AttackName: "+attackData->attackName);
-	textMsg<<attackData->attackName<<", "<<attackData->damage<<" HP";
-	displayText(textMsg.str());
-
-	if (!mRenderComponentEntity->getEntity()->isVisible())
-	{
-		//mRenderComponentEntity->getEntity()->setVisible(true);
 	}
 
 	if (mPhysicsComponentWeapon.get())

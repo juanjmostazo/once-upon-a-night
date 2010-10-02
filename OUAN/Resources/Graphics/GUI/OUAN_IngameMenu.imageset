@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Imageset Name="OUAN_IngameMenu" Imagefile="pause_options.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" >
+	<Image Name="signpost" XPos="0" YPos="0" Width="1024" Height="768" />
+</Imageset>

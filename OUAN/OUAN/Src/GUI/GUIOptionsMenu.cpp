@@ -18,13 +18,19 @@ void GUIOptionsMenu::initGUI(GameStatePtr parentGameState)
 	mCurrentlyEditedMapping="";
 	initTabs();
 	initControlsTab();
-	mParentGameState->getApp()->getAudioConfig(mCurrentAudioConfig);
+	app->getAudioConfig(mCurrentAudioConfig);
 	mNewAudioConfig=mCurrentAudioConfig;
 	initSoundTab();
+
+	mOldLanguage = mCurrentLanguage = app->getCurrentLanguage();
+	mOldFullscreen = mCurrentFullscreen = app->getCurrentFullscreen();
+	mOldResolution = mCurrentResolution = app->getCurrentResolution();
+	mOldAA = mCurrentAA = app->getCurrentAntialiasing();
+	mOldVSync= mCurrentVSync= app->getCurrentVsync();
+	mOldSkip= mCurrentSkip = app->getCurrentSkip();
 	initGraphicsTab();
 	setStrings();
 
-	mOldLanguage = mCurrentLanguage = mParentGameState->getApp()->getCurrentLanguage();	
 
 }
 void GUIOptionsMenu::initTabs()
@@ -137,7 +143,25 @@ void GUIOptionsMenu::initGraphicsTab()
 {
 	using namespace CEGUI;
 
-	initLanguageCombo();	
+	initLanguageCombo();
+	initResolutionCombo();	
+	initAAComboTexts();
+	
+	Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/FullscreenCheck");
+	if (check)
+	{
+		check->setSelected(mCurrentFullscreen.compare(OPTION_YES)==0);
+	}
+	
+	check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/SkipIntro");
+	if (check)
+		check->setSelected(mCurrentSkip);
+
+	check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/VSync");
+	if (check)
+		check->setSelected(mCurrentVSync.compare(OPTION_YES)==0);
+
+
 }
 
 void GUIOptionsMenu::initLanguageCombo()
@@ -302,6 +326,24 @@ void GUIOptionsMenu::bindEvents()
 	guiSS->bindEvent(CEGUI::PushButton::EventClicked,
 		"OUANOptions/Graphics/Reset",
 		CEGUI::Event::Subscriber(&GUIOptionsMenu::onCancelGraphics,this));
+
+	guiSS->bindEvent(CEGUI::Combobox::EventListSelectionAccepted,
+		"OUANOptions/Graphics/ResolutionSelector",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onResolutionSelectorChanged,this));
+	guiSS->bindEvent(CEGUI::Combobox::EventListSelectionAccepted,
+		"OUANOptions/Graphics/AntiAliasing",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onAASelectorChanged,this));	
+
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		"OUANOptions/Graphics/FullscreenCheck",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onFullscreenChange,this));
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		"OUANOptions/Graphics/VSync",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onVSyncChange,this));
+	guiSS->bindEvent(CEGUI::Checkbox::EventCheckStateChanged,
+		"OUANOptions/Graphics/SkipIntro",
+		CEGUI::Event::Subscriber(&GUIOptionsMenu::onSkipChange,this));
+
 
 }
 void GUIOptionsMenu::initTextButtons()
@@ -635,7 +677,13 @@ bool GUIOptionsMenu::onLanguageSelectorChanged(const CEGUI::EventArgs& args)
 bool GUIOptionsMenu::onApplyGraphics(const CEGUI::EventArgs& args)
 {
 	mOldLanguage=mCurrentLanguage;
-	mParentGameState->getApp()->saveGraphicsConfig(mCurrentLanguage);
+	mOldAA = mCurrentAA;
+	mOldFullscreen = mCurrentFullscreen;
+	mOldVSync = mCurrentVSync;
+	mOldSkip = mCurrentSkip;
+	mOldResolution = mCurrentResolution;
+	mParentGameState->getApp()->saveSystemConfig(mCurrentLanguage,
+		mCurrentResolution, mCurrentFullscreen, mCurrentAA, mCurrentVSync,mCurrentSkip);
 	return true;
 }
 bool GUIOptionsMenu::onCancelGraphics(const CEGUI::EventArgs& args)
@@ -645,6 +693,16 @@ bool GUIOptionsMenu::onCancelGraphics(const CEGUI::EventArgs& args)
 		mParentGameState->getApp()->changeCurrentLanguage(mOldLanguage);
 		changeLanguage(mOldLanguage);
 	}
+	if (mCurrentResolution.compare(mOldResolution))
+		mCurrentResolution=mOldResolution;
+	if (mCurrentFullscreen.compare(mOldFullscreen))
+		mCurrentFullscreen=mOldFullscreen;
+	if (mCurrentAA.compare(mOldAA))
+		mCurrentAA=mOldAA;
+	if (mCurrentVSync.compare(mOldVSync))
+		mCurrentVSync=mOldVSync;
+	if (mCurrentSkip!=mOldSkip)
+		mCurrentSkip=mOldSkip;
 	return true;
 }
 void GUIOptionsMenu::changeLanguage(const std::string& newLang)
@@ -732,4 +790,171 @@ void GUIOptionsMenu::setStrings()
 			}
 		}
 	}	 
+}
+
+void GUIOptionsMenu::changeAAComboTexts()
+{
+	using namespace CEGUI;
+	CEGUI::Combobox* combo=
+		(CEGUI::Combobox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/AntiAliasing");
+	std::string itemName=mCurrentAA;
+	std::string defaultValue=mAAMappings[itemName];
+	mButtonTextStrings->getOption(defaultValue,itemName);
+	combo->setText(itemName);
+
+	//HARDCODING FOR THE WIN ¬_¬U
+	mButtonTextStrings->getOption("OPTIONS_AA_NONE",itemName);
+	ListboxTextItem* lti = dynamic_cast<ListboxTextItem*>(combo->getListboxItemFromIndex(0));
+	if (lti)
+		lti->setText(itemName);
+
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL2",itemName);
+	lti = dynamic_cast<ListboxTextItem*>(combo->getListboxItemFromIndex(2));
+	if (lti)
+		lti->setText(itemName);
+
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL4",itemName);
+	lti = dynamic_cast<ListboxTextItem*>(combo->getListboxItemFromIndex(4));
+	if (lti)
+		lti->setText(itemName);
+
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL8",itemName);
+	lti = dynamic_cast<ListboxTextItem*>(combo->getListboxItemFromIndex(8));
+	if (lti)
+		lti->setText(itemName);
+}
+void GUIOptionsMenu::initAAComboTexts()
+{
+	mAAMappings.clear();
+	mAAMappings[AA_LEVEL_0]="OPTIONS_AA_NONE";
+	mAAMappings[AA_LEVEL_2]="OPTIONS_AA_LEVEL2";
+	mAAMappings[AA_LEVEL_4]="OPTIONS_AA_LEVEL4";
+	mAAMappings[AA_LEVEL_8]="OPTIONS_AA_LEVEL8";
+	
+	using namespace CEGUI;
+	
+	CEGUI::Combobox* combo=(CEGUI::Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/AntiAliasing");
+	std::string itemName;
+	std::string defaultValue;
+	mButtonTextStrings->getOption(mAAMappings[mCurrentAA],defaultValue);
+	combo->setText(defaultValue);
+
+	//HARDCODING FOR THE WIN ¬_¬U
+	mButtonTextStrings->getOption("OPTIONS_AA_NONE",itemName);
+	ListboxTextItem* lti = new ListboxTextItem(itemName,0);
+	lti->setSelected(itemName.compare(defaultValue)==0);
+	lti->setAutoDeleted(true);
+	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+	combo->addItem(lti);
+	itemName="";
+	
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL2",itemName);
+	lti = new ListboxTextItem(itemName,2);
+	lti->setSelected(itemName.compare(defaultValue)==0);
+	lti->setAutoDeleted(true);
+	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+	combo->addItem(lti);
+	itemName="";
+
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL4",itemName);
+	lti = new ListboxTextItem(itemName,4);
+	lti->setSelected(itemName.compare(defaultValue)==0);
+	lti->setAutoDeleted(true);
+	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+	combo->addItem(lti);
+	itemName="";
+
+	mButtonTextStrings->getOption("OPTIONS_AA_LEVEL8",itemName);
+	lti = new ListboxTextItem(itemName,8);
+	lti->setSelected(itemName.compare(defaultValue)==0);
+	lti->setAutoDeleted(true);
+	lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+	combo->addItem(lti);
+	itemName="";
+}
+void GUIOptionsMenu::initResolutionCombo()
+{
+	using namespace CEGUI;
+
+	CEGUI::Combobox* combo=(CEGUI::Combobox*)WindowManager::getSingletonPtr()->getWindow((utf8*)"OUANOptions/Graphics/ResolutionSelector");
+	int suffixIndex;
+	std::string defaultValue;
+	if ((suffixIndex=mCurrentResolution.find(RESOLUTION_SUFFIX))!=std::string::npos)
+	{
+		defaultValue=mCurrentResolution.substr(0,suffixIndex);
+	}
+	combo->setText(defaultValue);
+
+	ListboxTextItem* lti;
+	for (int i=0;i<AVAILABLE_RESOLUTIONS_LEN;i++)
+	{
+		lti = new ListboxTextItem(AVAILABLE_RESOLUTIONS[i],i);
+		lti->setSelected(defaultValue.compare(AVAILABLE_RESOLUTIONS[i])==0);
+		lti->setAutoDeleted(true);
+		lti->setTextColours(colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1),colour(0,0,0,1));
+		combo->addItem(lti);
+	}	
+}
+bool GUIOptionsMenu::onAASelectorChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Combobox* combo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingletonPtr()->
+		getWindow((CEGUI::utf8*)"OUANOptions/Graphics/AntiAliasing"));
+	if (combo)
+	{		
+		CEGUI::ListboxItem* selection = static_cast<CEGUI::ListboxItem*>(combo->getSelectedItem());
+		int currentAAValue=0;
+		if (selection)
+		{
+			currentAAValue = selection->getID();			
+		}
+		if (currentAAValue==0)
+			mCurrentAA=AA_LEVEL_0;
+		else 
+		{
+			std::stringstream currentAAStr;
+			currentAAStr<<"Level "<<currentAAValue;
+			mCurrentAA=currentAAStr.str();
+		}
+
+		return true;
+	}
+	return false;
+}
+bool GUIOptionsMenu::onResolutionSelectorChanged(const CEGUI::EventArgs& args)
+{
+	CEGUI::Combobox* combo = static_cast<CEGUI::Combobox*>(CEGUI::WindowManager::getSingletonPtr()->
+		getWindow((CEGUI::utf8*)"OUANOptions/Graphics/ResolutionSelector"));
+	if (combo)
+	{		
+		CEGUI::ListboxItem* selection = static_cast<CEGUI::ListboxItem*>(combo->getSelectedItem());
+		int currentVal=0;
+		if (selection)
+		{
+			currentVal = selection->getID();			
+			if (currentVal>=0 && currentVal<AVAILABLE_RESOLUTIONS_LEN)
+			{
+				mCurrentResolution=AVAILABLE_RESOLUTIONS[currentVal]+RESOLUTION_SUFFIX;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+bool GUIOptionsMenu::onFullscreenChange(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/FullscreenCheck");
+	mCurrentFullscreen=(check && check->isSelected())?OPTION_YES:OPTION_NO;
+	return true;
+}
+bool GUIOptionsMenu::onVSyncChange(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/VSync");
+	mCurrentVSync=(check && check->isSelected())?OPTION_YES:OPTION_NO;
+	return true;
+}
+bool GUIOptionsMenu::onSkipChange(const CEGUI::EventArgs& args)
+{
+	CEGUI::Checkbox* check = (CEGUI::Checkbox*)CEGUI::WindowManager::getSingletonPtr()->getWindow((CEGUI::utf8*)"OUANOptions/Graphics/SkipIntro");
+	mCurrentSkip=(check && check->isSelected());
+	return true;
 }

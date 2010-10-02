@@ -1127,14 +1127,14 @@ void RenderSubsystem::resetScene()
 
 void RenderSubsystem::captureScene(const std::string& name)
 {
-	Ogre::TexturePtr texture = Ogre::TextureManager::getSingleton().createManual("RttTex",
-		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, mWindow->getWidth(), mWindow->getHeight(), 0, PF_R8G8B8,
+	Ogre::TexturePtr texture = Ogre::TextureManager::getSingleton().createManual("wtf",
+		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, TEX_TYPE_2D, mWindow->getWidth(), mWindow->getHeight(), 0, Ogre::PF_R8G8B8A8,
 		TU_RENDERTARGET);
 	Ogre::RenderTexture *renderTexture = texture->getBuffer()->getRenderTarget();
 
 	renderTexture->addViewport(mApp->getCameraManager()->getCamera());
 	renderTexture->getViewport(0)->setClearEveryFrame(true);
-	renderTexture->getViewport(0)->setBackgroundColour(ColourValue::Black);
+	renderTexture->getViewport(0)->setBackgroundColour(Ogre::ColourValue(0,0,0,1));
 	renderTexture->getViewport(0)->setOverlaysEnabled(false);		
 	renderTexture->update();
 	renderTexture->writeContentsToFile(name);

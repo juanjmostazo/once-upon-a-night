@@ -521,12 +521,63 @@ ConfigurationPtr Application::getStoryTextStrings() const
 	return mStoryStrings;
 }
 
-void Application::saveGraphicsConfig(const std::string& newLanguage)
+void Application::saveSystemConfig(const std::string& newLanguage,
+								   const std::string& newVideoMode,
+								   const std::string& newFullscreen,
+								   const std::string& newAntialiasing,
+								   const std::string& newVSync,
+								   bool newSkip)
 {
 	if (!newLanguage.empty())
 	{
 		mConfiguration->setOption(CONFIG_KEYS_INITIAL_LANGUAGE,newLanguage);	
-		mConfiguration->saveToFile(OUAN_CONFIG_FILE);
 	}	
+	if (!newAntialiasing.empty())
+	{
+		mConfiguration->setOption(CONFIG_KEYS_AA,newAntialiasing);	
+	}
+	if (!newFullscreen.empty())
+	{
+		mConfiguration->setOption(CONFIG_KEYS_FULLSCREEN,newFullscreen);	
+	}
+	if (!newVSync.empty())
+	{
+		mConfiguration->setOption(CONFIG_KEYS_VSYNC,newVSync);	
+	}
+	if(!newVideoMode.empty())
+	{
+		mConfiguration->setOption(CONFIG_KEYS_RES,newVideoMode);	
+	}
+	mConfiguration->setOption(CONFIG_KEYS_SKIP_INTRO,newSkip?"true":"false");	
 
+	mConfiguration->saveToFile(OUAN_CONFIG_FILE);
+
+}
+std::string Application::getCurrentResolution() const
+{
+	std::string retVal="";
+	mConfiguration->getOption(CONFIG_KEYS_RES,retVal);
+	return retVal;
+}
+std::string Application::getCurrentFullscreen() const
+{
+	std::string retVal="";
+	mConfiguration->getOption(CONFIG_KEYS_FULLSCREEN,retVal);
+	return retVal;
+}
+std::string Application::getCurrentAntialiasing() const
+{
+	std::string retVal="";
+	mConfiguration->getOption(CONFIG_KEYS_AA,retVal);
+	return retVal;
+}
+std::string Application::getCurrentVsync() const
+{
+	std::string retVal="";
+	mConfiguration->getOption(CONFIG_KEYS_VSYNC,retVal);
+	return retVal;
+}
+bool Application::getCurrentSkip() const
+{
+	return mConfiguration->parseBool(CONFIG_KEYS_SKIP_INTRO);
 }

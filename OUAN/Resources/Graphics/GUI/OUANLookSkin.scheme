@@ -4,14 +4,21 @@
 	<Imageset Name="OUANLook-BG-NoLogo" Filename="OUANLook-nologo.imageset" />
 	<Imageset Name="OUANLook-Storybook" Filename="OUANLook-Storybook.imageset" />
 	<Imageset Name="OUANLook-BG-Logo" Filename="OUANLook-logo.imageset" />
+	<Imageset Name="OUAN_MainButtons" Filename="OUAN_MainButtons.imageset" />
+	<Imageset Name="OUAN_IngameMenu" Filename="OUAN_IngameMenu.imageset"/>
     <Font Name="BlueHighway-12" Filename="bluehighway-12.font" />
     <Font Name="BlueHighway-10" Filename="bluehighway-10.font" />
     <Font Name="BlueHighway-8" Filename="bluehighway-8.font" />
 	<Font Name="BlueHighway-9" Filename="bluehighway-9.font" />
 	<Font Name="Telerin-8" Filename="telerin-8.font" />
 	<Font Name="Telerin-10" Filename="telerin-10.font" />
+	<Font Name="OUANMain-80" Filename="OUANMain-80.font" />	
+	<Font Name="OUANMain-64" Filename="OUANMain-64.font" />		
+	<Font Name="OUANMain-48" Filename="OUANMain-48.font" />	
 	<LookNFeel Filename="OUANLook.looknfeel" />
+	<LookNFeel Filename="OUANMain.looknfeel" />	
 	<WindowRendererSet Filename="CEGUIFalagardWRBase" />
+	<FalagardMapping WindowType="OUANLook/GearButton" TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANMain/GearButton" />	
 	<FalagardMapping WindowType="OUANLook/Button"     		 TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANLook/Button" />
 	<FalagardMapping WindowType="OUANLook/Checkbox"    		TargetType="CEGUI/Checkbox"    Renderer="Falagard/ToggleButton" LookNFeel="OUANLook/Checkbox" />
 	<FalagardMapping WindowType="OUANLook/ToggleButton"    TargetType="CEGUI/RadioButton"    Renderer="Falagard/ToggleButton" LookNFeel="OUANLook/ToggleButton" />

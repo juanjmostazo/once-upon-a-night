@@ -24,3 +24,11 @@ OUAN
 	glyph x 0.54 0.52 0.7 0.732
 }
 
+OUAN_Main
+{
+	type 		truetype
+	source 		ouanmainfont.ttf
+	size 		128
+	resolution 	72
+}
+
