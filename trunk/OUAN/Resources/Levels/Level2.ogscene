@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="551.025 373.881 130.016" orientation="-0.625476 0.471527 -0.495203 -0.375786"></OPTION>
+    <OPTION id="2" position="339.303 1414.26 -2685.1" orientation="-0.821383 0.330759 0.431639 0.172091"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.625476 0.471527 -0.495203 -0.375786"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.82148 0.330798 0.43169 0.172111"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="551.025 373.881 130.016"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="339.303 1414.26 -2685.1"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1612,7 +1612,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-478.866 461.593 -2686.48"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-478.866 471.593 -2686.48"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -1650,7 +1650,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-692.751 486.441 -1597.34"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-692.751 496.441 -1597.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -5708,7 +5708,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="430.293 1227.63 -2797.25"></PROPERTY>
+    <PROPERTY id="position" type="9" value="430.293 1237.63 -2797.25"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_n"></PROPERTY>
@@ -5948,7 +5948,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="117.003 68.4172 -500.07"></PROPERTY>
+    <PROPERTY id="position" type="9" value="117.003 78.4172 -500.07"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -6794,7 +6794,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="117.003 68.4172 -500.07"></PROPERTY>
+    <PROPERTY id="position" type="9" value="117.003 78.4172 -500.07"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -7031,7 +7031,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-692.751 486.441 -1597.34"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-692.751 496.441 -1597.34"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -9931,21 +9931,21 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="799127168" name="changeworld_n#island1_waterfall" typename="Entity Object" parentnode="Items">
+  <OBJECT object_id="782189376" name="changeworld_n#island1_waterfall" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.997983 -0.0174199 0.00106544 -0.0610393"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-332.676 245.942 389.723"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.997774 0.0130443 -0.00116007 0.0653883"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-338.997 242.317 406.42"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="portal_rays_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="portal_n"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="portal_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity2::material" type="7" value="portal_floor_n"></PROPERTY>
+    <PROPERTY id="subentity2::material" type="7" value="portal_floor_d"></PROPERTY>
     <PROPERTY id="subentity2::visible" type="12" value="false"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="3"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -11516,7 +11516,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.997774 0.0130443 -0.00116007 0.0653883"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-338.997 232.317 406.42"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-338.997 242.317 406.42"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -12907,7 +12907,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99999 0 0 0.00436331"></PROPERTY>
-    <PROPERTY id="position" type="9" value="774.495 228.531 46.4786"></PROPERTY>
+    <PROPERTY id="position" type="9" value="774.495 238.531 46.4786"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_n"></PROPERTY>
@@ -15227,7 +15227,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-626.442 90.317 -731.881"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-626.442 100.317 -731.881"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -16084,6 +16084,23 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
+  <OBJECT object_id="636097280" name="heartbag_n#111" typename="Entity Object" parentnode="items">
+    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
+    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
+    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
+    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="heartbag.mesh"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="800 1222.99 -3020"></PROPERTY>
+    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="itemmaxhp_n"></PROPERTY>
+    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
+    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
+    <CUSTOMPROPERTIES>
+    </CUSTOMPROPERTIES>
+  </OBJECT>
+
   <OBJECT object_id="824671168" name="tree6_n#26" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -16757,7 +16774,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="767.038 224.455 21.0794"></PROPERTY>
+    <PROPERTY id="position" type="9" value="767.038 234.455 21.0794"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -17494,7 +17511,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="430.293 1227.63 -2797.25"></PROPERTY>
+    <PROPERTY id="position" type="9" value="430.293 1237.63 -2797.25"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
@@ -19665,23 +19682,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="636097280" name="heartbag_n#111" typename="Entity Object" parentnode="items">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="heartbag.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="800 1222.99 -3020"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="itemmaxhp_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="44373916" name="tripollo_n#satue3" typename="Entity Object" parentnode="Tripollos">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -20186,7 +20186,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-478.866 461.593 -2686.48"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-478.866 471.593 -2686.48"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_n"></PROPERTY>
@@ -20470,7 +20470,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="portal.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.993531 0.00719942 0.112471 0.013986"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-626.442 90.317 -731.881"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-626.442 100.317 -731.881"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="portal_rays_d"></PROPERTY>
