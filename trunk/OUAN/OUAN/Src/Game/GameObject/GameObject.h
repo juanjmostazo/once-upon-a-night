@@ -15,9 +15,9 @@ namespace OUAN
 	class GameObject
 	{
 	private:
-		/// GameObject identifier (i.e, "BOSS#14")
+		/// GameObject identifier (i.e, "tripollo#14")
 		std::string mName;
-		/// GameObject identifier (i.e. GameObjectBOSS)
+		/// GameObject identifier (i.e. GameObjectTripollo)
 		std::string mType;
 		/// GameObject attribute 
 		bool mEnabled;

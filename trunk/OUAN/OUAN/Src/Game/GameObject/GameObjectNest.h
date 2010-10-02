@@ -19,7 +19,7 @@ namespace OUAN
 	const std::string NEST_ANIM_HATCH="jump";
 
 	const std::string NEST_SOUND_NOTHING="nest_nothing";
-	const std::string NEST_SOUND_BOSS="nest_BOSS";
+	const std::string NEST_SOUND_TRIPOLLO="nest_tripollo";
 	const std::string NEST_SOUND_BREAK="nest_break";
 	const std::string NEST_SOUND_TOC_TOC="nest_toc_toc";
 

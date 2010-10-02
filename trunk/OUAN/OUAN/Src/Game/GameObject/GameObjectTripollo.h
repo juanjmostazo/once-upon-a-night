@@ -1,8 +1,8 @@
-#ifndef GameObjectBOSSH_H
-#define GameObjectBOSSH_H
+#ifndef GameObjectTripolloH_H
+#define GameObjectTripolloH_H
 
 #include "GameObject.h"
-#include "GameObjectBOSSDefs.h"
+#include "GameObjectTripolloDefs.h"
 #include "../../Graphics/RenderComponent/RenderComponentInitial.h"
 #include "../../Graphics/RenderComponent/RenderComponentPositional.h"
 #include "../../Graphics/RenderComponent/RenderComponentEntity.h"
@@ -18,7 +18,7 @@ namespace OUAN
 	const double MAX_TIME_DEATH_PARTICLE_SYSTEM = 3;
 
 	/// Class modelling a particular enemy type
-	class GameObjectBOSS : public GameObject, public boost::enable_shared_from_this<GameObjectBOSS>
+	class GameObjectTripollo : public GameObject, public boost::enable_shared_from_this<GameObjectTripollo>
 	{
 	private:
 		/// Visual component
@@ -54,7 +54,7 @@ namespace OUAN
 
 		bool activateTrajectory(int newWorld);
 
-		void checkBOSSPlataformPuzzleActivations();
+		void checkTripolloPlataformPuzzleActivations();
 
 		bool isHitAnimation(const std::string& animationName) const;
 		bool isDieAnimation(const std::string& animationName) const;
@@ -67,10 +67,10 @@ namespace OUAN
 		/// Constructor
 		/// @param name name of the game object, specific to this class
 		/// @param id unique id of the game object
-		GameObjectBOSS(const std::string& name);
+		GameObjectTripollo(const std::string& name);
 
 		//Destructor
-		~GameObjectBOSS();
+		~GameObjectTripollo();
 		/// Set logic component
 		void setLogicComponentEnemy(LogicComponentEnemyPtr logicComponentEnemy);
 
@@ -215,14 +215,14 @@ namespace OUAN
 	};
 	
 	/// Information data structure to carry around data between the
-	/// level loader and the "GameObjectBOSS"
-	class TGameObjectBOSSParameters: public TGameObjectParameters
+	/// level loader and the "GameObjectTripollo"
+	class TGameObjectTripolloParameters: public TGameObjectParameters
 	{
 	public:
 		/// Default constructor
-		TGameObjectBOSSParameters();
+		TGameObjectTripolloParameters();
 		/// Default destructor
-		~TGameObjectBOSSParameters();
+		~TGameObjectTripolloParameters();
 
 		///Parameters specific to an Ogre Entity
 		TRenderComponentEntityParameters tRenderComponentEntityDreamsParameters;

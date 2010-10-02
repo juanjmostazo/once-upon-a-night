@@ -107,7 +107,7 @@ namespace OUAN
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectTriggerCapsulePtr createGameObjectTriggerCapsule(TGameObjectTriggerCapsuleParameters tGameObjectTriggerCapsuleParameters, 
 			GameWorldManagerPtr gameWorldMgr);
-		GameObjectBOSSPtr createGameObjectBOSS(TGameObjectBOSSParameters tGameObjectBOSSParameters, 
+		GameObjectTripolloPtr createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters, 
 			GameWorldManagerPtr gameWorldMgr);
 		GameObjectViewportPtr createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters, 
 			GameWorldManagerPtr gameWorldMgr);

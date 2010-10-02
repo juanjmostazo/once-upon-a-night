@@ -49,7 +49,7 @@
 #include "GameObject/GameObjectTree.h"
 #include "GameObject/GameObjectTriggerBox.h"
 #include "GameObject/GameObjectTriggerCapsule.h"
-#include "GameObject/GameObjectBOSS.h"
+#include "GameObject/GameObjectTripollo.h"
 #include "GameObject/GameObjectViewport.h"
 #include "GameObject/GameObjectWoodBox.h"
 #include "GameObject/GameObjectWater.h"
@@ -1096,7 +1096,7 @@ GameObjectBossPtr GameObjectFactory::createGameObjectBoss(TGameObjectBossParamet
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOSS_DIE_BOSS;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_BOSS;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
@@ -3579,58 +3579,58 @@ GameObjectCameraTriggerPtr GameObjectFactory::createGameObjectCameraTrigger(TGam
 	return pGameObjectCameraTrigger;
 }
 
-GameObjectBOSSPtr GameObjectFactory::createGameObjectBOSS(TGameObjectBOSSParameters tGameObjectBOSSParameters, 
+GameObjectTripolloPtr GameObjectFactory::createGameObjectTripollo(TGameObjectTripolloParameters tGameObjectTripolloParameters, 
 	GameWorldManagerPtr gameWorldMgr)
 {
-	GameObjectBOSSPtr pGameObjectBOSS;
+	GameObjectTripolloPtr pGameObjectTripollo;
 
 	//Create GameObject
-	pGameObjectBOSS = GameObjectBOSSPtr(new GameObjectBOSS(tGameObjectBOSSParameters.name));
-	pGameObjectBOSS->setMaxUpdateRadium(tGameObjectBOSSParameters.mMaxUpdateRadium);
-	pGameObjectBOSS->setParentNest(tGameObjectBOSSParameters.parentNest);
-	pGameObjectBOSS->setSpawnProbability(tGameObjectBOSSParameters.spawnProbability);
-	pGameObjectBOSS->setMaxRenderRadium(tGameObjectBOSSParameters.mMaxRenderRadium);
+	pGameObjectTripollo = GameObjectTripolloPtr(new GameObjectTripollo(tGameObjectTripolloParameters.name));
+	pGameObjectTripollo->setMaxUpdateRadium(tGameObjectTripolloParameters.mMaxUpdateRadium);
+	pGameObjectTripollo->setParentNest(tGameObjectTripolloParameters.parentNest);
+	pGameObjectTripollo->setSpawnProbability(tGameObjectTripolloParameters.spawnProbability);
+	pGameObjectTripollo->setMaxRenderRadium(tGameObjectTripolloParameters.mMaxRenderRadium);
 
-	if (!tGameObjectBOSSParameters.parentNest.empty())
+	if (!tGameObjectTripolloParameters.parentNest.empty())
 	{
-		gameWorldMgr->addNestLink(pGameObjectBOSS->getName(),tGameObjectBOSSParameters.parentNest);
+		gameWorldMgr->addNestLink(pGameObjectTripollo->getName(),tGameObjectTripolloParameters.parentNest);
 	}
 
 	//Create LogicComponent
-	pGameObjectBOSS->setLogicComponentEnemy(
-		mComponentFactory->createLogicComponentEnemy(pGameObjectBOSS,
-		tGameObjectBOSSParameters.tLogicComponentEnemyParameters));
+	pGameObjectTripollo->setLogicComponentEnemy(
+		mComponentFactory->createLogicComponentEnemy(pGameObjectTripollo,
+		tGameObjectTripolloParameters.tLogicComponentEnemyParameters));
 
 	//Create RenderComponentPositional
-	pGameObjectBOSS->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
-		pGameObjectBOSS,tGameObjectBOSSParameters.tRenderComponentPositionalParameters));
+	pGameObjectTripollo->setRenderComponentPositional(mComponentFactory->createRenderComponentPositional(
+		pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentPositionalParameters));
 
-	//TODO ERASE THIS WHEN BOSS IS PROPERLY SCALED
-	pGameObjectBOSS->getRenderComponentPositional()->setScale(
-		tGameObjectBOSSParameters.tPhysicsComponentCharacterParameters.scale_correction);
+	//TODO ERASE THIS WHEN TRIPOLLO IS PROPERLY SCALED
+	pGameObjectTripollo->getRenderComponentPositional()->setScale(
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters.scale_correction);
 
 	//Create RenderComponentInitial
-	pGameObjectBOSS->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
-		pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentInitial(mComponentFactory->createRenderComponentInitial(
+		pGameObjectTripollo->getRenderComponentPositional()));
 	
-	bool existsInDreams = pGameObjectBOSS->getLogicComponentEnemy()->existsInDreams();
-	bool existsInNightmares = pGameObjectBOSS->getLogicComponentEnemy()->existsInNightmares();
+	bool existsInDreams = pGameObjectTripollo->getLogicComponentEnemy()->existsInDreams();
+	bool existsInNightmares = pGameObjectTripollo->getLogicComponentEnemy()->existsInNightmares();
 
 	TInitialAnimationType initialAnimation;
 	
 	if(existsInDreams)
 	{
 		initialAnimation=INIT_ANIMATION_DEFAULT;
-		bool isStatueBOSS = tGameObjectBOSSParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_STATUE;
-		if(isStatueBOSS)
+		bool isStatueTripollo = tGameObjectTripolloParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_STATUE;
+		if(isStatueTripollo)
 		{
 			initialAnimation=INIT_ANIMATION_ALT3;
 		}
 
 		//Create RenderComponentEntityDreams
-		pGameObjectBOSS->setRenderComponentEntityDreams(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBOSSParameters.dreamsName,
-			pGameObjectBOSS,tGameObjectBOSSParameters.tRenderComponentEntityDreamsParameters,
+		pGameObjectTripollo->setRenderComponentEntityDreams(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.dreamsName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters,
 		existsInDreams,
 		existsInNightmares,
 		initialAnimation));
@@ -3639,16 +3639,16 @@ GameObjectBOSSPtr GameObjectFactory::createGameObjectBOSS(TGameObjectBOSSParamet
 	if (existsInNightmares)
 	{
 		initialAnimation=INIT_ANIMATION_ALT;
-		bool isFlyingBOSS = tGameObjectBOSSParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_FLYING;
-		if(isFlyingBOSS)
+		bool isFlyingTripollo = tGameObjectTripolloParameters.tLogicComponentEnemyParameters.enemyType==ENEMY_TYPE_FLYING;
+		if(isFlyingTripollo)
 		{
 			initialAnimation=INIT_ANIMATION_ALT2;
 		}
 
 		//Create RenderComponentEntityNightmares
-		pGameObjectBOSS->setRenderComponentEntityNightmares(
-			mComponentFactory->createRenderComponentEntity(tGameObjectBOSSParameters.nightmaresName,
-			pGameObjectBOSS,tGameObjectBOSSParameters.tRenderComponentEntityNightmaresParameters,
+		pGameObjectTripollo->setRenderComponentEntityNightmares(
+			mComponentFactory->createRenderComponentEntity(tGameObjectTripolloParameters.nightmaresName,
+			pGameObjectTripollo,tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters,
 		existsInDreams,
 		existsInNightmares,
 		initialAnimation));
@@ -3656,75 +3656,75 @@ GameObjectBOSSPtr GameObjectFactory::createGameObjectBOSS(TGameObjectBOSSParamet
 
 	//Create RenderComponenetParticleSystem
 	TRenderComponentParticleSystemParameters tRenderComponentParticleSystemParameters;
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOSS_DIE_DREAMS;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_DREAMS;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectBOSS->setRenderComponentParticleSystemDieDreams(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectBOSS,tRenderComponentParticleSystemParameters,pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentParticleSystemDieDreams(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOSS_DIE_NIGHTMARES;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_DIE_NIGHTMARES;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectBOSS->setRenderComponentParticleSystemDieNightmares(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectBOSS,tRenderComponentParticleSystemParameters,pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentParticleSystemDieNightmares(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
 
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOSS_SHOCK;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SHOCK;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectBOSS->setRenderComponentParticleSystemShock(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectBOSS,tRenderComponentParticleSystemParameters,pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentParticleSystemShock(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
-	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->BOSS_SURPRISE;
+	tRenderComponentParticleSystemParameters.templateName = ParticleTemplates::getInstance()->TRIPOLLO_SURPRISE;
 	tRenderComponentParticleSystemParameters.attached = true;
 	tRenderComponentParticleSystemParameters.poolSize = ParticleTemplates::getInstance()->DEFAULT_PARTICLE_SYSTEM_POOL_SIZE;
 	tRenderComponentParticleSystemParameters.queueID = Ogre::RENDER_QUEUE_MAIN;
-	pGameObjectBOSS->setRenderComponentParticleSystemSurprise(mComponentFactory->createRenderComponentParticleSystem(
-		pGameObjectBOSS,tRenderComponentParticleSystemParameters,pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setRenderComponentParticleSystemSurprise(mComponentFactory->createRenderComponentParticleSystem(
+		pGameObjectTripollo,tRenderComponentParticleSystemParameters,pGameObjectTripollo->getRenderComponentPositional()));
 
 	//Create PhysicsComponent
-	pGameObjectBOSS->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
-		pGameObjectBOSS,
-		tGameObjectBOSSParameters.tPhysicsComponentCharacterParameters,
-		pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setPhysicsComponentCharacter(mComponentFactory->createPhysicsComponentCharacter(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters,
+		pGameObjectTripollo->getRenderComponentPositional()));
 
-	pGameObjectBOSS->setPhysicsComponentWeapon(mComponentFactory->createPhysicsComponentWeapon(
-		pGameObjectBOSS,
-		tGameObjectBOSSParameters.tPhysicsComponentWeaponParameters,
-		pGameObjectBOSS->getRenderComponentPositional()));
+	pGameObjectTripollo->setPhysicsComponentWeapon(mComponentFactory->createPhysicsComponentWeapon(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tPhysicsComponentWeaponParameters,
+		pGameObjectTripollo->getRenderComponentPositional()));
 
 	//Create TrajectoryComponent
-	pGameObjectBOSS->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
-		pGameObjectBOSS,
-		tGameObjectBOSSParameters.tTrajectoryComponentParameters));
+	pGameObjectTripollo->setTrajectoryComponent(mComponentFactory->createTrajectoryComponent(
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tTrajectoryComponentParameters));
 
-	pGameObjectBOSS->setAttackComponent(
+	pGameObjectTripollo->setAttackComponent(
 		mComponentFactory->createAttackComponent(
-		pGameObjectBOSS,
-		tGameObjectBOSSParameters.tAttackComponentParameters));
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tAttackComponentParameters));
 
 	// Create audio component
-	pGameObjectBOSS->setAudioComponent(
+	pGameObjectTripollo->setAudioComponent(
 		mComponentFactory->createAudioComponent(
-		pGameObjectBOSS,
-		tGameObjectBOSSParameters.tAudioComponentParameters
+		pGameObjectTripollo,
+		tGameObjectTripolloParameters.tAudioComponentParameters
 		,gameWorldMgr->getParent()->getAudioSubsystem()));
 
 	// Add a reference to this
-	pGameObjectBOSS->setGameWorldManager(gameWorldMgr);
+	pGameObjectTripollo->setGameWorldManager(gameWorldMgr);
 
-	pGameObjectBOSS->activateFlying(pGameObjectBOSS->getLogicComponentEnemy()->getEnemyType()==ENEMY_TYPE_FLYING);
+	pGameObjectTripollo->activateFlying(pGameObjectTripollo->getLogicComponentEnemy()->getEnemyType()==ENEMY_TYPE_FLYING);
 
 	std::string scriptFile="";
-	pGameObjectBOSS->getLogicScriptFile(scriptFile);
+	pGameObjectTripollo->getLogicScriptFile(scriptFile);
 	if (!scriptFile.empty())
 	{
 		gameWorldMgr->getParent()->getLogicSubsystem()->addScriptFile(scriptFile);
 	}
-	return pGameObjectBOSS;
+	return pGameObjectTripollo;
 }
 
 GameObjectViewportPtr GameObjectFactory::createGameObjectViewport(TGameObjectViewportParameters tGameObjectViewportParameters, 

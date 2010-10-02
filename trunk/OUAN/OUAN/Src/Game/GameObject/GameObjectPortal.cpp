@@ -260,7 +260,7 @@ void GameObjectPortal::reset()
 	mRotY=0;
 
 	if(getName().compare("changeworld#platform_big")!=0 || 
-		!(getGameWorldManager()->hasExecutedLevelEvent(BOSS_PLATFORM_PUZZLE_END)))
+		!(getGameWorldManager()->hasExecutedLevelEvent(TRIPOLLO_PLATFORM_PUZZLE_END)))
 	{
 		mPhysicsComponentSimpleBox->setPosition(mRenderComponentInitial->getPosition());
 	}

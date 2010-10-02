@@ -76,11 +76,11 @@ bool ParticleTemplates::loadConfig()
 		config.getOption("BOX_DUST", BOX_DUST); 
 		config.getOption("BOMB_EXPLOSION", BOMB_EXPLOSION); 
 
-		config.getOption("BOSS_DIE_DREAMS", BOSS_DIE_DREAMS); 
-		config.getOption("BOSS_DIE_NIGHTMARES", BOSS_DIE_NIGHTMARES);
-		config.getOption("BOSS_DIE_BOSS", BOSS_DIE_BOSS);
-		config.getOption("BOSS_SHOCK", BOSS_SHOCK); 
-		config.getOption("BOSS_SURPRISE", BOSS_SURPRISE); 
+		config.getOption("TRIPOLLO_DIE_DREAMS", TRIPOLLO_DIE_DREAMS); 
+		config.getOption("TRIPOLLO_DIE_NIGHTMARES", TRIPOLLO_DIE_NIGHTMARES);
+		config.getOption("TRIPOLLO_DIE_BOSS", TRIPOLLO_DIE_BOSS);
+		config.getOption("TRIPOLLO_SHOCK", TRIPOLLO_SHOCK); 
+		config.getOption("TRIPOLLO_SURPRISE", TRIPOLLO_SURPRISE); 
 
 		config.getOption("NEST_BREAK", NEST_BREAK); 
 		config.getOption("NEST_JUMP", NEST_JUMP); 

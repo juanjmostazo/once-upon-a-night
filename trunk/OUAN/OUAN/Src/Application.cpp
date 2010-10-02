@@ -28,7 +28,7 @@
 
 #include "Audio/AudioSubsystem.h"
 
-#include "Game/GameObject/GameObjectBOSS.h"
+#include "Game/GameObject/GameObjectTripollo.h"
 #include "Graphics/RenderComponent/RenderComponentPositional.h"
 
 #include "Utils/Utils.h"

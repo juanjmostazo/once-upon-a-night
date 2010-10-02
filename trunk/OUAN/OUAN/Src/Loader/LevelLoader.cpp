@@ -59,7 +59,7 @@
 #include "../Game/GameObject/GameObjectTriggerBox.h"
 #include "../Game/GameObject/GameObjectTriggerCapsule.h"
 #include "../Game/GameObject/GameObjectCameraTrigger.h"
-#include "../Game/GameObject/GameObjectBOSS.h"
+#include "../Game/GameObject/GameObjectTripollo.h"
 #include "../Game/GameObject/GameObjectTower.h"
 #include "../Game/GameObject/GameObjectViewport.h"
 #include "../Game/GameObject/GameObjectWoodBox.h"
@@ -219,9 +219,9 @@ void LevelLoader::processGameObject(XMLGameObject* gameObject)
 		{
 			processGameObjectViewport(gameObject);
 		}
-		else if( gameObjectType.compare(GAME_OBJECT_TYPE_BOSS)==0)
+		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
 		{
-			processGameObjectBOSS(gameObject);
+			processGameObjectTripollo(gameObject);
 		}
 		else if( gameObjectType.compare(GAME_OBJECT_TYPE_TERRAIN)==0)
 		{
@@ -2914,13 +2914,13 @@ void LevelLoader::processGameObjectCameraTrigger(XMLGameObject* gameObject)
 	mGameWorldManager->addGameObjectCameraTrigger(mGameObjectFactory->createGameObjectCameraTrigger(tGameObjectCameraTriggerParameters,mGameWorldManager));
 }
 
-void LevelLoader::processGameObjectBOSS(XMLGameObject* gameObject)
+void LevelLoader::processGameObjectTripollo(XMLGameObject* gameObject)
 {
-	OUAN::TGameObjectBOSSParameters tGameObjectBOSSParameters;
-	tGameObjectBOSSParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
-	tGameObjectBOSSParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
-	tGameObjectBOSSParameters.parentNest = processCustomAttributeParentNest(gameObject);
-	tGameObjectBOSSParameters.spawnProbability= processCustomAttributeSpawnProbability(gameObject);
+	OUAN::TGameObjectTripolloParameters tGameObjectTripolloParameters;
+	tGameObjectTripolloParameters.mMaxUpdateRadium = processCustomAttributeMaxUpdateRadium(gameObject);
+	tGameObjectTripolloParameters.mMaxRenderRadium = processCustomAttributeMaxRenderRadium(gameObject);
+	tGameObjectTripolloParameters.parentNest = processCustomAttributeParentNest(gameObject);
+	tGameObjectTripolloParameters.spawnProbability= processCustomAttributeSpawnProbability(gameObject);
 
 	try
 	{
@@ -2928,38 +2928,38 @@ void LevelLoader::processGameObjectBOSS(XMLGameObject* gameObject)
 		if(!gameObject->XMLNodeCustomProperties) throw CUSTOM_PROPERTIES_NODE_NOT_FOUND;
 
 		//Get names
-		tGameObjectBOSSParameters.dreamsName = gameObject->dreamsName;
-		tGameObjectBOSSParameters.nightmaresName = gameObject->nightmaresName;
-		tGameObjectBOSSParameters.name = gameObject->name;
+		tGameObjectTripolloParameters.dreamsName = gameObject->dreamsName;
+		tGameObjectTripolloParameters.nightmaresName = gameObject->nightmaresName;
+		tGameObjectTripolloParameters.name = gameObject->name;
 
 		//Get Logic component
-		tGameObjectBOSSParameters.tLogicComponentEnemyParameters=processLogicComponentEnemy(gameObject->XMLNodeDreams,
+		tGameObjectTripolloParameters.tLogicComponentEnemyParameters=processLogicComponentEnemy(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);
 
-		if(tGameObjectBOSSParameters.tLogicComponentEnemyParameters.existsInDreams)
+		if(tGameObjectTripolloParameters.tLogicComponentEnemyParameters.existsInDreams)
 		{
 			//Get RenderComponentEntityDreams
-			tGameObjectBOSSParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,						DREAMS, gameObject->XMLNodeCustomProperties);
+			tGameObjectTripolloParameters.tRenderComponentEntityDreamsParameters=processRenderComponentEntity(gameObject->XMLNodeDreams,						DREAMS, gameObject->XMLNodeCustomProperties);
 		}
-		if(tGameObjectBOSSParameters.tLogicComponentEnemyParameters.existsInNightmares)
+		if(tGameObjectTripolloParameters.tLogicComponentEnemyParameters.existsInNightmares)
 		{
 			//Get RenderComponentEntityNightmares
-			tGameObjectBOSSParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
+			tGameObjectTripolloParameters.tRenderComponentEntityNightmaresParameters=processRenderComponentEntity(gameObject->XMLNodeNightmares, NIGHTMARES, gameObject->XMLNodeCustomProperties);
 		}
 
 		//Get RenderComponentPositional
-		tGameObjectBOSSParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
+		tGameObjectTripolloParameters.tRenderComponentPositionalParameters=processRenderComponentPositional(gameObject->getMainXMLNode());
 
 		//Get PhysicsComponentCharacter
-		tGameObjectBOSSParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
-		tGameObjectBOSSParameters.tPhysicsComponentWeaponParameters =  processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tPhysicsComponentCharacterParameters =  processPhysicsComponentCharacter(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tPhysicsComponentWeaponParameters =  processPhysicsComponentWeapon(gameObject->XMLNodeCustomProperties);
 
-		tGameObjectBOSSParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tAttackComponentParameters = processAttackComponent(gameObject->XMLNodeCustomProperties);
 
-		tGameObjectBOSSParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tAudioComponentParameters = processAudioComponent(gameObject->XMLNodeCustomProperties);
 
 		//Get Trajectory Component
-		tGameObjectBOSSParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
+		tGameObjectTripolloParameters.tTrajectoryComponentParameters=processTrajectoryComponent(gameObject->XMLNodeCustomProperties);
 
 	}
 	catch( std::string error )
@@ -2969,8 +2969,8 @@ void LevelLoader::processGameObjectBOSS(XMLGameObject* gameObject)
 	}
 
 	//Create GameObject
-	//mGameWorldManager->createGameObjectBOSS(tGameObjectBOSSParameters);
-	mGameWorldManager->addGameObjectBOSS(mGameObjectFactory->createGameObjectBOSS(tGameObjectBOSSParameters,mGameWorldManager));
+	//mGameWorldManager->createGameObjectTripollo(tGameObjectTripolloParameters);
+	mGameWorldManager->addGameObjectTripollo(mGameObjectFactory->createGameObjectTripollo(tGameObjectTripolloParameters,mGameWorldManager));
 }
 
 void LevelLoader::processGameObjectViewport(XMLGameObject* gameObject)
