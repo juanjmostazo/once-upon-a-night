@@ -21,14 +21,16 @@ GameObjectClockPiece::~GameObjectClockPiece()
 void GameObjectClockPiece::makeAppear(Ogre::Vector3 position)
 {
 	mRenderComponentEntity->setVisible(true);
-	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
-		mPhysicsComponentVolumeBox->create();		
 
-	mPhysicsComponentVolumeBox->getSceneNode()->setPosition(position);
-	mRenderComponentPositional->setPosition(position);
-
-	//mRenderComponentGlow->setVisible(true);
 	mLogicComponentItem->setState(STATE_ITEM_NOT_TAKEN);
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentGlow->setVisible(false);
+
+	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->create();	
+
+	mPhysicsComponentVolumeBox->setPosition(position);
+	mRenderComponentPositional->setPosition(position);
 }
 
 RenderComponentEntityPtr GameObjectClockPiece::getRenderComponentEntity() const
@@ -254,8 +256,8 @@ void GameObjectClockPiece::reset()
 	mLogicComponentItem->setState(STATE_ITEM_TAKEN);
 	mRenderComponentEntity->setVisible(false);
 	mRenderComponentGlow->setVisible(false);
-	if (mPhysicsComponentVolumeBox.get() && mPhysicsComponentVolumeBox->isInUse())
-		mPhysicsComponentVolumeBox->destroy();		
+	if (mPhysicsComponentVolumeBox.get() && !mPhysicsComponentVolumeBox->isInUse())
+		mPhysicsComponentVolumeBox->create();		
 }
 
 bool GameObjectClockPiece::hasPositionalComponent() const
@@ -380,7 +382,7 @@ LogicComponentPtr GameObjectClockPiece::getLogicComponent() const
 void GameObjectClockPiece::startCollisionEffects()
 {
 	mRenderComponentParticleSystemStarsCloud->start();
-
+	Logger::getInstance()->log("CLOCKPIECETAKEN");
 }
 
 TGameObjectClockPieceParameters::TGameObjectClockPieceParameters() : TGameObjectParameters()
