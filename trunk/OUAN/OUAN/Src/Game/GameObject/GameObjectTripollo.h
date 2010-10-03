@@ -62,6 +62,8 @@ namespace OUAN
 		bool isFalseAlarmAnimation(const std::string& animationName) const;
 		bool isSurpriseAnimation(const std::string& animationName) const;
 		bool isTiredAnimation(const std::string& animationName) const;
+		bool isAttackAnimation(const std::string& animationName) const;
+		bool isCallToArmsAnimation(const std::string& animationName) const;
 
 	public:
 		/// Constructor
