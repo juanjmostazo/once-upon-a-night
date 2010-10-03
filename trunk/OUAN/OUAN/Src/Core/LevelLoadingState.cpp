@@ -70,6 +70,18 @@ void LevelLoadingState::init(ApplicationPtr app)
 	mApp->getGameWorldManager()->unloadLevel();
 	//mApp->getGameWorldManager()->setWorld(DREAMS);
 	Utils::TTexturedRectangleDesc desc;
+
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=LEVELLOAD_BG_MATERIAL_NAME;
+	desc.materialGroup=LEVELLOAD_GROUP;
+	desc.textureName=LEVELLOAD_BG_IMG;
+	desc.sceneNodeName=LEVELLOAD_BG_NODE;
+
+	Utils::createTexturedRectangle(desc,mBg,mApp->getRenderSubsystem());
+
 	desc.leftCorner=desc.bottomCorner=-1.0;
 	desc.rightCorner=desc.topCorner=1.0;
 	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
@@ -78,13 +90,30 @@ void LevelLoadingState::init(ApplicationPtr app)
 	desc.materialGroup=LEVELLOAD_GROUP;
 	desc.textureName=LEVELLOAD_IMG;
 	desc.sceneNodeName=LEVELLOAD_SCREENNODE;
+	desc.textureAnimation=true;
+	desc.texAnimNumFrames=39;
+	desc.texAnimDuration=1;
 
 	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
-	leftCorner=-0.8;
-	topCorner=-0.4;
-	rightCorner=0.8;
-	bottomCorner=-0.6;
+	desc.textureAnimation=false;
+	desc.leftCorner=-0.88;
+	desc.rightCorner=0.88;
+	desc.topCorner=-0.31;
+	desc.bottomCorner=-0.7;
+	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=LEVELLOAD_BARBG_MATERIAL_NAME;
+	desc.materialGroup=LEVELLOAD_GROUP;
+	desc.textureName=LEVELLOAD_BARBG_IMG;
+	desc.sceneNodeName=LEVELLOAD_BARBG_NODE;
+	desc.alphaBlending=true;
+	Utils::createTexturedRectangle(desc,mBarBg,mApp->getRenderSubsystem());
+
+	leftCorner=-0.80;
+	topCorner=-0.43;
+	rightCorner=0.80;
+	bottomCorner=-0.57;
 	currentRightCorner=-0.79;
 
 	currentStage=0;
@@ -116,6 +145,8 @@ void LevelLoadingState::cleanUp()
 
 	Utils::destroyTexturedRectangle(mScreen,LEVELLOAD_MATERIAL_NAME,mApp->getRenderSubsystem());
 	Utils::destroyTexturedRectangle(mBar,LEVELLOAD_BAR_MATERIAL_NAME,mApp->getRenderSubsystem());
+	Utils::destroyTexturedRectangle(mBarBg,LEVELLOAD_BARBG_MATERIAL_NAME,mApp->getRenderSubsystem());
+	Utils::destroyTexturedRectangle(mBg,LEVELLOAD_BG_MATERIAL_NAME,mApp->getRenderSubsystem());
 }
 
 /// pause state

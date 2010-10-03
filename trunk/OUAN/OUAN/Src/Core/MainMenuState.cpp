@@ -90,6 +90,7 @@ void MainMenuState::pause()
 	//mApp->getGUISubsystem()->hideGUI();
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
+	Utils::destroyTexturedRectangle(mScreen,MAINMENU_MATERIAL_NAME,mApp->getRenderSubsystem());
 
 }
 /// resume state
@@ -106,6 +107,17 @@ void MainMenuState::resume()
 		mApp->getAudioSubsystem()->load("CLICK",AUDIO_RESOURCES_GROUP_NAME);
 	if (!mApp->getAudioSubsystem()->isMusicPlaying(mMusicChannel))
 		mApp->getAudioSubsystem()->playMusic("MUSIC",mMusicChannel,true);
+
+	Utils::TTexturedRectangleDesc desc;
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=MAINMENU_MATERIAL_NAME;
+	desc.materialGroup=MAINMENU_GROUP;
+	desc.textureName=MAINMENU_IMG;
+	desc.sceneNodeName=MAINMENU_SCREENNODE;
+	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 }
 
 /// process input events

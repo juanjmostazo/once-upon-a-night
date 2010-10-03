@@ -49,7 +49,7 @@
 		  </Area>
 
 		  <Image imageset="OUAN_MainButtons" image="gear_mouseover" />
-		  <VertFormat type="Stretched" />
+		  <VertFormat type="CentreAligned" />
 		  <HorzFormat type="LeftAligned" />
 
 		</ImageryComponent>
@@ -103,7 +103,7 @@
 		<Layer>
 			<Section section="label">
 			  <Colours
-				topLeft="FF52420b"
+				topLeft="FFffffff"
 				topRight="FF52420b"
 				bottomLeft="FF52420b"
 				bottomRight="FF52420b"

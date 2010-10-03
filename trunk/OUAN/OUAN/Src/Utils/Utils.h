@@ -83,11 +83,15 @@ namespace OUAN
 			bool textureAnimation;
 			int texAnimNumFrames;
 			double texAnimDuration;
+
+			bool alphaBlending;
 			
 
 			TTexturedRectangleDesc()
 				:alphaRejection(false)
 				,depthWrite(false)
+				,textureAnimation(false)
+				,alphaBlending(false)
 			{
 
 			}
@@ -98,6 +102,10 @@ namespace OUAN
 		void destroyTexturedRectangle (Ogre::Rectangle2D*&, const std::string& materialName, RenderSubsystemPtr renderSs);
 
 		Ogre::UTFString convertToUTF(const Ogre::String& str);
+
+		void updateTexturedRectangleAnimation(Ogre::Rectangle2D*&, const std::string& materialName, bool& lastFrame, bool reverseOrder=false);
+		void startTexturedRectangle(Ogre::Rectangle2D*&, bool& lastFrame, bool reverseOrder=false);
+		void startTexturedRectangleAnimation(Ogre::Rectangle2D*&, bool& lastFrame, bool reverseOrder=false);
 	}
 
 }
