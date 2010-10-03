@@ -1,100 +1,36 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
-import AlphaSplatTerrain from alpha_splatting.material
-import basic_shadow_reciever from "BasicTexture.material"
-import default_changeworld_shadow_reciever from ChangeWorld.material
-import alpha_splat_rim_shadow_reciever from alpha_splatting.material
-import alpha_splat_rim_cw_shadow_reciever from alpha_splatting.material
+import terrain_texture from BasicTexture.material
+import terrain_changeworld from ChangeWorld.material
+
 //TERRAIN1 01
-material terrain1_01_d : alpha_splat_rim_shadow_reciever
-{	
-    set_texture_alias alpha_map     alpha_splat_0.dds
-    set_texture_alias splat_0        grass_tileable.dds
-    set_texture_alias splat_1        suelo_tileable.dds
-    set_texture_alias splat_2        sand1.jpg
-    set_texture_alias splat_3        rock2.jpg
+material terrain1_01_d : terrain_texture
+{
+	set_texture_alias diffuse_texture terrain01_d.dds
 }
 
-material terrain1_01_n : alpha_splat_rim_shadow_reciever
+material terrain1_01_n : terrain_texture
 {
-    set_texture_alias alpha_map     alpha_splat_1.dds
-    set_texture_alias splat_0        grass_tileable.dds
-    set_texture_alias splat_1        suelo_tileable.dds
-    set_texture_alias splat_2        grass_tileable.dds
-    set_texture_alias splat_3        rock2.jpg
+	set_texture_alias diffuse_texture terrain01_n.dds
 }
 
-material terrain1_01_cw : alpha_splat_rim_cw_shadow_reciever
+material terrain1_01_cw : terrain_changeworld 
 {
-    set_texture_alias dreams_alpha_map     alpha_splat_0.dds
-    set_texture_alias dreams_splat_0        grass_tileable.dds
-    set_texture_alias dreams_splat_1        suelo_tileable.dds
-    set_texture_alias dreams_splat_2        grass_tileable.dds
-    set_texture_alias dreams_splat_3        rock2.jpg
-    
-    set_texture_alias nightmares_alpha_map     alpha_splat_1.dds
-    set_texture_alias nightmares_splat_0        grass_tileable.dds
-    set_texture_alias nightmares_splat_1        suelo_tileable.dds
-    set_texture_alias nightmares_splat_2        grass_tileable.dds
-    set_texture_alias nightmares_splat_3        rock2.jpg
+	set_texture_alias dreams terrain01_d.dds
+	set_texture_alias nightmares terrain01_n.dds
 }
 
 //TERRAIN1 02
-material terrain1_02_d : alpha_splat_rim_shadow_reciever
-{	
-    set_texture_alias alpha_map     alpha_splat_0.dds
-    set_texture_alias splat_0        grass_tileable.dds
-    set_texture_alias splat_1        suelo_tileable.dds
-    set_texture_alias splat_2        sand1.jpg
-    set_texture_alias splat_3        rock2.jpg
-}
-
-material terrain1_02_n : alpha_splat_rim_shadow_reciever
+material terrain1_02_d : terrain_texture
 {
-    set_texture_alias alpha_map     alpha_splat_1.dds
-    set_texture_alias splat_0        grass_tileable.dds
-    set_texture_alias splat_1        suelo_tileable.dds
-    set_texture_alias splat_2        grass_tileable.dds
-    set_texture_alias splat_3        rock2.jpg
+	set_texture_alias diffuse_texture terrain02_d.dds
 }
 
-material terrain1_02_cw : alpha_splat_rim_cw_shadow_reciever
+material terrain1_02_n : terrain_texture
 {
-    set_texture_alias dreams_alpha_map     alpha_splat_0.dds
-    set_texture_alias dreams_splat_0        grass_tileable.dds
-    set_texture_alias dreams_splat_1        suelo_tileable.dds
-    set_texture_alias dreams_splat_2        grass_tileable.dds
-    set_texture_alias dreams_splat_3        rock2.jpg
-    
-    set_texture_alias nightmares_alpha_map     alpha_splat_1.dds
-    set_texture_alias nightmares_splat_0        grass_tileable.dds
-    set_texture_alias nightmares_splat_1        suelo_tileable.dds
-    set_texture_alias nightmares_splat_2        grass_tileable.dds
-    set_texture_alias nightmares_splat_3        rock2.jpg
+	set_texture_alias diffuse_texture terrain02_n.dds
 }
 
-//TERRAIN1 01
-material terrain1_03_d: alpha_splat_rim_shadow_reciever
-{	
-    set_texture_alias diffuse_texture terrain1_03_d.dds
-}
-
-material terrain1_03_n : alpha_splat_rim_shadow_reciever
+material terrain1_02_cw : terrain_changeworld 
 {
-    set_texture_alias diffuse_texture terrain1_03_n.dds
-}
-
-material terrain1_03_cw : alpha_splat_rim_cw_shadow_reciever
-{
-    set_texture_alias dreams_alpha_map     alpha_splat_0.dds
-    set_texture_alias dreams_splat_0        grass_tileable.dds
-    set_texture_alias dreams_splat_1        suelo_tileable.dds
-    set_texture_alias dreams_splat_2        grass_tileable.dds
-    set_texture_alias dreams_splat_3        rock2.jpg
-    
-    set_texture_alias nightmares_alpha_map     alpha_splat_1.dds
-    set_texture_alias nightmares_splat_0        grass_tileable.dds
-    set_texture_alias nightmares_splat_1        suelo_tileable.dds
-    set_texture_alias nightmares_splat_2        grass_tileable.dds
-    set_texture_alias nightmares_splat_3        rock2.jpg
+	set_texture_alias dreams terrain02_d.dds
+	set_texture_alias nightmares terrain02_n.dds
 }

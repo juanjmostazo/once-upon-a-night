@@ -406,17 +406,33 @@ material waterfall_blue_cw : default_changeworld_alpha_test
 material waterfall_blue_island2_d : waterfall_blue_d 
 {
 	set_texture_alias dreams waterfall_blue_d_island2.dds
-	set_texture_alias nightmares waterfall_blue_d_island2.dds
+	set_texture_alias nightmares waterfall_blue_n_island2.dds
 }
 material waterfall_blue_island2_n : waterfall_blue_n
 {
 	set_texture_alias dreams waterfall_blue_d_island2.dds
-	set_texture_alias nightmares waterfall_blue_d_island2.dds
+	set_texture_alias nightmares waterfall_blue_n_island2.dds
 }
 material waterfall_blue_island2_cw : waterfall_blue_cw 
 {
 	set_texture_alias dreams waterfall_blue_d_island2.dds
-	set_texture_alias nightmares waterfall_blue_d_island2.dds
+	set_texture_alias nightmares waterfall_blue_n_island2.dds
+}
+
+material waterfall_foam_island2_d : waterfall_foam_d 
+{
+	set_texture_alias dreams waterfall_foam_island2_d.dds
+	set_texture_alias nightmares waterfall_foam_island2_n.dds
+}
+material waterfall_foam_island2_n : waterfall_foam_n
+{
+	set_texture_alias dreams waterfall_foam_island2_d.dds
+	set_texture_alias nightmares waterfall_foam_island2_n.dds
+}
+material waterfall_foam_island2_cw : waterfall_foam_cw 
+{
+	set_texture_alias dreams waterfall_foam_island2_d.dds
+	set_texture_alias nightmares waterfall_foam_island2_n.dds
 }
 
 //WATER LIGHTMAPS

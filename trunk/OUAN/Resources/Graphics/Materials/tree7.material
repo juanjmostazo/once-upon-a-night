@@ -2,26 +2,7 @@ import alpha_test_texture from BasicTexture.material
 import basic_texture from BasicTexture.material
 import no_changeworld from ChangeWorld.material
 
-material tree7_n : alpha_test_texture
+material tree7_n : alpha_test_texture 
 {
-	technique
-	{
-		pass
-		{
-			fragment_program_ref rim_normal_diffuse_fs
-			{
-			}
-			vertex_program_ref rim_normal_diffuse_vs
-			{
-				param_named rimStrength float4 0 0 0 0
-	  			param_named modulate_factor float 0
-	 			param_named alpha_modulate float 0
-			}
-			texture_unit diffuse_texture
-			{
-				texture tree7_n.dds
-				mipmap_bias -1
-			}
-		}
-	}
+	set_texture_alias diffuse_texture tree7_n.dds
 }

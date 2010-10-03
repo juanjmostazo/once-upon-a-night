@@ -240,6 +240,7 @@ void LevelLoadingState::initPhysics()
 {
 	if (!mLevelFilename.empty())
 	{
+		mApp->getGameWorldManager()->setInitialized(false);
 		mApp->getPhysicsSubsystem()->initLevel(mLevelFilename);
 	}
 }
@@ -338,6 +339,7 @@ void LevelLoadingState::setLevelFileName(const std::string& levelFilename)
 void LevelLoadingState::clearParser()
 {
 	mApp->getLevelLoader()->clearXMLParser();
+	mApp->getGameWorldManager()->setInitialized(true);
 }
 
 void LevelLoadingState::setCameraTarget()

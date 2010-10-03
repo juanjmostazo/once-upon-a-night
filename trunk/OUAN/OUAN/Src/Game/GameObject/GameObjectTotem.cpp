@@ -23,6 +23,27 @@ void GameObjectTotem::setRenderComponentEntity(RenderComponentEntityPtr pRenderC
 	mRenderComponentEntity=pRenderComponentEntity;
 }
 
+void GameObjectTotem::setDreamsRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setDreamsMaterials();
+
+}
+
+void GameObjectTotem::setNightmaresRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setNightmaresMaterials();
+
+}
+
+void GameObjectTotem::setChangeWorldRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentEntity->setChangeWorldMaterials();
+}
+
 RenderComponentEntityPtr GameObjectTotem::getRenderComponentEntity() const
 {
 	return mRenderComponentEntity;
@@ -57,6 +78,8 @@ PhysicsComponentSimpleBoxPtr GameObjectTotem::getPhysicsComponentSimpleBox() con
 {
 	return mPhysicsComponentSimpleBox;
 }
+
+
 
 void GameObjectTotem::changeWorldFinished(int newWorld)
 {

@@ -570,6 +570,10 @@ void GameWorldManager::resetAll()
 		it->second->reset();
 	}
 
+	Logger::getInstance()->log("	[RESET ALL DONE]");
+
+	Logger::getInstance()->log("	[ENABLING WEAPONS]");
+
 	if (getGameObjectOny().get())
 	{
 		getGameObjectOny()->setInitialWeaponComponent(mWorld);
@@ -581,6 +585,8 @@ void GameWorldManager::resetAll()
 	getGameObjectPillow()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 	getGameObjectFlashLight()->setParentWeaponComponent(getGameObjectOny()->getWeaponComponent());
 
+	Logger::getInstance()->log("	[ENABLING SOUND]");
+
 	GameObjectSoundPtr sound = BOOST_PTR_CAST(GameObjectSound,
 		mAmbientSoundContainer[mDefaultAmbientSound]);
 	if (sound.get())
@@ -590,15 +596,22 @@ void GameWorldManager::resetAll()
 		sound->getAudioComponentDreams()->playSound(mDefaultAmbientSoundIDDreams);
 		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 	}
+
+	Logger::getInstance()->log("	[STABILIZE PHYSICS]");
+
 	//stabilize world
 	mApp->getPhysicsSubsystem()->stabilize();
-	dispatchEvents();
+	mApp->getGameWorldManager()->dispatchEvents();
 
+
+	Logger::getInstance()->log("	[SET WORLD]");
 	//set world
 	setChangeWorldTimes();
 	setWorld(mCheckPointWorld);
 	dispatchEvents();
 
+
+	Logger::getInstance()->log("	[SET CAMERA]");
 	mApp->getCameraManager()->setDefaultThirdPersonCamera(false);
 
 	mFirstMsgBox=true;
