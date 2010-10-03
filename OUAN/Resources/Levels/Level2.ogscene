@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="298.901 305.12 -320.647" orientation="0.8537 -0.233222 0.448041 0.126742"></OPTION>
+    <OPTION id="2" position="-858.944 461.291 -1118.51" orientation="-0.410897 0.181341 0.820662 0.35326"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.853974 -0.233297 0.448185 0.126782"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.410924 0.181353 0.820716 0.353283"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="298.901 305.12 -320.647"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-858.944 461.291 -1118.51"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -8516,7 +8516,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.341005 0.0844534 0.928552 0.119889"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-600.63 175.416 -440.514"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-558.553 202.388 -481.711"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -10219,7 +10219,7 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.993451 -0.0037994 0.108801 -0.0346921"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.998021 -0.00932649 -0.0523037 -0.0336302"></PROPERTY>
     <PROPERTY id="position" type="9" value="-512.279 188.735 -771.6"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
@@ -12004,7 +12004,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.976027 0.076815 -0.203014 0.0159776"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-537.466 196.974 -502.578"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-639.278 186.531 -474.947"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -18757,7 +18757,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.971342 0 -0.237686 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-427.921 211.063 -519.986"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-416.629 211.063 -541.679"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
