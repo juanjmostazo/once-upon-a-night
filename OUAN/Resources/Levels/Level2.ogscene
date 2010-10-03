@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="11.3972 443.856 450.906" orientation="-0.928376 0.268704 0.247211 0.0693018"></OPTION>
+    <OPTION id="2" position="-189.133 438.178 -1168.16" orientation="0.0980158 -0.0149679 -0.987275 -0.124324"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.928491 0.268738 0.247242 0.0693104"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="0.0980587 -0.0149744 -0.987707 -0.124379"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="11.3972 443.856 450.906"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="-189.133 438.178 -1168.16"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1277,48 +1277,6 @@
     <PROPERTY id="subentity4::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="5"></PROPERTY>
     <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="633869440" name="tree7_n#26" typename="Entity Object" parentnode="Trees">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.734322 0 0.678801 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-680.969 61.6511 -575.41"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tree7_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="893276736" name="tree7_n#3" typename="Entity Object" parentnode="Trees">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.69934 -0.104517 -0.69934 -0.104517"></PROPERTY>
-    <PROPERTY id="position" type="9" value="26.6666 207.697 265.391"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tree7_n"></PROPERTY>
-    <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
     </CUSTOMPROPERTIES>
   </OBJECT>
 
@@ -2694,7 +2652,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.679934 -0.148821 0.710268 0.105176"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-151.314 102.192 -305.088"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-152.824 115.06 -246.593"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -3554,8 +3512,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.880891 0 0.47332 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="220.211 256.294 -26.2975"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.873355 0.114979 0.469271 -0.0617806"></PROPERTY>
+    <PROPERTY id="position" type="9" value="220.211 261.531 -26.2975"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -3913,7 +3871,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond_tree.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.999391 0 0 0.0348995"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-139.76 137.313 -143.381"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-139.995 140.676 -143.381"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamondtree_n"></PROPERTY>
@@ -4328,8 +4286,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.207912 0 0.978148 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-68.3965 257.016 -60.6007"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.422618 0 0.906308 0"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-55.1865 257.016 -49.5162"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -4381,8 +4339,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.786711 0.098263 0.609137 0.0195458"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-827.359 104.819 -617.76"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.793654 0.0340464 0.59798 0.106652"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-757.95 202.428 -656.58"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -4653,7 +4611,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.766044 0 -0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-103.717 223.661 186.164"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-115.199 223.661 121.044"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -5361,8 +5319,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.108867 0 -0.994056 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-754.565 133.046 -588.423"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.10841 0.00996151 -0.989886 -0.0909578"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-827.624 174.041 -520.781"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -5934,8 +5892,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.325568 0 -0.945519 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-630.813 63.0755 -353.752"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="-0.168077 -0.0252148 -0.983989 0.0536742"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-625.459 63.0755 -357.935"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -6669,7 +6627,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree5_d.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-655.68 217.808 -496.949"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-655.68 110.961 -496.949"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree5_d"></PROPERTY>
@@ -7441,7 +7399,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree10_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.566406 0 0.824126 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-269.837 223.934 564.409"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-269.837 225.499 564.409"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -8469,7 +8427,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.737214 -0.00965068 -0.675533 -0.00884323"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-667.312 63.4386 -414.21"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-661.049 62.6739 -413.682"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -8651,7 +8609,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.96363 0 0.267238 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-355.715 326.492 236.013"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-323.223 350.844 231.848"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -9454,8 +9412,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.886852 0.0319397 -0.456759 0.0620147"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-761.129 130.534 -703.271"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.869423 0.113572 -0.443335 0.186172"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-766.582 167.826 -749.218"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -10210,8 +10168,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="column.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.975458 0.0724891 -0.20734 0.015408"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-364.69 236.835 446.556"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.959809 0.0733416 -0.270694 0.010634"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-372.771 236.835 442.958"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="column_n"></PROPERTY>
@@ -10319,7 +10277,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.994056 0 0.108867 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-536.197 130.756 -747.811"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-514.595 188.735 -782.046"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -10464,8 +10422,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.526034 0.0165623 0.850061 0.0202713"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-197.496 72.185 -338.43"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.525906 -0.0538866 0.848513 -0.0233583"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-197.473 75.5504 -338.255"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
@@ -10553,8 +10511,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.175924 -0.0228235 -0.98273 -0.0526477"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-40.7017 256.989 -123.794"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.172382 0.0372133 -0.98229 -0.0632894"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-40.6785 258.992 -123.563"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -10836,8 +10794,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.741334 -0.0466762 0.667501 -0.0518392"></PROPERTY>
-    <PROPERTY id="position" type="9" value="144.737 290.172 -195.529"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.742581 0.0181129 0.660443 -0.109819"></PROPERTY>
+    <PROPERTY id="position" type="9" value="143.935 294.572 -196.026"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
@@ -12103,7 +12061,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.979046 0 -0.203642 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-599.38 134.155 -584.163"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-580.321 221.377 -521.212"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -12533,7 +12491,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-739.994 48.6004 -389.714"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-702.234 48.6004 -444.307"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamond_d"></PROPERTY>
@@ -12924,7 +12882,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.953717 0 -0.300706 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-447.453 136.26 -669.083"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-447.453 209.788 -669.083"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -14041,7 +13999,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.79069 0 0.612217 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="169.475 263.99 -68.4336"></PROPERTY>
+    <PROPERTY id="position" type="9" value="169.475 269.78 -68.4336"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -14381,7 +14339,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree10_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-51.4917 200.272 558.477"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-51.4917 202.226 558.477"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -14797,25 +14755,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="428540928" name="tree8_n#14" typename="Entity Object" parentnode="Trees">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.857167 0 -0.515038 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-741.399 120.657 -801.956"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="108676408" name="woodbox_d#1" typename="Entity Object" parentnode="Items">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -14920,7 +14859,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.629321 0 -0.777146 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-337.737 296.439 523.553"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-337.737 339.6 523.553"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -16138,7 +16077,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="diamond.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-697.67 48.6004 -389.714"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-716.388 48.6004 -389.714"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="diamond_d"></PROPERTY>
@@ -17255,25 +17194,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="382946240" name="tree8_n#3" typename="Entity Object" parentnode="Trees">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.999914 0 0.01309 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-184.521 322.692 365.062"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="357097088" name="plataform_n#tower1_1" typename="Entity Object" parentnode="Plataforms">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="true"></PROPERTY>
@@ -17317,7 +17237,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.736092 0.0383011 -0.674504 0.0417983"></PROPERTY>
-    <PROPERTY id="position" type="9" value="60.2239 162.494 84.185"></PROPERTY>
+    <PROPERTY id="position" type="9" value="59.9277 165.094 84.185"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -17941,42 +17861,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="80324720" name="tree9_n#30" typename="Entity Object" parentnode="Trees">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="-0.997212 0.00782659 0.0741055 0.00385965"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-393.45 54.0616 -164.005"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree9_n"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-      <PROPERTY id="Camera Collisions::Type" type="2" value="2" fields="X;Y;Z;W" options="MOVE_TO_TARGET;0;ROT_X_POSITIVE;1;ROT_X_NEGATIVE;2;NONE;3;"></PROPERTY>
-      <PROPERTY id="Camera Collisions::Enable Translucid" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
-  <OBJECT object_id="958922112" name="item1up_n#7" typename="Entity Object" parentnode="Items">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="item1up.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.911762 0 0.410719 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-766.279 69.7408 -447.069"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="item1up_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="287789568" name="tree1_d#40" typename="Entity Object" parentnode="Trees">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -18167,7 +18051,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.816642 0 -0.577145 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-198.998 291.19 541.993"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-199.939 344.294 542.456"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -18203,7 +18087,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.99685 -0.00943506 0.0275698 -0.0737563"></PROPERTY>
-    <PROPERTY id="position" type="9" value="100.797 154.536 64.0796"></PROPERTY>
+    <PROPERTY id="position" type="9" value="101.294 157.888 64.0021"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -18620,7 +18504,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.908143 0 0.41866 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-406.601 56.2295 -222.124"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-406.601 62.5232 -222.124"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
@@ -18836,23 +18720,6 @@
     </CUSTOMPROPERTIES>
   </OBJECT>
 
-  <OBJECT object_id="40559100" name="item1up_n#9" typename="Entity Object" parentnode="Items">
-    <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
-    <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
-    <PROPERTY id="layer" type="2" value="1"></PROPERTY>
-    <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="item1up.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="0.939693 0 0.34202 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-789.21 51.7098 -425.457"></PROPERTY>
-    <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="item1up_d"></PROPERTY>
-    <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
-    <CUSTOMPROPERTIES>
-    </CUSTOMPROPERTIES>
-  </OBJECT>
-
   <OBJECT object_id="257789856" name="terrain_d#enter" typename="Entity Object" parentnode="Terrain">
     <PROPERTY id="autotracktarget" type="7" value="None"></PROPERTY>
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
@@ -18947,7 +18814,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree8_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.971342 0 -0.237686 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-449.318 136.204 -545.243"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-427.921 211.063 -519.986"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
@@ -19753,7 +19620,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree6_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.939693 0 0.34202 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="0.3142 182.016 140.669"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-6.37753 182.016 94.8999"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree6_n"></PROPERTY>
@@ -20072,8 +19939,8 @@
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
-    <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="94.1165 176.984 109.553"></PROPERTY>
+    <PROPERTY id="orientation" type="13" value="0.988362 0 0 -0.152123"></PROPERTY>
+    <PROPERTY id="position" type="9" value="94.1165 183.829 109.553"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
@@ -20621,7 +20488,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="tree7_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.484809 0 0.87462 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="41.8988 296.196 -187.442"></PROPERTY>
+    <PROPERTY id="position" type="9" value="41.8988 297.621 -187.442"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree7_n"></PROPERTY>
