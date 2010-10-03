@@ -402,6 +402,23 @@ material waterfall_blue_cw : default_changeworld_alpha_test
 	}
 }
 
+//WATER ISLAND 2
+material waterfall_blue_island2_d : waterfall_blue_d 
+{
+	set_texture_alias dreams alpha_splat_0.dds
+	set_texture_alias nightmares alpha_splat_0.dds
+}
+material waterfall_blue_island2_n : waterfall_blue_n
+{
+	set_texture_alias dreams alpha_splat_0.dds
+	set_texture_alias nightmares alpha_splat_0.dds
+}
+material waterfall_blue_island2_cw : waterfall_blue_cw 
+{
+	set_texture_alias dreams alpha_splat_0.dds
+	set_texture_alias nightmares alpha_splat_0.dds
+}
+
 //WATER LIGHTMAPS
 material lake1_lightmap_d : alpha_blending_texture
 {

@@ -20,12 +20,8 @@ function nestLogic(pNest,state)
 	
 	if state==NEST_STATE_IDLE and playerDistance<=approachDistance then
 		newState=NEST_STATE_SHAKING
-	elseif state==NEST_STATE_SHAKING then
-		if playerDistance>approachDistance then
-			newState=NEST_STATE_IDLE
-		elseif timeSpent>=delay then
-			newState=NEST_STATE_HATCHING
-		end
+	elseif state==NEST_STATE_SHAKING and timeSpent>=delay then
+		newState=NEST_STATE_HATCHING
 	end
 	return newState
 end

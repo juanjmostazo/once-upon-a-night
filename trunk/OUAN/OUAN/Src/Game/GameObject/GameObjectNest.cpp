@@ -316,7 +316,7 @@ void GameObjectNest::update(double elapsedSeconds)
 				if (mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 				{
 					mLogicComponent->setStateChanged(false);
-					mRenderComponentEntity->changeAnimation(NEST_ANIM_IDLE);					
+					mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE);					
 					for (std::vector<GameObjectPtr>::iterator it=mChildren.begin();it!=mChildren.end();++it)
 					{
 						GameObjectPtr obj=*it;
@@ -332,10 +332,12 @@ void GameObjectNest::update(double elapsedSeconds)
 			{	
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_SHAKE);	
 				mAudioComponent->playSound(NEST_SOUND_TOC_TOC);
+				
 				mRenderComponentParticleSystemJump->start();
 			}
 			else if (currentState==logicSS->getGlobalInt(NEST_STATE_HATCHING) && mRenderComponentEntity.get() && mLogicComponent->isStateChanged())
 			{	
+
 				mRenderComponentEntity->changeAnimation(NEST_ANIM_HATCH);	
 				//mRenderComponentParticleSystemBreak->start();
 			}
@@ -413,10 +415,10 @@ void GameObjectNest::spawnChild()
 			(*it)->reset();
 			(*it)->enable();
 
-			if((*it)->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
-			{
-				mAudioComponent->playSound(NEST_SOUND_TRIPOLLO);
-			}
+			//if((*it)->getType().compare(GAME_OBJECT_TYPE_TRIPOLLO)==0)
+			//{
+			//	
+			//}
 			break;
 		}
 		else 
@@ -426,7 +428,7 @@ void GameObjectNest::spawnChild()
 	}
 	if (it==mChildren.end())
 	{
-		mAudioComponent->playSound(NEST_SOUND_NOTHING);
+		mAudioComponent->playSound(NEST_SOUND_TRIPOLLO);
 		//displayText("Better luck next time");
 	}
 }

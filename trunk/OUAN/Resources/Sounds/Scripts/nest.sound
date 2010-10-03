@@ -7,7 +7,7 @@ sound nest_nothing
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 200 5000
+	min_max_distance 300 5000
 	volume 1
 }
 
