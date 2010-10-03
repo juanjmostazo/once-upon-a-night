@@ -8,7 +8,7 @@
             <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="EXTRAS_SCREEN_LABEL" />
             <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="TextColours" Value="tl:FFC1241D tr:FFC1241D bl:FFC1241D br:FFC1241D" />
+            <Property Name="TextColours" Value="tl:ffffff tr:FFffffff bl:FFffffff br:FFffffff" />
             <Property Name="FrameEnabled" Value="False" />
             <Property Name="HorzFormatting" Value="HorzCentred" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
@@ -30,7 +30,7 @@
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
             <Property Name="UnifiedAreaRect" Value="{{0.233649,0},{0.871433,0},{0.766726,0},{0.977917,0}}" />
-			<Property Name="NormalTextColour" Value="FFC1241D"/>			
+			<Property Name="NormalTextColour" Value="FFffffff"/>			
         </Window>
     </Window>
 </GUILayout>

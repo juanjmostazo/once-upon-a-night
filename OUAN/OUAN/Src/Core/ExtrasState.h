@@ -5,7 +5,7 @@
 #include "GameState.h"
 namespace OUAN
 {
-	const std::string EXTRAS_IMG="ouan-nologo-bg.png";
+	const std::string EXTRAS_IMG="background_sky.png";
 	const std::string EXTRAS_MATERIAL_NAME="ExtrasBg";
 	const std::string EXTRAS_GROUP=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 	const std::string EXTRAS_SCREENNODE="ExScreen";

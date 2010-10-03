@@ -210,8 +210,19 @@ void OUAN::Utils::createTexturedRectangle (const TTexturedRectangleDesc& descrip
 	// Create background material
 	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create(description.materialName,
 		description.materialGroup);
-
-	material->getTechnique(0)->getPass(0)->createTextureUnitState(description.textureName);
+	material->getTechnique(0)->getPass(0)->createTextureUnitState();
+	if (description.textureAnimation)
+	{
+		material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setAnimatedTextureName(
+			description.textureName,
+			description.texAnimNumFrames,
+			description.texAnimDuration);
+	}
+	else
+		material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureName(description.textureName);
+	if (description.alphaBlending){
+		material->getTechnique(0)->getPass(0)->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+	}
 	material->getTechnique(0)->getPass(0)->setCullingMode(Ogre::CULL_NONE);   
 	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
 	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(description.depthWrite);

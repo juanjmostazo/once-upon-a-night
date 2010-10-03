@@ -3,13 +3,22 @@
 #include "GameState.h"
 namespace OUAN
 {
-	const std::string LEVELLOAD_IMG="ouan-loading-bg.png";
+	const std::string LEVELLOAD_IMG="loading_page.png";
 	const std::string LEVELLOAD_MATERIAL_NAME="OUAN/LevelLoad/Background";
 	const std::string LEVELLOAD_GROUP=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 	const std::string LEVELLOAD_SCREENNODE="LLScreen";
+
 	const std::string LEVELLOAD_BAR_IMG="ouan-loading-bar-fill.png";
 	const std::string LEVELLOAD_BAR_MATERIAL_NAME="OUAN/LevelLoad/Bar";
 	const std::string LEVELLOAD_BAR_NODE="LLBar";
+
+	const std::string LEVELLOAD_BARBG_IMG="ouan-loading-bar-bg.png";
+	const std::string LEVELLOAD_BARBG_MATERIAL_NAME="OUAN/LevelLoad/BarBG";
+	const std::string LEVELLOAD_BARBG_NODE="LLBarBG";
+
+	const std::string LEVELLOAD_BG_IMG="loading_page_background.png";
+	const std::string LEVELLOAD_BG_MATERIAL_NAME="OUAN/LevelLoad/BG";
+	const std::string LEVELLOAD_BG_NODE="LLBG";
 
 	class LevelLoadingState;
 	typedef boost::shared_ptr<LevelLoadingState> LevelLoadingStatePtr;
@@ -32,6 +41,8 @@ namespace OUAN
 
 			Ogre::Rectangle2D* mScreen;
 			Ogre::Rectangle2D* mBar;
+			Ogre::Rectangle2D* mBarBg;
+			Ogre::Rectangle2D* mBg;
 
 			double mTotalWidth;
 			double mAccumPercent;

@@ -7,7 +7,7 @@ namespace OUAN
 {
 	typedef std::vector<CEGUI::Event::Connection> TGUIConnections;
 
-	const std::string MAINMENU_IMG="ouan-logo-bg.png";
+	const std::string MAINMENU_IMG="ouan-background-logo.png";
 	const std::string MAINMENU_MATERIAL_NAME="MainMenuBg";
 	const std::string MAINMENU_GROUP=Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 	const std::string MAINMENU_SCREENNODE="MMScreen";

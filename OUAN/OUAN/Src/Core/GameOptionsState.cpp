@@ -39,7 +39,7 @@ void GameOptionsState::init(ApplicationPtr app)
 	Utils::TTexturedRectangleDesc desc;
 	desc.leftCorner=desc.bottomCorner=-1.0;
 	desc.rightCorner=desc.topCorner=1.0;
-	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
+	desc.renderQueue=Ogre::RENDER_QUEUE_9;
 	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
 	desc.materialName=OPTIONS_MATERIAL_NAME;
 	desc.materialGroup=OPTIONS_GROUP;
