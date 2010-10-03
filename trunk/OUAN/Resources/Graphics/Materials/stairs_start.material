@@ -1,17 +1,17 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import basic_shadow_reciever from BasicTexture.material
+import default_changeworld_shadow_reciever from ChangeWorld.material
 
-material stairs_start_d : basic_texture
+material stairs_start_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture stairs_start_d.dds
 }
 
-material stairs_start_n : basic_texture
+material stairs_start_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture stairs_start_n.dds	
 }
 
-material stairs_start_cw : default_changeworld
+material stairs_start_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams stairs_start_d.dds
 	set_texture_alias nightmares stairs_start_n.dds
