@@ -155,5 +155,37 @@ material island2_tower2_cw : default_changeworld
 	set_texture_alias nightmares tower2island2n.dds
 }
 
+//TORCH
+material torch_d : basic_texture
+{
+	set_texture_alias diffuse_texture torch.dds
+}
 
+material torch_n : basic_texture
+{
+	set_texture_alias diffuse_texture torch.dds
+}
+
+material torch_cw : default_changeworld
+{
+	set_texture_alias dreams torch.dds
+	set_texture_alias nightmares torch.dds
+}
+
+//DOOR
+material door_island2_d : basic_texture
+{
+	set_texture_alias diffuse_texture door.dds
+}
+
+material door_island2_n : basic_texture
+{
+	set_texture_alias diffuse_texture door_n.dds
+}
+
+material door_island2_cw : default_changeworld
+{
+	set_texture_alias dreams door.dds
+	set_texture_alias nightmares door_n.dds
+}
 
