@@ -174,7 +174,7 @@ void GameObjectBoss::updateHPEvents()
 	}
 	else if(hp==0)
 	{
-		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_3_DONE);
+		
 	}
 
 	switch(mWorld)
@@ -376,6 +376,7 @@ void GameObjectBoss::processAnimationEnded(const std::string& animationName)
 	else if(animationName.compare(BOSS_ANIMATION_DIE)==0)
 	{
 		mAudioComponent->playSound(BOSS_SOUND_EXPLODE);
+		getGameWorldManager()->addExecutedLevelEvent(BOSS_HIT_3_DONE);
 		disable();
 	}
 }

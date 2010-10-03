@@ -183,10 +183,12 @@ void CutsceneState::update(long elapsedTime)
 			mApp->getGameWorldManager()->dispatchEvents();
 			mIsChangingWorld=false;
 
-			//if(!mApp->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START))
-			//{
+			if(!mApp->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START)
+				|| mApp->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3)
+				)
+			{
 				mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
-			//}
+			}
 			mApp->getGameStateManager()->popState();
 			logicSS->terminateCutsceneFunction(mCutsceneFunction);
 		}

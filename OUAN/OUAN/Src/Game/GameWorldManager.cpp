@@ -1258,7 +1258,7 @@ void GameWorldManager::changeWorldFinished(int newWorld)
 	GameObjectSoundPtr sound;
 
 	bool isGameRunningState=mApp->isCurrentGameStateGameRunning();
-	if(isGameRunningState)
+	if(isGameRunningState && !hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START))
 	{
 		CameraParametersPtr pCameraParameters;
 		pCameraParameters.reset(new CameraParameters());
@@ -1879,19 +1879,7 @@ void GameWorldManager::addExecutedLevelEvent(std::string cutscene)
 		plataform=BOOST_PTR_CAST(GameObjectPlataform,getObject("plataform#tower2_2"));
 		plataform->activate();
 	}
-	else if(hasExecutedLevelEvent(BOSS_HIT_1_DONE) &&
-			!hasExecutedLevelEvent(CUTSCENE_10_1_FINAL_BOSS_HIT_1)
-		)
-	{
-		//launchCutScene("cutscenes_level2.lua","cutScene10_1");
-	}
-	else if(hasExecutedLevelEvent(BOSS_HIT_2_DONE) &&
-			!hasExecutedLevelEvent(CUTSCENE_10_2_FINAL_BOSS_HIT_2)
-		)
-	{
-		//launchCutScene("cutscenes_level2.lua","cutScene10_2");
-	}
-	else if(hasExecutedLevelEvent(BOSS_HIT_3_DONE) &&
+	else if(cutscene.compare(BOSS_HIT_3_DONE)==0 &&
 			!hasExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3)
 		)
 	{
