@@ -14,6 +14,8 @@ material tree5_d : alpha_test_texture
 			vertex_program_ref rim_normal_diffuse_vs
 			{
 				param_named rimStrength float4 0 0 0 0
+	  			param_named modulate_factor float 0
+	 			param_named alpha_modulate float 0
 			}
 			texture_unit diffuse_texture
 			{
