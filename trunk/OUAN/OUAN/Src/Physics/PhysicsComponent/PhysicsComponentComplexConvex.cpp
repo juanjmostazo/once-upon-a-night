@@ -50,7 +50,7 @@ void PhysicsComponentComplexConvex::create()
 				getSceneNode(),
 				pDesc));
 
-		//getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		getNxOgreBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
 	}
 	else
 	{
@@ -64,7 +64,7 @@ void PhysicsComponentComplexConvex::create()
 			getSceneNode()->getPosition(),
 			getSceneNode()));
 
-		//getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
+		getNxOgreKinematicBody()->setGlobalOrientationQuat(NxOgre::Quat(getSceneNode()->getOrientation()));
 	}
 
 	Logger::getInstance()->log("CREATE");
