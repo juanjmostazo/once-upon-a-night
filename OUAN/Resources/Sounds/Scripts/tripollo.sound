@@ -30,7 +30,7 @@ sound tripollo_explosion
 	hardware	true
 	stream		false
 	loop		false
-	min_max_distance 200 5000
+	min_max_distance 130 5000
 	volume 1
 }
 

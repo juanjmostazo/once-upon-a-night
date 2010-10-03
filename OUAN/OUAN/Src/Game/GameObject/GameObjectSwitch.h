@@ -17,7 +17,7 @@ namespace OUAN
 
 	const std::string SWITCH_SOUND_PUSHED="switch";
 
-	const double SWITCH_PUSH_DISTANCE=1.9;
+	const double SWITCH_PUSH_DISTANCE=2.5;
 
 	/// Class to hold Tower information
 	class GameObjectSwitch : public GameObject, public boost::enable_shared_from_this<GameObjectSwitch>

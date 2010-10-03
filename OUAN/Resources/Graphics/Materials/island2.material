@@ -38,17 +38,17 @@ material bridge_cw : default_changeworld_shadow_reciever
 }
 
 //CARPET 
-material carpet_island2_d : basic_texture
+material carpet_island2_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet1.dds
 }
 
-material carpet_island2_n : basic_texture
+material carpet_island2_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet1n.dds
 }
 
-material carpet_island2_cw : default_changeworld
+material carpet_island2_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams carpet1.dds
 	set_texture_alias nightmares carpet1n.dds
