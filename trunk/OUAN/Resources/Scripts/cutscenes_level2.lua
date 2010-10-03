@@ -363,7 +363,7 @@ function startCutScene9(pOny)
 end
 
 function conditionCutScene9(pOny)
-	return not hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START) and getCheckPointNumber()>=90;
+	return not hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START);
 end
 
 function cutScene9(timer)
