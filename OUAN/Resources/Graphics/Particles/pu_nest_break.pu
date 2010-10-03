@@ -5,7 +5,7 @@ system PU/nest_break
     scale                                       0.25 0.25 0.25
     technique Technique4
     {
-        position                                0 175 0
+        position                                0 40 0
         keep_local                              true
         material                                PU/nest_break
         default_particle_width                  24
