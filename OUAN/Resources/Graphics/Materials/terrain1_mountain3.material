@@ -1,0 +1,18 @@
+import terrain_texture from BasicTexture.material
+import terrain_changeworld from ChangeWorld.material
+
+material terrain1_mountain3_d : terrain_texture 
+{
+	set_texture_alias diffuse_texture mountain3_d.dds
+}
+
+material terrain1_mountain3_n : terrain_texture 
+{
+	set_texture_alias diffuse_texture mountain3_n.dds
+}
+
+material terrain1_mountain3_cw : terrain_changeworld 
+{
+	set_texture_alias dreams mountain3_d.dds
+	set_texture_alias nightmares mountain3_n.dds
+}
