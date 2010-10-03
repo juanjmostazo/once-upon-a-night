@@ -217,7 +217,7 @@ void EventProcessor::processChangeWorld(ChangeWorldEventPtr evt)
 			mWorldManager->activateChangeWorld();
 
 			bool isGameRunningState = Application::getInstance()->isCurrentGameStateGameRunning();
-			if(isGameRunningState)
+			if(isGameRunningState && !Application::getInstance()->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START))
 			{
 				CameraParametersPtr pCameraParameters;
 				pCameraParameters.reset(new CameraParameters());
