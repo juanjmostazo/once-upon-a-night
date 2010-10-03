@@ -8,11 +8,11 @@ material terrain_island2_d : basic_texture
 
 material terrain_island2_n : basic_texture
 {
-	set_texture_alias diffuse_texture terrain_island2.dds
+	set_texture_alias diffuse_texture terrain_island2n.dds
 }
 
 material terrain_island2_cw : default_changeworld
 {
 	set_texture_alias dreams terrain_island2.dds
-	set_texture_alias nightmares terrain_island2.dds
+	set_texture_alias nightmares terrain_island2n.dds
 }
