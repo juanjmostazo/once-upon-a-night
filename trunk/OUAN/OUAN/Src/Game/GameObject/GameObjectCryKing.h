@@ -55,17 +55,14 @@ namespace OUAN
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
 
-
 		/// Set audio component
 		/// @param pRenderComponentEntity
 		AudioComponentPtr getAudioComponent() const;
 		void setAudioComponent(AudioComponentPtr audioComponent);
 
-
 		/// Set render component
 		/// @param pRenderComponentEntity
 		void setRenderComponentEntity(RenderComponentEntityPtr pRenderComponentEntity);
-
 
 		/// Set positional component
 		/// @param pRenderComponentPositional the component containing the positional information
@@ -100,6 +97,10 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
 
 		bool hasPositionalComponent() const;
 		RenderComponentPositionalPtr getPositionalComponent() const;

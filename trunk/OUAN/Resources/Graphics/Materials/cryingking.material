@@ -1,5 +1,7 @@
 import basic_texture from BasicTexture.material
+import alpha_blending_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
+import default_changeworld_alpha_blending from ChangeWorld.material
 
 material cryingking_d: basic_texture
 {
@@ -7,14 +9,18 @@ material cryingking_d: basic_texture
 	set_texture_alias normal_texture cryingking_nm.dds
 }
 
-material cryingking_n: basic_texture
+material cryingking_n: alpha_blending_texture 
 {
-	set_texture_alias diffuse_texture rey_llorica.dds
+	set_texture_alias diffuse_texture cryking_n.dds
 	set_texture_alias normal_texture cryingking_nm.dds
 }
 
-material cryingking_cw : default_changeworld
+material cryingking_cw : default_changeworld_alpha_blending 
 {
+	set_texture_alias dreams rey_llorica.dds
+	set_texture_alias normal_dreams cryingking_nm.dds
+	set_texture_alias nightmares cryking_n.dds
+	set_texture_alias normal_nightmares cryingking_nm.dds
 }
 
 //CAPE
@@ -22,13 +28,15 @@ material cryingking_cape_d : basic_texture
 {
 	set_texture_alias diffuse_texture capa_rey.dds
 }
-material cryingking_cape_n : basic_texture
+material cryingking_cape_n : alpha_blending_texture 
 {
-	set_texture_alias diffuse_texture capa_rey.dds
+	set_texture_alias diffuse_texture cryking_n.dds
 }
 
-material cryingking_cape_cw : default_changeworld
+material cryingking_cape_cw : default_changeworld_alpha_blending 
 {
+	set_texture_alias dreams capa_rey.dds
+	set_texture_alias nightmares cryking_n.dds
 }
 
 //BOW TIE
@@ -36,13 +44,15 @@ material cryingking_bowtie_d : basic_texture
 {
 	set_texture_alias diffuse_texture pajarita.dds
 }
-material cryingking_bowtie_n : basic_texture
+material cryingking_bowtie_n : alpha_blending_texture 
 {
-	set_texture_alias diffuse_texture pajarita.dds
+	set_texture_alias diffuse_texture cryking_n.dds
 }
 
-material cryingking_bowtie_cw : default_changeworld
+material cryingking_bowtie_cw : default_changeworld_alpha_blending 
 {
+	set_texture_alias dreams pajarita.dds
+	set_texture_alias nightmares cryking_n.dds
 }
 
 //eyes
@@ -50,11 +60,13 @@ material cryingking_eyes_d : basic_texture
 {
 	set_texture_alias diffuse_texture rey_eyes.dds
 }
-material cryingking_eyes_n : basic_texture
+material cryingking_eyes_n : alpha_blending_texture 
 {
-	set_texture_alias diffuse_texture rey_eyes.dds
+	set_texture_alias diffuse_texture cryking_n.dds
 }
 
-material cryingking_eyes_cw : default_changeworld
+material cryingking_eyes_cw : default_changeworld_alpha_blending 
 {
+	set_texture_alias dreams rey_eyes.dds
+	set_texture_alias nightmares cryking_n.dds
 }
