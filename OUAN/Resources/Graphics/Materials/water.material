@@ -2,6 +2,8 @@ import basic_texture from BasicTexture.material
 import alpha_blending_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import default_changeworld_alpha_blending from ChangeWorld.material
+import alpha_test_texture from BasicTexture.material
+import default_changeworld_alpha_test from ChangeWorld.material
 
 //WATER FOAM
 material water_foam_d : default_changeworld_alpha_blending
@@ -305,7 +307,7 @@ material waterfall_foam_cw : default_changeworld_alpha_blending
 }
 
 //WATERFALL BLUE WATER
-material waterfall_blue_d : default_changeworld
+material waterfall_blue_d : default_changeworld_alpha_test 
 {
 	technique
 	{
@@ -337,7 +339,7 @@ material waterfall_blue_d : default_changeworld
 	}
 }
 
-material waterfall_blue_n : default_changeworld
+material waterfall_blue_n : default_changeworld_alpha_test 
 {
 	technique
 	{
@@ -369,7 +371,7 @@ material waterfall_blue_n : default_changeworld
 	}
 }
 
-material waterfall_blue_cw : default_changeworld
+material waterfall_blue_cw : default_changeworld_alpha_test 
 {
 	technique
 	{
