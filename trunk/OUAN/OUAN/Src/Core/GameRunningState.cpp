@@ -270,12 +270,13 @@ void GameRunningState::handleEvents()
 		}
 
 		Ogre::Vector3 inputReadMovement = mApp->getMovement();
-		bool zeroMovement = inputReadMovement.isZeroLength();
+
 
 		Ogre::Vector3 outernMovement = !onyDying
 			?inputReadMovement
 			:Ogre::Vector3::ZERO;
-
+	
+		bool zeroMovement = inputReadMovement.isZeroLength();
 
 		if (!zeroMovement)
 		{

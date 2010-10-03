@@ -4,7 +4,7 @@
 		<!-- MAIN MENU -->
 		<Option key="MAINMENU_SCREEN_PLAY">Play</Option>
 		<Option key="MAINMENU_SCREEN_OPTIONS">Options</Option>
-		<Option key="MAINMENU_SCREEN_EXTRAS">Extras</Option>
+		<Option key="MAINMENU_SCREEN_EXTRAS">Credits</Option>
 		<Option key="MAINMENU_SCREEN_QUIT">Quit</Option>
 		<!-- EXTRAS MENU -->
 		<Option key="EXTRAS_SCREEN_CREDITS">Design:\n
@@ -47,7 +47,7 @@ Pere Ferrera\n</Option>
 		<Option key="BUTTON_TEXT_MENU">Menu: </Option>
 		<Option key="BUTTON_TEXT_PAUSE">Pause: </Option>
 		<Option key="BUTTON_TEXT_FORWARD">Forward: </Option>
-		<Option key="BUTTON_TEXT_BACKWARDS">Backwards: </Option>
+		<Option key="BUTTON_TEXT_BACKWARDS">Turn back: </Option>
 		<Option key="BUTTON_TEXT_LEFT">Left: </Option>
 		<Option key="BUTTON_TEXT_RIGHT">Right: </Option>
 		<Option key="BUTTON_TEXT_JUMP">Jump: </Option>
@@ -86,10 +86,10 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_GRAPHICS_INFO">Select the desired values for the following system options.\n
 		Those labelled with '*' will require an application restart</Option>
 		<Option key="OPTIONS_GRAPHICS_LANGUAGE">Language</Option>
-		<Option key="OPTIONS_GRAPHICS_RESOLUTION">Resolution and colour depth*</Option>
-		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">Full Screen*</Option>
-		<Option key="OPTIONS_GRAPHICS_VSYNC">VSync*</Option>
-		<Option key="OPTIONS_GRAPHICS_AA">Antialiasing*</Option>
+		<Option key="OPTIONS_GRAPHICS_RESOLUTION">(*)Resolution and colour depth</Option>
+		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">(*)Full Screen</Option>
+		<Option key="OPTIONS_GRAPHICS_VSYNC">(*)VSync</Option>
+		<Option key="OPTIONS_GRAPHICS_AA">(*)Antialiasing</Option>
 		<Option key="OPTIONS_GRAPHICS_SKIPINTRO">Skip to game</Option>
 		
 		<Option key="OPTIONS_LANGUAGE_EN">English</Option>

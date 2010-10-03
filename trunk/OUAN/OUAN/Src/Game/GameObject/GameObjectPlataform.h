@@ -23,6 +23,11 @@ namespace OUAN
 	const std::string PLATFORM_MATERIAL_1_NORMAL_NIGHTMARES = "flower1_n";
 	const std::string PLATFORM_MATERIAL_1_JUMP_NIGHTMARES = "flower1_jump_n";
 
+	const std::string PLATFORM_TEXTURE_FLOWER1_NORMAL_DREAMS="flower0_d.dds";
+	const std::string PLATFORM_TEXTURE_FLOWER1_JUMP_DREAMS="flower0b_d.dds";
+	const std::string PLATFORM_TEXTURE_FLOWER1_NORMAL_NIGHTMARES="flower0_n.dds";
+	const std::string PLATFORM_TEXTURE_FLOWER1_JUMP_NIGHTMARES="flower0b_n.dds";
+
 	const std::string FLOWER_JUMPABLE_MESH = "flor1_ani.mesh";
 
 	/// Class to hold terrain information

@@ -4,7 +4,7 @@
 		<!-- MENÚ PRINCIPAL -->
 		<Option key="MAINMENU_SCREEN_PLAY">Jugar</Option>
 		<Option key="MAINMENU_SCREEN_OPTIONS">Opciones</Option>
-		<Option key="MAINMENU_SCREEN_EXTRAS">Extras</Option>
+		<Option key="MAINMENU_SCREEN_EXTRAS">Créditos</Option>
 		<Option key="MAINMENU_SCREEN_QUIT">Salir</Option>
 		<!-- MENÚ DE EXTRAS -->
 		<Option key="EXTRAS_SCREEN_CREDITS">Diseño:\n
@@ -46,7 +46,7 @@ Pere Ferrera\n</Option>
 		<Option key="BUTTON_TEXT_MENU">Menú: </Option>
 		<Option key="BUTTON_TEXT_PAUSE">Pausa: </Option>
 		<Option key="BUTTON_TEXT_FORWARD">Adelante: </Option>
-		<Option key="BUTTON_TEXT_BACKWARDS">Atrás: </Option>
+		<Option key="BUTTON_TEXT_BACKWARDS">Dar la vuelta: </Option>
 		<Option key="BUTTON_TEXT_LEFT">Izquierda: </Option>
 		<Option key="BUTTON_TEXT_RIGHT">Derecha: </Option>
 		<Option key="BUTTON_TEXT_JUMP">Salto: </Option>
@@ -80,10 +80,10 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_GENERAL_TAB">General</Option>
 		<Option key="OPTIONS_GRAPHICS_INFO">Selecciona los valores deseados para las siguientes opciones de sistema.\n Las opciones marcadas con * requerirán un reinicio de la aplicación.</Option>
 		<Option key="OPTIONS_GRAPHICS_LANGUAGE">Idioma</Option>
-		<Option key="OPTIONS_GRAPHICS_RESOLUTION">Resolución y profundidad de color*</Option>
-		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">Pantalla completa*</Option>
-		<Option key="OPTIONS_GRAPHICS_VSYNC">VSync*</Option>
-		<Option key="OPTIONS_GRAPHICS_AA">Antialiasing*</Option>
+		<Option key="OPTIONS_GRAPHICS_RESOLUTION">(*)Resolución</Option>
+		<Option key="OPTIONS_GRAPHICS_FULLSCREEN">(*)Pantalla completa</Option>
+		<Option key="OPTIONS_GRAPHICS_VSYNC">(*)VSync</Option>
+		<Option key="OPTIONS_GRAPHICS_AA">(*)Antialiasing</Option>
 		<Option key="OPTIONS_GRAPHICS_SKIPINTRO">Saltar al juego</Option>
 		
 		<Option key="OPTIONS_LANGUAGE_EN">Inglés</Option>

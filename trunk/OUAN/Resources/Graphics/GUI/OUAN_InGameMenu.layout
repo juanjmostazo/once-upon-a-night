@@ -16,28 +16,28 @@
             <Property Name="Text" Value="INGAME_MENU_SCREEN_BTG" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.380078,0},{0.4,0},{0.964648,0},{0.471379,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.380078,0},{0.384102,0},{0.964648,0},{0.485688,0}}" />
         </Window>
         <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/GameQuit" >
             <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="INGAME_MENU_SCREEN_BTM" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.314063,0},{0.671494,0},{0.866406,0},{0.751494,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.314063,0},{0.652416,0},{0.866406,0},{0.751494,0}}" />
         </Window>
         <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/Options" >
             <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="INGAME_MENU_SCREEN_OPTIONS" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.318945,0},{0.530172,0},{0.904492,0},{0.610173,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.318945,0},{0.507914,0},{0.904492,0},{0.610173,0}}" />
         </Window>
         <Window Type="OUANLook/GearButton" Name="OUANInGameMenu/AppQuit" >
             <Property Name="Font" Value="OUANMain-48" />
             <Property Name="Text" Value="INGAME_MENU_SCREEN_EXIT" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.232031,0},{0.813046,0},{0.753633,0},{0.893046,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.232031,0},{0.786019,0},{0.753633,0},{0.893046,0}}" />
         </Window>
     </Window>
 </GUILayout>
