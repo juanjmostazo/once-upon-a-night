@@ -103,6 +103,9 @@ namespace OUAN
 		void setTintFactor(double tintFactor);
 		bool isTintBeingApplied() const;
 
+		void changeTexture(std::vector<std::string>& newTextures);
+		
+
 		//void prepareForNormalMapping();
 
 	};

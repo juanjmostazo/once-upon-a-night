@@ -180,7 +180,7 @@ void RenderComponentViewport::clearViewport(unsigned int buffers, const ColourVa
 			if (currentvp && currentvp != mViewport)
 				rs->_setViewport(currentvp);
 		}
-	}
+	}	
 	catch(...)
 	{
 		Logger::getInstance()->log("EXCEPTION RESCALING VIEWPORT!");

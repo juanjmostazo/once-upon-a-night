@@ -458,6 +458,23 @@ bool RenderComponentEntity::isTintBeingApplied() const
 	return !mOldMaterials.empty();
 }
 
+void RenderComponentEntity::changeTexture(std::vector<std::string>& newTextures)
+{
+	if (newTextures.size()<mEntity->getNumSubEntities())
+	{
+		Ogre::MaterialPtr material;
+		Ogre::Pass* pass;
+		Ogre::TextureUnitState* tex;
+		for (unsigned int i=0;i<mEntity->getNumSubEntities();i++)
+		{
+			material = mEntity->getSubEntity(i)->getMaterial();
+			pass = material->getTechnique(0)->getPass(0);
+			pass->getTextureUnitState(0);
+			tex->setTextureName(newTextures.at(i));
+		}
+	}
+}
+
 //--- Entity parameters
 
 TRenderComponentEntityParameters::TRenderComponentEntityParameters() : TRenderComponentParameters()

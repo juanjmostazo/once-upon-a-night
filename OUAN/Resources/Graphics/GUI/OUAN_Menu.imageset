@@ -1,19 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Imageset Name="OUAN_Menu" Imagefile="ouan_options_buttons.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" >
-	<Image Name="Image" XPos="48" YPos="10" Width="1054" Height="976" />
-	<Image Name="vscrollbar_down" XPos="157" YPos="528" Width="21" Height="18" />
-	<Image Name="vscrollbar_up" XPos="157" YPos="480" Width="21" Height="22" />
-	<Image Name="hscrollbar_right" XPos="234" YPos="480" Width="22" Height="21" />
-	<Image Name="hscrollbar_left" XPos="190" YPos="480" Width="18" Height="21" />
-	<Image Name="hscrollbar_thumb" XPos="212" YPos="480" Width="19" Height="20" />
-	<Image Name="vscrollbar_thumb" XPos="157" YPos="505" Width="21" Height="19" />
+	<Image Name="IMAGE" XPos="48" YPos="10" Width="1054" Height="979" />
+	<Image Name="button_left_click" XPos="464" YPos="414" Width="22" Height="60" />
+	<Image Name="button_middle_click" XPos="486" YPos="414" Width="226" Height="62" />
+	<Image Name="button_right_click" XPos="715" YPos="414" Width="18" Height="62" />
+	<Image Name="button_right_hover" XPos="715" YPos="317" Width="17" Height="61" />
+	<Image Name="button_middle_hover" XPos="486" YPos="317" Width="226" Height="61" />
+	<Image Name="button_right_normal" XPos="715" YPos="225" Width="19" Height="57" />
+	<Image Name="button_left_hover" XPos="463" YPos="316" Width="22" Height="62" />
+	<Image Name="button_middle_normal" XPos="486" YPos="225" Width="226" Height="57" />
+	<Image Name="button_left_normal" XPos="464" YPos="225" Width="18" Height="57" />
+	<Image Name="tab_button_bottom_hover" XPos="563" YPos="357" Width="13" Height="14" />
+	<Image Name="tab_button_bottomright_hover" XPos="720" YPos="357" Width="12" Height="14" />
+	<Image Name="tab_button_right_hover" XPos="719" YPos="334" Width="13" Height="11" />
+	<Image Name="tab_button_topright_hover" XPos="719" YPos="317" Width="13" Height="12" />
+	<Image Name="tab_button_top_hover" XPos="563" YPos="317" Width="13" Height="12" />
+	<Image Name="tab_button_middle_hover" XPos="563" YPos="334" Width="13" Height="11" />
+	<Image Name="tab_button_left_hover" XPos="462" YPos="335" Width="14" Height="10" />
+	<Image Name="tab_button_bottomleft_hover" XPos="462" YPos="357" Width="14" Height="14" />
+	<Image Name="tab_button_topleft_hover" XPos="462" YPos="316" Width="14" Height="13" />
+	<Image Name="tab_button_bottomleft2_hover" XPos="391" YPos="194" Width="8" Height="9" />
+	<Image Name="tab_button_bottom2_hover" XPos="420" YPos="193" Width="4" Height="10" />
+	<Image Name="tab_button_bottomright2_hover" XPos="446" YPos="195" Width="8" Height="8" />
+	<Image Name="tab_button_topleft2_hover" XPos="391" YPos="162" Width="8" Height="9" />
+	<Image Name="tab_button_top2_hover" XPos="420" YPos="162" Width="4" Height="7" />
+	<Image Name="tab_button_topright2_hover" XPos="445" YPos="162" Width="9" Height="8" />
+	<Image Name="tab_content_pane_bottom" XPos="582" YPos="268" Width="24" Height="21" />
+	<Image Name="tab_content_pane_top" XPos="568" YPos="225" Width="22" Height="11" />
+	<Image Name="tab_content_pane_right" XPos="720" YPos="243" Width="16" Height="21" />
+	<Image Name="tab_content_pane_topright" XPos="715" YPos="225" Width="18" Height="11" />
+	<Image Name="tab_content_pane_bottomright" XPos="715" YPos="271" Width="21" Height="15" />
+	<Image Name="tab_content_pane_left" XPos="464" YPos="242" Width="13" Height="18" />
+	<Image Name="tab_content_pane_bottomleft" XPos="464" YPos="270" Width="18" Height="16" />
+	<Image Name="tab_content_pane_topleft" XPos="464" YPos="225" Width="18" Height="11" />
+	<Image Name="tab_content_pane_middle" XPos="583" YPos="248" Width="17" Height="17" />
+	<Image Name="tab_horiz_filler" XPos="383" YPos="133" Width="19" Height="3" />
+	<Image Name="tab_button_middle_selected" XPos="563" YPos="434" Width="13" Height="12" />
+	<Image Name="tab_button_topright_selected" XPos="720" YPos="414" Width="12" Height="13" />
+	<Image Name="tab_button_bottom_selected" XPos="563" YPos="455" Width="13" Height="14" />
+	<Image Name="tab_button_top_selected" XPos="563" YPos="414" Width="13" Height="13" />
+	<Image Name="tab_button_right_selected" XPos="719" YPos="434" Width="13" Height="13" />
+	<Image Name="tab_button_bottomright_selected" XPos="719" YPos="455" Width="13" Height="14" />
+	<Image Name="tab_button_bottomleft_selected" XPos="464" YPos="455" Width="12" Height="14" />
+	<Image Name="tab_button_left_selected" XPos="464" YPos="437" Width="12" Height="10" />
+	<Image Name="tab_button_topleft_selected" XPos="464" YPos="414" Width="12" Height="13" />
+	<Image Name="tab_button_bottomleft2_selected" XPos="323" YPos="193" Width="10" Height="10" />
+	<Image Name="tab_button_bottom2_selected" XPos="353" YPos="193" Width="3" Height="10" />
+	<Image Name="tab_button_bottomright2_selected" XPos="378" YPos="193" Width="8" Height="10" />
+	<Image Name="tab_button_topleft2_selected" XPos="323" YPos="162" Width="11" Height="11" />
+	<Image Name="tab_button_top2_selected" XPos="352" YPos="162" Width="4" Height="10" />
+	<Image Name="tab_button_topright2_selected" XPos="375" YPos="162" Width="11" Height="12" />
+	<Image Name="tab_button_top_normal" XPos="563" YPos="225" Width="27" Height="15" />
+	<Image Name="tab_button_right_normal" XPos="721" YPos="245" Width="11" Height="8" />
+	<Image Name="tab_button_middle_normal" XPos="563" YPos="239" Width="13" Height="17" />
+	<Image Name="tab_button_topright_normal" XPos="720" YPos="225" Width="12" Height="15" />
+	<Image Name="tab_button_bottomright_normal" XPos="720" YPos="266" Width="12" Height="14" />
+	<Image Name="tab_button_left_normal" XPos="464" YPos="239" Width="13" Height="17" />
+	<Image Name="tab_button_bottom_normal" XPos="563" YPos="266" Width="13" Height="14" />
+	<Image Name="tab_button_bottomleft_normal" XPos="464" YPos="266" Width="13" Height="14" />
+	<Image Name="tab_button_topleft_normal" XPos="464" YPos="225" Width="13" Height="15" />
+	<Image Name="tab_button_bottom2_normal" XPos="492" YPos="196" Width="4" Height="7" />
+	<Image Name="tab_button_bottomleft2_normal" XPos="463" YPos="196" Width="8" Height="7" />
+	<Image Name="tab_button_top2_normal" XPos="492" YPos="162" Width="4" Height="6" />
+	<Image Name="tab_button_bottomright2_normal" XPos="515" YPos="196" Width="11" Height="7" />
+	<Image Name="tab_button_topleft2_normal" XPos="463" YPos="162" Width="8" Height="6" />
+	<Image Name="tab_button_topright2_normal" XPos="516" YPos="162" Width="10" Height="6" />
+	<Image Name="vscrollbar_down" XPos="157" YPos="528" Width="20" Height="18" />
+	<Image Name="vscrollbar_up" XPos="157" YPos="478" Width="20" Height="22" />
+	<Image Name="hscrollbar_right" XPos="234" YPos="479" Width="19" Height="21" />
+	<Image Name="hscrollbar_left" XPos="192" YPos="479" Width="17" Height="21" />
+	<Image Name="hscrollbar_thumb" XPos="211" YPos="479" Width="21" Height="22" />
+	<Image Name="vscrollbar_thumb" XPos="157" YPos="504" Width="20" Height="22" />
+	<Image Name="hscrollbar" XPos="391" YPos="569" Width="7" Height="21" />
+	<Image Name="vscrollbar" XPos="113" YPos="541" Width="19" Height="7" />
+	<Image Name="scrollbar_scrolloff_down" XPos="112" YPos="970" Width="23" Height="20" />
+	<Image Name="scrollbar_scrolloff_up" XPos="111" YPos="479" Width="22" Height="19" />
+	<Image Name="scrollbar_scrolloff_middle" XPos="0" YPos="0" Width="0" Height="0" />
+	<Image Name="scrollbar_scrollon_down" XPos="0" YPos="0" Width="0" Height="0" />
+	<Image Name="scrollbar_scrollon_thumb" XPos="0" YPos="0" Width="0" Height="0" />
+	<Image Name="scrollbar_scrollon_up" XPos="157" YPos="479" Width="20" Height="22" />
+	<Image Name="text_selection_brush" XPos="848" YPos="175" Width="16" Height="16" />
+	<Image Name="edit_right" XPos="908" YPos="196" Width="4" Height="22" />
+	<Image Name="edit_middle" XPos="866" YPos="196" Width="5" Height="22" />
+	<Image Name="edit_left" XPos="846" YPos="196" Width="5" Height="22" />
+	<Image Name="carat" XPos="234" YPos="91" Width="1" Height="17" />
+	<Image Name="mouse_text_bar" XPos="251" YPos="88" Width="12" Height="22" />
 	<Image Name="combo_back" XPos="975" YPos="321" Width="84" Height="86" />
 	<Image Name="combo_shadow" XPos="980" YPos="412" Width="11" Height="10" />
 	<Image Name="combo_list_bottomright" XPos="1054" YPos="401" Width="11" Height="12" />
 	<Image Name="combo_list_bottomleft" XPos="969" YPos="399" Width="13" Height="15" />
-	<Image Name="hscrollbar" XPos="178" YPos="571" Width="468" Height="21" />
-	<Image Name="vscrollbar" XPos="111" YPos="503" Width="21" Height="463" />
 	<Image Name="combo_list_right" XPos="1058" YPos="355" Width="10" Height="10" />
 	<Image Name="combo_list_bottom" XPos="1009" YPos="406" Width="7" Height="8" />
 	<Image Name="combo_list_left" XPos="969" YPos="357" Width="6" Height="8" />
@@ -28,45 +104,24 @@
 	<Image Name="combo_left_normal" XPos="833" YPos="229" Width="15" Height="53" />
 	<Image Name="combo_button_click" XPos="1058" YPos="732" Width="39" Height="52" />
 	<Image Name="combo_button_hover" XPos="1054" YPos="483" Width="46" Height="51" />
-	<Image Name="text_selection_brush" XPos="848" YPos="175" Width="16" Height="16" />
-	<Image Name="edit_right" XPos="908" YPos="196" Width="4" Height="22" />
-	<Image Name="edit_middle" XPos="866" YPos="196" Width="5" Height="22" />
-	<Image Name="edit_left" XPos="846" YPos="196" Width="5" Height="22" />
+	<Image Name="combo_button_normal" XPos="1058" YPos="229" Width="38" Height="53" />
 	<Image Name="slider_thumb_click" XPos="242" YPos="11" Width="42" Height="41" />
-	<Image Name="button_left_click" XPos="464" YPos="414" Width="22" Height="60" />
-	<Image Name="button_middle_click" XPos="486" YPos="414" Width="226" Height="62" />
-	<Image Name="button_right_click" XPos="715" YPos="414" Width="18" Height="62" />
-	<Image Name="button_right_hover" XPos="715" YPos="317" Width="17" Height="61" />
-	<Image Name="button_middle_hover" XPos="486" YPos="317" Width="226" Height="61" />
-	<Image Name="button_right_normal" XPos="715" YPos="225" Width="19" Height="57" />
-	<Image Name="button_left_hover" XPos="463" YPos="316" Width="22" Height="62" />
-	<Image Name="button_middle_normal" XPos="486" YPos="225" Width="226" Height="57" />
-	<Image Name="button_left_normal" XPos="462" YPos="223" Width="22" Height="57" />
-	<Image Name="carat" XPos="234" YPos="91" Width="1" Height="17" />
-	<Image Name="mouse_text_bar" XPos="251" YPos="88" Width="12" Height="22" />
-	<Image Name="ibutton_right_click" XPos="300" YPos="395" Width="24" Height="53" />
-	<Image Name="ibutton_middle_click" XPos="80" YPos="395" Width="215" Height="53" />
-	<Image Name="ibutton_left_click" XPos="52" YPos="395" Width="22" Height="53" />
-	<Image Name="scrollbar_scrolloff_down" XPos="111" YPos="968" Width="21" Height="18" />
-	<Image Name="scrollbar_scrolloff_up" XPos="111" YPos="480" Width="21" Height="21" />
-	<Image Name="scrollbar_scrolloff_middle" XPos="0" YPos="0" Width="0" Height="0" />
-	<Image Name="scrollbar_scrollon_down" XPos="157" YPos="528" Width="21" Height="18" />
-	<Image Name="scrollbar_scrollon_thumb" XPos="157" YPos="505" Width="21" Height="19" />
-	<Image Name="scrollbar_scrollon_up" XPos="157" YPos="480" Width="21" Height="22" />
-	<Image Name="ibutton_left_hover" XPos="52" YPos="317" Width="23" Height="52" />
-	<Image Name="ibutton_middle_hover" XPos="80" YPos="317" Width="215" Height="52" />
-	<Image Name="ibutton_right_hover" XPos="300" YPos="317" Width="24" Height="52" />
-	<Image Name="ibutton_right_normal" XPos="300" YPos="236" Width="24" Height="50" />
-	<Image Name="ibutton_middle_normal" XPos="80" YPos="236" Width="215" Height="50" />
-	<Image Name="ibutton_left_normal" XPos="52" YPos="236" Width="22" Height="50" />
+	<Image Name="slider_right" XPos="174" YPos="31" Width="62" Height="3" />
+	<Image Name="slider_thumb_normal" XPos="122" YPos="10" Width="42" Height="41" />
+	<Image Name="slider_left" XPos="48" YPos="30" Width="63" Height="6" />
 	<Image Name="check_selected_click" XPos="155" YPos="171" Width="33" Height="33" />
 	<Image Name="check_unselected_click" XPos="107" YPos="175" Width="31" Height="32" />
 	<Image Name="check_selected_hover" XPos="154" YPos="127" Width="32" Height="33" />
 	<Image Name="check_unselected_hover" XPos="107" YPos="131" Width="28" Height="28" />
 	<Image Name="check_selected" XPos="154" YPos="83" Width="36" Height="36" />
 	<Image Name="check_unselected" XPos="107" YPos="87" Width="29" Height="31" />
-	<Image Name="slider_right" XPos="174" YPos="31" Width="62" Height="3" />
-	<Image Name="slider_thumb_normal" XPos="122" YPos="10" Width="42" Height="41" />
-	<Image Name="slider_left" XPos="48" YPos="30" Width="63" Height="6" />
-	<Image Name="combo_button_normal" XPos="1058" YPos="229" Width="38" Height="53" />
+	<Image Name="ibutton_right_click" XPos="299" YPos="395" Width="24" Height="54" />
+	<Image Name="ibutton_middle_click" XPos="81" YPos="395" Width="214" Height="53" />
+	<Image Name="ibutton_left_click" XPos="52" YPos="395" Width="23" Height="53" />
+	<Image Name="ibutton_left_hover" XPos="52" YPos="315" Width="23" Height="53" />
+	<Image Name="ibutton_middle_hover" XPos="81" YPos="315" Width="213" Height="53" />
+	<Image Name="ibutton_right_hover" XPos="300" YPos="315" Width="23" Height="53" />
+	<Image Name="ibutton_right_normal" XPos="300" YPos="236" Width="24" Height="50" />
+	<Image Name="ibutton_middle_normal" XPos="81" YPos="236" Width="213" Height="50" />
+	<Image Name="ibutton_left_normal" XPos="52" YPos="236" Width="23" Height="50" />
 </Imageset>

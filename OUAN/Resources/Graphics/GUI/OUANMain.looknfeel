@@ -2,9 +2,9 @@
 <Falagard>
   <!--     ***************************************************         OUANLook/Button      ***************************************************      -->
   <WidgetLook name="OUANMain/GearButton">
-    <PropertyDefinition name="NormalTextColour" initialValue="FFFADB3E" redrawOnWrite="true" />
-    <PropertyDefinition name="HoverTextColour" initialValue="FFBE5C07" redrawOnWrite="true" />
-    <PropertyDefinition name="PushedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+    <PropertyDefinition name="NormalTextColour" initialValue="FFffffff" redrawOnWrite="true" />
+    <PropertyDefinition name="HoverTextColour" initialValue="FFFCEC41" redrawOnWrite="true" />
+    <PropertyDefinition name="PushedTextColour" initialValue="FFBE5C07" redrawOnWrite="true" />
     <PropertyDefinition name="DisabledTextColour" initialValue="FF52420B" redrawOnWrite="true" />  
 	<ImagerySection name="label">
 	  <TextComponent>
@@ -73,18 +73,16 @@
 	</ImagerySection>
     <StateImagery name="Normal">
 		<Layer>
-			<Section section="label" />
+			<Section section="label" >
+				<ColourProperty name="NormalTextColour"/>
+			</Section>
 		</Layer>
 	</StateImagery>
 
 	<StateImagery name="Hover">
 	  <Layer>
 			<Section section="label">
-			  <Colours
-				topLeft="FFfadb3e"
-				topRight="FFfadb3e"
-				bottomLeft="FFfadb3e"
-				bottomRight="FFfadb3e"
+			  <ColourProperty name="HoverTextColour"
 			  />			
 			</Section>
 			<Section section="hover_imagery" />			
@@ -94,11 +92,7 @@
 	<StateImagery name="Pushed">
 	  <Layer>
 			<Section section="label" >
-				<Colours
-				topLeft="FFbe5c07"
-				topRight="FFbe5c07"
-				bottomLeft="FFbe5c07"
-				bottomRight="FFbe5c07"
+				<ColourProperty name="PushedTextColour"
 			  />			
 			</Section>
 			<Section section="pushed_imagery" />
@@ -399,7 +393,7 @@
             <AbsoluteDim value="0" />
           </Dim>
           <Dim type="TopEdge">
-            <AbsoluteDim value="0" />
+            <AbsoluteDim value="0" offset="-5"/>
           </Dim>
           <Dim type="Width">
             <UnifiedDim scale="1" type="Width" />
@@ -714,7 +708,7 @@
     </StateImagery>	
     <StateImagery name="Pushed">
       <Layer>
-        <Section section="pushed" controlProperty="DrawStandardImagery" />
+        <Section section="normalselected" controlProperty="DrawStandardImagery" />
         <Section section="label">
           <ColourProperty name="PushedTextColour" />
         </Section>
@@ -753,10 +747,10 @@
     <NamedArea name="TextArea">
       <Area>
         <Dim type="LeftEdge" >
-          <AbsoluteDim value="5" />
+          <AbsoluteDim value="15" />
         </Dim>
         <Dim type="TopEdge" >
-          <AbsoluteDim value="0" />
+          <AbsoluteDim value="8" />
         </Dim>
         <Dim type="RightEdge" >
           <UnifiedDim scale="1.0" offset="-5" type="RightEdge" />
@@ -1054,10 +1048,10 @@
       <AbsoluteDim value="0" />
     </Dim>
     <Dim type="Width" >
-      <AbsoluteDim value="0" />
+		<UnifiedDim scale="1" type="Width"/>
     </Dim>
     <Dim type="Height" >
-      <AbsoluteDim value="0" />
+		<UnifiedDim scale="1" type="Height"/>
     </Dim>
   </Area>
   <VertAlignment type="BottomAligned" />
@@ -1067,7 +1061,7 @@
     <Dim type="LeftEdge" >
       <UnifiedDim scale="1" type="RightEdge">
         <DimOperator op="Subtract">
-          <ImageDim imageset="OUAN_Menu" image="vert_scroll_bar" dimension="Width">
+          <ImageDim imageset="OUAN_Menu" image="vscrollbar" dimension="Width">
             <DimOperator op="Add">
               <ImageDim imageset="OUAN_Menu" image="combo_list_right" dimension="Width" />
             </DimOperator>
@@ -1079,7 +1073,7 @@
       <ImageDim imageset="OUAN_Menu" image="combo_list_top" dimension="Height" />
     </Dim>
     <Dim type="Width" >
-      <ImageDim imageset="OUAN_Menu" image="vert_scroll_bar" dimension="Width" />
+      <ImageDim imageset="OUAN_Menu" image="vscrollbar" dimension="Width" />
     </Dim>
     <Dim type="BottomEdge" >
       <UnifiedDim scale="1" type="BottomEdge">
@@ -1269,6 +1263,7 @@
           <ImageDim imageset="OUAN_Menu" image="hscrollbar_thumb" dimension="Height" />
         </Dim>
       </Area>
+	<Image type="Background" imageset="OUAN_Menu" image="hscrollbar" />	
     </FrameComponent>
   </ImagerySection>
   <StateImagery name="Enabled">
@@ -1429,7 +1424,8 @@
           </DimOperator>
         </UnifiedDim>
       </Dim>
-    </Area>   
+    </Area>  
+<Image type="Background" imageset="OUAN_Menu" image="vscrollbar" />	
   </FrameComponent>
 </ImagerySection>
 <StateImagery name="Enabled">
@@ -1560,6 +1556,732 @@
 <StateImagery name="Disabled">
   <Layer>
     <Section section="disabled" />
+  </Layer>
+</StateImagery>
+</WidgetLook>
+<!-- TAB CONTROL -->
+
+<WidgetLook name="OUANMenu/TabControl">
+<Property name="TabButtonType" value="OUANMenu/TabButton" />
+<Property name="TabTextPadding" value="{0,6}" />
+<Child type="OUANMenu/TabContentPane" nameSuffix="__auto_TabPane__">
+  <Area>
+    <Dim type="LeftEdge">
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="RightEdge">
+      <UnifiedDim scale="1" type="Width" />
+    </Dim>
+    <Dim type="TopEdge">
+      <PropertyDim widget="__auto_TabPane__" name="EnableBottom">
+        <DimOperator op="Multiply">
+          <PropertyDim name="TabHeight" type="Height" />
+        </DimOperator>
+      </PropertyDim>
+    </Dim>
+    <Dim type="Height">
+      <UnifiedDim scale="1" type="Height">
+        <DimOperator op="Subtract">
+          <PropertyDim name="TabHeight" type="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</Child>
+<Child  type="OUANMenu/TabButtonPane" nameSuffix="__auto_TabPane__Buttons">
+  <Area>
+    <Dim type="LeftEdge">
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="RightEdge">
+      <UnifiedDim scale="1" type="Width" />
+    </Dim>
+    <Dim type="TopEdge">
+      <PropertyDim widget="__auto_TabPane__Buttons" name="EnableTop">
+        <DimOperator op="Multiply">
+          <UnifiedDim scale="1" type="Height">
+            <DimOperator op="Subtract">
+              <PropertyDim name="TabHeight" type="Height" />
+            </DimOperator>
+          </UnifiedDim>
+        </DimOperator>
+      </PropertyDim>
+    </Dim>
+    <Dim type="Height">
+      <PropertyDim name="TabHeight" type="Height" />
+    </Dim>
+  </Area>
+</Child>
+<StateImagery name="Enabled" />
+<StateImagery name="Disabled" />
+</WidgetLook>
+
+<WidgetLook name="OUANMenu/TabButtonPane">
+<PropertyDefinition name="EnableTop" initialValue="1" redrawOnWrite="true" layoutOnwrite="true" />
+<PropertyDefinition name="EnableBottom" initialValue="1" redrawOnWrite="true" layoutOnwrite="true" />
+<ImagerySection name="normal">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <ImageDim imageset="OUAN_Menu" image="tab_horiz_filler" dimension="Height">
+          <DimOperator op="Multiply">
+            <AbsoluteDim name="20" />
+          </DimOperator>
+        </ImageDim>
+      </Dim>
+    </Area>
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_horiz_filler" />
+  </FrameComponent>
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <ImageDim imageset="OUAN_Menu" image="tab_horiz_filler" dimension="Height">
+          <DimOperator op="Multiply">
+            <PropertyDim name="EnableTop" />
+          </DimOperator>
+        </ImageDim>
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1" type="Height">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="tab_horiz_filler" dimension="Height">
+              <DimOperator op="Multiply">
+                <PropertyDim name="EnableBottom" />
+              </DimOperator>
+            </ImageDim>
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+    </Area>
+  </FrameComponent>
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <UnifiedDim scale="1" type="Height">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="tab_horiz_filler" dimension="Height">
+              <DimOperator op="Multiply">
+                <PropertyDim name="EnableBottom" />
+              </DimOperator>
+            </ImageDim>
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_horiz_filler" />
+  </FrameComponent>
+</ImagerySection>
+<StateImagery name="Enabled">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="normal">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>
+<WidgetLook name="OUANMenu/TabContentPane">
+<PropertyDefinition name="EnableTop" initialValue="0" redrawOnWrite="true" layoutOnwrite="true" />
+<PropertyDefinition name="EnableBottom" initialValue="0" redrawOnWrite="true" layoutOnwrite="true" />
+<ImagerySection name="normal">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <ImageDim imageset="OUAN_Menu" image="tab_content_pane_topleft" dimension="Height">
+          <DimOperator op="Multiply">
+            <PropertyDim name="EnableTop" />
+          </DimOperator>
+        </ImageDim>
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_content_pane_topleft" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_content_pane_topleft" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_content_pane_topright" />
+  </FrameComponent>
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <ImageDim imageset="OUAN_Menu" image="tab_content_pane_topleft" dimension="Height">
+          <DimOperator op="Multiply">
+            <PropertyDim name="EnableTop" />
+          </DimOperator>
+        </ImageDim>
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1" type="Height">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="tab_content_pane_bottomleft" dimension="Height">
+              <DimOperator op="Multiply">
+                <PropertyDim name="EnableBottom" />
+              </DimOperator>
+            </ImageDim>
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+    </Area>
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_content_pane_left" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_content_pane_middle" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_content_pane_right" />
+  </FrameComponent>
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <UnifiedDim scale="1" type="Height">
+          <DimOperator op="Subtract">
+            <ImageDim imageset="OUAN_Menu" image="tab_content_pane_bottomleft" dimension="Height">
+              <DimOperator op="Multiply">
+                <PropertyDim name="EnableBottom" />
+              </DimOperator>
+            </ImageDim>
+          </DimOperator>
+        </UnifiedDim>
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_content_pane_bottomleft" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_content_pane_bottom" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_content_pane_bottomright" />
+  </FrameComponent>
+</ImagerySection>
+<StateImagery name="Enabled">
+  <Layer>
+    <Section section="normal" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="normal">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>
+<WidgetLook name="OUANMenu/TabButton">
+<PropertyDefinition name="NormalTextColour" initialValue="FFC0C0C0" redrawOnWrite="true" />
+<PropertyDefinition name="HoverTextColour" initialValue="FFE0E0E0" redrawOnWrite="true" />
+<PropertyDefinition name="PushedTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
+<PropertyDefinition name="SelectedTextColour" initialValue="FFE0E0E0" redrawOnWrite="true" />
+<PropertyDefinition name="DisabledTextColour" initialValue="FF7F7F7F" redrawOnWrite="true" />
+<ImagerySection name="label">
+  <TextComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <VertFormat type="CentreAligned" />
+    <HorzFormat type="CentreAligned" />
+  </TextComponent>
+</ImagerySection>
+<ImagerySection name="top_normal">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft_normal" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_normal" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft2_normal" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright2_normal" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_normal" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_normal" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top_normal" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom2_normal" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_normal" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="bot_normal">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft2_normal" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_normal" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft_normal" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright_normal" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_normal" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_normal" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top2_normal" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom_normal" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_normal" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="top_hover">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft_hover" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_hover" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft2_hover" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright2_hover" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_hover" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_hover" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top_hover" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom2_hover" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_hover" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="bot_hover">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft2_hover" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright2_hover" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft_hover" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright_hover" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_hover" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_hover" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top2_hover" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom_hover" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_hover" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="top_selected">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft_selected" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_selected" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft2_selected" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright2_selected" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_selected" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_selected" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top_selected" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom2_selected" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_selected" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="bot_selected">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft2_selected" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright2_selected" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft_selected" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright_selected" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_selected" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_selected" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top2_selected" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom_selected" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_selected" />
+  </FrameComponent>
+</ImagerySection>
+<StateImagery name="TopNormal">
+  <Layer>
+    <Section section="top_normal" />
+    <Section section="label">
+      <ColourProperty name="NormalTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="BottomNormal">
+  <Layer>
+    <Section section="bot_normal" />
+    <Section section="label">
+      <ColourProperty name="NormalTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="TopHover">
+  <Layer>
+    <Section section="top_hover" />
+    <Section section="label">
+      <ColourProperty name="HoverTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="BottomHover">
+  <Layer>
+    <Section section="bot_hover" />
+    <Section section="label">
+      <ColourProperty name="HoverTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="TopSelected">
+  <Layer>
+    <Section section="top_selected" />
+    <Section section="label">
+      <ColourProperty name="SelectedTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="BottomSelected">
+  <Layer>
+    <Section section="bot_selected" />
+    <Section section="label">
+      <ColourProperty name="SelectedTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="TopPushed">
+  <Layer>
+    <Section section="top_hover" />
+    <Section section="label">
+      <ColourProperty name="PushedTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="BottomPushed">
+  <Layer>
+    <Section section="bot_hover" />
+    <Section section="label">
+      <ColourProperty name="PushedTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="TopDisabled">
+  <Layer>
+    <Section section="top_normal">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+    <Section section="label">
+      <ColourProperty name="DisabledTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+<StateImagery name="BottomDisabled">
+  <Layer>
+    <Section section="bot_normal">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
+    <Section section="label">
+      <ColourProperty name="DisabledTextColour" />
+    </Section>
+  </Layer>
+</StateImagery>
+</WidgetLook>
+
+<!-- Multiline edit box (extras) -->
+<WidgetLook name="OUANMenu/MultiLineEditbox">
+<PropertyDefinition name="NormalTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
+<PropertyDefinition name="SelectedTextColour" initialValue="FF000000" redrawOnWrite="true" />
+<PropertyDefinition name="ActiveSelectionColour" initialValue="FF607FFF" redrawOnWrite="true" />
+<PropertyDefinition name="InactiveSelectionColour" initialValue="FF808080" redrawOnWrite="true" />
+<Property name="MouseCursorImage" value="set:OUAN_Menu image:mouse_text_bar" />
+<Property name="SelectionBrushImage" value="set:OUAN_Menu image:text_selection_brush" />
+<NamedArea name="TextArea">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="tab_button_right_hover" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="tab_button_bottom_hover" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="TextAreaHScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="tab_button_right_hover" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="TextAreaVScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <ImageDim imageset="OUAN_Menu" image="tab_button_bottom_hover" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<NamedArea name="TextAreaHVScroll">
+  <Area>
+    <Dim type="LeftEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+    </Dim>
+    <Dim type="RightEdge" >
+      <UnifiedDim scale="1" type="RightEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+    <Dim type="BottomEdge" >
+      <UnifiedDim scale="1" type="BottomEdge">
+        <DimOperator op="Subtract">
+          <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+        </DimOperator>
+      </UnifiedDim>
+    </Dim>
+  </Area>
+</NamedArea>
+<Child  type="OUANMenu/HScrollBar" nameSuffix="__auto_hscrollbar__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <UnifiedDim scale="1" offset="-12" type="Width" />
+    </Dim>
+    <Dim type="Height" >
+      <AbsoluteDim value="12" />
+    </Dim>
+  </Area>
+  <VertAlignment type="BottomAligned" />
+</Child>
+<Child  type="OUANMenu/VScrollBar" nameSuffix="__auto_vscrollbar__">
+  <Area>
+    <Dim type="LeftEdge" >
+      <AbsoluteDim value="0" offset="-8" />
+    </Dim>
+    <Dim type="TopEdge" >
+      <AbsoluteDim value="0" />
+    </Dim>
+    <Dim type="Width" >
+      <AbsoluteDim value="12" />
+    </Dim>
+    <Dim type="Height" >
+      <UnifiedDim scale="1" offset="-12" type="Height" />
+    </Dim>
+  </Area>
+  <HorzAlignment type="RightAligned" />
+</Child>
+<ImagerySection name="main">
+  <FrameComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <UnifiedDim scale="1" type="Width" />
+      </Dim>
+      <Dim type="Height" >
+        <UnifiedDim scale="1" type="Height" />
+      </Dim>
+    </Area>
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft_hover" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_hover" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft_hover" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright_hover" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_hover" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_hover" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top_hover" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom_hover" />
+    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_hover" />
+  </FrameComponent>
+</ImagerySection>
+<ImagerySection name="Carat">
+  <ImageryComponent>
+    <Area>
+      <Dim type="LeftEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="TopEdge" >
+        <AbsoluteDim value="0" />
+      </Dim>
+      <Dim type="Width" >
+        <ImageDim imageset="OUAN_Menu" image="carat" dimension="Width" />
+      </Dim>
+      <Dim type="BottomEdge" >
+        <UnifiedDim scale="1.0" type="BottomEdge" />
+      </Dim>
+    </Area>
+    <Image imageset="OUAN_Menu" image="carat" />
+    <VertFormat type="Stretched" />
+    <HorzFormat type="Stretched" />
+  </ImageryComponent>
+</ImagerySection>
+<StateImagery name="Enabled">
+  <Layer>
+    <Section section="main" />
+  </Layer>
+</StateImagery>
+<StateImagery name="ReadOnly">
+  <Layer>
+    <Section section="main" />
+  </Layer>
+</StateImagery>
+<StateImagery name="Disabled">
+  <Layer>
+    <Section section="main">
+      <Colours topLeft="FF7F7F7F" topRight="FF7F7F7F" bottomLeft="FF7F7F7F" bottomRight="FF7F7F7F" />
+    </Section>
   </Layer>
 </StateImagery>
 </WidgetLook>

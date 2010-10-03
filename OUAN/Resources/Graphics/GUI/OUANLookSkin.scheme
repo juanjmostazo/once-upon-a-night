@@ -16,6 +16,8 @@
 	<Font Name="OUANMain-80" Filename="OUANMain-80.font" />	
 	<Font Name="OUANMain-64" Filename="OUANMain-64.font" />		
 	<Font Name="OUANMain-48" Filename="OUANMain-48.font" />	
+	<Font Name="OUANMain-12" Filename="OUANMain-12.font" />
+	<Font Name="book-9" Filename="book-9.font" />		
 	<LookNFeel Filename="OUANLook.looknfeel" />
 	<LookNFeel Filename="OUANMain.looknfeel" />	
 	<WindowRendererSet Filename="CEGUIFalagardWRBase" />
@@ -38,6 +40,15 @@
 <FalagardMapping WindowType="OUANMenu/HScrollBar"    TargetType="CEGUI/Scrollbar"    Renderer="Falagard/Scrollbar" LookNFeel="OUANMenu/HScrollBar" />
 
 <FalagardMapping WindowType="OUANMenu/VScrollBar"    TargetType="CEGUI/Scrollbar"    Renderer="Falagard/Scrollbar" LookNFeel="OUANMenu/VScrollBar" />
+
+<FalagardMapping WindowType="OUANMenu/TabButton"  TargetType="CEGUI/TabButton"  Renderer="Falagard/TabButton"  LookNFeel="OUANMenu/TabButton" />
+	<FalagardMapping WindowType="OUANMenu/TabControl" TargetType="CEGUI/TabControl" Renderer="Falagard/TabControl" LookNFeel="OUANMenu/TabControl" />
+	<FalagardMapping WindowType="OUANMenu/TabContentPane"    TargetType="DefaultWindow"    Renderer="Falagard/Default"    LookNFeel="OUANMenu/TabContentPane" />
+	<FalagardMapping WindowType="OUANMenu/TabButtonPane"    TargetType="DefaultWindow"    Renderer="Falagard/Default"    LookNFeel="OUANMenu/TabButtonPane" />	
+	<FalagardMapping WindowType="OUANMenu/MultiLineEditbox" TargetType="CEGUI/MultiLineEditbox" Renderer="Falagard/MultiLineEditbox" LookNFeel="OUANMenu/MultiLineEditbox" />
+	
+	<!-- OUANLOOK DEFAULTS-->
+
 	
 	<FalagardMapping WindowType="OUANLook/Button"     		 TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="OUANLook/Button" />
 	<FalagardMapping WindowType="OUANLook/Checkbox"    		TargetType="CEGUI/Checkbox"    Renderer="Falagard/ToggleButton" LookNFeel="OUANLook/Checkbox" />
