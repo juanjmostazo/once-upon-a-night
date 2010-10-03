@@ -129,13 +129,13 @@ material top_tower_d : basic_texture
 
 material top_tower_n : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower1_n.dds
+	set_texture_alias diffuse_texture top_tower1.dds
 }
 
 material top_tower_cw : default_changeworld
 {
 	set_texture_alias dreams island2_tower1_d.dds
-	set_texture_alias nightmares island2_tower1_n.dds
+	set_texture_alias nightmares top_tower1.dds
 }
 
 //TOWER2
