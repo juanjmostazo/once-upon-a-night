@@ -1,5 +1,7 @@
 import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
+import basic_shadow_reciever from BasicTexture.material
+import default_changeworld_shadow_reciever from ChangeWorld.material
 
 //ALMENA
 material almena2_d : basic_texture
@@ -19,17 +21,17 @@ material almena2_cw : default_changeworld
 }
 
 //BRIGDE
-material bridge_d : basic_texture
+material bridge_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture brigdeisland2n.dds
 }
 
-material bridge_n : basic_texture
+material bridge_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture brigdeisland2n2.dds
 }
 
-material bridge_cw : default_changeworld
+material bridge_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams brigdeisland2n.dds
 	set_texture_alias nightmares brigdeisland2n2.dds
@@ -53,17 +55,17 @@ material carpet_island2_cw : default_changeworld
 }
 
 //CARPET FLOOR
-material carpet_tower1_island2_d : basic_texture
+material carpet_tower1_island2_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet_wall.dds
 }
 
-material carpet_tower1_island2_n : basic_texture
+material carpet_tower1_island2_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet_walln.dds
 }
 
-material carpet_tower1_island2_cw : default_changeworld
+material carpet_tower1_island2_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams carpet_wall.dds
 	set_texture_alias nightmares carpet_walln.dds
@@ -139,17 +141,17 @@ material top_tower_cw : default_changeworld
 }
 
 //TOWER2
-material island2_tower2_d : basic_texture
+material island2_tower2_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture tower2_d.dds
 }
 
-material island2_tower2_n : basic_texture
+material island2_tower2_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture tower2island2n.dds
 }
 
-material island2_tower2_cw : default_changeworld
+material island2_tower2_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams tower2_d.dds
 	set_texture_alias nightmares tower2island2n.dds

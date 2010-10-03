@@ -1,17 +1,17 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import basic_shadow_reciever from BasicTexture.material
+import default_changeworld_shadow_reciever from ChangeWorld.material
 
-material terrain_island2_d : basic_texture
+material terrain_island2_d : basic_shadow_reciever
 {
 	set_texture_alias diffuse_texture terrain_island2.dds
 }
 
-material terrain_island2_n : basic_texture
+material terrain_island2_n : basic_shadow_reciever
 {
 	set_texture_alias diffuse_texture terrain_island2n.dds
 }
 
-material terrain_island2_cw : default_changeworld
+material terrain_island2_cw : default_changeworld_shadow_reciever
 {
 	set_texture_alias dreams terrain_island2.dds
 	set_texture_alias nightmares terrain_island2n.dds

@@ -1,19 +1,19 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import basic_shadow_reciever from BasicTexture.material
+import default_changeworld_shadow_reciever from ChangeWorld.material
 
-material platform_stairs_d : basic_texture
+material platform_stairs_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture platform_stairs_d.dds
 	set_texture_alias normal_texture platform_stairs_nm.dds
 }
 
-material platform_stairs_n : basic_texture
+material platform_stairs_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture platform_stairs_n.dds
 	set_texture_alias normal_texture platform_stairs_nm.dds	
 }
 
-material platform_stairs_cw : default_changeworld
+material platform_stairs_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams platform_stairs_d.dds
 	set_texture_alias nightmares platform_stairs_n.dds

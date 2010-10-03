@@ -1,9 +1,9 @@
-import basic_texture from BasicTexture.material
+import basic_shadow_reciever from BasicTexture.material
 import alpha_test_texture from BasicTexture.material
-import default_changeworld_alpha_test from ChangeWorld.material
+import default_changeworld_shadow_reciever from ChangeWorld.material
 
 ///FLOWER 1
-material flower1_d : basic_texture 
+material flower1_d : basic_shadow_reciever
 {	
 	technique
 	{
@@ -19,7 +19,7 @@ material flower1_d : basic_texture
 	}
 }
 
-material flower1_n : basic_texture 
+material flower1_n : basic_shadow_reciever
 {	
 	technique
 	{
@@ -35,7 +35,7 @@ material flower1_n : basic_texture
 	}
 }
 
-material flower1_cw : default_changeworld
+material flower1_cw : default_changeworld_shadow_reciever
 {	
 	technique
 	{
@@ -56,7 +56,7 @@ material flower1_cw : default_changeworld
 }
 
 ///FLOWER 1 JUMP
-material flower1_jump_d : basic_texture 
+material flower1_jump_d : basic_shadow_reciever
 {	
 	technique
 	{
@@ -72,7 +72,7 @@ material flower1_jump_d : basic_texture
 	}
 }
 
-material flower1_jump_n : basic_texture 
+material flower1_jump_n : basic_shadow_reciever
 {	
 	technique
 	{
@@ -88,7 +88,7 @@ material flower1_jump_n : basic_texture
 	}
 }
 
-material flower1_jump_cw : default_changeworld
+material flower1_jump_cw : default_changeworld_shadow_reciever
 {	
 	technique
 	{
@@ -109,7 +109,7 @@ material flower1_jump_cw : default_changeworld
 }
 
 ///FLOWER 2
-material flower2_d : basic_texture 
+material flower2_d : basic_shadow_reciever
 {	
 	technique
 	{
@@ -125,7 +125,7 @@ material flower2_d : basic_texture
 	}
 }
 
-material flower2_n : basic_texture 
+material flower2_n : basic_shadow_reciever
 {	
 	technique
 	{
@@ -141,7 +141,7 @@ material flower2_n : basic_texture
 	}
 }
 
-material flower2_cw : default_changeworld
+material flower2_cw : default_changeworld_shadow_reciever
 {	
 	technique
 	{
@@ -163,7 +163,7 @@ material flower2_cw : default_changeworld
 
 
 ///FLOWER 2 JUMP
-material flower2_jump_d : basic_texture 
+material flower2_jump_d : basic_shadow_reciever
 {	
 	technique
 	{
@@ -179,7 +179,7 @@ material flower2_jump_d : basic_texture
 	}
 }
 
-material flower2_jump_n : basic_texture 
+material flower2_jump_n : basic_shadow_reciever
 {	
 	technique
 	{
@@ -195,7 +195,7 @@ material flower2_jump_n : basic_texture
 	}
 }
 
-material flower2_jump_cw : default_changeworld
+material flower2_jump_cw : default_changeworld_shadow_reciever
 {	
 	technique
 	{
