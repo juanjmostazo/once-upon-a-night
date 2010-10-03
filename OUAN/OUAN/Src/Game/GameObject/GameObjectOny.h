@@ -18,7 +18,7 @@
 namespace OUAN
 {
 	//Time to be spent in idle state before the animation changes to 'napping'
-	const double IDLE_SECONDS_TO_NAP=45.0;
+	const double IDLE_SECONDS_TO_NAP=250.0;
 
 	//Time during which Ony will be invulnerable, after having taken a hit.
 	const double POST_HIT_INVULNERABILITY=5.0;
