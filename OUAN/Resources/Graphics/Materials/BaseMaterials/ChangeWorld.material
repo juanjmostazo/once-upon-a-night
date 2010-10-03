@@ -131,6 +131,26 @@ material default_changeworld_shadow_reciever
     }
 }
 
+
+material terrain_changeworld : default_changeworld_shadow_reciever
+{
+	technique
+	{
+	        pass
+	        {
+		        vertex_program_ref erosion_vs
+		        {
+		        }
+		        fragment_program_ref erosion_fs
+		        {
+				param_named ambient_base float4 0.3 0.3 0.3 1
+				param_named ambient_blended float4 0.3 0.3 0.3 1
+		        }
+              }
+      }
+}
+
+
 material default_changeworld_alpha_test : default_changeworld
 {
 	technique

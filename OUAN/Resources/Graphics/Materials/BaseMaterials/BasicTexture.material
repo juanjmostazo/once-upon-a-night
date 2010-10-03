@@ -80,6 +80,21 @@ material basic_shadow_reciever
 	}
 }
 
+material terrain_texture : basic_shadow_reciever
+{
+	technique
+	{
+		pass
+		{
+			fragment_program_ref rim_normal_diffuse_fs
+			{
+				param_named ambient float4 0.3 0.3 0.3 1
+			}
+			vertex_program_ref rim_normal_diffuse_vs{}			
+		}
+	}
+}
+
 material alpha_test_texture
 {
 	technique

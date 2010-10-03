@@ -1,18 +1,18 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import terrain_texture from BasicTexture.material
+import terrain_changeworld from ChangeWorld.material
 
-material platform_d : basic_texture
+material platform_d : terrain_texture 
 {
-	set_texture_alias diffuse_texture platform_d.dds
+	set_texture_alias diffuse_texture platform_big_d.dds
 }
 
-material platform_n : basic_texture
+material platform_n : terrain_texture 
 {
-	set_texture_alias diffuse_texture platform_n.dds
+	set_texture_alias diffuse_texture platform_big_n.dds
 }
 
-material platform_cw : default_changeworld
+material platform_cw : terrain_changeworld 
 {
-	set_texture_alias dreams platform_d.dds
-	set_texture_alias nightmares platform_n.dds
+	set_texture_alias dreams platform_big_d.dds
+	set_texture_alias nightmares platform_big_n.dds
 }

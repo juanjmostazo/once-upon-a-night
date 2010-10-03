@@ -1,18 +1,18 @@
-import basic_shadow_reciever from BasicTexture.material
-import default_changeworld_shadow_reciever from ChangeWorld.material
+import terrain_texture from BasicTexture.material
+import terrain_changeworld from ChangeWorld.material
 
-material terrain1_mountain2_d : basic_shadow_reciever
+material terrain1_mountain2_d : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_mountain2_d.dds
+	set_texture_alias diffuse_texture mountain2_d.dds
 }
 
-material terrain1_mountain2_n : basic_shadow_reciever
+material terrain1_mountain2_n : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_mountain2_n.dds
+	set_texture_alias diffuse_texture mountain2_n.dds
 }
 
-material terrain1_mountain2_cw : default_changeworld_shadow_reciever
+material terrain1_mountain2_cw : terrain_changeworld 
 {
-	set_texture_alias dreams terrain1_mountain2_d.dds
-	set_texture_alias nightmares terrain1_mountain2_n.dds
+	set_texture_alias dreams mountain2_d.dds
+	set_texture_alias nightmares mountain2_n.dds
 }

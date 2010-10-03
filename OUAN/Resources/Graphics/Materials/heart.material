@@ -11,3 +11,11 @@ material heart_n : basic_texture
 	set_texture_alias diffuse_texture heart.dds
 }
 
+material heart_cw : default_changeworld 
+{
+	set_texture_alias dreams heart.dds
+	set_texture_alias nightmares heart.dds
+}
+
+
+

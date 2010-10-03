@@ -50,6 +50,7 @@ void PhysicsSubsystem::cleanUp()
 
 void PhysicsSubsystem::initLevel(std::string sceneName)
 {	
+	clear();
 	Logger::getInstance()->log("[PHYSICS LEVEL INIT STARTED]");
 
 	Logger::getInstance()->log("PHYSICS: Creating NxOgre::World");
@@ -213,7 +214,17 @@ void PhysicsSubsystem::stabilize()
 				if(container->at(i)->hasPhysicsComponent())
 				{
 					GameObjectPtr obj=container->at(i);
-					obj->getPhysicsComponent()->stabilize(mStabilizeSeconds);
+					Logger::getInstance()->log("		stabilizing "+obj->getName());
+					if(container->at(i)->getPhysicsComponent()->isInUse())
+					{
+						obj->getPhysicsComponent()->stabilize(mStabilizeSeconds);
+					}
+					else
+					{
+						obj->getPhysicsComponent()->create();
+						obj->getPhysicsComponent()->stabilize(mStabilizeSeconds);
+						obj->getPhysicsComponent()->destroy();
+					}
 				}
 			}
 		}

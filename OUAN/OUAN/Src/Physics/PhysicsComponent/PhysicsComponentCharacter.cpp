@@ -705,6 +705,10 @@ void PhysicsComponentCharacter::create()
 	{
 		stabilize(physicsSS->mStabilizeSeconds);
 	}
+	if (!mParent->getName().compare("tripollo#01"))
+	{
+		Logger::getInstance()->log("STABILIZED");
+	}
 }
 
 void PhysicsComponentCharacter::destroy()
