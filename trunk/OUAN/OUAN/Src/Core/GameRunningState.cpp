@@ -222,6 +222,11 @@ void GameRunningState::resume()
 		mHUD->show();
 	}
 
+	int currentWorld=mApp->getGameWorldManager()->getWorld();
+	mApp->getAudioSubsystem()->playMusic(mMusicChannels[currentWorld].id,
+		mMusicChannels[currentWorld].channelId,
+		true);
+
 }
 void GameRunningState::handleEvents()
 {
