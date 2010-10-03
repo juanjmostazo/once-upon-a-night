@@ -219,7 +219,7 @@ material tripollo_statue_blue_d : alpha_test_texture
 			cull_software none 
 			texture_unit diffuse_texture
 			{
-				texture tripollo_blue_n.dds
+				texture tripollo_rock_n.dds
 			}
 		}
 	}

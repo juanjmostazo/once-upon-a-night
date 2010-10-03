@@ -183,7 +183,10 @@ void CutsceneState::update(long elapsedTime)
 			mApp->getGameWorldManager()->dispatchEvents();
 			mIsChangingWorld=false;
 
-			mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
+			//if(!mApp->getGameWorldManager()->hasExecutedLevelEvent(CUTSCENE_9_FINAL_BOSS_START))
+			//{
+				mApp->getCameraManager()->setDefaultThirdPersonCamera(mReturningToGameTransition);
+			//}
 			mApp->getGameStateManager()->popState();
 			logicSS->terminateCutsceneFunction(mCutsceneFunction);
 		}
