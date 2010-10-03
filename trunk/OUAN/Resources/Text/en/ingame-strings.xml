@@ -2,46 +2,46 @@
 <Configuration>
 	<Options>						
 		<Option key="SIGNPOST_MSG_HURRY_UP">Hurry up, Any! If you want to wake up...</Option>
-		<Option key="SIGNPOST_MSG_TRIPOLLO_INFO">Tripollo: Indigenous animal that inhabits \nthe kingdoms of dreams and nightmares.</Option>
+		<Option key="SIGNPOST_MSG_TRIPOLLO_INFO">Tripollo: Indigenous animal which inhabits \nthe kingdoms of dreams and nightmares.</Option>
 		<Option key="SIGNPOST_MSG_TICKTOCK">Tick...tock, tick...tock, tick... tock,\nfind my gears and fix the clock.</Option>		
 		<Option key="SIGNPOST_MSG_LOOKINGAT">Hey, what are you staring at?</Option>
-		<Option key="SIGNPOST_MSG_WAITINGFOR">What are you waiting for? It's this way!</Option>		
+		<Option key="SIGNPOST_MSG_WAITINGFOR">What are you waiting for? Take this way!</Option>		
 		<Option key="SIGNPOST_MSG_DONOTTOUCH">Do not touch.</Option>
-		<Option key="SIGNPOST_MSG_ALLTHISLAND">Some day, my child, all this land will belong to you.</Option>
+		<Option key="SIGNPOST_MSG_ALLTHISLAND">Ony day, my child, all this land will belong to you.</Option>
 		<Option key="SIGNPOST_MSG_GALLERY">Nice gallery, isn't it?</Option>
 		<Option key="SIGNPOST_MSG_ADVERTISING">Advertise here for a couple of diamonds a month!</Option>
-		<Option key="SIGNPOST_MSG_GETTINGCLOSE">You're going the right way...or was it the opposite?</Option>
-		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Sponsor a coder from the real world\n...Oh, and yes, you're going fine through here</Option>
+		<Option key="SIGNPOST_MSG_GETTINGCLOSE">You're taking the right way...or was it the opposite?</Option>
+		<Option key="SIGNPOST_MSG_DEVELOPERPUN">Sponsor a coder from the real world\n...Oh, and yes, you're going fine through here.</Option>
 		<Option key="CUTSCENE_HELLOWORLD_INTRO">Hello, world!</Option>
 		<Option key="CUTSCENE_HELLOWORLD_SECOND">I am Any,</Option>
 		<Option key="CUTSCENE_HELLOWORLD_LAST">and I need to escape from this crazy world</Option>
 		
-		<Option key="CUTSCENE_HELLOWORLD_DYING">..or I'll die!!</Option>
+		<Option key="CUTSCENE_HELLOWORLD_DYING">... or I'll die!!</Option>
 
 
 		<Option key="BOMBS_PUZZLE_START#0">...snif, Hi, I am the king of this region, ...snif</Option>
-		<Option key="BOMBS_PUZZLE_START#1">...snif, You have to find the clock piece, ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#1">...snif, You should find the clock piece, ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#2">...snif, to escape from this world, ...snif</Option>
-		<Option key="BOMBS_PUZZLE_START#3">...snif, i will help you, with this ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#3">...snif, I will help you, just take this ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#4">...snif, BOMB! ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#4">...snif, let me show you ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#5">...snif, Using this bomb you can break the rocks, ...snif</Option>
 		<Option key="BOMBS_PUZZLE_START#6">...snif, But remember! to make it explode, ...snif</Option>
-		<Option key="BOMBS_PUZZLE_START#7">...snif, you need an intense red light ...snif</Option>
+		<Option key="BOMBS_PUZZLE_START#7">...snif, you'll need an intense red light ...snif</Option>
 
-		<Option key="SIGNPOST_MSG_1">Welcome to Ruinous World, a place disputed between the Cry King and the Tripollo King!</Option>
+		<Option key="SIGNPOST_MSG_1">Welcome to Ruinous World, a place disputed between the Crying King and the Tripollo King!</Option>
 		<Option key="SIGNPOST_MSG_1_1">Try jumping onto this flower!</Option>
-		<Option key="SIGNPOST_MSG_2">Beware, Do not touch!</Option>
-		<Option key="SIGNPOST_MSG_3">To the right. The Thick forest</Option>
-		<Option key="SIGNPOST_MSG_4">To the left. Huge fall</Option>
+		<Option key="SIGNPOST_MSG_2">Beware, do not touch!</Option>
+		<Option key="SIGNPOST_MSG_3">Turn right, to the Thick forest</Option>
+		<Option key="SIGNPOST_MSG_4">Turn left, to the huge fall</Option>
 		<Option key="SIGNPOST_MSG_5">Common Tripollo (gallus comunis): It is the most common and numerous bird inhabitant of the Ruinous World. They are insectivore and very territorial. Their life expectation is between five and ten nights.</Option>
-		<Option key="SIGNPOST_MSG_6">What are you looking at?!</Option>
-		<Option key="SIGNPOST_MSG_7">What are you waiting for! I want my clockpieces now!</Option>
-		<Option key="SIGNPOST_MSG_8">Not everything in this castle is what is supposed to be.</Option>
-		<Option key="SIGNPOST_MSG_9">There is no effort without reward</Option>
-		<Option key="SIGNPOST_MSG_10">An enormous rock blocks the bridge</Option>
+		<Option key="SIGNPOST_MSG_6">What are you looking at?</Option>
+		<Option key="SIGNPOST_MSG_7">What are you waiting for? I want my clock pieces now!</Option>
+		<Option key="SIGNPOST_MSG_8">Not everything in this castle is what it's supposed to be.</Option>
+		<Option key="SIGNPOST_MSG_9">There's no effort without reward.</Option>
+		<Option key="SIGNPOST_MSG_10">An enormous rock blocks the bridge.</Option>
 
-		<Option key="LEVEL_START#0">Come on Any!, let's find the Big clock's first piece,</Option>
+		<Option key="LEVEL_START#0">Come on Any! Let's find the big clock first piece,</Option>
 		<Option key="LEVEL_START#1">we have no time to lose.</Option>
 
 		<Option key="FIRST_CHANGE_WORLD#0">Hello Any!</Option>
@@ -49,24 +49,24 @@
 		<Option key="FIRST_CHANGE_WORLD#2">Let's go!</Option>
 
 		<Option key="BOMBS_PUZZLE_START#0">Buaaaaaaaaaaaa! Snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#1">The Tripollo King stolen my precious scepter... Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#1">The Tripollo King has stolen my precious scepter... Snif, snif...</Option>
 		<Option key="BOMBS_PUZZLE_START#2">BUAAAAAAAAA! I want my scepter! I WANT MY SCEPTER!!</Option>
 		<Option key="BOMBS_PUZZLE_START#3">It seems his head is going to explode...</Option>
 		<Option key="BOMBS_PUZZLE_START#4">Indeed.</Option>
-		<Option key="BOMBS_PUZZLE_START#5">Mmmm, Who are you little girl?</Option>
-		<Option key="BOMBS_PUZZLE_START#6">I am Any and I am find...</Option>
+		<Option key="BOMBS_PUZZLE_START#5">Mmmm, Who are you, little girl?</Option>
+		<Option key="BOMBS_PUZZLE_START#6">I'm Any and I'd like to find...</Option>
 		<Option key="BOMBS_PUZZLE_START#7">That's ok Ony, snif, snif...</Option>
 		<Option key="BOMBS_PUZZLE_START#8">You will retrieve my precious scepter...</Option>
-		<Option key="BOMBS_PUZZLE_START#9">Hey! I am not Ony, I have told you my name is...</Option>
-		<Option key="BOMBS_PUZZLE_START#10">How you interrupt a king?!</Option>
-		<Option key="BOMBS_PUZZLE_START#11">You will go to that tower to get my scepter back, snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#12">But King Tripollo has blocked the path...</Option>
+		<Option key="BOMBS_PUZZLE_START#9">Hey! I am not Ony, I've told you my name is...</Option>
+		<Option key="BOMBS_PUZZLE_START#10">Don't interrupt a king when is talking!</Option>
+		<Option key="BOMBS_PUZZLE_START#11">You must go to that tower to get my scepter back, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#12">But Tripollo King has blocked the path...</Option>
 		<Option key="BOMBS_PUZZLE_START#13">Not for a long time, snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#14">Take this bomb to the rock which is blocking the bridge.</Option>
+		<Option key="BOMBS_PUZZLE_START#14">Take this bomb and carry it to the rock which is blocking the bridge</Option>
 		<Option key="BOMBS_PUZZLE_START#15">HURRY UP! Snif, snif...</Option>
 
-		<Option key="BOMBS_PUZZLE_END#0">You are so slow! Snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_END#1">That's ok, now make it explode with some red light.</Option>
+		<Option key="BOMBS_PUZZLE_END#0">You're so slow! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_END#1">That's ok, now make it explode using some red light!</Option>
 
 		<Option key="FINAL_BOSS_START#0">The Tripollo King</Option>
 
@@ -74,8 +74,8 @@
 		<Option key="FINAL_BOSS_END#1">BUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Option>
 		<Option key="FINAL_BOSS_END#2">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!...</Option>
 		<Option key="FINAL_BOSS_END#3">Oh well, I didn't really like this stupid scepter that much</Option>
-		<Option key="FINAL_BOSS_END#4">Snif, snif... Ony, you can go now, you can get this old, ugly and rusty engine, snif, sinf...</Option>
-		<Option key="FINAL_BOSS_END#5">I don't want to see it again, It messed up all my palace decoration</Option>
+		<Option key="FINAL_BOSS_END#4">Snif, snif... Ony, you can go now, but first take this old, ugly and rusty engine, snif, sinf...</Option>
+		<Option key="FINAL_BOSS_END#5">I don't want to see it again, it's messed up all my palace decoration!</Option>
 		<Option key="FINAL_BOSS_END#6">This guy has a loose screw...</Option>
 		<Option key="FINAL_BOSS_END#7">Or two...</Option>
 	</Options>
