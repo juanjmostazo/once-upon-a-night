@@ -53,17 +53,17 @@ material carpet_island2_cw : default_changeworld
 }
 
 //CARPET FLOOR
-material carpet_floor_island2_d : basic_texture
+material carpet_tower1_island2_d : basic_texture
 {
 	set_texture_alias diffuse_texture carpet_wall.dds
 }
 
-material carpet_floor_little_n : basic_texture
+material carpet_tower1_island2_n : basic_texture
 {
 	set_texture_alias diffuse_texture carpet_walln.dds
 }
 
-material carpet_floor_little_cw : default_changeworld
+material carpet_tower1_island2_cw : default_changeworld
 {
 	set_texture_alias dreams carpet_wall.dds
 	set_texture_alias nightmares carpet_walln.dds
@@ -112,13 +112,13 @@ material island2_columns_d : basic_texture
 
 material island2_columns_n : basic_texture
 {
-	set_texture_alias diffuse_texture island2_tower1_n.dds
+	set_texture_alias diffuse_texture columns_tower1.dds
 }
 
 material island2_columns_cw : default_changeworld
 {
-	set_texture_alias dreams island2_tower1_d.dds
-	set_texture_alias nightmares island2_tower1_n.dds
+	set_texture_alias dreams columns_tower1.dds
+	set_texture_alias nightmares columns_tower1.dds
 }
 
 //TOP TOWER1
