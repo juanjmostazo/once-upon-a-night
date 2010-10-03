@@ -69,6 +69,33 @@ PhysicsComponentSimpleBoxPtr GameObjectCryKing::getPhysicsComponentSimpleBox() c
 	return mPhysicsComponentSimpleBox;
 }
 
+void GameObjectCryKing::setDreamsRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setDreamsMaterials();
+
+}
+
+void GameObjectCryKing::setNightmaresRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setNightmaresMaterials();
+
+}
+
+void GameObjectCryKing::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setChangeWorldFactor(factor);
+}
+
+void GameObjectCryKing::setChangeWorldRender()
+{
+	if (!isEnabled()) return;
+	mRenderComponentEntity->setVisible(true);
+	mRenderComponentEntity->setChangeWorldMaterials();
+}
+
 void GameObjectCryKing::update(double elapsedSeconds)
 {
 	GameObject::update(elapsedSeconds);

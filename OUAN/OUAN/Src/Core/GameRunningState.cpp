@@ -439,8 +439,11 @@ void GameRunningState::checkInterfaceKeys()
 		mApp->getGameStateManager()->pushState(nextState,mApp);
 	}
 	else if(mApp->isPressedCameraFixedFirstPerson(&pad,&key))
-	{		
-		mApp->getCameraManager()->setCameraFixedFirstPerson(true);
+	{	
+		//if(!mApp->getGameWorldManager()->getGameObjectOny()->getPhysicsComponentCharacterOny()->isJumping())
+		//{
+		//	mApp->getCameraManager()->setCameraFixedFirstPerson(true);
+		//}
 	}
 	else if (mApp->isPressedRotateLeft(&pad,&key) || mApp->isMouseWheelDown())
 	{
