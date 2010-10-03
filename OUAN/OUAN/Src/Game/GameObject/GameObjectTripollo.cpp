@@ -446,7 +446,7 @@ void GameObjectTripollo::update(double elapsedSeconds)
 							}
 							else
 							{
-								nextAnim=TRIPOLLO_ANIM_FNM_RUN;
+								nextAnim=TRIPOLLO_ANIM_FNM_WALK_FAST;
 							}
 						}
 						entity->changeAnimation(nextAnim);
