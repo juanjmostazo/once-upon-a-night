@@ -30,11 +30,11 @@
       <DIRECTORY type="FileSystem" value="../Music"></DIRECTORY>
       <DIRECTORY type="FileSystem" value="../Scripts"></DIRECTORY>
     </RESOURCEDIRECTORIES>
-  <CAMERASPEED value="11"></CAMERASPEED>
+  <CAMERASPEED value="37.125"></CAMERASPEED>
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="469.76 1984.45 -2925.33" orientation="-0.539534 0.493723 -0.501447 -0.462267"></OPTION>
+    <OPTION id="2" position="94.7132 767.636 167.923" orientation="-0.877116 0.360548 0.294184 0.11886"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="-0.539551 0.493739 -0.501462 -0.462281"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.877182 0.360575 0.294206 0.118869"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="469.76 1984.45 -2925.33"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="94.7132 767.636 167.923"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -5616,9 +5616,9 @@
     <PROPERTY id="position" type="9" value="-434.015 487.34 -2735.95"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_statue_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_statue_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9053,9 +9053,9 @@
     <PROPERTY id="position" type="9" value="-424.061 487.34 -2649.3"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_statue_blue_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_statue_blue_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -9442,9 +9442,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="364.117 115.855 -280.559"></PROPERTY>
+    <PROPERTY id="position" type="9" value="324.716 115.855 -309.714"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="281.924 178.277 393.488"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="156.038 178.277 393.488"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="green"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -9979,9 +9979,9 @@
     <PROPERTY id="position" type="9" value="-543.22 466.04 -2647.11"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_statue_blue_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_blue_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_statue_blue_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12610,9 +12610,9 @@
     <PROPERTY id="position" type="9" value="-523.99 487.34 -2736.3"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tripollo_statue_red_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
-    <PROPERTY id="subentity1::material" type="7" value="tripollo_red_d"></PROPERTY>
+    <PROPERTY id="subentity1::material" type="7" value="tripollo_statue_red_d"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="2"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -17247,9 +17247,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="361.562 114.491 -278.183"></PROPERTY>
+    <PROPERTY id="position" type="9" value="325.678 114.491 -304.736"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="278.968 179.825 378.068"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="147.512 179.825 378.068"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -19477,9 +19477,9 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="volume-box.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.949699 0 -0.313164 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="361.562 114.491 -278.183"></PROPERTY>
+    <PROPERTY id="position" type="9" value="324.855 114.491 -305.345"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
-    <PROPERTY id="scale" type="9" value="278.968 179.825 378.068"></PROPERTY>
+    <PROPERTY id="scale" type="9" value="147.282 179.825 378.068"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="red"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
@@ -28214,7 +28214,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="675.656 220 420.984"></PROPERTY>
+    <PROPERTY id="position" type="9" value="-158.534 352.904 410.676"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
