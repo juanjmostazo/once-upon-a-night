@@ -182,6 +182,95 @@ void GameObjectPlataform::changeToWorld(int newWorld, double perc)
 	}
 }
 
+void GameObjectPlataform::setDreamsRender()
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(true);
+		mRenderComponentEntityDreams->setDreamsMaterials();
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(false);
+	}	
+}
+
+void GameObjectPlataform::setNightmaresRender()
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setVisible(false);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setVisible(true);
+		mRenderComponentEntityNightmares->setNightmaresMaterials();
+	}	
+}
+
+void GameObjectPlataform::setChangeWorldFactor(double factor)
+{
+	if (!isEnabled()) return;
+	if(mLogicComponent->existsInDreams())
+	{
+		mRenderComponentEntityDreams->setChangeWorldFactor(factor);
+	}
+
+	if(mLogicComponent->existsInNightmares())
+	{
+		mRenderComponentEntityNightmares->setChangeWorldFactor(factor);
+	}
+}
+
+void GameObjectPlataform::setChangeWorldRender()
+{
+	if (!isEnabled()) return;
+	switch(mWorld)
+	{
+		case DREAMS:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+				mRenderComponentEntityNightmares->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
+			break;
+		case NIGHTMARES:
+			if(mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+				mRenderComponentEntityDreams->setVisible(false);
+			}
+			else if(!mLogicComponent->existsInDreams() && mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityNightmares->setVisible(true);
+				mRenderComponentEntityNightmares->setChangeWorldMaterials();
+			}
+			else if(mLogicComponent->existsInDreams() && !mLogicComponent->existsInNightmares())
+			{
+				mRenderComponentEntityDreams->setVisible(true);
+				mRenderComponentEntityDreams->setChangeWorldMaterials();
+			}
+			break;
+		default:break;
+	}
+}
+
 void GameObjectPlataform::reset()
 {
 	GameObject::reset();

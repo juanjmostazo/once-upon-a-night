@@ -122,6 +122,11 @@ namespace OUAN
 		void changeWorldFinished(int newWorld);
 		void changeWorldStarted(int newWorld);
 
+		void setDreamsRender();
+		void setNightmaresRender();
+		void setChangeWorldRender();
+		void setChangeWorldFactor(double factor);
+
 		void updatePhysicsComponents(double elapsedSeconds);
 
 		void activateHit();
