@@ -18,6 +18,7 @@
 	<Font Name="OUANMain-48" Filename="OUANMain-48.font" />	
 	<Font Name="OUANMain-12" Filename="OUANMain-12.font" />
 	<Font Name="book-9" Filename="book-9.font" />		
+	<Font Name="book-14" Filename="book-14.font" />
 	<LookNFeel Filename="OUANLook.looknfeel" />
 	<LookNFeel Filename="OUANMain.looknfeel" />	
 	<WindowRendererSet Filename="CEGUIFalagardWRBase" />
