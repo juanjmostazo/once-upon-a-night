@@ -41,42 +41,42 @@
 		<Option key="SIGNPOST_MSG_9">There's no effort without reward.</Option>
 		<Option key="SIGNPOST_MSG_10">An enormous rock blocks the bridge.</Option>
 
-		<Option key="LEVEL_START#0">Come on Any! Let's find the big clock first piece,</Option>
-		<Option key="LEVEL_START#1">we have no time to lose.</Option>
+		<Option key="LEVEL_START#0">Pillow: Come on Any! Let's find the big clock first piece,</Option>
+		<Option key="LEVEL_START#1">Pillow: we have no time to lose.</Option>
 
-		<Option key="FIRST_CHANGE_WORLD#0">Hello Any!</Option>
-		<Option key="FIRST_CHANGE_WORLD#1">I will help you when you're in nightmares</Option>
-		<Option key="FIRST_CHANGE_WORLD#2">Let's go!</Option>
+		<Option key="FIRST_CHANGE_WORLD#0">FlashLight: Hello Any!</Option>
+		<Option key="FIRST_CHANGE_WORLD#1">FlashLight: I will help you when you're in nightmares</Option>
+		<Option key="FIRST_CHANGE_WORLD#2">FlashLight: Let's go!</Option>
 
-		<Option key="BOMBS_PUZZLE_START#0">Buaaaaaaaaaaaa! Snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#1">The Tripollo King has stolen my precious scepter... Snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#2">BUAAAAAAAAA! I want my scepter! I WANT MY SCEPTER!!</Option>
-		<Option key="BOMBS_PUZZLE_START#3">It seems his head is going to explode...</Option>
-		<Option key="BOMBS_PUZZLE_START#4">Indeed.</Option>
-		<Option key="BOMBS_PUZZLE_START#5">Mmmm, Who are you, little girl?</Option>
-		<Option key="BOMBS_PUZZLE_START#6">I'm Any and I'd like to find...</Option>
-		<Option key="BOMBS_PUZZLE_START#7">That's ok Ony, snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#8">You will retrieve my precious scepter...</Option>
-		<Option key="BOMBS_PUZZLE_START#9">Hey! I am not Ony, I've told you my name is...</Option>
-		<Option key="BOMBS_PUZZLE_START#10">Don't interrupt a king when is talking!</Option>
-		<Option key="BOMBS_PUZZLE_START#11">You must go to that tower to get my scepter back, snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#12">But Tripollo King has blocked the path...</Option>
-		<Option key="BOMBS_PUZZLE_START#13">Not for long time, snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_START#14">Carry this bomb to the rock which is blocking the bridge</Option>
-		<Option key="BOMBS_PUZZLE_START#15">HURRY UP! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#0">Crying King: Buaaaaaaaaaaaa! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#1">Crying King: The Tripollo King has stolen my precious scepter... Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#2">Crying King: BUAAAAAAAAA! I want my scepter! I WANT MY SCEPTER!!</Option>
+		<Option key="BOMBS_PUZZLE_START#3">Any: It seems his head is going to explode...</Option>
+		<Option key="BOMBS_PUZZLE_START#4">Pillow: Indeed.</Option>
+		<Option key="BOMBS_PUZZLE_START#5">Crying King: Mmmm, Who are you, little girl?</Option>
+		<Option key="BOMBS_PUZZLE_START#6">Any: I'm Any and I'd like to find...</Option>
+		<Option key="BOMBS_PUZZLE_START#7">Crying King: That's ok Ony, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#8">Crying King: You will retrieve my precious scepter...</Option>
+		<Option key="BOMBS_PUZZLE_START#9">Any: Hey! I am not Ony, I've told you my name is...</Option>
+		<Option key="BOMBS_PUZZLE_START#10">Crying King: Don't interrupt a king when is talking!</Option>
+		<Option key="BOMBS_PUZZLE_START#11">Crying King: You must go to that tower to get my scepter back, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#12">Crying King: But Tripollo King has blocked the path...</Option>
+		<Option key="BOMBS_PUZZLE_START#13">Crying King: Not for long time, snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_START#14">Crying King: Carry this bomb to the rock which is blocking the bridge</Option>
+		<Option key="BOMBS_PUZZLE_START#15">Crying King: HURRY UP! Snif, snif...</Option>
 
-		<Option key="BOMBS_PUZZLE_END#0">You're so slow! Snif, snif...</Option>
-		<Option key="BOMBS_PUZZLE_END#1">That's ok, now make it explode using some red light!</Option>
+		<Option key="BOMBS_PUZZLE_END#0">Crying King: You're so slow! Snif, snif...</Option>
+		<Option key="BOMBS_PUZZLE_END#1">Crying King: That's ok, now make it explode using some red light!</Option>
 
 		<Option key="FINAL_BOSS_START#0">The Tripollo King</Option>
 
-		<Option key="FINAL_BOSS_END#0">BUUAAAAAAAAAAAAAAAAA!!</Option>
+		<Option key="FINAL_BOSS_END#0">Crying King: BUUAAAAAAAAAAAAAAAAA!!</Option>
 		<Option key="FINAL_BOSS_END#1">BUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Option>
 		<Option key="FINAL_BOSS_END#2">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!...</Option>
-		<Option key="FINAL_BOSS_END#3">Oh well, I didn't really like this stupid scepter that much</Option>
-		<Option key="FINAL_BOSS_END#4">Snif, snif... Ony, you can go now, but first take this old, ugly and rusty engine, snif, sinf...</Option>
-		<Option key="FINAL_BOSS_END#5">I don't want to see it again, it's messed up all my palace decoration!</Option>
-		<Option key="FINAL_BOSS_END#6">This guy has a loose screw...</Option>
-		<Option key="FINAL_BOSS_END#7">Or two...</Option>
+		<Option key="FINAL_BOSS_END#3">Crying King: Oh well, I didn't really like this stupid scepter that much</Option>
+		<Option key="FINAL_BOSS_END#4">Crying King: Snif, snif... Ony, you can go now, but first take this old, ugly and rusty engine, snif, sinf...</Option>
+		<Option key="FINAL_BOSS_END#5">Crying King: I don't want to see it again, it's messed up all my palace decoration!</Option>
+		<Option key="FINAL_BOSS_END#6">Any: This guy has a loose screw...</Option>
+		<Option key="FINAL_BOSS_END#7">Pillow: Or two...</Option>
 	</Options>
 </Configuration>
