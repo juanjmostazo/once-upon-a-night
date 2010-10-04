@@ -20,7 +20,7 @@ material level2_sky_d : default_changeworld
 			depth_write off
 			texture_unit changeworld
 			{
-				scale 2 2
+				scale 0.2 0.2
 				texture sky_changeworld.dds
 			}
 			texture_unit dreams
@@ -58,7 +58,7 @@ material level2_sky_n : default_changeworld
 			depth_write off
 			texture_unit changeworld
 			{
-				scale 2 2
+				scale 0.2 0.2
 				texture sky_changeworld.dds
 			}
 			texture_unit dreams
@@ -97,7 +97,7 @@ material level2_sky_cw : default_changeworld
 			depth_write off
 			texture_unit changeworld
 			{
-				scale 2 2
+				scale 0.2 0.2
 				texture sky_changeworld.dds
 			}
 			texture_unit dreams
