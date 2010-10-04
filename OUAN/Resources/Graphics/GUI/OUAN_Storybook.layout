@@ -8,7 +8,7 @@
         <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
         <Property Name="UnifiedAreaRect" Value="{{0.0889857,0},{0.0408197,0},{0.923821,0},{0.850819,0}}" />
         <Window Type="OUANLook/StaticText" Name="OUANStory/Page0" >
-            <Property Name="Font" Value="book-9" />
+            <Property Name="Font" Value="book-14" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="TextColours" Value="tl:FF554126 tr:FF554126 bl:FF554126 br:FF554126" />
             <Property Name="FrameEnabled" Value="False" />
@@ -19,7 +19,7 @@
             <Property Name="BackgroundEnabled" Value="False" />
         </Window>
         <Window Type="OUANLook/StaticText" Name="OUANStory/Page1" >
-            <Property Name="Font" Value="book-9" />
+            <Property Name="Font" Value="book-14" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="TextColours" Value="tl:FF554126 tr:FF554126 bl:FF554126 br:FF554126" />
             <Property Name="FrameEnabled" Value="False" />

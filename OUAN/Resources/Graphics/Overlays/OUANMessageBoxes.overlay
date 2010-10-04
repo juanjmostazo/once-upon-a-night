@@ -4,9 +4,9 @@ OUAN/HUDMessages
 	container Panel(OUAN/TextBubble)
 		{
 			left 0
-			top 0.8
+			top 0.7
 			width 1
-			height 0.2
+			height 0.3
 			visible false
 			
 			container Panel(OUAN/TextBubble/Box)
@@ -15,7 +15,7 @@ OUAN/HUDMessages
 				left 0 
 				top 0
 				width 1
-				height 0.2
+				height 0.3
 				material OUAN/Hud/TextBubble				
 			}
 				element TextArea(OUAN/TextBubble/Message)

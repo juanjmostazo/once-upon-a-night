@@ -69,6 +69,82 @@ material OUAN/Hud/PowerBar
 	}
 }
 
+material OUAN/Hud/TextBubble/Any
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			depth_write off
+			
+			texture_unit
+			{
+				texture HUD_bubble_any.png
+			}
+		}
+	}
+}
+
+material OUAN/Hud/TextBubble/King
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			depth_write off
+			
+			texture_unit
+			{
+				texture HUD_bubble_king.png
+			}
+		}
+	}
+}
+
+material OUAN/Hud/TextBubble/Light
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			depth_write off
+			
+			texture_unit
+			{
+				texture HUD_bubble_light.png
+			}
+		}
+	}
+}
+
+material OUAN/Hud/TextBubble/Pillow
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			depth_write off
+			
+			texture_unit
+			{
+				texture HUD_bubble_pillow.png
+			}
+		}
+	}
+}
+
 material OUAN/Hud/TextBubble
 {
 	technique
@@ -78,6 +154,7 @@ material OUAN/Hud/TextBubble
 			lighting off
 			scene_blend alpha_blend
 			depth_check off
+			
 			
 			texture_unit
 			{
