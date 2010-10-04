@@ -124,6 +124,8 @@ function cutScene3(timer)
 	local any=getAny()	
 	local cryking=getCryKing()
 	
+	any:changeAnimation("idle02");
+	
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
 	trajectoryCamWait();
 	cryking:changeAnimation("cry_loop1_Clip");
@@ -177,8 +179,11 @@ end
 function cutScene3_1(timer)
 	log ("CUTSCENE 3_1: ");
 	log (CUTSCENE_3_1_BOMBS_PUZZLE_PLACE_BOMB);
+	
 	local any=getAny()	
 	local cryking=getCryKing()
+	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CUTSCENE_4_BOMBS_PUZZLE_END,false,true)	
 	trajectoryCamWait();
@@ -205,6 +210,7 @@ function cutScene4(timer)
 	log ("CUTSCENE 4: ");
 	log (CUTSCENE_4_BOMBS_PUZZLE_END);
 	local any=getAny()	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true);
 	trajectoryCamWait();
@@ -270,6 +276,8 @@ function cutScene7_1(timer)
 	log (CUTSCENE_7_1_TRIPOLLOS_PLATFORM);
 	local any=getAny()	
 	
+	any:changeAnimation("idle02");
+	
 	setCameraTrajectory(CUTSCENE_7_1_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
 	busyWait(timer,14);
@@ -283,6 +291,8 @@ function cutScene7_2(timer)
 	log (CUTSCENE_7_2_TRIPOLLOS_PLATFORM);
 	local any=getAny()	
 	
+	any:changeAnimation("idle02");
+	
 	setCameraTrajectory(CUTSCENE_7_2_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
 	busyWait(timer,14);
@@ -295,6 +305,8 @@ function cutScene7_3(timer)
 	log ("CUTSCENE 7_3: ");
 	log (CUTSCENE_7_3_TRIPOLLOS_PLATFORM);
 	local any=getAny()	
+	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CUTSCENE_7_3_TRIPOLLOS_PLATFORM,false,true);
 	trajectoryCamWait();
@@ -312,6 +324,8 @@ function cutScene8(timer)
 	local any=getAny()	
 	addExecutedLevelEvent(CUTSCENE_8_TRIPOLLO_STATUES);
 	
+	any:changeAnimation("tickling_loop");
+	
 	setCameraTrajectory(CAMERA_TRIPOLLO_STATUES_DOOR,false,true);
 	trajectoryCamWait();
 	changeWorld(OUAN_WORLD_NIGHTMARES);
@@ -320,6 +334,8 @@ function cutScene8(timer)
 	trajectoryCamWait();
 	
 	worldChangeWait();
+	
+	any:changeAnimation("idle02");
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -330,6 +346,8 @@ function cutScene8_0(timer)
 	log ("CUTSCENE 8_0: ");
 	log (CUTSCENE_8_0_TRIPOLLO_STATUES_END);
 	local any=getAny()	
+	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CAMERA_TRIPOLLO_STATUES_PLATFORM,false,true);
 	trajectoryCamWait();
@@ -346,6 +364,8 @@ function cutScene8_1(timer)
 	log ("CUTSCENE 8: ");
 	log (CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS);
 	local any=getAny()	
+	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CUTSCENE_8_1_PLATFORMS_TO_FINAL_BOSS,false,true);
 	busyWait(timer,2);
@@ -372,6 +392,8 @@ function cutScene9(timer)
 	log ("CUTSCENE 9: ");
 	log (CUTSCENE_9_FINAL_BOSS_START);
 	local any=getAny()	
+	
+	any:changeAnimation("idle02");
 	
 	setCameraTrajectory(CUTSCENE_9_FINAL_BOSS_START,false,true);
 	trajectoryCamWait();
@@ -414,6 +436,8 @@ function cutScene10_3(timer)
 	log (CUTSCENE_10_3_FINAL_BOSS_HIT_3);
 	local any=getAny()	
 	
+	any:changeAnimation("victory_loop");
+	
 	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
 	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
 	trajectoryCamWait();
@@ -425,6 +449,8 @@ function cutScene10_3(timer)
 	timedMessage(any,"FINAL_BOSS_END#5",5,timer,5);
 	timedMessage(any,"FINAL_BOSS_END#6",5,timer,5);
 	timedMessage(any,"FINAL_BOSS_END#7",5,timer,5);
+	
+	any:changeAnimation("idle02");
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
