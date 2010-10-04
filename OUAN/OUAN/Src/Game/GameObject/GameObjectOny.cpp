@@ -59,6 +59,13 @@ GameObjectOny::~GameObjectOny()
 
 }
 
+void GameObjectOny::setIdleState()
+{
+	mLogicComponentOny->setState(ONY_STATE_IDLE);
+	mLogicComponentOny->setTimeSpent(0);
+	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
+}
+
 void GameObjectOny::setRenderComponentPositional(RenderComponentPositionalPtr pRenderComponentPositional)
 {
 	mRenderComponentPositional=pRenderComponentPositional;
