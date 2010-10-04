@@ -48,15 +48,15 @@ RenderComponentInitialPtr GameObjectBridge::getRenderComponentInitial() const
 	return mRenderComponentInitial;
 }
 
-void GameObjectBridge::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
-{
-	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
-}
+//void GameObjectBridge::setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex)
+//{
+//	mPhysicsComponentComplexConvex=pPhysicsComponentComplexConvex;
+//}
 
-PhysicsComponentComplexConvexPtr GameObjectBridge::getPhysicsComponentComplexConvex() const
-{
-	return mPhysicsComponentComplexConvex;
-}
+//PhysicsComponentComplexConvexPtr GameObjectBridge::getPhysicsComponentComplexConvex() const
+//{
+//	return mPhysicsComponentComplexConvex;
+//}
 
 void GameObjectBridge::changeWorldFinished(int newWorld)
 {
@@ -147,12 +147,14 @@ RenderComponentPositionalPtr GameObjectBridge::getPositionalComponent() const
 
 bool GameObjectBridge::hasPhysicsComponent() const
 {
-	return true;
+	//return true;
+	return false;
 }
-PhysicsComponentPtr GameObjectBridge::getPhysicsComponent() const
-{
-	return getPhysicsComponentComplexConvex();
-}
+
+//PhysicsComponentPtr GameObjectBridge::getPhysicsComponent() const
+//{
+//	return getPhysicsComponentComplexConvex();
+//}
 
 /// Set logic component
 void GameObjectBridge::setLogicComponent(LogicComponentPtr logicComponent)
