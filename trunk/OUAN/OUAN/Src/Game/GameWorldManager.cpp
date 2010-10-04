@@ -597,11 +597,11 @@ void GameWorldManager::resetAll()
 		sound->getAudioComponentNightmares()->setPauseSound(mDefaultAmbientSoundIDNightmares,false);
 	}
 
-	Logger::getInstance()->log("	[STABILIZE PHYSICS]");
+	//Logger::getInstance()->log("	[STABILIZE PHYSICS]");
 
-	//stabilize world
-	mApp->getPhysicsSubsystem()->stabilize();
-	mApp->getGameWorldManager()->dispatchEvents();
+	////stabilize world
+	//mApp->getPhysicsSubsystem()->stabilize();
+	//mApp->getGameWorldManager()->dispatchEvents();
 
 
 	Logger::getInstance()->log("	[SET WORLD]");
