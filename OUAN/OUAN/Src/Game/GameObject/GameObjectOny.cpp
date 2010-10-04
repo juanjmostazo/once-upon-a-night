@@ -61,7 +61,8 @@ GameObjectOny::~GameObjectOny()
 
 void GameObjectOny::setIdleState()
 {
-	mLogicComponentOny->setState(ONY_STATE_IDLE);
+	mLogicComponentOny->setState(ONY_STATE_WALK);
+	mLogicComponentOny->setNewState(ONY_STATE_WALK);
 	mLogicComponentOny->setTimeSpent(0);
 	mRenderComponentEntity->changeAnimation(ONY_ANIM_IDLE01);
 }
