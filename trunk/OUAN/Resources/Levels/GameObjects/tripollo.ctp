@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CUSTOMPROPERTIES>
+    <PROPERTY id="CustomAttribute::maxRenderRadium" type="6" value="1500" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="CustomAttribute::maxUpdateRadium" type="6" value="900" fields="X;Y;Z;W"></PROPERTY>
 
   <PROPERTY id="PhysicsComponentCharacter::mass" type="6" value="30" fields="X;Y;Z;W"></PROPERTY>
@@ -17,14 +18,14 @@
   <PROPERTY id="LogicComponent::scriptFilename" type="7" value="tripollo.lua" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::scriptFunction" type="7" value="tripolloLogic" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::patrolTrajectory" type="12" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="LogicComponent::defaultState" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="LogicComponent::defaultState" type="2" value="6" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::healthPoints" type="2" value="3" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::numLives" type="2" value="1" fields="X;Y;Z;W"></PROPERTY>
   <PROPERTY id="LogicComponent::lineOfSight" type="2" value="150" fields="X;Y;Z;W"></PROPERTY> 
 
   <!-- Trajectory Component -->
   <PROPERTY id="TrajectoryComponent::twodimensions" type="2" value="true" fields="X;Y;Z;W"></PROPERTY>
-  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.3" fields="X;Y;Z;W"></PROPERTY>
+  <PROPERTY id="TrajectoryComponent::defaultspeed" type="2" value="0.25" fields="X;Y;Z;W"></PROPERTY>
 
   <!-- Available attacks -->
   <PROPERTY id="AttackComponent::type" type="2" value="0" fields="X;Y;Z;W"></PROPERTY>

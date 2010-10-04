@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="-375.986 293.85 332.935" orientation="0.452519 -0.148063 -0.838412 -0.265271"></OPTION>
+    <OPTION id="2" position="82.8578 721.668 -245.628" orientation="-0.364355 0.181008 -0.813665 -0.415249"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="false"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.452582 -0.148084 -0.838528 -0.265307"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.364359 0.18101 -0.813674 -0.415254"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="-375.986 293.85 332.935"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="82.8578 721.668 -245.628"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -2127,7 +2127,7 @@
     <PROPERTY id="position" type="9" value="-468.436 56.7249 -706.462"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -2659,7 +2659,7 @@
     <PROPERTY id="position" type="9" value="-458.615 47.2018 -745.06"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -2920,7 +2920,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="wall02.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-274.132 155.541 -105.896"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="greatwall_n"></PROPERTY>
@@ -3954,7 +3954,7 @@
     <PROPERTY id="position" type="9" value="-347.238 251.729 203.561"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -5023,7 +5023,7 @@
     <PROPERTY id="position" type="9" value="-375.344 61.2242 -578.424"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -5525,7 +5525,7 @@
     <PROPERTY id="position" type="9" value="668.44 422.916 -2412.7"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -6050,7 +6050,7 @@
     <PROPERTY id="position" type="9" value="272.199 423.81 -2455.29"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -7386,7 +7386,7 @@
     <PROPERTY id="position" type="9" value="-269.837 225.499 564.409"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -8386,7 +8386,7 @@
     <PROPERTY id="position" type="9" value="8.12187 72.7279 -362.087"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -8702,7 +8702,7 @@
     <PROPERTY id="position" type="9" value="436.698 423.423 -2304.1"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -9553,7 +9553,7 @@
     <PROPERTY id="position" type="9" value="646.864 414.591 -2247.78"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -10451,7 +10451,7 @@
     <PROPERTY id="position" type="9" value="-331.52 58.3392 -634.939"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -10827,7 +10827,7 @@
     <PROPERTY id="position" type="9" value="-255.334 237.171 507.299"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -11889,7 +11889,7 @@
     <PROPERTY id="position" type="9" value="-381.957 108.495 -508.936"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -12173,7 +12173,7 @@
     <PROPERTY id="position" type="9" value="128.606 424.195 -2377.08"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -13058,7 +13058,7 @@
     <PROPERTY id="position" type="9" value="-563.869 61.8583 -448.415"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -13487,7 +13487,7 @@
     <PROPERTY id="position" type="9" value="602.213 419.427 -2875.19"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-     <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -13926,7 +13926,7 @@
     <PROPERTY id="position" type="9" value="111.431 420.983 -2943.51"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -14340,7 +14340,7 @@
     <PROPERTY id="position" type="9" value="-51.4917 202.226 558.477"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -14566,7 +14566,7 @@
     <PROPERTY id="position" type="9" value="-545.037 107.774 -484.151"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -15412,7 +15412,7 @@
     <PROPERTY id="position" type="9" value="-350.798 450.024 -2460.2"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -15730,7 +15730,7 @@
     <PROPERTY id="position" type="9" value="135.63 424.677 -2710.58"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -16793,7 +16793,7 @@
     <PROPERTY id="position" type="9" value="685.997 412.904 -2819.4"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -16961,7 +16961,7 @@
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="meshfile" type="7" value="wall02.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="1 0 0 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="-274.132 155.541 -105.896"></PROPERTY>
+    <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="greatwall_d"></PROPERTY>
@@ -17563,7 +17563,7 @@
     <PROPERTY id="position" type="9" value="129.857 180.122 330.358"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -17749,7 +17749,7 @@
     <PROPERTY id="position" type="9" value="-549.461 462.386 -2490.68"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -18609,7 +18609,7 @@
     <PROPERTY id="position" type="9" value="865.113 144.195 206.14"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -18827,7 +18827,6 @@
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
     <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="tree8_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree8_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -18956,7 +18955,7 @@
     <PROPERTY id="position" type="9" value="58.7424 422.81 -2844.72"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -20020,7 +20019,7 @@
     <PROPERTY id="position" type="9" value="-402.683 261.419 32.9366"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-   <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentity1::material" type="7" value="tree10_n"></PROPERTY>
     <PROPERTY id="subentity1::visible" type="12" value="true"></PROPERTY>
@@ -28047,7 +28046,7 @@
     <PROPERTY id="layer" type="2" value="0"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="-0.766044 0 0.642788 0"></PROPERTY>
-    <PROPERTY id="position" type="9" value="688.251 200 430.768"></PROPERTY>
+    <PROPERTY id="position" type="9" value="688.251 143.357 430.768"></PROPERTY>
     <PROPERTY id="scale" type="9" value="10 10 10"></PROPERTY>
     <CUSTOMPROPERTIES>
       <PROPERTY id="trajectory::name" type="7" value="LevelStart" fields="X;Y;Z;W"></PROPERTY>
