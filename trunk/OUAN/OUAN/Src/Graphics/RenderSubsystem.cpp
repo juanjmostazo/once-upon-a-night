@@ -70,7 +70,7 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 void RenderSubsystem::initMenusAnimTextures()
 {
 	std::string textures[] = {"background_stars", "loading_page", "clouds"};
-	int nframes[] = {13,39,39};
+	int nframes[] = {13,20,20};
 	std::string extension=".png";
 	Ogre::TextureManager* tMgr = Ogre::TextureManager::getSingletonPtr();
 	for (int i=0;i<3;i++)

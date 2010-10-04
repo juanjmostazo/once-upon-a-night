@@ -33,6 +33,8 @@ namespace OUAN
 	const double ONY_SOUND_STEP_TIME_00=0;
 	const double ONY_SOUND_STEP_TIME_01=0.5;
 
+	const std::string BUBBLE_MATERIAL_NAME="OUAN/Hud/TextBubble/";
+
 	/// Main character game object
 	class GameObjectOny : public GameObject, public boost::enable_shared_from_this<GameObjectOny>
 	{
@@ -314,6 +316,8 @@ namespace OUAN
 		bool isBlockingAnimation() const;
 
 		const std::string& getCurrentAnimationName() const;
+
+		void printCharacterMessage(const std::string& message, const std::string& character, double duration);
 
 	};
 

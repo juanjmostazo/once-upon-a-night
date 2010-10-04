@@ -7,7 +7,7 @@ namespace OUAN
 
 	const std::string CEGUIWIN_ID_STORY_EXIT="OUANStory/Label";
 	const std::string CEGUIWIN_ID_PAGE_PREFIX="OUANStory/Page";
-	const std::string STORY_READABLE_FONT="book-9";
+	const std::string STORY_READABLE_FONT="book-14";
 	const std::string STORY_ENCRYPTED_FONT="Telerin-10";
 
 	class GUIStoryBook: public GUIWindow

@@ -18,6 +18,7 @@ RenderComponentMessageBox::RenderComponentMessageBox()
 ,mElapsedTime(-1.0)
 {
 	mOverlay = Ogre::OverlayManager::getSingleton().getByName(MESSAGEBOX_OVERLAY);
+	mDefaultMaterial = MESSAGEBOX_DEFAULT_MATERIAL;
 }
 RenderComponentMessageBox::~RenderComponentMessageBox()
 {
@@ -70,6 +71,16 @@ void RenderComponentMessageBox::setMessageBoxText()
 			std::string translated=mParent->getTranslation(mMessage);
 			text->setCaption(translated);
 		}
+	}
+}
+
+void RenderComponentMessageBox::setBasePanelMaterial(const std::string& material)
+{
+	if (mBasePanel)
+	{
+		mBasePanel->hide();
+		mBasePanel->setMaterialName(material);
+		mBasePanel->show();
 	}
 }
 
@@ -146,6 +157,7 @@ void RenderComponentMessageBox::update(double elapsedTime)
 		if (mElapsedTime>mDuration)
 		{
 			hide();
+			mBasePanel->setMaterialName(mDefaultMaterial);
 		}
 	}
 }

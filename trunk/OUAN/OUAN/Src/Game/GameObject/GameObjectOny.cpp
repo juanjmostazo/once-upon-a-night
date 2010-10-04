@@ -1098,6 +1098,18 @@ const std::string& GameObjectOny::getCurrentAnimationName() const
 {
 	return mRenderComponentEntity->getCurrentAnimationName();
 }
+
+void GameObjectOny::printCharacterMessage(const std::string& message, const std::string& character, double duration)
+{
+	if (mMsgBoxComponent.get())
+	{
+		if (!character.empty())
+			mMsgBoxComponent->setBasePanelMaterial(BUBBLE_MATERIAL_NAME+character);
+		mMsgBoxComponent->setMessage(message);
+		mMsgBoxComponent->setDuration(duration);
+		showMessage();
+	}
+}
 //-------
 
 TGameObjectOnyParameters::TGameObjectOnyParameters() : TGameObjectParameters()
