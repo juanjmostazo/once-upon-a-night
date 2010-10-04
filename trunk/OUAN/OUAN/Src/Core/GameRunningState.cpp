@@ -227,6 +227,8 @@ void GameRunningState::resume()
 		mMusicChannels[currentWorld].channelId,
 		true);
 
+	mApp->getGameWorldManager()->getGameObjectOny()->setIdleState();
+
 }
 void GameRunningState::handleEvents()
 {

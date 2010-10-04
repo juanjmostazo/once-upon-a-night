@@ -138,6 +138,8 @@ namespace OUAN
 		bool isTrajectoryActive() const;
 		bool isTrajectoryFinished() const;
 
+		void setIdleState();
+
 		/// Return render component entity 
 		/// @return render component entity
 		RenderComponentEntityPtr getRenderComponentEntity() const;
