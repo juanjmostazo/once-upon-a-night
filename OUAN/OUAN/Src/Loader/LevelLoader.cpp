@@ -758,9 +758,9 @@ void LevelLoader::processGameObjectBridge(XMLGameObject* gameObject)
 		tGameObjectBridgeParameters.name = gameObject->name;
 
 		//Get PhysicsComponentComplexConvex
-		tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
-			gameObject->XMLNodeCustomProperties,
-			complexConvex);
+		//tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters = processPhysicsComponentComplexConvex(gameObject->getMainXMLNode(),
+		//	gameObject->XMLNodeCustomProperties,
+		//	complexConvex);
 
 		tGameObjectBridgeParameters.tLogicComponentParameters=processLogicComponent(gameObject->XMLNodeDreams,
 			gameObject->XMLNodeNightmares,gameObject->XMLNodeCustomProperties);

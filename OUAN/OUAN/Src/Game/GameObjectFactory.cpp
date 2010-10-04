@@ -2282,10 +2282,10 @@ GameObjectBridgePtr GameObjectFactory::createGameObjectBridge(TGameObjectBridgeP
 	pGameObjectBridge->getLogicComponent()->existsInNightmares()));
 
 	//Create PhysicsComponent
-	pGameObjectBridge->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
-		pGameObjectBridge,
-		tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters,
-		pGameObjectBridge->getRenderComponentPositional()));
+	//pGameObjectBridge->setPhysicsComponentComplexConvex(mComponentFactory->createPhysicsComponentComplexConvex(
+	//	pGameObjectBridge,
+	//	tGameObjectBridgeParameters.tPhysicsComponentComplexConvexParameters,
+	//	pGameObjectBridge->getRenderComponentPositional()));
 
 	//Add reference to this
 	pGameObjectBridge->setGameWorldManager(gameWorldMgr);

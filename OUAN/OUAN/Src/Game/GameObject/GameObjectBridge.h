@@ -25,7 +25,7 @@ namespace OUAN
 		RenderComponentInitialPtr mRenderComponentInitial;
 		RenderComponentPositionalPtr mRenderComponentPositional;
 		/// Physics information
-		PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
+		//PhysicsComponentComplexConvexPtr mPhysicsComponentComplexConvex;
 		/// Logic component: it'll represent the 'brains' of the game object
 		/// containing information on its current state, its life and health(if applicable),
 		/// or the world(s) the object belongs to
@@ -79,10 +79,10 @@ namespace OUAN
 		RenderComponentParticleSystemPtr getRenderComponentParticleSystemChangeWorld() const;
 
 		/// Set physics component
-		void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
+		//void setPhysicsComponentComplexConvex(PhysicsComponentComplexConvexPtr pPhysicsComponentComplexConvex);
 
 		/// Get physics component
-		PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex() const;
+		//PhysicsComponentComplexConvexPtr getPhysicsComponentComplexConvex() const;
 
 		/// React to a world change to the one given as a parameter
 		/// @param world world to change to
@@ -97,7 +97,7 @@ namespace OUAN
 		RenderComponentPositionalPtr getPositionalComponent() const;
 
 		bool hasPhysicsComponent() const;
-		PhysicsComponentPtr getPhysicsComponent() const;
+		//PhysicsComponentPtr getPhysicsComponent() const;
 
 		bool hasRenderComponentEntity() const;
 		RenderComponentEntityPtr getEntityComponent() const;
