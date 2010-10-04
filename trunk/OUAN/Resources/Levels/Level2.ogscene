@@ -34,7 +34,7 @@
   <CAMERAPOSITIONS count="2">
     <OPTION id="0" position="38.2771 61.4953 43.6119" orientation="-0.949554 -0.016575 0.313115 -0.00549753"></OPTION>
     <OPTION id="1" position="-975.915 1320.3 -1061.84" orientation="0.788727 -0.292002 -0.507271 -0.187939"></OPTION>
-    <OPTION id="2" position="686.179 224.974 436.282" orientation="0.732577 -0.662984 0.111508 0.10653"></OPTION>
+    <OPTION id="2" position="792.816 376.494 -656.896" orientation="-0.41341 0.0928286 -0.881767 -0.207272"></OPTION>
   </CAMERAPOSITIONS>
     <LAYERS>
       <LAYER id="0" name="Layer 0" visible="true"></LAYER>
@@ -108,9 +108,9 @@
   <OBJECT object_id="925717952" name="Viewport1" typename="Viewport Object">
     <PROPERTY id="camera::clipdistance" type="8" value="1 20000"></PROPERTY>
     <PROPERTY id="camera::fov" type="6" value="1"></PROPERTY>
-    <PROPERTY id="camera::orientation" type="13" value="0.732758 -0.663148 0.111536 0.106556"></PROPERTY>
+    <PROPERTY id="camera::orientation" type="13" value="-0.413423 0.0928316 -0.881796 -0.207279"></PROPERTY>
     <PROPERTY id="camera::polymode" type="2" value="3"></PROPERTY>
-    <PROPERTY id="camera::position" type="9" value="686.179 224.974 436.282"></PROPERTY>
+    <PROPERTY id="camera::position" type="9" value="792.816 376.494 -656.896"></PROPERTY>
     <PROPERTY id="camera::viewmode" type="2" value="0"></PROPERTY>
     <PROPERTY id="colour" type="11" value="0 0 0 1"></PROPERTY>
     <PROPERTY id="compositorcount" type="2" value="0"></PROPERTY>
@@ -1864,7 +1864,7 @@
     <PROPERTY id="castshadows" type="12" value="false"></PROPERTY>
     <PROPERTY id="layer" type="2" value="1"></PROPERTY>
     <PROPERTY id="locked" type="12" value="false"></PROPERTY>
-    <PROPERTY id="meshfile" type="7" value="tree01_nightmare.mesh"></PROPERTY>
+    <PROPERTY id="meshfile" type="7" value="tree9_n.mesh"></PROPERTY>
     <PROPERTY id="orientation" type="13" value="0.0563823 0.00592602 -0.992922 0.10436"></PROPERTY>
     <PROPERTY id="position" type="9" value="42.6442 265.173 -259.439"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
@@ -2917,7 +2917,7 @@
     <PROPERTY id="position" type="9" value="-274.132 155.541 -105.896"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="blue"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="greatwall_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -6380,7 +6380,7 @@
     <PROPERTY id="position" type="9" value="785.745 227.26 -11.8477"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="walldoor_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="ruins01_n"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>
@@ -12466,7 +12466,7 @@
     <PROPERTY id="position" type="9" value="0 0 0"></PROPERTY>
     <PROPERTY id="renderingdistance" type="6" value="2000"></PROPERTY>
     <PROPERTY id="scale" type="9" value="1 1 1"></PROPERTY>
-    <PROPERTY id="subentity0::material" type="7" value="terrain1_wall01_n"></PROPERTY>
+    <PROPERTY id="subentity0::material" type="7" value="greatwall_d"></PROPERTY>
     <PROPERTY id="subentity0::visible" type="12" value="true"></PROPERTY>
     <PROPERTY id="subentitycount" type="2" value="1"></PROPERTY>
     <CUSTOMPROPERTIES>

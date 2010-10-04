@@ -1,53 +1,53 @@
-import basic_texture from BasicTexture.material
-import default_changeworld from ChangeWorld.material
+import terrain_texture from BasicTexture.material
+import terrain_changeworld from ChangeWorld.material
 
 //WALL1
-material terrain1_wall01_d : basic_texture
+material terrain1_wall01_d : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall01_d.dds
+	set_texture_alias diffuse_texture wall01_d.dds
 }
 
-material terrain1_wall01_n : basic_texture
+material terrain1_wall01_n : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall01_n.dds
+	set_texture_alias diffuse_texture wall01_n.dds
 }
 
-material terrain1_wall01_cw : default_changeworld
+material terrain1_wall01_cw : terrain_changeworld 
 {
-	set_texture_alias dreams terrain1_wall01_d.dds
-	set_texture_alias nightmares terrain1_wall01_n.dds
+	set_texture_alias dreams wall01_d.dds
+	set_texture_alias nightmares wall01_n.dds
 }
 
 //WALL2
-material terrain1_wall02_d : basic_texture
+material terrain1_wall02_d : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall02_d.dds
+	set_texture_alias diffuse_texture wall01_d.dds
 }
 
-material terrain1_wall02_n : basic_texture
+material terrain1_wall02_n : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall02_n.dds
+	set_texture_alias diffuse_texture wall01_n.dds
 }
 
-material terrain1_wall02_cw : default_changeworld
+material terrain1_wall02_cw : terrain_changeworld 
 {
-	set_texture_alias dreams terrain1_wall02_d.dds
-	set_texture_alias nightmares terrain1_wall02_n.dds
+	set_texture_alias dreams wall01_d.dds
+	set_texture_alias nightmares wall01_n.dds
 }
 
 //WALL3
-material terrain1_wall03_d : basic_texture
+material terrain1_wall03_d : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall03_d.dds
+	set_texture_alias diffuse_texture wall01_d.dds
 }
 
-material terrain1_wall03_n : basic_texture
+material terrain1_wall03_n : terrain_texture 
 {
-	set_texture_alias diffuse_texture terrain1_wall03_n.dds
+	set_texture_alias diffuse_texture wall01_n.dds
 }
 
-material terrain1_wall03_cw : default_changeworld
+material terrain1_wall03_cw : terrain_changeworld 
 {
-	set_texture_alias dreams terrain1_wall03_d.dds
-	set_texture_alias nightmares terrain1_wall03_n.dds
+	set_texture_alias dreams wall01_d.dds
+	set_texture_alias nightmares wall01_n.dds
 }
