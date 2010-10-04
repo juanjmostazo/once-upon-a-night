@@ -38,17 +38,17 @@ material bridge_cw : default_changeworld_shadow_reciever
 }
 
 //CARPET 
-material carpet_island2_d : basic_shadow_reciever 
+material carpet_island2_d : basic_texture
 {
 	set_texture_alias diffuse_texture carpet1.dds
 }
 
-material carpet_island2_n : basic_shadow_reciever 
+material carpet_island2_n : basic_texture
 {
 	set_texture_alias diffuse_texture carpet1n.dds
 }
 
-material carpet_island2_cw : default_changeworld_shadow_reciever 
+material carpet_island2_cw : default_changeworld
 {
 	set_texture_alias dreams carpet1.dds
 	set_texture_alias nightmares carpet1n.dds
@@ -178,16 +178,20 @@ material torch_cw : default_changeworld
 material door_island2_d : basic_texture
 {
 	set_texture_alias diffuse_texture door.dds
+	set_texture_alias normal_texture door_nm.dds
 }
 
 material door_island2_n : basic_texture
 {
 	set_texture_alias diffuse_texture door_n.dds
+	set_texture_alias normal_texture door_nm.dds
 }
 
 material door_island2_cw : default_changeworld
 {
 	set_texture_alias dreams door.dds
 	set_texture_alias nightmares door_n.dds
+	set_texture_alias normal_dreams door_nm.dds
+	set_texture_alias normal_nightmares door_nm.dds
 }
 
