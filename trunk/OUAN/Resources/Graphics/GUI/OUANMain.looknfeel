@@ -1808,9 +1808,9 @@
 </StateImagery>
 </WidgetLook>
 <WidgetLook name="OUANMenu/TabButton">
-<PropertyDefinition name="NormalTextColour" initialValue="FFC0C0C0" redrawOnWrite="true" />
-<PropertyDefinition name="HoverTextColour" initialValue="FFE0E0E0" redrawOnWrite="true" />
-<PropertyDefinition name="PushedTextColour" initialValue="FFFFFFFF" redrawOnWrite="true" />
+<PropertyDefinition name="NormalTextColour" initialValue="FFFCEC41" redrawOnWrite="true" />
+<PropertyDefinition name="HoverTextColour" initialValue="FFFCEC41" redrawOnWrite="true" />
+<PropertyDefinition name="PushedTextColour" initialValue="FFFCEC41" redrawOnWrite="true" />
 <PropertyDefinition name="SelectedTextColour" initialValue="FFE0E0E0" redrawOnWrite="true" />
 <PropertyDefinition name="DisabledTextColour" initialValue="FF7F7F7F" redrawOnWrite="true" />
 <ImagerySection name="label">
@@ -2092,22 +2092,22 @@
 <NamedArea name="TextArea">
   <Area>
     <Dim type="LeftEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+      <ImageDim imageset="OUAN_Menu" image="mline_l" dimension="Width" />
     </Dim>
     <Dim type="TopEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+      <ImageDim imageset="OUAN_Menu" image="mline_t" dimension="Height" />
     </Dim>
     <Dim type="RightEdge" >
       <UnifiedDim scale="1" type="RightEdge">
         <DimOperator op="Subtract">
-          <ImageDim imageset="OUAN_Menu" image="tab_button_right_hover" dimension="Width" />
+          <ImageDim imageset="OUAN_Menu" image="mline_r" dimension="Width" />
         </DimOperator>
       </UnifiedDim>
     </Dim>
     <Dim type="BottomEdge" >
       <UnifiedDim scale="1" type="BottomEdge">
         <DimOperator op="Subtract">
-          <ImageDim imageset="OUAN_Menu" image="tab_button_bottom_hover" dimension="Height" />
+          <ImageDim imageset="OUAN_Menu" image="mline_b" dimension="Height" />
         </DimOperator>
       </UnifiedDim>
     </Dim>
@@ -2116,15 +2116,15 @@
 <NamedArea name="TextAreaHScroll">
   <Area>
     <Dim type="LeftEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+      <ImageDim imageset="OUAN_Menu" image="mline_l" dimension="Width" />
     </Dim>
     <Dim type="TopEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+      <ImageDim imageset="OUAN_Menu" image="mline_t" dimension="Height" />
     </Dim>
     <Dim type="RightEdge" >
       <UnifiedDim scale="1" type="RightEdge">
         <DimOperator op="Subtract">
-          <ImageDim imageset="OUAN_Menu" image="tab_button_right_hover" dimension="Width" />
+          <ImageDim imageset="OUAN_Menu" image="mline_r" dimension="Width" />
         </DimOperator>
       </UnifiedDim>
     </Dim>
@@ -2140,10 +2140,10 @@
 <NamedArea name="TextAreaVScroll">
   <Area>
     <Dim type="LeftEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+      <ImageDim imageset="OUAN_Menu" image="mline_r" dimension="Width" />
     </Dim>
     <Dim type="TopEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+      <ImageDim imageset="OUAN_Menu" image="mline_t" dimension="Height" />
     </Dim>
     <Dim type="RightEdge" >
       <UnifiedDim scale="1" type="RightEdge">
@@ -2155,7 +2155,7 @@
     <Dim type="BottomEdge" >
       <UnifiedDim scale="1" type="BottomEdge">
         <DimOperator op="Subtract">
-          <ImageDim imageset="OUAN_Menu" image="tab_button_bottom_hover" dimension="Height" />
+          <ImageDim imageset="OUAN_Menu" image="mline_b" dimension="Height" />
         </DimOperator>
       </UnifiedDim>
     </Dim>
@@ -2164,10 +2164,10 @@
 <NamedArea name="TextAreaHVScroll">
   <Area>
     <Dim type="LeftEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_left_hover" dimension="Width" />
+      <ImageDim imageset="OUAN_Menu" image="mline_l" dimension="Width" />
     </Dim>
     <Dim type="TopEdge" >
-      <ImageDim imageset="OUAN_Menu" image="tab_button_top_hover" dimension="Height" />
+      <ImageDim imageset="OUAN_Menu" image="mline_t" dimension="Height" />
     </Dim>
     <Dim type="RightEdge" >
       <UnifiedDim scale="1" type="RightEdge">
@@ -2235,15 +2235,15 @@
         <UnifiedDim scale="1" type="Height" />
       </Dim>
     </Area>
-    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="tab_button_topleft_hover" />
-    <Image type="TopRightCorner" imageset="OUAN_Menu" image="tab_button_topright_hover" />
-    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="tab_button_bottomleft_hover" />
-    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="tab_button_bottomright_hover" />
-    <Image type="LeftEdge" imageset="OUAN_Menu" image="tab_button_left_hover" />
-    <Image type="RightEdge" imageset="OUAN_Menu" image="tab_button_right_hover" />
-    <Image type="TopEdge" imageset="OUAN_Menu" image="tab_button_top_hover" />
-    <Image type="BottomEdge" imageset="OUAN_Menu" image="tab_button_bottom_hover" />
-    <Image type="Background" imageset="OUAN_Menu" image="tab_button_middle_hover" />
+    <Image type="TopLeftCorner" imageset="OUAN_Menu" image="mline_tl" />
+    <Image type="TopRightCorner" imageset="OUAN_Menu" image="mline_tr" />
+    <Image type="BottomLeftCorner" imageset="OUAN_Menu" image="mline_bl" />
+    <Image type="BottomRightCorner" imageset="OUAN_Menu" image="mline_br" />
+    <Image type="LeftEdge" imageset="OUAN_Menu" image="mline_l" />
+    <Image type="RightEdge" imageset="OUAN_Menu" image="mline_r" />
+    <Image type="TopEdge" imageset="OUAN_Menu" image="mline_t" />
+    <Image type="BottomEdge" imageset="OUAN_Menu" image="mline_b" />
+    <Image type="Background" imageset="OUAN_Menu" image="mline_m" />
   </FrameComponent>
 </ImagerySection>
 <ImagerySection name="Carat">

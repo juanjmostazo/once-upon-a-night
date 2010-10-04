@@ -36,7 +36,7 @@ Pere Ferrera\n</Option>
 		
 		<!-- MENÚ IN-GAME -->		
 		<Option key="INGAME_MENU_SCREEN_BTG">Volver al juego</Option>
-		<Option key="INGAME_MENU_SCREEN_BTM">Volver al menú principal</Option>
+		<Option key="INGAME_MENU_SCREEN_BTM">Abandonar partida</Option>
 		<Option key="INGAME_MENU_SCREEN_OPTIONS">Opciones</Option>
 		<Option key="INGAME_MENU_SCREEN_EXIT">Salir</Option>		
 		<!-- Elementos del combo de selección de dispositivo -->
@@ -98,5 +98,7 @@ Pere Ferrera\n</Option>
 		<Option key="OPTIONS_AA_LEVEL8">Nivel 8</Option>		
 		
 		<Option key="OUAN_STORY_EXIT_STRING">Pulsa "Salto" para volver	</Option>
+		
+		<Option key="OUAN_LOADING">Cargando	</Option>
 	</Options>
 </Configuration>

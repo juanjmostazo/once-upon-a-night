@@ -41,7 +41,7 @@ OUAN/HUDOverlay
 	}
 	container Panel(OUAN/RoulettePanel)
 	{	
-		left 0.87
+		left 0.84
 		top 0.003
 		width 0.05
 		height 0.1
@@ -52,7 +52,7 @@ OUAN/HUDOverlay
 			metrics_mode pixels
 			left 0.1 
 			top 0.25
-			width 128
+			width 171
 			height 128
 			material OUAN/Hud/Roulette
 		}		    
@@ -64,7 +64,7 @@ OUAN/HUDOverlay
 		vert_align top
 		left 0 
 		top 0.8
-		width 160
+		width 200
 		height 128
 		transparent true
 
@@ -73,7 +73,7 @@ OUAN/HUDOverlay
 			metrics_mode pixels
 			left 0
 			top 0
-			width 128
+			width 165
 			height 128
 			material OUAN/Hud/Diamond
 		}

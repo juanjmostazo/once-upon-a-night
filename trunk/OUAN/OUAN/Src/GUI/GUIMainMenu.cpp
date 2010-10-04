@@ -28,7 +28,7 @@ void GUIMainMenu::initGUI(GameStatePtr parentGameState)
 }
 bool GUIMainMenu::onPlay(const CEGUI::EventArgs& args)
 {
-	(static_cast<MainMenuState*>(mParentGameState.get()))->gotoPlay();
+	(static_cast<MainMenuState*>(mParentGameState.get()))->startTransitionToLoading();
 	return true;
 }
 bool GUIMainMenu::onOptions(const CEGUI::EventArgs& args)

@@ -2,12 +2,21 @@
 
 <Imageset Name="OUAN_Menu" Imagefile="ouan_options_buttons.png" NativeHorzRes="1024" NativeVertRes="768" AutoScaled="true" >
 	<Image Name="IMAGE" XPos="48" YPos="10" Width="1054" Height="979" />
+	<Image Name="mline_bl" XPos="594" YPos="822" Width="10" Height="10" />
+	<Image Name="mline_b" XPos="641" YPos="822" Width="6" Height="10" />
+	<Image Name="mline_br" XPos="694" YPos="822" Width="11" Height="10" />
+	<Image Name="mline_r" XPos="694" YPos="770" Width="11" Height="12" />
+	<Image Name="mline_tr" XPos="694" YPos="736" Width="11" Height="12" />
+	<Image Name="mline_m" XPos="633" YPos="770" Width="12" Height="10" />
+	<Image Name="mline_t" XPos="638" YPos="736" Width="9" Height="12" />
+	<Image Name="mline_l" XPos="594" YPos="770" Width="12" Height="16" />
+	<Image Name="mline_tl" XPos="594" YPos="736" Width="14" Height="12" />
 	<Image Name="button_left_click" XPos="464" YPos="414" Width="22" Height="60" />
 	<Image Name="button_middle_click" XPos="486" YPos="414" Width="226" Height="62" />
 	<Image Name="button_right_click" XPos="715" YPos="414" Width="18" Height="62" />
 	<Image Name="button_right_hover" XPos="715" YPos="317" Width="17" Height="61" />
 	<Image Name="button_middle_hover" XPos="486" YPos="317" Width="226" Height="61" />
-	<Image Name="button_right_normal" XPos="715" YPos="225" Width="19" Height="57" />
+	<Image Name="button_right_normal" XPos="715" YPos="223" Width="19" Height="57" />
 	<Image Name="button_left_hover" XPos="463" YPos="316" Width="22" Height="62" />
 	<Image Name="button_middle_normal" XPos="486" YPos="225" Width="226" Height="57" />
 	<Image Name="button_left_normal" XPos="464" YPos="225" Width="18" Height="57" />

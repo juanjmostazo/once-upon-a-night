@@ -19,7 +19,7 @@ void GUIExtrasMenu::bindEvents()
 }
 bool GUIExtrasMenu::onBackToMenu(const CEGUI::EventArgs& args)
 {
-	(static_cast<ExtrasState*>(mParentGameState.get()))->backToMenu();
+	(static_cast<ExtrasState*>(mParentGameState.get()))->startTransitioning();
 	return true;
 }
 void GUIExtrasMenu::setStrings()

@@ -102,5 +102,6 @@ Pere Ferrera\n</Option>
 		
 		<Option key="OPTIONS_YES">Yes</Option>
 		<Option key="OPTIONS_NO">No</Option>
+		<Option key="OUAN_LOADING">Loading</Option>
 	</Options>
 </Configuration>

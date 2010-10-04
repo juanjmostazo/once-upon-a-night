@@ -136,6 +136,10 @@ GUIWindowPtr GUISubsystem::createGUI(const std::string& guiLayout)
 	}
 	return ptr;
 }
+void GUISubsystem::setSheet(CEGUI::Window* newWin)
+{
+	mSystem->setGUISheet(newWin);
+}
 void GUISubsystem::destroyGUI()
 {
 	//WARNING: There may be a bug from CEGUI's version bundled with Ogre here. 
