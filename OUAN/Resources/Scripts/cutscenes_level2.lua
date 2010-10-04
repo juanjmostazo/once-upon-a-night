@@ -43,6 +43,7 @@ function cutScene1(timer)
 	addExecutedLevelEvent(CUTSCENE_1_LEVEL_START);
 	local any=getAny()
 	
+	any:changeAnimation("face_happy01");
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
 	timedMessage(any,"LEVEL_START#0",5,timer,6);
