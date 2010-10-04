@@ -5,20 +5,20 @@ import terrain_changeworld from ChangeWorld.material
 material terrain1_01_d : terrain_texture
 {
 	set_texture_alias diffuse_texture terrain01_d.dds
-	//set_texture_alias lightmap lightmap#terrainisland1_01_d.dds
+	//set_texture_alias lightmap lightmap#terrain01_d.dds
 }
 
 material terrain1_01_n : terrain_texture
 {
 	set_texture_alias diffuse_texture terrain01_n.dds
-	//set_texture_alias lightmap lightmap#terrainisland1_01_n.dds
+	//set_texture_alias lightmap lightmap#terrain01_d.dds
 }
 
 material terrain1_01_cw : terrain_changeworld 
 {
 	set_texture_alias dreams terrain01_d.dds
 	set_texture_alias nightmares terrain01_n.dds
-	//set_texture_alias lightmap_dreams lightmap#terrainisland1_01_d.dds
+	//set_texture_alias lightmap lightmap#terrain01_d.dds
 	//set_texture_alias lightmap_nightmares lightmap#terrainisland1_01_n.dds
 }
 
