@@ -91,7 +91,7 @@ function cutScene2(timer)
 	addExecutedLevelEvent(CUTSCENE_2_FIRST_CHANGE_WORLD);
 	local any=getAny()	
 	
-	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,true);
+	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,false);
 	trajectoryCamWait();
 	timedMessage(any,"FIRST_CHANGE_WORLD#0",5,timer,4);
 	timedMessage(any,"FIRST_CHANGE_WORLD#1",5,timer,7);
