@@ -13,10 +13,13 @@ namespace OUAN
 	const std::string VIDEO_PATH="../../Resources/Graphics/Video/";
 
 	//Default image to show when the video file has not been found
-	const std::string DEFAULT_IMG="ouan-nologo-bg.png";
+	const std::string DEFAULT_IMG="background_sky.png";
 	const std::string MOVIE_MATERIAL_NAME="Movie";
 	const std::string MOVIE_MATERIAL_GROUP="General";
 	const std::string SCREEN_SCENE_NODE="Screen";
+
+	const std::string CLOUDS_MATERIAL_NAME="Movie";
+	const std::string CLOUDS_SCENE_NODE="Clouds";
 	
 	const double IMAGE_DELAY=5;//time in seconds the fallback image will be displayed
 
@@ -26,7 +29,13 @@ namespace OUAN
 	private:
 		OgreUtils::DirectShowMovieTexture* mMovieTexture;
 		Ogre::Rectangle2D* mScreen;
+		Ogre::Rectangle2D* mClouds;
 		double mDelay;
+
+		bool mFrameSkip;
+		bool mTransitioning;
+
+		bool mMovieFinished;
 
 	public:
 		/// init main menu's resources
@@ -53,6 +62,8 @@ namespace OUAN
 		IntroState();
 		/// Destructor
 		~IntroState();
+
+		void startTransitioning();
 
 	};
 }

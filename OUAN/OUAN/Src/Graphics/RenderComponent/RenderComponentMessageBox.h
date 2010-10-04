@@ -11,11 +11,14 @@ namespace OUAN
 
 	const std::string MESSAGEBOX_OVERLAY="OUAN/HUDMessages";
 
+	const std::string MESSAGEBOX_DEFAULT_MATERIAL="OUAN/Hud/TextBubble";
+
 	class RenderComponentMessageBox: public RenderComponent
 	{
 	private:
 		Ogre::OverlayElement* mBasePanel;
 		std::string mBasePanelName;
+		std::string mDefaultMaterial;
 		
 		Ogre::OverlayElement* mCharPanel; 
 		std::string mCharPanelName;
@@ -58,6 +61,8 @@ namespace OUAN
 		const std::string& getMessage() const;
 		void setMessage(const std::string& message);
 		void setMessageBoxText();
+
+		void setBasePanelMaterial(const std::string& material);
 
 		double getDuration() const;
 		void setDuration(double duration);

@@ -73,6 +73,7 @@ namespace OUAN
 
 		void changeMessage(const std::string& message, double duration);
 		void changeMessage(const std::string& message);
+		void changeCharacterMessage(const std::string& message, const std::string& character, double duration);
 		void hideMessage();
 		void showMessage();
 		bool isMessageVisible() const;
@@ -84,6 +85,8 @@ namespace OUAN
 		void initPostHitInvulnerability();
 
 		bool awaitingForAttackEnd() const;
+
+		void printCharacterMessage(const std::string& message, const std::string& character);
 
 	private:
 		double mIdleTime;

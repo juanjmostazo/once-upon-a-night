@@ -506,6 +506,10 @@ bool LogicComponentOny::awaitingForAttackEnd() const
 {
 	return mAttackBufferState!=-1;
 }
+void LogicComponentOny::changeCharacterMessage(const std::string& message, const std::string& character, double duration)
+{
+	BOOST_PTR_CAST(GameObjectOny, mParent)->printCharacterMessage(message,character,duration);
+}
 //-------
 TLogicComponentOnyParameters::TLogicComponentOnyParameters() : TLogicComponentParameters()
 {

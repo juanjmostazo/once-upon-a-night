@@ -36,6 +36,14 @@ TRIPOLLO_PLATFORM_PUZZLE_END="TRIPOLLO_PLATFORM_PUZZLE_END";
 CAMERA_TRIPOLLO_STATUES_DOOR="TRIPOLLO_STATUES#0";
 CAMERA_TRIPOLLO_STATUES="TRIPOLLO_STATUES#1";
 CAMERA_TRIPOLLO_STATUES_PLATFORM="TRIPOLLO_STATUES#2";
+
+
+CHARACTER_NAME_ANY="Any"
+CHARACTER_NAME_KING="King"
+CHARACTER_NAME_PILLOW="Pillow"
+CHARACTER_NAME_LIGHT="Light"
+
+
 -- CUTSCENE 1: LEVEL START
 function cutScene1(timer)
 	log ("CUTSCENE 1: ");
@@ -47,8 +55,8 @@ function cutScene1(timer)
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
 	any:changeAnimation("idle02");
-	timedMessage(any,"LEVEL_START#0",5,timer,6);
-	timedMessage(any,"LEVEL_START#1",5,timer,6);
+	timedCharacterMessage(any,"LEVEL_START#0",CHARACTER_NAME_ANY,5,timer,6);
+	timedCharacterMessage(any,"LEVEL_START#1",CHARACTER_NAME_KING,5,timer,6);
 	
 	setCameraTrajectory(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1,false,true)	
 	trajectoryCamWait()
