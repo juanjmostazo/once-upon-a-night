@@ -2,6 +2,148 @@ import basic_texture from BasicTexture.material
 import alpha_blending_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 import default_changeworld_alpha_blending from ChangeWorld.material
+import default_changeworld_alpha_test from ChangeWorld.material
+
+//FOG0
+material fog0_d : default_changeworld_alpha_test
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 0
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+				param_named rimStrength_base float4 0 0 0 0
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
+				param_named rimStrength_blended float4 0 0 0 0
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
+		}
+	}
+}
+
+material fog0_n : default_changeworld_alpha_test
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named mix_factor float 1
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+				param_named rimStrength_base float4 0 0 0 0
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
+				param_named rimStrength_blended float4 0 0 0 0
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
+		}
+	}
+}
+
+material fog0_cw : default_changeworld_alpha_test
+{
+	technique
+	{
+		pass
+		{
+			cull_hardware none 
+			cull_software none 
+		      vertex_program_ref erosion_vs
+		      {
+
+		      }
+		      fragment_program_ref erosion_fs
+		      {
+				param_named scroll_animation float3 0.01 0.0
+0.0
+				param_named tiling float3 3 3
+0.0
+				param_named rimStrength_base float4 0 0 0 0
+				param_named ambient_base float4 0.2 0.2 0.2 0.1
+				param_named rimStrength_blended float4 0 0 0 0
+				param_named ambient_blended float4 0.2 0.2 0.2 0.1
+		      }
+			texture_unit changeworld
+			{
+			}
+			texture_unit dreams
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit nightmares
+			{
+				texture level2_clouds02_d.dds
+			}
+			texture_unit fog_mask_dreams
+			{
+				texture fog_mask.dds
+			}
+			texture_unit fog_mask_nightmares
+			{
+				texture fog_mask.dds
+			}
+		}
+	}
+}
 
 //FOG1
 material fog1_d : default_changeworld_alpha_blending
