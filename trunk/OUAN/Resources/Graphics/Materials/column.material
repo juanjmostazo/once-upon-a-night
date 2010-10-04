@@ -16,3 +16,19 @@ material column_cw : default_changeworld
 	set_texture_alias dreams column_d.dds
 	set_texture_alias nightmares column_n.dds
 }
+
+material column02_d : basic_texture
+{
+	set_texture_alias diffuse_texture column02_d.dds
+}
+
+material column02_n : basic_texture
+{
+	set_texture_alias diffuse_texture column02_n.dds
+}
+
+material column02_cw : default_changeworld
+{
+	set_texture_alias dreams column02_d.dds
+	set_texture_alias nightmares column02_n.dds
+}
