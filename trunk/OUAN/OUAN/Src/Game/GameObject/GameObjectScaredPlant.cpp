@@ -69,7 +69,7 @@ void GameObjectScaredPlant::update(double elapsedSeconds)
 		int currentState=mLogicComponent->getState();
 		if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_IDLE) && mLogicComponent->isStateChanged())
 		{
-			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_UP);
+			mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
 		}
 		else if (currentState==logicSS->getGlobalInt(SCAREDPLANT_STATE_ALERT) && mLogicComponent->isStateChanged())
 		{
@@ -96,6 +96,7 @@ void GameObjectScaredPlant::reset()
 {
 	GameObject::reset();
 	mLogicComponent->setState(mGameWorldManager->getParent()->getLogicSubsystem()->getGlobalInt(SCAREDPLANT_STATE_IDLE));
+	mRenderComponentEntityDreams->changeAnimation(SCAREDPLANT_ANIM_IDLE);
 }
 
 void GameObjectScaredPlant::setDreamsRender()
