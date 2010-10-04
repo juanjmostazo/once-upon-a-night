@@ -19,8 +19,8 @@ material water_foam_d : default_changeworld_alpha_blending
 		      {
 				param_named mix_factor float 0
 				param_named scroll_animation float3 0.0 0.1
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.2 0.2 0.2 1
+				param_named ambient_blended float4 0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -53,8 +53,8 @@ material water_foam_n : default_changeworld_alpha_blending
 				param_named mix_factor float 1
 				param_named scroll_animation float3 0.0 0.1
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4  0.2 0.2 0.2 1
+				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -86,8 +86,8 @@ material water_foam_cw : default_changeworld_alpha_blending
 		      {
 				param_named scroll_animation float3 0.0 0.1
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4  0.2 0.2 0.2 1
+				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -124,8 +124,8 @@ material water_lake_seabed_d : default_changeworld
 0.0
 				param_named displacement float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4  0.2 0.2 0.2 1
+				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -162,8 +162,8 @@ material water_lake_seabed_n : default_changeworld
 0.0
 				param_named displacement float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4  0.2 0.2 0.2 1
+				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -199,8 +199,8 @@ material water_lake_seabed_cw : default_changeworld
 0.0
 				param_named displacement float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4  0.2 0.2 0.2 1
+				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
 			texture_unit changeworld
 			{
@@ -236,8 +236,8 @@ material waterfall_foam_d : default_changeworld_alpha_blending
 				param_named mix_factor float 0
 				param_named scroll_animation float3 0.0 0.25
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -270,8 +270,8 @@ material waterfall_foam_n : default_changeworld_alpha_blending
 				param_named mix_factor float 1
 				param_named scroll_animation float3 0.0 0.25
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -303,8 +303,8 @@ material waterfall_foam_cw : default_changeworld_alpha_blending
 		      {
 				param_named scroll_animation float3 0.0 0.25
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -338,8 +338,8 @@ material waterfall_blue_d : default_changeworld_alpha_test
 				param_named mix_factor float 0
 				param_named scroll_animation float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -372,8 +372,8 @@ material waterfall_blue_n : default_changeworld_alpha_test
 				param_named mix_factor float 1
 				param_named scroll_animation float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -405,8 +405,8 @@ material waterfall_blue_cw : default_changeworld_alpha_test
 		      {
 				param_named scroll_animation float3 0.0 0.2
 0.0
-				param_named ambient_base float4 0 0 0 1
-				param_named ambient_blended float4 0 0 0 1
+				param_named ambient_base float4 0.8 0.8 0.8 1
+				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
 			texture_unit changeworld
 			{
@@ -457,19 +457,3 @@ material waterfall_foam_island2_cw : waterfall_foam_cw
 	set_texture_alias dreams waterfall_foam_island2_d.dds
 	set_texture_alias nightmares waterfall_foam_island2_n.dds
 }
-
-//WATER LIGHTMAPS
-material lake1_lightmap_d : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture lake1_lightmap_d.dds
-}
-material lake1_lightmap_n : alpha_blending_texture
-{
-	set_texture_alias diffuse_texture lake1_lightmap_n.dds
-}
-material lake1_lightmap_cw : default_changeworld_alpha_blending
-{
-	set_texture_alias dreams lake1_lightmap_d.dds
-	set_texture_alias nightmares lake1_lightmap_n.dds
-}
-
