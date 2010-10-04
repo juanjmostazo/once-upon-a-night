@@ -46,7 +46,7 @@ function cutScene1(timer)
 	
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
-	any:changeAnimation("nap_pre");
+	any:changeAnimation("idle02");
 	timedMessage(any,"LEVEL_START#0",5,timer,6);
 	timedMessage(any,"LEVEL_START#1",5,timer,6);
 	

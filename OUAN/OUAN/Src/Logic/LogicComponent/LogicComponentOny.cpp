@@ -37,7 +37,7 @@ void LogicComponentOny::processCollision(GameObjectPtr pGameObject, Ogre::Vector
 	{
 		return;
 	}
-	Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
+	//Logger::getInstance()->log("LogicComponentOny::processCollision " + pGameObject->getName());
 
 	if(pGameObject->getType().compare(GAME_OBJECT_TYPE_ITEM_1UP)==0)
 	{
@@ -389,7 +389,7 @@ void LogicComponentOny::setNewState(int newState)
 {
 
 	mNewState=newState;
-	Logger::getInstance()->log("ONY::SET NEW STATE: "+StringConverter::toString(newState));
+	//Logger::getInstance()->log("ONY::SET NEW STATE: "+StringConverter::toString(newState));
 }
 
 int LogicComponentOny::getNewState()const
