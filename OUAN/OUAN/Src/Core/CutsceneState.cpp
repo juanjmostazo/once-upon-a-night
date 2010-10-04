@@ -36,6 +36,8 @@ void CutsceneState::init(ApplicationPtr app)
 {
 	GameState::init(app);
 
+	firstRender=true;
+
 	mApp->setPlayingCutscene(true);
 	mApp->mAudioFrameCnt=0;
 	mApp->getRenderSubsystem()->resumeRendering();
@@ -339,6 +341,12 @@ void CutsceneState::changeToWorld(int newWorld, double perc)
 
 bool CutsceneState::render()
 {
+	if (firstRender)
+	{
+		firstRender=false;
+		return true;
+	}
+
 	if (!mSkippingCutscene)
 	{
 		GameState::render();
