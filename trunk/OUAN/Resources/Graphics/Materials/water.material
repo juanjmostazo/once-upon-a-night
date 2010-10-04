@@ -22,9 +22,6 @@ material water_foam_d : default_changeworld_alpha_blending
 				param_named ambient_base float4 0.2 0.2 0.2 1
 				param_named ambient_blended float4 0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_foam_d.dds
@@ -56,9 +53,6 @@ material water_foam_n : default_changeworld_alpha_blending
 				param_named ambient_base float4  0.2 0.2 0.2 1
 				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_foam_d.dds
@@ -89,9 +83,6 @@ material water_foam_cw : default_changeworld_alpha_blending
 				param_named ambient_base float4  0.2 0.2 0.2 1
 				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_foam_d.dds
@@ -127,9 +118,6 @@ material water_lake_seabed_d : default_changeworld
 				param_named ambient_base float4  0.2 0.2 0.2 1
 				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_seabed_d.dds
@@ -165,9 +153,6 @@ material water_lake_seabed_n : default_changeworld
 				param_named ambient_base float4  0.2 0.2 0.2 1
 				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_seabed_d.dds
@@ -202,9 +187,6 @@ material water_lake_seabed_cw : default_changeworld
 				param_named ambient_base float4  0.2 0.2 0.2 1
 				param_named ambient_blended float4  0.2 0.2 0.2 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture water_seabed_d.dds
@@ -239,9 +221,6 @@ material waterfall_foam_d : default_changeworld_alpha_blending
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_foam_d.dds
@@ -273,9 +252,6 @@ material waterfall_foam_n : default_changeworld_alpha_blending
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_foam_d.dds
@@ -306,9 +282,6 @@ material waterfall_foam_cw : default_changeworld_alpha_blending
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_foam_d.dds
@@ -341,9 +314,6 @@ material waterfall_blue_d : default_changeworld_alpha_test
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_blue_d.dds
@@ -375,9 +345,6 @@ material waterfall_blue_n : default_changeworld_alpha_test
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_blue_d.dds
@@ -408,9 +375,6 @@ material waterfall_blue_cw : default_changeworld_alpha_test
 				param_named ambient_base float4 0.8 0.8 0.8 1
 				param_named ambient_blended float4 0.8 0.8 0.8 1
 		      }
-			texture_unit changeworld
-			{
-			}
 			texture_unit dreams
 			{
 				texture waterfall_blue_d.dds

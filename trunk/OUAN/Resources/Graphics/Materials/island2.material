@@ -21,34 +21,34 @@ material almena2_cw : default_changeworld
 }
 
 //BRIGDE
-material bridge_d : basic_shadow_reciever 
+material bridge_d : basic_texture
 {
 	set_texture_alias diffuse_texture brigdeisland2n.dds
 }
 
-material bridge_n : basic_shadow_reciever 
+material bridge_n : basic_texture
 {
 	set_texture_alias diffuse_texture brigdeisland2n2.dds
 }
 
-material bridge_cw : default_changeworld_shadow_reciever 
+material bridge_cw : default_changeworld
 {
 	set_texture_alias dreams brigdeisland2n.dds
 	set_texture_alias nightmares brigdeisland2n2.dds
 }
 
 //CARPET 
-material carpet_island2_d : basic_texture
+material carpet_island2_d : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet1.dds
 }
 
-material carpet_island2_n : basic_texture
+material carpet_island2_n : basic_shadow_reciever 
 {
 	set_texture_alias diffuse_texture carpet1n.dds
 }
 
-material carpet_island2_cw : default_changeworld
+material carpet_island2_cw : default_changeworld_shadow_reciever 
 {
 	set_texture_alias dreams carpet1.dds
 	set_texture_alias nightmares carpet1n.dds

@@ -333,22 +333,22 @@ bool GameObject::hasParentWeaponComponent() const
 
 void GameObject::displayText(const std::string& msg, const double& displayLifetime)
 {
-	if (mDisplayMsg) 
-	{
-		delete mDisplayMsg;
-		mDisplayMsg=NULL;
-	}	
-	Logger::getInstance()->log("displayText "+ msg);
-	if (hasRenderComponentEntity())
-	{
-		RenderComponentEntityPtr entityComp = getEntityComponent();
-		Ogre::Camera* camera = Application::getInstance()->getCameraManager()->getCamera();
-		mDisplayMsg = new ObjectTextDisplay(entityComp->getEntity(),camera);
-		mDisplayMsg->enable(true);
-		mDisplayMsg->setText(msg);
-	}
+	//if (mDisplayMsg) 
+	//{
+	//	delete mDisplayMsg;
+	//	mDisplayMsg=NULL;
+	//}	
+	//Logger::getInstance()->log("displayText "+ msg);
+	//if (hasRenderComponentEntity())
+	//{
+	//	RenderComponentEntityPtr entityComp = getEntityComponent();
+	//	Ogre::Camera* camera = Application::getInstance()->getCameraManager()->getCamera();
+	//	mDisplayMsg = new ObjectTextDisplay(entityComp->getEntity(),camera);
+	//	mDisplayMsg->enable(true);
+	//	mDisplayMsg->setText(msg);
+	//}
 
-	mDisplayLifetime=displayLifetime;
+	//mDisplayLifetime=displayLifetime;
 }
 
 void GameObject::changeAnimation(const std::string& animationName)
