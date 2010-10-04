@@ -18,6 +18,8 @@ using namespace OUAN;
 ExtrasState::ExtrasState()
 :GameState()
 ,mClickChannel(-1)
+,mTransitioning(false)
+,mSkipFrame(false)
 {
 
 }
@@ -44,8 +46,33 @@ void ExtrasState::init(ApplicationPtr app)
 
 	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_3;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=EXTRAS_STARS_MATERIAL_NAME;
+	desc.materialGroup=EXTRAS_GROUP;
+	desc.sceneNodeName=EXTRAS_STARS_SCREENNODE;
+
+	Utils::createRectangle(desc,mStars,mApp->getRenderSubsystem());
+
+	desc.leftCorner=desc.bottomCorner=-1.0;
+	desc.rightCorner=desc.topCorner=1.0;
+	desc.renderQueue=Ogre::RENDER_QUEUE_MAX;
+	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
+	desc.materialName=EXTRAS_CLOUDS_MATERIAL_NAME;
+	desc.materialGroup=EXTRAS_GROUP;	
+	desc.sceneNodeName=EXTRAS_CLOUDS_SCREENNODE;
+	Utils::createRectangle(desc,mClouds,mApp->getRenderSubsystem());
+
+		mClouds->getMaterial()->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setCurrentFrame(0);
+
+
 	mGUI=BOOST_PTR_CAST(GUIExtrasMenu,mApp->getGUISubsystem()->createGUI(GUI_LAYOUT_EXTRAS));
 	mGUI->initGUI(shared_from_this());
+
+	mTransitioning=false;
+	mSkipFrame=false;
 }
 
 /// Clean up main menu's resources
@@ -56,6 +83,8 @@ void ExtrasState::cleanUp()
 	mGUI->destroy();
 	mApp->getGUISubsystem()->destroyGUI();
 	Utils::destroyTexturedRectangle(mScreen, EXTRAS_MATERIAL_NAME,mApp->getRenderSubsystem());	
+	Utils::destroyRectangle(mStars,mApp->getRenderSubsystem());
+	Utils::destroyRectangle(mClouds,mApp->getRenderSubsystem());
 }
 
 /// pause state
@@ -81,6 +110,38 @@ void ExtrasState::handleEvents()
 void ExtrasState::update(long elapsedTime)
 {
 	GameState::update(elapsedTime);
+	Ogre::TextureUnitState* tex=mClouds->getMaterial()->getTechnique(0)->getPass(0)->getTextureUnitState(0);
+
+	if (tex && mClouds->isVisible())
+	{
+		int currentFrame=tex->getCurrentFrame();
+		if (mTransitioning)
+		{			
+			if (currentFrame-1==0)
+			{
+				backToMenu();
+			}
+			else
+				if (!mSkipFrame)
+				{
+					tex->setCurrentFrame(currentFrame-1);
+				}
+
+		}
+		else
+		{			
+			if (currentFrame+1==tex->getNumFrames())
+			{
+				mClouds->setVisible(false);
+			}
+			else 
+				if (!mSkipFrame)
+				{
+					tex->setCurrentFrame(currentFrame+1);
+				}
+		}
+	}	
+	mSkipFrame=!mSkipFrame;//HACK TO KEEP THE ANIMATION RUNNING LONGER
 }
 
 void ExtrasState::backToMenu()
@@ -89,4 +150,11 @@ void ExtrasState::backToMenu()
 	mApp->getGameStateManager()->changeState(nextState,mApp);*/
 	mApp->getAudioSubsystem()->playSound("CLICK",mClickChannel);
 	mApp->getGameStateManager()->popState();
+}
+
+void ExtrasState::startTransitioning()
+{
+	mTransitioning=true;
+	mClouds->setVisible(true);
+	mClouds->getMaterial()->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setCurrentFrame(mClouds->getMaterial()->getTechnique(0)->getPass(0)->getTextureUnitState(0)->getNumFrames()-1);
 }

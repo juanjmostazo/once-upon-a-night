@@ -90,6 +90,8 @@ namespace OUAN
 		void setCursorVisibility(bool visible);
 		void showCursor();
 		void hideCursor();
+
+		void setSheet(CEGUI::Window* newWin);
 	};
 }
 #endif

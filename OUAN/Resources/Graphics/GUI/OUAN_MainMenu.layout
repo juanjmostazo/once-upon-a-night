@@ -9,7 +9,7 @@
             <Property Name="Text" Value="MAINMENU_SCREEN_OPTIONS" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.305394,0},{0.589436,0},{0.705394,0},{0.732361,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.324625,0},{0.640311,0},{0.724624,0},{0.783236,0}}" />
             <Property Name="NormalTextColour" Value="FFFFFFFF" />
         </Window>
         <Window Type="OUANLook/GearButton" Name="OUANMainMenu/Extras" >
@@ -25,7 +25,7 @@
             <Property Name="Text" Value="MAINMENU_SCREEN_PLAY" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.310736,0},{0.390938,0},{0.710736,0},{0.538632,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.323557,0},{0.46407,0},{0.723556,0},{0.611764,0}}" />
             <Property Name="NormalTextColour" Value="FFFFFFFF" />
         </Window>
         <Window Type="OUANLook/GearButton" Name="OUANMainMenu/Quit" >
@@ -33,7 +33,7 @@
             <Property Name="Text" Value="MAINMENU_SCREEN_QUIT" />
             <Property Name="AlwaysOnTop" Value="True" />
             <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
-            <Property Name="UnifiedAreaRect" Value="{{0.306304,0},{0.778428,0},{0.706304,0},{0.926122,0}}" />
+            <Property Name="UnifiedAreaRect" Value="{{0.327672,0},{0.808635,0},{0.727671,0},{0.956329,0}}" />
             <Property Name="NormalTextColour" Value="FFFFFFFF" />
         </Window>
     </Window>

@@ -200,6 +200,7 @@ namespace OUAN
 		ChangeWorldRendererPtr getChangeWorldRenderer();
 
 		void initChangeWorldRenderer(int initialWorld);
+		void initMenusAnimTextures();
 
 	protected:
 		/// the application

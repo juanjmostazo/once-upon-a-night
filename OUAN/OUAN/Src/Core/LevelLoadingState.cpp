@@ -6,6 +6,7 @@
 #include "../Loader/LevelLoader.h"
 #include "../Graphics/RenderSubsystem.h"
 #include "../Physics/PhysicsSubsystem.h"
+#include "../GUI/GUISubsystem.h"
 #include "../Game/GameWorldManager.h"
 
 #include "../Logic/LogicSubsystem.h"
@@ -73,20 +74,9 @@ void LevelLoadingState::init(ApplicationPtr app)
 
 	desc.leftCorner=desc.bottomCorner=-1.0;
 	desc.rightCorner=desc.topCorner=1.0;
-	desc.renderQueue=Ogre::RENDER_QUEUE_BACKGROUND;
-	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
-	desc.materialName=LEVELLOAD_BG_MATERIAL_NAME;
-	desc.materialGroup=LEVELLOAD_GROUP;
-	desc.textureName=LEVELLOAD_BG_IMG;
-	desc.sceneNodeName=LEVELLOAD_BG_NODE;
-
-	Utils::createTexturedRectangle(desc,mBg,mApp->getRenderSubsystem());
-
-	desc.leftCorner=desc.bottomCorner=-1.0;
-	desc.rightCorner=desc.topCorner=1.0;
 	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
 	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
-	desc.materialName=LEVELLOAD_MATERIAL_NAME;
+	desc.materialName="MenuLoading";
 	desc.materialGroup=LEVELLOAD_GROUP;
 	desc.textureName=LEVELLOAD_IMG;
 	desc.sceneNodeName=LEVELLOAD_SCREENNODE;
@@ -94,13 +84,13 @@ void LevelLoadingState::init(ApplicationPtr app)
 	desc.texAnimNumFrames=39;
 	desc.texAnimDuration=1;
 
-	Utils::createTexturedRectangle(desc,mScreen,mApp->getRenderSubsystem());
+	Utils::createRectangle(desc,mScreen,mApp->getRenderSubsystem());
 
 	desc.textureAnimation=false;
 	desc.leftCorner=-0.88;
 	desc.rightCorner=0.88;
-	desc.topCorner=-0.31;
-	desc.bottomCorner=-0.7;
+	desc.topCorner=-0.41;
+	desc.bottomCorner=-0.8;
 	desc.renderQueue=Ogre::RENDER_QUEUE_OVERLAY;
 	desc.axisAlignedBox=Ogre::AxisAlignedBox::BOX_INFINITE;
 	desc.materialName=LEVELLOAD_BARBG_MATERIAL_NAME;
@@ -111,9 +101,9 @@ void LevelLoadingState::init(ApplicationPtr app)
 	Utils::createTexturedRectangle(desc,mBarBg,mApp->getRenderSubsystem());
 
 	leftCorner=-0.80;
-	topCorner=-0.43;
+	topCorner=-0.55;
 	rightCorner=0.80;
-	bottomCorner=-0.57;
+	bottomCorner=-0.685;
 	currentRightCorner=-0.79;
 
 	currentStage=0;
@@ -143,10 +133,10 @@ void LevelLoadingState::cleanUp()
 {		
 	GameState::cleanUp();
 
-	Utils::destroyTexturedRectangle(mScreen,LEVELLOAD_MATERIAL_NAME,mApp->getRenderSubsystem());
+	Utils::destroyRectangle(mScreen,mApp->getRenderSubsystem());
 	Utils::destroyTexturedRectangle(mBar,LEVELLOAD_BAR_MATERIAL_NAME,mApp->getRenderSubsystem());
 	Utils::destroyTexturedRectangle(mBarBg,LEVELLOAD_BARBG_MATERIAL_NAME,mApp->getRenderSubsystem());
-	Utils::destroyTexturedRectangle(mBg,LEVELLOAD_BG_MATERIAL_NAME,mApp->getRenderSubsystem());
+	
 }
 
 /// pause state

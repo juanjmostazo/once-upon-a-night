@@ -63,7 +63,25 @@ bool RenderSubsystem::init(ConfigurationPtr config)
 
 	initTextures3D();
 
+	initMenusAnimTextures();
+
 	return true;
+}
+void RenderSubsystem::initMenusAnimTextures()
+{
+	std::string textures[] = {"background_stars", "loading_page", "clouds"};
+	int nframes[] = {13,39,39};
+	std::string extension=".png";
+	Ogre::TextureManager* tMgr = Ogre::TextureManager::getSingletonPtr();
+	for (int i=0;i<3;i++)
+	{
+		for (int j=0;j<nframes[i];j++)
+		{
+			tMgr->load(textures[i]+"_"+StringConverter::toString(j)+extension,ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+		}
+
+	}
+	
 }
 
 void RenderSubsystem::initChangeWorldRenderer(int initialWorld)

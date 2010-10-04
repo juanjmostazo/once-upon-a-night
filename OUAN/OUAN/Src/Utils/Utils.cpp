@@ -199,6 +199,42 @@ std::string OUAN::Utils::toString(bool boolValue)
 	return outStr.str();
 }
 
+void OUAN::Utils::createRectangle (const TTexturedRectangleDesc& description, 
+										   Ogre::Rectangle2D*& rectangle, RenderSubsystemPtr renderSS)
+{
+	rectangle= new Ogre::Rectangle2D(true);
+	rectangle->setCorners(description.leftCorner, description.topCorner, 
+		description.rightCorner, description.bottomCorner);
+	rectangle->setRenderQueueGroup(description.renderQueue);
+	rectangle->setBoundingBox(description.axisAlignedBox);
+	// Create background material	
+	rectangle->setMaterial(description.materialName);
+
+	Ogre::SceneNode* screenNode;
+	if (!renderSS->getSceneManager()->hasSceneNode(description.sceneNodeName))
+	{
+		Ogre::SceneNode* root = renderSS->getSceneManager()->getRootSceneNode();
+		screenNode= root->createChildSceneNode(description.sceneNodeName);
+	}
+	else
+	{
+		screenNode= renderSS->getSceneManager()->getSceneNode(description.sceneNodeName);
+	}
+	screenNode->attachObject(rectangle);
+}
+
+void OUAN::Utils::destroyRectangle(Ogre::Rectangle2D*& rect,
+	RenderSubsystemPtr renderSs)
+{	
+	if (rect)
+	{
+		std::string sceneNodeName=rect->getParentSceneNode()->getName();
+		rect->detatchFromParent();
+		renderSs->getSceneManager()->destroySceneNode(sceneNodeName);
+		SAFEDELETE(rect);			
+	}
+}
+
 void OUAN::Utils::createTexturedRectangle (const TTexturedRectangleDesc& description, 
 	Ogre::Rectangle2D*& rectangle, RenderSubsystemPtr renderSS)
 {
