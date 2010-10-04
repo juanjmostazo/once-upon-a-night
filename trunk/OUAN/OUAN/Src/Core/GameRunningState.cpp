@@ -873,6 +873,12 @@ void GameRunningState::renderChangeWorld()
 
 bool GameRunningState::render()
 {
+	if (firstRender)
+	{
+		firstRender=false;
+		return true;
+	}
+
 	if (!firstRender)
 	{
 		TGameObjectContainer * container = mApp->getGameWorldManager()->getAllGameObjects();

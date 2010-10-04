@@ -40,6 +40,8 @@ namespace OUAN
 		bool mFinishedChangeWorld;
 
 		int mWorldAfterCutscene;
+
+		bool firstRender;
 	public:
 		/// init extras screen's resources
 		void init(ApplicationPtr app);
