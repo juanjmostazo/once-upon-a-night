@@ -39,7 +39,7 @@ TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_CALL_TO_CHASE]="CALL_TO_CHASE"
 TRIPOLLO_STATE_NAMES[TRIPOLLO_STATE_DIVING_ATTACK]="DIVING_ATTACK"
 
 -- CONSTANTS TO PERFORM SOME RANDOM STATE CHANGES
-PATROL_TO_IDLE_CHANCE = 0.005
+PATROL_TO_IDLE_CHANCE = 0.15
 IDLE_TO_PATROL_CHANCE = 0.05
 IDLE_TO_IDLE1_CHANCE = 0.4
 TREMBLING_TO_CALL_CHANCE = 0.05
@@ -51,6 +51,8 @@ MELEE_RANGE = 40
 
 NEIGHBOURS_RANGE = 220
 
+FIND_DISTANCE = 150
+CHASE_DISTANCE = 75
 
 function tripolloLogic(pTripollo,state)
 
@@ -61,8 +63,6 @@ function tripolloLogic(pTripollo,state)
 	local world = getWorld();
 	local isFlying = pTripollo:isFlying();
 	
-	--local newState=state
-	
 	-- DEATH CHECK
 	if pTripollo:hasDied() then
 		return TRIPOLLO_STATE_DEAD
@@ -72,7 +72,7 @@ function tripolloLogic(pTripollo,state)
 	if pTripollo:isStatueEnabled() then
 		return TRIPOLLO_STATE_STATUE
 	elseif state == TRIPOLLO_STATE_STATUE then
-		return TRIPOLLO_STATE_IDLE
+		return TRIPOLLO_STATE_CHASE
 	end
 	
 	-- HIT CHECK
@@ -80,33 +80,22 @@ function tripolloLogic(pTripollo,state)
 		return TRIPOLLO_STATE_HIT
 	end	
 	
-	-- CALL RESPONSE
-	
-	if pTripollo:hasHeardCall() then
-		--log (myName.." says: I've heard the call!")
-		--log (myName.." : CHANGED STATE TO CALL_CHASE")
-		return TRIPOLLO_STATE_CALL_TO_CHASE
+	-- IDLE 1 CHECK
+	if pTripollo:isIdle1Finished() and state == TRIPOLLO_STATE_IDLE1 then
+		--log(myName.." : CHANGED STATE TO PATROL")
+		return TRIPOLLO_STATE_PATROL
 	end
 	
-	-- SURPRISE CHECK
-	if pTripollo:isSurpriseFinished() and state == TRIPOLLO_STATE_SURPRISE then
-		return TRIPOLLO_STATE_FIND
-	end
-		
-	-- FALSE ALARM CHECK
-	if pTripollo:isFalseAlarmFinished() and state == TRIPOLLO_STATE_FALSE_ALARM then
-		if pTripollo:hasPatrolTrajectory() then
-			--log(myName.." : CHANGED STATE TO PATROL")
-			return TRIPOLLO_STATE_PATROL
-		else
-			--log(myName.." doesn't have a patrol trajectory set: CHANGED STATE TO IDLE")
-			return TRIPOLLO_STATE_IDLE
-		end
-	end
-		
-	-- ALERT CHECK
-	if pTripollo:isAlertFinished() and state == TRIPOLLO_STATE_ALERT then
+	-- HIT RECOVERY:
+	if not pTripollo:hasBeenHit() and state == TRIPOLLO_STATE_HIT then
 		return TRIPOLLO_STATE_CHASE
+	end
+		
+	-- PATROL TRANSITION:
+	if state==TRIPOLLO_STATE_PATROL then
+		if playerDistance<=FIND_DISTANCE then
+			return TRIPOLLO_STATE_SURPRISE
+		end
 	end
 	
 	-- TIRED CHECK
@@ -115,84 +104,23 @@ function tripolloLogic(pTripollo,state)
 		return TRIPOLLO_STATE_FIND
 	end
 	
-	-- IDLE 1 CHECK
-	if pTripollo:isIdle1Finished() and state == TRIPOLLO_STATE_IDLE1 then
-		--log(myName.." : CHANGED STATE TO IDLE")
-		return TRIPOLLO_STATE_IDLE
-	end
-	
-	-- ATTACK CHECK
-	if pTripollo:isAttackFinished() and state == TRIPOLLO_STATE_ATTACK then
-		--log(myName.." : CHANGED STATE TO CHASE")
-		return TRIPOLLO_STATE_CHASE	
-	end
-	
-	-- CALL TO ARMS CHECK
-	if pTripollo:isCallToArmsFinished() and state == TRIPOLLO_STATE_CALL_TO_ARMS then
-		if pTripollo:callWasHeard() then
-			--log(myName.." : Reinforcements are coming: CHANGED STATE TO ALERT")
-			return TRIPOLLO_STATE_CHASE
-		else
-			--log(myName.." : Back to hiding in a corner: CHANGED STATE TO TREMBLING")
-			return TRIPOLLO_STATE_TREMBLING
-		end
-	end
-	
-	-- HIT RECOVERY:
-	if not pTripollo:hasBeenHit() and state == TRIPOLLO_STATE_HIT then
-		if pTripollo:getHP()==1 and any:getHP()>1 and pTripollo:getNeighboursInRange(NEIGHBOURS_RANGE)==0 then
-			--log(myName.." : Too weak to fight: CHANGING STATE TO FLEE")
-			return TRIPOLLO_STATE_FLEE
-		else
-			local prevState=pTripollo:getPreviousState()
-			--log (myName.." Going back to "..getStateName(prevState,TRIPOLLO_STATE_NAMES))
-			return prevState
-		end
-	end
-			
-	-- IDLE TRANSITIONS:		
-	if state==TRIPOLLO_STATE_IDLE then
-		if playerDistance<=myLOS then
-			--log (myName.." CHANGED STATE TO SURPRISE")
-			return TRIPOLLO_STATE_SURPRISE
-		elseif math.random()<=IDLE_TO_PATROL_CHANCE and pTripollo:hasPatrolTrajectory() then
-			return TRIPOLLO_STATE_PATROL
-		elseif math.random() <= IDLE_TO_IDLE1_CHANCE then
-			return TRIPOLLO_STATE_IDLE1
-		end
-		return state
-	end
-		
-	-- PATROL TRANSITION:
-	if state==TRIPOLLO_STATE_PATROL then
-		if math.random()<=PATROL_TO_IDLE_CHANCE then
-			--log (myName.." CHANGED STATE TO IDLE")
-			return TRIPOLLO_STATE_IDLE
-		end
-		if playerDistance<=myLOS then
-			--log (myName.." CHANGED STATE TO SURPRISE")
-			return TRIPOLLO_STATE_SURPRISE
-		end
-		return state
+	-- SURPRISE CHECK
+	if pTripollo:isSurpriseFinished() and state == TRIPOLLO_STATE_SURPRISE then
+		return TRIPOLLO_STATE_FIND
 	end
 	
 	-- FIND TRANSITIONS:
 	if state==TRIPOLLO_STATE_FIND then
-		if playerDistance>(myLOS) then
-			--log (myName.." CHANGED STATE TO FALSE ALARM")
-			return TRIPOLLO_STATE_FALSE_ALARM
-		elseif playerDistance<(myLOS/3.5) then
-			--log (myName.." CHANGED STATE TO ALERT")
-			return TRIPOLLO_STATE_ALERT	
+		if playerDistance>FIND_DISTANCE then
+			return TRIPOLLO_STATE_PATROL
+		elseif playerDistance<=CHASE_DISTANCE then
+			return TRIPOLLO_STATE_CHASE	
 		end
 	end
 	
 	-- CHASE TRANSITIONS
 	if state==TRIPOLLO_STATE_CHASE then
-		local meleeRange =  pTripollo:getMeleeRange()
-
-		--log ("PLAYER DISTANCE: "..playerDistance..", LOS: "..(myLOS/3)..", Melée range: "..meleeRange)
-		if playerDistance>=(myLOS/3.5) then
+		if playerDistance>CHASE_DISTANCE then
 			--log (myName.." CHANGED STATE TO TIRED")
 			return TRIPOLLO_STATE_TIRED
 		elseif pTripollo:hasHitOny() then
@@ -201,41 +129,12 @@ function tripolloLogic(pTripollo,state)
 		end
 	end
 	
-	-- CALL TO CHASE TRANSITIONS
-	if state == TRIPOLLO_STATE_CALL_TO_CHASE then
-		if playerDistance<(myLOS/3.5) then
-			--log (myName.." CHANGED STATE TO CHASE")
-			return TRIPOLLO_STATE_CHASE
-		elseif playerDistance<(myLOS) then
-			--log (myName.." CHANGED STATE TO FIND")
-			return TRIPOLLO_STATE_FIND
-		elseif math.random() <  BACK_FROM_CALL_TO_CHASE_CHANCE then
-			--log (myName.." CHANGED STATE TO WHATEVER I WAS DOING")
-			return pTripollo:getPreviousState()
-		end
-	end
-	
-	-- ATTACK TRANSITIONS
-	
-	-- FLEE TRANSITIONS
-	if state == TRIPOLLO_STATE_FLEE and playerDistance>= (myLOS/3) then
-		--log (myName.." CHANGED STATE TO TREMBLING")
-		return TRIPOLLO_STATE_TREMBLING
-	end
-	
-	-- TREMBLING TRANSITIONS
-	if state == TRIPOLLO_STATE_TREMBLING then
-		if any:getHP()==1 or pTripollo:getNeighboursInRange(NEIGHBOURS_RANGE)>0 then
-			--log (myName.." CHANGED STATE TO CHASE: GERONIMOOOOOO")
-			return TRIPOLLO_STATE_CHASE
-		elseif playerDistance<(myLOS/3) then
-			--log (myName.." CHANGED STATE TO FLEE")
-			return TRIPOLLO_STATE_FLEE
-		elseif math.random() < TREMBLING_TO_CALL_CHANCE then
-			--log (myName.." CHANGED STATE TO CALL_TO_ARMS")
-			return TRIPOLLO_STATE_CALL_TO_ARMS		
-		end
-	end
+    -- ATTACK CHECK
+    if pTripollo:isAttackFinished() and state == TRIPOLLO_STATE_ATTACK then
+            --log(myName.." : CHANGED STATE TO CHASE")
+            return TRIPOLLO_STATE_CHASE     
+    end
+
 
 	return state
 

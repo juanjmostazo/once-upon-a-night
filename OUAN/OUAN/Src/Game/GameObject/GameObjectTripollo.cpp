@@ -887,10 +887,11 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			setNightmaresRender();
 			if (mLogicComponentEnemy->isStatueEnabled())
 				mLogicComponentEnemy->setStatueEnabled(false);
-			else mLogicComponentEnemy->setState(Application::getInstance()->getLogicSubsystem()->getGlobalInt(TRIPOLLO_STATE_IDLE));
 			break;
 		default:break;
 	}
+
+	 mLogicComponentEnemy->setState(Application::getInstance()->getLogicSubsystem()->getGlobalInt(TRIPOLLO_STATE_CHASE));
 
 	switch(newWorld)
 	{
@@ -901,7 +902,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
-				activateTrajectory(newWorld);
 				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
 					mPhysicsComponentCharacter->create();
@@ -909,7 +909,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
-				activateTrajectory(newWorld);
 				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 				{
 					mPhysicsComponentCharacter->destroy();
@@ -922,7 +921,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			}
 			else if(mLogicComponentEnemy->existsInDreams()&& !mLogicComponentEnemy->existsInNightmares())
 			{
-				activateTrajectory(newWorld);
 				if (mPhysicsComponentCharacter.get() && mPhysicsComponentCharacter->isInUse())
 				{
 					mPhysicsComponentCharacter->destroy();
@@ -930,7 +928,6 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			}
 			else if(!mLogicComponentEnemy->existsInDreams()&& mLogicComponentEnemy->existsInNightmares())
 			{
-				activateTrajectory(newWorld);
 				if (mPhysicsComponentCharacter.get() && !mPhysicsComponentCharacter->isInUse())
 				{
 					mPhysicsComponentCharacter->create();
@@ -939,6 +936,8 @@ void GameObjectTripollo::changeWorldFinished(int newWorld)
 			break;
 		default:break;
 	}
+
+
 }
 
 void GameObjectTripollo::changeWorldStarted(int newWorld)
