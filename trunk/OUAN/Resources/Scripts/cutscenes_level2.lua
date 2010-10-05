@@ -55,8 +55,8 @@ function cutScene1(timer)
 	setCameraTrajectory(CUTSCENE_1_LEVEL_START,false,false)	
 	trajectoryCamWait()
 	any:changeAnimation("idle02");
-	timedCharacterMessage(any,"LEVEL_START#0",CHARACTER_NAME_ANY,5,timer,6);
-	timedCharacterMessage(any,"LEVEL_START#1",CHARACTER_NAME_KING,5,timer,6);
+	timedCharacterMessage(any,"LEVEL_START#0",CHARACTER_NAME_PILLOW,5,timer,6);
+	timedCharacterMessage(any,"LEVEL_START#1",CHARACTER_NAME_PILLOW,5,timer,6);
 	
 	setCameraTrajectory(CUTSCENE_1_1_PLATFORM_TO_MOUNTAIN_1,false,true)	
 	trajectoryCamWait()
@@ -101,9 +101,9 @@ function cutScene2(timer)
 	
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_1,false,false);
 	trajectoryCamWait();
-	timedMessage(any,"FIRST_CHANGE_WORLD#0",5,timer,4);
-	timedMessage(any,"FIRST_CHANGE_WORLD#1",5,timer,7);
-	timedMessage(any,"FIRST_CHANGE_WORLD#2",5,timer,4);
+	timedCharacterMessage(any,"FIRST_CHANGE_WORLD#0",CHARACTER_NAME_LIGHT,5,timer,4);
+	timedCharacterMessage(any,"FIRST_CHANGE_WORLD#1",CHARACTER_NAME_LIGHT,5,timer,7);
+	timedCharacterMessage(any,"FIRST_CHANGE_WORLD#2",CHARACTER_NAME_LIGHT,5,timer,4);
 
 	changeWorld(OUAN_WORLD_NIGHTMARES);
 	setCameraTrajectory(CUTSCENE_2_FIRST_CHANGE_WORLD_2,false,true);
@@ -137,29 +137,29 @@ function cutScene3(timer)
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_1,false,true)	
 	trajectoryCamWait();
 	cryking:changeAnimation("cry_loop1_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#0",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#1",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#2",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#3",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#4",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#0",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#1",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#2",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#3",CHARACTER_NAME_ANY,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#4",CHARACTER_NAME_PILLOW,5,timer,5);
 	cryking:changeAnimation("speak_loop1_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#5",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#5",CHARACTER_NAME_KING,5,timer,5);
 	cryking:changeAnimation("idle03_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#6",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#6",CHARACTER_NAME_ANY,5,timer,5);
 	cryking:changeAnimation("speak_loop1_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#7",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#8",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#7",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#8",CHARACTER_NAME_KING,5,timer,5);
 	cryking:changeAnimation("idle03_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#9",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#9",CHARACTER_NAME_ANY,5,timer,5);
 	cryking:changeAnimation("speak_loop1_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#10",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#11",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#12",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_START#13",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#10",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#11",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#12",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#13",CHARACTER_NAME_KING,5,timer,5);
 	cryking:changeAnimation("idle02_Clip");
-	timedMessage(any,"BOMBS_PUZZLE_START#14",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#14",CHARACTER_NAME_KING,5,timer,5);
 	initBombPuzzle();
-	timedMessage(any,"BOMBS_PUZZLE_START#15",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_START#15",CHARACTER_NAME_KING,5,timer,5);
 	-- setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_2,false,false)
 	-- trajectoryCamWait();
 	setCameraTrajectory(CUTSCENE_3_BOMBS_PUZZLE_START_3,false,true)	
@@ -195,8 +195,8 @@ function cutScene3_1(timer)
 	
 	setCameraTrajectory(CUTSCENE_4_BOMBS_PUZZLE_END,false,true)	
 	trajectoryCamWait();
-	timedMessage(any,"BOMBS_PUZZLE_END#0",5,timer,5);
-	timedMessage(any,"BOMBS_PUZZLE_END#1",5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_END#0",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"BOMBS_PUZZLE_END#1",CHARACTER_NAME_KING,5,timer,5);
 	
 	setMyReturningToGameTransition(true);
 	return COROUTINE_FINISHED
@@ -447,16 +447,16 @@ function cutScene10_3(timer)
 	any:changeAnimation("victory_loop");
 	
 	addExecutedLevelEvent(CUTSCENE_10_3_FINAL_BOSS_HIT_3);
-	setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
-	trajectoryCamWait();
-	timedMessage(any,"FINAL_BOSS_END#0",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#1",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#2",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#3",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#4",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#5",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#6",5,timer,5);
-	timedMessage(any,"FINAL_BOSS_END#7",5,timer,5);
+	-- setCameraTrajectory(CUTSCENE_10_3_FINAL_BOSS_HIT_3,false,true);
+	-- trajectoryCamWait();
+	timedCharacterMessage(any,"FINAL_BOSS_END#0",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#1",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#2",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#3",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#4",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#5",CHARACTER_NAME_KING,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#6",CHARACTER_NAME_ANY,5,timer,5);
+	timedCharacterMessage(any,"FINAL_BOSS_END#7",CHARACTER_NAME_PILLOW,5,timer,5);
 	
 	any:changeAnimation("idle02");
 	
