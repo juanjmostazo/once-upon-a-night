@@ -83,7 +83,7 @@ function tripolloLogic(pTripollo,state)
 	-- IDLE 1 CHECK
 	if pTripollo:isIdle1Finished() and state == TRIPOLLO_STATE_IDLE1 then
 		--log(myName.." : CHANGED STATE TO PATROL")
-		return TRIPOLLO_STATE_PATROL
+		return TRIPOLLO_STATE_IDLE
 	end
 	
 	-- HIT RECOVERY:
@@ -92,7 +92,7 @@ function tripolloLogic(pTripollo,state)
 	end
 		
 	-- PATROL TRANSITION:
-	if state==TRIPOLLO_STATE_PATROL then
+	if state==TRIPOLLO_STATE_IDLE then
 		if playerDistance<=FIND_DISTANCE then
 			return TRIPOLLO_STATE_SURPRISE
 		end
@@ -112,7 +112,7 @@ function tripolloLogic(pTripollo,state)
 	-- FIND TRANSITIONS:
 	if state==TRIPOLLO_STATE_FIND then
 		if playerDistance>FIND_DISTANCE then
-			return TRIPOLLO_STATE_PATROL
+			return TRIPOLLO_STATE_IDLE
 		elseif playerDistance<=CHASE_DISTANCE then
 			return TRIPOLLO_STATE_CHASE	
 		end
