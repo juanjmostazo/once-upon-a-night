@@ -5,6 +5,7 @@ import terrain_changeworld from ChangeWorld.material
 material terrain1_wall01_d : terrain_texture 
 {
 	set_texture_alias diffuse_texture wall01_d.dds
+	set_texture_alias dreams lightmap#terrain_d#wall_01.dds
 }
 
 material terrain1_wall01_n : terrain_texture 
@@ -16,6 +17,7 @@ material terrain1_wall01_cw : terrain_changeworld
 {
 	set_texture_alias dreams wall01_d.dds
 	set_texture_alias nightmares wall01_n.dds
+	set_texture_alias lightmap_dreams lightmap#terrain_d#wall_01.dds
 }
 
 //WALL2

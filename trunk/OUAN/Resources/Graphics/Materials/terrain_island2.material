@@ -4,6 +4,7 @@ import terrain_changeworld from ChangeWorld.material
 material terrain_island2_d : terrain_texture 
 {
 	set_texture_alias diffuse_texture terrain_island2.dds
+	set_texture_alias lightmap lightmap#island2_d.dds
 }
 
 material terrain_island2_n : terrain_texture 
@@ -15,4 +16,5 @@ material terrain_island2_cw : terrain_changeworld
 {
 	set_texture_alias dreams terrain_island2.dds
 	set_texture_alias nightmares terrain_island2n.dds
+	set_texture_alias lightmap_dreams lightmap#island2_d.dds
 }

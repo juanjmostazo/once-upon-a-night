@@ -4,6 +4,7 @@ import terrain_changeworld from ChangeWorld.material
 material terrain1_mountain1_d : terrain_texture 
 {
 	set_texture_alias diffuse_texture mountain1_d.dds
+	set_texture_alias lightmap lightmap#mountain_1_d.dds
 }
 
 material terrain1_mountain1_n : terrain_texture 
@@ -15,4 +16,5 @@ material terrain1_mountain1_cw : terrain_changeworld
 {
 	set_texture_alias dreams mountain1_d.dds
 	set_texture_alias nightmares mountain1_n.dds
+	set_texture_alias lightmap_dreams lightmap#mountain_1_d.dds
 }

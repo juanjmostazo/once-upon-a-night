@@ -98,7 +98,7 @@ fragment_program OUAN/DepthShadowmap/ReceiverFP cg
         param_named fixedDepthBias float 0.01
         param_named gradientClamp float 0.0098
         param_named gradientScaleBias float 0
-	param_named shadowFactor float 0.5
+	param_named shadowFactor float 0.8
     }
 }
  
