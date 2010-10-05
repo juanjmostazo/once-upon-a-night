@@ -1,12 +1,18 @@
-import alpha_blending_texture from BasicTexture.material
+import basic_texture from BasicTexture.material
 import default_changeworld from ChangeWorld.material
 
-material diamondtree_d : alpha_blending_texture
+material diamondtree_d : basic_texture 
 {
 	set_texture_alias diffuse_texture diamondtree_d.dds
 }
 
-material diamondtree_n : alpha_blending_texture
+material diamondtree_n : basic_texture 
 {
 	set_texture_alias diffuse_texture diamondtree_n.dds
+}
+
+material diamondtree_cw : default_changeworld
+{
+	set_texture_alias dreams diamondtree_d.dds
+	set_texture_alias nightmares diamondtree_n.dds
 }
