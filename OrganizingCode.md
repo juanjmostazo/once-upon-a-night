@@ -1,0 +1,1 @@
+http://www.gamedev.net/reference/articles/article1798.asp

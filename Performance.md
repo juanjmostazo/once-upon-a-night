@@ -1,0 +1,1 @@
+http://www.nvidia.de/docs/IO/8230/BatchBatchBatch.pdf <- pdf sobre batch count y rendimiento

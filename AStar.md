@@ -1,0 +1,1 @@
+http://www.cs.rpi.edu/~beevek/research/astar_bgl04.pdf

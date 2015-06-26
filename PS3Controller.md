@@ -1,0 +1,1 @@
+http://www.hardcoreware.net/how-to-playstation-3-controller-64-bit-windows-7-vista/
